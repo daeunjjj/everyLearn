@@ -1,0 +1,33 @@
+#dashboard{
+    background-color: #005297;
+}
+
+main *{
+    --border: 1px solid black;
+}
+
+.main-wrap>h2{
+    font-size: 20px;
+    margin-bottom: 12px;
+    margin-left: 5px;
+}
+
+
+.todo-area{
+    display: flex;
+    justify-content: space-around;
+
+    --border: 1px solid rgb(208, 208, 208);
+    background-color: rgb(230, 230, 230);
+    border-radius: 10px;
+    padding: 26px;
+}
+
+.todo-items{
+    display: flex;
+}
+
+.todo-items>span{
+    margin-left: 5px;
+    color: red;
+}

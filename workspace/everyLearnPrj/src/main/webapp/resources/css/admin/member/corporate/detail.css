@@ -1,0 +1,30 @@
+#corporate{
+    font-weight: bold;
+}
+
+
+
+
+/* 지도 때문에 */
+
+.info-area{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid rgb(51, 51, 51);
+
+}
+
+.info-top{
+    width: 100%;
+}
+
+.map-area{
+    width: 40%;
+    height: 300px;
+}
+
+
+
+
+
