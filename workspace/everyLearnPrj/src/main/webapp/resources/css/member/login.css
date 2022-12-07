@@ -1,0 +1,129 @@
+body{
+    padding: 0px;
+    margin: 0;
+}
+
+
+
+#contain{
+    width: 60vw;
+    height: 1500px;
+    margin: auto;
+
+}
+
+
+#top-join{
+    /* display: flex; */
+    justify-content: center;
+    /* width: 500px; */
+}
+
+#img-logo{
+    width: 150px;
+    height: 150px;
+}
+
+.top-join{
+
+    margin: auto;
+    width: 500px;
+    text-align: center;
+   
+}
+
+
+
+#wrap-join{
+    width: 500px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    border: 2px solid #1187CF;
+    border-radius: 30px;
+    padding-top: 40px;
+    padding-bottom: 50px;
+}
+
+h4{
+
+    width: 300px;
+    margin-left: 25px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+#join-form{
+    width:400px;
+    margin: auto;
+}
+
+input{
+    border: none;
+    width: 80%;
+}
+
+input:focus {outline:none;}
+
+.join-box{
+    width: 350px;
+    height: 50px;
+    border: solid 2px #dadada;
+    padding: 10px 10px 10px 10px;
+    background: #fff;
+    box-sizing: border-box;
+    margin: auto;
+    display: flex;
+    justify-self: center;
+    border-radius: 5px;
+}
+
+#title-join{
+    font-size: large;
+    font-weight: 900;
+}
+
+#btnJoin{
+    margin: auto;
+    width: 350px;
+    height: 50px;
+    margin-top: 30px;
+    display: flex;
+    justify-self: center;
+    text-align: center;
+    border: none;
+    background-color: #1187CF;
+    border-radius: 5px;
+}
+
+#text-join{
+    margin: auto;
+    background-color: #1187CF;
+    font-size: large;
+    color: white;
+    font-weight: 700;
+    border: 1px solid #1187CF;
+}
+
+/* ---------- */
+#double-check{
+    font-size: 11px;
+    background-color: #1187CF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#find{
+    width: 500px;
+    margin: auto;
+    text-align: center;
+    margin-top: 7px;
+}
+
+#find>a{
+    text-decoration: none;
+    font-size: small;
+    font-weight: 500;
+    color: gray;
+}
