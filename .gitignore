@@ -4,3 +4,4 @@ workspace/semiPrj/.settings/
 workspace/.metadata/
 .metadata/
 Servers/
+**/target/
