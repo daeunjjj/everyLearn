@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+
+.wrap{
+    width: 70vw;
+    height: 1500px;
+    --border: 1px solid black;
+    display: grid;
+    grid-template-columns: 15fr 85fr;
+    margin: auto;
+}
+
+.sidebar{
+    --width: 15%;
+    height: 500px;
+    --border: 1px solid red;
+    background-color: #F4F4F4;
+    font-size: 20px;
+    
+}
+
+li{
+    list-style: none;
+    padding-left: 0px;
+    padding-top: 10px;
+}
+
+li a {
+     list-style: none;
+     text-decoration: none; 
+     display: block;  
+     padding: 10px 0px 10px 0px;  
+     --border-bottom: 1px solid gray ;
+     color: black; 
+    }
+
+.sidebar li a:hover
+    {
+    color:#1187CF;
+    font-weight: bold;
+    }
+
+.search{
+    width: 30%;
+    height: 30px;
+    --border: 1px solid gray;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+#searchbox{
+    --width: 85%;
+    margin-top: 5px;
+}
+
+#search-icon{
+    width: 15%;
+    margin-top: 5px;
+}
+
+.list-wrap{
+    --border: 1px solid green;
+    border-top: 1px solid gray;
+    height: 90%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 3fr 3fr 3fr 3fr 1fr;
+    padding: 30px;
+    grid-gap: 30px;
+}
+
+.list-wrap>div{
+    padding: 20px;
+}
+
+#lec-pic{
+    height: 60%;
+    background-color: aliceblue;
+    
+}
+
+#lec-int{
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+#lec-int a{
+    text-decoration: none;
+    color: black; 
+}
+
+#lec-int a:hover{
+    font-weight: bold;
+}
+
+#lec-teacher{
+    margin-top: 10px;
+    font-size: 13px;
+}
