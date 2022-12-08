@@ -15,6 +15,8 @@ public class MemberController {
 		return "member/login";
 	}
 	
+//	강의 커뮤니티 (나중에 컨트롤러 옮길 것!)
+	
 	@GetMapping("class/qna")
 	public String qna() {
 		return "class_comm/qna";
@@ -23,6 +25,26 @@ public class MemberController {
 	@GetMapping("class/study")
 	public String study() {
 		return "class_comm/study";
+	}
+	
+	@GetMapping("class/free")
+	public String free() {
+		return "class_comm/free";
+	}
+	
+	@GetMapping("member/modify")
+	public String modify() {
+		return "member/modify";
+	}
+	
+	@GetMapping("member/idFind")
+	public String idFind() {
+		return "member/id_find";
+	}
+	
+	@GetMapping("member/pwFind")
+	public String pwFind() {
+		return "member/pw_find";
 	}
 	
 }

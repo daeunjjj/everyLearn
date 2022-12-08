@@ -13,7 +13,7 @@
     <div id="contain">
         <!-- <div id="top-join"> -->
             <div>
-                <div class="top-join"><img  id="img-logo" src="/everyLearnPrj/src/main/webapp/resources/img/el로고.png" alt=""></div>
+                <div class="top-join"><img id="img-logo" src="/el/resources/img/logo/el.png" alt=""></div>
             </div>
 
             <div id="wrap-join">
