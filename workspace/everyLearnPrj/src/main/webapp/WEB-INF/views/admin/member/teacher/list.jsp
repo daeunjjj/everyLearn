@@ -53,7 +53,7 @@
                             </div>
                             <div class="btn-area">
                                 <div>
-                                    <button id="wait-btn">승인대기</button>
+                                    <button id="wait-btn">승인대기 10</button>
                                 </div>
                                 <div class="flex-area">
                                     <div>

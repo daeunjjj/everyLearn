@@ -24,7 +24,11 @@
     height: 300px;
 }
 
-
+.detail-list-area{
+    display: grid;
+    grid-template-columns: 2fr 6fr 4fr 4fr 2fr;
+    --text-align: center;
+}
 
 
 
