@@ -49,8 +49,14 @@ public class AdminController {
 	}
 	
 	// 신고 (강의) 리스트 조회
-	@GetMapping("report/class/list")
-	public String report() {
-		return "admin/report/class/list";
+	@GetMapping("report/list")
+	public String reportList() {
+		return "admin/report/list";
+	}
+	
+	// 신고처리 화면
+	@GetMapping("report/process")
+	public String reportProcess() {
+		return "admin/report/process";
 	}
 }

@@ -4,7 +4,7 @@
     <nav>
         <div class="top">
             <a href="">
-                <img src="/el/resources/img/admin/white-logo.png" alt="ë¡ê³ " width="150" height="150">
+                <img src="/el/resources/img/admin/white-logo.png" alt="로고" width="150" height="150">
             </a>
             <div>
                 <a href="">
@@ -54,23 +54,11 @@
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
                 </li>
-                <li class="nav-items">
+                <li class="nav-items" id="report">
                     <a href="">
                         <span>신고관리</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
-                    <div class="hidden-box" id="report-cate">
-                        <div class="detail-wrap">
-                            <ul>
-                                <li class="detail-cate" id="class-comm">
-                                    <a href="/el/admin/report/class/comm/list">강의커뮤니티</a>
-                                </li>
-                                <li class="detail-cate" id="emp-comm">
-                                    <a href="/el/admin/report/emp/comm/list">채용커뮤니티</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                 </li>
                 <li class="nav-items">
                     <a href="">

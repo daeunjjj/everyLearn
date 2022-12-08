@@ -53,6 +53,30 @@
                             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d50646.0540677786!2d127.03290900000002!3d37.498993000000006!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3565475c3365c5bb!2zS0jsoJXrs7TqtZDsnKHsm5A!5e0!3m2!1sko!2skr!4v1670336673821!5m2!1sko!2skr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
+                    <div class="detail-list-wrap">
+                        <h3>채용목록</h3>
+                        <div class="detail-list-area">
+                            <div>직군</div>
+                            <div>제목</div>
+                            <div>마감일</div>
+                            <div>수정날짜</div>
+                            <div>관리</div>
+                        </div>
+                        <div>
+                            <ul>
+                                <li class="detail-list-area">
+                                    <div>IT</div>
+                                    <div>신입 개발자구합니다.</div>
+                                    <div>2023-01-15</div>
+                                    <div>2022-12-07</div>
+                                    <div>
+                                        <button>삭제</button>
+                                    </div>
+                                </li>
+                            
+                            </ul>
+                        </div>
+                    </div>
                     <div class="resume-bottom">
                         <div class="btn-area">
                             <button id="refusal-btn">거절</button>
