@@ -11,7 +11,7 @@
 					<li><a href="#">채용</a></li>
 				</ul>
 				<ul class="teacher">
-					<li><a href="#">런문가 되기</a></li>
+					<li><a href="#">기업회원가입</a></li>
 				</ul>
 			</div>
 			<nav id="navbar">
@@ -20,8 +20,7 @@
 				</div>
 				<div id="nav-container">
 					<div class="nav-list">
-						<a href="">강의</a> <a href="">커뮤니티</a> <a href="">에브리런</a> <a
-							href="">이벤트</a>
+						<a href="">채용공고</a> <a href="">이력서</a> <a href="">커뮤니티</a>
 					</div>
 					<div class="search-wrapper">
 						<div class="search">

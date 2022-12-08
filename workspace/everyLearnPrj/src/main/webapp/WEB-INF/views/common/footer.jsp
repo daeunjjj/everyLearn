@@ -33,7 +33,7 @@
 			<div class="info">
 				<div class="info-top">
 					<div class="logo">
-						<a href="/"><img src="/el/resources/img/logo/로고.svg" alt="">에브리런 | </a><span>개인정보처리방침
+						<a href="/">에브리런 | </a><span>개인정보처리방침
 							| </span><span>이용약관</span>
 					</div>
 				</div>
