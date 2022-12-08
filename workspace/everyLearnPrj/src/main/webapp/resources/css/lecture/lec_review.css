@@ -109,16 +109,26 @@
     align-items : center;
 }
 
+#lec-review>div{
+    margin: 10px;
+}
+
+#review-top{
+    font-size: 22px;
+    font-weight: bold;
+}
+
 #write-wrap{
 	border: 1px solid gray;
     width: 70%;
     height: 250px;
     margin: auto;
     margin-top: 50px;
+    border-radius: 5px;
 }
 
 #write-input{
-    height: 200px;
+    height: 180px;
     width: 90%;
     margin-left: 25px;
     border: 1px solid #dadada;
@@ -127,4 +137,60 @@
 #write-submit{
     background-color: #1187CF;
     color: white;
+    margin: 5px;
+}
+
+#write-star{
+    margin-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#written-review{
+    display: grid;
+    grid-template-columns: 2fr 4fr 3fr;
+    grid-template-rows: 0.8fr 0.8fr 4fr;
+    border: 1px solid gray;
+    width: 70%;
+    height: 250px;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 5px;
+
+}
+
+/*별점 가져옴*/
+
+  /*별점 끝*/
+
+#profile-pic{
+    --border: 1px solid skyblue;
+    grid-row: span 2;
+}
+
+#stars{
+    margin: 5px;
+    --border: 1px solid violet;
+}
+
+#written-nick{
+    grid-column: span 2;
+    margin: 5px;
+}
+
+#enroll-date{
+    color: #5a5a5a;
+    --grid-column: span 2;
+    text-align: center;
+    margin-top: 25px;
+}
+
+#review-content{
+    --border-top: 1px solid #d7d7d7;
+    grid-column: span 3;
+    padding: 40px;
+    padding-left: 50px ;
+    font-weight: bold;
+    
+    
 }
