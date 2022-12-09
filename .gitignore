@@ -1,7 +1,8 @@
 workspace/Servers/
-.settings/org.eclipse.wst.jsdt.ui.superType.name
-.settings/
+workspace/semiPrj/.settings/org.eclipse.wst.jsdt.ui.superType.name
+workspace/semiPrj/.settings/
 workspace/.metadata/
 .metadata/
 Servers/
+.classpath
 **/target/
