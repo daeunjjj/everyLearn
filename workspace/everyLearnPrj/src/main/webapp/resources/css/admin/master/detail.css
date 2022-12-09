@@ -24,6 +24,10 @@
     font-weight: 500;
 }
 
+
+.title-wrap>label{
+    font-weight: bold;
+}
 .input-wrap{
     padding-left: 25px;
     align-self: center;
@@ -32,10 +36,10 @@
     box-sizing: border-box;
 }
 
-.input-wrap>input{
+.input-wrap>input, .input-wrap>select{
     display: block;
     position: relative;
-    width: 300px;
+    width: 200px;
     height: 29px;
     padding-right: 25px;
     line-height: 29px;
@@ -77,4 +81,8 @@
     background-color: #005297;
     border: 0px none;
     
+}
+
+#profile-wrap{
+    height: 200px;
 }

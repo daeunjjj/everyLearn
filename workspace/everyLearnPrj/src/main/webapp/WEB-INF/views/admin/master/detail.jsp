@@ -19,6 +19,14 @@
                 <form action="">
                     <div class="info-wrap">
                         <div class="info-items">
+                            <div class="title-wrap" id="profile-wrap">
+                                <label for="profile">프로필</label>
+                            </div>
+                            <div class="input-wrap">
+                                <img src="/el/resources/img/admin/admin.png" alt="관리자사진" width="150px" height="200px">
+                            </div>
+                        </div>
+                        <div class="info-items">
                             <div class="title-wrap">
                                 <label for="name">이름</label>
                             </div>
@@ -28,11 +36,14 @@
                         </div>
                         <div class="info-items">
                             <div class="title-wrap">
-                                <label for="email">아이디</label>
+                                <label for="email">이메일</label>
                             </div>
                             <div class="input-wrap">
                                 <input type="text" name="email" value="admin01@every.com" readonly>
                             </div>
+                            <span>
+                                <button><i class="bi bi-envelope"></i></button>
+                            </span>
                         </div>
 
                         <div class="info-items">
@@ -48,16 +59,19 @@
                                 <label for="phone">전화번호</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="phone" placeholder="번호만 입력해주세요." value="010-1234-1234">
+                                <input type="text" name="phone" value="010-1234-1234" readonly>
                             </div>
-                            <span>필수 정보입니다.</span>
                         </div>
                         <div class="info-items">
                             <div class="title-wrap">
                                 <label for="position">직급</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" value="사원" readonly>
+                                <select name="position" id="position">
+                                    <option value="master">사원</option>
+                                    <option value="emp">대리</option>
+                                    <option value="management">팀장</option>
+                                </select>
                             </div>
                         </div>
                         <div class="info-items">
@@ -65,7 +79,11 @@
                                 <label for="level">권한</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" value="채용" readonly>
+                                <select name="level" id="level">
+                                    <option value="master">마스터</option>
+                                    <option value="emp">레벨2</option>
+                                    <option value="management">레벨1</option>
+                                </select>
                             </div>
                         </div>
                     </div>

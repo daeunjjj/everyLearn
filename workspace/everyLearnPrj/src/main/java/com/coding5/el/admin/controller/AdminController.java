@@ -83,4 +83,6 @@ public class AdminController {
 	public String adminDetail() {
 		return "admin/master/detail";
 	}
+	
+
 }
