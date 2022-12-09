@@ -1,5 +1,63 @@
+a{
+  text-decoration: none;
+}
+
 .advertisment{
   border-bottom: 1px solid black;
   width: 100%;
   height: 220px;
+}
+
+.emp{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 100px;
+}
+
+.emp-wrapper{
+  width: 100%;
+}
+
+.emp-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.hiring{
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.hiring-wrapper{
+  margin-left: auto;
+}
+
+.hiring-detail{
+  width: 100%;
+  padding-right: 15px;
+  line-height: 1.7;
+  font-size: 15px;
+  color: black;
+  background: url(../../img/emp/right-arrow.svg) right center / 10px 10px no-repeat;
+  cursor: pointer;
+}
+
+.announcement{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0px, 1fr));
+  padding: 0;
+}
+
+.announcement-wrapper a{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.img-wrapper{
+  position: relative;
+  margin: 0px;
 }
