@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-items">
+                <li class="nav-items" id="class">
                     <a href="">
                         <span>강의관리</span>
                         <i class="bi bi-chevron-compact-right"></i>

@@ -67,3 +67,18 @@
     border: 0px none;
     
 }
+
+.title-wrap>label{
+    font-weight: bold;
+}
+
+#profile-wrap{
+    height: 200px;
+
+}
+
+#input-file{
+    display: block;
+    align-self: flex-end;
+    margin-left: 150px;
+}

@@ -19,6 +19,15 @@
                 <form action="">
                     <div class="info-wrap">
                         <div class="info-items">
+                            <div class="title-wrap" id="profile-wrap">
+                                <label for="profile">프로필</label>
+                            </div>
+                            <div class="input-wrap">
+                                <img src="/el/resources/img/admin/admin.png" alt="관리자사진" width="150px" height="200px">
+                            </div>
+                            <div id="input-file"><input type="file"></div>
+                        </div>
+                        <div class="info-items">
                             <div class="title-wrap">
                                 <label for="email">아이디</label>
                             </div>
@@ -82,9 +91,10 @@
                                 <label for="level">권한</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" value="채용" readonly>
+                                <input type="text" value="새싹" readonly>
                             </div>
                         </div>
+
                     </div>
                     <div class="btn-area">
                         <button>수정</button>

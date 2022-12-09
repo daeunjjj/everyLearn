@@ -30,11 +30,11 @@
                     <div class="btn">
                         <input type="submit" value="관리자 로그인">
                     </div>
-                    <div class="btn">
+                <!--<div class="btn">
                         <button>
                             <span>카카오 로그인</span>
                         </button>
-                    </div>
+                    </div> -->
                 </form>
             </div>
         </div>
