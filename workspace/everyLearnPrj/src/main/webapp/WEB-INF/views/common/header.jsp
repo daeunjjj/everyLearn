@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/el/resources/css/common/header.css">
+</head>
 <body>
 
-	<div id="container">
 		<header id="header">
 			<div id="container-top">
 				<ul class="page">
@@ -15,7 +20,7 @@
 				</ul>
 			</div>
 			<nav id="navbar">
-				<div class="logo">
+				<div class="logoTop">
 					<a href=""><img src="/el/resources/img/logo/logo.svg" alt="로고"></a>
 				</div>
 				<div id="nav-container">
@@ -35,6 +40,6 @@
 				</div>
 			</nav>
 		</header>
-	</div>
 
 </body>
+</html>

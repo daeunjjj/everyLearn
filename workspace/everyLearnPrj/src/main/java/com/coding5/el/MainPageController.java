@@ -10,4 +10,5 @@ public class MainPageController {
 	public String mainPage() {
 		return "common/mainPage";
 	}
+
 }

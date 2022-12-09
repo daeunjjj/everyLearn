@@ -1,9 +1,8 @@
-
-#container{
+/* #container{
   width: 100vw;
   height: 100vh;
   margin: 0 auto;
-}
+} */
 
 #container-top{
   display: flex;
@@ -14,6 +13,7 @@
   border-bottom: 1px solid #f1f3f5; 
   font-size: 14px;
 }
+
 
 /* 반응형 */
 /* @media(max-width: 1200px){
@@ -50,7 +50,7 @@
   margin-right: 180px;
 }
 
-a{
+header a{
   text-decoration: none;
   color: black;
 }
@@ -59,11 +59,12 @@ ul{
   list-style: none;
 }
 
-.logo{
+.logoTop{
   text-align: center;
 }
 
-.logo>a>img{
+img{
+  display: inline-block;
   width: 100px;
   height: 100px;
 }
@@ -72,7 +73,9 @@ ul{
   display: flex;
   height: 50px;
   align-items: center;
+  padding-bottom: 10px;
   justify-content: center;
+  border-bottom: 1px solid rgb(173, 172, 172);
 }
 
 .nav-list{
