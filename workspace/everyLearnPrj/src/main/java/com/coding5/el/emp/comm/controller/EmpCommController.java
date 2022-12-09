@@ -14,5 +14,11 @@ public class EmpCommController {
 		return "emp-community/list";
 	}
 	
+	//채용 커뮤니티 글쓰기
+	@GetMapping("write")
+	public String write() {
+		return "emp-community/write";
+	}
+	
 	
 }
