@@ -10,13 +10,13 @@
 
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	
-	<div id="container">
+	<main id="container">
 	
 	
 	
 	
 	
-	</div>
+	</main>
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	
 </body>
