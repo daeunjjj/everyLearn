@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+.wrap{
+    width: 70vw;
+    height: 800px;
+    --border: 1px solid black;
+    display: grid;
+    grid-template-rows: 3fr 0.5fr 12fr;
+    margin: auto;
+}
+
+.lec-intro{
+    --border: 1px solid red;
+    background-color: #d7d7d7;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.navi{
+    border-bottom: 1px solid gray;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 9fr;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.navi>div a{
+    text-decoration: none;
+    color: black; 
+}
+
+.navi>div a:hover{
+    color: #1187CF;
+}
+
+.lec-main{
+    --border: 1px solid blue;
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+}
+
+#lec-pic{
+    padding: 20px;
+    padding-left: 50px;
+}
+
+#lec-int{
+    padding: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#lec-int>div{
+    margin: 10px;
+}
+
+#lec-name{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px 0px 15px 0px;
+}
+
+.write-top{
+    height: 100px;
+}
+#qnatop{
+    font-size: 25px;
+    font-weight: bold;
+    margin: 30px;
+    padding: 20px;
+    border-bottom: 1px solid #4a4a4a;
+}
+
+.write-wrap{
+    border: 1px solid gray;
+    width: 80%;
+    display: grid;
+    margin: auto;
+    margin-top: 50px;
+    --height: 500px;
+    place-items: center;
+    
+}
+
+#title{
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#title > input{
+    border: 0px;
+    border-bottom: 1px solid #5a5a5a;
+    margin-left: 10px;
+    outline: none;
+    vertical-align: middle;
+}
+
+#content{
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#content > textarea{
+    height: 500px;
+}
+
+
+#submit-btn>input{
+    background-color: #1187CF;
+    color: white;
+    font-weight: bold;
+}

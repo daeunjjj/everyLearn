@@ -37,4 +37,10 @@ public class LectureController {
 	public String qnalist() {
 		return "lecture/qnalist";
 	}
+	
+	//질문과답변 작성
+	@GetMapping("qnawrite")
+	public String qnawrite() {
+		return "lecture/qnawrite";
+	}
 }
