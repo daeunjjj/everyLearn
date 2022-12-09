@@ -15,22 +15,6 @@ public class MemberController {
 		return "member/login";
 	}
 	
-//	강의 커뮤니티 (나중에 컨트롤러 옮길 것!)
-	
-	@GetMapping("class/qna")
-	public String qna() {
-		return "class_comm/qna";
-	}
-	
-	@GetMapping("class/study")
-	public String study() {
-		return "class_comm/study";
-	}
-	
-	@GetMapping("class/free")
-	public String free() {
-		return "class_comm/free";
-	}
 	
 	@GetMapping("member/modify")
 	public String modify() {
@@ -45,6 +29,21 @@ public class MemberController {
 	@GetMapping("member/pwFind")
 	public String pwFind() {
 		return "member/pw_find";
+	}
+	
+	@GetMapping("member/successIdFind")
+	public String successIdFind() {
+		return "member/success_id_find";
+	}
+	
+	@GetMapping("member/successPwdFind")
+	public String successPwdFind() {
+		return "member/success_pwd_find";
+	}
+	
+	@GetMapping("member/changePwd")
+	public String changePwd() {
+		return "member/change_pwd";
 	}
 	
 }

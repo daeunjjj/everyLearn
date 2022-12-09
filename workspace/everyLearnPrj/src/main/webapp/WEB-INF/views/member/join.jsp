@@ -12,7 +12,7 @@
     <div id="contain">
         <!-- <div id="top-join"> -->
             <div>
-                <div class="top-join"><img  id="img-logo" src="${pageContext.request.contextPath}/resources/img/el로고.png" alt=""></div>
+                <div class="top-join"><img  id="img-logo" src="/el/resources/img/logo/el.png" alt=""></div>
                 <div class="top-join"><label for="">에브리런과 함께 성장을 넘어서 지식 공유까지!</label></div>
             </div>
 
