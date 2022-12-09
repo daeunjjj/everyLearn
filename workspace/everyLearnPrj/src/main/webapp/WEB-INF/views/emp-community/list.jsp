@@ -14,11 +14,6 @@
 <link rel="stylesheet" href="/el/resources/css/emp-community/list.css">
 <link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
 
-<link rel="stylesheet" href="/el/resources/css/common/header.css">
-<link rel="stylesheet" href="/el/resources/css/common/footer.css">
-
-
-
 </head>
 <body>
 
