@@ -59,4 +59,28 @@ public class AdminController {
 	public String reportProcess() {
 		return "admin/report/process";
 	}
+	
+	// 관리자 리스트조회
+	@GetMapping("master/list")
+	public String adminList() {
+		return "admin/master/list";
+	}
+	
+	// 관리자 등록
+	@GetMapping("master/join")
+	public String adminJoin() {
+		return "admin/master/join";
+	}
+	
+	// 관리자(내) 정보조회
+	@GetMapping("info")
+	public String adminInfo() {
+		return "admin/info";
+	}
+	
+	// 관리자상세조회
+	@GetMapping("master/detail")
+	public String adminDetail() {
+		return "admin/master/detail";
+	}
 }

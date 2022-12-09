@@ -43,67 +43,35 @@
                         <div>신고시간</div>
                         <div>처리시간</div>
                         <div>처리내역</div>
-                        <div>보기</div>
                         <div>관리</div>
                     </div>
 
 
                    <div class="list-items list">
                         <div>1</div>
-                        <div>
-                            <a href="">
-                                user0123
-                                <i class="bi bi-box-arrow-up-right"></i>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="">
-                                user02
-                                <i class="bi bi-box-arrow-up-right"></i>
-                            </a>
-                        </div>
+                        <div>user0123</div>
+                        <div>user02</div>
                         <div>욕설/비방</div>
                         <div>2022-01-21</div>
                         <div>2022-01-21</div>
                         <div>미처리</div>
                         <div>
-                            <a href="">
-                                게시물
-                                <i class="bi bi-box-arrow-up-right"></i>
-                            </a>
-                        </div>
-                        <div>
-                            <button>미처리</button>
+                            <button>처리</button>
                         </div>
                    </div>
-                   <div class="list-items" id="list">
-                    <div>1</div>
-                    <div>
-                        <a href="">
-                            user0123
-                            <i class="bi bi-box-arrow-up-right"></i>
-                        </a>
+                   
+                   <div class="list-items list">
+                        <div>1</div>
+                        <div>user0123</div>
+                        <div>user02</div>
+                        <div>욕설/비방</div>
+                        <div>2022-01-21</div>
+                        <div>2022-01-21</div>
+                        <div>미처리</div>
+                        <div>
+                            <button>처리</button>
+                        </div>
                     </div>
-                    <div>
-                        <a href="">
-                            user02
-                            <i class="bi bi-box-arrow-up-right"></i>
-                        </a>
-                    </div>
-                    <div>욕설/비방</div>
-                    <div>2022-01-21</div>
-                    <div>2022-01-21</div>
-                    <div>미처리</div>
-                    <div>
-                        <a href="">
-                            게시물
-                            <i class="bi bi-box-arrow-up-right"></i>
-                        </a>
-                    </div>
-                    <div>
-                        <button>미처리</button>
-                    </div>
-               </div>
                 </div>
 
                 <nav class="page-area">

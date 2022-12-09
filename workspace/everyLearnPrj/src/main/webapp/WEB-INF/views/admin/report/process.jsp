@@ -43,47 +43,52 @@
                         <div>미처리</div>
                    </div>
                 </div>
-                <div class="form-wrap">
-                    <form action="">
-                        <div class="blacklist-wrap">
-                            <div>
-                                <label for="blacklist">피신고자</label>
-                            </div>
-                            <div>
-                                <input type="text" id="blacklist" value="user01" name="blacklist">
-                            </div>
-                        </div>
-                        <div class="method-wrap">
-                            <div>
-                                처리방법
-                            </div>
-                            <div>
-                                <label>회원정지<input type="radio" name="method"></label>
-                                <label>사유불충분<input type="radio" name="method"></label>
-                            </div>
-                        </div>
-                        <div class="message-wrap">
-                            <div>
-                                <label for="message">회원메시지</label>
-                            </div>
-                            <textarea name="message" id="message" cols="30" rows="10"></textarea>
-                        </div>
-                        <div class="date-wrap">
-                            <div>
-                                <label for="start">시작일-만료일</label>
+                <div class="process-wrap">
+                    <h2>신고작성</h2>
+                    <div class="form-wrap">
+                        <form action="">
+                            <div class="input-wrap">
                                 <div>
-                                    <input type="date" name="start" id="start" placeholder="시작일">
-                                    <span>-</span>
-                                    <input type="date" name="finish" id="finish" placeholder="만료일">
+                                    <label for="blacklist">피신고자</label>
                                 </div>
-                                
+                                <div>
+                                    <input type="text" id="blacklist" value="user01" name="blacklist" readonly>
+                                </div>
                             </div>
-                        </div>
-                        <div class="btn-area">
-                            <button>목록</button>
-                            <button>처리</button>
-                        </div>
-                    </form>
+                            <div class="input-wrap">
+                                <div>
+                                    처리방법
+                                </div>
+                                <div>
+                                    <label>회원정지<input type="radio" name="method"></label>
+                                    <label>사유불충분<input type="radio" name="method"></label>
+                                </div>
+                            </div>
+                            <div class="input-wrap">
+                                <div class="message">
+                                    <label for="message">회원메시지</label>
+                                </div>
+                                <div class="textarea-wrap">
+                                    <textarea name="message" id="message">[신고]회원님께서는 2022-01-21 23:23:42 시간에 작성한 게시물이 신고 당하여 금일부터 7일간 회원정지 처리되었습니다. ::: 회원정지 누르면 이 문장 띄어주고 사유 불충분 누르면 없애주기!</textarea>
+                                </div>
+                            </div>
+                            <div class="input-wrap input-date">
+                                <div>
+                                    <label for="start">시작일-만료일</label>
+                                </div>
+                                <div>
+                                    <input type="date" name="start" id="start">
+                                    <span>-</span>
+                                    <input type="date" name="finish" id="finish">
+                                </div>
+                                    
+                            </div>
+                            <div class="btn-area">
+                                <button id="list-btn">목록</button>
+                                <button>처리</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
         </main>
     </div>
