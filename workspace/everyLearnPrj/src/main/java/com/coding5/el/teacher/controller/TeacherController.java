@@ -13,4 +13,9 @@ public class TeacherController {
 		return "teacher/detail";
 	}
 	
+	@GetMapping("write")
+	public String write() {
+		return "teacher/enroll_write";
+	}
+	
 }
