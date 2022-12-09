@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* 본문 */
 #container{
     width: 70vw;
@@ -22,6 +21,11 @@
 .td{
     border-bottom: 1px solid lightgray;
     font-size: 15px;
+}
+
+#title:hover{
+    font-size: large;
+    font-weight: 600;
 }
 
 #main .th,.td, #searchBar{
@@ -91,6 +95,7 @@
     outline: none;
     border-style: none;
     border-bottom: 1px solid lightgray;
+    margin-top: 5px;
 }
 
 .btn-outline-secondary{
@@ -113,16 +118,17 @@
     border-bottom: 1px solid lightgray;
     margin-bottom: 1px;
 }
-.search-button > img{
-    width: 25px;
-    height: 25px;
+
+
+#dodbogi{
     opacity: 20%;
+
 }
 
-#search-img:hover{
-    background-color: rgb(171, 169, 169);
+#dodbogi:hover{
+    opacity: 50%;
+    
 }
-
 
 
 

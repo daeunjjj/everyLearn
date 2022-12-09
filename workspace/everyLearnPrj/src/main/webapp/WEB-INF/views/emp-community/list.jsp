@@ -5,14 +5,28 @@
 <head>
 <meta charset="UTF-8">
 <title>commList</title>
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+
 <link rel="stylesheet" href="/el/resources/css/emp-community/list.css">
 <link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
+
+<link rel="stylesheet" href="/el/resources/css/common/header.css">
+<link rel="stylesheet" href="/el/resources/css/common/footer.css">
+
+
+
 </head>
 <body>
 
-	 <div id="container">
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
+
+<main>
+
+	  <div id="container">
 
         <div id="main">
 
@@ -25,7 +39,7 @@
 
             <div class="td">1</div>
             <div class="td">취업고민</div>
-            <div class="td">안녕하세요ㅜㅜ</div>
+            <div class="td" id="title">안녕하세요ㅜㅜ</div>
             <div class="td">딩동댕</div>
             <div class="td">22.10.11</div>
             <div class="td">111</div>
@@ -116,7 +130,7 @@
                 </select>
                 <input type="text" name="keyword" id="search2" placeholder="Search" >
                 <button type="submit" class="search-button">
-                    <img src="/el/resources/img/emp-community/search_FILL0_wght400_GRAD0_opsz48.png" alt="search-img" id="search-img">
+                    <span class="material-symbols-outlined" id="dodbogi">search</span>
                 </button>
                 
             </div>
@@ -124,6 +138,10 @@
         </div>
 
     </div>
+    
+</main>
+
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
 </body>
 </html>
