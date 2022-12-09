@@ -7,7 +7,7 @@
                 <img src="/el/resources/img/admin/white-logo.png" alt="로고" width="150" height="150">
             </a>
             <div>
-                <a href="">
+                <a href="/el/admin/info">
                     <i class="bi bi-house-door"></i>
                     관리자
                 </a>
@@ -55,7 +55,7 @@
                     </a>
                 </li>
                 <li class="nav-items" id="report">
-                    <a href="">
+                    <a href="/el/admin/report/list">
                         <span>신고관리</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
@@ -66,11 +66,23 @@
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
                 </li>
-                <li class="nav-items">
-                    <a href="">
+                <li class="nav-items" id="admin">
+                    <a href="/el/admin/master/list">
                         <span>관리자관리</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
+                    <div class="hidden-box" id="admin-cate">
+                        <div class="detail-wrap">
+                            <ul>
+                                <li class="detail-cate" id="admin-list">
+                                    <a href="/el/admin/master/list">관리자조회</a>
+                                </li>
+                                <li class="detail-cate" id="admin-add">
+                                    <a href="/el/admin/master/join">관리자등록</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </li>
                 
             </ul>
