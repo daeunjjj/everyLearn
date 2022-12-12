@@ -1,8 +1,139 @@
-.container{
+*{
+  box-sizing: border-box;
+}
+
+.wrapper{
   display: flex;
   flex-direction: row;
 }
 
-#logo>img{
-  width: 100px;
+img{
+  width: 720px;
+  height: 900px;
+}
+
+.right{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.right-wrapper{
+  width: 400px;
+}
+
+.title{
+  margin-bottom: 32px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.login-form{
+  /* text-align: center; */
+  width: 100%;
+}
+
+.id-wrapper{
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.login-title{
+  width: 100%;
+  margin-bottom: 4px;
+  user-select: none;
+  font-size: 15px
+}
+
+.id{
+  display: flex;
+  align-items: center;
+  width: 400px;
+  height: 2.933rem;
+  padding: 0px 16px;
+  border-radius: 6px;
+  cursor: text;
+  border: 1px solid rgb(182, 181, 181);
+}
+
+/* .input-id{
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.essential{
+  position: relative;
+  top: 1px;
+  margin-left: 4px;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: normal;
+  color: rgb(229, 0, 0);
+} */
+
+.pwd-wrapper{
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+.password{
+  display: flex;
+  align-items: center;
+  width: 400px;
+  height: 2.933rem;
+  padding: 0px 16px;
+  border-radius: 6px;
+  cursor: text;
+  border: 1px solid rgb(182, 181, 181);
+}
+
+.btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background-color: #1187CF;
+  color: rgb(255, 255, 255);
+  padding: 13px 16px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.btn:disabled{
+  cursor: not-allowed;
+  background-color: rgba(17, 134, 207, 0.349);
+}
+
+.choose{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.div{
+  margin: 0px 16px;
+  background-color: rgb(223, 226, 230);
+  width: 1px;
+  height: 0.9em;
+}
+
+.choose>a{
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+  color: rgb(83, 89, 97);
+}
+
+.footer{
+  text-align: center;
+  padding-top: 10px;
+  color: rgb(182, 181, 181);
+  font-size: 14px;
 }
