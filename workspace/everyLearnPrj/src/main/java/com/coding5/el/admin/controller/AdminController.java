@@ -84,5 +84,21 @@ public class AdminController {
 		return "admin/master/detail";
 	}
 	
-
+	// 아이디 찾기
+	@GetMapping("find/id")
+	public String findId() {
+		return "admin/find/id";
+	}
+	
+	// 학생 상세
+	@GetMapping("member/student/detail")
+	public String studentDetail() {
+		return "admin/member/student/detail";
+	}
+	
+	// 강의 리스트
+	@GetMapping("class/list")
+	public String classList() {
+		return "admin/class/list";
+	}
 }

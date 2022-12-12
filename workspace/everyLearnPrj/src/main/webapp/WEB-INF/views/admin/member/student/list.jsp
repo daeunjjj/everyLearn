@@ -74,13 +74,13 @@
                                 <div>20221205</div>
                                 <div>
                                     <button>수정</button>
-                                    <button>제한</button>
+                                    <button>정지</button>
                                 </div>
                             </div>
                         </li>
                     </ul>
                     <div class="mail-btn-area">
-                        <button id="mail-btn">제한</button>
+                        <button id="mail-btn">정지</button>
                     </div>
                 </form>
                 <nav class="page-area">

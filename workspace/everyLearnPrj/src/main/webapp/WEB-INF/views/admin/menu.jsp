@@ -43,16 +43,32 @@
                     </div>
                 </li>
                 <li class="nav-items" id="class">
-                    <a href="">
+                    <a href="/el/admin/class/list">
                         <span>강의관리</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
                 </li>
                 <li class="nav-items">
                     <a href="">
-                        <span>결제관리</span>
+                        <span>고객센터</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
+                    <div class="hidden-box" id="customer-cate">
+                        <div class="detail-wrap">
+                            <ul>
+                                <li class="detail-cate" id="">
+                                    <a href="/el/admin/master/list">공지사항</a>
+                                </li>
+                                <li class="detail-cate" id="">
+                                    <a href="/el/admin/master/join">자주묻는질문</a>
+                                </li>
+                                <li class="detail-cate" id="">
+                                    <a href="/el/admin/master/join">QNA</a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-items" id="report">
                     <a href="/el/admin/report/list">
