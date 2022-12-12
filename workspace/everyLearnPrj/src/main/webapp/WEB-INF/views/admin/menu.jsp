@@ -42,12 +42,12 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-items" id="class">
+                <!-- <li class="nav-items" id="class">
                     <a href="/el/admin/class/list">
                         <span>강의관리</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-items">
                     <a href="">
                         <span>고객센터</span>
@@ -81,6 +81,24 @@
                         <span>통계</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
+                </li>
+                <li class="nav-items" id="request">
+                    <a href="/el/admin/request/list">
+                        <span>요청관리</span>
+                        <i class="bi bi-chevron-compact-right"></i>
+                    </a>
+                    <div class="hidden-box" id="request-cate">
+                        <div class="detail-wrap">
+                            <ul>
+                                <li class="detail-cate" id="request-list">
+                                    <a href="/el/admin/request/list">회원요청조회</a>
+                                </li>
+                                <li class="detail-cate" id="request-edit">
+                                    <a href="/el/admin/request/edit">질문수정</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-items" id="admin">
                     <a href="/el/admin/master/list">
