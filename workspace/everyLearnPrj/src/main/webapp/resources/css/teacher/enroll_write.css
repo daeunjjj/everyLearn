@@ -1,0 +1,93 @@
+
+
+#wrap-write{
+    border: 2px solid #1187cf;
+    width: 700px;
+    height: 890px;
+    margin: auto;
+    border-radius: 10px;
+
+}
+#View_area{
+
+    width: 150px;
+    height: 150px; 
+    color: black; 
+    border: 1px dashed #1187CF; 
+    margin-top: 10px;
+}
+
+#profile_pt{
+    width: 507px;
+    height: 35px;
+    margin-top: 50px;
+    margin-left: 15px;
+    vertical-align: bottom;
+}
+
+#wrap-img{
+    margin: auto;
+    margin-top: 5px;
+    width: 672px;
+    height: 150px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.form-control mt-3{
+    margin-top: 0px;
+}
+
+#f{
+    display: flex;
+    align-items: baseline;
+    margin-top: 107px;
+}
+
+h3{
+    text-align: center;
+}
+
+#sel1{
+    width: 672px;
+    margin: auto;
+    margin-top: 25px;
+}
+
+#wrap{
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    width: 672px;
+    height: 70px;
+    margin: auto;
+    margin-top: 16px;
+}
+
+#btn-enroll{
+    font-size: medium;
+    height: 37px;
+    width: 100px;
+    margin: auto;
+    margin-top: 33px;
+    border: 0.5px solid #ced4da;
+    border-radius: 7px;
+    background-color: #E2E5E8;
+
+}
+
+#btn-enroll2{
+    background-color: #1187CF;
+    
+}
+
+#record{
+    width: 560px;
+}
+
+#btn-wrap{
+    margin: auto;
+    width: 700px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}

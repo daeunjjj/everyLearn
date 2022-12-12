@@ -8,11 +8,14 @@
 <link href="${pageContext.request.contextPath}/resources/css/class_comm/free.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <br><br><br><br><br><br>
-    <hr>
+    <%@ include file="/WEB-INF/views/common/header.jsp" %>
+
+        <main id="container">
+
     <div id="container">
         <div id="wrap-comm">
             <div id="title">
+                <br><br>
                 <h2>자유게시판</h2>
                 <pre>
 자유롭게 이야기를 나누는 공간
@@ -81,5 +84,12 @@
 
 
     </div>
+
+</main>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
 </body>
-</html>   
+
+
+
+</html>
