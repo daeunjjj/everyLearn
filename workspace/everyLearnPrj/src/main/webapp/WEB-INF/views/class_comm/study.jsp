@@ -8,8 +8,10 @@
 <link href="${pageContext.request.contextPath}/resources/css/class_comm/study.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <br><br><br><br><br><br>
-    <hr>
+    <%@ include file="/WEB-INF/views/common/header.jsp" %>
+
+        <main id="container">
+
     <div id="container">
         <div id="wrap-comm">
             <div id="title">
@@ -95,5 +97,11 @@
 
 
     </div>
+</main>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
 </body>
-</html>   
+
+
+
+</html>

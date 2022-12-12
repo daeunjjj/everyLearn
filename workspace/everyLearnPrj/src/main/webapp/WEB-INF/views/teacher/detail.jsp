@@ -11,7 +11,10 @@
     </head>
 
     <body>
-        <br><br><br><br><br>
+        <%@ include file="/WEB-INF/views/common/header.jsp" %>
+
+        <main id="container">
+        <br><br>
         <div id="contain-detail">
             <div id="intro-wrap">
                 <div class="container mt-3" id="mt-3">
@@ -80,6 +83,11 @@
                 </div>
                 
             </div>
+
+
+        </main>
+        <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
     </body>
 
     </html>

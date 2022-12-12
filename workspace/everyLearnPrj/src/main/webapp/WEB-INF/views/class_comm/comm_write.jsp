@@ -14,7 +14,10 @@
     </head>
 
     <body>
-        <br><br><br><br><br>
+        <%@ include file="/WEB-INF/views/common/header.jsp" %>
+
+            <main id="container">
+            <br><br><br><br>
         <div id="contain-write">
             <form action="/action_page.php">
                 <select class="form-select" id="sel1" name="sellist1" aria-placeholder="카테고리를 선택해주세요.">
@@ -34,6 +37,11 @@
         </div>
 
 
-    </body>
+    </main>
+    <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
-    </html>
+</body>
+
+
+
+</html>

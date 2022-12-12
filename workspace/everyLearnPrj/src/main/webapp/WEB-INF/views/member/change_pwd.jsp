@@ -8,8 +8,9 @@
 <link href="/el/resources/css/member/change_pwd.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <br><br><br><br><br>
-    <hr>
+    <%@ include file="/WEB-INF/views/common/header.jsp" %>
+
+        <main id="container">
     <div id="contain">
         <!-- <div id="top-ch_pwd"> -->
             <div>
@@ -42,5 +43,11 @@
 
     </div>
 
+</main>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
 </body>
+
+
+
 </html>
