@@ -9,6 +9,10 @@
 <link rel="stylesheet" href="/el/resources/css/lecture/lec_review.css" />
 </head>
 <body>
+
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
+
+<main id="container">
 	<div class="wrap">
         <div class= "lec-intro">
             <div id="lec-pic"><img src="/el/resources/img/lecture/lecpic2.png"></div>
@@ -46,5 +50,7 @@
         </div>
 
     </div>
+    <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+    </main>
 </body>
 </html>
