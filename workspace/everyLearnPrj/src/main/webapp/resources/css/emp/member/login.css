@@ -1,0 +1,8 @@
+.container{
+  display: flex;
+  flex-direction: row;
+}
+
+#logo>img{
+  width: 100px;
+}
