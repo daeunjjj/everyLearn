@@ -49,4 +49,10 @@ public class LectureController {
 	public String qnadetail() {
 		return "lecture/qnadetail";
 	}
+	
+	//장바구니
+	@GetMapping("cart")
+	public String cart() {
+		return "lecture/cart";
+	}
 }

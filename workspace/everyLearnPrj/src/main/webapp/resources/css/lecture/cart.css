@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+.wrap{
+    width: 70vw;
+    --height: 1500px;
+    border: 1px solid black;
+    display: grid;
+    grid-template-rows: 2fr 8fr 3fr;
+    margin: auto;
+    
+}
+
+#wrap-top{
+    border: 1px solid forestgreen;
+    --margin-top: 50px;
+    padding-top: 50px;
+    padding-left: 20px;
+    height: 200px;
+}
+
+#cate-name{
+    font-size: 24px;
+    font-weight: bold; 
+}
+
+#cart-wrap{
+    border: 3px solid firebrick;
+    
+    
+}
+
+#cart-item{
+    display: grid;
+    grid-template-columns: 1fr 3fr 7fr 3fr;
+    grid-template-rows: 2fr 1fr;
+    height: 100px;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    margin-top: 20px;
+    border-bottom: 1px solid lightgray;
+}
+
+#carts-num{
+    margin-top: 20px;
+    border-bottom: 1px solid lightgray;
+}
+
+#check-yn{
+    margin-top: 20px;
+    
+}
+
+#check-yn>i{
+    color: #1187CF;
+    
+}
+
+#pay-wrap{
+    border: 1px solid fuchsia;
+}
+
+#leccart-check{
+    grid-row: span 2;
+    text-align: center;
+    line-height: 100px;
+    color: #1187CF;
+}
+
+#leccart-img{
+    grid-row: span 2;
+}
+
+#leccart-name{
+    font-size: 22px;
+    font-weight: 600;
+    padding: 10px;
+}
+
+#leccart-teacher{
+    color: #5a5a5a;
+    padding-left: 10px;
+}
+
+#leccart-price{
+    grid-row: span 2;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 100px;
+}
+
+#pay-square{
+    border: 1px solid gold;
+    height: 300px;
+    width: 350px;
+    display: grid;
+    grid-template-columns: 1.2fr 1.2fr 0.8fr;
+    grid-template-rows: 1fr 1fr 1.3fr 1.3fr;
+}
+
+#all-price{
+    grid-column: span 2;
+}
+
+#checked-price{
+    grid-column: span 2;
+}
+
+#pay-btn{
+    grid-column: span 3;
+}
+
+#btns{
+    background-color: #1187CF;
+    color: white;
+}
