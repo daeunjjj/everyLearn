@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<link rel="stylesheet" href="/el/resources/css/notice/list.css">
-	<link rel="stylesheet" href="/el/resources/css/notice/common.css">
+	<link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
     <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 </head>
 <body>

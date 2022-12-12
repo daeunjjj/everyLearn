@@ -44,6 +44,13 @@
     font-size: 20px;
 }
 
+
+.back-sticky{
+    position: fixed;
+    top: 75%;
+    left: 80%;
+}
+
 #back-btn{
     width: 40px;
     height: 40px;
@@ -52,8 +59,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 2px 2px 2px 2px rgb(211, 211, 211);
-    
+    box-shadow: 2px 2px 2px 2px #d1d1d1;
+    background-color: white;
+    opacity: 70%;
 
 }
 
