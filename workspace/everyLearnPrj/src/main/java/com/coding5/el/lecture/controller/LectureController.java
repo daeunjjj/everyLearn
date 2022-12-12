@@ -43,4 +43,10 @@ public class LectureController {
 	public String qnawrite() {
 		return "lecture/qnawrite";
 	}
+	
+	//질문과답변 상세페이지
+	@GetMapping("qnadetail")
+	public String qnadetail() {
+		return "lecture/qnadetail";
+	}
 }
