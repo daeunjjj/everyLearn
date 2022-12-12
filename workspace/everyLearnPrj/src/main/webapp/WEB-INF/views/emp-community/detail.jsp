@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-
+ 
 <link rel="stylesheet" href="/el/resources/css/emp-community/detail.css">
 <link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="title"><span id="title">제목입니다</span></div>
-            <div class="info"><span id="title">취준생   |   22.11.29    |   11</span></div>
+            <div class="info"><span id="nick">취준생   |   22.11.29    |   11</span></div>
             <div class="content">
 		                어쩌구 저쩌구 내용 쓰는 칸
 		        <br>
