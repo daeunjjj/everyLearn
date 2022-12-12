@@ -46,4 +46,9 @@ public class MemberController {
 		return "member/change_pwd";
 	}
 	
+	@GetMapping("member/alert")
+	public String alert() {
+		return "member/member_alert";
+	}
+	
 }
