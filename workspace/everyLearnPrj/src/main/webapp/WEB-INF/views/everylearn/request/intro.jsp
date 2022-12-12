@@ -44,48 +44,17 @@
 					</div>
 				</div>
 			</div>
-			<div class="intro-btn">
-				<div>
-					<a href="#question">계속<i class="bi bi-arrow-return-left"></i></a>
-				</div>
+			<div class="btn-area">
+				<button type="submit">
+					<span>계속
+						<i class="bi bi-arrow-return-left"></i>
+					</span>
+				</button>
 			</div>
+			<a href="/el/request#feedback-header">테스트</a>
 		</section>
-		<section id="question">
-			<div>
-				<form action="">
-					<div class="main-wrap question-area">
-						<fieldset>
-							<legend>
-								<div>에브리런에 어떤 것을 요청하고 싶은가요?</div>
-							</legend>
-							<div class="select-area">
-								<label>
-									<span>1</span>
-									<span>새로운 강의를 듣고싶어요.</span>
-									<input type="radio" name="request" value="1">
-								</label>
-							</div>
-							<div class="select-area">
-								<label>
-									<span>2</span>
-									<span>개선 및 기능 요청이 있어요.</span>
-									<input type="radio" name="request" value="2">
-								</label>
-							</div>
-							<div class="select-area"> 
-								<label>
-									<span>3</span>
-									<span>개선 및 기능 요청이 있어요.</span>
-									<input type="radio" name="request" value="3">
-								</label>
-							</div>
-						</fieldset>
-
-					</div>
-				</form>
-			</div>
-		</section>
-	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+		
+	<!--<%@ include file="/WEB-INF/views/common/footer.jsp" %>-->
 	</main>
 
 	

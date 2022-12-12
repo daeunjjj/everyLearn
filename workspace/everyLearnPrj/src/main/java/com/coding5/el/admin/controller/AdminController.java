@@ -101,4 +101,10 @@ public class AdminController {
 	public String classList() {
 		return "admin/class/list";
 	}
+	
+	// 기능요청 리스트
+	@GetMapping("request/list")
+	public String requestList() {
+		return "admin/request/list";
+	}
 }
