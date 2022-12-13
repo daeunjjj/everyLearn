@@ -5,6 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+       <!-- Latest compiled and minified CSS -->
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+       <!-- Latest compiled JavaScript -->
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/class_comm/study.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -14,6 +18,7 @@
 
     <div id="container">
         <div id="wrap-comm">
+            <br><br>
             <div id="title">
                 <h2>스터디</h2>
                 <pre>
@@ -33,7 +38,7 @@
                     <li><button class="orderby">• 최신순</button></li>
                     <li><button class="orderby">• 조회순</button></li>
                     <li><button class="orderby">• 좋아요순</button></li>
-                    <li><button class="orderby" style="width: 330px;"></button></li>
+                    <li><button class="orderby" style="width: 300px;"></button></li>
                     
                     <li><button class="orderby">글쓰기</button></li>
                 </ul>
@@ -90,12 +95,21 @@
                         </div>
                     </div>
                 </div>
-
-
+                
             </div>
+            
         </div>
-
-
+        
+        <div class="container mt-3" id="page-alert">
+            <ul class="pagination" id="pagenation">
+                <li class="page-item"><a class="page-link" href="#">이전</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active" ><a class="page-link" href="#" id="page-active">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">다음</a></li>
+            </ul>
+        </div>
+        
     </div>
 </main>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

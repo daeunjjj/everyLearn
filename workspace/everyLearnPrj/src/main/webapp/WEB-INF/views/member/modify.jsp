@@ -10,7 +10,10 @@
     </head>
 
     <body>
-        <br><br><br><br><br>
+        <%@ include file="/WEB-INF/views/common/header.jsp" %>
+    
+            <main id="container">
+                <br><br>
 
         <div>
             <div id="contain-left">
@@ -20,7 +23,7 @@
             <div id="contain">
                 <!-- <div id="top-modify"> -->
                 <div>
-                    <div class="top-modify"><img id="img-logo" src="/el/resources/img/logo/el.png" alt=""></div>
+                    <!-- <div class="top-modify"><img id="img-logo" src="/el/resources/img/logo/el.png" alt=""></div> -->
                     <div class="top-modify"><label for=""><h3>회원정보 수정</h3></label></div>
                 </div>
 
@@ -28,7 +31,7 @@
 
                     <form action="" id="modify-form">
                         <div id="profile-wrap">
-                            <h4 style="margin-left: 0px;"><label for="">프로필 사진</label></h4>
+                            <h4 style="margin-left: 134px;"><label for="">프로필 사진</label></h4>
                             <div><img id="profile" src="/el/resources/img/logo/el.png" alt=""></div>
                             <input type="file" style="width: 350px; border: 1px solid gray; border-radius: 5px;">
                         </div>
@@ -87,6 +90,11 @@
             </div>
             
 
-    </body>
-
-    </html>
+        </main>
+        <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+        
+        </body>
+        
+        
+        
+        </html>

@@ -40,7 +40,7 @@ body{
 
 #writer{
     display: inline;
-    margin-left: 5px;
+
     font-size: small;
     color: gray;
 }
@@ -57,4 +57,69 @@ body{
     height: auto;
     margin: auto;
     margin-top: 10px;
+}
+
+#comment-top{
+    margin: auto;
+    margin-top: 10px;
+    width: 580px;
+    /* margin-left: 10px; */
+}
+
+#comment-main{
+    margin: auto;
+    border-bottom: 2px solid gray;
+    /* border-top: 2px solid gray; */
+    width: 580px;
+    padding-bottom: 5px;
+}
+
+#comment-wrap{
+    padding-top: 5px;
+    border-top: 2px solid gray;
+}
+
+pre{
+    white-space: pre-wrap;
+}
+
+#comm-write{
+    width: 550px;
+    height: auto;
+    /* margin: auto; */
+    display: grid;
+    grid-template-columns: 508px 80px;
+    margin-top: 20px;
+}
+
+#comm-content{
+    border: 2px solid #1187CF;
+    padding-left: 17px;
+    margin-left: 5px;
+    /* width: 550px; */
+}
+
+textarea{
+    margin: auto;
+    margin-left: px;
+    border: none;
+    resize: none;
+    
+}
+
+textarea:focus{
+    outline: none;
+
+}
+
+#div-btn{
+    width: 100px;
+}
+
+#btn-write{
+    width: 80px;
+    height: 85.6px;
+    background-color: #1187CF;
+    color: white;
+    border: none;
 }

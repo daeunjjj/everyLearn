@@ -8,24 +8,27 @@
 <link href="${pageContext.request.contextPath}/resources/css/member/join.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <br><br><br><br><br>
+    <%@ include file="/WEB-INF/views/common/header.jsp" %>
+
+        <main id="container">
+    <br><br>
     <div id="contain">
         <!-- <div id="top-join"> -->
-            <div>
+            <!-- <div>
                 <div class="top-join"><img  id="img-logo" src="/el/resources/img/logo/el.png" alt=""></div>
                 <div class="top-join"><label for="">에브리런과 함께 성장을 넘어서 지식 공유까지!</label></div>
-            </div>
+            </div> -->
 
             <div id="wrap-join">
                 
                 <form action="" id="join-form">
 
-                <h4><label for="">아이디</label></h4>
+                <h4><label for="">* 아이디</label></h4>
                 <span class="join-box">
                     <input type="text" name="memberId">
                     <button id="double-check">중복확인</button>
                 </span>            
-                <h4><label for="">비밀번호</label></h4>
+                <h4><label for="">* 비밀번호</label></h4>
                 <span class="join-box">
                     <input type="password" name="memberPwd1">
                 </span>
@@ -40,25 +43,26 @@
                     <input type="password" name="memberPwd2">
                     
                 </span>
-                <h4><label for="">이름</label></h4>
+                <h4><label for="">* 이름</label></h4>
                 <span class="join-box">
                     <input type="text" name="memberName">
                 </span>   
-                <h4><label for="">휴대폰 번호</label></h4>
+                <h4><label for="">* 휴대폰 번호</label></h4>
                 <span class="join-box" >
                     <input type="tel" name="memberTel" placeholder="숫자만 입력해주세요.">
                 </span>   
-                <h4><label for="">이메일</label></h4>
+                <h4><label for="">* 이메일</label></h4>
                 <span class="join-box">
                     <input type="email" name="memberEmail">
                 </span>   
-                <h4><label for="">생년월일</label></h4>
+                <h4><label for="">* 생년월일</label></h4>
                 <span class="join-box">
-                    <input type="text" name="memberBirth">
+                    <input type="text" minlength="8" maxlength="8" name="memberBirth" placeholder="숫자 8자리로 입력해주세요(ex. 20001212)">
                 </span>   
                 <h4><label for="">닉네임</label></h4>
                 <span class="join-box">
                     <input type="text" name="memberNick">
+                    <button id="double-check">중복확인</button>
                 </span>   
                 <div id="btn-join">
                     <button type="button" id="btnJoin">
@@ -71,5 +75,12 @@
         </div>
     </div>
 
+
+</main>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
 </body>
+
+
+
 </html>

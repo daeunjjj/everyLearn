@@ -90,7 +90,7 @@ body {
     /* border: 1px dashed black; */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: repeat(3,300px);
+    grid-template-rows: repeat(2,350px);
     justify-self: center;
 }
 
@@ -102,7 +102,7 @@ body {
 
 #question{
     width: 90%;
-    height: 90%;
+    height: 80%;
     border: 2px solid #1187CF;
     border-radius: 50px;
     margin: auto;
@@ -130,7 +130,7 @@ body {
 
 #q-content{
     width: 90%;
-    height: 50%;
+    height: 45%;
     font-size: 13px;
     font-weight:500;
     margin: auto;
@@ -150,8 +150,8 @@ body {
     background-color: #1187CF;
     border: none;
     color: white;
-    width: 73px;
-    height: 30px;
+    width: 80px;
+    height: 40px;
     border-radius: 10px;
     font-weight: 700;
 }
@@ -159,4 +159,20 @@ body {
 button:hover{
     background-color: #1187CF;
     opacity: 0.7;
+}
+
+#page-alert{
+    margin: auto;
+    width: 500px;
+}
+
+#pagenation{
+    color: #1187CF;
+    width: 480px;
+    display: flex;
+    justify-content: center;
+}
+
+#page-active{
+    background-color: #1187CF;
 }
