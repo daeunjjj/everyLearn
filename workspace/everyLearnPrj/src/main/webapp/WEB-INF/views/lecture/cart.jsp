@@ -57,19 +57,21 @@
 				<div id="leccart-teacher">강사이름</div>
 			</div>
 
+				<div id="pay-wrap">
+					<form id="pay-square">
+						<div id="all-pr">선택상품 금액</div>
+						<div id="all-price">249,500원</div>
+						<div id="using-po">포인트 사용</div>
+						<div id="using-point"><input type="text" id="use-point" width="60%" placeholder="사용할 포인트를 입력해주세요."></div>
+						<div id="usable-point">보유금액 2000원</div>
+						<div id="checked-pr">결제금액</div>
+						<div id="checked-price">247,700원</div>
+						<div id="pay-btn"><input type="submit" id="btns" value="결제하기"></div>
+					</form>
+				</div>
+
 		</div>
-		<div id="pay-wrap">
-			<div id="pay-square">
-				<div id="all-pr">선택 상품 금액</div>
-				<div id="all-price">249,500원</div>
-				<div id="using-po">포인트 사용</div>
-				<div id="using-point">1800원</div>
-				<div id="usable-point">보유금액 2000원</div>
-				<div id="checked-pr">결제금액</div>
-				<div id="checked-price">247,700원</div>
-				<div><button>결제하기</button></div>
-			</div>
-		</div>
+		
 
 	</div>
 
