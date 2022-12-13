@@ -3,15 +3,15 @@
 .wrap{
     width: 70vw;
     --height: 1500px;
-    border: 1px solid black;
+    --border: 1px solid black;
     display: grid;
-    grid-template-rows: 2fr 8fr 3fr;
+    grid-template-rows: 2fr 8fr;
     margin: auto;
     
 }
 
 #wrap-top{
-    border: 1px solid forestgreen;
+    --border: 1px solid forestgreen;
     --margin-top: 50px;
     padding-top: 50px;
     padding-left: 20px;
@@ -24,7 +24,7 @@
 }
 
 #cart-wrap{
-    border: 3px solid firebrick;
+    --border: 3px solid firebrick;
     
     
 }
@@ -58,7 +58,16 @@
 }
 
 #pay-wrap{
-    border: 1px solid fuchsia;
+    width: 80%;
+    border-top: 1px solid lightgray;
+    margin-top: 100px;
+    display: block;
+    margin-left: auto;    
+    margin-right: auto;
+}
+
+#pay-square{
+    margin: auto;
 }
 
 #leccart-check{
@@ -92,12 +101,18 @@
 }
 
 #pay-square{
-    border: 1px solid gold;
+    --border: 1px solid gold;
     height: 300px;
-    width: 350px;
+    width: 500px;
     display: grid;
-    grid-template-columns: 1.2fr 1.2fr 0.8fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1.3fr 1.3fr;
+}
+
+#pay-square>div{
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 18px;
 }
 
 #all-price{
@@ -108,11 +123,28 @@
     grid-column: span 2;
 }
 
+#usable-point{
+    --margin-left: 10px;
+    font-size: 13px;
+    color: #5a5a5a;
+}
+
 #pay-btn{
     grid-column: span 3;
+}
+
+#all-pr, #using-po, #checked-pr{
+    --margin-left: 10px;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 #btns{
     background-color: #1187CF;
     color: white;
+    border: none;
+    width: 100%;
+    height: 3rem;
+    font-size: 22px;
+    font-weight: 600;
 }
