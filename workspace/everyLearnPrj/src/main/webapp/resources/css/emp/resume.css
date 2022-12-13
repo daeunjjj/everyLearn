@@ -1,0 +1,37 @@
+.title{
+  display: flex;
+  justify-content: center;
+}
+
+.frist{
+  width: 850px;
+}
+
+/* .basic-info{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  gap: 0rem;
+  margin: 0px auto;
+  max-width: 75.733rem;
+} */
+
+.basic-info{
+  display: grid;
+  place-items: center;
+  grid-template-rows: auto;
+  row-gap: 2px;
+  column-gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1px solid rgb(182, 181, 181);
+}
+
+.input{
+  width: 350px;
+  height: 2.933rem;
+}
+
+
+
