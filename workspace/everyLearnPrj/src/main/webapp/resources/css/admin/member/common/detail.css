@@ -6,6 +6,11 @@
 #member-cate{
     display: block;
 }
+
+#menu-height{
+    padding: 20px 0 620px 0;
+}
+
 /* 정보부분 */
 h2{
     font-size: 20px;
@@ -55,6 +60,8 @@ h2{
     border: 1px solid #005297;
     margin-right: 8px;
 }
+
+
 
 #approval-btn{
     display: block;

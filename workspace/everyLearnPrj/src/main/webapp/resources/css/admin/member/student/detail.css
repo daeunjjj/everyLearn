@@ -1,3 +1,6 @@
+#menu-height{
+    padding: 20px 0 620px 0;
+}
 .info-items{
     display: flex;
     flex-direction: row;
@@ -54,7 +57,24 @@
     justify-content: flex-end;
 }
 
-.btn-area>button{
+.btn-area>div{
+    padding-left: 10px;
+}
+
+#stop-btn{
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 80px;
+    height: 42px;
+    border-radius: 3px;
+    color: #005297;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #005297;
+}
+
+#edit-btn{
     display: block;
     padding: 0px 10px;
     text-align: center;
@@ -64,9 +84,10 @@
     border-radius: 3px;
     color: rgb(255, 255, 255);
     background-color: #005297;
-    border: 0px none;
+    border: 1px solid #005297;
     
 }
+
 
 .title-wrap>label{
     font-weight: bold;
@@ -82,3 +103,70 @@
     align-self: flex-end;
     margin-left: 150px;
 }
+
+h3{
+    font-size: 18px;
+    padding: 50px 0 15px 0;
+}
+
+.point-box{
+    padding: 20px;
+    border: 1px solid rgb(51, 51, 51);
+}
+
+.point-top{
+    display: grid;
+    grid-template-columns: 2fr 3fr 3fr 2fr;
+    padding: 20px 0px;
+}
+
+
+
+.point-top select{
+    width: 120px;
+    height: 38px;
+    padding: 0px 11px 1px 15px;
+    border-radius: 4px;
+    border: 1px solid rgb(221, 221, 221);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgb(51, 51, 51);
+    outline: none;
+    box-sizing: border-box;
+}
+
+.point-top input{
+    width: 240px;
+    height: 38px;
+    padding: 0px 11px 1px 15px;
+    border-radius: 4px;
+    border: 1px solid rgb(221, 221, 221);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgb(51, 51, 51);
+    outline: none;
+    box-sizing: border-box;
+}
+
+.point-top button{
+    height: 38px;
+    width: 56px;
+    background-color: #1187CF;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+}
+
+.list{
+    display: grid;
+    grid-template-columns: 4fr 2fr 2fr 2fr;
+    padding: 12px 0px 12px 5px;
+}
+
+.list-title{
+    border-bottom: 1px solid rgb(51, 51, 51);
+    font-weight: 600;
+}
+
