@@ -1,4 +1,4 @@
-package com.coding5.el.emp.notice.controller;
+package com.coding5.el.notice.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
