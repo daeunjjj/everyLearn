@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<aside class="menu-bar">
+<aside class="menu-bar" id="menu-height">
     <nav>
         <div class="top">
             <a href="">
@@ -117,6 +117,12 @@
                             </ul>
                         </div>
                     </div>
+                </li>
+                <li class="nav-items">
+                    <a href="">
+                        <span>메일</span>
+                        <i class="bi bi-chevron-compact-right"></i>
+                    </a>
                 </li>
                 
             </ul>

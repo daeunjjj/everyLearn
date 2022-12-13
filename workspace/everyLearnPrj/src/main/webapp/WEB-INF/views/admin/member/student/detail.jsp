@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>에브리런 - 강사회원</title>
+<title>에브리런 - 학생회원</title>
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
-<link rel="stylesheet" href="/el/resources/css/admin/info.css">
+<link rel="stylesheet" href="/el/resources/css/admin/member/student/detail.css">
 
 </head>
 <body>
@@ -52,8 +52,9 @@
                                 <label for="nick">닉네임</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="name" value="새싹" readonly>
+                                <input type="text" name="name" value="새싹">
                             </div>
+                            <span>필수 입력 사항입니다.</span>
                         </div>
                         <div class="info-items">
                             <div class="title-wrap">
@@ -89,14 +90,6 @@
                         </div>
                         <div class="info-items">
                             <div class="title-wrap">
-                                <label for="point">포인트</label>
-                            </div>
-                            <div class="input-wrap">
-                                <input type="text" name="point" value="3000" readonly>
-                            </div>
-                        </div>
-                        <div class="info-items">
-                            <div class="title-wrap">
                                 <label for="quitYn">탈퇴여부</label>
                             </div>
                             <div class="input-wrap">
@@ -113,10 +106,59 @@
                         </div>
                     </div>
                     <div class="btn-area">
-                        <button>정지</button>
-                        <button>수정</button>
+                        <div>
+                            <button id="stop-btn">정지</button>
+                        </div>
+                        <div>
+                            <button id="edit-btn">수정</button>
+                        </div>
                     </div>
                 </form>
+                <h3>포인트</h3>
+                <div class="point-box">
+                    <form action="">
+                        <div>포인트 지급/차감</div>
+                        <div class="point-top">
+                            <div>
+                                <select name="change" id="change">
+                                    <option value="plus">지급</option>
+                                    <option value="minus">차감</option>
+                                </select>
+                            </div>
+                            <div>
+                                <input type="text" name="history" placeholder="사유를 입력해주세요.">
+                            </div>
+                            <div>
+                                <input type="number" name="point" placeholder="포인트를 입력해주세요.">
+                            </div>
+                            <div>
+                                <button>확인</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="point-bottom">
+                        <div class="list-title list">
+                            <div>일자</div>
+                            <div>사유</div>
+                            <div>증감</div>
+                            <div>총액</div>
+                        </div>
+                        <div class="list-content list">
+                            <div>2022-12-12</div>
+                            <div>구매</div>
+                            <div>3000</div>
+                            <div>3000</div>
+                        </div>
+                        <div class="list-content list">
+                            <div>2022-12-12</div>
+                            <div>구매</div>
+                            <div>3000</div>
+                            <div>3000</div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </main>
     </div>

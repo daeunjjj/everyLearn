@@ -107,4 +107,9 @@ public class AdminController {
 	public String requestList() {
 		return "admin/request/list";
 	}
+	
+	@GetMapping("request/edit")
+	public String requestEdit() {
+		return "admin/request/edit";
+	}
 }
