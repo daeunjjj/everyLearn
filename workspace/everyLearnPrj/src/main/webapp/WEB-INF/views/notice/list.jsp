@@ -5,16 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>noticeList</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-	<link rel="stylesheet" href="/el/resources/css/notice/list.css">
-	<link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
-    <link rel="stylesheet" href="/el/resources/css/common/reset.css">
+    
+<link rel="stylesheet" href="/el/resources/css/notice/list.css">
+<link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
+<link rel="stylesheet" href="/el/resources/css/common/reset.css">
 </head>
 <body>
 
     <main>
+    <%@ include file="/WEB-INF/views/notice/notice-header.jsp" %>
         <div class="banner">
             <span>everyLearn NOTICE!</span>
         </div>
