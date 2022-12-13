@@ -55,4 +55,10 @@ public class LectureController {
 	public String cart() {
 		return "lecture/cart";
 	}
+	
+	//결제완료
+	@GetMapping("completePay")
+	public String completePayment() {
+		return "lecture/complete_payment";
+	}
 }
