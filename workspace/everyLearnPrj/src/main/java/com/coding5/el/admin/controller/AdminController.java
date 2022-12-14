@@ -90,6 +90,24 @@ public class AdminController {
 		return "admin/find/id";
 	}
 	
+	// 비밀번호 찾기
+	@GetMapping("find/pwd")
+	public String findPwd() {
+		return "admin/find/pwd";
+	}
+	
+	// 아이디 찾기 결과
+	@GetMapping("find/result/id")
+	public String resultId() {
+		return "admin/find/result/id";
+	}
+	
+	// 비번 찾기 결과
+	@GetMapping("find/result/pwd")
+	public String resultPwd() {
+		return "admin/find/result/pwd";
+	}
+	
 	// 학생 상세
 	@GetMapping("member/student/detail")
 	public String studentDetail() {

@@ -1,5 +1,5 @@
 body{
-    background-color: #E8E8E8;
+    --background-color: #E8E8E8;
 }
 .container{
     position: relative;
@@ -14,7 +14,7 @@ body{
 
 .login-wrap{
     width: 300px;
-
+    margin: 0 auto;
 }
 
 .input-area{

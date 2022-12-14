@@ -27,9 +27,33 @@
                             </div>
                             <div id="input-file"><input type="file"></div>
                         </div>
+                         <div class="info-items">
+                            <div class="title-wrap">
+                                <label for="name">이름</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="text" name="name" value="엄격한" readonly>
+                            </div>
+                        </div>
                         <div class="info-items">
                             <div class="title-wrap">
-                                <label for="email">아이디</label>
+                                <label for="nick">닉네임</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="text" name="name" value="관리자" readonly>
+                            </div>
+                        </div>
+                        <div class="info-items">
+                            <div class="title-wrap">
+                                <label for="id">아이디</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="text" name="id" value="user01" readonly>
+                            </div>
+                        </div>
+                        <div class="info-items">
+                            <div class="title-wrap">
+                                <label for="email">이메일</label>
                             </div>
                             <div class="input-wrap">
                                 <input type="text" name="email" value="admin01@every.com" readonly>
@@ -52,22 +76,6 @@
                                 <input type="password" name="password" placeholder="비밀번호를 입력해주세요.">
                             </div>
                             <span>비밀번호가 일치하지 않습니다.</span>
-                        </div>
-                        <div class="info-items">
-                            <div class="title-wrap">
-                                <label for="name">이름</label>
-                            </div>
-                            <div class="input-wrap">
-                                <input type="text" name="name" value="엄격한" readonly>
-                            </div>
-                        </div>
-                        <div class="info-items">
-                            <div class="title-wrap">
-                                <label for="nick">닉네임</label>
-                            </div>
-                            <div class="input-wrap">
-                                <input type="text" name="name" value="관리자" readonly>
-                            </div>
                         </div>
                         <div class="info-items">
                             <div class="title-wrap">
