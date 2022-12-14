@@ -36,6 +36,14 @@
                         </div>
                         <div class="info-items">
                             <div class="title-wrap">
+                                <label for="id">아이디</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="text" name="id" value="admin01" readonly>
+                            </div>
+                        </div>
+                        <div class="info-items">
+                            <div class="title-wrap">
                                 <label for="email">이메일</label>
                             </div>
                             <div class="input-wrap">

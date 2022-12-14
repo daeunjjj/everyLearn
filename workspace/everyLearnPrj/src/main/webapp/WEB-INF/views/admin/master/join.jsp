@@ -23,7 +23,7 @@
                                 <label for="email">아이디</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="email" placeholder="이메일 형식으로 입력해주세요.">
+                                <input type="text" name="email" placeholder="아이디를 입력해주세요.">
                             </div>
                             <span>필수 정보입니다.</span>
                         </div>
@@ -47,6 +47,15 @@
                         </div>
                         <div class="join-items">
                             <div class="title-wrap">
+                                <label for="email">이메일</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="text" name="email" placeholder="이메일 형식으로 작성해주세요.">
+                            </div>
+                            <span>필수 정보입니다.</span>
+                        </div>
+                        <div class="join-items">
+                            <div class="title-wrap">
                                 <label for="position">직급</label>
                             </div>
                             <div class="input-wrap">
@@ -63,9 +72,8 @@
                             </div>
                             <div class="input-wrap">
                                 <select name="level" id="level">
-                                    <option value="master">마스터</option>
-                                    <option value="emp">채용</option>
-                                    <option value="management">관리</option>
+                                    <option value="emp">일반</option>
+                                    <option value="management">마스터</option>
                                 </select>
                             </div>
                         </div>
