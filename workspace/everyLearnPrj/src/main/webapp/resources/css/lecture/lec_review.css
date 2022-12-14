@@ -64,6 +64,7 @@
 #lec-content{
     --border: 1px solid coral;
     padding: 40px;
+    
 }
 
 #pay-wrap{
@@ -74,6 +75,7 @@
     display: grid;
     grid-template-columns: 3fr 1fr;
     padding: 30px;
+    border-radius: 5px;
 }
 
 #pay-price{
@@ -87,6 +89,7 @@
     display : flex;
     justify-content : center;
     align-items : center;
+    border-radius: 5px;
 }
 
 #pay-cart{
@@ -97,6 +100,7 @@
     display : flex;
     justify-content : center;
     align-items : center;
+
 }
 
 #pay-real{
@@ -128,7 +132,7 @@
 }
 
 #write-input{
-    height: 180px;
+    height: 150px;
     width: 90%;
     margin-left: 25px;
     border: 1px solid #dadada;
@@ -159,7 +163,40 @@
 
 }
 
-/*별점 가져옴*/
+/*별점*/
+
+#myform{
+    display: inline-block;
+    direction: rtl;
+    border:0;
+}
+#myform legend{
+    text-align: right;
+}
+#myform input[type=radio]{
+    display: none;
+}
+#myform label{
+    font-size: 1.5em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+#myform label:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+span{
+font-size: 25px;
+float: left;
+margin-right: 15px;
+margin-top: 3px;
+}
 
   /*별점 끝*/
 
