@@ -13,10 +13,14 @@
 
     <body>
         <%@ include file="/WEB-INF/views/common/header.jsp" %>
-
-            <main id="container">
-                <br><br>
-                <div id="wrap">
+        <main id="container">
+            
+            <div id="sidebar">
+                <%@ include file="/WEB-INF/views/member/member_sidebar.jsp"%>
+            </div>
+            <br><br>
+            <div id="wrap">
+                    <br><br>
                     <div id="alert-top">
                         <div class="alert alert-secondary" style="margin-bottom: 1px; border-radius: 0px; background-color: #1187CF;">
                             <img src="/el/resources/img/member/alert.png" alt="" id="img-alert">

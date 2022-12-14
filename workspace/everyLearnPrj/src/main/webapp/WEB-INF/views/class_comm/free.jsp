@@ -17,8 +17,12 @@
         <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
             <main id="container">
-
-                <div id="container">
+                
+                <div id="sidebar">
+                    <%@ include file="/WEB-INF/views/class_comm/sidebar.jsp"%>
+                </div>
+                
+                <div id="contain">
                     <div id="wrap-comm">
                         <div id="title">
                             <br><br>

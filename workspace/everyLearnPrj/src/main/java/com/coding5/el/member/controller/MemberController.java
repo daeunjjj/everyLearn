@@ -51,4 +51,9 @@ public class MemberController {
 		return "member/member_alert";
 	}
 	
+	@GetMapping("member/sidebar")
+	public String sidebar() {
+		return "member/member_sidebar";
+	}
+	
 }

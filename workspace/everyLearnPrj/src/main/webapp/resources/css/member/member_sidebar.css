@@ -1,0 +1,80 @@
+.menu {
+    display: block;
+    overflow: hidden;
+    width: 200px;
+
+    background-color: #1187CF;
+    color: #fff;
+    transition: all 0.5s ease;
+    border-radius: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.menu a, .menu > label {
+    display: block;
+    height: 50px;
+    padding: 8px;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+
+}
+
+.menu a:hover {
+    color: #1187CF;
+}
+.menu ul li:hover, .menu > label:hover {
+    background-color: #fff;
+    color: #1187CF;
+    border-radius: 10px;
+}
+.menu div {
+    position: absolute;
+    left: 50px;
+    line-height: 1.5;
+    font-size: 1em;
+    font-family: 'Noto Sans KR';
+    padding: 10px 0px 3px 20px;
+}
+
+#expand-menu {
+    display: none;
+}
+#expand-menu:checked ~ ul {
+    display: block;
+    height: auto;
+}
+
+.menu ::before {
+    font-family: 'Material Icons';
+    font-size: 1.5em;
+    float: left;
+    clear: left;
+    padding-top: 7px;
+}
+.menu label::before{ content: '\e87c'; }
+.menu li:nth-child(1) a::before{ content: '\ea4d'; }
+.menu li:nth-child(2) a::before{ content: '\ef49'; }
+.menu li:nth-child(3) a::before{ content: '\ef6e'; }
+.menu li:nth-child(4) a::before{ content: '\f041'; }
+/* .menu li:nth-child(5) a::before{ content: '\e31e'; }
+.menu li:nth-child(6) a::before{ content: '\e8b8'; } */
+
+@media screen and (max-width:1023px) {
+    .menu {
+        width: 60px;
+    }
+}
+@media screen and (max-width:560px) {
+    .menu #expand-menu:not(:checked) ~ ul {
+        display: none;
+    }
+}
+
+
+
