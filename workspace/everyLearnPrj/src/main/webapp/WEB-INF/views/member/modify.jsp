@@ -13,12 +13,14 @@
         <%@ include file="/WEB-INF/views/common/header.jsp" %>
     
             <main id="container">
-                <br><br>
 
-        <div>
-            <div id="contain-left">
+                <div id="sidebar">
+                    <%@ include file="/WEB-INF/views/member/member_sidebar.jsp"%>
+                </div>
 
-            </div>
+            <!-- <div id="contain-left">
+
+            </div> -->
 
             <div id="contain">
                 <!-- <div id="top-modify"> -->

@@ -4,11 +4,16 @@ body {
     margin: 0px;
 }
 
-#container {
+#contain {
     width: 650px;
     height: 1500px;
     margin: auto;
 
+}
+
+#container{
+    display: grid;
+    grid-template-columns: 1fr 6fr 1.1fr;
 }
 
 #title {
@@ -131,13 +136,13 @@ button:hover{
     margin-left: 0px;
 }
 
-ul {
+#orderby>ul {
     padding: 0;
     display: flex;
     vertical-align: bottom;
     margin-bottom: 3px;
   }
-li {
+#orderby li {
     display: inline-block;
     vertical-align: bottom;
   }

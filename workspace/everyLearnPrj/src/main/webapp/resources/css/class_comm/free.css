@@ -4,6 +4,15 @@ body {
     margin: 0px;
 }
 
+
+#container{
+    display: grid;
+    grid-template-columns: 1fr 6fr 1.5fr;
+}
+/* #sidebar{
+    display: inline;
+} */
+
 #contain {
     width: 60vw;
     height: auto;
@@ -12,7 +21,9 @@ body {
 }
 
 #title {
+    margin: auto;
     text-align: center;
+    width: 500px;
 }
 
 /* 검색바 */
@@ -112,7 +123,7 @@ button:hover{
     vertical-align: bottom;
 }
 
-ul {
+#orderby>ul {
     padding: 0;
     display: flex;
     vertical-align: bottom;
@@ -170,7 +181,7 @@ ul {
 
 }
 
-a{
+#free-main a{
     text-decoration: none;
 }
 
@@ -189,3 +200,7 @@ a{
 #page-active{
     background-color: #1187CF;
 }
+
+/* ------------------------ */
+
+

@@ -42,4 +42,11 @@ public class ClassCommController {
 		return "class_comm/detail";
 	}
 	
+	//사이드바
+	@GetMapping("class/sidebar")
+	public String sidebar() {
+		return "class_comm/sidebar";
+	}
+	
+	
 }
