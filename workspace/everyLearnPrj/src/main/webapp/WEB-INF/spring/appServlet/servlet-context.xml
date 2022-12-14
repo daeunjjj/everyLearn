@@ -26,8 +26,12 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.coding5.el" />
+	<context:component-scan base-package="com.kh.app" />
 	
+	<!-- 암호화 bean 등록 -->
+	<beans:bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+	
+	</beans:bean>
 	
 	
 </beans:beans>
