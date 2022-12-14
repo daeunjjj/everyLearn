@@ -1,4 +1,14 @@
 @charset "UTF-8";
+
+.container{
+    width: 80%;
+    height: 70%;
+    --border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
 #searchBar {
     width: 550px;
     height: 40px;
@@ -14,11 +24,34 @@
     outline: none;
 }
 
-.container{
-    width: 80%;
-    height: 70%;
-    --border: 1px solid black;
+.search-button{
+    margin-left: -50px;
+    outline: none;
+    background-color: white;
+    border: 0px;
+    opacity: 40%;
 }
+
+#dodbogi{
+    position: relative;
+    top: 4px;
+}
+
+#h1{
+    font-size: 22px;
+    font-weight: 800;
+    --background-color: #eee;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+#hr{
+    border-left : 1px solid lightgray;
+    height : 100vh;
+}
+
+.a1{width: 40%;}
+.a2{width: 40%;}
 
 .banner{
     width: 100%;
@@ -40,4 +73,44 @@
 
 #banner-input{
     margin-top: -65px;
+}
+
+/* ---------------------- */
+.accordion {
+  background-color: white;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.4s;
+  border-radius: 5px;
+}
+
+.active, .accordion:hover {
+  background-color: rgb(238, 237, 237);
+}
+
+.accordion:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
 }
