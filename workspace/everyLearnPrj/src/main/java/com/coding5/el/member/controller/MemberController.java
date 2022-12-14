@@ -56,4 +56,9 @@ public class MemberController {
 		return "member/member_sidebar";
 	}
 	
+	@GetMapping("member/point")
+	public String point() {
+		return "member/point";
+	}
+	
 }
