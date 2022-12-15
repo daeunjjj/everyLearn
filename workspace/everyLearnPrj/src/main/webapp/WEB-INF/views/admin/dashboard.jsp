@@ -26,15 +26,11 @@
                         <span>0</span>
                     </div>
                     <div class="todo-items">
-                        <div>강의신청</div>
+                        <div>요청</div>
                         <span>0</span>
                     </div>
                     <div class="todo-items">
-                        <div>신고글</div>
-                        <span>0</span>
-                    </div>
-                    <div class="todo-items">
-                        <div>결제취소</div>
+                        <div>신고</div>
                         <span>0</span>
                     </div>
                     <div class="todo-items">
