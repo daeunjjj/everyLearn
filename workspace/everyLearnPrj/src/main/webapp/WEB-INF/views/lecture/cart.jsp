@@ -18,39 +18,40 @@
 		<div id="wrap-top">
 			<div id="cate-name">장바구니</div>
 			<div id="carts-num">5개 강의가 장바구니에 있습니다.</div>
-			<div id="check-yn"><i class="fas fa-thin fa-square-check"></i>선택 해제</div>
+			
 		</div>
 		<div id="cart-wrap">
+			<div id="check-yn"><input type="checkbox" checked="checked"><span class="all-check">전체 선택 해제</span></div>
 			<div id="cart-item">
-				<div id="leccart-check"><i class="fas fa-thin fa-square-check"></i></div>
+				<div id="leccart-check"><input type="checkbox" class="individual-checkbox" checked="checked"></div>
 				<div id="leccart-img"><a href='#'><img src="/el/resources/img/lecture/lecpic.png" alt="강의이미지"></a></div>
 				<div id="leccart-name">아이패드로 일상 그리기, 프로크리에트를 이용한 드로잉 클래스</div>
 				<div id="leccart-price">49,900원</div>
 				<div id="leccart-teacher">강사이름</div>
 			</div>
 			<div id="cart-item">
-				<div id="leccart-check"><i class="fas fa-thin fa-square-check"></i></div>
+				<div id="leccart-check"><input type="checkbox" class="individual-checkbox"  checked="checked"></div>
 				<div id="leccart-img"><a href='#'><img src="/el/resources/img/lecture/lecpic.png" alt="강의이미지"></a></div>
 				<div id="leccart-name">아이패드로 일상 그리기, 프로크리에트를 이용한 드로잉 클래스</div>
 				<div id="leccart-price">49,900원</div>
 				<div id="leccart-teacher">강사이름</div>
 			</div>
 			<div id="cart-item">
-				<div id="leccart-check"><i class="fas fa-thin fa-square-check"></i></div>
+				<div id="leccart-check"><input type="checkbox" class="individual-checkbox" checked="checked"></div>
 				<div id="leccart-img"><a href='#'><img src="/el/resources/img/lecture/lecpic.png" alt="강의이미지"></a></div>
 				<div id="leccart-name">아이패드로 일상 그리기, 프로크리에트를 이용한 드로잉 클래스</div>
 				<div id="leccart-price">49,900원</div>
 				<div id="leccart-teacher">강사이름</div>
 			</div>
 			<div id="cart-item">
-				<div id="leccart-check"><i class="fas fa-thin fa-square-check"></i></div>
+				<div id="leccart-check"><input type="checkbox" class="individual-checkbox" checked="checked"></div>
 				<div id="leccart-img"><a href='#'><img src="/el/resources/img/lecture/lecpic.png" alt="강의이미지"></a></div>
 				<div id="leccart-name">아이패드로 일상 그리기, 프로크리에트를 이용한 드로잉 클래스</div>
 				<div id="leccart-price">49,900원</div>
 				<div id="leccart-teacher">강사이름</div>
 			</div>
 			<div id="cart-item">
-				<div id="leccart-check"><i class="fas fa-thin fa-square-check"></i></div>
+				<div id="leccart-check"><input type="checkbox" class="individual-checkbox" checked="checked"></div>
 				<div id="leccart-img"><a href='#'><img src="/el/resources/img/lecture/lecpic.png" alt="강의이미지"></a></div>
 				<div id="leccart-name">아이패드로 일상 그리기, 프로크리에트를 이용한 드로잉 클래스</div>
 				<div id="leccart-price">49,900원</div>
@@ -75,7 +76,12 @@
 
 	</div>
 
-	</main>
+
+
+</main>
+
+
+
 	
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>

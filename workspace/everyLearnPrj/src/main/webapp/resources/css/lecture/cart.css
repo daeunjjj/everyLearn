@@ -1,21 +1,25 @@
 @charset "UTF-8";
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
+body{
+  font-family: 'nanumsquare';
+
+}
 
 .wrap{
     width: 70vw;
     --height: 1500px;
     --border: 1px solid black;
     display: grid;
-    grid-template-rows: 2fr 8fr;
+    grid-template-rows: 1fr 8fr;
     margin: auto;
     
 }
 
 #wrap-top{
-    --border: 1px solid forestgreen;
-    --margin-top: 50px;
     padding-top: 50px;
     padding-left: 20px;
-    height: 200px;
+    height: 100px;
 }
 
 #cate-name{
@@ -25,8 +29,6 @@
 
 #cart-wrap{
     --border: 3px solid firebrick;
-    
-    
 }
 
 #cart-item{
@@ -49,6 +51,7 @@
 
 #check-yn{
     margin-top: 20px;
+    margin-left: 20px;
     
 }
 
@@ -117,15 +120,17 @@
 
 #all-price{
     grid-column: span 2;
+    font-weight: 600;
 }
 
 #checked-price{
     grid-column: span 2;
+    font-weight: 600;
 }
 
 #usable-point{
     --margin-left: 10px;
-    font-size: 13px;
+    font-size: 10px;
     color: #5a5a5a;
 }
 

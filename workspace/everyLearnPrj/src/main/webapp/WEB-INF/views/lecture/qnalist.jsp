@@ -111,6 +111,21 @@
                 <div id="qdate">2022.12.08</div>
             </div>
             
+            <!-- 페이징 -->
+            <!-- 페이징 -->
+	    	<div id="page-area" class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+                <div id="page-area2" class="btn-group me-2" role="group" aria-label="First group">
+	                <a href="/#/board/list?p=1" class="btn btn-outline-secondary"><</a>
+	                <a href="/#/board/list?p=1" class="btn btn-outline-secondary">1</a>
+	                <a href="/#/board/list?p=2" class="btn btn-outline-secondary">2</a>
+	                <a href="/#/board/list?p=3" class="btn btn-outline-secondary">3</a>
+	                <a href="/#/board/list?p=4" class="btn btn-outline-secondary">4</a>
+	                <a href="/#/board/list?p=5" class="btn btn-outline-secondary">5</a>
+	                <a href="/#/board/list?p=1" class="btn btn-outline-secondary">></a>
+                </div>
+       	</div>
+       </div>
+            
             
 
 </body>

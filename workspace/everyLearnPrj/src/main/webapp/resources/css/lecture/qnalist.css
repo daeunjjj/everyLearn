@@ -1,4 +1,10 @@
 @charset "UTF-8";
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
+body{
+  font-family: 'nanumsquare';
+
+}
 
 
 
@@ -94,3 +100,19 @@
     color: #1187CF;
 }
 
+/*페이징*/
+#page-area{
+    grid-column: span 6;
+    text-align: center;
+    margin-top: 30px;
+    border-bottom: none;
+    display: flex;
+    flex-direction : column;
+    align-items: center;
+}
+
+#page-area2>a{
+    text-decoration: none;
+    color: #5a5a5a; 
+    font-size: 18px;
+}
