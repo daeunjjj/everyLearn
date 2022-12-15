@@ -61,4 +61,14 @@ public class MemberController {
 		return "member/point";
 	}
 	
+	@GetMapping("member/writeList")
+	public String writeList() {
+		return "member/writeList";
+	}
+	
+	@GetMapping("member/delete")
+	public String delete() {
+		return "member/memberDelete";
+	}
+	
 }

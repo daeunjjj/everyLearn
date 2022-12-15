@@ -7,6 +7,7 @@
         <title>Insert title here</title>
         <link href="${pageContext.request.contextPath}/resources/css/member/modify.css" rel="stylesheet"
             type="text/css">
+        <script src="/el/resources/js/member/modify.js"></script>
     </head>
 
     <body>
@@ -81,7 +82,7 @@
                             <button type="button" class="btnJoin">
                                 <div class="text-modify">수정하기</div>
                             </button>
-                            <button type="button" class="btnJoin" id="delete">
+                            <button onclick="memberDelete()" type="button" class="btnJoin" id="delete">
                                 <div class="text-modify" style="background-color: gray;">회원탈퇴</div>
                             </button>
                         </div>

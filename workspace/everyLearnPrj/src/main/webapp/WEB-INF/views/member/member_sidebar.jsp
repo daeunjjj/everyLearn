@@ -20,8 +20,8 @@
             <ul>
                 <li><a href="http://127.0.0.1:8888/el/member/modify" class="item"></i><div>프로필/수정</div></a></li>
                 <li><a href="http://127.0.0.1:8888/el/member/alert" class="item"><div>알림</div></a></li>
-                <li><a href="http://127.0.0.1:8888/el/class/free" class="item"><div>작성글</div></a></li>
-                <li><a href="#" class="item"><div>포인트</div></a></li>
+                <li><a href="http://127.0.0.1:8888/el/member/writeList" class="item"><div>작성글</div></a></li>
+                <li><a href="http://127.0.0.1:8888/el/member/point" class="item"><div>포인트</div></a></li>
             </ul>
         </div>
 
