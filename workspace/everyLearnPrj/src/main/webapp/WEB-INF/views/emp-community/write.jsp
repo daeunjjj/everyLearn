@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>에브리런</title>
 <link rel="stylesheet" href="/el/resources/css/emp-community/write.css">
 <link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
 
@@ -16,13 +16,14 @@
 	
 	<div id="container">
         <form action="" method="post" id="write-fr">
+            <br><br>
             <div><button type="button" class="btn-close" aria-label="Close" id="reset"></button></div>
             <div id="category">
                 <select name="category" id="category-btn">
-                    <option value="employment">취업준비</option>
-                    <option value="changeJobs">이직준비</option>
-                    <option value="honeyTip">꿀&nbsp&nbsp&nbsp&nbsp&nbsp팁</option>
-                    <option value="smallTalk">아무&nbsp&nbsp말</option>
+                    <option value="employment">취업&nbsp/&nbsp이직</option>
+                    <option value="changeJobs">커리어&nbsp고민</option>
+                    <option value="honeyTip">회사&nbsp생활</option>
+                    <option value="smallTalk">인간&nbsp관계</option>
                 </select>
             </div>
             <div id="title"><input type="text" name="title" required placeholder="제목"></div>
