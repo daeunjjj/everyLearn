@@ -71,7 +71,7 @@
 
 			</div>
 			
-			<div id="list-btn"><button id="btn">목록</button></div>
+			<div id="list-btn"><a href="/el/lecture/qnalist"><button id="btn">목록</button></a></div>
 
 
 		</div>

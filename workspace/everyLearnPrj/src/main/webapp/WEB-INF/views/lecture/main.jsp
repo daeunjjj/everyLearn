@@ -29,9 +29,10 @@
 	
 			<div class="lecture-main">
 		        <div class="search">
-		            <div id="searchbox" ><input type="text" placeholder="강의를 검색하세요" style="width: 300px"></div>
+		            <div id="searchbox" ><input type="text" id="search-input-box" style="border: none" placeholder="강의를 검색하세요" style="width: 300px"></div>
 		            <div id="search-icon"> <i class="fa-solid fa-magnifying-glass"></i></div>
-		        </div>
+					<div id="search-icon"><input type="submit" value="검색"></div>
+				</div>
 		        <div class="list-wrap">
 		            <div id="lec-list">
 		                <div id="lec-pic"><a href="#"><img src="/el/resources/img/lecture/lecpic.png"></a></div>
@@ -95,6 +96,19 @@
 	            </div>
 	        </div>
 	    </div>
+	    
+	    <!-- 페이징 -->
+	    <div id="page-area" class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+                <div id="page-area2" class="btn-group me-2" role="group" aria-label="First group">
+	                <a href="/#/board/list?p=1" class="btn btn-outline-secondary"><</a>
+	                <a href="/#/board/list?p=1" class="btn btn-outline-secondary">1</a>
+	                <a href="/#/board/list?p=2" class="btn btn-outline-secondary">2</a>
+	                <a href="/#/board/list?p=3" class="btn btn-outline-secondary">3</a>
+	                <a href="/#/board/list?p=4" class="btn btn-outline-secondary">4</a>
+	                <a href="/#/board/list?p=5" class="btn btn-outline-secondary">5</a>
+	                <a href="/#/board/list?p=1" class="btn btn-outline-secondary">></a>
+                </div>
+       	</div>
 	</div>
 			
 	
