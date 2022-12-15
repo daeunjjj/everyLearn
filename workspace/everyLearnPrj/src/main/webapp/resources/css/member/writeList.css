@@ -12,26 +12,25 @@ body{
 #wrap{
     margin: auto;
     /* border: 1px solid black; */
-    width: 500px;
+    width: 600px;
     height: 500px;
 }
 
-#point-main{
+#writeList-main{
     margin: auto;
-    width: 500px;
+    width: 580px;
     height: 100px;
-    border: 1px solid #1187CF;
+    border-bottom: 2px solid #1187CF;
     text-align: center;
     display: flex;
     align-self: center;
-    border-radius: 10px;
 }
 
-#point-wrap{
+#writeList-wrap{
     margin: auto;
 }
 
-#point-top{
+#writeList-top{
     margin: auto;
     /* border: 1px solid #1187CF; */
     /* width: 500px; */
@@ -65,7 +64,7 @@ th{
 
 #pagenation{
     color: #1187CF;
-    width: 480px;
+    width: 580px;
     display: flex;
     justify-content: center;
 }
@@ -75,13 +74,31 @@ th{
 }
 
 
-#point{
+#writeList{
     font-weight: 700;
     font-size: 30px;
     text-align: center;
 }
 
-#point-content{
+#writeList-content{
     font-size: small;
     color: gray;
+}
+
+#write-top{
+    text-align: center;
+}
+
+#write-cate{
+    font-weight: 700;
+}
+
+#write-date{
+    font-weight: 100;
+    
+}
+
+#write-title{
+    
+    font-weight: 500;
 }

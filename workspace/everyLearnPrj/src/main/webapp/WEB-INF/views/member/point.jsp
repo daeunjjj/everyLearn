@@ -21,63 +21,48 @@
             <br><br>
             <div id="wrap">
                     <br><br>
-                    <div id="alert-top">
-                        <div class="alert alert-secondary" style="margin-bottom: 1px; border-radius: 0px; background-color: #1187CF;">
-                            <img src="/el/resources/img/member/alert.png" alt="" id="img-alert">
-                            <strong style="color: white;">알림(6)을 확인해주세요</strong>
-                        </div>
-                    </div>
-                    <div class="alert alert-primary" id="alert-content" style="margin-bottom: 0px;">
-                        <div>
-                            <strong>[신고]</strong>
-                            <a href="#" class="alert-link" style="text-decoration: none;">
-                                <강의 왜이럼???>
-                            </a>에 신고가 접수되었습니다.
-                            <img onclick="" src="/el/resources/img/member/delete.png" alt="" id="img-delete">
-                        </div>
-                    </div>
-                    <div class="alert alert-primary" id="alert-content-ok" style="margin-bottom: 0px;">
-                        <div>
-                            <strong>[댓글]</strong>
-                            <a href="#" class="alert-link" style="text-decoration: none;">
-                                <스터디 구합니다.>
-                            </a>에 댓글이 달렸습니다.
-                            <img onclick="" src="/el/resources/img/member/delete.png" alt="" id="img-delete">
-                        </div>
-                    </div>
-                    <div class="alert alert-primary" id="alert-content" style="margin-bottom: 0px;">
-                        <div>
-                            <strong>[신고]</strong>
-                            <a href="#" class="alert-link" style="text-decoration: none;">
-                                <강의 왜이럼???>
-                            </a>에 신고가 접수되었습니다.
-                        </div>
-                    </div>
-                    <div class="alert alert-primary" id="alert-content" style="margin-bottom: 0px;">
-                        <div>
-                            <strong>[신고]</strong>
-                            <a href="#" class="alert-link" style="text-decoration: none;">
-                                <강의 왜이럼???>
-                            </a>에 신고가 접수되었습니다.
-                        </div>
-                    </div>
-                    <div class="alert alert-primary" id="alert-content" style="margin-bottom: 0px;">
-                        <div>
-                            <strong>[신고]</strong>
-                            <a href="#" class="alert-link" style="text-decoration: none;">
-                                <강의 왜이럼???>
-                            </a>에 신고가 접수되었습니다.
-                        </div>
-                    </div>
-                    <div class="alert alert-primary" id="alert-content" style="margin-bottom: 0px;">
-                        <div>
-                            <strong>[신고]</strong>
-                            <a href="#" class="alert-link" style="text-decoration: none;">
-                                <강의 왜이럼???>
-                            </a>에 신고가 접수되었습니다.
-                        </div>
-                    </div>
 
+                    <div id="point-main">
+                        <div id="point-wrap">
+                            <div><strong>에브리런님의 현재 포인트 </strong></div>
+                            <div id="point">2000P</div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="container mt-3">
+                        <table class="table">
+                          <thead>
+                            <tr style="text-align: center;">
+                                <th>날짜</th>
+                                <th>금액</th>
+                                <th>내용</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr style="text-align: center;">
+                                <td>2022.12.22</td>
+                                <td>+2000P</td>
+                                <td id="point-content" >[구매적립]주문NO.1234</td>
+                            </tr>
+                            <tr style="text-align: center;">
+                                <td>2022.12.22</td>
+                                <td>+2000P</td>
+                                <td id="point-content" >[구매적립]주문NO.1234</td>
+                            </tr>
+                            <tr style="text-align: center;">
+                                <td>2022.12.22</td>
+                                <td>-10000P</td>
+                                <td id="point-content" >[관리자차감]</td>
+                            </tr>
+                            <tr style="text-align: center;">
+                                <td>2022.12.22</td>
+                                <td>+2000P</td>
+                                <td id="point-content" >[구매적립]주문NO.1234</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <br>
                     <div class="container mt-3" id="page-alert">
                         <ul class="pagination" id="pagenation">
                           <li class="page-item"><a class="page-link" href="#">이전</a></li>
