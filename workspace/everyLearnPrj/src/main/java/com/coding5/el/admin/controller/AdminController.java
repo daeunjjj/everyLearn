@@ -125,9 +125,28 @@ public class AdminController {
 	public String requestList() {
 		return "admin/request/list";
 	}
-	
+	// 질문 수정
 	@GetMapping("request/edit")
 	public String requestEdit() {
 		return "admin/request/edit";
+	}
+	
+	// 전체 메일 전송
+	@GetMapping("mail/all-send")
+	public String mailAllSend() {
+		return "admin/mail/all-send";
+	}
+	
+	// 개별 메일 전송
+	@GetMapping("mail/send")
+	public String mailSend() {
+		return "admin/mail/send";
+	}
+	
+	
+	// 보낸 메일 내역
+	@GetMapping("mail/list")
+	public String mailList() {
+		return "admin/mail/list";
 	}
 }

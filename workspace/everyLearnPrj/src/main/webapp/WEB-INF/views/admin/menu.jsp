@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <aside class="menu-bar" id="menu-height">
     <nav>
         <div class="top">
@@ -48,7 +49,7 @@
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
                 </li> -->
-                <li class="nav-items">
+                <li class="nav-items" id="customer">
                     <a href="">
                         <span>고객센터</span>
                         <i class="bi bi-chevron-compact-right"></i>
@@ -56,14 +57,14 @@
                     <div class="hidden-box" id="customer-cate">
                         <div class="detail-wrap">
                             <ul>
-                                <li class="detail-cate" id="">
-                                    <a href="/el/admin/master/list">공지사항</a>
+                                <li class="detail-cate" id="notice">
+                                    <a href="">공지사항</a>
                                 </li>
-                                <li class="detail-cate" id="">
-                                    <a href="/el/admin/master/join">자주묻는질문</a>
+                                <li class="detail-cate" id="faq">
+                                    <a href="">자주묻는질문</a>
                                 </li>
-                                <li class="detail-cate" id="">
-                                    <a href="/el/admin/master/join">QNA</a>
+                                <li class="detail-cate" id="qna">
+                                    <a href="">QNA</a>
                                 </li>
                                 
                             </ul>
@@ -118,11 +119,26 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-items">
-                    <a href="">
+                <li class="nav-items" id="mail">
+                    <a href="/el/admin/mail/all-send">
                         <span>메일</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
+                    <div class="hidden-box" id="mail-cate">
+                        <div class="detail-wrap">
+                            <ul>
+                                <li class="detail-cate" id="mail-allSend">
+                                    <a href="/el/admin/mail/all-send">전체메일발송</a>
+                                </li>
+                                <li class="detail-cate" id="mail-send">
+                                    <a href="/el/admin/mail/send">메일발송</a>
+                                </li>
+                                <li class="detail-cate" id="mail-list">
+                                    <a href="/el/admin/mail/list">보낸내역</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </li>
                 
             </ul>
