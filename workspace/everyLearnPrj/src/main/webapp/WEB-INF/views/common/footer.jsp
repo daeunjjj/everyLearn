@@ -8,10 +8,7 @@
 <link rel="stylesheet" href="/el/resources/css/common/footer.css">
 </head>
 <body>
-<div id="body-wrapper">
-	<div id="body-container">
-		 
-	</div>
+	
 	<footer class="footer">
 			<div class="wrapper">
 				<div class="footer-list">
@@ -67,7 +64,7 @@
 				</div>
 			</div>
 		</footer>
-</div>
+
 
 
 </body>

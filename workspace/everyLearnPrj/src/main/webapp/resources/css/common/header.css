@@ -3,14 +3,21 @@
   height: 100vh;
   margin: 0 auto;
 } */
+#header{
+  border-bottom: 1px solid rgb(173, 172, 172);
+}
+
+.container-wrapper{
+  border-bottom: 1px solid #f1f3f5; 
+}
 
 #container-top{
   display: flex;
+  width: 1200px;
   height: 40px;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  border-bottom: 1px solid #f1f3f5; 
   font-size: 14px;
 }
 
@@ -27,27 +34,24 @@
   }
 } */
 
-.page{
+header .page{
   display: flex;
   align-items: center;
   height: 100%;
   margin: 0;
   padding: 0 32px;
-  margin-left: 180px;
 }
 
-.choose-tap ::after{
+header .choose-tap ::after{
   content: "|";
   margin-right: 5px;
   margin-left: 5px;
 }
 
-.teacher{
+header .teacher{
   display: flex;
   align-items: center;
   margin: 0;
-  padding: 0 32px;
-  margin-right: 180px;
 }
 
 header a{
@@ -59,7 +63,7 @@ ul{
   list-style: none;
 }
 
-.logoTop{
+header .logoTop{
   text-align: center;
 }
 
@@ -72,53 +76,57 @@ img{
 #nav-container{
   display: flex;
   height: 50px;
+  width: 1200px;
+  margin: 0 auto;
   align-items: center;
   padding-bottom: 10px;
-  justify-content: center;
-  border-bottom: 1px solid rgb(173, 172, 172);
+  justify-content: space-between;
 }
 
-.nav-list{
+header .nav-list{
   display: flex;
   width: 350px;
   justify-content: space-around;
   padding: 0;
 }
 
-.menu-list{
+header .menu-list{
   padding: 8px 16px;
 }
 
-.search-wrapper{
+header .search-wrapper{
   width: 300px;
+  position: absolute;
+  left: calc(50% - 150px);
 }
 
-.search{
+header .search{
   display: flex;
   justify-content: center;
   width: 300px;
 }
 
-.click-search{
+header .click-search{
   width: 250px;
 }
 
-.member{
+header .member{
   display: flex;
   justify-content: space-around;
-  width: 200px;
+  width: 150px;
 }
 
-.login{
+header .login{
   width: 65px;
   height: 25px;
   text-align: center;
   vertical-align: middle;
   border: 2px solid #1187CF;
   border-radius: 5px;
+  line-height: 25px;
 }
 
-.join{
+header .join{
   width: 70px;
   height: 25px;
   text-align: center;
@@ -127,6 +135,7 @@ img{
   background-color: #1187CF;
   color: white;
   border-radius: 5px;
+  line-height: 25px;
 }
 
 
