@@ -5,26 +5,22 @@ html, body {
   height: 100%;
 }
 
-#body-wrapper {
-  min-height: 100%;
-  position: relative;
-}
-
-#body-container {
-  margin-top: 100px;
-  padding-bottom: 2400px; /* footer의 높이 */
+#container{
+  min-height: 100vh;
+  padding-bottom: 100px;
 }
 
 footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  /* height: 99999px; footer의 높이 */
   position: absolute;  
-  bottom: 0;
   left: 0;
 }
 /* footer 하단 고정 [E] */
 
-.footer{
+footer.footer{
   background-color: #303740;
   color: white;
 }
@@ -34,49 +30,48 @@ footer a{
   color: white;
 }
 
-.wrapper{
+footer .wrapper{
   display: flex;
+  width: 1200px;
   flex-direction: column;
 }
 
-.footer-list{
+footer .footer-list{
   display: flex;
   justify-content: space-between;
-  padding: 32px 30px;
-  margin: 0 100px;
+  padding: 32px 20px;
   font-size: 14px;
   border-bottom: 1px solid #444;
 }
 
-.menu-list{
+footer .menu-list{
   width: calc(100%/2);
 }
 
-.menu-title{
+footer .menu-title{
   padding: 16px 0;
   font-weight: bold;
 }
 
-.menu-content{
+footer .menu-content{
   display: flex;
   flex-direction: column;
 }
 
-.menu-content>a{
+footer .menu-content>a{
   margin-bottom: 7px;
 }
 
-.info{
+footer .info{
   padding: 32px 20px;
-  margin: 4px 90px;
   font-size: 12px;
 }
 
-.info-top, .first, .second, .third{
+footer .info-top, footer .first, footer .second, footer .third{
   margin-bottom: 8px;
 }
 
-.footer-logo>a>img{
+footer .footer-logo>a>img{
   width: 40px;
   height: 40px;
 }

@@ -10,14 +10,16 @@
 <body>
 
 		<header id="header">
-			<div id="container-top">
-				<ul class="page">
-					<li class="choose-tap"><a href="#">강의</a></li>
-					<li><a href="#">채용</a></li>
-				</ul>
-				<ul class="teacher">
-					<li><a href="#">런문가 되기</a></li>
-				</ul>
+			<div class="container-wrapper">
+				<div id="container-top">
+					<ul class="page">
+						<li class="choose-tap"><a href="#">강의</a></li>
+						<li><a href="#">채용</a></li>
+					</ul>
+					<ul class="teacher">
+						<li><a href="#">런문가 되기</a></li>
+					</ul>
+				</div>
 			</div>
 			<nav id="navbar">
 				<div class="logoTop">
