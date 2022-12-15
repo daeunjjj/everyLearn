@@ -8,7 +8,7 @@ body{
 
 .wrap{
     width: 70vw;
-    height: 1500px;
+    --height: 1800px;
     --border: 1px solid black;
     display: grid;
     grid-template-rows: 3fr 0.5fr 12fr;

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/el/resources/css/lecture/qnawrite.css" />
+<link rel="stylesheet" href="/el/resources/css/lecture/qna_write_new.css" />
 </head>
 <body>
 
@@ -36,7 +36,13 @@
 		<div class="write-wrap">
 			<div id="title">제목 <input type="text" name="title"></div>
             <div id="content">내용 <textarea name="content" ></textarea></div>
-			<div id="submit-btn"><input type="submit" value="작성"></div>
+			<div class="filebox">
+				<input class="upload-name" value="첨부파일" placeholder="첨부파일">
+				<label for="file">파일찾기</label> 
+				<input type="file" id="file">
+			</div>
+			<div id="submit-btn"><input type="submit" value="작성하기"></div>
+
 
 
 		</div>

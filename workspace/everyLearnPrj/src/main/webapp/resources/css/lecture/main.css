@@ -58,24 +58,41 @@ li a {
 
 #searchbox{
     --width: 85%;
-    margin-top: 5px;
+    --margin-top: 5px;
     
 }
 
-#searchbox input{
+#searchbox >input{
     border-bottom: 1px solid lightgray;
 }
 
 
-#search-input-box{
-    outline: none;
+#search-inputbox{
+    border: 0;
+    padding-bottom: 5px;
     border-bottom: 1px solid lightgray;
+    
 }
 
-#search-icon{
-    width: 15%;
-    margin-top: 5px;
+/*hover*/
+.btn_submit{
+    background-color: white;
+    color: #1187CF;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: 600;
+
 }
+/* hover 효과 넣고싶은데ㅠㅠㅠ
+.btn_submit :hover{
+    background-color: #1187CF;
+    color: white;
+    
+}
+
+*/
 
 .list-wrap{
     --border: 1px solid green;
