@@ -1,0 +1,108 @@
+@charset "UTF-8";
+@charset "UTF-8";
+/*윤아님 css*/
+#customer-cate{
+    display: block;
+}
+#customer{
+    background-color: #005297;
+}
+
+#faq{
+    font-weight: bold;
+}
+
+/*-------------------*/
+
+.main-wrap{
+    width: 100%;
+    height: 70%;
+    margin: 50px auto;
+}
+
+#title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+#title > input{
+    border: 0px;
+    border-bottom: 1px solid lightgray;
+    outline: none;
+    width: 100%;
+    padding: 10px;
+}
+
+#content{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#content > textarea{
+    border: 1px solid lightgray;
+    resize: none;
+    outline: none;
+    width: 100%;
+    height: 550px;
+    border-radius: 5px;
+    padding: 15px;
+   
+}
+
+#file{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#file > input{
+    margin-top: 20px;
+    width: 100%;
+}
+
+#write{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#submit-btn{
+    border-bottom: none;
+    background-color: #1187CF;
+    color: white;
+    border-radius: 10px;   
+    font-size: 13px;
+    margin-top: 20px;
+    outline: none;
+}
+
+#submit-btn:hover{ background-color: #0d73b2;}
+
+
+#category > select{
+    width: 80px;
+    height: 30px;
+    outline: none;
+    border-style: none;
+    background-color: #E9ECEF;
+    color: black;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+#category > select:hover{
+    background-color: #e1e4e6;
+    color: black;
+}
+
+option{
+	color: black;
+	text-align: center;
+}

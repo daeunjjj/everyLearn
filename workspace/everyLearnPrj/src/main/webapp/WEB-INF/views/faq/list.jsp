@@ -37,7 +37,7 @@
     <div class="container">
 
         <div class="a1">
-            <div id="h1">개인 회원 FAQ</div>
+            <div id="h1">💡개인 회원 자주 묻는 질문</div>
             <br>
             <button class="accordion">구매했던 강의가 전부 사라졌습니다.</button>
             <div class="panel">
@@ -77,7 +77,7 @@
         </div>
         <div id="hr"></div>
         <div class="a2">
-            <div id="h1">기업 회원 FAQ</div>
+            <div id="h1">💡기업 회원 자주 묻는 질문</div>
             <br>
 
             <button class="accordion">기업 서비스 가입, 이용 절차가 궁금합니다.</button>

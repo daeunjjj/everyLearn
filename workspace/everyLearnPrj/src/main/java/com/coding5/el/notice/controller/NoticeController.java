@@ -14,6 +14,12 @@ public class NoticeController {
 		return "notice/list";
 	}
 	
+	//공지사항 글쓰기
+	@GetMapping("write")
+	public String write() {
+		return "notice/write";
+	}
+	
 	//공지사항 상세조회
 	@GetMapping("detail")
 	public String detail() {
