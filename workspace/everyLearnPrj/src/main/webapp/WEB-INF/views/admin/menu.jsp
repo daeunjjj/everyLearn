@@ -9,8 +9,8 @@
             </a>
             <div>
                 <a href="/el/admin/info">
-                    <i class="bi bi-house-door"></i>
                     관리자
+                    <i class="bi bi-house-door"></i>
                 </a>
             </div>
         </div>
