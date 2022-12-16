@@ -37,6 +37,10 @@
                         <div>문의</div>
                         <span>0</span>
                     </div>
+                    <div class="todo-items">
+                        <div>공지</div>
+                        <span>0</span>
+                    </div>
                 </div>
                 <div class="stats-area">
     
