@@ -20,7 +20,7 @@
                     <img id="img-main" class="main_image" src="/el/resources/img/teacher/enroll_main2.png" alt="">
                     <h1 class="main_image_text" style="font-size:40px">100만 회원과 함께하는 에브리런</h1>
                     <h1 id="main-content" style="font-size:20px">지식을 공유할 수 있는 멋진 기회 런문가가 되어보세요!</h1>
-                    <button id="btn-req" type="button" >런문가되기</button>
+                    <button id="btn-req" type="button" onclick="location.href='http://127.0.0.1:8888/el/teacher/write'">런문가되기</button>
                 </div>
               </div>
             </main>

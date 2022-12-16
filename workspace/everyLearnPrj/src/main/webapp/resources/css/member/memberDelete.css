@@ -7,7 +7,7 @@
 
 #report-top{
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .form-check{
@@ -20,17 +20,21 @@
 
 .check-wrap{
     padding-top: 10px;
+
 }
 
 #blacklist{
     margin: auto;
-    border-top: 2px solid #1187CF;
-    border-bottom: 2px solid #1187CF;
-    width: 350px;
-    height: 50px;
+    /* border-top: 2px solid #1187CF;
+    border-bottom: 2px solid #1187CF; */
+    border: 2px solid #1187CF;
+    background-color: #1187CF;
+    width: 500px;
+    height: 110px;
     font-size: small;
-    color: gray;
+    color: white;
     margin-bottom: 20px;
+    padding-top: 7px;
 }
 
 #btn-wrap{
@@ -39,10 +43,11 @@
     border-radius: 10px;
     width: 350px;
     height: 50px;
+    margin-top: 10px;
     /* margin-top: 20px; */
 }
 
-#report-btn{
+.report-btn{
     margin: auto;
     background-color: #1187CF;
     width: 350px;
@@ -51,13 +56,33 @@
     border-radius: 10px;
     font-size: large;
     color: white;
+
 }
 
 #password{
     width: 300px;
     border: none;
+ 
 }
 
 #password:focus{
     outline: none;
+}
+
+#deletement{
+    text-align: center;
+    font-size: small;
+    border: 20px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+p{
+    font-size: large;
+    font-weight: 700;
+    text-align: center;
+}
+
+#deletebtn{
+    background-color: lightgrey;
 }

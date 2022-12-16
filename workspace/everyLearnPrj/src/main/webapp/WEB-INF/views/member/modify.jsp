@@ -27,7 +27,8 @@
                 <!-- <div id="top-modify"> -->
                 <div>
                     <!-- <div class="top-modify"><img id="img-logo" src="/el/resources/img/logo/el.png" alt=""></div> -->
-                    <div class="top-modify"><label for=""><h3>회원정보 수정</h3></label></div>
+                    <div class="top-modify"><label for=""><h3>회원정보</h3></label></div>
+                    <div class="top-modify"><label for="">* 회원정보 수정이 가능합니다.</label></div>
                 </div>
 
                 <div id="wrap-modify">
