@@ -8,7 +8,7 @@ body{
 
 .wrap{
     width: 70vw;
-    --height: 1500px;
+    height: 1200px;
     --border: 1px solid black;
     display: grid;
     grid-template-rows: 3fr 0.5fr 12fr;
@@ -78,7 +78,7 @@ body{
 }
 
 .write-wrap{
-    border: 1px solid gray;
+    --border: 1px solid gray;
     width: 80%;
     --display: grid;
     margin: auto;
@@ -131,77 +131,11 @@ body{
     font-weight: 400;
 }
 
-.written-wrap{
-    width: 80%;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 50px;
-}
 
-#title-top{
-    border-bottom: 1px solid lightgray;
-    --height: 100px;
-    display: grid;
-    padding-bottom: 10px;
-    grid-template-columns: 6fr 1fr;
-}
-
-#title-wr{
-    font-size: 20px;
-    font-weight: 600;
-    margin-top: 20PX;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    grid-column: span 2;
-}
-
-#nick-wr{
-    font-size: 16px;
-    --margin-top: 20px;
-    margin-left: 20px;
-    color: #5a5a5a;
-}
-
-#date-wr{
-    font-size: 16px;
-    --margin-top: 20px;
-    margin-left: 20px;
-    color: #5a5a5a;
-}
-
-#buttons{
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 30px;
-}
 
 #buttons>div{
     padding: 5px;
 }
-
-#content-wr{
-    width: 90%;
-    height: 300px;
-    padding: 10px;
-    --border: 1px solid black;
-    margin: auto;
-}
-
-#content-wrap{
-    margin-bottom: 20px;
-    border-bottom: 1px solid lightgray;
-}
-
-
-#answer-top{
-    border-top: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
-    --height: 100px;
-    display: grid;
-    padding-bottom: 10px;
-    grid-template-columns: 6fr 1fr;
-}
-
 
 
 #list-btn{
@@ -280,25 +214,32 @@ body{
 }
 
 .filebox .upload-name {
+    margin-top: 10px;
+    
     display: inline-block;
-    height: 40px;
+    height: 30px;
     padding: 0 10px;
     vertical-align: middle;
     border: 1px solid #dddddd;
     border-radius: 5px;
     width: 60%;
     color: #999999;
+    margin-left: 155px;
+    
+    
 }
 
 .filebox label {
+    font-size: 14px;
     display: inline-block;
-    padding: 10px 10px;
+    padding: 5px;
     color: #fff;
     vertical-align: middle;
     background-color: #999999;
     cursor: pointer;
-    width: 60px;
-    --height: 40px;
+    width: 55px;
+    --height: 30px;
     margin-left: 10px;
+   
+    
 }
-

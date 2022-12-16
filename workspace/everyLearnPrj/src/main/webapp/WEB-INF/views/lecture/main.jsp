@@ -29,9 +29,11 @@
 	
 			<div class="lecture-main">
 		        <div class="search">
-		            <div id="searchbox" ><input type="text" id="search-input-box" style="border: none" placeholder="강의를 검색하세요" style="width: 300px"></div>
-		            <div id="search-icon"> <i class="fa-solid fa-magnifying-glass"></i></div>
-					<div id="search-icon"><input type="submit" value="검색"></div>
+					<form>
+		            <input type="text" id="search-inputbox" placeholder="강의를 검색하세요" style="width: 250px">
+					<button class="btn_submit" type="submit"><i class="fa fa-search"></i></button>
+					<!--<i class="fa fa-search"></i>*/-->
+					</form>
 				</div>
 		        <div class="list-wrap">
 		            <div id="lec-list">
