@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>noticeDetail</title>
+<title>에브리런</title>
 
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -25,6 +25,11 @@
         </div>
 
         <div class="container"> 
+        
+        	<div id="btn1">
+                <button class="btn btn-outline-secondary me-md-2" type="button">수정</button>
+                <button class="btn btn-outline-secondary me-md-2" type="button">삭제</button>
+            </div>
 
             <div class="title"><span id="title">[엄청 중요한 공지] 제목입니다</span></div>
                 <div class="info-nick"><span id="nick">관리자   |   22.11.29    |   11</span></div>
