@@ -28,57 +28,68 @@
 
         <div class="qna-list-wrap">
             <div class="qna-list-top">
+                <div>글번호</div>
                 <div>제목</div>
                 <div>작성자</div>
                 <div>등록일</div>
             </div>
             <div class="qna-list">
+                <div id="qno">1</div>
                 <div id="qtitle">배고파ㅠㅠㅠㅠㅠㅠㅠㅠㅠ</div>
                 <div id="qnick">닉네임01</div>
                 <div id="qdate">2022.12.08</div>
             </div>
             <div class="qna-list">
+                <div id="qno">1</div>
                 <div id="qtitle">배고파ㅠㅠㅠㅠㅠㅠㅠㅠㅠ</div>
                 <div id="qnick">닉네임01</div>
                 <div id="qdate">2022.12.08</div>
             </div>
             <div class="qna-list">
+                <div id="qno">1</div>
                 <div id="qtitle">배고파ㅠㅠㅠㅠㅠㅠㅠㅠㅠ</div>
                 <div id="qnick">닉네임01</div>
                 <div id="qdate">2022.12.08</div>
             </div>
             <div class="qna-list">
+                <div id="qno">1</div>
                 <div id="qtitle">배고파ㅠㅠㅠㅠㅠㅠㅠㅠㅠ</div>
                 <div id="qnick">닉네임01</div>
                 <div id="qdate">2022.12.08</div>
             </div>
             <div class="qna-list">
+                <div id="qno">1</div>
                 <div id="qtitle">배고파ㅠㅠㅠㅠㅠㅠㅠㅠㅠ</div>
                 <div id="qnick">닉네임01</div>
                 <div id="qdate">2022.12.08</div>
             </div>
             <div class="qna-list">
+                <div id="qno">1</div>
                 <div id="qtitle">배고파ㅠㅠㅠㅠㅠㅠㅠㅠㅠ</div>
                 <div id="qnick">닉네임01</div>
                 <div id="qdate">2022.12.08</div>
             </div>
             <div class="qna-list">
+                <div id="qno">1</div>
                 <div id="qtitle">배고파ㅠㅠㅠㅠㅠㅠㅠㅠㅠ</div>
                 <div id="qnick">닉네임01</div>
                 <div id="qdate">2022.12.08</div>
             </div>
             <div class="qna-list">
+                <div id="qno">1</div>
                 <div id="qtitle">배고파ㅠㅠㅠㅠㅠㅠㅠㅠㅠ</div>
                 <div id="qnick">닉네임01</div>
                 <div id="qdate">2022.12.08</div>
             </div>
             <div class="qna-list">
+                <div id="qno">1</div>
                 <div id="qtitle">배고파ㅠㅠㅠㅠㅠㅠㅠㅠㅠ</div>
                 <div id="qnick">닉네임01</div>
                 <div id="qdate">2022.12.08</div>
             </div>
 
             <div class="qna-list">
+                <div id="qno">1</div>
                 <div id="qtitle">배고파ㅠㅠㅠㅠㅠㅠㅠㅠㅠ</div>
                 <div id="qnick">닉네임01</div>
                 <div id="qdate">2022.12.08</div>
@@ -91,21 +102,25 @@
                 <div id="ans-date">2022.12.08</div>
             </div>
             <div class="qna-list">
+                <div id="qno">1</div>
                 <div id="qtitle">배고파ㅠㅠㅠㅠㅠㅠㅠㅠㅠ</div>
                 <div id="qnick">닉네임01</div>
                 <div id="qdate">2022.12.08</div>
             </div>
             <div class="qna-list">
+                <div id="qno">1</div>
                 <div id="qtitle">배고파ㅠㅠㅠㅠㅠㅠㅠㅠㅠ</div>
                 <div id="qnick">닉네임01</div>
                 <div id="qdate">2022.12.08</div>
             </div>
             <div class="qna-list">
+                <div id="qno">1</div>
                 <div id="qtitle">배고파ㅠㅠㅠㅠㅠㅠㅠㅠㅠ</div>
                 <div id="qnick">닉네임01</div>
                 <div id="qdate">2022.12.08</div>
             </div>
             <div class="qna-list">
+                <div id="qno">1</div>
                 <div id="qtitle">배고파ㅠㅠㅠㅠㅠㅠㅠㅠㅠ</div>
                 <div id="qnick">닉네임01</div>
                 <div id="qdate">2022.12.08</div>
@@ -123,7 +138,7 @@
 	                <a href="/#/board/list?p=5" class="btn btn-outline-secondary">5</a>
 	                <a href="/#/board/list?p=1" class="btn btn-outline-secondary">></a>
                 </div>
-       	</div>
+       	    </div>
        </div>
             
             

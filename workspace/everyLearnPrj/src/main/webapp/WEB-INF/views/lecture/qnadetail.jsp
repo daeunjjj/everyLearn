@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/el/resources/css/lecture/qnawrite.css" />
+<link rel="stylesheet" href="/el/resources/css/lecture/qnaDetail.css" />
 </head>
 <body>
 
@@ -29,7 +29,7 @@
 			<div><a href="/el/lecture/detail/review">수강평</a></div>
 			<div><a href="/el/lecture/qnalist">질문과답변</a></div>
 		</div>
-
+		<div id="qnawrap">
 		<div class="write-top">
 			<div id="qnatop">질문과답변</div>
 		</div>
@@ -75,6 +75,7 @@
 
 
 		</div>
+	</div>
 	
 	</div>
 	

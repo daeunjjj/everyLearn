@@ -1,0 +1,212 @@
+@charset "UTF-8";
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
+body{
+  font-family: 'nanumsquare';
+
+}
+
+
+.wrap{
+    width: 70vw;
+    height: 1500px;
+    --border: 1px solid black;
+    display: grid;
+    grid-template-rows: 3fr 0.5fr 12fr;
+    margin: auto;
+}
+
+#qnawrap>div{
+    margin: auto;
+}
+
+.lec-intro{
+    --border: 1px solid red;
+    background-color: #d7d7d7;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.navi{
+    border-bottom: 1px solid gray;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 9fr;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.navi>div a{
+    text-decoration: none;
+    color: black; 
+}
+
+.navi>div a:hover{
+    color: #1187CF;
+}
+
+.lec-main{
+    --border: 1px solid blue;
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+}
+
+#lec-pic{
+    padding: 20px;
+    padding-left: 50px;
+}
+
+#lec-int{
+    padding: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#lec-int>div{
+    margin: 10px;
+}
+
+#lec-name{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px 0px 15px 0px;
+}
+
+.write-top{
+    height: 100px;
+}
+#qnatop{
+    font-size: 25px;
+    font-weight: bold;
+    margin: 30px;
+    padding: 20px;
+    border-bottom: 1px solid #4a4a4a;
+}
+
+
+.written-wrap{
+    width: 80%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 50px;
+}
+
+#title-top{
+    border-bottom: 1px solid lightgray;
+    --height: 100px;
+    display: grid;
+    padding-bottom: 10px;
+    grid-template-columns: 6fr 1fr;
+}
+
+#title-wr{
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 20PX;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    grid-column: span 2;
+}
+
+#nick-wr{
+    font-size: 16px;
+    --margin-top: 20px;
+    margin-left: 20px;
+    color: #5a5a5a;
+}
+
+#date-wr{
+    font-size: 16px;
+    --margin-top: 20px;
+    margin-left: 20px;
+    color: #5a5a5a;
+}
+
+#buttons{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 30px;
+}
+
+#buttons>div{
+    padding: 5px;
+}
+
+#content-wr{
+    width: 90%;
+    height: 300px;
+    padding: 10px;
+    --border: 1px solid black;
+    margin: auto;
+}
+
+
+#content-wrap{
+    margin-bottom: 20px;
+    border-bottom: 1px solid lightgray;
+}
+
+
+
+#list-btn{
+    text-align: center;
+    display: block;
+}
+
+#btn{
+    color: #1187CF;
+    background-color: white;
+    border: 1px solid lightgray;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.comment-wrap{
+    width: 80%;
+    margin: auto;
+}
+
+.comment-wr{
+    --border: 1px solid gray;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 6fr 0.5fr 0.5fr;
+    margin-bottom: 30px;
+}
+
+#comment-content{
+    width: 100%;
+    height: 100px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    grid-column: 4 span;
+    margin-bottom: 5px;
+    padding: 10px;
+}
+
+#comment-nick, #comment-date{
+    font-size: 16px;
+    color: #5a5a5a;
+    margin-left: 10px;
+}
+
+.comment-write{
+    --border: 1px solid tan;
+    margin-bottom: 100px;
+}
+
+#write-area{
+    border: 1px solid lightgray;
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    resize: none;
+    border-radius: 5px;
+}
+
+#write-btn{
+    float: right;
+    margin-right: 10px;
+    
+    border: 0;
+
+}
