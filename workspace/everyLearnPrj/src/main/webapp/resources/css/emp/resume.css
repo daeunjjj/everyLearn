@@ -10,12 +10,18 @@ body{
 
 .main-wrapper{
   display: grid;
-  width: 1200px;
+  width: 1000px;
   margin: 0 auto;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
   gap: 32px 0px;
   padding-top: 40px
+}
+
+.list.expand{
+  grid-column: span 2;
+  width: 100%;
+  padding: 0 75px;
 }
 
 .title{
@@ -24,15 +30,15 @@ body{
   border-bottom: 1px solid black;
 }
 
-.info-wrapper{
+.content{
   padding-bottom: 30px;
 }
 
-.info{
+.content-wrapper{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  padding: 0 30px;
 }
 
 .grid{
@@ -60,5 +66,75 @@ body{
   height: 2.933rem;
 }
 
+.bottom{
+  border: 1px solid rgb(173, 172, 172);
+}
 
+main .wrapper{
+  margin: 30px 0;
+  border-radius: 10px;
+  background-color: rgba(211, 208, 208, 0.233);
+}
 
+.list-wrapper{
+  padding: 20px;
+}
+
+.list-title{
+  border-bottom: 1px solid black;
+}
+
+.textarea{
+  padding-top: 30px;
+}
+
+.introduce{
+  resize: vertical;
+  width: 100%;
+  min-height: 300px;
+}
+
+.introduce-title{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: end;
+  padding: 1.33em 0;
+  gap: 0rem;
+  border-bottom: 1px solid black;
+}
+
+.introduce-title>h4{
+  margin: 0;
+}
+
+.introduce-title>span{
+  margin: 0px 0px 2px 8px;
+  color: rgb(135, 142, 152);
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.additional{
+  width: 100%;
+}
+
+.button-wrapper{
+  width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: end;
+  margin-top: 30px;
+}
+
+button{
+  width: 250px;
+  height: 2.933rem;
+  border-radius: 10px;
+  border: 2px solid #1187CF;
+  background-color: #1187CF;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}

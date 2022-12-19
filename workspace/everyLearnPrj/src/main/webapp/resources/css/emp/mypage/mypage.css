@@ -1,0 +1,33 @@
+.content{
+  background-color: rgb(248, 249, 250);
+  flex-grow: 1;
+}
+
+.wrapper{
+  width: 100%;
+}
+
+.main{
+  padding: 0 32px;
+  width: 100%;
+  max-width: 1148px;
+}
+
+.company-info{
+  margin-top: 32px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.42;
+}
+
+.info-section{
+  padding: 32px 40px;
+}
+
+.name{
+  width: 100%;
+  border: none;
+  outline: none;
+  background: none;
+}
