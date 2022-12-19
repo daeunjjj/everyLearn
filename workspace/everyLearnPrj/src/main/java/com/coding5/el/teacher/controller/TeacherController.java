@@ -23,4 +23,15 @@ public class TeacherController {
 		return "teacher/enroll_main";
 	}
 	
+	@GetMapping("info")
+	public String info() {
+		return "teacher/information";
+	}
+	
+	@GetMapping("modify")
+	public String modify() {
+		return "teacher/career-modify";
+	}
+	
+	
 }

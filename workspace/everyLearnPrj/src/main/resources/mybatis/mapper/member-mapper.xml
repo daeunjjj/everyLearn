@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+
+<resultMap type="com.coding5.el.member.vo.MemberVo" id="memberMap">
+	<result property="memberId" column="ID"/>
+	<result property="memberPwd" column="PWD"/>
+	<result property="memberName" column="NAME"/>
+	<result property="memberNick" column="NICK"/>
+	
+</resultMap>
+
+  <insert id="insertMember">
+INSERT INTO MEMBER
+	(
+	    NO
+	    ,ID
+	    ,PWD
+	    ,NAME
+	    ,BIRTH
+	    ,PHONE
+	    ,NICK
+	    ,EMAIL
+	)VALUES
+	(	SEQ_MEMBER_NO.NEXTVAL
+		 , #{memberId}
+		 , #{memberPwd}
+		 , #{memberName}
+		 , #{birth}
+		 , #{phone}
+		 , #{memberNick}
+		 , #{email}
+		 )
+  </insert>
+  
+  <select id="selectMemberOne" resultType="com.coding5.el.member.vo.MemberVo" resultMap="memberMap">
+  	SELECT *
+  	FROM MEMBER
+  	WHERE ID = #{memberId}
+  </select>
+  
+</mapper>

@@ -21,7 +21,7 @@
 
             <div id="wrap-join">
                 
-                <form action="" id="join-form">
+                <form action="/el/member/join" method="post" id="join-form" onsubmit="jin()">
 
                 <h4><label for="">* 아이디</label></h4>
                 <span class="join-box">
@@ -30,7 +30,7 @@
                 </span>            
                 <h4><label for="">* 비밀번호</label></h4>
                 <span class="join-box">
-                    <input type="password" name="memberPwd1">
+                    <input type="password" name="memberPwd">
                 </span>
                 <span>
                     <pre>
@@ -49,23 +49,23 @@
                 </span>   
                 <h4><label for="">* 휴대폰 번호</label></h4>
                 <span class="join-box" >
-                    <input type="tel" name="memberTel" placeholder="숫자만 입력해주세요.">
+                    <input type="tel" name="phone" placeholder="숫자만 입력해주세요.">
                 </span>   
                 <h4><label for="">* 이메일</label></h4>
                 <span class="join-box">
-                    <input type="email" name="memberEmail">
+                    <input type="email" name="email">
                 </span>   
                 <h4><label for="">* 생년월일</label></h4>
                 <span class="join-box">
-                    <input type="text" minlength="8" maxlength="8" name="memberBirth" placeholder="숫자 8자리로 입력해주세요(ex. 20001212)">
+                    <input type="text" minlength="10" maxlength="10" name="birth" placeholder="숫자 8자리로 입력해주세요(ex. 20001212)">
                 </span>   
                 <h4><label for="">닉네임</label></h4>
                 <span class="join-box">
                     <input type="text" name="memberNick">
-                    <button id="double-check">중복확인</button>
+                    <button id="nick-double-check">중복확인</button>
                 </span>   
                 <div id="btn-join">
-                    <button type="button" id="btnJoin">
+                    <button type="submit" id="btnJoin" >
                         <div id="text-join">가입하기</div>
                         </button>
                 </div>
@@ -75,6 +75,11 @@
         </div>
     </div>
 
+	<script type="text/javascript">
+		function jin() {
+			return true;
+		}
+	</script>
 
 </main>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

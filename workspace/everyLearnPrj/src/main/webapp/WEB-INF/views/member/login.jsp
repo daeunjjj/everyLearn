@@ -18,7 +18,7 @@
 
             <div id="wrap-join">
                 
-                <form action="" id="join-form">
+                <form action="/el/member/login" method="post" id="join-form" onsubmit="loginOk()">
 
                 <h4><label for="">아이디</label></h4>
                 <span class="join-box">
@@ -26,19 +26,25 @@
                 </span>            
                 <h4><label for="">비밀번호</label></h4>
                 <span class="join-box">
-                    <input type="password" name="memberPwd1">
+                    <input type="password" name="memberPwd">
                 </span>
                 <div id="btn-join">
-                    <button type="button" id="btnJoin">
+                    <button type="submit" id="btnJoin">
                         <div id="text-join">로그인</div>
                     </button>
                 </div>
                 </form>
                 
+                <script type="text/javascript">
+                	function loginOk() {
+						return true;
+					}
+                </script>
+                
                 
             </div>
             <div id="find">
-                <a href="">아이디 찾기</a> | <a href="">비밀번호 찾기</a> | <a href="">회원가입</a>
+                <a href="http://127.0.0.1:8888/el/member/idFind">아이디 찾기</a> | <a href="http://127.0.0.1:8888/el/member/pwFind">비밀번호 찾기</a> | <a href="http://127.0.0.1:8888/el/member/join">회원가입</a>
             </div>
     </div>
 
