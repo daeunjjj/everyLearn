@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
 <link rel="stylesheet" href="/el/resources/css/admin/master/join.css">
 
+<script type="text/javascript" defer src="/el/resources/js/admin/join.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 	<div class="wrap">
@@ -16,50 +18,42 @@
             <h1>관리자 등록</h1>
             <div id="line"></div>
             <div class="main-wrap">
-                <form action="">
+                <form action="/el/admin/master/join" method="post" onsubmit="return joinCheck();">
+                    <input type="password" id="pwd" name="pwd" value="admin1234!" hidden>
                     <div class="join-wrap">
                         <div class="join-items">
                             <div class="title-wrap">
-                                <label for="email">아이디</label>
+                                <label for="id">아이디(이메일)</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="email" placeholder="아이디를 입력해주세요.">
+                                <input class="input" id="id" type="text" name="id" placeholder="example@every.com">
                             </div>
-                            <span>필수 정보입니다.</span>
+                            <span hidden id="idMsg"></span>
                         </div>
                         <div class="join-items">
                             <div class="title-wrap">
                                 <label for="name">이름</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="name" placeholder="관리자 성함을 입력해주세요.">
+                                <input class="input" id="name" type="text" name="name" placeholder="관리자 성함을 입력해주세요.">
                             </div>
-                            <span>필수 정보입니다.</span>
+                            <span hidden id="nameMsg">필수 정보입니다.</span>
                         </div>
                         <div class="join-items">
                             <div class="title-wrap">
                                 <label for="phone">전화번호</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="phone" placeholder="번호만 입력해주세요.">
+                                <input class="input" id="phone" type="text" name="phone" placeholder="번호만 입력해주세요." oninput="autoHyphen(this)" maxlength="13" >
                             </div>
-                            <span>필수 정보입니다.</span>
-                        </div>
-                        <div class="join-items">
-                            <div class="title-wrap">
-                                <label for="email">이메일</label>
-                            </div>
-                            <div class="input-wrap">
-                                <input type="text" name="email" placeholder="이메일 형식으로 작성해주세요.">
-                            </div>
-                            <span>필수 정보입니다.</span>
+                            <span hidden id="phoneMsg">필수 정보입니다.</span>
                         </div>
                         <div class="join-items">
                             <div class="title-wrap">
                                 <label for="position">직급</label>
                             </div>
                             <div class="input-wrap">
-                                <select name="position" id="position">
+                                <select class="input" name="position" id="position">
                                     <option value="master">사원</option>
                                     <option value="emp">대리</option>
                                     <option value="management">팀장</option>
@@ -71,7 +65,7 @@
                                 <label for="level">권한</label>
                             </div>
                             <div class="input-wrap">
-                                <select name="level" id="level">
+                                <select class="input" name="level" id="level">
                                     <option value="emp">일반</option>
                                     <option value="management">마스터</option>
                                 </select>
@@ -84,7 +78,13 @@
 
                 </form>
             </div>
+            <script>
+
+            </script>
         </main>
     </div>
+    <script>
+
+    </script>
 </body>
 </html>

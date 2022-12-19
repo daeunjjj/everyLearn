@@ -50,6 +50,10 @@ label{
     box-sizing: border-box;
     z-index: 10;
     text-decoration: none;
+
+}
+
+.input-wrap>select{
     cursor: pointer;
 }
 
@@ -57,12 +61,20 @@ input:focus, select:focus{
     outline: none;
 }
 
-.join-items>span{
+.not-available{
     display: block;
     margin: 9px 0 -2px;
     font-size: 12px;
     line-height: 14px;
     color: red;
+}
+
+.available{
+    display: block;
+    margin: 9px 0 -2px;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1187CF;
 }
 
 .btn-area{
