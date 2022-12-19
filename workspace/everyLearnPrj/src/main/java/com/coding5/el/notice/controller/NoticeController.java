@@ -20,6 +20,12 @@ public class NoticeController {
 		return "notice/write";
 	}
 	
+	//공지사항 글 수정하기
+	@GetMapping("edit")
+	public String edit() {
+		return "notice/edit";
+	}
+	
 	//공지사항 상세조회
 	@GetMapping("detail")
 	public String detail() {

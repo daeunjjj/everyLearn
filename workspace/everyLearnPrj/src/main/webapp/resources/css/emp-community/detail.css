@@ -10,6 +10,7 @@
 }
 
 .detailBar{
+	margin-top: 40px;
     border-bottom: 1px solid lightgray;
 }
 
@@ -31,9 +32,8 @@
 }
 
 .title{
-    font-size: 20px;
-    font-weight: 600;
-    
+    font-size: 22px;
+    font-weight: 600;  
 }
 
 #title{
