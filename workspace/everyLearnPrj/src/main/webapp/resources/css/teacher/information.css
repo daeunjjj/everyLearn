@@ -1,0 +1,135 @@
+body{
+    margin: 0px;
+}
+
+#intro-wrap{
+    padding: 0px;
+}
+
+#contain-detail{
+    margin: auto;
+    width: 1000px;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+#teacher-img{
+    margin-top: 10px;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+}
+
+#mt-3{
+    width: 100%;
+    height: 100%;
+}
+
+.card-text{
+    box-sizing: content-box;
+    overflow: visible;
+    word-break: keep-all;
+    white-space: pre-line;
+}
+
+#career{
+    margin-left: 5px;
+    margin-top: 16px;
+    margin-bottom: 10px;
+    border-bottom: 3px solid #1187CF;
+    font-size: large;
+    font-weight: 700;
+}
+
+#main-career{
+    margin-top: 10px;
+    margin-left: 10px;
+    line-height: 1.6rem;
+    
+}
+
+#lecture{
+    margin-left: 5px;
+    margin-top: 16px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid gray;
+    border-bottom: 3px solid #1187CF;
+    font-size: large;
+    font-weight: 700;
+}
+
+label{
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+#list-wrap{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.lec-list{
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.lec-list>div{
+    text-align: center;
+}
+
+
+#lec-img{
+    width: 208px;
+    height: 150px;
+    margin: auto;
+    margin-bottom: 3px;
+}
+
+#lec-name{
+    font-weight: 700;
+
+}
+
+#teacher-name{
+    font-size: small;
+    color: gray;
+    font-weight: 500;
+}
+
+#plus{
+    margin: auto;
+    margin-top: 20px;
+    width: 716px;
+    height: 110px;
+    border-top: 3px solid #1187CF;
+    border-bottom: 3px solid #1187CF;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+}
+
+.num{
+    width: 358px;
+    height: 60px;
+    text-align: center;
+    font-size:45px;
+    font-weight: 700;
+}
+
+.top{
+    height: 30px;
+    font-size: large;
+    margin-top: 5px;
+}
+
+#detail-modify{
+    width: 248px;
+    height: 40px;
+    border: none;
+    background-color: #1187CF;
+    color: white;
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: 700;
+}

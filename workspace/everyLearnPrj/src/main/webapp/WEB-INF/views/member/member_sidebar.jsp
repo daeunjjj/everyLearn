@@ -11,22 +11,37 @@
     <script src="https://kit.fontawesome.com/c86765768f.js" crossorigin="anonymous"></script>    
 </head>
 <body>
-    <!-- <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
-    <main id="container"> -->
 
         <div class="menu">
-            <label for="expand-menu"><div>회원</div></label><input type="checkbox" id="expand-menu" name="expand-menu">
+            <label for="expand-menu">
+                <div>회원</div>
+            </label>
+            <input type="checkbox" id="expand-menu" name="expand-menu">
             <ul>
-                <li><a href="http://127.0.0.1:8888/el/member/modify" class="item"></i><div>프로필/수정</div></a></li>
-                <li><a href="http://127.0.0.1:8888/el/member/alert" class="item"><div>알림</div></a></li>
-                <li><a href="http://127.0.0.1:8888/el/member/writeList" class="item"><div>작성글</div></a></li>
-                <li><a href="http://127.0.0.1:8888/el/member/point" class="item"><div>포인트</div></a></li>
+                <li>
+                    <a href="http://127.0.0.1:8888/el/member/alert" class="item">
+                        <div>알림</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://127.0.0.1:8888/el/member/modify" class="item">
+                        <div>프로필/수정</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://127.0.0.1:8888/el/member/writeList" class="item">
+                        <div>작성글</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://127.0.0.1:8888/el/member/point" class="item">
+                        <div>포인트</div>
+                    </a>
+                </li>
             </ul>
         </div>
 
-    <!-- </main>
-<%@ include file="/WEB-INF/views/common/footer.jsp" %> -->
 
 </body>
 
