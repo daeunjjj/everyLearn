@@ -20,6 +20,12 @@ public class EmpCommController {
 		return "emp-community/write";
 	}
 	
+	//채용 커뮤니티 글쓰기
+	@GetMapping("edit")
+	public String edit() {
+		return "emp-community/edit";
+	}
+
 	//채용 커뮤니티 상세조회
 	@GetMapping("detail")
 	public String detail() {

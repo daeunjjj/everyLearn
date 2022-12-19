@@ -5,3 +5,5 @@ workspace/.metadata/
 Servers/
 .classpath/
 **/target/
+workspace/everyLearnPrj/.classpath
+workspace/everyLearnPrj/.settings/org.eclipse.wst.common.component

@@ -26,7 +26,7 @@
 
         <div class="container"> 
         
-        	<div id="btn1">
+        	<div id="btn">
                 <button class="btn btn-outline-secondary me-md-2" type="button">수정</button>
                 <button class="btn btn-outline-secondary me-md-2" type="button">삭제</button>
             </div>
