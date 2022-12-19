@@ -78,6 +78,18 @@
 					<div id="written-nick"><i class="fa-regular fa-user"></i>유저닉네임</div>
 					<div id="review-content">이 강의를 듣고 인스타툰을 그리고 싶어졌어요! 좋은 강의 감사합니다~~~</div>
 				</div>
+				<!-- 페이징 -->
+				<div id="page-area" class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+					<div id="page-area2" class="btn-group me-2" role="group" aria-label="First group">
+						<a href="/#/board/list?p=1" class="btn btn-outline-secondary"><</a>
+						<a href="/#/board/list?p=1" class="btn btn-outline-secondary">1</a>
+						<a href="/#/board/list?p=2" class="btn btn-outline-secondary">2</a>
+						<a href="/#/board/list?p=3" class="btn btn-outline-secondary">3</a>
+						<a href="/#/board/list?p=4" class="btn btn-outline-secondary">4</a>
+						<a href="/#/board/list?p=5" class="btn btn-outline-secondary">5</a>
+						<a href="/#/board/list?p=1" class="btn btn-outline-secondary">></a>
+					</div>
+				   </div>
 
 
 			</div>

@@ -75,7 +75,7 @@ body{
 }
 .qna-list-wrap>div{
     display: grid;
-    grid-template-columns: 6fr 2fr 2fr;
+    grid-template-columns: 1fr 6fr 2fr 2fr;
 }
 
 .qna-list-top{
@@ -98,6 +98,7 @@ body{
 
 #ans-title{
     color: #1187CF;
+    grid-column: span 2;
 }
 
 /*페이징*/

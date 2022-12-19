@@ -61,4 +61,16 @@ public class LectureController {
 	public String completePayment() {
 		return "lecture/complete_payment";
 	}
+	
+	//강의 등록
+	@GetMapping("insert")
+	public String insert() {
+		return "lecture/insert";
+	}
+	
+	//강의 등록 - 세부(목차)
+	@GetMapping("insert/detail")
+	public String insertDetail() {
+		return "lecture/insertDetail";
+	}
 }

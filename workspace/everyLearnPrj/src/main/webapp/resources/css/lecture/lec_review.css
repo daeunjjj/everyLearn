@@ -8,7 +8,7 @@ body{
 
 .wrap{
     width: 70vw;
-    --height: 1800px;
+    height: 1800px;
     --border: 1px solid black;
     display: grid;
     grid-template-rows: 3fr 0.5fr 12fr;
@@ -237,6 +237,21 @@ margin-top: 3px;
     padding: 40px;
     padding-left: 50px ;
     font-weight: bold;
-    
-    
+}
+
+/*페이징*/
+#page-area{
+    grid-column: span 6;
+    text-align: center;
+    margin-top: 30px;
+    border-bottom: none;
+    display: flex;
+    flex-direction : column;
+    align-items: center;
+}
+
+#page-area2>a{
+    text-decoration: none;
+    color: #5a5a5a; 
+    font-size: 18px;
 }
