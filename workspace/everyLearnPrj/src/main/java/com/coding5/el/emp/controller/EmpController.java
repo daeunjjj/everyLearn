@@ -29,5 +29,10 @@ public class EmpController {
 		return "emp/resume";
 	}
 	
+	@GetMapping("mypage")
+	public String mypage() {
+		return "emp/mypage/mypage";
+	}
+	
 	
 }

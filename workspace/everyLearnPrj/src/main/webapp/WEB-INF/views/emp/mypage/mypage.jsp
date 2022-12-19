@@ -5,48 +5,84 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/el/resources/css/emp/mypage/mypage.css">
+<link rel="stylesheet" href="/el/resources/css/common/reset.css">
+<link rel="stylesheet" href="/el/resources/css/common/font.css">
 </head>
 <body>
 
     <div class="container">
-        <nav class="nav">
-            <header class="header">
-                <a href="">EVERYLEARN</a>
-                <a href="">
-                    <button>+ 새 채용 공고 만들기</button>
-                </a>
-            </header>
-            <div class="list">
-                <div class="first">
-                    <div class="list-name">
-                        <h3>채용관리</h3>
-                    </div>
-                    <div>
-                        <ul>
-                            <li>채용중</li>
-                            <li>채용 마감</li>
-                            <li>임시 저장</li>
-                            <li>승인 상태</li>
-                        </ul>
-                    </div>
-                    <div>
-                        
-                    </div>
-                </div>
-                <div class="second">
-                    <div>
-                        <a href="">회사 정보 관리</a>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <a href="">로그아웃</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <%@ include file="/WEB-INF/views/emp/mypage/navbar.jsp"%>
         <div class="content">
-
+            <div class="wrapper">
+                <main class="main">
+                        <form action="">
+                            <h1 class="company-info">회사 정보</h1>
+                            <section class="info-section">
+                                <div class="name">
+                                    <div class="">
+                                        <span>회사명</span>
+                                        <span>*</span>
+                                    </div>
+                                    <input type="text" name="name" placeholder="회사이름">
+                                </div>
+                                <div>
+                                    <div>
+                                        <span>사업자등록번호</span>
+                                        <span>*</span>
+                                    </div>
+                                    <input type="text" name="name" placeholder="000-00-00000">
+                                </div>
+                                <div>
+                                    <div>
+                                        <span>회사주소</span>
+                                        <span>*</span>
+                                    </div>
+                                    <input type="text" name="name" placeholder="주소">
+                                    <input type="text" name="name"placeholder="상세주소">
+                                </div>
+                                <div>
+                                    <div>
+                                        <span>회사 소개</span>
+                                        <span>*</span>
+                                    </div>
+                                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                                </div>
+                                <div>
+                                    <div>
+                                        <!-- 드롭다운 -->
+                                        <span>산업군</span>
+                                        <span>*</span>
+                                    </div>
+                                    <input type="text" name="name">
+                                </div>
+                                <div>
+                                    <div>
+                                        <span>직원수</span>
+                                        <span>*</span>
+                                    </div>
+                                    <input type="text" name="name">
+                                </div>
+                                <div>
+                                    <div>
+                                        <span>연 매출</span>
+                                        <span>*</span>
+                                    </div>
+                                    <input type="text" name="name" placeholder=""><span>억원</span>
+                                </div>
+                                <div>
+                                    <div>
+                                        <span>홈페이지 주소</span>
+                                        <span>*</span>
+                                    </div>
+                                    <input type="text" name="name" placeholder="https:// 또는 http://">
+                                </div>
+                            </section>
+                        </form>
+                    </main>
+                    
+            </div>
+            
         </div>
     </div>
 
