@@ -1,15 +1,55 @@
 package com.coding5.el.admin.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.coding5.el.admin.service.AdminService;
+import com.coding5.el.admin.vo.AdminVo;
 @RequestMapping("admin")
 @Controller
 public class AdminController {
+	
+	@Autowired
+	private AdminService adminService;
+	
 	// 로그인
 	@GetMapping("login")
 	public String login() {
 		return "admin/login";
+	}
+	// 찐 로그인
+	@PostMapping("login")
+	public String login(AdminVo vo, HttpSession session, Model model) {
+		
+		AdminVo loginAdmin = adminService.login(vo);
+		
+		if(loginAdmin == null) {
+			model.addAttribute("failMsg", "fail");
+			return "admin/login";
+		}
+		
+		session.setAttribute("loginAdmin", loginAdmin);
+		return "redirect:/admin/dashboard";
+	}
+	// 관리자 등록
+	@GetMapping("master/join")
+	public String adminJoin() {
+		return "admin/master/join";
+	}
+	
+	// 관리자 아이디중복체크
+	@PostMapping("/dup-check/id")
+	@ResponseBody
+	public String dupCheckId(String id) {
+		
+		return adminService.dupCheckId(id);
 	}
 	
 	// 대시보드
@@ -64,12 +104,6 @@ public class AdminController {
 	@GetMapping("master/list")
 	public String adminList() {
 		return "admin/master/list";
-	}
-	
-	// 관리자 등록
-	@GetMapping("master/join")
-	public String adminJoin() {
-		return "admin/master/join";
 	}
 	
 	// 관리자(내) 정보조회

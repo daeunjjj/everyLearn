@@ -1,26 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>에브리런 :: 관리자</title>
+<title>에브리런 - 관리자</title>
 <link rel="stylesheet" href="/el/resources/css/admin/login.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
+	<c:if test="${failMsg != null }">
+		<script>
+            Swal.fire('아이디(이메일) 또는 비밀번호를 확인해주세요.');
+		</script>
+	</c:if>
 	<div class="container">
         <div class="main">
             <div class="logo-wrap">
                 <img src="/el/resources/img/admin/logo2.png" alt="로고" width="300" height="300">
             </div>
             <div class="login-wrap">
-                <form action="" method="post">
+                <form action="/el/admin/login" method="post" onsubmit="return loginCheck();">
                     <div class="input-area">
-                        <input type="text" name="id" placeholder="아이디(메일)를 입력해주세요.">
+                        <input id="id" type="text" name="id" placeholder="아이디(이메일)를 입력해주세요.">
                     </div>
                     <div class="input-area">
-                        <input type="password" name="pwd" placeholder="비밀번호를 입력해주세요.">
+                        <input id="pwd" type="password" name="pwd" placeholder="비밀번호를 입력해주세요.">
                     </div>
                     <div id="find-area">
                         <a href="">아이디 찾기</a>
@@ -39,5 +48,20 @@
             </div>
         </div>
     </div>
+    <script>
+        function loginCheck(){
+            let emailReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+            let pwdReg = /^(?=.*[a-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+            let id = $('#id').val();
+            let pwd = $('#pwd').val();
+
+            if(!emailReg.test(id) || !pwdReg.test(pwd)){
+                Swal.fire('아이디(이메일) 또는 비밀번호를 확인해주세요.')
+                return false;
+            } else{
+                return true;
+            }
+        }
+    </script>
 </body>
 </html>
