@@ -22,7 +22,7 @@
 }
 
 
-/* 반응형 */
+/* 諛섏쓳�삎 */
 /* @media(max-width: 1200px){
   #container-top{
     display: flex;
@@ -113,12 +113,12 @@ header .click-search{
 header .member{
   display: flex;
   justify-content: space-around;
-  width: 250px;
+  width: 200px;
 
 }
 
 header .login{
-  width: 65px;
+  width: 75px;
   height: 25px;
   text-align: center;
   vertical-align: middle;
@@ -128,7 +128,7 @@ header .login{
 }
 
 header .join{
-  width: 70px;
+  width: 75px;
   height: 25px;
   text-align: center;
   vertical-align: bottom;
@@ -197,7 +197,7 @@ header .join{
 .dropdown-content{
   display : none;
   position : absolute;
-  z-index : 1; /*다른 요소들보다 앞에 배치*/
+  z-index : 1; /*�떎瑜� �슂�냼�뱾蹂대떎 �븵�뿉 諛곗튂*/
   font-weight: 400;
   background-color: white;
   border: 0.1px solid #1187CF;

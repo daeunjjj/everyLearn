@@ -48,7 +48,7 @@
 					<!--**회원 로그인 후 -->
 	 				<div class="member">
 						<div class="dropdown">
-								<div class="drop" id="mem-wrap"><img id="member-stu" src="/el/resources/img/member/stu.png" alt=""><a href="#" id="memName">에브리님</a></div>
+								<div class="drop" id="mem-wrap"><img id="member-stu" src="/el/resources/img/member/stu.png" alt=""><a href="#" id="memName">${loginMember.memberNick }님</a></div>
 								<span class="dropbtn_icon"></span>
 								
 							<div class="dropdown-content">

@@ -18,7 +18,7 @@
                 <br><br>
                 <h3>런문가 신청</h3>
                 <br>
-                <form>
+                <form action="/el/teacher/write" method="post" onsubmit="submitOk()" enctype="multipart/form-data">
                 <div id="wrap-write">
                     <div id="wrap-img">
                         <div id='View_area'></div>
@@ -27,15 +27,17 @@
                                     onchange="previewImage(this,'View_area')" style="margin-top: px;">
                             </div>
                     </div>
+                    
+                    
                     <select class="form-select" id="sel1" name="classCate">
                         <option>- 강의 카테고리 선택 -</option>
-                        <option>드로잉</option>
-                        <option>요리 / 베이킹</option>
-                        <option>운동</option>
-                        <option>음악</option>
-                        <option>IT / 개발</option>
-                        <option>언어</option>
-                        <option>금융 / 재테크</option>
+                        <option value="1">드로잉</option>
+                        <option value="2">요리 / 베이킹</option>
+                        <option value="3">운동</option>
+                        <option value="4">음악</option>
+                        <option value="5">IT</option>
+                        <option value="6">언어</option>
+                        <option value="7">금융 / 재테크</option>
                     </select>
                     <div class="container mt-3" style="height: 10px;">
                         <input type="text" class="form-control mt-3" name="shortIntro" id="form-control mt-3" style="height: 40px;"
@@ -55,7 +57,7 @@
                     <div class="mb-3 mt-3">
                         <textarea class="form-control" rows="15" id="comment" name="introduce" style="width: 672px; margin: auto;" placeholder="자기소개 입력란입니다."></textarea>
                       </div>
-                      
+                      <input type="hidden" value="${loginMember.memberNo}" name="memberNo">
                     </div>
                     <div id="btn-wrap">
                         <button type="submit" class="btn btn-primary" id="btn-enroll2">런문가신청</button>
@@ -64,6 +66,11 @@
 
                 </form>
 
+				<script type="text/javascript">
+					function submitOk() {
+						return true;
+					}
+				</script>
 
 
 

@@ -32,7 +32,7 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.insertMember(sst, vo);
 	}
 
-	//로그인
+	//회원가입
 	@Override
 	public MemberVo login(MemberVo vo) {
 		
