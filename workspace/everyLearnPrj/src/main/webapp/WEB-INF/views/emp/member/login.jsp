@@ -20,12 +20,12 @@
 			<section class="right">
 				<div class="right-wrapper">
 					<h1 class="title">로그인</h1>
-					<form class="login-form">
+					<form action="/el/member/login" method="post" class="login-form">
 						<div class="id-wrapper">
 							<div class="login-title">
 								<p>아이디(이메일)</p>
 							</div>
-							<input type="text" name="email" id="email"
+							<input type="text" name="id" id="intpuId"
 								placeholder="everylearn@everylearn.com" class="id">
 							<!-- <div class="input-id">
                                 <span class="essential">아이디를 입력해 주세요.</span>
@@ -35,14 +35,14 @@
 							<div class="login-title">
 								<p>비밀번호</p>
 							</div>
-							<input type="password" placeholder="•••••••••••" name="password"
-								id="password" class="password">
+							<input type="password" placeholder="•••••••••••" name="pwd"
+								id="intpuPwd" class="password">
 							<!-- 눈표시 -->
 							<!-- <div class="input-id">
                                 <span>비밀번호를 입력해 주세요.</span>
                             </div> -->
 						</div>
-						<button type="submit" class="btn" disabled>로그인</button>
+						<button type="submit" class="btn" id="loginBtn" onclick="activeBtn();" disabled>로그인</button>
 					</form>
 					<div class="choose">
 						<a href="">비밀번호 재설정</a>

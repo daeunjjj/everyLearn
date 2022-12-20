@@ -20,12 +20,12 @@
 		<main class="main">
 			<div class="content">
 				<h2 class="title">기업 회원가입</h2>
-				<form class="login-form">
+				<form action="/el/emp/join" method="post" class="login-form">
 					<div class="wrapper">
 						<div class="join-title">
 							<p>아이디(이메일)</p>
 						</div>
-						<input type="text" name="email" id="email"
+						<input type="text" name="id" id="id"
 							placeholder="everylearn@everylearn.com" class="input">
 						<!-- <div class="input-id">
                             <span class="essential">아이디를 입력해 주세요.</span>
@@ -35,8 +35,8 @@
 						<div class="join-title">
 							<p>비밀번호</p>
 						</div>
-						<input type="password" placeholder="•••••••••••" name="password"
-							id="password" class="input">
+						<input type="password" placeholder="•••••••••••" name="pwd"
+							id="pwd" class="input">
 						<!-- 눈표시 -->
 						<!-- <div class="input-id">
                             <span>비밀번호를 입력해 주세요.</span>

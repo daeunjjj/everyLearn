@@ -15,6 +15,7 @@ a{
 
 .nav-wrapper{
   width: 250px;
+  border-right: 1px solid rgb(234, 236, 238);
 }
 
 .nav{
