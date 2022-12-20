@@ -40,9 +40,8 @@ body{
     display: flex;
     -webkit-box-pack: end;
     justify-content: flex-end;
-    margin-top: 10px;
-    margin-bottom: 20px;
     font-size: 12px;
+
 }
 
 #find-area>a{
@@ -95,4 +94,25 @@ body{
 
 .swal2-title {
     font-size: 1.5em !important;
+}
+
+.flex-wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.save-wrap{
+    display: flex;
+    
+    justify-content: flex-start;
+    align-items: center;
+    
+    font-size: 12px;
+}
+
+.save-wrap>label{
+    margin: 0px 0 0 2px;
 }

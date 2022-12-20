@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/el/resources/css/admin/master/join.css">
 
 <script type="text/javascript" defer src="/el/resources/js/admin/join.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
 	<div class="wrap">
@@ -54,20 +54,20 @@
                             </div>
                             <div class="input-wrap">
                                 <select class="input" name="position" id="position">
-                                    <option value="master">사원</option>
-                                    <option value="emp">대리</option>
-                                    <option value="management">팀장</option>
+                                    <option value="1">사원</option>
+                                    <option value="2">대리</option>
+                                    <option value="3">팀장</option>
                                 </select>
                             </div>
                         </div>
                         <div class="join-items">
                             <div class="title-wrap">
-                                <label for="level">권한</label>
+                                <label for="permission">권한</label>
                             </div>
                             <div class="input-wrap">
-                                <select class="input" name="level" id="level">
-                                    <option value="emp">일반</option>
-                                    <option value="management">마스터</option>
+                                <select class="input" name="permission" id="permission">
+                                    <option value="1">일반</option>
+                                    <option value="2">마스터</option>
                                 </select>
                             </div>
                         </div>
@@ -78,9 +78,6 @@
 
                 </form>
             </div>
-            <script>
-
-            </script>
         </main>
     </div>
     <script>

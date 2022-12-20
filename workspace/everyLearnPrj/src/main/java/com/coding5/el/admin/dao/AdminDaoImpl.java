@@ -13,4 +13,10 @@ public class AdminDaoImpl implements AdminDao{
 		return sst.selectOne("adminMapper.selectOneAdminById",id);
 	}
 
+	@Override
+	public int insertAdminOne(SqlSessionTemplate sst, AdminVo vo) {
+		// 관리자 아이디 하나 인서트
+		return sst.insert("adminMapper.insertAdminOne",vo);
+	}
+
 }

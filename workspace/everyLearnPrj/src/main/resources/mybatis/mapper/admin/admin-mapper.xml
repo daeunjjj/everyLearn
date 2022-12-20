@@ -6,19 +6,47 @@
 	
 	<select id="selectOneAdminById" resultType="AdminVo">
 		SELECT 
-		    NO
-		    ,PERMISSION
-		    ,POSITION
-		    ,ID
-		    ,PWD
-		    ,NICK
-		    ,NAME
-		    ,PHONE
-		    ,ENROLL_DATE
-		    ,MODIFY_DATE
-		    ,QUIT_YN
-		FROM ADMIN
-		WHERE ID = #{id}
+		    A.NO
+		    ,PER.NAME AS PERMISSION
+		    ,PO.NAME AS POSITION
+		    ,A.ID
+		    ,A.PWD
+		    ,A.NICK
+		    ,A.NAME
+		    ,A.PHONE
+		    ,A.ENROLL_DATE
+		    ,A.MODIFY_DATE
+		    ,A.QUIT_YN
+		FROM ADMIN A
+		JOIN ADMIN_PERMISSION PER 
+		    ON A.PERMISSION = PER.NO
+		JOIN ADMIN_POSITION PO 
+		    ON A.POSITION = PO.NO
+		WHERE A.ID = #{id}
 	</select>
 	
+	<insert id="insertAdminOne">
+		INSERT INTO ADMIN
+		(
+		    NO
+		    , PERMISSION
+		    , POSITION
+		    , ID
+		    , PWD
+		    , NICK
+		    , NAME
+		    , PHONE
+		)
+		VALUES
+		(
+		    SEQ_ADMIN_NO.NEXTVAL
+		    , #{permission}
+		    , #{position}
+		    , #{id}
+		    , #{pwd}
+		    , #{nick}
+		    , #{name}
+		    , #{phone}
+		)
+	</insert>
 </mapper>

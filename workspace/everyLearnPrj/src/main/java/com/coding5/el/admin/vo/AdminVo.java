@@ -1,5 +1,8 @@
 package com.coding5.el.admin.vo;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -15,4 +18,13 @@ public class AdminVo {
 	private String enrollDate;
 	private String modifyDate;
 	private String quitYn;
+	
+	private String changeName;
+	private MultipartFile profile;
+	
+	// 암호화
+	public void encode(BCryptPasswordEncoder pwdEnc) {
+		this.pwd = pwdEnc.encode(this.pwd);
+	}
+
 }

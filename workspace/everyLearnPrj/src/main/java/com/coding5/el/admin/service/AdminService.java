@@ -11,4 +11,10 @@ public interface AdminService {
 	
 	// 아이디 중복 체크
 	public String dupCheckId(String id);
+	
+	// 관리자등록
+	public int join(AdminVo vo);
+	
+	// 관리자 내 정보 수정
+	public int myInfoModify(AdminVo vo);
 }
