@@ -1,7 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<%
+	String alertMsg = (String)session.getAttribute("resultMsg"); 
+	session.removeAttribute("resultMsg");	
+%>
+
+	<script>
+		<%if(alertMsg != null) {%>
+            Swal.fire({
+            confirmButtonColor: '#1187CF',
+            title: '<%=alertMsg%>',
+          });
+		<%} %>
+	</script>
+
 <aside class="menu-bar" id="menu-height">
     <nav>
         <div class="top">
@@ -10,7 +25,7 @@
             </a>
             <div>
                 <a href="/el/admin/info">
-                    관리자
+                    ${loginAdmin.nick}
                     <i class="bi bi-house-door"></i>
                 </a>
             </div>
@@ -145,7 +160,7 @@
             </ul>
         </div>
         <div class="menu-bottom">
-            <a href="">
+            <a href="/el/admin/logout">
                 <span>로그아웃</span>
                 <i class="bi bi-box-arrow-right"></i>
             </a>

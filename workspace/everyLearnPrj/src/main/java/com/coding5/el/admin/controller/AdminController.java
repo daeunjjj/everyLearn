@@ -1,32 +1,43 @@
 package com.coding5.el.admin.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.coding5.el.admin.service.AdminService;
 import com.coding5.el.admin.vo.AdminVo;
+import com.coding5.el.common.FileUploader;
+
+import oracle.jdbc.proxy.annotation.GetProxy;
 @RequestMapping("admin")
 @Controller
 public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+
 	
 	// 로그인
 	@GetMapping("login")
 	public String login() {
 		return "admin/login";
 	}
+	
 	// 찐 로그인
 	@PostMapping("login")
-	public String login(AdminVo vo, HttpSession session, Model model) {
+	public String login(AdminVo vo, String save, HttpSession session, Model model, HttpServletResponse resp) {
+		
+		System.out.println(save);
 		
 		AdminVo loginAdmin = adminService.login(vo);
 		
@@ -35,13 +46,36 @@ public class AdminController {
 			return "admin/login";
 		}
 		
+		Cookie cookie = new Cookie("saveId", loginAdmin.getId());
+		cookie.setPath("/el");
+		
+		if(save == null) cookie.setMaxAge(0);
+		
+		resp.addCookie(cookie);
+		
 		session.setAttribute("loginAdmin", loginAdmin);
 		return "redirect:/admin/dashboard";
 	}
+	
 	// 관리자 등록
 	@GetMapping("master/join")
 	public String adminJoin() {
 		return "admin/master/join";
+	}
+	
+	// 찐 관리자 등록
+	@PostMapping("master/join")
+	public String adminJoin(AdminVo vo,Model model, HttpSession session) {
+		
+		int result = adminService.join(vo);
+		
+		if(result != 1) {
+			model.addAttribute("resultMsg", "관리자 등록에 실패했습니다.");
+			return "admin/master/join";
+		}
+		
+		session.setAttribute("resultMsg", "관리자 등록 완료!");
+		return "redirect:/admin/master/join";
 	}
 	
 	// 관리자 아이디중복체크
@@ -50,6 +84,38 @@ public class AdminController {
 	public String dupCheckId(String id) {
 		
 		return adminService.dupCheckId(id);
+	}
+	
+	// 관리자(내) 정보조회
+	@GetMapping("info")
+	public String adminInfo() {
+		return "admin/info";
+	}
+	
+	// 찐 관리자(내) 정보조회
+	@PostMapping("info/modify")
+	public String adminInfo(AdminVo vo, HttpSession session) {
+		// 로그인 세션에 담긴 정보 가져오기
+		AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");
+		
+//		 이미지 저장
+		String changeName = "";
+		if(!vo.getProfile().isEmpty()) {
+			changeName = FileUploader.upload(session, vo.getProfile());
+		}
+		
+		vo.setChangeName(changeName);
+		
+		
+		if(vo.getPwd() == null) {
+			vo.setPwd(loginAdmin.getPwd());
+		}
+		
+		System.out.println(vo.getPwd());
+		
+		//int result = adminService.myInfoModify(vo);
+		
+		return "admin/info";
 	}
 	
 	// 대시보드
@@ -106,11 +172,7 @@ public class AdminController {
 		return "admin/master/list";
 	}
 	
-	// 관리자(내) 정보조회
-	@GetMapping("info")
-	public String adminInfo() {
-		return "admin/info";
-	}
+
 	
 	// 관리자상세조회
 	@GetMapping("master/detail")
@@ -183,4 +245,12 @@ public class AdminController {
 	public String mailList() {
 		return "admin/mail/list";
 	}
+	
+	// 로그아웃
+	@GetMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "admin/login";
+	}
+	
 }

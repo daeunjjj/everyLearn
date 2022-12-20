@@ -18,6 +18,13 @@
             Swal.fire('아이디(이메일) 또는 비밀번호를 확인해주세요.');
 		</script>
 	</c:if>
+	<c:if test="${cookie.saveId.value != null}">
+		<script>
+            $(function(){
+                $('#save').prop('checked', true)
+            })
+		</script>
+	</c:if>
 	<div class="container">
         <div class="main">
             <div class="logo-wrap">
@@ -26,15 +33,21 @@
             <div class="login-wrap">
                 <form action="/el/admin/login" method="post" onsubmit="return loginCheck();">
                     <div class="input-area">
-                        <input id="id" type="text" name="id" placeholder="아이디(이메일)를 입력해주세요.">
+                        <input id="id" type="text" name="id" placeholder="아이디(이메일)를 입력해주세요." value="${cookie.saveId.value }">
                     </div>
                     <div class="input-area">
                         <input id="pwd" type="password" name="pwd" placeholder="비밀번호를 입력해주세요.">
                     </div>
-                    <div id="find-area">
-                        <a href="">아이디 찾기</a>
-                        <span> | </span>
-                        <a href="">비밀번호 찾기</a>
+                    <div class="flex-wrap">
+                        <div class="save-wrap">
+                            <input id="save" type="checkbox" name="save">
+                            <label for="save">아이디 저장</label>
+                        </div>
+                        <div id="find-area">
+                            <a href="">아이디 찾기</a>
+                            <span> | </span>
+                            <a href="">비밀번호 찾기</a>
+                        </div>
                     </div>
                     <div class="btn">
                         <input type="submit" value="관리자 로그인">
@@ -62,6 +75,9 @@
                 return true;
             }
         }
+
+
+        
     </script>
 </body>
 </html>
