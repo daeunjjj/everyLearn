@@ -33,6 +33,7 @@
                         <div id="text-join">로그인</div>
                     </button>
                 </div>
+                
                 </form>
                 
                 <script type="text/javascript">

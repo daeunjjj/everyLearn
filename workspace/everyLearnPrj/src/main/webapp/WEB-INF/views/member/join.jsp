@@ -57,7 +57,7 @@
                 </span>   
                 <h4><label for="">* 생년월일</label></h4>
                 <span class="join-box">
-                    <input type="text" minlength="10" maxlength="10" name="birth" placeholder="숫자 8자리로 입력해주세요(ex. 20001212)">
+                    <input type="text" minlength="10" maxlength="10" name="birth" placeholder="-도 입력해주세요(ex. 2000-12-12 추후 수정 예정.)">
                 </span>   
                 <h4><label for="">닉네임</label></h4>
                 <span class="join-box">
@@ -70,7 +70,8 @@
                         </button>
                 </div>
 
-
+				
+				
             </form>
         </div>
     </div>

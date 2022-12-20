@@ -19,13 +19,13 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	//ï¿½ì‰¶ï¿½ìåª›ï¿½ï¿½ì—¯ ï¿½ì†•ï§ï¿½
+	//È¸¿ø°¡ÀÔ(È­¸é)
 	@GetMapping("join")
 	public String join() {
 		return "member/join";
 	}
 	
-	//ï¿½ì‰¶ï¿½ìåª›ï¿½ï¿½ì—¯ 
+	//È¸¿ø°¡ÀÔ
 	@PostMapping("join")
 	public String join(MemberVo vo) {
 		
@@ -34,17 +34,18 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	//æ¿¡ì’“ë ‡ï¿½ì”¤(ï¿½ì†•ï§ï¿½)
+	//·Î±×ÀÎ(È­¸é)
 	@GetMapping("login")
 	public String login() {
 		return "member/login";
 	}
 	
-	//æ¿¡ì’“ë ‡ï¿½ì”¤
+	//·Î±×ÀÎ
 	@PostMapping("login")
 	public String login(MemberVo vo, HttpSession session) {
 		
 		MemberVo loginMember = memberService.login(vo);
+		System.out.println(loginMember);
 		
 		if(loginMember != null) {
 			

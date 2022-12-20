@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="teacherMapper">
+
+<resultMap type="com.coding5.el.teacher.vo.TeacherVo" id="teacherMap">
+	<result property="no" column="NO"/>
+	<result property="classCate" column="CATEGORY"/>
+
+	
+</resultMap>
+
+	<insert id="insertTeacher">
+		INSERT INTO TEACHER
+		(
+		NO
+		,MEMBER_NO
+		,CATEGORY
+		,CAREER
+		,SHORT_INTRO
+		,INTRODUCE
+		,RECORD
+		)
+		VALUES
+		(
+		SEQ_TEACHER_NO.NEXTVAL
+		,#{memberNo}
+		,#{classCate}
+		,#{career}
+		,#{shortIntro}
+		,#{introduce}
+		,#{changeName2}
+		)
+	</insert>
+
+	<select id="selectTeacherNo" resultType="com.coding5.el.teacher.vo.TeacherVo" resultMap="teacherMap">
+		select *
+		from teacher
+		where member_no = #{memberNo}
+	</select>
+
+	<insert id="insertImg">
+		INSERT INTO PROFILE_TEACHER_ATTATCH
+		(
+		NO
+		,TEACHER_NO
+		,CHANGE_NAME
+		)
+		VALUES
+		(
+		SEQ_TEACHER_ATTATCH_NO.NEXTVAL
+		,#{no}
+		,#{changeName}
+		)
+	</insert>
+
+</mapper>
