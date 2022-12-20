@@ -14,14 +14,23 @@
 }
 
 .company-info{
-  margin-top: 32px;
-  margin-bottom: 20px;
-  font-size: 24px;
+  padding: 24px 40px 25px;
+  font-size: 20px;
   font-weight: bold;
-  line-height: 1.42;
+  line-height: 1.4;
+  border-bottom: 1px solid rgb(242, 244, 246);
+  margin-bottom: 0px;
+  color: rgb(33, 37, 42);
 }
 
 .info-section{
+  padding: 32px 40px;
+  /* background-color: rgb(255, 255, 255); */
+  border-radius: 6px;
+  box-shadow: rgb(0 0 0 / 3%) 0px 8px 20px -7px, rgb(0 0 0 / 8%) 0px 0px 1px 0px;
+}
+
+.info-wrapper{
   padding: 32px 40px;
 }
 
@@ -30,4 +39,99 @@
   border: none;
   outline: none;
   background: none;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(100px, 1fr));
+  column-gap: 20px;
+  width: 100%;
+}
+
+.interval{
+  margin-bottom: 30px;
+}
+
+.title{
+  margin-bottom: 8px;
+}
+
+input{
+  width: 100%;
+  height: 1.933rem;
+}
+
+.introduce{
+  margin: 0px;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: rgb(255, 255, 255);
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.2;
+  resize: vertical;
+  min-height: 250px;
+  max-height: 470px;
+}
+
+.sales>input{
+  width: 453.167px;
+}
+
+.img-title{
+  display: flex;
+  font-size: 15px;
+  line-height: 1.33;
+  color: rgb(33, 37, 42);
+  word-break: break-all;
+  cursor: default;
+  user-select: none;
+  margin-bottom: 4px;
+}
+
+
+.file{
+  position: absolute;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+  width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+.img-logo{
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.img-p{
+  margin: 6px 0px 0px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgb(161, 170, 178);
+}
+
+.upload-btn{
+  position: relative;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background-color: rgb(242, 244, 246);
+    color: rgb(83, 89, 97);
+    padding: 7px 12px;
+    font-size: 11px;
+    line-height: 1.45;
+    font-weight: bold;
+    z-index: 3;
+    margin-top: 16px;
 }
