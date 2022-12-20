@@ -18,6 +18,7 @@
 			<div id="cate-name">강의 등록</div>
 		</div>
 		<div id="insert-wrap">
+		<form action="/el/lecture/insert" method="post" enctype="multipart/form-data">
 			<table id="insert-table">
 				<tr>
 			        <td>이름</td>
@@ -27,13 +28,13 @@
 			        <td>카테고리</td>
 			        <td>
 						<select name="category" id="category-btn">
-							<option value="drawing">드로잉</option>
-							<option value="cook">요리/베이킹</option>
-							<option value="workout">운동</option>
-							<option value="music">음악</option>
-							<option value="tech">IT</option>
-							<option value="language">언어</option>
-							<option value="finance">금융/재태크</option>
+							<option value="1">드로잉</option>
+							<option value="2">요리/베이킹</option>
+							<option value="3">운동</option>
+							<option value="4">음악</option>
+							<option value="5">IT</option>
+							<option value="6">언어</option>
+							<option value="7">금융/재태크</option>
                 		</select>
 					</td>
 		      	</tr>
@@ -54,8 +55,11 @@
 			        <td><input type="file" id="fileinput" name="classFile"></td>
 		      	</tr>
 			</table>
+			<div id="next"><input type="submit" id="nextbtn" value="다음"></div>
+		</form>
 
-			<div id="next"><a href="/el/lecture/insert/detail"><button type="submit" id="nextbtn">다음</button></a></div>
+			
+			
 		</div>
 		
 		

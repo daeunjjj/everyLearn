@@ -23,7 +23,7 @@
 					value='행 추가' 
 					onclick='addRow()'>
 
-
+			<form action="/el/lecture/insert/detail" method="post">
 				<table id="index-table">
 					<tr>
 						<th>목차</th>
@@ -45,11 +45,13 @@
 						<td><input type="number" name="no" class="table-input" placeholder="숫자만 입력해주세요"></td>
 						<td><input type="text" name="chapter" class="table-input" placeholder="제목을 입력해주세요"></td>
 					</tr>
-				
+					
 
 				</table>
 				
 				<div id="next"><button type="submit" id="nextbtn">작성하기</button></div>
+				
+				</form>
 			</div>
 
 

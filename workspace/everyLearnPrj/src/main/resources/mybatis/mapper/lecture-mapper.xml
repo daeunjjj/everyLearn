@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lectureMapper">
+  
+  <!-- 강의 등록 -->
+  <insert id="insertClassOne">
+	INSERT INTO CLASS
+		(
+		    NO
+		    , TEACHER_NO
+		    , CATEGORY
+		    , C_NAME
+		    , C_CONTENT
+		    , PRICE
+		    , ENROLL_DATE
+		)
+	VALUES
+		(
+		    SEQ_CLASS_NO.NEXTVAL
+		    , 1
+		    , #{category}
+		    , #{cName}
+		    , #{cContent}
+		    , #{price}
+		    , SYSDATE
+		)
+  </insert>
+  
+  
+  <!-- 강의 목차 등록 -->
+	<insert id="insertClassDetail" parameterType="java.util.List">
+		INSERT INTO DETAIL_CLASS
+			(
+			NO
+			, CLASS_NO
+			, CHAPTER
+			)
+		VALUES
+			<foreach collection="list" item="item" separator=",">
+				(#[item.no}, 2, #{item.chapter})
+			</foreach>
+	
+	</insert>
+
+
+
+  
+</mapper>
