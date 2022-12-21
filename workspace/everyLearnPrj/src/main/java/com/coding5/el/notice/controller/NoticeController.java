@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.coding5.el.notice.service.NoticeServiceImpl;
+import com.coding5.el.notice.service.NoticeService;
 import com.coding5.el.notice.vo.NoticeVo;
 
 @Controller
 @RequestMapping("notice")
 public class NoticeController {
 	
-	@Autowired private NoticeServiceImpl ns;
+	@Autowired private NoticeService ns;
 	
 	//공지사항 리스트
 	@GetMapping("list")
