@@ -26,6 +26,7 @@ public class EmpController {
 		return "emp/member/join";
 	}
 	
+	// 기업 회원가입
 	@PostMapping("join")
 	public String join(EmpVo vo) {
 		
@@ -33,7 +34,7 @@ public class EmpController {
 		
 		if(result == 1) {
 			
-			return "emp/member/login";
+			return "redirect:/emp/login";
 		}else {
 			return "error";
 		}
@@ -58,7 +59,7 @@ public class EmpController {
 		}
 		
 		session.setAttribute("empMember", empMember);
-		return "redirect:/emp/mypage/mypage";
+		return "redirect:/emp/mypage";
 	}
 	
 	// 기업 마이페이지

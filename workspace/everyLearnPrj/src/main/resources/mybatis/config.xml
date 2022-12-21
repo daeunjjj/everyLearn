@@ -10,6 +10,7 @@
 	</settings>
 	<typeAliases>
 		<typeAlias type="com.coding5.el.admin.vo.AdminVo" alias="AdminVo"/>
+		<typeAlias type="com.coding5.el.emp.vo.EmpVo" alias="EmpVo"/>
 	</typeAliases>
   
   

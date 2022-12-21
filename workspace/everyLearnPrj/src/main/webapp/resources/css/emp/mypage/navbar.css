@@ -88,3 +88,8 @@ a{
 .employment>li:not(:last-child){
  margin-bottom: 8px;
 }
+
+.logout{
+  display: flex;
+  align-items: center;
+}
