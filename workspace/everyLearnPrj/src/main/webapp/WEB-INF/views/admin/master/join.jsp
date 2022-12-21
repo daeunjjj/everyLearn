@@ -41,6 +41,15 @@
                         </div>
                         <div class="join-items">
                             <div class="title-wrap">
+                                <label for="nick">닉네임</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input class="input" id="nick" type="text" name="nick" placeholder="관리자 닉네임을 입력해주세요.">
+                            </div>
+                            <span hidden id="nickMsg">필수 정보입니다.</span>
+                        </div>
+                        <div class="join-items">
+                            <div class="title-wrap">
                                 <label for="phone">전화번호</label>
                             </div>
                             <div class="input-wrap">

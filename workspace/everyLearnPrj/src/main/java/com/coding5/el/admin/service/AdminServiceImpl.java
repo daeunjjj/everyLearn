@@ -1,5 +1,7 @@
 package com.coding5.el.admin.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.coding5.el.admin.dao.AdminDao;
 import com.coding5.el.admin.vo.AdminVo;
+import com.coding5.el.common.page.PageVo;
 @Service
 public class AdminServiceImpl implements AdminService{
 	
@@ -19,11 +22,13 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private BCryptPasswordEncoder pwdEnc;
 	
-	// 로그인
+	/**
+	 * 로그인
+	 */
 	@Override
 	public AdminVo login(AdminVo vo) {
 		
-		AdminVo dbAdmin = adminDao.selectOneAdminById(sst, vo.getId());
+		AdminVo dbAdmin = adminDao.selectOneAdminByVo(sst, vo);
 		
 		if(dbAdmin == null) return null;
 
@@ -37,10 +42,12 @@ public class AdminServiceImpl implements AdminService{
 		
 	}
 	
-	// 아이디 중복체크
+	/**
+	 * 중복체크
+	 */
 	@Override
-	public String dupCheckId(String id) {
-		AdminVo adminMember = adminDao.selectOneAdminById(sst, id);
+	public String dupCheck(AdminVo vo) {
+		AdminVo adminMember = adminDao.selectOneAdminByVo(sst, vo);
 		
 		String result = "";
 		
@@ -51,7 +58,9 @@ public class AdminServiceImpl implements AdminService{
 		return result = "able";
 	}
 	
-	// 관리자 등록
+	/**
+	 * 관리자 등록
+	 */
 	@Override
 	public int join(AdminVo vo) {
 		
@@ -61,13 +70,47 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.insertAdminOne(sst,vo);
 	}
 	
-	// 관리자 내정보 수정
+	
+	/**
+	 * 관리자 내 정보 수정
+	 */
 	@Override
-	public int myInfoModify(AdminVo vo) {
+	public AdminVo myInfoModify(AdminVo vo) {
 		
-		vo.encode(pwdEnc);
+		// 비밀번호가 넣이 아니라면 암호화 진행
+		if(vo.getPwd().length() != 0) {
+			vo.encode(pwdEnc);	
+		} 	
+	
+		// 정보 수정
+		int result = adminDao.updateAdminByNo(sst, vo);
 		
-		return 0;
+		AdminVo updateAdmin = null;
+		if(result == 1) {
+			updateAdmin = adminDao.selectOneAdminByVo(sst, vo);
+		}
+		
+		return updateAdmin;
 	}
+
+	
+	/**
+	 * 관리자 총수
+	 */
+	@Override
+	public int selectAdminCount() {	
+		
+		return adminDao.selectAdminCount(sst);
+	}
+	
+	/**
+	 * 관리자 리스트 가져오기
+	 */
+	@Override
+	public List<AdminVo> selectAdminList(PageVo pv) {
+		
+		return adminDao.selectAdminList(sst,pv);
+	}
+
 
 }

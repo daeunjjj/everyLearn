@@ -1,43 +1,53 @@
 package com.coding5.el.admin.controller;
 
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.coding5.el.admin.service.AdminService;
 import com.coding5.el.admin.vo.AdminVo;
-import com.coding5.el.common.FileUploader;
-
-import oracle.jdbc.proxy.annotation.GetProxy;
+import com.coding5.el.common.file.FileUploader;
+import com.coding5.el.common.page.PageVo;
+import com.coding5.el.common.page.Pagination;
 @RequestMapping("admin")
 @Controller
 public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
-
 	
-	// 로그인
+
+	/**
+	 * 로그인
+	 * @return
+	 */
 	@GetMapping("login")
 	public String login() {
 		return "admin/login";
 	}
 	
-	// 찐 로그인
+	/**
+	 * 찐로그인
+	 * @param vo
+	 * @param save
+	 * @param session
+	 * @param model
+	 * @param resp
+	 * @return
+	 */
 	@PostMapping("login")
 	public String login(AdminVo vo, String save, HttpSession session, Model model, HttpServletResponse resp) {
 		
-		System.out.println(save);
 		
 		AdminVo loginAdmin = adminService.login(vo);
 		
@@ -54,16 +64,26 @@ public class AdminController {
 		resp.addCookie(cookie);
 		
 		session.setAttribute("loginAdmin", loginAdmin);
+		
 		return "redirect:/admin/dashboard";
 	}
 	
-	// 관리자 등록
+	/**
+	 * 관리자 등록(화면)
+	 * @return
+	 */
 	@GetMapping("master/join")
 	public String adminJoin() {
 		return "admin/master/join";
 	}
 	
-	// 찐 관리자 등록
+	/**
+	 * 찐 관리자 등록
+	 * @param vo
+	 * @param model
+	 * @param session
+	 * @return
+	 */
 	@PostMapping("master/join")
 	public String adminJoin(AdminVo vo,Model model, HttpSession session) {
 		
@@ -78,45 +98,95 @@ public class AdminController {
 		return "redirect:/admin/master/join";
 	}
 	
-	// 관리자 아이디중복체크
-	@PostMapping("/dup-check/id")
+	/**
+	 * 중복체크(ajax)
+	 * @param vo
+	 * @return
+	 */
+	@PostMapping("/dup-check")
 	@ResponseBody
-	public String dupCheckId(String id) {
+	public String dupCheckId(AdminVo vo) {
 		
-		return adminService.dupCheckId(id);
+		return adminService.dupCheck(vo);
 	}
 	
-	// 관리자(내) 정보조회
+	
+	/**
+	 * 관리자 내 정보 조회(화면)
+	 * @return
+	 */
 	@GetMapping("info")
 	public String adminInfo() {
+		
 		return "admin/info";
 	}
 	
-	// 찐 관리자(내) 정보조회
+	/**
+	 * 찐 관리자(내) 정보조회
+	 * @param vo
+	 * @param session
+	 * @param model
+	 * @param check
+	 * @return
+	 */
 	@PostMapping("info/modify")
-	public String adminInfo(AdminVo vo, HttpSession session) {
+	public String adminInfo(AdminVo vo, HttpSession session, Model model, String check) {
+		
+		System.out.println(check);
+		
 		// 로그인 세션에 담긴 정보 가져오기
-		AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");
+		AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");		
+		vo.setNo(loginAdmin.getNo());
+	
 		
-//		 이미지 저장
-		String changeName = "";
+		String profileName = "default-profile.png";
 		if(!vo.getProfile().isEmpty()) {
-			changeName = FileUploader.upload(session, vo.getProfile());
+			profileName = FileUploader.upload(session, vo.getProfile());
 		}
 		
-		vo.setChangeName(changeName);
+		vo.setProfileName(profileName);
 		
 		
-		if(vo.getPwd() == null) {
-			vo.setPwd(loginAdmin.getPwd());
+		
+		AdminVo updateAdmin = adminService.myInfoModify(vo);
+		
+		if(updateAdmin == null) {
+			model.addAttribute("resultMsg", "정보 수정 실패");
 		}
 		
-		System.out.println(vo.getPwd());
-		
-		//int result = adminService.myInfoModify(vo);
-		
-		return "admin/info";
+		session.setAttribute("loginAdmin", updateAdmin);
+		return "redirect:/admin/info";
 	}
+	/**
+	 * 관리자 리스트 조회
+	 * @param pno
+	 * @param model
+	 * @return
+	 */
+
+	@GetMapping("master/list")
+	public String adminList(String pno, Model model) {
+		// 카운트
+		int listCount = adminService.selectAdminCount();
+		int currentPage = Integer.parseInt(pno);
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<AdminVo> voList = adminService.selectAdminList(pv);
+		
+		if(voList == null) {
+			return "common/error";
+		}
+		
+		model.addAttribute("pv", pv);
+		model.addAttribute("voList", voList);
+		
+		System.out.println(pv);
+		return "admin/master/list";
+	}
+	
 	
 	// 대시보드
 	@GetMapping("dashboard")
@@ -166,11 +236,7 @@ public class AdminController {
 		return "admin/report/process";
 	}
 	
-	// 관리자 리스트조회
-	@GetMapping("master/list")
-	public String adminList() {
-		return "admin/master/list";
-	}
+
 	
 
 	

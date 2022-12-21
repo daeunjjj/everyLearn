@@ -32,11 +32,9 @@
                                     <button id="search-btn">검색</button>
                                 </div>
                                 <div class="atag-area">
+                                    <a href="">일반</a>
+                                    <span>|</span>
                                     <a href="">마스터</a>
-                                    <span>|</span>
-                                    <a href="">채용</a>
-                                    <span>|</span>
-                                    <a href="">관리</a>
                                 </div>
                             </div>
                         </div>
@@ -50,31 +48,37 @@
                     <div>번호</div>
                     <div>이름</div>
                     <div>아이디</div>
-                    <div>담당</div>
-                    <div>이메일</div>
+                    <div>직급</div>
+                    <div>권한</div>
                     <div>전화번호</div>
                     <div>관리</div>
                 </div>
                 <form action="">
                     <ul>
-                        <li>
-                            <div class="list-items">
-                                <div>
-                                    <input type="checkbox" id="check">
-                                    <label for="check"></label>
-                                </div>
-                                <div>1</div>
-                                <div>관리자</div>
-                                <div>teacher123</div>
-                                <div>채용</div>
-                                <div>admin01@gmail.com</div>
-                                <div>010-1234-5678</div>
-                                <div>
-                                    <button>상세</button>
-                                    <button>탈퇴</button>
-                                </div>
-                            </div>
-                        </li>
+                    	<c:forEach items="${voList }" var="list">
+		                    <c:if test="${empty voList}">
+	                    		<div>회원이 없습니다.</div>
+	                    	</c:if>
+		                		<li>
+		                            <div class="list-items">
+		                                <div>
+		                                    <input type="checkbox" id="check">
+		                                    <label for="check"></label>
+		                                </div>
+		                                <div>${list.no}</div>
+		                                <div>${list.name}</div>
+		                                <div>${list.id}</div>
+		                                <div>${list.position}</div>
+		                                <div>${list.permission}</div>
+		                                <div>${list.phone}</div>
+		                                <div>
+		                                    <button>상세</button>
+		                                    <button>탈퇴</button>
+		                                </div>
+		                            </div>
+                        		</li>
+                    		</c:forEach>
+                        
                     </ul>
                     <div class="mail-btn-area">
                         <button id="mail-btn"><i class="bi bi-envelope"></i></button>
@@ -82,27 +86,37 @@
                 </form>
                 <nav class="page-area">
                     <ul>
+                    <li>
+                        <a id="before" href="/el/admin/master/list?pno=${pv.currentPage-1}">이전</a>
+                    </li>
+                    <c:if test="${pv.currentPage == 1}">
+						<script>
+                            $('#before').addClass('block');
+                           
+                            $('#before').on('click', function(){
+                                return false;
+                            })
+                        </script>
+                    </c:if>
+					
+					<c:forEach var="num" begin="${pv.startPage }" end="${pv.endPage }">
                         <li>
-                            <a href="">이전</a>
+                            <a class="click" href="/el/admin/master/list?pno=${num}">${num}</a>
                         </li>
-                        <li>
-                            <a href="">1</a>
-                        </li>
-                        <li>
-                            <a href="">2</a>
-                        </li>
-                        <li>
-                            <a href="">3</a>
-                        </li>
-                        <li>
-                            <a href="">4</a>
-                        </li>
-                        <li>
-                            <a href="">5</a>
-                        </li>
-                        <li>
-                            <a href="">다음</a>
-                        </li>
+					</c:forEach>
+                    
+                    <li>
+                        <a id="after" href="/el/admin/master/list?pno=${pv.currentPage+1}">다음</a>
+                    </li>
+                    <c:if test="${pv.currentPage == pv.maxPage }">
+                        <script>
+                            $('#after').addClass('block');
+                            
+                            $('#after').on('click', function(){
+                                return false;
+                            })
+                        </script>
+                    </c:if>
 
                     </ul>
                 </nav>

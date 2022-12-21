@@ -118,7 +118,7 @@
                     </div>
                 </li>
                 <li class="nav-items" id="admin">
-                    <a href="/el/admin/master/list">
+                    <a href="/el/admin/master/list?pno=1">
                         <span>관리자관리</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
@@ -126,7 +126,7 @@
                         <div class="detail-wrap">
                             <ul>
                                 <li class="detail-cate" id="admin-list">
-                                    <a href="/el/admin/master/list">관리자조회</a>
+                                    <a href="/el/admin/master/list?pno=1">관리자조회</a>
                                 </li>
                                 <li class="detail-cate" id="admin-add">
                                     <a href="/el/admin/master/join">관리자등록</a>
