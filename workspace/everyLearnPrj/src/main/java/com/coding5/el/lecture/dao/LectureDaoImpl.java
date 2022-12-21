@@ -1,5 +1,6 @@
 package com.coding5.el.lecture.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -27,5 +28,63 @@ public class LectureDaoImpl implements LectureDao{
 		System.out.println("dao dcvo :: " + dcvo);
 		return sst.insert("lectureMapper.insertClassDetail", dcvo);
 	}
+
+
+	@Override
+	public List<LectureVo> getList(SqlSessionTemplate sst) {
+		System.out.println("Dao 돌아감?");
+		return sst.selectList("lectureMapper.getList");
+	}
+
+	//강의 메인 - 드로잉
+	@Override
+	public List<LectureVo> getListDrawing(SqlSessionTemplate sst) {
+		return sst.selectList("lectureMapper.getListDrawing");
+	}
+
+	//강의 메인 - 요리 베이킹
+	@Override
+	public List<LectureVo> getListCook(SqlSessionTemplate sst) {
+		return sst.selectList("lectureMapper.getListCook");
+	}
+
+	//강의 메인 - 운동
+	@Override
+	public List<LectureVo> getListWorkout(SqlSessionTemplate sst) {
+		return sst.selectList("lectureMapper.getListWorkout");
+	}
+
+	//강의 메인 - 음악
+	@Override
+	public List<LectureVo> getListMusic(SqlSessionTemplate sst) {
+		return sst.selectList("lectureMapper.getListMusic");
+	}
+
+	//강의 메인 - it
+	@Override
+	public List<LectureVo> getListItTech(SqlSessionTemplate sst) {
+		return sst.selectList("lectureMapper.getListItTech");
+	}
+
+	//강의 메인 - 언어
+	@Override
+	public List<LectureVo> getListLanguage(SqlSessionTemplate sst) {
+		return sst.selectList("lectureMapper.getListLanguage");
+	}
+
+	//강의 메인 - 금융
+	@Override
+	public List<LectureVo> getListFinance(SqlSessionTemplate sst) {
+		return sst.selectList("lectureMapper.getListFinance");
+	}
+
+	//강의 검색
+	@Override
+	public List<LectureVo> searchBoardList(SqlSessionTemplate sst, HashMap<String, String> map) {
+		return sst.selectList("lectureMapper.getSearch", map);
+	}
+
+
+	
 
 }
