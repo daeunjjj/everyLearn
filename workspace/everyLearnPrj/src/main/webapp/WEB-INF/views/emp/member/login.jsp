@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/el/resources/css/emp/member/login.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
+<script src="/el/resources/js/emp/login.js"></script>
 </head>
 <body>
 
@@ -20,13 +21,13 @@
 			<section class="right">
 				<div class="right-wrapper">
 					<h1 class="title">로그인</h1>
-					<form action="/el/member/login" method="post" class="login-form">
+					<form action="/el/emp/login" method="post" class="login-form">
 						<div class="id-wrapper">
 							<div class="login-title">
 								<p>아이디(이메일)</p>
 							</div>
-							<input type="text" name="id" id="intpuId"
-								placeholder="everylearn@everylearn.com" class="id">
+							<input type="text" name="id" id="id"
+								placeholder="everylearn@everylearn.com" class="id" oninput="activeBtn();">
 							<!-- <div class="input-id">
                                 <span class="essential">아이디를 입력해 주세요.</span>
                             </div> -->
@@ -36,18 +37,18 @@
 								<p>비밀번호</p>
 							</div>
 							<input type="password" placeholder="•••••••••••" name="pwd"
-								id="intpuPwd" class="password">
+								id="pwd" class="password" oninput="activeBtn();">
 							<!-- 눈표시 -->
 							<!-- <div class="input-id">
                                 <span>비밀번호를 입력해 주세요.</span>
                             </div> -->
 						</div>
-						<button type="submit" class="btn" id="loginBtn" onclick="activeBtn();" disabled>로그인</button>
+						<button type="submit" class="btn" id="loginBtn" disabled>로그인</button>
 					</form>
 					<div class="choose">
 						<a href="">비밀번호 재설정</a>
 						<div class="div"></div>
-						<a href="">회원가입</a>
+						<a href="/el/emp/join">회원가입</a>
 					</div>
 				</div>
 			</section>

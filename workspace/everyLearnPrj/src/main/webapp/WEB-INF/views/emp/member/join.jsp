@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/el/resources/css/emp/member/join.css">
+<script src="/el/resources/js/emp/join.js"></script>
 </head>
 <body>
 
@@ -26,17 +27,17 @@
 							<p>아이디(이메일)</p>
 						</div>
 						<input type="text" name="id" id="id"
-							placeholder="everylearn@everylearn.com" class="input">
-						<!-- <div class="input-id">
-                            <span class="essential">아이디를 입력해 주세요.</span>
-                        </div> -->
+							placeholder="everylearn@everylearn.com" class="input" oninput="activeBtn();" onblur="validateId();">
+						<div id="input-id" style="display: none;">
+							<span class="essential">아이디를 입력해 주세요.</span>
+            </div>
 					</div>
 					<div class="wrapper">
 						<div class="join-title">
 							<p>비밀번호</p>
 						</div>
 						<input type="password" placeholder="•••••••••••" name="pwd"
-							id="pwd" class="input">
+							id="pwd" class="input" oninput="activeBtn();">
 						<!-- 눈표시 -->
 						<!-- <div class="input-id">
                             <span>비밀번호를 입력해 주세요.</span>
@@ -48,22 +49,22 @@
 								<p>이름</p>
 							</div>
 							<input type="text" name="name" id="name" placeholder="홍길동"
-								class="input">
+								class="input" oninput="activeBtn();">
 						</div>
 					</div>
 					<div class="wrapper">
 						<div class="join-title">
-							<p>소속</p>
+							<p>회사명</p>
 						</div>
-						<input type="text" name="team" id="team" placeholder="인사팀"
-							class="input">
+						<input type="text" name="companyName" id="companyName" placeholder="에브리런"
+							class="input" oninput="activeBtn();">
 					</div>
 					<div class="wrapper">
 						<div class="join-title">
 							<p>휴대폰 번호</p>
 						</div>
 						<input type="text" name="phone" id="phone"
-							placeholder="01012345678" class="input">
+							placeholder="01012345678" maxlength="13" class="input" oninput="autoHyphen(this);">
 					</div>
 					<div>
 						<div class="choose">
@@ -83,7 +84,7 @@
 								수신 동의</label>
 						</div>
 					</div>
-					<button type="submit" class="btn" disabled>로그인</button>
+					<button type="submit" class="btn" id="joinBtn" disabled>회원가입</button>
 				</form>
 				<div class="login">
 					<span>이미 계정이 있으신가요?</span> <a href="">로그인</a>

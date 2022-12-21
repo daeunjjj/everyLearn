@@ -11,39 +11,28 @@
 		, ID
 		, PWD
 		, COMPANY_NAME
-		, COMPANY_ADDRESS
-		, COMPANY_EMAIL
 		, NAME
 		, PHONE
 		, ENROLL_DATE
-		, MODIFY_DATE
-		, COMPANY_NUM
-		, QUIT_YN
-		, CHECK_YN
-	)VALUES
-	(	SEQ_CORPORATE_MEMBER_NO.NEXTVAL
+	)
+	VALUES
+	(	
+		SEQ_CORPORATE_MEMBER_NO.NEXTVAL
 		 , #{id}
 		 , #{pwd}
 		 , #{companyName}
-		 , #{companyAddress}
-		 , #{companyEmail}
 		 , #{name}
 		 , #{phone}
-		 , #{enrollDate}
-		 , #{modifyDate}
-		 , #{companyNum}
-		 , #{quitYN}
-		 , #{checkYN}
-		 )
+		 , SYSDATE
+	)
   </insert>
-  <select id="selectOneEmpMember">
+  <select id="selectOneEmpMember" resultType="EmpVo">
   	SELECT 
   		NO
 		, ID
 		, PWD
 		, COMPANY_NAME
 		, COMPANY_ADDRESS
-		, COMPANY_EMAIL
 		, NAME
 		, PHONE
 		, ENROLL_DATE
