@@ -42,4 +42,16 @@ INSERT INTO MEMBER
   	WHERE ID = #{memberId}
   </select>
   
+  <select id="selectIdDup" resultType="string">
+  	SELECT ID 
+  	FROM MEMBER
+  	WHERE ID = #{memberId}
+  </select>
+  
+  <select id="selectMemberNick" resultType="string">
+  	SELECT NICK
+  	FROM MEMBER
+  	WHERE NICK = #{memberNick}
+  </select>
+  
 </mapper>
