@@ -18,9 +18,31 @@ for(let i = 0; i < arr.length; i++){
 
 // 아이디 체크
 let idCheck = false;
-$('#id').on("blur", function(){
+
+$('#id').on("keyup", function(){
+    
     const emailReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     let id = $('#id').val();
+
+
+    if(id == ""){
+        $('#idMsg').addClass('not-available');
+        $('#idMsg').text('필수항목입니다.');
+    } else if(!emailReg.test(id)){
+        $('#idMsg').addClass('not-available');
+        $('#idMsg').text('아이디는 이메일 형식입니다.');
+    } else {
+        $('#idMsg').removeClass('not-available');
+    }
+   
+});
+
+
+$('#id').on("blur", function(){
+    
+    const emailReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    let id = $('#id').val();
+
 
     if(id == ""){
         $('#idMsg').addClass('not-available');
@@ -31,7 +53,7 @@ $('#id').on("blur", function(){
     } else {
         // 중복체크 (에이잭스)
         $.ajax({
-            url : "/el/admin/dup-check/id",
+            url : "/el/admin/dup-check",
             method : "POST",
             data : {"id" : id},
             success : function(result){
@@ -51,10 +73,12 @@ $('#id').on("blur", function(){
             }
         })
     }
+   
 });
+
 // 이름 체크
 let nameCheck = false;
-$('#name').on('blur', function(){
+$('#name').on('keyup', function(){
     let name = $('#name').val();
 
     if(name == ""){
@@ -69,6 +93,57 @@ $('#name').on('blur', function(){
     } 
 
 })
+//닉네임 체크
+let nickCheck = false;
+$('#nick').on('keyup', function(){
+    let nick = $('#nick').val();
+
+    if(nick == ""){
+        $('#nickMsg').addClass('not-available');
+        $('#nickMsg').text('필수항목입니다.');
+    } else if(nick.length == 1){
+        $('#nickMsg').addClass('not-available');
+        $('#nickMsg').text('닉네임은 2자 이상입니다.');
+    } else{
+        $('#nickMsg').removeClass('not-available');
+    }
+
+})
+
+$('#nick').on('blur', function(){
+    let nick = $('#nick').val();
+
+    if(nick == ""){
+        $('#nickMsg').addClass('not-available');
+        $('#nickMsg').text('필수항목입니다.');
+    } else if(nick.length == 1){
+        $('#nickMsg').addClass('not-available');
+        $('#nickMsg').text('닉네임은 2자 이상입니다.');
+    } else{
+         // 중복체크 (에이잭스)
+         $.ajax({
+            url : "/el/admin/dup-check",
+            method : "POST",
+            data : {"nick" : nick},
+            success : function(result){
+                if(result == ""){
+                    // 중복
+                    $('#nickMsg').addClass('not-available');
+                    $('#nickMsg').text('중복된 닉네임입니다.');
+                } else{
+                    // 사용가능
+                    $('#nickMsg').removeClass('not-available');
+                    nickCheck = true;
+                }
+
+            },
+            error : function(){
+                alert('통신실패');
+            }
+        })
+    }
+
+})
 
 // 휴대폰 하이픈 추가
 const autoHyphen = (target) => {
@@ -80,7 +155,7 @@ const autoHyphen = (target) => {
 
 // 휴대폰 체크
 let phoneCheck = false;
-$('#phone').on('blur', function(){
+$('#phone').on('keyup', function(){
     let phone = $('#phone').val();
     const phoneReg = /^[0-9]{3}-[0-9]{3,4}-[0-9]{4}/;
     
@@ -110,6 +185,15 @@ function joinCheck() {
         Swal.fire({
             icon: 'error',
             title: '이름을 확인해주세요.',
+            confirmButtonColor: '#1187CF'
+        })
+        return false;
+    }
+
+    if(!nickCheck){
+        Swal.fire({
+            icon: 'error',
+            title: '닉네임을 확인해주세요.',
             confirmButtonColor: '#1187CF'
         })
         return false;

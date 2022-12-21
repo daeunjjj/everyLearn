@@ -19,7 +19,7 @@ public class AdminVo {
 	private String modifyDate;
 	private String quitYn;
 	
-	private String changeName;
+	private String profileName;
 	private MultipartFile profile;
 	
 	// 암호화
