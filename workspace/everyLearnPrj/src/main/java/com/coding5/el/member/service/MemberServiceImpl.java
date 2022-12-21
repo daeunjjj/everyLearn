@@ -32,7 +32,7 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.insertMember(sst, vo);
 	}
 
-	//회원가입
+	//로그인
 	@Override
 	public MemberVo login(MemberVo vo) {
 		
@@ -49,6 +49,25 @@ public class MemberServiceImpl implements MemberService{
 			return null;
 		}
 		
+	}
+
+	//아이디 중복
+	@Override
+	public String idDup(String memberId) {
+		String IdDup = memberDao.selectIdDup(sst, memberId);
+		if(IdDup != "") {
+			return IdDup;
+		}else {
+			return "null";
+		}
+		
+	}
+
+	//닉네임  중복
+	@Override
+	public String nickDup(String memberNick) {
+		String nickDup = memberDao.selectNickDup(sst, memberNick);
+		return nickDup;
 	}
 	
 	

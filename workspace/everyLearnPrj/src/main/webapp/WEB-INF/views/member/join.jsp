@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/resources/css/member/join.css" rel="stylesheet" type="text/css">
+<script src="/el/resources/js/member/join.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -25,62 +28,60 @@
 
                 <h4><label for="">* 아이디</label></h4>
                 <span class="join-box">
-                    <input type="text" name="memberId">
-                    <button id="double-check">중복확인</button>
+                    <input type="text" id="memberId" name="memberId" onblur="emptyId()">
+                    <button type="button" id="double-check" onclick="idDup()">중복확인</button>
                 </span>            
+                <div class="warning" id="idDup"></div>
                 <h4><label for="">* 비밀번호</label></h4>
                 <span class="join-box">
-                    <input type="password" name="memberPwd">
+                    <input type="password" name="memberPwd" id="memberPwd" onblur="checkPw()">
                 </span>
                 <span>
-                    <pre>
+                <div class="warning" id="pwdch"></div>
+                <pre>
     - 영문자(대소문자 구분)/숫자/특수문자 모두 사용
-    - 8자~32자(공백 제외)
-    - 3개이상 동일한 문자/숫자 사용 불가</pre>
+    - 8자~20자(공백 제외)</pre>
                 </span>            
                 <h4><label for="">비밀번호 확인</label></h4> 
                 <span class="join-box">   
-                    <input type="password" name="memberPwd2">
-                    
+                    <input type="password" name="memberPwd2" id="memberPwd2" onblur="pwdDup(); emptyPwd();">
                 </span>
+                <div class="warning" id="pwdDup"></div>
                 <h4><label for="">* 이름</label></h4>
                 <span class="join-box">
                     <input type="text" name="memberName">
                 </span>   
+                <div class="warning" id="Namech"></div>
                 <h4><label for="">* 휴대폰 번호</label></h4>
                 <span class="join-box" >
-                    <input type="tel" name="phone" placeholder="숫자만 입력해주세요.">
+                    <!-- <input type="tel" name="phone" placeholder="숫자만 입력해주세요."> -->
+                    <input type="text" name="phone" id="test_id"  placeholder=" '-' 없이 숫자만 입력해주세요" onkeyup="chk_tel(this.value,'test_id')"">
                 </span>   
                 <h4><label for="">* 이메일</label></h4>
                 <span class="join-box">
-                    <input type="email" name="email">
+                    <input type="email" name="email" id="email" onblur="emailCh()">
                 </span>   
+                <div class="warning" id="emailCheck"></div>
                 <h4><label for="">* 생년월일</label></h4>
                 <span class="join-box">
-                    <input type="text" minlength="10" maxlength="10" name="birth" placeholder="-도 입력해주세요(ex. 2000-12-12 추후 수정 예정.)">
+                    <input type="date" name="birth" id="birth" value="2023-01-13" >
                 </span>   
                 <h4><label for="">닉네임</label></h4>
                 <span class="join-box">
-                    <input type="text" name="memberNick">
-                    <button id="nick-double-check">중복확인</button>
+                    <input type="text" name="memberNick" id="memberNick">
+                    <button type="button" id="nick-double-check" onclick="nickDup()">중복확인</button>
                 </span>   
+                <div class="warning" id="nickDup"> </div>
                 <div id="btn-join">
                     <button type="submit" id="btnJoin" >
                         <div id="text-join">가입하기</div>
                         </button>
                 </div>
-
-				
 				
             </form>
         </div>
     </div>
 
-	<script type="text/javascript">
-		function jin() {
-			return true;
-		}
-	</script>
 
 </main>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

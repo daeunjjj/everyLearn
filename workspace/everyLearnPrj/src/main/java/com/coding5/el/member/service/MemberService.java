@@ -8,5 +8,11 @@ public interface MemberService {
 	public int join(MemberVo vo);
 
 	public MemberVo login(MemberVo vo);
+
+	//아이디 중복
+	public String idDup(String memberId);
+
+	//닉네임 중복
+	public String nickDup(String memberNick);
 	
 }

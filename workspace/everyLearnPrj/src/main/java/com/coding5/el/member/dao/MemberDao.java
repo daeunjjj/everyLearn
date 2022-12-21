@@ -10,5 +10,7 @@ public interface MemberDao {
 	public int insertMember(SqlSessionTemplate sst, MemberVo vo);
 	
 	public MemberVo selectMemberOne(SqlSessionTemplate sst, MemberVo vo);
+	
+	public String selectIdDup(SqlSessionTemplate sst, String memberId);
 
 }

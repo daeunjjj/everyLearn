@@ -16,4 +16,14 @@ public class MemberDaoImpl implements MemberDao{
 		return sst.selectOne("memberMapper.selectMemberOne", vo);
 	}
 
+	//아이디 중복
+	public String selectIdDup(SqlSessionTemplate sst, String memberId) {
+		return sst.selectOne("memberMapper.selectIdDup", memberId);
+	}
+
+	//닉네임 중복
+	public String selectNickDup(SqlSessionTemplate sst, String memberNick) {
+		return sst.selectOne("memberMapper.selectMemberNick", memberNick);
+	}
+
 }

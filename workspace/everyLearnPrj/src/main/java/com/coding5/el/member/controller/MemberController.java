@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coding5.el.member.service.MemberService;
 import com.coding5.el.member.vo.MemberVo;
@@ -19,13 +20,13 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	//È¸¿ø°¡ÀÔ(È­¸é)
+	//íšŒì›ê°€ì…(í™”ë©´)
 	@GetMapping("join")
 	public String join() {
 		return "member/join";
 	}
 	
-	//È¸¿ø°¡ÀÔ
+	//íšŒì›ê°€ì…
 	@PostMapping("join")
 	public String join(MemberVo vo) {
 		
@@ -34,13 +35,49 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	//·Î±×ÀÎ(È­¸é)
+	//ì•„ì´ë”” ì¤‘ë³µí™•ì¸(ajax)
+	@PostMapping("idDup")
+	@ResponseBody
+	public String idDup(String memberId){
+		
+		String result = memberService.idDup(memberId);
+		System.out.println(result);
+		
+		if( result != null ){
+			return "1";
+		}else {
+			return "-1";
+		}
+		
+		
+	}
+	
+	//ë‹‰ë„¤ì„ ì¤‘ë³µí™•ì¸(ajax)
+	@PostMapping("nickDup")
+	@ResponseBody
+	public String nickDup(String memberNick){
+		
+		String result = memberService.nickDup(memberNick);
+		System.out.println(result);
+		
+		if( result != null ){
+			//ì¤‘ë³µëœ ë‹‰ë„¤ì„
+			return "1";
+		}else {
+			return "-1";
+		}
+		
+		
+	}
+	
+	
+	//ë¡œê·¸ì¸(í™”ë©´)
 	@GetMapping("login")
 	public String login() {
 		return "member/login";
 	}
 	
-	//·Î±×ÀÎ
+	//ë¡œê·¸ì¸
 	@PostMapping("login")
 	public String login(MemberVo vo, HttpSession session) {
 		

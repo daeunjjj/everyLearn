@@ -17,6 +17,13 @@ body{
     width: 500px;
 }
 
+.warning{
+    margin: auto;
+    width: 350px;
+    font-size: small;
+    color: red;
+}
+
 .top-join{
 
     margin: auto;
@@ -96,6 +103,14 @@ input:focus {outline:none;}
 
 /* ---------- */
 #double-check{
+    font-size: 11px;
+    background-color: #1187CF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#nick-double-check{
     font-size: 11px;
     background-color: #1187CF;
     color: white;
