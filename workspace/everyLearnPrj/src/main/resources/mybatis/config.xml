@@ -11,6 +11,7 @@
 	<typeAliases>
 		<typeAlias type="com.coding5.el.admin.vo.AdminVo" alias="AdminVo"/>
 		<typeAlias type="com.coding5.el.emp.vo.EmpVo" alias="EmpVo"/>
+		<typeAlias type="com.coding5.el.notice.vo.NoticeVo" alias="NoticeVo"/>
 	</typeAliases>
   
   
