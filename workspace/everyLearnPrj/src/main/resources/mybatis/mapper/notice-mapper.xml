@@ -4,19 +4,21 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="noticeMapper">
 
-	<insert id="write">
+	<insert id="write" parameterType="noticeVo">
 		INSERT INTO NOTICE 
 		( 
-			TITLE 
-			, CONTENT 
-			, ADMIN
+			NO
+			, TITLE
+		    , CONTENT 
+		    , WRITER 
 			, ENROLL_DATE
 		) 
 		VALUES 
 		(  
-			#{title}
+			SEQ_NOTICE_NO.NEXTVAL
+			, #{title}
 			, #{content}
-			, #{nick} <!-- 관리자인 no 받아서 조인 -->
+			, #{writer}
 			, SYSDATE
 		)
 	</insert>
@@ -26,6 +28,15 @@
 			SET
 				CNT = CNT +1
 	</update>
+	
+	<select id="selectList" resultType="NoticeVo">
+  	
+  		SELECT *
+  		FROM NOTICE 
+  		WHERE STATUS = 'O' 
+  		ORDER BY NO DESC
+  	
+  	</select>
 
   
 </mapper>
