@@ -9,7 +9,7 @@ public class LectureVo {
 	private String no;
 	private String teacherNo;
 	private String category;
-	private String cName;
+	private String ccName;
 	private String cContent;
 	private String recomm;
 	private String studentCnt;

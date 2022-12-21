@@ -43,7 +43,195 @@
 			</foreach>
 	
 	</insert>
+	
+	<!-- 강의 메인 리스트 조회 -->
+	<!-- 게시판 목록 -->
+    <select id="getList" resultType="com.coding5.el.lecture.vo.LectureVo">
+    
+        SELECT 
+        	NO
+			,TEACHER_NO
+			,CATEGORY
+			,C_NAME as ccName
+			,C_CONTENT
+			,RECOMM
+			,STUDENT_CNT
+			,PRICE
+			,ENROLL_DATE
+			,MODIFY_DATE
+			,DELETE_YN
+			,CLASS_CNT 
+        FROM CLASS
+    
+    </select>
+	
+	<!-- 강의 메인 - 카테고리 드로잉 -->
+	<select id="getListDrawing" resultType="com.coding5.el.lecture.vo.LectureVo">
+    
+        SELECT 
+        	NO
+			,TEACHER_NO
+			,CATEGORY
+			,C_NAME as ccName
+			,C_CONTENT
+			,RECOMM
+			,STUDENT_CNT
+			,PRICE
+			,ENROLL_DATE
+			,MODIFY_DATE
+			,DELETE_YN
+			,CLASS_CNT 
+        FROM CLASS
+        WHERE CATEGORY = '1'
+    
+    </select>
+    <!-- 강의 메인 - 요리 / 베이킹 -->
+    <select id="getListCook" resultType="com.coding5.el.lecture.vo.LectureVo">
+    
+        SELECT 
+        	NO
+			,TEACHER_NO
+			,CATEGORY
+			,C_NAME as ccName
+			,C_CONTENT
+			,RECOMM
+			,STUDENT_CNT
+			,PRICE
+			,ENROLL_DATE
+			,MODIFY_DATE
+			,DELETE_YN
+			,CLASS_CNT 
+        FROM CLASS
+        WHERE CATEGORY = '2'
+    
+    </select>
+    
+    <!-- 강의 메인 - 카테고리 운동 -->
+     <select id="getListWorkout" resultType="com.coding5.el.lecture.vo.LectureVo">
+    
+        SELECT 
+        	NO
+			,TEACHER_NO
+			,CATEGORY
+			,C_NAME as ccName
+			,C_CONTENT
+			,RECOMM
+			,STUDENT_CNT
+			,PRICE
+			,ENROLL_DATE
+			,MODIFY_DATE
+			,DELETE_YN
+			,CLASS_CNT 
+        FROM CLASS
+        WHERE CATEGORY = '3'
+    
+    </select>
+    
+    <!-- 강의 메인 - 카테고리 음악 -->
+     <select id="getListMusic" resultType="com.coding5.el.lecture.vo.LectureVo">
+    
+        SELECT
+        	NO
+			,TEACHER_NO
+			,CATEGORY
+			,C_NAME as ccName
+			,C_CONTENT
+			,RECOMM
+			,STUDENT_CNT
+			,PRICE
+			,ENROLL_DATE
+			,MODIFY_DATE
+			,DELETE_YN
+			,CLASS_CNT 
+        FROM CLASS
+        WHERE CATEGORY = '4'
+    
+    </select>
+    
+    <!-- 강의 메인 - 카테고리 it -->
+     <select id="getListItTech" resultType="com.coding5.el.lecture.vo.LectureVo">
+    
+        SELECT 
+        	NO
+			,TEACHER_NO
+			,CATEGORY
+			,C_NAME as ccName
+			,C_CONTENT
+			,RECOMM
+			,STUDENT_CNT
+			,PRICE
+			,ENROLL_DATE
+			,MODIFY_DATE
+			,DELETE_YN
+			,CLASS_CNT 
+        FROM CLASS
+        WHERE CATEGORY = '5'
+    
+    </select>
+    
+    <!-- 강의 메인 - 카테고리 언어 -->
+     <select id="getListLanguage" resultType="com.coding5.el.lecture.vo.LectureVo">
+    
+        SELECT 	NO
+			,TEACHER_NO
+			,CATEGORY
+			,C_NAME as ccName
+			,C_CONTENT
+			,RECOMM
+			,STUDENT_CNT
+			,PRICE
+			,ENROLL_DATE
+			,MODIFY_DATE
+			,DELETE_YN
+			,CLASS_CNT 
+        FROM CLASS
+        WHERE CATEGORY = '6'
+    
+    </select>
+    
+    <!-- 강의 메인 - 카테고리 금융 -->
+     <select id="getListFinance" resultType="com.coding5.el.lecture.vo.LectureVo">
+    
+        SELECT 	NO
+			,TEACHER_NO
+			,CATEGORY
+			,C_NAME as ccName
+			,C_CONTENT
+			,RECOMM
+			,STUDENT_CNT
+			,PRICE
+			,ENROLL_DATE
+			,MODIFY_DATE
+			,DELETE_YN
+			,CLASS_CNT 
+        FROM CLASS
+        WHERE CATEGORY = '7'
+    
+    </select>
+    
+    
+    <!-- 강의 검색 -->
+    <select id="getSearch" resultType="com.coding5.el.lecture.vo.LectureVo">
+    	SELECT 	
+    		NO
+			,TEACHER_NO
+			,CATEGORY
+			,C_NAME as ccName
+			,C_CONTENT
+			,RECOMM
+			,STUDENT_CNT
+			,PRICE
+			,ENROLL_DATE
+			,MODIFY_DATE
+			,DELETE_YN
+			,CLASS_CNT 
+        FROM CLASS
+        <if test="keyword != null and keyword != ''">
+			WHERE C_NAME LIKE  '%${keyword}%'
+		</if> 
+		
 
+    </select>
 
 
   
