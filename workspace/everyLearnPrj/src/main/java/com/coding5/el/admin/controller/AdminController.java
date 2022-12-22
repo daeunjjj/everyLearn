@@ -132,14 +132,16 @@ public class AdminController {
 	@PostMapping("info/modify")
 	public String adminInfo(AdminVo vo, HttpSession session, Model model, String check) {
 		
-		System.out.println(check);
-		
 		// 로그인 세션에 담긴 정보 가져오기
 		AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");		
 		vo.setNo(loginAdmin.getNo());
-	
 		
-		String profileName = "default-profile.png";
+		String profileName = "";
+		
+		if(check.length() != 0) {
+			profileName = "default-profile.png";
+		}
+		
 		if(!vo.getProfile().isEmpty()) {
 			profileName = FileUploader.upload(session, vo.getProfile());
 		}
@@ -182,11 +184,24 @@ public class AdminController {
 		
 		model.addAttribute("pv", pv);
 		model.addAttribute("voList", voList);
-		
-		System.out.println(pv);
+
 		return "admin/master/list";
 	}
-	
+	/**
+	 * 관리자 상세조회
+	 * @param no
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("master/detail")
+	public String adminDetail(String no, Model model) {
+		
+		AdminVo vo = adminService.adminDetail(no);
+		if(vo == null) return "common/error";
+		
+		model.addAttribute("vo", vo);
+		return "admin/master/detail";
+	}
 	
 	// 대시보드
 	@GetMapping("dashboard")
@@ -236,15 +251,6 @@ public class AdminController {
 		return "admin/report/process";
 	}
 	
-
-	
-
-	
-	// 관리자상세조회
-	@GetMapping("master/detail")
-	public String adminDetail() {
-		return "admin/master/detail";
-	}
 	
 	// 아이디 찾기
 	@GetMapping("find/id")

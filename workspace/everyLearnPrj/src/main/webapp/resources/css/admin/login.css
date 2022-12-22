@@ -9,11 +9,11 @@ body{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, 10%);
+    transform: translate(-50%, 15%);
 }
 
 .login-wrap{
-    width: 300px;
+    width: 320px;
     margin: 0 auto;
 }
 
@@ -40,7 +40,7 @@ body{
     display: flex;
     -webkit-box-pack: end;
     justify-content: flex-end;
-    font-size: 12px;
+    font-size: 13px;
 
 }
 
@@ -67,6 +67,7 @@ body{
     color: rgb(255, 255, 255);
     background-color: #1187CF;
     border: 0px none;
+    font-size: 18px;
 }
 
 .btn>button{
@@ -110,7 +111,7 @@ body{
     justify-content: flex-start;
     align-items: center;
     
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .save-wrap>label{

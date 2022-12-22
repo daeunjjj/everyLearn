@@ -28,7 +28,7 @@
 	<div class="container">
         <div class="main">
             <div class="logo-wrap">
-                <img src="/el/resources/img/admin/logo2.png" alt="로고" width="300" height="300">
+                <img src="/el/resources/img/admin/logo2.png" alt="로고" width="320" height="320">
             </div>
             <div class="login-wrap">
                 <form action="/el/admin/login" method="post" onsubmit="return loginCheck();">

@@ -45,6 +45,12 @@ public class AdminDaoImpl implements AdminDao{
 		return sst.selectList("adminMapper.selectAdminList",null,rb);
 	}
 
+	@Override
+	public AdminVo selectOneAdminByNo(SqlSessionTemplate sst, String no) {
+		// 관리자 상세정보
+		return sst.selectOne("selectOneAdminByNo",no);
+	}
+
 
 
 }

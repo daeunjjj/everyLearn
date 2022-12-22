@@ -95,16 +95,6 @@ label{
 }
 
 
-.page-area a{
-    padding: 5px 9px;
-    border-radius: 3px;
-    background-color: #1187CF;
-    cursor: pointer;
-    color: #fff;
-    line-height: 1;
-    font-size: 1rem;
-    margin: 0 5px;
-}
 
 /* 메일보내기 버튼 */
 .mail-btn-area{
@@ -144,16 +134,21 @@ label{
     vertical-align: middle;
 }
 
+.list-title>div,.list-items>div{
+    font-size: 17px;
+}
+
 .list-title>div:nth-child(1), .list-items>div:nth-child(1){
-    flex-basis: 60px;
+    flex-basis: 80px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
     color: rgb(51, 51, 51);
+
 }
 
 .list-title>div:nth-child(2), .list-items>div:nth-child(2){
-    flex-basis: 60px;
+    flex-basis: 80px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -161,7 +156,7 @@ label{
 }
 
 .list-title>div:nth-child(3), .list-items>div:nth-child(3){
-    flex-basis: 100px;
+    flex-basis: 120px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -169,7 +164,7 @@ label{
 }
 
 .list-title>div:nth-child(4), .list-items>div:nth-child(4){
-    flex-basis: 190px;
+    flex-basis: 200px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -177,7 +172,7 @@ label{
 }
 
 .list-title>div:nth-child(5), .list-items>div:nth-child(5){
-    flex-basis: 100px;
+    flex-basis: 120px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -185,7 +180,7 @@ label{
 }
 
 .list-title>div:nth-child(6), .list-items>div:nth-child(6){
-    flex-basis: 100px;
+    flex-basis: 120px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -193,7 +188,7 @@ label{
 }
 
 .list-title>div:nth-child(7), .list-items>div:nth-child(7){
-    flex-basis: 190px;
+    flex-basis: 200px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -221,3 +216,17 @@ label{
     opacity: 0.7;
 }
 
+#before, #after, .numBtn{
+    padding: 5px 9px;
+    border-radius: 3px;
+    background-color: #1187CF;
+    cursor: pointer;
+    color: #fff;
+    line-height: 1;
+    font-size: 1rem;
+    margin: 0 5px;
+}
+
+.click{
+    background-color: #005297;
+}

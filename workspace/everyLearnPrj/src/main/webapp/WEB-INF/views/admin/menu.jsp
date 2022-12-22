@@ -3,11 +3,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 <%
 	String alertMsg = (String)session.getAttribute("resultMsg"); 
 	session.removeAttribute("resultMsg");	
 %>
-
 	<script>
 		<%if(alertMsg != null) {%>
             Swal.fire({
@@ -21,11 +21,11 @@
     <nav>
         <div class="top">
             <a href="">
-                <img src="/el/resources/img/admin/white-logo.png" alt="로고" width="150" height="150">
+                <img src="/el/resources/img/admin/white-logo.png" alt="로고" width="170" height="170">
             </a>
-            <div>
+            <div class="info-box">
                 <a href="/el/admin/info">
-                    ${loginAdmin.nick}
+                    <span>${loginAdmin.nick}</span>
                     <i class="bi bi-house-door"></i>
                 </a>
             </div>
