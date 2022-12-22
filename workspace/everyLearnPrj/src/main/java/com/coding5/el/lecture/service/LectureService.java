@@ -42,6 +42,12 @@ public interface LectureService {
 
 	//강의 검색
 	public List<LectureVo> searchBoardList(HashMap<String, String> map);
+
+	//강의 조회수 증가
+	public int increaseCount(int bno);
+
+	//강의 상세 조회
+	public LectureVo classDetail(int bno);
 	
 
 

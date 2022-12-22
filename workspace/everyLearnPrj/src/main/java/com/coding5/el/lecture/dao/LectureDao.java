@@ -46,5 +46,11 @@ public interface LectureDao {
 
 	//강의 검색
 	public List<LectureVo> searchBoardList(SqlSessionTemplate sst, HashMap<String, String> map);
+
+	//강의 상세 조회
+	public LectureVo classDetail(SqlSessionTemplate sst, int bno);
+
+	//강의 조회수 확인
+	public int increaseCount(SqlSessionTemplate sst, int bno);
 	
 }

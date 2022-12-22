@@ -11,20 +11,26 @@
 		    NO
 		    , TEACHER_NO
 		    , CATEGORY
-		    , C_NAME
-		    , C_CONTENT
+		    , CLASS_NAME
+		    , CLASS_CONTENT
 		    , PRICE
 		    , ENROLL_DATE
+		    , RECOMM
+		    , STUDENT_CNT
+		    , CLASS_CNT
 		)
 	VALUES
 		(
 		    SEQ_CLASS_NO.NEXTVAL
 		    , 1
 		    , #{category}
-		    , #{cName}
-		    , #{cContent}
+		    , #{className}
+		    , #{classContent}
 		    , #{price}
 		    , SYSDATE
+		    , 0
+		    , 0
+		    , 0
 		)
   </insert>
   
@@ -52,8 +58,8 @@
         	NO
 			,TEACHER_NO
 			,CATEGORY
-			,C_NAME as ccName
-			,C_CONTENT
+			,CLASS_NAME
+			,CLASS_CONTENT
 			,RECOMM
 			,STUDENT_CNT
 			,PRICE
@@ -72,8 +78,8 @@
         	NO
 			,TEACHER_NO
 			,CATEGORY
-			,C_NAME as ccName
-			,C_CONTENT
+			,CLASS_NAME
+			,CLASS_CONTENT
 			,RECOMM
 			,STUDENT_CNT
 			,PRICE
@@ -92,8 +98,8 @@
         	NO
 			,TEACHER_NO
 			,CATEGORY
-			,C_NAME as ccName
-			,C_CONTENT
+			,CLASS_NAME
+			,CLASS_CONTENT
 			,RECOMM
 			,STUDENT_CNT
 			,PRICE
@@ -113,8 +119,8 @@
         	NO
 			,TEACHER_NO
 			,CATEGORY
-			,C_NAME as ccName
-			,C_CONTENT
+			,CLASS_NAME
+			,CLASS_CONTENT
 			,RECOMM
 			,STUDENT_CNT
 			,PRICE
@@ -134,8 +140,8 @@
         	NO
 			,TEACHER_NO
 			,CATEGORY
-			,C_NAME as ccName
-			,C_CONTENT
+			,CLASS_NAME
+			,CLASS_CONTENT
 			,RECOMM
 			,STUDENT_CNT
 			,PRICE
@@ -155,8 +161,8 @@
         	NO
 			,TEACHER_NO
 			,CATEGORY
-			,C_NAME as ccName
-			,C_CONTENT
+			,CLASS_NAME
+			,CLASS_CONTENT
 			,RECOMM
 			,STUDENT_CNT
 			,PRICE
@@ -175,8 +181,8 @@
         SELECT 	NO
 			,TEACHER_NO
 			,CATEGORY
-			,C_NAME as ccName
-			,C_CONTENT
+			,CLASS_NAME
+			,CLASS_CONTENT
 			,RECOMM
 			,STUDENT_CNT
 			,PRICE
@@ -195,8 +201,8 @@
         SELECT 	NO
 			,TEACHER_NO
 			,CATEGORY
-			,C_NAME as ccName
-			,C_CONTENT
+			,CLASS_NAME
+			,CLASS_CONTENT
 			,RECOMM
 			,STUDENT_CNT
 			,PRICE
@@ -216,8 +222,8 @@
     		NO
 			,TEACHER_NO
 			,CATEGORY
-			,C_NAME as ccName
-			,C_CONTENT
+			,CLASS_NAME
+			,CLASS_CONTENT
 			,RECOMM
 			,STUDENT_CNT
 			,PRICE
@@ -227,11 +233,46 @@
 			,CLASS_CNT 
         FROM CLASS
         <if test="keyword != null and keyword != ''">
-			WHERE C_NAME LIKE  '%${keyword}%'
+			WHERE CLASS_NAME LIKE  '%${keyword}%'
 		</if> 
 		
 
     </select>
+    
+    <!-- 강의 조회시 조회수 증가 -->
+	<update id="increaseCount">
+	     update 
+	     	CLASS
+         set 
+         	RECOMM = RECOMM + 1
+         where 
+           NO = #{bno}
+	</update>
+	
+	<!-- 강의 상세조회 -->
+	<select id="classDetail" resultType="com.coding5.el.lecture.vo.LectureVo">
+        SELECT
+            C.NO
+			,MEM.NICK as TEACHER_NO
+			,CATE.NAME as CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
+        FROM CLASS C
+        JOIN CLASS_CATE CATE
+        ON C.CATEGORY = CATE.NO
+        JOIN TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+        WHERE C.NO = #{bno}
+	</select>
 
 
   

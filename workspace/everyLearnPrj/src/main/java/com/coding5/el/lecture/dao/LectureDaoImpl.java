@@ -16,7 +16,7 @@ public class LectureDaoImpl implements LectureDao{
 	//강의 등록
 	@Override
 	public int insertClassOne(SqlSessionTemplate sst, LectureVo lvo) {
-		System.out.println("dao lvo :: " + lvo);
+
 		return sst.insert("lectureMapper.insertClassOne" , lvo);
 	}
 
@@ -25,14 +25,12 @@ public class LectureDaoImpl implements LectureDao{
 	@Override
 	public int insertClassDetail(SqlSessionTemplate sst, LectureVo lvo, DetailClassVo dcvo,
 			List<DetailClassVo> dcList) {
-		System.out.println("dao dcvo :: " + dcvo);
 		return sst.insert("lectureMapper.insertClassDetail", dcvo);
 	}
 
 
 	@Override
 	public List<LectureVo> getList(SqlSessionTemplate sst) {
-		System.out.println("Dao 돌아감?");
 		return sst.selectList("lectureMapper.getList");
 	}
 
@@ -82,6 +80,18 @@ public class LectureDaoImpl implements LectureDao{
 	@Override
 	public List<LectureVo> searchBoardList(SqlSessionTemplate sst, HashMap<String, String> map) {
 		return sst.selectList("lectureMapper.getSearch", map);
+	}
+
+	//강의 상세 조회
+	@Override
+	public LectureVo classDetail(SqlSessionTemplate sst, int bno) {
+		return sst.selectOne("lectureMapper.classDetail", bno);
+	}
+
+	//강의 조회수 증가
+	@Override
+	public int increaseCount(SqlSessionTemplate sst, int bno) {
+		return sst.update("lectureMapper.increaseCount", bno);
 	}
 
 

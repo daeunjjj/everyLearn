@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.coding5.el.lecture.service.LectureService;
 import com.coding5.el.lecture.vo.DetailClassVo;
@@ -31,6 +33,7 @@ public class LectureController {
 
 		List<LectureVo> list = lectureService.getList();
 		model.addAttribute("list", list);
+		//System.out.println(list);
 		return "lecture/main";
 	}
 
@@ -102,22 +105,42 @@ public class LectureController {
 		map.put("keyword", keyword);
 		
 		List<LectureVo> list = lectureService.searchBoardList(map);
+		
 		model.addAttribute("list", list);
 		return"lecture/main";
 	}
 
+	
 	// 강의 상세페이지
-	@GetMapping("detail")
-	public String detail() {
-		return "lecture/lec_detail";
+	@RequestMapping("detail")
+	public ModelAndView detail (ModelAndView mv,int bno) {
+		
+		// 클릭시 조회수 증가
+		int result = lectureService.increaseCount(bno);
+		
+		// 상세보기
+		if(result>0) {
+			LectureVo lvo = lectureService.classDetail(bno);
+			
+			mv.addObject("lvo",lvo)
+			  .setViewName("lecture/lec_detail");
+		}else {
+			mv.setViewName("common/errorPage");
+		}
+	
+		return mv;
+
 	}
+
 	
 
 	// 강의 상세페이지 - 수강평
-	@GetMapping("detail/review")
-	public String review() {
-		return "lecture/lec_review";
-	}
+	/*
+	 * @GetMapping("detail/review") public String review() { return
+	 * "lecture/lec_review"; }
+	 */
+	
+	
 
 	// 본인이 결제한 강의 목차
 	@GetMapping("mylist")
