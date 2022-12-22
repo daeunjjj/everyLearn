@@ -1,15 +1,19 @@
+const inputId = document.getElementById('id');
+const inputPwd = document.getElementById('pwd');
+const inputName = document.getElementById('name');
+const inputcompanyName = document.getElementById('companyName');
+const inputphone = document.getElementById('phone');
+
 // 이메일 정규식
 const emailId = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
-const activeBtn = () => {
-  const inputId = document.getElementById('id');
-  const inputpwd = document.getElementById('pwd');
-  const inputName = document.getElementById('name');
-  const inputcompanyName = document.getElementById('companyName');
-  const inputphone = document.getElementById('phone');
+// 휴대폰 번호 정규식
+const phone = /^(\d{0,3})\-(\d{0,4})\-(\d{0,4})$/g;
 
+// 회원 가입 버튼 활성화
+const activeBtn = () => {
   const idValue = inputId.value;
-  const pwdValue = inputpwd.value;
+  const pwdValue = inputPwd.value;
   const nameValue = inputName.value;
   const companyNameValue = inputcompanyName.value;
   const phoneValue = inputphone.value;
@@ -19,6 +23,10 @@ const activeBtn = () => {
     btn.removeAttribute('disabled');
   }
   validateId(true);
+  validatePwd(true);
+  validateName(true);
+  validateCompanyName(true);
+  validatePhone(true);
 }
 
 // 전화번호 정규식(하이픈 자동추가)
@@ -30,17 +38,64 @@ const autoHyphen = (target) => {
   activeBtn();
 }
 
+// 아이디를 입력해주세요
 const validateId = (isTyping) => {
-  const inputId = document.getElementById('id');
   const idValue = inputId.value;
   const show = document.getElementById("input-id")
 
   if (emailId.test(idValue)) {
     show.style.display = 'none';
   }else if(!isTyping) {
-    show.style.display = 'block';
+    show.style.display = 'flex';
   }
 
 }
 
+// 비밀번호를 입력해주세요
+const validatePwd = (isTyping) => {
+  const pwdValue = inputPwd.value;
+  const show = document.getElementById("input-pwd")
+
+  if(pwdValue.length >= 8){
+    show.style.display = 'none';
+  }else if(!isTyping){
+    show.style.display = 'flex';
+  }
+}
+
+// 이름을 입력해주세요
+const validateName = (isTyping) => {
+  const nameValue = inputName.value;
+  const show = document.getElementById("input-name")
+
+  if(nameValue.length){
+    show.style.display = 'none';
+  }else if(!isTyping){
+    show.style.display = 'flex';
+  }
+}
+
+// 회사명을 입력해주세요
+const validateCompanyName = (isTyping) => {
+  const companyNameValue = inputcompanyName.value;
+  const show = document.getElementById('input-companyName');
+
+  if(companyNameValue.length){
+    show.style.display = 'none';
+  }else if(!isTyping){
+    show.style.display = 'flex';
+  }
+}
+
+// 휴대폰 번호를 입력해주세요
+const validatePhone = (isTyping) => {
+  const phoneValue = inputphone.value;
+  const show = document.getElementById('input-phone');
+
+  if(phone.test(phoneValue)){
+    show.style.display = 'none';
+  }else if(!isTyping){
+    show.style.display = 'flex';
+  }
+}
 

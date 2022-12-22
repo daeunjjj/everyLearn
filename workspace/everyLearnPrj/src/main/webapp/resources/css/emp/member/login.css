@@ -143,3 +143,21 @@ img{
   color: rgb(182, 181, 181);
   font-size: 14px;
 }
+
+.x-icon{
+  display: flex;
+  align-items: center;
+}
+
+.x-icon svg{
+  margin-top: 3px;
+}
+
+.essential{
+  position: relative;
+  top: 1px;
+  margin-left: 4px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgb(229, 0, 0);
+}

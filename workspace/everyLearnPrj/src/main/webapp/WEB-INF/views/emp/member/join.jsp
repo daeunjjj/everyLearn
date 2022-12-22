@@ -4,18 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>기업 회원가입 - EveryLearn</title>
 <link rel="stylesheet" href="/el/resources/css/emp/member/join.css">
-<script src="/el/resources/js/emp/join.js"></script>
+<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 </head>
 <body>
 
 	<div class="container">
 		<header class="header">
 			<div class="header-wrapper">
-				<h1>
-					<img src="/el/resources/img/logo/logo.svg" alt="">EveryLearn
-				</h1>
+				<div class="img">
+					<img src="/el/resources/img/logo/logo.svg" alt="">
+				</div>
 			</div>
 		</header>
 		<main class="main">
@@ -28,7 +28,8 @@
 						</div>
 						<input type="text" name="id" id="id"
 							placeholder="everylearn@everylearn.com" class="input" oninput="activeBtn();" onblur="validateId();">
-						<div id="input-id" style="display: none;">
+						<div id="input-id" class="x-icon" style="display: none;">
+							<div><svg width="12" height="12" fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.686 2.686a.635.635 0 0 1 .897 0L8 7.103l4.417-4.417a.635.635 0 0 1 .897.897L8.897 8l4.417 4.417a.635.635 0 1 1-.897.897L8 8.897l-4.417 4.417a.635.635 0 1 1-.897-.897L7.103 8 2.686 3.583a.635.635 0 0 1 0-.897z" fill="#e50000"></path></svg></div>
 							<span class="essential">아이디를 입력해 주세요.</span>
             </div>
 					</div>
@@ -37,11 +38,12 @@
 							<p>비밀번호</p>
 						</div>
 						<input type="password" placeholder="•••••••••••" name="pwd"
-							id="pwd" class="input" oninput="activeBtn();">
+							id="pwd" class="input" oninput="activeBtn();" onblur="validatePwd();">
 						<!-- 눈표시 -->
-						<!-- <div class="input-id">
-                            <span>비밀번호를 입력해 주세요.</span>
-                        </div> -->
+						<div id="input-pwd" class="x-icon" style="display: none;">
+							<div><svg width="12" height="12" fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.686 2.686a.635.635 0 0 1 .897 0L8 7.103l4.417-4.417a.635.635 0 0 1 .897.897L8.897 8l4.417 4.417a.635.635 0 1 1-.897.897L8 8.897l-4.417 4.417a.635.635 0 1 1-.897-.897L7.103 8 2.686 3.583a.635.635 0 0 1 0-.897z" fill="#e50000"></path></svg></div>
+							<span class="essential">비밀번호를 입력해 주세요.</span>
+						</div>
 					</div>
 					<div class="wrapper">
 						<div class="name-top">
@@ -49,7 +51,11 @@
 								<p>이름</p>
 							</div>
 							<input type="text" name="name" id="name" placeholder="홍길동"
-								class="input" oninput="activeBtn();">
+								class="input" oninput="activeBtn();" onblur="validateName();">
+								<div id="input-name" class="x-icon" style="display: none;">
+									<div><svg width="12" height="12" fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.686 2.686a.635.635 0 0 1 .897 0L8 7.103l4.417-4.417a.635.635 0 0 1 .897.897L8.897 8l4.417 4.417a.635.635 0 1 1-.897.897L8 8.897l-4.417 4.417a.635.635 0 1 1-.897-.897L7.103 8 2.686 3.583a.635.635 0 0 1 0-.897z" fill="#e50000"></path></svg></div>
+									<span class="essential">이름을 입력해 주세요.</span>
+								</div>
 						</div>
 					</div>
 					<div class="wrapper">
@@ -57,14 +63,22 @@
 							<p>회사명</p>
 						</div>
 						<input type="text" name="companyName" id="companyName" placeholder="에브리런"
-							class="input" oninput="activeBtn();">
+							class="input" oninput="activeBtn();" onblur="validateCompanyName();">
+							<div id="input-companyName" class="x-icon" style="display: none;">
+								<div><svg width="12" height="12" fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.686 2.686a.635.635 0 0 1 .897 0L8 7.103l4.417-4.417a.635.635 0 0 1 .897.897L8.897 8l4.417 4.417a.635.635 0 1 1-.897.897L8 8.897l-4.417 4.417a.635.635 0 1 1-.897-.897L7.103 8 2.686 3.583a.635.635 0 0 1 0-.897z" fill="#e50000"></path></svg></div>
+								<span class="essential">회사명을 입력해 주세요.</span>
+							</div>
 					</div>
 					<div class="wrapper">
 						<div class="join-title">
 							<p>휴대폰 번호</p>
 						</div>
 						<input type="text" name="phone" id="phone"
-							placeholder="01012345678" maxlength="13" class="input" oninput="autoHyphen(this);">
+							placeholder="01012345678" maxlength="13" class="input" oninput="autoHyphen(this);" onblur="validatePhone();">
+							<div id="input-phone" class="x-icon" style="display: none;">
+								<div><svg width="12" height="12" fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.686 2.686a.635.635 0 0 1 .897 0L8 7.103l4.417-4.417a.635.635 0 0 1 .897.897L8.897 8l4.417 4.417a.635.635 0 1 1-.897.897L8 8.897l-4.417 4.417a.635.635 0 1 1-.897-.897L7.103 8 2.686 3.583a.635.635 0 0 1 0-.897z" fill="#e50000"></path></svg></div>
+								<span class="essential">휴대폰 번호를 입력해 주세요.</span>
+							</div>
 					</div>
 					<div>
 						<div class="choose">
@@ -95,6 +109,6 @@
 			<p class="footer-p">©EveryLearn.All rights reserved.</p>
 		</footer>
 	</div>
-
+	<script src="/el/resources/js/emp/join.js"></script>
 </body>
 </html>

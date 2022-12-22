@@ -68,11 +68,18 @@ public class EmpController {
 		return "emp/mypage/mypage";
 	}
 	
-	// 채용 메인 페이지
+	// 채용 메인 페이지(화면)
 	@GetMapping("main")
 	public String empMain() {
 		return "emp/main";
 	}
+	
+//	// 채용 메인 페이지
+//	@GetMapping("main")
+//	public String empMain() {
+//		
+//		return "emp/main";
+//	}
 	
 	// 채용 이력서
 	@GetMapping("resume")
