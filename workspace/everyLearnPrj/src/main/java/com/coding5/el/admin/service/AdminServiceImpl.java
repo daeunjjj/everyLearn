@@ -111,6 +111,15 @@ public class AdminServiceImpl implements AdminService{
 		
 		return adminDao.selectAdminList(sst,pv);
 	}
+	
+	/**
+	 * 관리자 상세조회
+	 */
+	@Override
+	public AdminVo adminDetail(String no) {
+		
+		return adminDao.selectOneAdminByNo(sst,no);
+	}
 
 
 }

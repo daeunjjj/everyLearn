@@ -81,11 +81,13 @@
 		</if>
 		WHERE NO = #{no}
 	</update>
+	
 	<select id="selectAdminConut" resultType="int">
 		SELECT COUNT(*)
 		FROM ADMIN
 		WHERE QUIT_YN = 'N'
 	</select>
+	
 	<select id="selectAdminList" resultType="AdminVo">
 		SELECT 
 		    A.NO
@@ -104,5 +106,22 @@
 		    ON A.PERMISSION = PER.NO
 		JOIN ADMIN_POSITION PO 
 		    ON A.POSITION = PO.NO
+	</select>
+	
+	<select id="selectOneAdminByNo" resultType="AdminVo">
+		SELECT 
+		    NO
+		    ,PERMISSION
+		    ,POSITION
+		    ,ID
+		    ,NICK
+		    ,NAME
+		    ,PHONE
+		    ,ENROLL_DATE
+		    ,MODIFY_DATE
+		    ,QUIT_YN
+		    ,PROFILE_NAME
+		FROM ADMIN
+	    WHERE NO = #{no}
 	</select>
 </mapper>

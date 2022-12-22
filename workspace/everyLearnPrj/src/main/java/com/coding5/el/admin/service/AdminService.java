@@ -27,4 +27,7 @@ public interface AdminService {
 	// 관리자 리스트 조회
 	public List<AdminVo> selectAdminList(PageVo pv);
 	
+	// 관리자 상세 조회
+	public AdminVo adminDetail(String no);
+	
 }

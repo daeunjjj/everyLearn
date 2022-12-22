@@ -23,6 +23,9 @@ public interface AdminDao {
 	// 관리자 리스트 가져오기
 	public List<AdminVo> selectAdminList(SqlSessionTemplate sst, PageVo pv);
 	
+	// 관리자 하나 넘버로 가져오기
+	public AdminVo selectOneAdminByNo(SqlSessionTemplate sst, String no);
+	
 
 	
 }

@@ -13,7 +13,7 @@
     z-index: 1;
     top: 0;
     left: 0;
-    width: 280px;
+    width: 300px;
     height: 100%;
     background-color: #1187CF;
     padding: 20px 0 250px 0;
@@ -53,7 +53,7 @@
 
 
 .nav-items span{
-    font-size: 17px;
+    font-size: 20px;
 }
 
 
@@ -76,7 +76,7 @@ main>#line{
 .main-wrap{
     margin-top: 28px;
     height: 100%;
-    width: 920px;
+    width: 1050px;
 }
 
 .detail-wrap{
@@ -86,7 +86,7 @@ main>#line{
 
 .detail-cate{
     margin: 10px 0 0 6px;
-    font-size: 15px;
+    font-size: 17px;
     letter-spacing: 1px;
 }
 
@@ -103,5 +103,13 @@ main>#line{
 
 #nav-items-in{
     background-color: #005297;
+}
+
+.info-box>a{
+    font-size: 20px;
+}
+
+.menu-bottom>a{
+    font-size: 18px;
 }
 

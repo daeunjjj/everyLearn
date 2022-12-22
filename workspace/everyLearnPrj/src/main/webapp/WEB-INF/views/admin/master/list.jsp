@@ -72,13 +72,12 @@
 		                                <div>${list.permission}</div>
 		                                <div>${list.phone}</div>
 		                                <div>
-		                                    <button>상세</button>
-		                                    <button>탈퇴</button>
+		                                    <button class="detailBtn" type="button" onclick="location.href='/el/admin/master/detail?no=${list.no}'">상세</button>
 		                                </div>
 		                            </div>
                         		</li>
-                    		</c:forEach>
-                        
+                        </c:forEach>
+
                     </ul>
                     <div class="mail-btn-area">
                         <button id="mail-btn"><i class="bi bi-envelope"></i></button>
@@ -100,11 +99,12 @@
                     </c:if>
 					
 					<c:forEach var="num" begin="${pv.startPage }" end="${pv.endPage }">
+
                         <li>
-                            <a class="click" href="/el/admin/master/list?pno=${num}">${num}</a>
+                            <a class="numBtn" href="/el/admin/master/list?pno=${num}">${num}</a>
                         </li>
 					</c:forEach>
-                    
+
                     <li>
                         <a id="after" href="/el/admin/master/list?pno=${pv.currentPage+1}">다음</a>
                     </li>
