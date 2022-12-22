@@ -2,10 +2,31 @@ package com.coding5.el.class_comm.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.coding5.el.class_comm.service.ClassCommService;
+import com.coding5.el.class_comm.vo.ClassCommVo;
 
 @Controller
 public class ClassCommController {
+	
+	private ClassCommService ccs;
 
+	//게시글 등록(화면)
+	@GetMapping("class/write")
+	public String write() {
+		return "class_comm/comm_write";
+	}
+	
+	//게시글 등록
+	@PostMapping("class/write")
+	public String write(ClassCommVo vo) {
+		
+		int result = ccs.write(vo);
+		
+		return "class_comm/comm_write";
+	}
+	
 	//질문과 답변
 	@GetMapping("class/qna")
 	public String qna() {
@@ -24,11 +45,6 @@ public class ClassCommController {
 		return "class_comm/free";
 	}
 	
-	//게시글 등록(화면)
-	@GetMapping("class/write")
-	public String write() {
-		return "class_comm/comm_write";
-	}
 	
 	//신고(화면)
 	@GetMapping("class/report")
