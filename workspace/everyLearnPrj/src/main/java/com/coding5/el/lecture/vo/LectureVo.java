@@ -9,8 +9,8 @@ public class LectureVo {
 	private String no;
 	private String teacherNo;
 	private String category;
-	private String ccName;
-	private String cContent;
+	private String className;
+	private String classContent;
 	private String recomm;
 	private String studentCnt;
 	private String price;

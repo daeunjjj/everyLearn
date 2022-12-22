@@ -46,8 +46,8 @@
 	            
 	            <c:forEach items="${list}" var="list">
 		            <div id="lec-list">
-		                <div id="lec-pic"><a href="#">사진</a></div>
-		                <div id="lec-int"><a href="#">${list.ccName}</a></div>
+		                <div id="lec-pic"><a href="/el/lecture/detail?bno=${list.no }">사진</a></div>
+		                <div id="lec-int"><a href="/el/lecture/detail?bno=${list.no }">${list.className}</a></div>
 		                <div id="lec-teacher"><i class="fa-regular fa-user">${list.teacherNo}</i></div>
 		            </div>
 		        </c:forEach>

@@ -92,4 +92,17 @@ public class LectureServiceImpl implements LectureService {
 		return lectureDao.searchBoardList(sst , map);
 	}
 
+	//강의 조회수 증가
+	@Override
+	public int increaseCount(int bno) {
+		return lectureDao.increaseCount(sst, bno);
+	}
+
+	//강의 상세 조회
+	@Override
+	public LectureVo classDetail(int bno) {
+		LectureVo lvo = lectureDao.classDetail(sst, bno);
+		return lvo;
+	}
+
 }
