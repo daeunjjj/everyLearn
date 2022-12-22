@@ -20,10 +20,13 @@ body{
   border-bottom: 1px solid rgb(221, 218, 218);
 }
 
-.header-wrapper>h1>img{
-  width: 70px;
-  vertical-align: middle;
-  padding-right: 5px;
+.img{
+  width: 150px;
+  margin: 0 auto;
+}
+
+.img>img{
+  width: 100%;
 }
 
 .main{
@@ -133,5 +136,23 @@ body{
   border-top: 1px solid rgb(221, 218, 218);
   color: rgb(182, 181, 181);
   font-size: 14px;
+}
+
+.x-icon{
+  display: flex;
+  align-items: center;
+}
+
+.x-icon svg{
+  margin-top: 5px;
+}
+
+.essential{
+  position: relative;
+  top: 1px;
+  margin-left: 4px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgb(229, 0, 0);
 }
 
