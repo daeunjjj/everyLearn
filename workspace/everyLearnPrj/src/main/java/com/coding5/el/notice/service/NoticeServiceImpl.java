@@ -7,30 +7,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.coding5.el.notice.dao.NoticeDaoImpl;
+import com.coding5.el.common.page.PageVo;
+import com.coding5.el.notice.dao.NoticeDao;
 import com.coding5.el.notice.vo.NoticeVo;
 
 @Service
 public class NoticeServiceImpl implements NoticeService {
 	
-	@Autowired private NoticeDaoImpl dao;
+	@Autowired private NoticeDao noticeDao;
 	@Autowired private SqlSessionTemplate sst;
 	
 	//공지사항 작성
-	@Transactional
 	@Override
 	public int write(NoticeVo vo) {
-		
-		int result1 = dao.write(sst, vo);
-		int result2 = dao.updateCnt(sst);
-		
-		return dao.write(sst, vo);
+		return noticeDao.write(sst, vo);
 	}
 
 	//공지사항 목록
 	@Override
-	public List<NoticeVo> selectList() {
-		return dao.selectList(sst);
+	public List<NoticeVo> selectList(PageVo pv) {
+		return noticeDao.selectList(sst, pv);
+	}
+	
+	//공지사항 페이지 카운트
+	@Override
+	public int selectListCount() {
+		return noticeDao.selectListCount(sst);
+	}
+
+	//공지사항 디테일
+	@Override
+	public NoticeVo detail(int noticeNo) {
+		return noticeDao.detail(sst, noticeNo);
 	}
 
 
