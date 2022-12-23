@@ -28,6 +28,12 @@
         <div class="container">
             <div class="list">
             
+            	<div class="td" id="no">번호</div>
+                <div class="td" id="title">제목</div>
+                <div class="td" id="nick"></div>
+                <div class="td" id="date">작성일시</div>
+                <div class="td" id="hit">조회수</div>
+            
             <!-- 반복 -->
             <c:forEach var="n" items="${ voList }">
                 <div class="td" id="no">${ n.no }</div>
