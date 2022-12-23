@@ -4,43 +4,65 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="noticeMapper">
 
-	<!-- 글쓰기 -->
-	<insert id="write" parameterType="noticeVo">
-		INSERT INTO NOTICE 
-		( 
-			NO
-			, ADMIN
-			, TITLE
-		    , CONTENT 
-			, ENROLL_DATE
-		) 
-		VALUES 
-		(  
-			SEQ_NOTICE_NO.NEXTVAL
-			, 1
-			, #{title}
-			, #{content}
-			, SYSDATE
+	<!-- 공지 글쓰기 -->
+	<insert id="insertNotice" parameterType="noticeVo">
+		INSERT INTO NOTICE
+		(
+			 NO 
+		    ,TITLE
+		    ,CONTENT 
+		    ,WRITER 
 		)
+		VALUES
+		(
+			 NOTICE_SEQ.NEXTVAL
+			,#{title}
+			,#{content}
+			,#{writer}
+		)	
 	</insert>
-
-	<!-- 목록 조회 -->	
-	<select id="selectList" resultType="NoticeVo">
-  	
-  		SELECT NO, TITLE, ADMIN, ENROLL_DATE, HIT
-  		FROM NOTICE 
-  		WHERE STATUS = 'O' 
-  		ORDER BY NO DESC
-  	
-  	</select>
-  	
-  	<!-- 페이지 카운트 -->
-  	<select id="selectListCount" resultType="int">
-		SELECT COUNT(*)
-		FROM NOTICE
-	</select>
 	
+	<!-- 페이징 -->
+	<select id="getNoticeList" resultType="noticeVo">
+ 		SELECT * FROM
+ 		(
+	 		SELECT ROWNUM RN, T.*
+	 		FROM
+	 		(
+		 		SELECT *
+	 			FROM NOTICE N
+	 			JOIN ADMIN A ON (N.ADMIN = A.NO)
+	 			WHERE N.DELETE_YN = 'N'
+	 			ORDER BY N.NO
+	 		) T
+ 		)
+ 		WHERE RN BETWEEN #{startRow} AND #{endRow}
+ 	</select>
+ 	
+ 	<!-- 공지 삭제 -->
+ 	<update id="deleteNotice" >
+ 		UPDATE NOTICE
+ 		SET
+ 		DELETE_YN = 'Y'
+ 		WHERE NO IN 
+ 		<foreach collection="array" item="n" open="(" close=")" separator=",">
+ 		#{n}
+ 		</foreach>
+ 	</update>
+ 	
+ 	<!-- 공지 총 몇 개 있는지 -->
+ 	<select id="getNoticeCnt" resultType="int">
+ 		SELECT COUNT(NO)
+ 		FROM NOTICE
+ 		WHERE DELETE_YN = 'N'
+ 	</select>
 	
-
+	<update id="editNotice">
+		UPDATE NOTICE 
+        SET TITLE = #{title}, 
+        CONTENT = #{content}, 
+        MODIFY_DATE = SYSDATE 
+        WHERE NO = #{no};
+	</update>
   
 </mapper>
