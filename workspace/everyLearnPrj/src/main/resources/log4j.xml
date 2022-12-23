@@ -9,32 +9,33 @@
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
 	</appender>
+	<!-- 
+		ConversionPattern
+		%p : priority
+		%c : 클래스 // category
+		%m : 메세지
+		%n : 개행문자(줄바꿈)
+		%d : date
+	 -->
+	<!-- FileAppender  -->
+	<appender name="faxml" class="org.apache.log4j.FileAppender"> 
+		<param name="file" value="C:/dev/logs/falog.xml"/>
+		<param name="append" value="true"/>
+		<layout class="org.apache.log4j.xml.XMLLayout"/>
+	</appender>
 	
-	<!-- Application Loggers -->
-	<logger name="com.coding5.el">
-		<level value="info" />
-	</logger>
-	
-	<!-- 3rdparty Loggers -->
-	<logger name="org.springframework.core">
-		<level value="info" />
-	</logger>
-	
-	<logger name="org.springframework.beans">
-		<level value="info" />
-	</logger>
-	
-	<logger name="org.springframework.context">
-		<level value="info" />
-	</logger>
-
-	<logger name="org.springframework.web">
-		<level value="info" />
-	</logger>
+	<!-- FileAppender(txt) -->
+	<appender name="fatxt" class="org.apache.log4j.FileAppender"> 
+		<param name="file" value="C:/dev/logs/falog.txt"/>
+		<param name="append" value="true"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: [%d{yyyy-MM-dd HH:mm:ss}]%m%n" />
+		</layout>
+	</appender>
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
 	

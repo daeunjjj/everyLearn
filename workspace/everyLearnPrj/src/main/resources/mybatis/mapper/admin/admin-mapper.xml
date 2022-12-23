@@ -58,7 +58,7 @@
 		)
 	</insert>
 	
-	<update id="updateAdminByNo">
+	<update id="updateAdmin">
 		UPDATE ADMIN
 		    SET
 	    <if test="nick != null and nick != ''">
@@ -85,7 +85,9 @@
 	<select id="selectAdminConut" resultType="int">
 		SELECT COUNT(*)
 		FROM ADMIN
-		WHERE QUIT_YN = 'N'
+		<if test="keyword != null and keyword != ''">
+			WHERE ${category} LIKE '%${keyword}%'
+		</if>
 	</select>
 	
 	<select id="selectAdminList" resultType="AdminVo">
@@ -100,12 +102,16 @@
 		    ,A.PHONE
 		    ,A.ENROLL_DATE
 		    ,A.MODIFY_DATE
-		    ,A.QUIT_YN
+		    ,DECODE(QUIT_YN, 'N','유지', 'Y','탈퇴') AS QUIT_YN
 		FROM ADMIN A
 		JOIN ADMIN_PERMISSION PER 
 		    ON A.PERMISSION = PER.NO
 		JOIN ADMIN_POSITION PO 
 		    ON A.POSITION = PO.NO
+    	<if test="keyword != null and keyword != ''">
+	    	WHERE A.${category} LIKE '%${keyword}%'
+    	</if>
+	    ORDER BY A.ENROLL_DATE DESC
 	</select>
 	
 	<select id="selectOneAdminByNo" resultType="AdminVo">
@@ -122,6 +128,29 @@
 		    ,QUIT_YN
 		    ,PROFILE_NAME
 		FROM ADMIN
-	    WHERE NO = #{no}
+   		WHERE NO = #{no}
+	</select>
+	
+	<select id="selectOneAdminById" resultType="AdminVo">
+		SELECT 
+		    A.NO
+		    ,PER.NAME AS PERMISSION
+		    ,PO.NAME AS POSITION
+		    ,A.ID
+		    ,A.PWD
+		    ,A.NICK
+		    ,A.NAME
+		    ,A.PHONE
+		    ,A.ENROLL_DATE
+		    ,A.MODIFY_DATE
+		    ,A.QUIT_YN
+		    ,A.PROFILE_NAME
+		FROM ADMIN A
+		JOIN ADMIN_PERMISSION PER 
+		    ON A.PERMISSION = PER.NO
+		JOIN ADMIN_POSITION PO 
+		    ON A.POSITION = PO.NO
+   		WHERE A.ID = #{id}
+   		AND A.QUIT_YN = 'N'
 	</select>
 </mapper>

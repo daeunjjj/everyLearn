@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.coding5.el.admin.dao.AdminDao;
 import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.page.PageVo;
+import com.coding5.el.common.vo.SearchVo;
 @Service
 public class AdminServiceImpl implements AdminService{
 	
@@ -28,7 +29,7 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public AdminVo login(AdminVo vo) {
 		
-		AdminVo dbAdmin = adminDao.selectOneAdminByVo(sst, vo);
+		AdminVo dbAdmin = adminDao.selectOneAdminById(sst, vo.getId());
 		
 		if(dbAdmin == null) return null;
 
@@ -37,6 +38,10 @@ public class AdminServiceImpl implements AdminService{
 		String encodedPassword = dbAdmin.getPwd();
 		
 		if(!pwdEnc.matches(rawPassword, encodedPassword)) return null;
+		
+		// 암호화 전 비번 넣어주기
+		dbAdmin.setRawPwd(rawPassword);
+
 		
 		return dbAdmin;
 		
@@ -83,14 +88,13 @@ public class AdminServiceImpl implements AdminService{
 		} 	
 	
 		// 정보 수정
-		int result = adminDao.updateAdminByNo(sst, vo);
+		int result = adminDao.updateAdmin(sst, vo);
 		
-		AdminVo updateAdmin = null;
-		if(result == 1) {
-			updateAdmin = adminDao.selectOneAdminByVo(sst, vo);
+		if(result != 1) {
+			return null;	
 		}
 		
-		return updateAdmin;
+		return adminDao.selectOneAdminByVo(sst, vo);
 	}
 
 	
@@ -98,18 +102,18 @@ public class AdminServiceImpl implements AdminService{
 	 * 관리자 총수
 	 */
 	@Override
-	public int selectAdminCount() {	
+	public int selectAdminCount(SearchVo svo) {	
 		
-		return adminDao.selectAdminCount(sst);
+		return adminDao.selectAdminCount(sst,svo);
 	}
 	
 	/**
 	 * 관리자 리스트 가져오기
 	 */
 	@Override
-	public List<AdminVo> selectAdminList(PageVo pv) {
+	public List<AdminVo> selectAdminList(PageVo pv, SearchVo svo) {
 		
-		return adminDao.selectAdminList(sst,pv);
+		return adminDao.selectAdminList(sst,pv, svo);
 	}
 	
 	/**
@@ -119,6 +123,16 @@ public class AdminServiceImpl implements AdminService{
 	public AdminVo adminDetail(String no) {
 		
 		return adminDao.selectOneAdminByNo(sst,no);
+	}
+	
+	/**
+	 *	마스터 관리자 정보수정 
+	 */
+	@Override
+	public int adminModify(AdminVo vo) {
+			
+		
+		return adminDao.updateAdmin(sst, vo);
 	}
 
 
