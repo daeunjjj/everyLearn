@@ -20,7 +20,7 @@
 			<section class="right">
 				<div class="right-wrapper">
 					<h1 class="title">로그인</h1>
-					<form action="/el/emp/login" method="post" class="login-form">
+					<form action="/el/corp/login" method="POST" class="login-form">
 						<div class="id-wrapper">
 							<div class="login-title">
 								<p>아이디(이메일)</p>
@@ -49,7 +49,7 @@
 					<div class="choose">
 						<a href="">비밀번호 재설정</a>
 						<div class="div"></div>
-						<a href="/el/emp/join">회원가입</a>
+						<a href="/el/corp/join">회원가입</a>
 					</div>
 				</div>
 			</section>

@@ -18,7 +18,7 @@
 			<div class="title">
 				<h5>정확하게 입력했는지 다시 한번 확인해주세요!</h5>
 			</div>
-			<form action="">
+			<form action="/el/emp/resume" method="POST">
 				<div class="main">
 					<div class="main-wrapper">
 						<section class="section">

@@ -18,17 +18,17 @@
 					<li><a href="#">채용</a></li>
 				</ul>
 				<ul class="teacher">
-					<li><a href="#">기업회원가입</a></li>
+					<li><a href="/el/corp/login">기업서비스</a></li>
 				</ul>
 			</div>
 		</div>
 		<nav id="navbar">
 			<div class="logoTop">
-				<a href=""><img src="/el/resources/img/logo/logo.svg" alt="로고"></a>
+				<a href="/el/emp/main"><img src="/el/resources/img/logo/logo.svg" alt="로고"></a>
 			</div>
 			<div id="nav-container">
 				<div class="nav-list">
-					<a href="">채용공고</a> <a href="">이력서</a> <a href="">커뮤니티</a>
+					<a href="">채용공고</a><a href="/el/emp/resume">이력서</a><a href="">커뮤니티</a>
 				</div>
 				<div class="search-wrapper">
 					<div class="search">
@@ -37,7 +37,7 @@
 					</div>
 				</div>
 				<div class="member">
-					<a href="#" class="login">로그인</a> <a href="#" class="join">회원가입</a>
+					<a href="" class="login">로그인</a><a href="" class="join">회원가입</a>
 				</div>
 			</div>
 		</nav>

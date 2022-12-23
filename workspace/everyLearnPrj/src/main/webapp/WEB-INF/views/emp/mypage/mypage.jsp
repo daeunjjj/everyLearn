@@ -91,9 +91,16 @@
                                     </div>
                                 </div>
                             </section>
+                            <section class="admin-submit">
+                                <div>
+                                    <button>승인 요청</button>
+                                </div>
+                            </section>
                         </form>
                     </main>
-                    
+                    <footer>
+                        <p class="footer">©EveryLearn.All rights reserved.</p>
+                    </footer>
             </div>
             
         </div>
