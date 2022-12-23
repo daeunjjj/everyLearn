@@ -21,7 +21,7 @@
 		<main class="main">
 			<div class="content">
 				<h2 class="title">기업 회원가입</h2>
-				<form action="/el/emp/join" method="post" class="login-form">
+				<form action="/el/corp/join" method="POST" class="login-form">
 					<div class="wrapper">
 						<div class="join-title">
 							<p>아이디(이메일)</p>
@@ -101,7 +101,7 @@
 					<button type="submit" class="btn" id="joinBtn" disabled>회원가입</button>
 				</form>
 				<div class="login">
-					<span>이미 계정이 있으신가요?</span> <a href="">로그인</a>
+					<span>이미 계정이 있으신가요?</span> <a href="/el/corp/login">로그인</a>
 				</div>
 			</div>
 		</main>

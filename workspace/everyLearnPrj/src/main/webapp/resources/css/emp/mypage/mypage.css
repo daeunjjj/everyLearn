@@ -15,6 +15,7 @@
   padding: 0 32px;
   width: 100%;
   max-width: 1148px;
+  margin: 0 auto;
 }
 
 .section-title{
@@ -94,4 +95,26 @@ input{
   position: absolute;
   right: 10px;
   line-height: 1.9rem;
+}
+
+.footer{
+  height: 30px;
+  text-align: center;
+  color: rgb(182, 181, 181);
+  font-size: 14px;
+}
+
+.admin-submit{
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 32px;
+  width: calc(100% - 250px);
+  height: 4.867rem;
+  background-color: rgb(255, 255, 255);
+  border-top: 1px solid rgb(234, 236, 238);
+  z-index: 10;
 }

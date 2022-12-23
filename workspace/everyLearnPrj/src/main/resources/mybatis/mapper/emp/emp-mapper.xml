@@ -4,44 +4,6 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="empMapper">
   
-  <insert id="insertEmpMember">
-  	INSERT INTO CORPORATE_MEMBER
-	(
-	    NO
-		, ID
-		, PWD
-		, COMPANY_NAME
-		, NAME
-		, PHONE
-		, ENROLL_DATE
-	)
-	VALUES
-	(	
-		SEQ_CORPORATE_MEMBER_NO.NEXTVAL
-		 , #{id}
-		 , #{pwd}
-		 , #{companyName}
-		 , #{name}
-		 , #{phone}
-		 , SYSDATE
-	)
-  </insert>
-  <select id="selectOneEmpMember" resultType="EmpVo">
-  	SELECT 
-  		NO
-		, ID
-		, PWD
-		, COMPANY_NAME
-		, COMPANY_ADDRESS
-		, NAME
-		, PHONE
-		, ENROLL_DATE
-		, MODIFY_DATE
-		, COMPANY_NUM
-		, QUIT_YN
-		, CHECK_YN
-	FROM CORPORATE_MEMBER
-	WHERE ID = #{id}
-  </select>
+  
   
 </mapper>
