@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
+
 <%
 	String alertMsg = (String)session.getAttribute("resultMsg"); 
 	session.removeAttribute("resultMsg");	
@@ -33,13 +33,13 @@
         <div class="menu-middle">
             <ul>
                 <li class="nav-items" id="dashboard">
-                    <a href="/el/admin/dashboard">
+                    <a class="nav-items-a" href="/el/admin/dashboard">
                         <span>대시보드</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
                 </li>
                 <li class="nav-items" id="member">
-                    <a href="/el/admin/member/student/list">
+                    <a class="nav-items-a" href="/el/admin/member/student/list">
                         <span>회원관리</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
@@ -66,7 +66,7 @@
                     </a>
                 </li> -->
                 <li class="nav-items" id="customer">
-                    <a href="">
+                    <a class="nav-items-a" href="">
                         <span>고객센터</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
@@ -74,7 +74,7 @@
                         <div class="detail-wrap">
                             <ul>
                                 <li class="detail-cate" id="notice">
-                                    <a href="">공지사항</a>
+                                    <a href="/el/admin/notice/list">공지사항</a>
                                 </li>
                                 <li class="detail-cate" id="faq">
                                     <a href="">자주묻는질문</a>
@@ -88,19 +88,19 @@
                     </div>
                 </li>
                 <li class="nav-items" id="report">
-                    <a href="/el/admin/report/list">
+                    <a class="nav-items-a" href="/el/admin/report/list">
                         <span>신고관리</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
                 </li>
                 <li class="nav-items">
-                    <a href="">
+                    <a class="nav-items-a" href="">
                         <span>통계</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
                 </li>
                 <li class="nav-items" id="request">
-                    <a href="/el/admin/request/list">
+                    <a class="nav-items-a" href="/el/admin/request/list">
                         <span>요청관리</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
@@ -118,7 +118,7 @@
                     </div>
                 </li>
                 <li class="nav-items" id="admin">
-                    <a href="/el/admin/master/list?pno=1">
+                    <a class="nav-items-a" href="/el/admin/master/list?pno=1">
                         <span>관리자관리</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
@@ -136,7 +136,7 @@
                     </div>
                 </li>
                 <li class="nav-items" id="mail">
-                    <a href="/el/admin/mail/all-send">
+                    <a class="nav-items-a" href="/el/admin/mail/all-send">
                         <span>메일</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>

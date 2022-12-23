@@ -18,13 +18,26 @@ public class AdminVo {
 	private String enrollDate;
 	private String modifyDate;
 	private String quitYn;
-	
 	private String profileName;
 	private MultipartFile profile;
+	
+	private String rawPwd;
 	
 	// 암호화
 	public void encode(BCryptPasswordEncoder pwdEnc) {
 		this.pwd = pwdEnc.encode(this.pwd);
 	}
+	
+	// 탈퇴 -> 한글로
+	public void quit(String quitYn) {
+		
+		if("N".equals(quitYn)) {
+			this.quitYn = "유지";
+		} else {
+			this.quitYn = "탈퇴";
+		}
+		
 
+	}
+	
 }

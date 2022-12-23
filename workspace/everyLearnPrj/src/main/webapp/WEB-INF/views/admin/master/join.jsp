@@ -7,6 +7,7 @@
 <title>에브리런 - 강사회원</title>
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
 <link rel="stylesheet" href="/el/resources/css/admin/master/join.css">
+<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 
 <script type="text/javascript" defer src="/el/resources/js/admin/join.js"></script>
 
@@ -81,6 +82,7 @@
                             </div>
                         </div>
                         <div class="btn-area">
+                            
                             <button>등록</button>
                         </div>
                     </div>

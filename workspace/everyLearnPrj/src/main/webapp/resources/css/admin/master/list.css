@@ -84,7 +84,11 @@ label{
 
 /*페이징부분*/
 .page-area{
-    margin-top: 50px;
+    position: absolute;
+    top: 100%;
+    left: 60%;
+    transform: translate(-50%, 0);
+    height: 10px;
 }
 
 .page-area>ul{
@@ -139,7 +143,7 @@ label{
 }
 
 .list-title>div:nth-child(1), .list-items>div:nth-child(1){
-    flex-basis: 80px;
+    flex-basis: 70px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -148,7 +152,7 @@ label{
 }
 
 .list-title>div:nth-child(2), .list-items>div:nth-child(2){
-    flex-basis: 80px;
+    flex-basis: 70px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -164,7 +168,7 @@ label{
 }
 
 .list-title>div:nth-child(4), .list-items>div:nth-child(4){
-    flex-basis: 200px;
+    flex-basis: 180px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -172,7 +176,7 @@ label{
 }
 
 .list-title>div:nth-child(5), .list-items>div:nth-child(5){
-    flex-basis: 120px;
+    flex-basis: 110px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -180,7 +184,7 @@ label{
 }
 
 .list-title>div:nth-child(6), .list-items>div:nth-child(6){
-    flex-basis: 120px;
+    flex-basis: 110px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -188,14 +192,20 @@ label{
 }
 
 .list-title>div:nth-child(7), .list-items>div:nth-child(7){
-    flex-basis: 200px;
+    flex-basis: 180px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
     color: rgb(51, 51, 51);
 }
-
 .list-title>div:nth-child(8), .list-items>div:nth-child(8){
+    flex-basis: 80px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+}
+.list-title>div:nth-child(9), .list-items>div:nth-child(9){
     flex-basis: 100px;
     text-align: center;
     line-height: 20px;

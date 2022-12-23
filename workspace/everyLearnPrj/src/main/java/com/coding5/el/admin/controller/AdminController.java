@@ -19,8 +19,12 @@ import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.file.FileUploader;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.page.Pagination;
+import com.coding5.el.common.vo.SearchVo;
+
+import lombok.extern.slf4j.Slf4j;
 @RequestMapping("admin")
 @Controller
+@Slf4j
 public class AdminController {
 	
 	@Autowired
@@ -167,21 +171,24 @@ public class AdminController {
 	 */
 
 	@GetMapping("master/list")
-	public String adminList(String pno, Model model) {
+	public String adminList(String pno, Model model, SearchVo svo) {
 		// 카운트
-		int listCount = adminService.selectAdminCount();
+		int listCount = adminService.selectAdminCount(svo);
 		int currentPage = Integer.parseInt(pno);
 		int pageLimit = 5;
 		int boardLimit = 10;
 		
+		log.info("화면에서 받아오는 데이터 :::" + svo);
+		
 		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		
-		List<AdminVo> voList = adminService.selectAdminList(pv);
+		List<AdminVo> voList = adminService.selectAdminList(pv,svo);
 		
 		if(voList == null) {
 			return "common/error";
 		}
 		
+		model.addAttribute("svo", svo);
 		model.addAttribute("pv", pv);
 		model.addAttribute("voList", voList);
 
@@ -202,7 +209,25 @@ public class AdminController {
 		model.addAttribute("vo", vo);
 		return "admin/master/detail";
 	}
-	
+	/**
+	 * 마스터 관리자 정보수정
+	 * @param vo
+	 * @param session
+	 * @return
+	 */
+	@PostMapping("master/modify")
+	public String adminModify(AdminVo vo, HttpSession session) {
+
+		int result = adminService.adminModify(vo);
+		
+		if(result != 1) {
+			return "common/error";
+		}
+		
+		session.setAttribute("resultMsg", "수정 완료!");
+		
+		return "redirect:/admin/master/detail?no="+vo.getNo();
+	}
 	// 대시보드
 	@GetMapping("dashboard")
 	public String dashboard() {

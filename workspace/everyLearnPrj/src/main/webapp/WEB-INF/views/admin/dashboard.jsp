@@ -7,6 +7,7 @@
 <title>에브리런</title>
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
 <link rel="stylesheet" href="/el/resources/css/admin/dashboard.css">
+<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 </head>
 <body>
 	<div class="wrap">

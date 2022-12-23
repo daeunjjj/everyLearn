@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>에브리런 - 강사회원</title>
+<title>에브리런 - 관리자</title>
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
 <link rel="stylesheet" href="/el/resources/css/admin/master/detail.css">
-
+<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 </head>
 <body>
 	<div class="wrap">
@@ -16,9 +16,10 @@
             <h1>관리자정보</h1>
             <div id="line"></div>
             <div class="main-wrap">
-                <form action="">
+                <form action="/el/admin/master/modify" method="post" onsubmit="return pwdCheck();">
                     <div class="info-wrap">
                         <div class="info-items">
+                        <input hidden name="no" value="${vo.no}">
                             <div class="title-wrap" id="profile-wrap">
                                 <label for="profile">프로필</label>
                             </div>
@@ -40,6 +41,9 @@
                             </div>
                             <div class="input-wrap">
                                 <input type="text" name="id" value="${vo.id }" readonly>
+                            </div>
+                            <div class="mail-btn">
+                                <button>메일</button>
                             </div>
                         </div>
 
@@ -92,7 +96,9 @@
                         </div>
                     </div>
                     <div class="btn-area">
-                        <button>수정</button>
+                        
+                        <input id="pwd-check" type="password" placeholder="${loginAdmin.nick}님의 비밀번호를 입력해주세요.">
+                        <button id="modify" type="submit">수정</button>
                     </div>
                 </form>
             </div>
@@ -119,6 +125,17 @@
         	if(check == permission){
         		permissionArr[i].selected = true;
         	}
+        }
+
+        function pwdCheck() {
+            const loginPwd = '${loginAdmin.rawPwd}';
+            const inputPwd = $('#pwd-check').val();
+            console.log(loginPwd);
+            console.log(inputPwd);
+            if(loginPwd != inputPwd) {
+                return false;
+            }    
+            return true;
         }
     </script>
 </body>
