@@ -1,7 +1,11 @@
 package com.coding5.el.lecture.vo;
 
-import lombok.Data;
+import java.util.List;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 @Data
 public class LectureVo {
 
@@ -18,4 +22,13 @@ public class LectureVo {
 	private String modifyDate;
 	private String deleteYn;
 	private String classCnt;
+	private String revAvg;
+	private String reviewCnt;
+	
+	
+	//세부강의
+	private String detailno;
+	private String classNo;
+	private String chapter;
+	private List<LectureVo> dcList;
 }

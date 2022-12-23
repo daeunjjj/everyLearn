@@ -17,17 +17,17 @@
 		<div class= "lec-intro">
 			<div id="lec-pic"><img src="/el/resources/img/lecture/lecpic2.png"></div>
 			<div id="lec-int">
-				<div id="lec-cate">드로잉</div>
-				<div id="lec-name">아이패드로 일상 그리기, 프로크리에이트를 이용한 드로잉 클래스</div>
+				<div id="lec-cate">${lvo.category }</div>
+				<div id="lec-name">${lvo.className }</div>
 				<div id="lec-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(4.9 / 5.0)</div>
-				<div id="lec-recom">이 강의를 775명이 추천합니다!</div>
-				<div id="lec-teacher"><i class="fa-regular fa-user"></i>강사이름</div>
+				<div id="lec-recom">이 강의를 ${lvo.recomm }명이 조회했습니다!</div>
+				<div id="lec-teacher"><i class="fa-regular fa-user"></i>${lvo.teacherNo }</div>
 				</div>
 		</div>
 	
 		 <div class= "navi">
-            <div><a href="/el/lecture/detail">강의소개</a></div>
-            <div><a href="/el/lecture/detail/review">수강평</a></div>
+            <div><a href="/el/lecture/detail?bno=${bno }">강의소개</a></div>
+            <div><a href="/el/lecture/detail/review?bno=${bno }&pno=1">수강평</a></div>
         </div>
         <div class = "lec-main">
             <div id="lec-content">
@@ -48,55 +48,74 @@
 							<input type="radio" name="score" value="1.0" id="rate5"><label for="rate5">★</label>
 						</fieldset>
 							<input type="text" id="write-input" name="review" placeholder="수강평을 남겨주세요">
+							<input type="hidden" name="bno" value="${bno }">
+							<input type="hidden" name="mno" >
 							<br>
 							<input type="submit" id="write-submit" value="작성" style="float: right;">
 					</form>
 				</div>
 				
 			
-				<div id="written-review">
-					<div id="profile-pic"><img src="/el/resources/img/el로고.png"></div>
+				
+				<c:forEach items="${reviewList }" var="list">
+					<c:if test="${empty reviewList}">
+						<span>등록된 리뷰가 없습니다.</span>
+					</c:if>
+					
+					<div id="written-review">
+						<div id="profile-pic"><img src="/el/resources/img/el로고.png"></div>
+	
+						<div id="stars">
+							<c:choose>
 
-					<div id="stars">★★★★★</div>
-					<div id="enroll-date">2022.12.07</div>
-					<div id="written-nick"><i class="fa-regular fa-user"></i>유저닉네임</div>
-					<div id="review-content">이 강의를 듣고 인스타툰을 그리고 싶어졌어요! 좋은 강의 감사합니다~~~</div>
-				</div>
-				<div id="written-review">
-					<div id="profile-pic"><img src="/el/resources/img/el로고.png"></div>
-
-					<div id="stars">★★★★★</div>
-					<div id="enroll-date">2022.12.07</div>
-					<div id="written-nick"><i class="fa-regular fa-user"></i>유저닉네임</div>
-					<div id="review-content">이 강의를 듣고 인스타툰을 그리고 싶어졌어요! 좋은 강의 감사합니다~~~</div>
-				</div>
-				<div id="written-review">
-					<div id="profile-pic"><img src="/el/resources/img/el로고.png"></div>
-
-					<div id="stars">★★★★★</div>
-					<div id="enroll-date">2022.12.07</div>
-					<div id="written-nick"><i class="fa-regular fa-user"></i>유저닉네임</div>
-					<div id="review-content">이 강의를 듣고 인스타툰을 그리고 싶어졌어요! 좋은 강의 감사합니다~~~</div>
-				</div>
-				<!-- 페이징 -->
-				<div id="page-area" class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-					<div id="page-area2" class="btn-group me-2" role="group" aria-label="First group">
-						<a href="/#/board/list?p=1" class="btn btn-outline-secondary"><</a>
-						<a href="/#/board/list?p=1" class="btn btn-outline-secondary">1</a>
-						<a href="/#/board/list?p=2" class="btn btn-outline-secondary">2</a>
-						<a href="/#/board/list?p=3" class="btn btn-outline-secondary">3</a>
-						<a href="/#/board/list?p=4" class="btn btn-outline-secondary">4</a>
-						<a href="/#/board/list?p=5" class="btn btn-outline-secondary">5</a>
-						<a href="/#/board/list?p=1" class="btn btn-outline-secondary">></a>
+								<c:when test="${list.score == 5 }">
+								★★★★★
+								</c:when>
+								<c:when test="${list.score == 4 }">
+								★★★★
+								</c:when>
+								<c:when test="${list.score == 3 }">
+								★★★
+								</c:when>
+								<c:when test="${list.score == 2 }">
+								★★★★★
+								</c:when>
+								
+								<c:otherwise>
+								★
+								</c:otherwise>
+							
+							</c:choose>
+						</div>
+						<div id="enroll-date">${list.enrollDate}</div>
+						<div id="written-nick"><i class="fa-regular fa-user"></i>${list.writer}</div>
+						<div id="review-content">${list.content}</div>
 					</div>
-				   </div>
+				</c:forEach>
+				
+				
+				<!-- 페이징 -->
+				
+			    <!-- 페이징 -->
+	    <div id="page-area" class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+                <div id="page-area2" class="btn-group me-2" role="group" aria-label="First group">
+	                <a id = "before" href="/el/lecture/detail/review?bno=${list.classNo }&pno=${pv.currentPage-1}" class="btn btn-outline-secondary"><</a>
+	                                    
+                    <c:forEach var="num" begin="${pv.startPage }" end="${pv.endPage }">
+                        <a href="/el/lecture/detail/review?bno=${list.classNo }&pno=${num }" class="btn btn-outline-secondary">${num}</a>
+					</c:forEach>
+			
+	                <a href="/el/lecture/main?pno=${pv.currentPage+1}"class="btn btn-outline-secondary">></a>
+                </div>
+       	</div>
+		       
 
 
 			</div>
 			
             <div id="lec-payment">
                 <div id="pay-wrap">
-                    <div id="pay-price">49,000 원</div>
+                    <div id="pay-price">${lvo.price } 원</div>
                     <div id="pay-zzim"><i class="fa-regular fa-heart fa-2x"></i></div>
                     <div id="pay-cart">장바구니에 담기</div>
                     <div id="pay-real">결제하기</div>

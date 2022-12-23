@@ -3,11 +3,14 @@ package com.coding5.el.lecture.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.coding5.el.common.page.PageVo;
 import com.coding5.el.lecture.vo.DetailClassVo;
 import com.coding5.el.lecture.vo.LectureVo;
+import com.coding5.el.lecture.vo.ReviewVo;
 
 @Repository
 public class LectureDaoImpl implements LectureDao{
@@ -23,15 +26,20 @@ public class LectureDaoImpl implements LectureDao{
 	
 	//강의 목차 등록
 	@Override
-	public int insertClassDetail(SqlSessionTemplate sst, LectureVo lvo, DetailClassVo dcvo,
-			List<DetailClassVo> dcList) {
-		return sst.insert("lectureMapper.insertClassDetail", dcvo);
+	public int insertClassDetail(SqlSessionTemplate sst, LectureVo lvo,
+			List<LectureVo> dcList) {
+		return sst.insert("lectureMapper.insertClassDetail", lvo);
 	}
 
-
+	//강의 리스트 조회
 	@Override
-	public List<LectureVo> getList(SqlSessionTemplate sst) {
-		return sst.selectList("lectureMapper.getList");
+	public List<LectureVo> getList(SqlSessionTemplate sst, PageVo pv) {
+		
+		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
+		int limit = pv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset,limit);
+		
+		return sst.selectList("lectureMapper.getList", null, rb);
 	}
 
 	//강의 메인 - 드로잉
@@ -83,15 +91,40 @@ public class LectureDaoImpl implements LectureDao{
 	}
 
 	//강의 상세 조회
-	@Override
-	public LectureVo classDetail(SqlSessionTemplate sst, int bno) {
-		return sst.selectOne("lectureMapper.classDetail", bno);
-	}
+		@Override
+		public LectureVo classDetail(SqlSessionTemplate sst, int bno) {
+			return sst.selectOne("lectureMapper.classDetail", bno);
+		}
 
 	//강의 조회수 증가
 	@Override
 	public int increaseCount(SqlSessionTemplate sst, int bno) {
 		return sst.update("lectureMapper.increaseCount", bno);
+	}
+
+	//강의 총 갯수
+	@Override
+	public int selectLectureCount(SqlSessionTemplate sst) {
+		// TODO Auto-generated method stub
+		return sst.selectOne("lectureMapper.selectLectureConut");
+	}
+
+	
+	//강의 수강평 확인
+	@Override
+	public List<ReviewVo> selectReview(SqlSessionTemplate sst, int bno, PageVo pv) {
+		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
+		int limit = pv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset,limit);
+
+		return sst.selectList("lectureMapper.selectReview", bno, rb );
+	}
+
+	//강의 수강평 갯수 확인
+	@Override
+	public int selectReviewCount(SqlSessionTemplate sst, int bno) {
+		// TODO Auto-generated method stub
+		return sst.selectOne("lectureMapper.selectReviewCount", bno);
 	}
 
 

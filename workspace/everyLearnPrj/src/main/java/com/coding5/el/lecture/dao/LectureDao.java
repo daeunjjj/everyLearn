@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.coding5.el.common.page.PageVo;
 import com.coding5.el.lecture.vo.DetailClassVo;
 import com.coding5.el.lecture.vo.LectureVo;
+import com.coding5.el.lecture.vo.ReviewVo;
 
 public interface LectureDao {
 	
@@ -17,11 +19,11 @@ public interface LectureDao {
 
 	
 	//insert 세부사항 - 목차
-	public int insertClassDetail(SqlSessionTemplate sst, LectureVo lvo, DetailClassVo dcvo, List<DetailClassVo> dcList);
+	public int insertClassDetail(SqlSessionTemplate sst, LectureVo lvo, List<LectureVo> dcList);
 
 	
 	//강의 전체 목록 리스트 조회
-	public List<LectureVo> getList(SqlSessionTemplate sst);
+	public List<LectureVo> getList(SqlSessionTemplate sst, PageVo pv);
 
 	//강의 전체 목록 리스트 조회 - 드로잉
 	public List<LectureVo> getListDrawing(SqlSessionTemplate sst);
@@ -52,5 +54,14 @@ public interface LectureDao {
 
 	//강의 조회수 확인
 	public int increaseCount(SqlSessionTemplate sst, int bno);
+
+	//강의 총 갯수확인
+	public int selectLectureCount(SqlSessionTemplate sst);
+
+	//강의 수강평 확인
+	public List<ReviewVo> selectReview(SqlSessionTemplate sst, int bno, PageVo pv);
+
+	//강의 수강평 갯수 확인
+	public int selectReviewCount(SqlSessionTemplate sst, int bno);
 	
 }

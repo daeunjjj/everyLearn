@@ -27,7 +27,7 @@
         </div>
         <div class= "navi">
             <div><a href="/el/lecture/detail?bno=${lvo.no }">강의소개</a></div>
-            <div><a href="/el/lecture/detail/review">수강평</a></div>
+            <div><a href="/el/lecture/detail/review?bno=${lvo.no }&pno=1">수강평</a></div>
         </div>
         <div class = "lec-main">
             <div id="lec-content">
