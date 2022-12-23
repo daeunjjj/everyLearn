@@ -3,7 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="classCommMapper">
+
 	<insert id="insertWrite">
+	
 		INSERT INTO CLASS_COMM
 		(
 			NO
@@ -14,9 +16,53 @@
 		)
 		VALUES
 		(
-			SEQ.CLASS_COMM.NO.NEXTVAL
-			
+			SEQ_CLASS_COMM_NO.NEXTVAL
+			, ${writer}
+			, ${cateNo}
+			, #{title}
+			, #{content}
 		)
+		
 	</insert>
+	
+	<select id="selectQnaList" resultType="com.coding5.el.class_comm.vo.ClassCommVo">
+		SELECT CC.NO CLASS_COMM_NO
+		    ,CCA.NAME CATE_NO
+		    ,M.NAME WRITER
+		    ,TITLE 
+		    ,CONTENT
+		    ,ANSWER_YN
+		    ,CC.REPORT_YN REPORT_YN
+		    ,HIT
+		    ,CC.ENROLL_DATE ENROLL_DATE
+		FROM CLASS_COMM CC
+		JOIN COMM_CATE CCA
+		ON CC.CATE_NO = CCA.NO
+        JOIN MEMBER M
+        ON CC.WRITER = M.NO
+		WHERE CC.CATE_NO = 1
+	</select>
+	
+	<select id="selectDetailList" resultType="com.coding5.el.class_comm.vo.ClassCommVo">
+		SELECT 
+		    CC.NO CLASS_COMM_NO
+		    , CCA.NAME CATE_NO
+		    ,M.NAME WRITER
+		    ,TITLE 
+		    ,CONTENT
+		    ,ANSWER_YN
+		    ,CC.REPORT_YN REPORT_YN
+		    ,HIT
+		    ,CC.ENROLL_DATE ENROLL_DATE
+		FROM CLASS_COMM CC
+		JOIN COMM_CATE CCA
+		ON CC.CATE_NO = CCA.NO
+		JOIN MEMBER M
+		ON CC.WRITER = M.NO
+		WHERE CC.NO = ${classCommNo}
+	
+	</select>
+	
+	
   
 </mapper>

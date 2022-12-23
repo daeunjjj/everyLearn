@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.coding5.el.member.service.MemberService;
 import com.coding5.el.member.vo.MemberVo;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RequestMapping("member")
 @Controller
+@Slf4j
 public class MemberController {
 	
 	@Autowired
@@ -41,7 +44,6 @@ public class MemberController {
 	public String idDup(String memberId){
 		
 		String result = memberService.idDup(memberId);
-		System.out.println(result);
 		
 		if( result != null ){
 			return "1";
@@ -58,7 +60,6 @@ public class MemberController {
 	public String nickDup(String memberNick){
 		
 		String result = memberService.nickDup(memberNick);
-		System.out.println(result);
 		
 		if( result != null ){
 			//중복된 닉네임
@@ -82,7 +83,7 @@ public class MemberController {
 	public String login(MemberVo vo, HttpSession session) {
 		
 		MemberVo loginMember = memberService.login(vo);
-		System.out.println(loginMember);
+		log.debug("로그인 멤버 : " + loginMember);
 		
 		if(loginMember != null) {
 			
