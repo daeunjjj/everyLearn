@@ -7,9 +7,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.coding5.el.common.page.PageVo;
 import com.coding5.el.lecture.dao.LectureDao;
 import com.coding5.el.lecture.vo.DetailClassVo;
 import com.coding5.el.lecture.vo.LectureVo;
+import com.coding5.el.lecture.vo.ReviewVo;
 
 @Service
 public class LectureServiceImpl implements LectureService {
@@ -29,17 +31,17 @@ public class LectureServiceImpl implements LectureService {
 	
 	//강의 목차 등록!
 	@Override
-	public int insertClassDetail(LectureVo lvo, DetailClassVo dcvo, List<DetailClassVo> dcList) {
+	public int insertClassDetail(LectureVo lvo, List<LectureVo> dcList) {
 		
-		return lectureDao.insertClassDetail(sst, lvo, dcvo, dcList);
+		return lectureDao.insertClassDetail(sst, lvo, dcList);
 	}
 
 
 	//강의 메인리스트 조회
 	@Override
-	public List<LectureVo> getList() {
+	public List<LectureVo> getList(PageVo pv) {
 		
-		return lectureDao.getList(sst);
+		return lectureDao.getList(sst, pv);
 	}
 
 	//드로잉
@@ -103,6 +105,24 @@ public class LectureServiceImpl implements LectureService {
 	public LectureVo classDetail(int bno) {
 		LectureVo lvo = lectureDao.classDetail(sst, bno);
 		return lvo;
+	}
+
+	//강의 총 갯수
+	@Override
+	public int selectLectureCount() {
+		return lectureDao.selectLectureCount(sst);
+	}
+
+	//강의 수강평 조회
+	@Override
+	public List<ReviewVo> selectReview(int bno, PageVo pv) {
+		return lectureDao.selectReview(sst, bno, pv);
+	}
+
+	//수강평 총 갯수
+	@Override
+	public int selectReviewCount(int bno) {
+		return lectureDao.selectReviewCount(sst, bno);
 	}
 
 }

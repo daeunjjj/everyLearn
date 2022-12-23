@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.coding5.el.common.page.PageVo;
+import com.coding5.el.common.page.Pagination;
 import com.coding5.el.lecture.service.LectureService;
 import com.coding5.el.lecture.vo.DetailClassVo;
 import com.coding5.el.lecture.vo.LectureVo;
+import com.coding5.el.lecture.vo.ReviewVo;
 
 @Controller
 @RequestMapping("lecture")
@@ -29,11 +32,21 @@ public class LectureController {
 
 	// 강의 메인리스트
 	@GetMapping("main")
-	public String main(Model model) {
+	public String main(String pno, Model model) {
+		
+		// 카운트
+		int listCount = lectureService.selectLectureCount();
+		int currentPage = Integer.parseInt(pno);
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 
-		List<LectureVo> list = lectureService.getList();
+		List<LectureVo> list = lectureService.getList(pv);
+		
+		model.addAttribute("pv", pv);
 		model.addAttribute("list", list);
-		//System.out.println(list);
+		
 		return "lecture/main";
 	}
 
@@ -110,8 +123,7 @@ public class LectureController {
 		return"lecture/main";
 	}
 
-	
-	// 강의 상세페이지
+	//강의 세부조회
 	@RequestMapping("detail")
 	public ModelAndView detail (ModelAndView mv,int bno) {
 		
@@ -135,10 +147,30 @@ public class LectureController {
 	
 
 	// 강의 상세페이지 - 수강평
-	/*
-	 * @GetMapping("detail/review") public String review() { return
-	 * "lecture/lec_review"; }
-	 */
+	
+	  @GetMapping("detail/review") 
+	  public String review(int bno, String pno, Model model) {
+		  
+		// 카운트
+		int listCount = lectureService.selectReviewCount(bno);
+		int currentPage = Integer.parseInt(pno);
+		int pageLimit = 5;
+		int boardLimit = 3;
+			
+		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<ReviewVo> reviewList = lectureService.selectReview(bno, pv);
+		
+		LectureVo lvo = lectureService.classDetail(bno);
+		
+		model.addAttribute("pv", pv);
+		model.addAttribute("bno", bno);
+		model.addAttribute("lvo", lvo);
+		model.addAttribute("reviewList", reviewList);
+
+		return "lecture/lec_review"; 
+	   }
+	
 	
 	
 
@@ -205,14 +237,19 @@ public class LectureController {
 	// 강의 등록 - 세부(목차)
 	@GetMapping("insert/detail")
 	public String insertDetail() {
+		
 		return "lecture/insertDetail";
+		/*
+		 * mv.addObject("bno", bno) .setViewName("lecture/insertDetail"); //return
+		 * "lecture/insertDetail"; return mv;
+		 */
 	}
 
 	// 강의 등록 - 세부(목차) - post
 	@PostMapping("insert/detail")
-	public String insertDetail(LectureVo lvo, DetailClassVo dcvo, List<DetailClassVo> dcList) {
+	public String insertDetail(LectureVo lvo, List<LectureVo> dcList) {
 
-		int result = lectureService.insertClassDetail(lvo, dcvo, dcList);
+		int result = lectureService.insertClassDetail(lvo, dcList);
 
 		if (result == 1) {
 			return "lecture/main";

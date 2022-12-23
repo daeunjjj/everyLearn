@@ -22,7 +22,7 @@
 			<table id="insert-table">
 				<tr>
 			        <td>이름</td>
-			        <td><input type="text" name="cName"></td>
+			        <td><input type="text" name="className"></td>
 		      	</tr>
 				<tr>
 			        <td>카테고리</td>
@@ -44,7 +44,7 @@
 		      	</tr>
 				<tr>
 			        <td>강의 설명</td>
-			        <td><textarea name="cContent" resize="none"></textarea></td>
+			        <td><textarea name="classContent" resize="none"></textarea></td>
 		      	</tr>
 				  <tr>
 			        <td>썸네일</td>
@@ -63,11 +63,12 @@
 		</div>
 		
 		
-	</div>
 	
 	
 	</main>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
 </body>
+
+
 </html>

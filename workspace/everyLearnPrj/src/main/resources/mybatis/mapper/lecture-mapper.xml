@@ -39,7 +39,7 @@
 	<insert id="insertClassDetail" parameterType="java.util.List">
 		INSERT INTO DETAIL_CLASS
 			(
-			NO
+			DETAIL_NO
 			, CLASS_NO
 			, CHAPTER
 			)
@@ -68,6 +68,7 @@
 			,DELETE_YN
 			,CLASS_CNT 
         FROM CLASS
+        order by no desc
     
     </select>
 	
@@ -253,7 +254,7 @@
 	<select id="classDetail" resultType="com.coding5.el.lecture.vo.LectureVo">
         SELECT
             C.NO
-			,MEM.NICK as TEACHER_NO
+			, MEM.NICK AS TEACHER_NO
 			,CATE.NAME as CATEGORY
 			,C.CLASS_NAME
 			,C.CLASS_CONTENT
@@ -264,16 +265,58 @@
 			,C.MODIFY_DATE
 			,C.DELETE_YN
 			,C.CLASS_CNT
+		<!-- 	,REV.AVG(SCORE) AS REV_AVG
+			,C.REVIEW_CNT -->
         FROM CLASS C
         JOIN CLASS_CATE CATE
         ON C.CATEGORY = CATE.NO
+        
         JOIN TEACHER TEA
-        ON C.TEACHER_NO = TEA.NO
+        ON C.TEACHER_NO = TEA.MEMBER_NO
+        
         JOIN MEMBER MEM
         ON TEA.MEMBER_NO = MEM.NO
-        WHERE C.NO = #{bno}
+        
+        <!-- JOIN REVIEW_LEC REV
+        ON C.NO = REV.CLASS_NO -->
+        
+        WHERE C.NO =#{bno}
+        
+	</select>
+	
+	<select id="selectLectureConut" resultType="int">
+		SELECT COUNT(*)
+		FROM CLASS
+		WHERE DELETE_YN = 'N'
 	</select>
 
+	<select id="selectReview" resultType="com.coding5.el.lecture.vo.ReviewVo">
+	    	SELECT 	
+	    		RE.NO
+				, MEM.NICK AS WRITER
+				, RE.SCORE
+				, RE.CONTENT
+				, RE.DELETE_YN
+				, RE.ENROLL_DATE
+				, RE.MODIFY_YN
+				, RE.CLASS_NO
+	        FROM REVIEW_LEC RE
+	        
+	        
+	        JOIN MEMBER MEM
+        	ON MEM.NO = RE.WRITER
+        	
+        	WHERE CLASS_NO = #{bno}
+	        
+	        
+	    </select>
+	
+	<select id="selectReviewCount" resultType="int">
+		SELECT COUNT(*)
+		FROM REVIEW_LEC
+		WHERE DELETE_YN = 'N'
+		AND CLASS_NO = #{bno}
+	</select>
 
   
 </mapper>

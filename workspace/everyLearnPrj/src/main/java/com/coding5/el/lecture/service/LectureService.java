@@ -3,8 +3,10 @@ package com.coding5.el.lecture.service;
 import java.util.HashMap;
 import java.util.List;
 
+import com.coding5.el.common.page.PageVo;
 import com.coding5.el.lecture.vo.DetailClassVo;
 import com.coding5.el.lecture.vo.LectureVo;
+import com.coding5.el.lecture.vo.ReviewVo;
 
 public interface LectureService {
 	
@@ -14,10 +16,10 @@ public interface LectureService {
 
 	
 	//강의 목차 등록
-	int insertClassDetail(LectureVo lvo, DetailClassVo dcvo, List<DetailClassVo> dcList);
+	int insertClassDetail(LectureVo lvo, List<LectureVo> dcList);
 
 	//강의 메인리스트 조회
-	public List<LectureVo> getList();
+	public List<LectureVo> getList(PageVo pv);
 	
 	//강의 메인리스트 조회 - 드로잉
 	public List<LectureVo> getListDrawing();
@@ -48,6 +50,15 @@ public interface LectureService {
 
 	//강의 상세 조회
 	public LectureVo classDetail(int bno);
+
+	//강의 총 갯수
+	public int selectLectureCount();
+
+	//강의 - 수강평 조회
+	public List<ReviewVo> selectReview(int bno, PageVo pv);
+
+	//수강평 총 갯수
+	public int selectReviewCount(int bno);
 	
 
 

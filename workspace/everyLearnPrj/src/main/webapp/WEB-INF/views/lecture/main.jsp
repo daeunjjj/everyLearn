@@ -19,7 +19,7 @@
 	
 		<div class="wrap">
 			<ul class="sidebar">
-				<li><a href="/el/lecture/main">전체 강의</a></li>
+				<li><a href="/el/lecture/main?pno=1">전체 강의</a></li>
 				<li><a href="/el/lecture/main/drawing">드로잉</a></li>
 				<li><a href="/el/lecture/main/cook">요리 / 베이킹</a></li>
 				<li><a href="/el/lecture/main/workout">운동</a></li>
@@ -58,13 +58,13 @@
 	    <!-- 페이징 -->
 	    <div id="page-area" class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
                 <div id="page-area2" class="btn-group me-2" role="group" aria-label="First group">
-	                <a href="/#/board/list?p=1" class="btn btn-outline-secondary"><</a>
-	                <a href="/#/board/list?p=1" class="btn btn-outline-secondary">1</a>
-	                <a href="/#/board/list?p=2" class="btn btn-outline-secondary">2</a>
-	                <a href="/#/board/list?p=3" class="btn btn-outline-secondary">3</a>
-	                <a href="/#/board/list?p=4" class="btn btn-outline-secondary">4</a>
-	                <a href="/#/board/list?p=5" class="btn btn-outline-secondary">5</a>
-	                <a href="/#/board/list?p=1" class="btn btn-outline-secondary">></a>
+	                <a id = "before" href="/el/lecture/main?pno=${pv.currentPage-1}" class="btn btn-outline-secondary"><</a>
+	                                    
+                    <c:forEach var="num" begin="${pv.startPage }" end="${pv.endPage }">
+                        <a href="/el/lecture/main?pno=${num }" class="btn btn-outline-secondary">${num}</a>
+					</c:forEach>
+			
+	                <a href="/el/lecture/main?pno=${pv.currentPage+1}"class="btn btn-outline-secondary">></a>
                 </div>
        	</div>
 	</div>
@@ -76,4 +76,6 @@
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	
 </body>
+
+
 </html>

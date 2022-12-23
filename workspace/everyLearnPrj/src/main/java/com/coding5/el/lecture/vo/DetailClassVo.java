@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class DetailClassVo {
 
-	private String no;
+	private String detailno;
 	private String classNo;
 	private String chapter;
 	
