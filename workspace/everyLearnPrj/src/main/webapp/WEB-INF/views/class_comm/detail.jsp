@@ -21,7 +21,7 @@
                 <div id="contain-detail">
                     <div id="cate">
                         <label for="">
-                            <h1>질문과 답변</h1>
+                            <h1>${detailList.cateNo[0]}</h1>
                         </label>
                     </div>
                     <div id="detail-wrap">

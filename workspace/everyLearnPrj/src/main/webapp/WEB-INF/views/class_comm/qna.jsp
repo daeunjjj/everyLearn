@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,64 +35,28 @@
             <input class="search_input" type="text" placeholder="검색어를 입력해주세요.">
             </div>
             <div id="btn-write" class="btn-write">
-                <button class="btn-write" type="button">글쓰기</button>
+                <button class="btn-write" type="button" onclick="location.href = '/el/class/write';">글쓰기</button>
             </div>
+                
             <div id="question-wrap">
+            	<c:forEach items="${qnaList}" var="qna">
+            	
                 <!-- 질문 div 시작 -->
-                <div>
-                    <div id="question">
-                        <div id="q-title">질문제목</div>
-                        <div id="q-writer">작성자</div>
-                        <div id="q-content">
-                            드로잉 수업 듣고 싶은데 어려운가요?
-                            초보자입니다!!!!!
-                        </div>
-                        <div id="btn-adiv">
-                            <button id="btn-answer">답변 (12)</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- 질문 div 시작 -->
-                <div>
-                    <div id="question">
-                        <div id="q-title">질문제목</div>
-                        <div id="q-writer">작성자</div>
-                        <div id="q-content">
-                            드로잉 수업 듣고 싶은데 어려운가요?
-                            초보자입니다!!!!!
-                        </div>
-                        <div id="btn-adiv">
-                            <button id="btn-answer">답변 (12)</button>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div id="question">
-                        <div id="q-title">질문제목</div>
-                        <div id="q-writer">작성자</div>
-                        <div id="q-content">
-                            박잘해 강사님 컴퓨터수업
-                            프로그램 설치가 안되는데 뭐가 문제일까요?
-                            윈도우 10 사용 중입니다
-                        </div>
-                        <div id="btn-adiv">
-                            <button id="btn-answer">답변 (12)</button>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div id="question">
-                        <div id="q-title">질문제목</div>
-                        <div id="q-writer">작성자</div>
-                        <div id="q-content">
-                            드로잉 수업 듣고 싶은데 어려운가요?
-                            초보자입니다!!!!!
-                        </div>
-                        <div id="btn-adiv">
-                            <button id="btn-answer">답변 (12)</button>
-                        </div>
-                    </div>
-                </div>
+	                <div>
+	                	<a id="atg" href="/el/class/detail?classCommNo=${qna.classCommNo}" >
+	                    <div id="question">
+	                        <div id="q-title">
+	                        	${qna.title}
+	                        </div>
+	                        <div id="q-writer">${qna.writer}</div>
+	                        <div id="q-content"><p>${qna.content}</p></div>
+	                        <div id="btn-adiv">
+	                            <button id="btn-answer">답변 (12)</button>
+	                        </div>
+	                    </div>
+	                    </a>
+	                </div>
+            	</c:forEach>
 
                 
             </div>

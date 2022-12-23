@@ -1,11 +1,16 @@
 package com.coding5.el.class_comm.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.coding5.el.class_comm.dao.ClassCommDao;
+import com.coding5.el.class_comm.dao.ClassCommDaoImpl;
 import com.coding5.el.class_comm.vo.ClassCommVo;
+import com.coding5.el.member.dao.MemberDaoImpl;
+
 @Service
 public class ClassCommServiceImpl implements ClassCommService{
 
@@ -18,7 +23,20 @@ public class ClassCommServiceImpl implements ClassCommService{
 	//게시글 등록
 	@Override
 	public int write(ClassCommVo vo) {
-		return dao.write(sst, vo);
+		int result = dao.write(sst, vo);
+		return result;
+	}
+
+	//질답 게시판
+	@Override
+	public List<ClassCommVo> qnaList() {
+		return dao.selectQnaInfo(sst);
+	}
+
+	//게시글 디테일
+	@Override
+	public List<ClassCommVo> detailList(String classCommNo) {
+		return dao.selectDetailList(sst, classCommNo);
 	}
 
 }
