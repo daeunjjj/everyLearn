@@ -22,8 +22,14 @@ public class ClassCommDaoImpl implements ClassCommDao{
 	}
 
 	//게시글 디테일
-	public List<ClassCommVo> selectDetailList(SqlSessionTemplate sst, String classCommNo) {
-		return sst.selectList("classCommMapper.selectDetailList", classCommNo);
+	public ClassCommVo selectDetailVo(SqlSessionTemplate sst, String classCommNo) {
+		return sst.selectOne("classCommMapper.selectDetailVo", classCommNo);
+	}
+
+	//신고 인서트
+	@Override
+	public int insertReport(SqlSessionTemplate sst, ClassCommVo vo) {
+		return sst.insert("classCommMapper.insertReport", vo);
 	}
 
 }

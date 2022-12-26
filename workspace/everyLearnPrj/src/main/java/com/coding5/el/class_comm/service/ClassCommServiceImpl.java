@@ -35,8 +35,14 @@ public class ClassCommServiceImpl implements ClassCommService{
 
 	//게시글 디테일
 	@Override
-	public List<ClassCommVo> detailList(String classCommNo) {
-		return dao.selectDetailList(sst, classCommNo);
+	public ClassCommVo detailVo(String classCommNo) {
+		return dao.selectDetailVo(sst, classCommNo);
+	}
+
+	//신고 인서트
+	@Override
+	public int report(ClassCommVo vo) {
+		return dao.insertReport(sst, vo);
 	}
 
 }
