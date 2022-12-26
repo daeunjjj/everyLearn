@@ -89,7 +89,7 @@ public class MemberController {
 			
 			session.setAttribute("loginMember", loginMember);
 			
-			return "class_comm/qna";
+			return "redirect:/class/qna";
 		}else {
 			return "common/error";
 		}

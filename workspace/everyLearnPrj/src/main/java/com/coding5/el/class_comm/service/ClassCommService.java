@@ -13,5 +13,8 @@ public interface ClassCommService {
 	public List<ClassCommVo> qnaList();
 
 	//게시글 디테일
-	public List<ClassCommVo> detailList(String classCommNo);
+	public ClassCommVo detailVo(String classCommNo);
+
+	//신고 인서트
+	public int report(ClassCommVo vo);
 }

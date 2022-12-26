@@ -43,10 +43,11 @@
 		WHERE CC.CATE_NO = 1
 	</select>
 	
-	<select id="selectDetailList" resultType="com.coding5.el.class_comm.vo.ClassCommVo">
+	<select id="selectDetailVo" resultType="com.coding5.el.class_comm.vo.ClassCommVo">
 		SELECT 
 		    CC.NO CLASS_COMM_NO
 		    , CCA.NAME CATE_NO
+	        , M.NO WRITER_NO
 		    ,M.NAME WRITER
 		    ,TITLE 
 		    ,CONTENT
@@ -63,6 +64,27 @@
 	
 	</select>
 	
-	
+	<insert id="insertReport">
+		INSERT INTO REPORT
+		(
+		    NO
+		    ,BLACKLIST
+		    ,ACCUSOR
+		    , TYPE
+		    , CATE_NO
+		    , BOARD
+		)
+		VALUES
+		(
+		    SEQ_REPORT_NO.NEXTVAL
+		    , ${blacklistNo}
+		    , ${accusor}
+		    , 1
+		    , ${cate_no}
+		    , ${board}
+		    
+
+		)
+	</insert>
   
 </mapper>

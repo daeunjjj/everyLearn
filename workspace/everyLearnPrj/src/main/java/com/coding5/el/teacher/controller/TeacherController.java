@@ -24,24 +24,24 @@ public class TeacherController {
 	private TeacherService ts;
 
 	
-	//°­»ç µî·Ï Æû(È­¸é)
+	//ê°•ì‚¬ ë“±ë¡
 	@GetMapping("write")
 	public String write() {
 		return "teacher/enroll_write";
 	}
 	
-	//°­»ç µî·Ï Æû
+	//ê°•ì‚¬ ë“±ë¡
 	@PostMapping("write")
 	public String write(TeacherVo vo, HttpServletRequest req, MemberVo mvo) {
 		
-		//ÀÌ¹ÌÁöµî·Ï
+		
 		String changeName = "";
 		if(!vo.isEmpty()) {
 			changeName = FileUploader.upload(req, vo);
 			
 		}
 		
-		//°­»ç ÀÌ¹ÌÁöµî·Ï
+		
 		String changeName2 = "";
 		if(!vo.isEmpty2()) {
 			changeName2 = FileUploader.upload2(req, vo);
@@ -50,10 +50,10 @@ public class TeacherController {
 		
 		vo.setChangeName(changeName);
 		vo.setChangeName2(changeName2);
-		//°­»ç ÀÌ·Â¼­ µî·Ï
+		
 		int result = ts.teacherEnroll(vo);
 		
-		//°­»ç ¹øÈ£ µ¥·Á¿À±â
+		
 		vo.setNo(mvo.getMemberNo());
 		
 	
@@ -75,6 +75,8 @@ public class TeacherController {
 	public String detail() {
 		return "teacher/detail";
 	}
+	
+	
 	
 	@GetMapping("main")
 	public String main() {

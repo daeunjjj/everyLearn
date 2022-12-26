@@ -10,6 +10,8 @@ public interface ClassCommDao {
 
 	public int write(SqlSessionTemplate sst, ClassCommVo vo);
 	public List<ClassCommVo> selectQnaInfo(SqlSessionTemplate sst);
-	public List<ClassCommVo> selectDetailList(SqlSessionTemplate sst, String classCommNo);
+	public ClassCommVo selectDetailVo(SqlSessionTemplate sst, String classCommNo);
+	//신고 인서트
+	public int insertReport(SqlSessionTemplate sst, ClassCommVo vo);
 
 }

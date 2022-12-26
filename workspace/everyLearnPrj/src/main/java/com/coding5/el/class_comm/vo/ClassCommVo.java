@@ -6,6 +6,7 @@ import lombok.Data;
 public class ClassCommVo {
 	
 	private String classCommNo;
+	private String writerNo;
 	private String writer;
 	private String cateNo;
 	private String title;
@@ -13,6 +14,11 @@ public class ClassCommVo {
 	private String answerYn;
 	private String reportYn;
 	private String hit;
+	private String enrollDate;
+	private String blacklistNo;
+	private String accusor;
+	private String cate_no;
+	private String board;
 	
 
 }
