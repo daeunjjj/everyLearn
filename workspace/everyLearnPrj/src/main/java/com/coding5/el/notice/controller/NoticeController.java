@@ -3,6 +3,7 @@ package com.coding5.el.notice.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,8 +26,31 @@ public class NoticeController {
 	
 	//공지 상세 조회
 	@GetMapping("detail")
-	public String detail() {
+	public String detail(int no, Model model) throws Exception {
+		
+		NoticeVo n = noticeService.selectDetail(no);
+		
+		model.addAttribute("n", n);
+		
 		return "notice/detail";
+	}
+	
+	//회원이 보는 공지 리스트
+	@GetMapping(value = {"/list/{page}", "/list"})
+	public String list(Model model, @PathVariable(required=false) String page) throws Exception {
+		if(page == null) page = "1";
+		
+		//페이징 객체 필요함
+		int cntPerPage = 10; //한 페이지당 row10개씩 보여주기
+		int pageBtnCnt = 5;	//한번에 보여줄 페이지버튼 개수
+		int totalRow = noticeService.getNoticeCnt();	//db에 있는 모든 row 개수
+		PageVo pageVo = new PageVo(page, cntPerPage, pageBtnCnt, totalRow);
+		
+		//리스트 조회
+		List<NoticeVo> list = noticeService.getNoticeList(pageVo);
+		model.addAttribute("list", list);
+		model.addAttribute("page", pageVo);
+		return "notice/list";
 	}
 
 	//공지사항 관리자 페이지에서 리스트 보여주기
@@ -55,13 +79,14 @@ public class NoticeController {
 	
 	//공지사항 작성
 	@PostMapping("write")
-	public String write(NoticeVo vo, HttpServletRequest req) throws Exception {
+	public String write(NoticeVo vo, HttpSession session, Model model) throws Exception {
 		
 		int result = noticeService.write(vo);
 		if(result > 0) {
-			return "redirect:/notice/list";
+			session.setAttribute("alertMsg", "공지 등록 성공");
+			return "redirect:/notice/adminList";
 		}else {
-			req.setAttribute("msg", "공지사항 작성 실패");
+			model.addAttribute("msg", "공지사항 작성 실패");
 			return "common/error";
 		}
 	}
