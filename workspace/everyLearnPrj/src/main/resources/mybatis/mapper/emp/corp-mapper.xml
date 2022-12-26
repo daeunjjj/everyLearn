@@ -4,6 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="corpMapper">
   
+  <!-- 회원가입 -->
   <insert id="insertCorpMember">
   	INSERT INTO CORPORATE_MEMBER
 	(
@@ -26,6 +27,8 @@
 		 , SYSDATE
 	)
   </insert>
+  
+  <!-- 로그인 -->
   <select id="selectOneCorpMember" resultType="CorpVo">
   	SELECT 
   		NO
@@ -43,5 +46,39 @@
 	FROM CORPORATE_MEMBER
 	WHERE ID = #{id}
   </select>
+  
+  <!-- 기업 마이페이지(회사정보 화면) -->
+  <select id="selectOneCorpInfo" resultType="CorpVo">
+  	SELECT 
+  		NO
+		, ID
+		, PWD
+		, COMPANY_NAME
+		, COMPANY_ADDRESS
+		, NAME
+		, PHONE
+		, ENROLL_DATE
+		, MODIFY_DATE
+		, COMPANY_NUM
+		, QUIT_YN
+		, CHECK_YN
+	FROM CORPORATE_MEMBER
+	WHERE ID = #{id}
+  </select>
+  
+  <!-- 기업 마이페이지(회사정보 수정) -->
+  <update id="updateCorpInfo">
+  	UPDATE CORPORATE_MEMBER
+  	SET
+  		COMPANY_NAME = #{companyName}
+  		, COMPANY_NUM = #{companyNum}
+  		, COMPANY_ADDRESS = #{companyAddress}
+  		, INTRODUCE = #{introduce}
+  		, SECTOR = #{sector}
+  		, EMP_NUM = #{empNum}
+  		, SALES = #{sales}
+  		, HOMEPAGE = #{homepage}
+  	WHERE NO = #{no}
+  </update>
   
 </mapper>

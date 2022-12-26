@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 <link rel="stylesheet" href="/el/resources/css/common/font.css">
-<link rel="stylesheet" href="/el/resources/css/emp/mypage/deadLine.css">
+<link rel="stylesheet" href="/el/resources/css/emp/mypage/applicant.css">
+<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 </head>
 <body>
   <div class="container">
@@ -17,33 +18,29 @@
             <table class="list">
                 <thead>
                     <tr>
-                        <th width="5%">No</th>
+                        <th width="10%">No</th>
                         <th width="50%">공고 제목</th>
-                        <th width="15%">등록 날짜</th>
-                        <th width="15%">채용 기한</th>
-                        <th width="15%">채용 상태</th>
+                        <th width="20%">지원자 수</th>
+                        <th width="20%">채용 상태</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
                         <td>java개발자 모집</td>
-                        <td>2022.12.25</td>
-                        <td>2022.12.29</td>
+                        <td>5명</td>
+                        <td>채용중</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>java개발자 모집</td>
+                        <td>2명</td>
                         <td>채용 마감</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td>java개발자 모집</td>
-                        <td>2022.12.25</td>
-                        <td>2022.12.29</td>
-                        <td>채용 마감</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>java개발자 모집</td>
-                        <td>2022.12.25</td>
-                        <td>2022.12.29</td>
+                        <td>7명</td>
                         <td>채용 마감</td>
                     </tr>
                 </tbody>

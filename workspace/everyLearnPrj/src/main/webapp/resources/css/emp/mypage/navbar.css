@@ -1,9 +1,3 @@
-@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
-
-body{
-  font-family: 'nanumsquare';
-}
-
 a{
   color: black;
 }
@@ -11,6 +5,7 @@ a{
 .container{
   display: flex;
   flex-direction: row;
+  height: 1000px;
 }
 
 .nav-wrapper{

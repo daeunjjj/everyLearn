@@ -27,14 +27,14 @@
                                                 <span>회사명</span>
                                                 <span>*</span>
                                             </div>
-                                            <input type="text" name="name" placeholder="회사이름">
+                                            <input type="text" name="companyName" placeholder="회사이름">
                                         </div>
                                         <div>
                                             <div class="title">
                                                 <span>사업자등록번호</span>
                                                 <span>*</span>
                                             </div>
-                                            <input type="text" name="name" placeholder="000-00-00000">
+                                            <input type="text" name="companyNum" placeholder="000-00-00000">
                                         </div>
                                     </div>
                                     <div class="second interval">
@@ -43,8 +43,8 @@
                                             <span>*</span>
                                         </div>
                                         <div class="grid">
-                                            <input type="text" name="name" placeholder="주소">
-                                            <input type="text" name="name"placeholder="상세주소">
+                                            <input type="text" name="companyAddress" placeholder="주소">
+                                            <input type="text" name="companyAddress"placeholder="상세주소">
                                         </div>
                                     </div>
                                     <div class="third interval">
@@ -52,7 +52,7 @@
                                             <span>회사 소개</span>
                                             <span>*</span>
                                         </div>
-                                        <textarea name="" id="" class="introduce"></textarea>
+                                        <textarea name="introduce" class="introduce"></textarea>
                                     </div>
                                     <div class="grid interval">
                                         <div>
@@ -61,14 +61,14 @@
                                                 <span>산업군</span>
                                                 <span>*</span>
                                             </div>
-                                            <input type="text" name="name">
+                                            <input type="text" name="sector">
                                         </div>
                                         <div>
                                             <div class="title">
                                                 <span>직원수</span>
                                                 <span>*</span>
                                             </div>
-                                            <input type="text" name="name">
+                                            <input type="text" name="empNum">
                                         </div>
                                     </div>
                                     <div class="grid">
@@ -78,7 +78,7 @@
                                                 <span>*</span>
                                             </div>
                                             <div class="input-sales">
-                                                <input type="text" name="name" placeholder=""><span>억원</span>
+                                                <input type="text" name="sales" placeholder=""><span>억원</span>
                                             </div>
                                         </div>
                                     </div>
@@ -87,13 +87,13 @@
                                             <span>홈페이지 주소</span>
                                             <span>*</span>
                                         </div>
-                                        <input type="text" name="name" placeholder="https:// 또는 http://">
+                                        <input type="text" name="homepage" placeholder="https:// 또는 http://">
                                     </div>
                                 </div>
                             </section>
                             <section class="admin-submit">
                                 <div>
-                                    <button>승인 요청</button>
+                                    <button type="submit" class="admin-btn">승인 요청</button>
                                 </div>
                             </section>
                         </form>
