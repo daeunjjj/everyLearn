@@ -9,16 +9,16 @@
 		INSERT INTO NOTICE
 		(
 			 NO 
-		    ,TITLE
-		    ,CONTENT 
-		    ,WRITER 
+		    , ADMIN
+		    , TITLE
+		    , CONTENT 
 		)
 		VALUES
 		(
-			 NOTICE_SEQ.NEXTVAL
+			 SEQ_NOTICE_NO.NEXTVAL
+			, 1
 			,#{title}
 			,#{content}
-			,#{writer}
 		)	
 	</insert>
 	
@@ -33,7 +33,7 @@
 	 			FROM NOTICE N
 	 			JOIN ADMIN A ON (N.ADMIN = A.NO)
 	 			WHERE N.DELETE_YN = 'N'
-	 			ORDER BY N.NO
+	 			ORDER BY N.NO DESC
 	 		) T
  		)
  		WHERE RN BETWEEN #{startRow} AND #{endRow}
@@ -57,12 +57,21 @@
  		WHERE DELETE_YN = 'N'
  	</select>
 	
+	<!-- 공지 수정 -->
 	<update id="editNotice">
 		UPDATE NOTICE 
-        SET TITLE = #{title}, 
-        CONTENT = #{content}, 
-        MODIFY_DATE = SYSDATE 
+        	SET TITLE = #{title}, 
+        		CONTENT = #{content}, 
+        		MODIFY_DATE = TO_CHAR(SYSDATE,'YY.MM.DD HH24:MI') 
         WHERE NO = #{no};
 	</update>
+	
+	<!-- 공지 디테일 -->
+	<select id="selectDetail" parameterType="_int" resultType="noticeVo">
+		SELECT *
+  		FROM NOTICE
+  		WHERE NOTICE_NO = #{no}
+	</select>
+	
   
 </mapper>

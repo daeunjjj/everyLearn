@@ -5,6 +5,7 @@
     width: 4%;
 }
 
+
 .nav-menu-area{
     display: flex;
     align-items: center;
@@ -16,7 +17,7 @@
 .nav-info1{
     float: left;
     width: 3%;
-    margin-right: -40px;
+    margin-right: -50px;
 }
 
 .nav-info2{

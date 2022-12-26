@@ -22,4 +22,7 @@ public interface NoticeService {
 	//공지 갯수
 	int getNoticeCnt() throws Exception;
 
+	//공지 상세 조회
+	NoticeVo selectDetail(int no) throws Exception;
+
 }

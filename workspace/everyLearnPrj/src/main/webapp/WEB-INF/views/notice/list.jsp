@@ -28,37 +28,41 @@
         <div class="container">
             <div class="list">
             
-            	<div class="td" id="no">번호</div>
-                <div class="td" id="title">제목</div>
-                <div class="td" id="nick"></div>
-                <div class="td" id="date">작성일시</div>
-                <div class="td" id="hit">조회수</div>
+            	<div class="th">번호</div>
+                <div class="th">제목</div>
+                <div class="th"></div>
+                <div class="th">작성일시</div>
+                <div class="th">조회수</div>
             
             <!-- 반복 -->
-            <c:forEach var="n" items="${ voList }">
+            <c:forEach var="n" items="${ list }">
                 <div class="td" id="no">${ n.no }</div>
-                <div class="td" id="title">${ n.title }</div>
-                <div class="td" id="nick">${ n.admin }</div>
+                <div class="td" id="title"><a href="/el/notice/detail" id="title-a">${n.title}</a></div>
+                <div class="td" id="nick">관리자</div>
                 <div class="td" id="date">${ n.enrollDate }</div>
                 <div class="td" id="hit">${ n.hit }</div>
 			</c:forEach>
             <!-- 반복 -->   
-
-                <div id="main-bot">
-                    <a href="/#/board/write" class="btn btn-light" id="write">작성하기</a>
-                </div>
     
                 <div id="page-area" class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-                    <div id="page-area2" class="btn-group me-2" role="group" aria-label="First group">
-	                    <a href="/el/notice/list?pno=${ pv.currentPage - 1 }" class="btn btn-outline-secondary"><</a>
-	                    
-						<c:forEach var="num" begin="${ pv.startPage }" end="${ pv.endPage }">
-							<a href="/el/notice/list?pno=${num}" class="btn btn-outline-secondary">${ num }</a>
-						</c:forEach>
-						
-						<a href="/el/admin/master/list?pno=${ pv.currentPage + 1 }" class="btn btn-outline-secondary">></a>
-                    </div>
-                </div>
+	 				<div id="page-area2" class="btn-group me-2" role="group" aria-label="First group">
+	                
+		                <c:if test="${page.startPage != 1}">
+							<a href="${page.startPage - 1}" class="btn btn-outline-secondary" id="a1"><</a>
+						</c:if>
+			            <c:forEach var="i" begin="${page.startPage}" end="${page.endPage}">
+							<c:if test="${page.currentPage != i and i <= page.lastPage}">
+								<a href="/el/notice/list/${i}" class="btn btn-outline-secondary" id="a1">${i}</a>
+							</c:if>
+							<c:if test="${page.currentPage == i and i <= page.lastPage}">
+								<a href="/el/notice/list/${i}" class="btn btn-outline-secondary" id="a1">${i}</a>
+							</c:if>
+						</c:forEach>    
+			            <c:if test="${page.endPage < page.lastPage}">
+							<a href="${page.endPage + 1}" class="btn btn-outline-secondary" id="a1">></a>
+						</c:if>    
+					 </div>
+				</div>
             </div>
 
             
@@ -70,9 +74,5 @@
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
     
-</body>
-</html>
-
-
 </body>
 </html>

@@ -14,7 +14,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
@@ -55,23 +55,35 @@
 					</div>
 		
 				<!-- 페이징 start -->
-				<div id="page-area" class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-	                <div id="page-area2" class="btn-group me-2" role="group" aria-label="First group">
-	                
-		                <c:if test="${page.startPage != 1}">
-							<a href="${page.startPage - 1}" class="btn btn-outline-secondary" id="a1"><</a>
-						</c:if>
-			            <c:forEach var="i" begin="${page.startPage}" end="${page.endPage}">
-							<c:if test="${page.currentPage != i and i <= page.lastPage}">
-								<a href="/el/notice/adminList/${i}" class="btn btn-outline-secondary" id="a1">${i}</a>
+				
+	       	    
+	       	    <div id="page-area" >
+	   				<ul>
+				        	<c:if test="${page.startPage != 1}">
+				        <li>
+								<a href="${page.startPage - 1}">이전</a>
+				        </li>
 							</c:if>
-							<c:if test="${page.currentPage == i and i <= page.lastPage}">${i}</c:if>
-						</c:forEach>    
-			            <c:if test="${page.endPage < page.lastPage}">
-							<a href="${page.endPage + 1}" class="btn btn-outline-secondary" id="a1">></a>
-						</c:if>    
-	                </div>
-	       	    </div>
+        
+		         		<c:forEach var="i" begin="${page.startPage}" end="${page.endPage}">
+
+                        <li>
+                           <c:if test="${page.currentPage != i and i <= page.lastPage}">
+                           		<a class="numBtn" href="/el/notice/adminList/${i}">${i}</a>                           
+                           </c:if>
+                           <c:if test="${page.currentPage == i and i <= page.lastPage}">
+                           		<a class="numBtn" href="/el/notice/adminList/${i}">${i}</a> 
+                           </c:if>
+                        </li>
+               			</c:forEach>   
+
+					        <c:if test="${page.endPage < page.lastPage}">
+				        <li>
+								<a href="${page.endPage + 1}">다음</a>
+				        </li>
+							</c:if>
+				    </ul>
+				</nav>
 	            <!-- 페이지 end -->	
 	       	    
 			</div>

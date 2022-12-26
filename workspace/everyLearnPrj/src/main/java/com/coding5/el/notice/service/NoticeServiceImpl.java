@@ -45,6 +45,12 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDao.getNoticeCnt();
 	}
 
+	//공지 상세 조회
+	@Override
+	public NoticeVo selectDetail(int no) throws Exception {
+		return noticeDao.selectDetail(no);
+	}
+
 
 	
 

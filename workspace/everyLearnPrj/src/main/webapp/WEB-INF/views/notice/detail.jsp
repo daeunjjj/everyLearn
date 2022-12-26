@@ -28,15 +28,12 @@
 
         <div class="container"> 
         
-        	<div id="btn">
-                <button class="btn btn-outline-secondary me-md-2" type="button">수정</button>
-                <button class="btn btn-outline-secondary me-md-2" type="button">삭제</button>
-            </div>
+        	
 
-            <div class="title"><span id="title" name="title">제목</span></div>
-                <div class="info-nick"><span id="nick">관리자   |  작성자    |  조회수</span></div>
+            <div class="title"><span id="title" name="title">${ n.title }</span></div>
+                <div class="info-nick"><span id="nick">관리자   |  ${ n.enrollDate }    |  ${ n.hit }</span></div>
                 <div class="content" name="content">
-                           내용
+                           	${ n.content }
                 </div>
             </div>
           

@@ -44,6 +44,12 @@ public class NoticeDaoImpl implements NoticeDao {
 		return sst.update("noticeMapper.editNotice", vo);
 	}
 
+	@Override
+	public NoticeVo selectDetail(int no) throws Exception {
+		// 공지 상세 조회
+		return sst.selectOne("noticeMapper.selectDetail", no);
+	}
+
 	
 	
 	
