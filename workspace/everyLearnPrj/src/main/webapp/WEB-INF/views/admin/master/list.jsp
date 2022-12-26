@@ -112,10 +112,10 @@
 
                         <li>
                         	<c:if test="${empty svo}">
-                          	  <a id="${num}" class="numBtn" href="/el/admin/master/list?pno=${num}">${num}</a>                        	
+                          	  <a class="numBtn" href="/el/admin/master/list?pno=${num}">${num}</a>                        	
                         	</c:if>
                         	<c:if test="${!empty svo }">
-                        	  <a id="${num}" class="numBtn" href="/el/admin/master/list?pno=${num}&category=${svo.category}&keyword=${svo.keyword}">${num}</a>                        		
+                        	  <a class="numBtn" href="/el/admin/master/list?pno=${num}&category=${svo.category}&keyword=${svo.keyword}">${num}</a>                        		
                         	</c:if>
                         </li>
 					</c:forEach>

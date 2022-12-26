@@ -20,6 +20,8 @@ import com.coding5.el.common.file.FileUploader;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.page.Pagination;
 import com.coding5.el.common.vo.SearchVo;
+import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.member.vo.PointVo;
 
 import lombok.extern.slf4j.Slf4j;
 @RequestMapping("admin")
@@ -28,7 +30,11 @@ import lombok.extern.slf4j.Slf4j;
 public class AdminController {
 	
 	@Autowired
-	private AdminService adminService;
+	public AdminController(AdminService adminService) {
+		this.adminService = adminService;
+	}
+	
+	private final AdminService adminService;
 	
 
 	/**
@@ -163,13 +169,14 @@ public class AdminController {
 		session.setAttribute("loginAdmin", updateAdmin);
 		return "redirect:/admin/info";
 	}
+
 	/**
-	 * 관리자 리스트 조회
+	 * 관리자 조회
 	 * @param pno
 	 * @param model
+	 * @param svo
 	 * @return
 	 */
-
 	@GetMapping("master/list")
 	public String adminList(String pno, Model model, SearchVo svo) {
 		// 카운트
@@ -225,20 +232,96 @@ public class AdminController {
 		}
 		
 		session.setAttribute("resultMsg", "수정 완료!");
-		
 		return "redirect:/admin/master/detail?no="+vo.getNo();
 	}
+	
+	/**
+	 * 학생 리스트 가져오기
+	 * @param pno
+	 * @param model
+	 * @param svo
+	 * @return
+	 */
+	@GetMapping("member/student/list")
+	public String studentList(String pno, Model model, SearchVo svo) {
+		
+		// 카운트
+		int listCount = adminService.selectStudentCount(svo);
+		int currentPage = Integer.parseInt(pno);
+		int pageLimit = 5;
+		int boardLimit = 10;
+		log.info("리스트 수 :::"+listCount);
+		log.info("화면에서 받아오는 데이터 svo  :::" + svo);
+		log.info("화면에서 받아오는 데이터 pno ::: "+svo);
+		
+		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		
+		List<MemberVo> voList = adminService.selectStudentList(pv,svo);
+		
+		log.info("화면에서 받아오는 listVo ::: " + voList);
+		
+		if(voList == null) return "common/error";
+		
+		model.addAttribute("svo", svo);
+		model.addAttribute("pv", pv);
+		model.addAttribute("voList", voList);
+		return "admin/member/student/list";
+	}
+	
+	/**
+	 * 학생 상세조회
+	 * @param no
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("member/student/detail")
+	public String studentDetail(String no, Model model) {
+		
+		log.info("화면 -> 컨트롤러 no ::: "+no);
+		
+		MemberVo studentVo = adminService.detailStudent(no);
+		if(studentVo == null) return "common/error";
+		
+		List<PointVo> pointList = adminService.selectPointList(no);
+		if(pointList == null) return "common/error";
+		
+		log.info("studentVo ::: " + studentVo);
+		log.info("pointList" + pointList);
+		
+		model.addAttribute("studentVo", studentVo);
+		model.addAttribute("pointList", pointList);
+		return "admin/member/student/detail";
+	}
+	
+	@PostMapping("member/student/point-edit")
+	public String pointEdit(PointVo vo) {
+		
+		log.info("화면->컨트롤러 PointVo ::: " + vo);
+		
+		if("3".equals(vo.getHistory())) {
+			vo.setChange("-"+vo.getChange());
+		} else {
+			vo.setChange("+"+vo.getChange());
+
+		}
+		
+		log.info("vo.getHistory ::: "+ vo.getChange());
+		
+		int result = adminService.pointEdit(vo);
+		
+		if(result != 1) return "common/error";
+		
+		return "redirect:/admin/member/student/detail?no="+ vo.getMemberNo();
+	}
+	
 	// 대시보드
 	@GetMapping("dashboard")
 	public String dashboard() {
 		return "admin/dashboard";
 	}
 	
-	// 학생회원 리스트 조회
-	@GetMapping("member/student/list")
-	public String studentList() {
-		return "admin/member/student/list";
-	}
+
 	
 	// 강사회원 리스트 조회
 	@GetMapping("member/teacher/list")
@@ -301,11 +384,7 @@ public class AdminController {
 		return "admin/find/result/pwd";
 	}
 	
-	// 학생 상세
-	@GetMapping("member/student/detail")
-	public String studentDetail() {
-		return "admin/member/student/detail";
-	}
+
 	
 	// 강의 리스트
 	@GetMapping("class/list")

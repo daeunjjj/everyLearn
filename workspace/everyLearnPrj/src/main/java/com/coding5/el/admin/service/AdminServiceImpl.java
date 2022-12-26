@@ -6,20 +6,27 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.coding5.el.admin.dao.AdminDao;
 import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
+import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.member.vo.PointVo;
 @Service
 public class AdminServiceImpl implements AdminService{
 	
 	@Autowired
-	private SqlSessionTemplate sst;
+	public AdminServiceImpl(AdminDao adminDao) {
+		this.adminDao = adminDao;
+	}
+
+	private final AdminDao adminDao;
 	
 	@Autowired
-	private AdminDao adminDao;
-	
+	private SqlSessionTemplate sst;
+
 	@Autowired
 	private BCryptPasswordEncoder pwdEnc;
 	
@@ -133,6 +140,57 @@ public class AdminServiceImpl implements AdminService{
 			
 		
 		return adminDao.updateAdmin(sst, vo);
+	}
+	/**
+	 * 학생 회원 수 조회
+	 */
+	@Override
+	public int selectStudentCount(SearchVo svo) {
+		
+		return adminDao.selectStudentCount(svo, sst);
+	
+	}
+	/**
+	 * 학생 회원 리스트 조회
+	 */
+	@Override
+	public List<MemberVo> selectStudentList(PageVo pv, SearchVo svo) {
+		return adminDao.selectStudentList(sst, pv, svo);
+	}
+	
+	/**
+	 * 학생회원 no로 가져오기
+	 */
+	@Override
+	public MemberVo detailStudent(String no) {
+		return adminDao.selectStudentOneByNo(sst,no);
+	}
+	
+	/**
+	 * 포인트 리스트 가져오기
+	 */
+	@Override
+	public List<PointVo> selectPointList(String no) {
+		return adminDao.selectPointListByNo(sst,no);
+	}
+	/**
+	 * 포인트 수정
+	 * 포인트 테이블 insert
+	 * 회원 테이블 수정
+	 * 
+	 */
+	@Override
+	@Transactional
+	public int pointEdit(PointVo vo) {
+		
+		int insertResult = adminDao.insertPoint(sst, vo);
+		
+		int updateResult = 0;
+		if(insertResult == 1) {
+			updateResult = adminDao.updateStudent(sst,vo);
+		}
+		
+		return insertResult * updateResult;
 	}
 
 

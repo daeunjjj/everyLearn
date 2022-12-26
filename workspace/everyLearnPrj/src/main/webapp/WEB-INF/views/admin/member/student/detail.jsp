@@ -16,7 +16,6 @@
             <h1>학생회원정보</h1>
             <div id="line"></div>
             <div class="main-wrap">
-                <form action="">
                     <div class="info-wrap">
                         <div class="info-items">
                             <div class="title-wrap" id="profile-wrap">
@@ -34,7 +33,7 @@
                                 <label for="id">아이디</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="id" value="student01" readonly>
+                                <input type="text" name="id" value="${studentVo.memberId}" readonly>
                             </div>
                         </div>
 
@@ -43,25 +42,23 @@
                                 <label for="name">이름</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="name" value="이학생">
+                                <input type="text" name="name" id="name" value="${studentVo.memberName }" readonly>
                             </div>
-                            <span>필수 입력 사항입니다.</span>
                         </div>
                         <div class="info-items">
                             <div class="title-wrap">
                                 <label for="nick">닉네임</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="name" value="새싹">
+                                <input type="text" name="nick" value="${studentVo.memberNick }" readonly>
                             </div>
-                            <span>필수 입력 사항입니다.</span>
                         </div>
                         <div class="info-items">
                             <div class="title-wrap">
                                 <label for="phone">전화번호</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="phone" placeholder="번호만 입력해주세요." value="010-1234-1234">
+                                <input type="text" name="phone" value="${studentVo.phone}" readonly>
                             </div>
                         </div>
                         <div class="info-items">
@@ -69,7 +66,7 @@
                                 <label for="email">이메일</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="email" placeholder="번호만 입력해주세요." value="student01@gmail.com">
+                                <input type="text" name="email" value="${studentVo.email }" readonly>
                             </div>
                         </div>
                         <div class="info-items">
@@ -77,7 +74,7 @@
                                 <label for="enrollDate">가입날짜</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="enrollDate" value="22-12-09" readonly>
+                                <input type="text" name="enrollDate" value="${studentVo.enrollDate }" readonly>
                             </div>
                         </div>
                         <div class="info-items">
@@ -85,7 +82,7 @@
                                 <label for="birth">생년월일</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="birth" value="96-04-29" readonly>
+                                <input type="text" name="birth" value="${studentVo.birth }" readonly>
                             </div>
                         </div>
                         <div class="info-items">
@@ -93,7 +90,7 @@
                                 <label for="quitYn">탈퇴여부</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="quitYn" id="quitYn" value="O" readonly>
+                                <input type="text" name="quitYn" id="quitYn" value="${studentVo.quitYn }" readonly>
                             </div>
                         </div>
                         <div class="info-items">
@@ -101,7 +98,7 @@
                                 <label for="reportYn">신고여부</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="reportYn" id="reportYn" value="X" readonly>
+                                <input type="text" name="reportYn" id="reportYn" value="${studentVo.reportYn }" readonly>
                             </div>
                         </div>
                     </div>
@@ -109,30 +106,27 @@
                         <div>
                             <button id="stop-btn">정지</button>
                         </div>
-                        <div>
-                            <button id="edit-btn">수정</button>
-                        </div>
                     </div>
-                </form>
                 <h3>포인트</h3>
                 <div class="point-box">
-                    <form action="">
+                    <form action="/el/admin/member/student/point-edit" method="post" onsubmit="return pwdCheck();">
+                        <input name="memberNo" value="${studentVo.memberNo}" hidden>
                         <div>포인트 지급/차감</div>
                         <div class="point-top">
                             <div>
-                                <select name="change" id="change">
-                                    <option value="plus">지급</option>
-                                    <option value="minus">차감</option>
+                                <select name="history" id="history">
+                                    <option value="3">차감</option>
+                                    <option value="4">이벤트</option>
                                 </select>
                             </div>
                             <div>
-                                <input type="text" name="history" placeholder="사유를 입력해주세요.">
+                                <input type="text" name="change" placeholder="포인트를 입력해주세요.">
                             </div>
                             <div>
-                                <input type="number" name="point" placeholder="포인트를 입력해주세요.">
+                                <input id="pwd-check" type="password" placeholder="관리자 비밀빈호를 입력해주세요.">
                             </div>
                             <div>
-                                <button>확인</button>
+                                <button type="submit">확인</button>
                             </div>
                         </div>
                     </form>
@@ -141,20 +135,19 @@
                             <div>일자</div>
                             <div>사유</div>
                             <div>증감</div>
-                            <div>총액</div>
+                            <div>총액 : ${studentVo.point}</div>
                         </div>
-                        <div class="list-content list">
-                            <div>2022-12-12</div>
-                            <div>구매</div>
-                            <div>3000</div>
-                            <div>3000</div>
+					 <c:forEach items="${pointList}"  var="list">
+                            <div class="list-content list">
+                            <div>${list.enrollDate }</div>
+                            <div>${list.history }</div>
+                            <div>${list.change }</div>
                         </div>
-                        <div class="list-content list">
-                            <div>2022-12-12</div>
-                            <div>구매</div>
-                            <div>3000</div>
-                            <div>3000</div>
-                        </div>
+                     </c:forEach>
+                     <c:if test="${empty pointList}">
+						<p id="empty-box">내역이 없습니다.</p>
+                     </c:if>
+
                     </div>
                 </div>
 
@@ -162,5 +155,17 @@
             </div>
         </main>
     </div>
+    <script>
+         function pwdCheck() {
+            const loginPwd = '${loginAdmin.rawPwd}';
+            const inputPwd = $('#pwd-check').val();
+            console.log(loginPwd);
+            console.log(inputPwd);
+            if(loginPwd != inputPwd) {
+                return false;
+            }    
+            return true;
+        }
+    </script>
 </body>
 </html>
