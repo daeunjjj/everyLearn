@@ -1,6 +1,7 @@
 package com.coding5.el.admin.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -36,19 +37,19 @@ public class AdminDaoImpl implements AdminDao{
 	}
 
 	@Override
-	public int selectAdminCount(SqlSessionTemplate sst, SearchVo svo) {
+	public int selectAdminCount(SqlSessionTemplate sst, Map<String, String> mapSearch) {
 		// 관리자 총 수
-		return sst.selectOne("adminMapper.selectAdminConut",svo);
+		return sst.selectOne("adminMapper.selectAdminConut",mapSearch);
 	}
 
 	@Override
-	public List<AdminVo> selectAdminList(SqlSessionTemplate sst, PageVo pv, SearchVo svo) {
+	public List<AdminVo> selectAdminList(SqlSessionTemplate sst, PageVo pv,  Map<String, String> mapSearch) {
 		// 관리자 리스트 가져오기
 		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
 		int limit = pv.getBoardLimit();
 		RowBounds rb = new RowBounds(offset,limit);
 		
-		return sst.selectList("adminMapper.selectAdminList",svo,rb);
+		return sst.selectList("adminMapper.selectAdminList",mapSearch,rb);
 	}
 
 	@Override
@@ -64,19 +65,19 @@ public class AdminDaoImpl implements AdminDao{
 	}
 
 	@Override
-	public int selectStudentCount(SearchVo svo,SqlSessionTemplate sst) {
+	public int selectStudentCount( Map<String, String> mapSearch,SqlSessionTemplate sst) {
 		// 학생 회원 수 가져오기
-		return sst.selectOne("adminMapper.selectStudentConut",svo);
+		return sst.selectOne("adminMapper.selectStudentConut",mapSearch);
 	}
 
 	@Override
-	public List<MemberVo> selectStudentList(SqlSessionTemplate sst, PageVo pv, SearchVo svo) {
+	public List<MemberVo> selectStudentList(SqlSessionTemplate sst, PageVo pv,  Map<String, String> mapSearch) {
 		// 학생회원 리스트 가져오기
 		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
 		int limit = pv.getBoardLimit();
 		RowBounds rb = new RowBounds(offset,limit);
 		
-		return sst.selectList("adminMapper.selectStudentList", svo, rb);
+		return sst.selectList("adminMapper.selectStudentList", mapSearch, rb);
 	}
 
 	@Override

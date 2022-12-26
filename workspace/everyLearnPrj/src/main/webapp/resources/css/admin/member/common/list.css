@@ -122,6 +122,21 @@ label{
     margin-top: 10px;
 }
 
+.page-area{
+    position: absolute;
+    top: 100%;
+    left: 60%;
+    transform: translate(-50%, 0);
+    height: 10px;
+}
+
+.page-area>ul{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 18px;
+}
+
 .atag-area{
     padding: 18px 10px 0px 0px;
     font-size: 15px;

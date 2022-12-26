@@ -1,6 +1,7 @@
 package com.coding5.el.admin.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coding5.el.admin.service.AdminService;
@@ -169,33 +171,33 @@ public class AdminController {
 		session.setAttribute("loginAdmin", updateAdmin);
 		return "redirect:/admin/info";
 	}
-
+	
 	/**
 	 * 관리자 조회
 	 * @param pno
 	 * @param model
-	 * @param svo
+	 * @param mapSearch
 	 * @return
 	 */
 	@GetMapping("master/list")
-	public String adminList(String pno, Model model, SearchVo svo) {
+	public String adminList(String pno, Model model, @RequestParam Map<String, String> mapSearch) {
 		// 카운트
-		int listCount = adminService.selectAdminCount(svo);
+		int listCount = adminService.selectAdminCount(mapSearch);
 		int currentPage = Integer.parseInt(pno);
 		int pageLimit = 5;
 		int boardLimit = 10;
 		
-		log.info("화면에서 받아오는 데이터 :::" + svo);
+		log.info("화면에서 받아오는 데이터  mapSearch :::" + mapSearch);
 		
 		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		
-		List<AdminVo> voList = adminService.selectAdminList(pv,svo);
+		List<AdminVo> voList = adminService.selectAdminList(pv,mapSearch);
 		
 		if(voList == null) {
 			return "common/error";
 		}
 		
-		model.addAttribute("svo", svo);
+		model.addAttribute("svo", mapSearch);
 		model.addAttribute("pv", pv);
 		model.addAttribute("voList", voList);
 
@@ -239,31 +241,31 @@ public class AdminController {
 	 * 학생 리스트 가져오기
 	 * @param pno
 	 * @param model
-	 * @param svo
+	 * @param mapSearch
 	 * @return
 	 */
 	@GetMapping("member/student/list")
-	public String studentList(String pno, Model model, SearchVo svo) {
+	public String studentList(String pno, Model model,  @RequestParam Map<String, String> mapSearch) {
 		
 		// 카운트
-		int listCount = adminService.selectStudentCount(svo);
+		int listCount = adminService.selectStudentCount(mapSearch);
 		int currentPage = Integer.parseInt(pno);
 		int pageLimit = 5;
 		int boardLimit = 10;
 		log.info("리스트 수 :::"+listCount);
-		log.info("화면에서 받아오는 데이터 svo  :::" + svo);
-		log.info("화면에서 받아오는 데이터 pno ::: "+svo);
+		log.info("화면에서 받아오는 데이터 mapSearch  :::" + mapSearch);
+		log.info("화면에서 받아오는 데이터 pno ::: "+mapSearch);
 		
 		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		
 		
-		List<MemberVo> voList = adminService.selectStudentList(pv,svo);
+		List<MemberVo> voList = adminService.selectStudentList(pv,mapSearch);
 		
 		log.info("화면에서 받아오는 listVo ::: " + voList);
 		
 		if(voList == null) return "common/error";
 		
-		model.addAttribute("svo", svo);
+		model.addAttribute("svo", mapSearch);
 		model.addAttribute("pv", pv);
 		model.addAttribute("voList", voList);
 		return "admin/member/student/list";

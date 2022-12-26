@@ -1,6 +1,7 @@
 package com.coding5.el.admin.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -25,10 +26,10 @@ public interface AdminService {
 	public AdminVo myInfoModify(AdminVo vo);
 	
 	// 관리자 총 수 조회
-	public int selectAdminCount(SearchVo svo);
+	public int selectAdminCount(Map<String, String> mapSearch);
 	
 	// 관리자 리스트 조회
-	public List<AdminVo> selectAdminList(PageVo pv, SearchVo svo);
+	public List<AdminVo> selectAdminList(PageVo pv, Map<String, String> mapSearch);
 	
 	// 관리자 상세 조회
 	public AdminVo adminDetail(String no);
@@ -37,10 +38,10 @@ public interface AdminService {
 	public int adminModify(AdminVo vo);
 	
 	// 학생 멤버 수 조회
-	public int selectStudentCount(SearchVo svo);
+	public int selectStudentCount(Map<String, String> mapSearch);
 	
 	// 학생 회원 리스트 가져오기
-	public List<MemberVo> selectStudentList(PageVo pv, SearchVo svo);
+	public List<MemberVo> selectStudentList(PageVo pv, Map<String, String> mapSearch);
 	
 	// 학생 회원 no로 가져오기
 	public MemberVo detailStudent(String no);
