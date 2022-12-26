@@ -1,6 +1,7 @@
 package com.coding5.el.admin.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -21,10 +22,10 @@ public interface AdminDao {
 	public int updateAdmin(SqlSessionTemplate sst, AdminVo vo);
 	
 	// 관리자 총 수
-	public int selectAdminCount(SqlSessionTemplate sst, SearchVo svo);
+	public int selectAdminCount(SqlSessionTemplate sst, Map<String, String> mapSearch);
 	
 	// 관리자 리스트 가져오기
-	public List<AdminVo> selectAdminList(SqlSessionTemplate sst, PageVo pv, SearchVo svo);
+	public List<AdminVo> selectAdminList(SqlSessionTemplate sst, PageVo pv, Map<String, String> mapSearch);
 	
 	// 관리자 하나 넘버로 가져오기
 	public AdminVo selectOneAdminByNo(SqlSessionTemplate sst, String no);
@@ -33,10 +34,10 @@ public interface AdminDao {
 	public AdminVo selectOneAdminById(SqlSessionTemplate sst, String id);
 	
 	// 학생 회원 수 가져오기
-	public int selectStudentCount(SearchVo svo,SqlSessionTemplate sst);
+	public int selectStudentCount(Map<String, String> mapSearch,SqlSessionTemplate sst);
 	
 	// 학생 회원 가져오기
-	public List<MemberVo> selectStudentList(SqlSessionTemplate sst, PageVo pv, SearchVo svo);
+	public List<MemberVo> selectStudentList(SqlSessionTemplate sst, PageVo pv, Map<String, String> mapSearch);
 	
 	// 학생 한명 넘버로 가져오기
 	public MemberVo selectStudentOneByNo(SqlSessionTemplate sst, String no);

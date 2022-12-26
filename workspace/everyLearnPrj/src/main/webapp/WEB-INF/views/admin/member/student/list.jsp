@@ -83,7 +83,7 @@
                         <button id="mail-btn">정지</button>
                     </div>
                 </form>
-                              <nav class="page-area">
+                <nav class="page-area">
                     <ul>
 
                     <c:if test="${pv.currentPage != 1}">

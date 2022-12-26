@@ -1,6 +1,7 @@
 package com.coding5.el.admin.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,18 +110,18 @@ public class AdminServiceImpl implements AdminService{
 	 * 관리자 총수
 	 */
 	@Override
-	public int selectAdminCount(SearchVo svo) {	
+	public int selectAdminCount(Map<String, String> mapSearch) {	
 		
-		return adminDao.selectAdminCount(sst,svo);
+		return adminDao.selectAdminCount(sst,mapSearch);
 	}
 	
 	/**
 	 * 관리자 리스트 가져오기
 	 */
 	@Override
-	public List<AdminVo> selectAdminList(PageVo pv, SearchVo svo) {
+	public List<AdminVo> selectAdminList(PageVo pv, Map<String, String> mapSearch) {
 		
-		return adminDao.selectAdminList(sst,pv, svo);
+		return adminDao.selectAdminList(sst,pv, mapSearch);
 	}
 	
 	/**
@@ -145,17 +146,17 @@ public class AdminServiceImpl implements AdminService{
 	 * 학생 회원 수 조회
 	 */
 	@Override
-	public int selectStudentCount(SearchVo svo) {
+	public int selectStudentCount(Map<String, String> mapSearch) {
 		
-		return adminDao.selectStudentCount(svo, sst);
+		return adminDao.selectStudentCount(mapSearch, sst);
 	
 	}
 	/**
 	 * 학생 회원 리스트 조회
 	 */
 	@Override
-	public List<MemberVo> selectStudentList(PageVo pv, SearchVo svo) {
-		return adminDao.selectStudentList(sst, pv, svo);
+	public List<MemberVo> selectStudentList(PageVo pv, Map<String, String> mapSearch) {
+		return adminDao.selectStudentList(sst, pv, mapSearch);
 	}
 	
 	/**

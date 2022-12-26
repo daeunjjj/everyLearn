@@ -199,7 +199,7 @@
 		    ,ID
 		    ,PWD
 		    ,NAME
-		    ,BIRTH
+		    ,TO_CHAR(BIRTH, 'YYYY-MM-DD') AS BIRTH
 		    ,PHONE
 		    ,NICK
 		    ,EMAIL
