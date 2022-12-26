@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/el/resources/css/emp/empMain.css">
 <link rel="stylesheet" href="/el/resources/css/emp/resume.css">
+<link rel="stylesheet" href="/el/resources/css/common/font.css">
 <link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 </head>
 <body>
@@ -18,7 +19,7 @@
 			<div class="title">
 				<h5>정확하게 입력했는지 다시 한번 확인해주세요!</h5>
 			</div>
-			<form action="/el/emp/resume" method="POST">
+			<form action="/el/emp/resume" method="POST" enctype="multipart/form-data">
 				<div class="main">
 					<div class="main-wrapper">
 						<section class="section">
@@ -92,32 +93,33 @@
 												<div class="list">
 													<p>학력</p>
 													<div>
-														<input type="text" name="education" class="input">
+														<input type="text" name="evList[0].education" class="input">
 													</div>
 												</div>
 												<div class="list">
 													<p>학교명</p>
 													<div>
-														<input type="text" name="school" class="input">
+														<input type="text" name="evList[0].schoolName" class="input">
 													</div>
 												</div>
 												<div class="list">
 													<p>전공</p>
 													<div>
-														<input type="text" name="major" class="input">
+														<input type="text" name="evList[0].major" class="input">
 													</div>
 												</div>
 												<!-- 드롭다운 변경 예정 -->
 												<div class="list">
 													<p>졸업 여부</p>
 													<div>
-														<input type="text" name="graduation" class="input">
+														<input type="text" name="evList[0].status" class="input">
 													</div>
 												</div>
 												<div class="list">
 													<p>교육기간</p>
 													<div>
-														<input type="text" name="period" class="input">
+														<input type="text" name="evList[0].enterSchool" class="input">
+														<input type="text" name="evList[0].graduate" class="input">
 													</div>
 												</div>
 											</div>
@@ -318,5 +320,6 @@
 	</main>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+	<script src="/el/resources/js/emp/resume.js"></script>
 </body>
 </html>

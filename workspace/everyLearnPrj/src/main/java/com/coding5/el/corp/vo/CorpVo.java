@@ -10,12 +10,16 @@ public class CorpVo {
 	private String pwd;
 	private String companyName;
 	private String companyAddress;
-	private String companyEmail;
 	private String name;
 	private String phone;
+	private String introduce;
 	private String enrollDate;
 	private String modifyDate;
 	private String companyNum;
 	private String quitYN;
-	private String checkYN;
+	private String statusYN;
+	private String sector;
+	private String empNum;
+	private String sales;
+	private String homepage;
 }

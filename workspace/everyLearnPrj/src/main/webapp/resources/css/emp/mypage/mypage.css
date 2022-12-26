@@ -102,6 +102,7 @@ input{
   text-align: center;
   color: rgb(182, 181, 181);
   font-size: 14px;
+  padding-bottom: 120px;
 }
 
 .admin-submit{
@@ -109,7 +110,7 @@ input{
   bottom: 0px;
   right: 0px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   padding: 0px 32px;
   width: calc(100% - 250px);
@@ -117,4 +118,19 @@ input{
   background-color: rgb(255, 255, 255);
   border-top: 1px solid rgb(234, 236, 238);
   z-index: 10;
+}
+
+.admin-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background-color: #1187CF;
+  color: rgb(255, 255, 255);
+  padding: 11px 14px;
+  font-size: 15px;
+  font-weight: bold;
+  width: 9.333rem;
 }

@@ -38,4 +38,17 @@ public class CorpServiceImpl implements CorpService {
 		return dao.selectOneCorpMember(sst, vo);
 	}
 
+	// 기업 마이페이지(회사정보 화면)
+	@Override
+	public CorpVo selectMypage(CorpVo vo) {
+		return dao.selectOneCorpInfo(sst, vo);
+	}
+	
+	// 기업 마이페이지(회사정보 수정)
+	@Override
+	public int updateCorpInfo(CorpVo vo) {
+		return dao.updateCorpInfo(sst, vo);
+	}
+
+
 }

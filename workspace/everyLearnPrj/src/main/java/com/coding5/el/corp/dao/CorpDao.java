@@ -12,4 +12,12 @@ public interface CorpDao {
 	// 로그인
 	public CorpVo selectOneCorpMember(SqlSessionTemplate sst, CorpVo vo);
 
+	// 기업 마이페이지(회사정보 화면)
+	public CorpVo selectOneCorpInfo(SqlSessionTemplate sst, CorpVo vo);
+	
+	// 기업 마이페이지(회사정보 수정)
+	public int updateCorpInfo(SqlSessionTemplate sst, CorpVo vo);
+
+
+
 }

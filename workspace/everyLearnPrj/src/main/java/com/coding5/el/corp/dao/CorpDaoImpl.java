@@ -20,4 +20,17 @@ public class CorpDaoImpl implements CorpDao{
 		return sst.selectOne("corpMapper.selectOneCorpMember", vo);
 	}
 
+	// 기업 마이페이지(회사정보 화면)
+	@Override
+	public CorpVo selectOneCorpInfo(SqlSessionTemplate sst, CorpVo vo) {
+		return sst.selectOne("corpMapper.selectOneCorpInfo", vo);
+	}
+	
+	// 기업 마이페이지(회사정보 수정)
+	@Override
+	public int updateCorpInfo(SqlSessionTemplate sst, CorpVo vo) {
+		return sst.update("corpMapper.updateCorpInfo", vo);
+	}
+
+
 }

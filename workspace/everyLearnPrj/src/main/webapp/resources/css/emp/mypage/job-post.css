@@ -1,0 +1,93 @@
+*{
+  box-sizing: border-box;
+}
+
+.post{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 32px;
+  color: rgb(33, 37, 42);
+}
+
+.header{
+  width: 100%;
+  max-width: 70.133rem;
+  padding: 32px 0px;
+}
+
+.companyName{
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.upload-img{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img-label{
+  position: relative;
+  display: block;
+  border-radius: 6px;
+  width: 12.333rem;
+  height: 8.333rem;
+  background-color: transparent;
+}
+
+.img-wrapper{
+  position: absolute;
+  inset: 0px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(234, 236, 238);
+  border-radius: 150px;
+}
+
+.img-input{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+}
+
+.img-uploader-cover{
+  position: absolute;
+}
+
+.p{
+  margin: 6px 0px 0px;
+  font-size: 9px;
+  line-height: 1.5;
+  color: rgb(161, 170, 178);
+}
+
+.upload-btn{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background-color: rgb(242, 244, 246);
+  color: rgb(83, 89, 97);
+  padding: 7px 12px;
+  font-size: 11px;
+  line-height: 1.45;
+  letter-spacing: -0.3px;
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+.span{
+  margin-top: 8px;
+  font-size: 0.5rem;
+  line-height: 1.2rem;
+  color: rgb(135, 142, 152);
+}
