@@ -4,6 +4,15 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminMapper">
 	
+	<resultMap type="com.coding5.el.member.vo.MemberVo" id="memberMap">
+		<result property="memberNo" column="NO"/>
+		<result property="memberId" column="ID"/>
+		<result property="memberPwd" column="PWD"/>
+		<result property="memberName" column="NAME"/>
+		<result property="memberNick" column="NICK"/>
+	</resultMap>
+	
+	
 	<select id="selectOneAdminByVo" resultType="AdminVo">
 		SELECT 
 		    A.NO
@@ -153,4 +162,85 @@
    		WHERE A.ID = #{id}
    		AND A.QUIT_YN = 'N'
 	</select>
+	
+	<select id="selectStudentConut" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		<if test="keyword != null and keyword != ''">
+			WHERE ${category} LIKE '%${keyword}%'
+		</if>
+	</select>
+	
+	<select id="selectStudentList" resultType="com.coding5.el.member.vo.MemberVo" resultMap="memberMap">
+		SELECT 
+		    NO
+		    ,ID
+		    ,PWD
+		    ,NAME
+		    ,BIRTH
+		    ,PHONE
+		    ,NICK
+		    ,EMAIL
+		    ,TO_CHAR(ENROLL_DATE, 'YYYY-MM-DD') AS ENROLL_DATE
+		    ,MODIFY_DATE
+		    ,PROFILE_IMG
+		    ,POINT
+		    ,REPORT_YN
+		    ,DECODE(QUIT_YN, 'N','유지', 'Y','탈퇴') AS QUIT_YN
+		FROM MEMBER
+		<if test="keyword != null and keyword != ''">
+			WHERE ${category} LIKE '%${keyword}%'
+		</if>
+	</select>
+	
+	<select id="selectStudentOneByNo" resultType="com.coding5.el.member.vo.MemberVo" resultMap="memberMap">
+		SELECT
+		    NO
+		    ,ID
+		    ,PWD
+		    ,NAME
+		    ,BIRTH
+		    ,PHONE
+		    ,NICK
+		    ,EMAIL
+		    ,ENROLL_DATE
+		    ,MODIFY_DATE
+		    ,PROFILE_IMG
+		    ,POINT
+		    ,REPORT_YN
+		    ,QUIT_YN
+		FROM MEMBER
+		WHERE NO = #{memberNo}
+	</select>
+	<select id="selectPointListByNo" resultType="com.coding5.el.member.vo.PointVo">
+		SELECT
+		    P.MEMBER_NO
+		    ,CP.NAME AS HISTORY
+		    ,P.CHANGE
+		    ,P.ENROLL_DATE
+		FROM POINT P
+		JOIN CATE_POINT CP ON P.HISTORY = CP.NO
+		WHERE P.MEMBER_NO = #{memberNo}
+		ORDER BY P.ENROLL_DATE DESC
+	</select>
+	<insert id="insertPoint">
+		INSERT INTO POINT 
+		(
+			MEMBER_NO
+			, HISTORY
+			, CHANGE
+		) 
+		VALUES
+		(
+			#{memberNo}
+			, #{history}
+			, #{change}
+		)
+	</insert>
+	<update id="updateStudent">
+		UPDATE MEMBER 
+			SET 
+		POINT = POINT ${change} WHERE NO = #{memberNo}
+	</update>
+	
 </mapper>

@@ -39,7 +39,7 @@
                     </a>
                 </li>
                 <li class="nav-items" id="member">
-                    <a class="nav-items-a" href="/el/admin/member/student/list">
+                    <a class="nav-items-a" href="/el/admin/member/student/list?pno=1">
                         <span>회원관리</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
@@ -47,13 +47,13 @@
                         <div class="detail-wrap">
                             <ul>
                                 <li class="detail-cate" id="student">
-                                    <a href="/el/admin/member/student/list">학생회원</a>
+                                    <a href="/el/admin/member/student/list?pno=1">학생회원</a>
                                 </li>
                                 <li class="detail-cate" id="teacher">
-                                    <a href="/el/admin/member/teacher/list">강사회원</a>
+                                    <a href="/el/admin/member/teacher/list?pno=1">강사회원</a>
                                 </li>
                                 <li class="detail-cate" id="corporate">
-                                    <a href="/el/admin/member/corporate/list">기업회원</a>
+                                    <a href="/el/admin/member/corporate/list?pno=1">기업회원</a>
                                 </li>
                             </ul>
                         </div>
@@ -74,7 +74,7 @@
                         <div class="detail-wrap">
                             <ul>
                                 <li class="detail-cate" id="notice">
-                                    <a href="/el/admin/notice/list">공지사항</a>
+                                    <a href="/el/notice/adminList">공지사항</a>
                                 </li>
                                 <li class="detail-cate" id="faq">
                                     <a href="">자주묻는질문</a>

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
+import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.member.vo.PointVo;
 
 public interface AdminService {
 	
@@ -33,5 +35,20 @@ public interface AdminService {
 	
 	// 마스터 관리자 정보 수정
 	public int adminModify(AdminVo vo);
+	
+	// 학생 멤버 수 조회
+	public int selectStudentCount(SearchVo svo);
+	
+	// 학생 회원 리스트 가져오기
+	public List<MemberVo> selectStudentList(PageVo pv, SearchVo svo);
+	
+	// 학생 회원 no로 가져오기
+	public MemberVo detailStudent(String no);
+	
+	// 포인트 조회
+	public List<PointVo> selectPointList(String no);
+	
+	// 포인트 수정
+	public int pointEdit(PointVo vo);
 	
 }
