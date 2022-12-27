@@ -37,7 +37,7 @@
             <!-- 반복 -->
             <c:forEach var="n" items="${ list }">
                 <div class="td" id="no">${ n.no }</div>
-                <div class="td" id="title"><a href="/el/notice/detail" id="title-a">${n.title}</a></div>
+                <div class="td" id="title"><a href="/el/notice/detail?no=${ n.no }" id="title-a">${n.title}</a></div>
                 <div class="td" id="nick">관리자</div>
                 <div class="td" id="date">${ n.enrollDate }</div>
                 <div class="td" id="hit">${ n.hit }</div>

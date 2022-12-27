@@ -40,11 +40,11 @@
 				<c:forEach items="${list}" var="n">
 					<div class="td" id="check"><input type="checkbox" class="checkbox-del" value="${n.no}"></div>
 					<div class="td" id="no">${n.no}</div>
-	                <div class="td" id="title"><a href="/el/notice/detail" target="_blank" id="title-a">${n.title}</a></div>
+	                <div class="td" id="title"><a href="/el/notice/detail?no=${ n.no }" target="_blank" id="title-a">${n.title}</a></div>
 	                <div class="td" id="adminNick">관리자</div>
 	                <div class="td" id="enrollDate">${n.enrollDate}</div>
 	                <div class="td" id="hit">${n.hit}</div>
-	                <div class="td"><button onclick="edit();" id="edit">수정</button></div>
+	                <div class="td"><button onclick="location.href = '/el/notice/edit?no=${ n.no }'" id="edit">수정</button></div>
 	                <div class="td"><button onclick="del();" id="del">삭제</button></div>
 				</c:forEach>
 					

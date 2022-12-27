@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +31,11 @@
         	
 
             <div class="title"><span id="title" name="title">${ n.title }</span></div>
-                <div class="info-nick"><span id="nick">관리자   |  ${ n.enrollDate }    |  ${ n.hit }</span></div>
+                <div class="info-nick">
+                	<span id="nick">${ n.admin }</span>&nbsp;
+                	<span>${ n.enrollDate }</span>&nbsp;
+                	<span>${ n.hit }</span>
+                </div>
                 <div class="content" name="content">
                            	${ n.content }
                 </div>
