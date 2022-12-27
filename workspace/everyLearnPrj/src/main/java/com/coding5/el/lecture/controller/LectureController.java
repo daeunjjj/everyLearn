@@ -329,7 +329,7 @@ public class LectureController {
 		if (result == 1) {
 			session.setAttribute("alertMsg", "기본 정보 입력 완료.");
 			//model.addAttribute(lvo);
-			//model.addAttribute(bno);
+			model.addAttribute(bno);
 			return "redirect:/lecture/insert/detail";
 		} else {
 			model.addAttribute("errorMsg", " 게시글 등록에 실패하였습니다. ");
@@ -343,10 +343,11 @@ public class LectureController {
 	public String insertDetail(LectureVo lvo, String bno, Model model) {
 		
 		
-		/*
-		 * System.out.println("---------------------controller bno");
-		 * System.out.println(bno); model.addAttribute("bno", bno);
-		 */
+		
+		  System.out.println("---------------------controller bno");
+		  System.out.println(bno); 
+		  model.addAttribute("bno", bno);
+		 
 		return "lecture/insertDetail";
 		
 	}

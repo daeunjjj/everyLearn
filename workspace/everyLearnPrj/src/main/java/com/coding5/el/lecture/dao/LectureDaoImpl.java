@@ -28,7 +28,8 @@ public class LectureDaoImpl implements LectureDao{
 	@Override
 	public int insertClassDetail(SqlSessionTemplate sst, LectureVo lvo,
 			List<LectureVo> dcList) {
-		return sst.insert("lectureMapper.insertClassDetail", lvo);
+		System.out.println("dao : " + dcList);
+		return sst.insert("lectureMapper.insertClassDetail", dcList);
 	}
 
 	//강의 리스트 조회
