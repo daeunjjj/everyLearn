@@ -13,6 +13,7 @@
 	<div class="wrap">
         <%@include file="/WEB-INF/views/admin/menu.jsp" %>
         <main>
+  		
             <h1>강사회원</h1>
             <div id="line"></div>
            	<div class="main-wrap">
@@ -22,53 +23,58 @@
                         <div class="flex-items" id="profile-wrap">
                             <div>프로필사진</div>
                             <div>
-                                <img src="/el/resources/img/admin/profile.png" alt="프로필사진" width="150" height="200">
+                                <img src="/el/resources/upload/${map.tvo.changeName }" alt="프로필사진" width="150" height="200">
                             </div>
                         </div>
                         <div class="flex-items">
                             <div>이름</div>
-                            <div>이강사</div>
+                            <div>${map.tvo.name}</div>
                         </div>
                         <div class="flex-items">
                             <div>아이디</div>
-                            <div>teacher123</div>
+                            <div>${map.tvo.id }</div>
                         </div>
                         <div class="flex-items">
                             <div>분야</div>
-                            <div>드로잉</div>
+                            <div>${map.tvo.classCate }</div>
                         </div>
                         <div class="flex-items">
                             <div>경력</div>
-                            <div>1년</div>
+                            <div>${map.tvo.career }</div>
                         </div>
                         <div class="flex-items">
                             <div>전화번호</div>
-                            <div>010-1234-5678</div>
+                            <div>${map.tvo.phone }</div>
                         </div>
                         <div class="flex-items">
                             <div>이메일</div>
-                            <div>teacher123@gmail.com</div>
+                            <div>${map.tvo.email }</div>
                         </div>
                     </div>
                     <div class="resume-bottom">
-                        <div class="bottom-wrap">
+<%--                         <div class="bottom-wrap">
                             <div>이력</div>
                             <div>
                                 <i class="bi bi-dot"></i>
-                                2016년 건국대 디자인과 졸업
+                                ${map.tvo.record }
+                            </div>
+                        </div> --%>
+                       <div class="bottom-wrap">
+                            <div>포부</div>
+                            <div id="short-intro-content">
+							${map.tvo.shortIntro}
                             </div>
                         </div>
                         <div class="bottom-wrap">
                             <div>자기소개</div>
                             <div id="intro-content">
-                                안녕하세요. 저는 드로잉공부 어쩌구저쩌구 울라블라블루짱입니다. <br>
-                                파랑파랑~~ <br>
-                                짱~~~
+							${map.tvo.introduce}
                             </div>
                         </div>
 
                     </div>
-                    <div class="detail-list-wrap">
+                    <c:if test="${!empty map.voList }">
+                    	 <div class="detail-list-wrap">
                         <h3>강의목록</h3>
                         <div class="detail-list-area">
                             <div>강의명</div>
@@ -80,48 +86,52 @@
                         </div>
                         <div>
                             <ul>
-                                <li class="detail-list-area">
-                                    <div>
-                                        <a href="">
-                                            하루만에 배우는 드로잉
-                                            <i class="bi bi-box-arrow-up-right"></i>
-                                        </a>
-                                    </div>
-                                    <div>20000</div>
-                                    <div>2022-12-07</div>
-                                    <div>300</div>
-                                    <div>280</div>
-                                    <div>
-                                        <button>폐강</button>
-                                    </div>
-                                </li>
-                                <li class="detail-list-area">
-                                    <div>
-                                        <a href="">
-                                            하루만에 배우는 드로잉
-                                            <i class="bi bi-box-arrow-up-right"></i>
-                                        </a>
-                                    </div>
-                                    <div>20000</div>
-                                    <div>2022-12-07</div>
-                                    <div>300</div>
-                                    <div>280</div>
-                                    <div>
-                                        <button>폐강</button>
-                                    </div>
-                                </li>
+								<c:forEach items="${map.voList}" var="list">
+									<li class="detail-list-area">
+	                                    <div>
+	                                        <a href="">
+	                                            ${list.className }	
+	                                            <i class="bi bi-box-arrow-up-right"></i>
+	                                        </a>
+	                                    </div>
+	                                    <div>${list.price }	</div>
+	                                    <div>${list.modifyDate }	</div>
+	                                    <div>${list.recomm }	</div>
+	                                    <div>${list.studentCnt }	</div>
+	                                    <div>
+	                                    <form action="/el/admin/member/teacher/class/delete" method="post">
+	                                    	<input name="cno" value="${list.no}" hidden>
+	                                    	<input name="no" value="${map.tvo.no}" hidden>
+	                                        <c:if test="${list.deleteYn eq 'N' }">
+	                                        	<button type="submit">강의중</button>	
+	                                        </c:if>
+                                     	    <c:if test="${list.deleteYn eq 'Y' }">
+	                                        	<button type="submit" disabled="disabled" id="non-click">폐강</button>	
+	                                        </c:if>                                      
+	                                    </form>
+	                                    </div>
+	                                </li>
+								</c:forEach>
                             </ul>
                         </div>
                     </div>
-                    <div class="btn-area">
-                        <button id="refusal-btn">탈락</button>
-                        <button id="approval-btn">승인</button>
-                    </div>
+                    </c:if>
+                   	
+                    <form method="post">
+                        <div class="btn-area">
+                            <input name="no" value="${map.tvo.no}" hidden>
+                            <button type="submit" formaction="/el/admin/member/teacher/delete" id="refusal-btn" name="result" value="delete">탈락</button>
+                            <c:if test="${map.tvo.statusYn eq 'N' }">
+                                <button type="submit" formaction="/el/admin/member/teacher/approval" id="approval-btn" >승인</button>                        
+                            </c:if>
+                        </div>
+                    </form>
                 </div>
            	</div>
-
+	
 
         </main>
     </div>
+
 </body>
 </html>

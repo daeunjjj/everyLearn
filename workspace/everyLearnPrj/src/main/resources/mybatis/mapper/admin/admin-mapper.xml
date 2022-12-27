@@ -163,7 +163,7 @@
    		AND A.QUIT_YN = 'N'
 	</select>
 	
-	<select id="selectStudentConut" resultType="int">
+	<select id="selectStudentCount" resultType="int">
 		SELECT COUNT(*)
 		FROM MEMBER
 		<if test="keyword != null and keyword != ''">
@@ -237,10 +237,127 @@
 			, #{change}
 		)
 	</insert>
+	
 	<update id="updateStudent">
 		UPDATE MEMBER 
 			SET 
 		POINT = POINT ${change} WHERE NO = #{memberNo}
 	</update>
 	
+	<select id="selectTeacherCount" resultType="int">
+			SELECT COUNT(*)
+			FROM TEACHER T
+			JOIN MEMBER M ON T.MEMBER_NO = M.NO
+		<if test="keyword != null and keyword != ''">
+			WHERE M.${category} LIKE '%${keyword}%'
+		</if>
+		<if test="cate != null and keyword != ''">
+			AND T.CATEGORY IN
+			<foreach collection="cate" item="arr" open="(" close=")" separator=",">
+			#{arr}
+			</foreach>
+		</if>
+	</select>
+	
+	<select id="selectTeacherList" resultType="com.coding5.el.teacher.vo.TeacherVo">
+		SELECT
+		    T.NO
+		    ,T.MEMBER_NO
+		    ,T.CATEGORY AS CLASS_CATE
+		    ,T.CAREER
+		    ,T.SHORT_INTRO
+		    ,T.INTRODUCE
+		    ,T.RECORD
+		    ,T.ENROLL_DATE
+		    ,T.MODIFY_DATE
+		    ,DECODE(T.STATUS_YN, 'N','대기', 'Y','승인') AS STATUS_YN
+		    ,T.DELETE_YN
+		    ,M.ID
+		    ,M.EMAIL
+		    ,M.NAME
+   			,M.PHONE
+		FROM TEACHER T
+		JOIN MEMBER M ON T.MEMBER_NO = M.NO
+		WHERE T.DELETE_YN = 'N'
+		<if test="keyword != null and keyword != ''">
+			AND M.${category} LIKE '%${keyword}%'
+		</if>
+		<if test="cate != null and keyword != ''">
+			AND T.CATEGORY IN
+			<foreach collection="cate" item="arr" open="(" close=")" separator=",">
+			#{arr}
+			</foreach>
+		</if>
+		ORDER BY T.NO DESC
+	</select>
+	
+	<select id="selectTeacherStatusByN" resultType="int">
+		SELECT COUNT(*)
+		FROM TEACHER
+		WHERE STATUS_YN = 'N'
+	</select>
+	
+	<select id="selectTeacherDetailByNo" resultType="com.coding5.el.teacher.vo.TeacherVo">
+		SELECT
+		    T.NO
+		    ,T.MEMBER_NO
+		    ,T.CATEGORY AS CLASS_CATE
+		    ,T.CAREER
+		    ,T.SHORT_INTRO
+		    ,T.INTRODUCE
+		    ,T.RECORD
+		    ,T.ENROLL_DATE
+		    ,T.MODIFY_DATE
+		    ,T.STATUS_YN
+		    ,T.DELETE_YN
+		    ,M.ID
+		    ,M.EMAIL
+		    ,M.NAME
+		    ,P.CHANGE_NAME
+		    ,M.PHONE
+		FROM TEACHER T
+		JOIN MEMBER M 
+		ON T.MEMBER_NO = M.NO
+		JOIN PROFILE_TEACHER_ATTATCH P ON T.NO = P.TEACHER_NO
+		WHERE T.NO = #{no}
+	</select>
+	
+	<select id="selectLectureList" resultType="com.coding5.el.lecture.vo.LectureVo">
+		SELECT
+			NO
+			,TEACHER_NO
+			,CATEGORY
+			,CLASS_NAME
+			,CLASS_CONTENT
+			,RECOMM
+			,STUDENT_CNT
+			,PRICE
+			,ENROLL_DATE
+			,MODIFY_DATE
+			,DELETE_YN
+			,CLASS_CNT
+		FROM CLASS
+		WHERE TEACHER_NO = #{no}
+	</select>
+	
+	<update id="teacherDeleteByNo">
+		UPDATE TEACHER
+		SET 
+		    STATUS_YN = 'N'
+		  , DELETE_YN = 'Y'
+		WHERE NO = #{no}
+	</update>
+	<update id="teacherApprovalByNo">
+		UPDATE TEACHER
+		SET 
+		    STATUS_YN = 'Y'
+		WHERE NO = #{no}
+	</update>
+	
+	<update id="classDeleteByNo">
+		UPDATE CLASS
+		SET 
+		    DELETE_YN = 'Y'
+		WHERE NO = #{cno}
+	</update>
 </mapper>

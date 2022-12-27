@@ -10,6 +10,7 @@ import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
+import com.coding5.el.teacher.vo.TeacherVo;
 
 public interface AdminService {
 	
@@ -44,12 +45,31 @@ public interface AdminService {
 	public List<MemberVo> selectStudentList(PageVo pv, Map<String, String> mapSearch);
 	
 	// 학생 회원 no로 가져오기
-	public MemberVo detailStudent(String no);
+	public Map<String, Object> detailStudent(String no);
 	
-	// 포인트 조회
-	public List<PointVo> selectPointList(String no);
 	
 	// 포인트 수정
 	public int pointEdit(PointVo vo);
+	
+	// 강사 회원 수 조회
+	public int selectTeacherCount(SearchVo svo);
+	
+	// 강사 회원 리스트 조회
+	public List<TeacherVo> selectTeacherList(PageVo pv, SearchVo svo);
+	
+	// 강사 승인 대기 인원
+	public int selectTeacherStatusByN();
+	
+	// 강사 디테일 조회
+	public Map<String, Object> selectTeacherDetail(String no);
+	
+	// 강사 박탈
+	public int teacherDelete(String no);
+	
+	// 강사 승인
+	public int teacherApproval(String no);
+	
+	// 강의 삭제
+	public int classDelete(String cno);
 	
 }

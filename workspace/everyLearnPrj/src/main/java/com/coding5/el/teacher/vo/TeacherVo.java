@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 public class TeacherVo {
-	
+
 	private String no;
 	private String memberNo;
 	private String classCate;
@@ -19,12 +19,18 @@ public class TeacherVo {
 	private String modifyDate;
 	private String statusYn;
 	private String checkYn;
+	private String deleteYn;
 	private List<MultipartFile> imgTeacher;
 	private List<MultipartFile> record;
 	private String changeName;
 	private String changeName2;
+	private String email;
+	private String id;
+	private String name;
+	private String phone;
 	
-	//ÆÄÀÏ : °­»ç ÇÁ·ÎÇÊ
+	
+	//ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public boolean isEmpty() {
 		
 		if (imgTeacher.get(0).isEmpty()) {return true;}
@@ -35,7 +41,7 @@ public class TeacherVo {
 
 	}
 	
-	//ÆÄÀÏ : °­»ç ÀÌ·Â¼­
+	//ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ ï¿½Ì·Â¼ï¿½
 	public boolean isEmpty2() {
 		
 		if (record.get(0).isEmpty()) {return true;}

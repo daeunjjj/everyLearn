@@ -94,7 +94,7 @@ h3{
 
 .detail-list-area button{
     height: 30px;
-    width: 50px;
+    width: 60px;
     background-color: #1187CF;
     border: none;
     border-radius: 3px;
@@ -115,4 +115,8 @@ h3{
 
 .detail-list-area a{
     color: black;
+}
+
+#non-click{
+    background-color: grey;
 }

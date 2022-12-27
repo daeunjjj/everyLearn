@@ -18,42 +18,41 @@
             <div class="main-wrap">
                 <div class="search-area">
                     <form action="" method="get">
+                        <input name="pno" value="1" hidden>
                         <div id="input-area">
                             <div class="flex-area">
                                 <div class="checkbox-area">
                                     <div class="checkbox-top">
-                                        <label>전체
-                                            <input type="checkbox" name="status" value="all">
-                                        </label>
                                         <label>드로잉
-                                            <input type="checkbox" name="status" value="all">
-                                        </label>
-                                        <label>요리/베이킹
-                                            <input type="checkbox" name="status" value="quit">
+                                            <input type="checkbox" name="cate" value="드로잉">
                                         </label>
                                         <label>운동
-                                            <input type="checkbox" name="status" value="blacklist">
+                                            <input type="checkbox" name="cate" value="운동">
+                                        </label>
+                                        <label>음악
+                                            <input type="checkbox" name="cate" value="음악">
+                                        </label>
+                                        <label>IT
+                                            <input type="checkbox" name="cate" value="IT">
                                         </label>
                                     </div>
                                     <div class="checkbox-bottom">
-                                        <label>음악
-                                            <input type="checkbox" name="status" value="all">
-                                        </label>
-                                        <label>IT
-                                            <input type="checkbox" name="status" value="quit">
+                                        <label>요리/베이킹
+                                            <input type="checkbox" name="cate" value="요리/베이킹">
                                         </label>
                                         <label>언어
-                                            <input type="checkbox" name="status" value="blacklist">
+                                            <input type="checkbox" name="cate" value="언어">
                                         </label>
                                         <label>금융/제테크
-                                            <input type="checkbox" name="status" value="blacklist">
+                                            <input type="checkbox" name="cate" value="금융/제테크">
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="btn-area">
                                 <div>
-                                    <button id="wait-btn">승인대기 10</button>
+                                    승인대기
+                                    <span>${cnt}</span>
                                 </div>
                                 <div class="flex-area">
                                     <div>
@@ -80,56 +79,73 @@
                     <div>분야</div>
                     <div>이메일</div>
                     <div>전화번호</div>
+                    <div>상태</div>
                     <div>관리</div>
                 </div>
-                <form action="">
+                <form action="/el/admin/member/teacher/approval" method="post">
                     <ul>
-                        <li>
-                            <div class="list-items">
-                                <div>
-                                    <input type="checkbox" id="check">
-                                    <label for="check"></label>
-                                </div>
-                                <div>1</div>
-                                <div>이강사</div>
-                                <div>teacher123</div>
-                                <div>IT</div>
-                                <div>user01@gmail.com</div>
-                                <div>010-1234-5678</div>
-                                <div>
-                                    <button>상세</button>
-                                    <button>승인</button>
-                                </div>
-                            </div>
-                        </li>
+                        <c:forEach items="${voList}" var="list">
+	                       	<li>
+	                            <div class="list-items">
+	                                <div>
+	                                    <input type="checkbox" id="check">
+	                                    <label for="check"></label>
+	                                </div>
+	                                <div>${list.no }</div>
+	                                <div>${list.name }</div>
+	                                <div>${list.id }</div>
+	                                <div>${list.classCate }</div>
+	                                <div>${list.email }</div>
+	                                <div>${list.phone }</div>
+	                                <div>${list.statusYn}</div>
+	                                <div>
+	                                    <button type="button" onclick="location.href='/el/admin/member/teacher/detail?no=${list.no}'">상세</button>
+	                                    <button type="submit">승인</button>
+	                                </div>
+	                            </div>
+	                        </li>
+                        </c:forEach>
                     </ul>
                     <div class="mail-btn-area">
-                        <button id="mail-btn">승인</button>
+                        <button id="mail-btn">메일</button>
                     </div>
                 </form>
                 <nav class="page-area">
                     <ul>
+
+                    <c:if test="${pv.currentPage != 1}">
                         <li>
-                            <a href="">이전</a>
+                            <c:if test="${empty svo }">
+                                <a id="before" href="/el/admin/member/teacher/list?pno=${pv.currentPage-1}">이전</a>                      		
+                            </c:if>
+                            <c:if test="${!empty svo }">
+                                <a id="before" href="/el/admin/member/teacher/list?pno=${pv.currentPage-1}&category=${svo.category}&keyword=${svo.keyword}">이전</a>                      		
+                            </c:if>
                         </li>
+                    </c:if>
+					
+					<c:forEach var="num" begin="${pv.startPage }" end="${pv.endPage }">
+
                         <li>
-                            <a href="">1</a>
+                        	<c:if test="${empty svo}">
+                          	  <a class="numBtn" href="/el/admin/member/teacher/list?pno=${num}">${num}</a>                        	
+                        	</c:if>
+                        	<c:if test="${!empty svo }">
+                        	  <a class="numBtn" href="/el/admin/member/teacher/list?pno=${num}&category=${svo.category}&keyword=${svo.keyword}">${num}</a>                        		
+                        	</c:if>
                         </li>
+					</c:forEach>
+
+                    <c:if test="${pv.currentPage != pv.maxPage }">
                         <li>
-                            <a href="">2</a>
+                            <c:if test="${empty svo }">
+                                <a id="after" href="/el/admin/member/teacher/list?pno=${pv.currentPage+1}">다음</a>                       		
+                            </c:if>
+                            <c:if test="${!empty svo }">
+                                <a id="after" href="/el/admin/member/teacher/list?pno=${pv.currentPage+1}&category=${svo.category}&keyword=${svo.keyword}">다음</a>                       		
+                            </c:if>
                         </li>
-                        <li>
-                            <a href="">3</a>
-                        </li>
-                        <li>
-                            <a href="">4</a>
-                        </li>
-                        <li>
-                            <a href="">5</a>
-                        </li>
-                        <li>
-                            <a href="">다음</a>
-                        </li>
+                    </c:if>
 
                     </ul>
                 </nav>

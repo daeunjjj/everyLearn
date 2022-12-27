@@ -6,4 +6,5 @@ import lombok.Data;
 public class SearchVo {
 	private String keyword;
 	private String category;
+	private String[] cate;
 }
