@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <!DOCTYPE html>
+
     <html>
 
     <head>
@@ -8,6 +9,7 @@
         <link href="${pageContext.request.contextPath}/resources/css/member/modify.css" rel="stylesheet"
             type="text/css">
         <script src="/el/resources/js/member/modify.js"></script>
+        
     </head>
 
     <body>
@@ -19,7 +21,7 @@
                     <%@ include file="/WEB-INF/views/member/member_sidebar.jsp"%>
                 </div>
 
-
+			
 
             <div id="contain">
                 <div>
@@ -30,15 +32,18 @@
                 <div id="wrap-modify">
 
                     <form action="" id="modify-form">
-                        <div id="profile-wrap">
-                            <h4 style="margin-left: 134px;"><label for="">프로필 사진</label></h4>
-                            <div><img id="profile" src="/el/resources/img/logo/el.png" alt=""></div>
-                            <input type="file" style="width: 350px; border: 1px solid gray; border-radius: 5px;">
+
+                        <div id="wrap-img">
+                            <div id='View_area'></div>
+                                <div id="f">
+                                    <input type="file" class="form-control mt-3" name="imgTeacher" id="profile_pt"
+                                        onchange="previewImage(this,'View_area')" style="margin-left: 0px; height: 23px;">
+                                </div>
                         </div>
 
                         <h4><label for="">아이디</label></h4>
-                        <span class="modify-box">
-                            <div></div>
+                        <span class="modify-box" onclick="noModi()">
+                            <div >${loginMember.memberId}</div>
                         </span>
                         <h4><label for="">비밀번호 수정</label></h4>
                         <span class="modify-box">
@@ -46,9 +51,9 @@
                         </span>
                         <span>
                             <pre>
-        - 영문자(대소문자 구분)/숫자/특수문자 모두 사용
-        - 8자~32자(공백 제외)
-        - 3개이상 동일한 문자/숫자 사용 불가</pre>
+    - 영문자(대소문자 구분)/숫자/특수문자 모두 사용
+    - 8자~32자(공백 제외)
+    - 3개이상 동일한 문자/숫자 사용 불가</pre>
                         </span>
                         <h4><label for="">비밀번호 확인</label></h4>
                         <span class="modify-box">
@@ -57,23 +62,25 @@
                         </span>
                         <h4><label for="">이름</label></h4>
                         <span class="modify-box">
-                            <input type="text" name="memberName">
+                            <input type="text" name="memberName" placeholder="${loginMember.memberName }">
                         </span>
                         <h4><label for="">휴대폰 번호</label></h4>
                         <span class="modify-box">
-                            <input type="tel" name="memberTel" placeholder="숫자만 입력해주세요.">
+                            <input type="tel" name="memberTel" placeholder="${loginMember.phone }">
                         </span>
                         <h4><label for="">이메일</label></h4>
                         <span class="modify-box">
-                            <input type="email" name="memberEmail">
+                            <input type="email" name="memberEmail" placeholder="${loginMember.email }">
                         </span>
                         <h4><label for="">생년월일</label></h4>
                         <span class="modify-box">
-                            <input type="text" name="memberBirth">
+                            <div>${loginMember.birth}</div>
+                            <!-- <input type="text" name="memberBirth" placeholder="${loginMember.birth}"> -->
                         </span>
                         <h4><label for="">닉네임</label></h4>
                         <span class="modify-box">
-                            <input type="text" name="memberNick">
+                            <input type="text" name="memberNick" placeholder="${loginMember.memberNick }">
+                            <button type="button" id="nick-double-check" onclick="nickDup()">중복확인</button>
                         </span>
                         <div id="btn-modify">
                             <button type="button" class="btnJoin">

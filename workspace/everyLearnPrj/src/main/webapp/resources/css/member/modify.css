@@ -142,3 +142,49 @@ input:focus {outline:none;}
     margin: auto;
 }
 
+#View_area{
+
+    width: 150px;
+    height: 150px; 
+    color: black; 
+    border: 1px dashed #1187CF; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 100px;
+}
+
+#profile_pt{
+    width: 507px;
+    height: 35px;
+    /* margin-top: 50px; */
+    margin-left: 15px;
+    vertical-align: bottom;
+}
+
+#wrap-img{
+    margin: auto;
+    margin-top: 5px;
+    width: 350px;
+    height: 180px;
+    /* display: grid;
+    grid-template-columns: 1fr 2fr; */
+    
+    margin-right: 0px;
+    /* margin-bottom: 50px; */
+    margin-left: 25px;
+}
+
+.form-control mt-3{
+    margin-top: 0px;
+    margin-left: 0px;
+    width: 350px;
+}
+
+#f{
+    display: flex;
+    align-items: baseline;
+    /* margin-top: 90px; */
+    margin-left: 0px;
+    border: 2px solid #dadada;
+    border-radius: 5px;
+}
