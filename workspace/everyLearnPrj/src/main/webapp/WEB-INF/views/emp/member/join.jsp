@@ -83,19 +83,19 @@
 					</div>
 					<div>
 						<div class="choose">
-							<label><input type="checkbox" name="all" id="all">전체</label>
+							<label><input type="checkbox" name="all" id="all" onchange="checkAll(this);">전체</label>
 						</div>
 						<div class="line"></div>
 						<div class="choose">
-							<label><input type="checkbox" name="consent" id="consent">[필수]이용약관
+							<label><input type="checkbox" name="consent" id="terms" onchange="activeBtn();">[필수]이용약관
 								동의</label>
 						</div>
 						<div class="choose">
-							<label><input type="checkbox" name="consent" id="consent">[필수]개인정보
+							<label><input type="checkbox" name="consent" id="privacy" onchange="activeBtn();">[필수]개인정보
 								수집 및 이용 동의</label>
 						</div>
 						<div class="choose">
-							<label><input type="checkbox" name="consent" id="consent">[선택]마케팅
+							<label><input type="checkbox" name="consent" id="marketing">[선택]마케팅
 								수신 동의</label>
 						</div>
 					</div>

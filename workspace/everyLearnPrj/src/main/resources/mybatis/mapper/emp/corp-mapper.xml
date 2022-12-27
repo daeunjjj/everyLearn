@@ -78,7 +78,44 @@
   		, EMP_NUM = #{empNum}
   		, SALES = #{sales}
   		, HOMEPAGE = #{homepage}
-  	WHERE NO = #{no}
   </update>
+  
+  <!-- 기업 채용 공고 만들기 -->
+  <insert id="insertJobPost">
+  	INSERT INTO EMPLOYMENT
+  	(
+	    NO
+		, CORP_NO
+		, CATEGORY
+		, TITLE
+		, RESPONSIBILITY
+		, QUALIFICATION
+		, PREFERENTIAL
+		, SALARY
+		, BENEFITS
+		, INTRODUCE
+		, SECTOR
+		, ADDRESS
+		, CAREER
+		, DEADLINE
+	)
+	VALUES
+	(	
+		SEQ_EMPLOYMENT_NO.NEXTVAL
+		 , #{corpNo}
+		 , #{category}
+		 , #{title}
+		 , #{responsibility}
+		 , #{qualification}
+		 , #{preferential}
+		 , #{salary}
+		 , #{benefits}
+		 , #{introduce}
+		 , #{sector}
+		 , #{address}
+		 , #{career}
+		 , #{deadline}
+	)
+  </insert>
   
 </mapper>

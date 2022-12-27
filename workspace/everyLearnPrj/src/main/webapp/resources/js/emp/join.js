@@ -3,6 +3,9 @@ const inputPwd = document.getElementById('pwd');
 const inputName = document.getElementById('name');
 const inputcompanyName = document.getElementById('companyName');
 const inputphone = document.getElementById('phone');
+const terms = document.getElementById('terms');
+const privacy = document.getElementById('privacy');
+const marketing = document.getElementById('marketing');
 
 // 이메일 정규식
 const emailId = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -18,7 +21,7 @@ const activeBtn = () => {
   const companyNameValue = inputcompanyName.value;
   const phoneValue = inputphone.value;
 
-  if (emailId.test(idValue) && pwdValue.length >= 8 && nameValue.length && companyNameValue && phoneValue.length === 13) {
+  if (emailId.test(idValue) && pwdValue.length >= 8 && nameValue.length && companyNameValue && phoneValue.length === 13 && terms.checked && privacy.checked) {
     const btn = document.getElementById('joinBtn')
     btn.removeAttribute('disabled');
   }
@@ -27,6 +30,14 @@ const activeBtn = () => {
   validateName(true);
   validateCompanyName(true);
   validatePhone(true);
+}
+
+// 전체 선택
+const checkAll = (target) => {
+  terms.checked = target.checked;
+  privacy.checked = target.checked;
+  marketing.checked = target.checked;
+  activeBtn();
 }
 
 // 전화번호 정규식(하이픈 자동추가)

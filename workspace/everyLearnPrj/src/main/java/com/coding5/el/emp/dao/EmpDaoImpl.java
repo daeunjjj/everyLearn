@@ -9,6 +9,7 @@ import com.coding5.el.emp.vo.AwardVo;
 import com.coding5.el.emp.vo.CareerVo;
 import com.coding5.el.emp.vo.CertificateVo;
 import com.coding5.el.emp.vo.EducationVo;
+import com.coding5.el.emp.vo.JobPostVo;
 import com.coding5.el.emp.vo.LanguageVo;
 import com.coding5.el.emp.vo.ResumeAttatchVo;
 import com.coding5.el.emp.vo.ResumeVo;
@@ -51,9 +52,16 @@ public class EmpDaoImpl implements EmpDao {
 		return sst.selectList("resumeMapper.selectAttach", vo);
 	}
 
+	// 이력서 작성하기
 	@Override
 	public int insertEducation(SqlSessionTemplate sst, List<EducationVo> evList) {
 		return sst.insert("resumeMapper.insertEducation", evList);
+	}
+
+	// 채용 공고 상세
+	@Override
+	public JobPostVo selectJobPostDetail(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("jobPostMapper.selectJobPostDetail", no);
 	}
 
 
