@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,10 +27,10 @@
 
             <div class="main-wrap">
 
-                <form action="" method="post" id="write-fr">
+                <form action="/el/notice/edit" method="post" id="write-fr">
                     </div>
-                    <div id="title"><input type="text" name="title" required placeholder="제목"></div>
-                    <div id="content"><textarea name="content" required placeholder="내용"></textarea></div>
+                    <div id="title"><input type="text" name="title" required placeholder="제목">${ n.title }</div>
+                    <div id="content"><textarea name="content" required placeholder="내용">${ n.content }</textarea></div>
                     <div id="file"><input class="form-control form-control-sm" id="formFileSm" type="file" name="f"></div>
                     <div id="write"><button type="submit" class="btn btn-light" id="submit-btn">수정하기</button></div>
                 </form>		

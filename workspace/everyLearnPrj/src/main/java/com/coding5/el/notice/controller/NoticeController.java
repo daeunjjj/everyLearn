@@ -12,23 +12,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coding5.el.notice.service.NoticeService;
 import com.coding5.el.notice.vo.NoticeVo;
 import com.coding5.el.notice.vo.PageVo;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping("notice")
+@Slf4j
 public class NoticeController {
 	
 	@Autowired NoticeService noticeService;
 	
 	//공지 상세 조회
 	@GetMapping("detail")
-	public String detail(int no, Model model) throws Exception {
+	public String detail(String no, Model model) throws Exception {
 		
 		NoticeVo n = noticeService.selectDetail(no);
+		//log.info(no);
 		
 		model.addAttribute("n", n);
 		
@@ -110,12 +115,33 @@ public class NoticeController {
 		
 	}
 	
+	//공지사항 수정하기 (화면)
+	@GetMapping("edit")
+	public void edit(@RequestParam("no")String no, Model model) throws Exception {
+		model.addAttribute("n", noticeService.selectDetail(no));	
+	}
+	
 	//공지사항 수정하기
 	@PostMapping("edit")
-	public String edit() throws Exception {
-		return "notice/detail";
+	public String edit(NoticeVo vo, HttpSession session, Model model) throws Exception {
+		
+		int result = noticeService.editNotice(vo);	
+		
+		if(result > 0) { 
+		
+			session.setAttribute("alertMsg", "공지 수정 성공");
+			
+			return "redirect:notice/detail?=" + vo.getNo();
+		}
+		else { // 실패 => 에러페이지 포워딩
+			
+			model.addAttribute("errorMsg", "공지 수정 실패");
+			
+			return "common/error";
+		}
+
 	}
+}
 
 	
 	
-}

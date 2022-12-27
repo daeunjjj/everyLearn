@@ -9,7 +9,10 @@ import org.springframework.stereotype.Repository;
 import com.coding5.el.notice.vo.NoticeVo;
 import com.coding5.el.notice.vo.PageVo;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Repository
+@Slf4j
 public class NoticeDaoImpl implements NoticeDao {
 
 	@Autowired private SqlSessionTemplate sst;
@@ -45,8 +48,9 @@ public class NoticeDaoImpl implements NoticeDao {
 	}
 
 	@Override
-	public NoticeVo selectDetail(int no) throws Exception {
+	public NoticeVo selectDetail(String no) throws Exception {
 		// 공지 상세 조회
+		//log.info(no);
 		return sst.selectOne("noticeMapper.selectDetail", no);
 	}
 

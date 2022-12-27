@@ -9,7 +9,10 @@ import com.coding5.el.notice.dao.NoticeDao;
 import com.coding5.el.notice.vo.NoticeVo;
 import com.coding5.el.notice.vo.PageVo;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class NoticeServiceImpl implements NoticeService {
 	
 	@Autowired private NoticeDao noticeDao;
@@ -47,7 +50,8 @@ public class NoticeServiceImpl implements NoticeService {
 
 	//공지 상세 조회
 	@Override
-	public NoticeVo selectDetail(int no) throws Exception {
+	public NoticeVo selectDetail(String no) throws Exception {
+		//log.info(no);
 		return noticeDao.selectDetail(no);
 	}
 

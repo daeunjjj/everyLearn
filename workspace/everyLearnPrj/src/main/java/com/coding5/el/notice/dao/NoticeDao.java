@@ -23,5 +23,5 @@ public interface NoticeDao {
 	int editNotice(NoticeVo vo) throws Exception;
 
 	//공지 상세 조회
-	NoticeVo selectDetail(int no) throws Exception;
+	NoticeVo selectDetail(String no) throws Exception;
 }
