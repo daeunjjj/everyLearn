@@ -70,6 +70,9 @@ public interface LectureDao {
 	//수강평 삭제
 	public int deleteReview(SqlSessionTemplate sst, String reviewNo);
 
+	//수강평 수정
+	public int editReview(SqlSessionTemplate sst, HashMap<String, String> map);
+
 
 
 }

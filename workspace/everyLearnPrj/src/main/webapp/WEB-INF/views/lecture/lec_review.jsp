@@ -20,7 +20,32 @@
 			<div id="lec-int">
 				<div id="lec-cate">${lvo.category }</div>
 				<div id="lec-name">${lvo.className }</div>
-				<div id="lec-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(4.9 / 5.0)</div>
+				<div id="lec-stars">
+				
+				<!-- 별점 개수 조절 -->
+				<c:choose>
+
+								<c:when test="${lvo.revAvg <= 1.5 }">
+								★
+								</c:when>
+								<c:when test="${lvo.revAvg <= 2.5 }">
+								★★
+								</c:when>
+								<c:when test="${lvo.revAvg <= 3.5 }">
+								★★★
+								</c:when>
+								<c:when test="${lvo.revAvg <= 4.5 }">
+								★★★★
+								</c:when>
+								
+								<c:otherwise>
+								★★★★★
+								</c:otherwise>
+							
+							</c:choose>
+				
+				
+( ${lvo.revAvg } / 5.0 )</div>
 				<div id="lec-recom">이 강의를 ${lvo.recomm }명이 조회했습니다!</div>
 				<div id="lec-teacher"><i class="fa-regular fa-user"></i>${lvo.teacherNo }</div>
 				</div>
@@ -34,7 +59,7 @@
             <div id="lec-content">
 				<div id="lec-review">
 					<div id="review-top">수강평</div>
-					<div id="stars-top">★&nbsp 4.9 (127개)</div>
+					<div id="stars-top">★&nbsp ${lvo.revAvg } (${lvo.reviewCnt }개)</div>
 					<div>실제 수강생의 리뷰입니다. 생생한 후기를 확인하세요!</div>
 				</div>
 				<div id="write-wrap">
@@ -96,13 +121,20 @@
 						  <c:choose>
                         	<c:when test="${loginMember.memberNick eq list.writer}">
 							<!-- 리뷰 수정 -->
-								<div><a><button id="write-submit" class="reviewBTN mdf" id="mdf">수정</button></a></div>
+								<div>
+								
+									<form action="/el/lecture/detail/review/edit" method="get">
+										<input type="hidden" name="rno" value=${list.no }>
+										<input type="hidden" name="bno" value="${bno }">
+										<input type="submit" id="write-submit"  value="수정">
+									</form>
+								</div>
 								
 								<!-- 리뷰 삭제 -->
 								<div>
 									<form action="/el/lecture/detail/review/delete" method="post">
 									
-									<input type="hidden" name="bno" value="${bno }">
+									
 									<input type="hidden" name="reviewNo" value=${list.no }>
 									<input type="submit" id="write-submit"  value="삭제">
 									</form>
@@ -147,7 +179,32 @@
 	
 	<script>
 	function editReview(){
+		
+		
 		console.log("수정~~");
+		var htmls = "";
+		htmls += "<div id="editWrap">";
+		htmls += "<form action="/el/lecture/detail/review" method="post">";
+		htmls += "<fieldset name="myform" id="myform">";
+		htmls += "<span class="myratings" style="color: #ccc;"></span>";
+			
+		htmls +="<input type="radio" name="score" value="5.0" id="rate1"><label for="rate1">★</label>";
+
+		htmls += "<input type="radio" name="score" value="4.0" id="rate2"><label for="rate2">★</label>";
+		htmls += "<input type="radio" name="score" value="3.0" id="rate3"><label for="rate3">★</label>";
+		htmls += "<input type="radio" name="score" value="2.0" id="rate4"><label for="rate4">★</label>";
+		htmls += "<input type="radio" name="score" value="1.0" id="rate5"><label for="rate5">★</label>";
+		htmls += "</fieldset>";
+		htmls += "<input type="hidden" name="rno" value="${list.no }">"	;
+		htmls += "<input type="text" id="write-input" name="content" placeholder="수강평을 남겨주세요">";
+			
+		htmls += "<br>";
+		htmls += "<input type="submit" id="write-submit" value="작성" style="float: right;">";
+		htmls += "</form>";
+		htmls += "</div>";
+		
+		
+		
 		alert("댓글이 수정되었습니다.");
 	}
 	</script>

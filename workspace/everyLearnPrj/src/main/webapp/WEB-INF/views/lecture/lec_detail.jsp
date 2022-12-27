@@ -21,7 +21,28 @@
             <div id="lec-int">
                 <div id="lec-cate">${lvo.category }</div>
                 <div id="lec-name">${lvo.className}</div>
-                <div id="lec-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>(4.9 / 5.0)</div>
+                <div id="lec-stars">
+				
+				<!-- 별점 개수 조절 -->
+				<c:choose>
+								<c:when test="${lvo.revAvg <= 1.5 }">
+								★
+								</c:when>
+								<c:when test="${lvo.revAvg <= 2.5 }">
+								★★
+								</c:when>
+								<c:when test="${lvo.revAvg <= 3.5 }">
+								★★★
+								</c:when>
+								<c:when test="${lvo.revAvg <= 4.5 }">
+								★★★★
+								</c:when>
+								<c:otherwise>
+								★★★★★
+								</c:otherwise>
+							</c:choose>
+				
+				( ${lvo.revAvg } / 5.0 )</div>
                 <div id="lec-recom">이 강의를 ${lvo.recomm }명이 조회했습니다!</div>
                 <div id="lec-teacher"><i class="fa-regular fa-user"></i>${lvo.teacherNo }</div>
             </div>
@@ -40,8 +61,8 @@
                     <div id="pay-price">${lvo.price} 원</div>
                     <div id="pay-zzim"><a href="/el/lecture/wish"><i class="fa-regular fa-heart fa-2x"></i></a></div>
                     <form action="/el/cart/addCart" method="post">
-                    <input type="hidden" name="classNo" value="${bno }">
-                    <input type="hidden" name="memberNo" value="${loginMember.memberNo }">
+	                    <input type="hidden" name="classNo" value="${lvo.no }">
+	                    <input type="hidden" name="memberNo" value="${loginMember.memberNo }">
                     	<div><input id="pay-cart" type="submit" value="장바구니에 담기"></div>
                     </form>
                     <div id="pay-real">결제하기</div>

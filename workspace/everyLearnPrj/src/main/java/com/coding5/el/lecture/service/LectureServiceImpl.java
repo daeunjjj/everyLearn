@@ -138,6 +138,12 @@ public class LectureServiceImpl implements LectureService {
 		return lectureDao.deleteReview(sst, reviewNo);
 	}
 
+	//수강평 리뷰 수정
+	@Override
+	public int editReview(HashMap<String, String> map) {
+		return lectureDao.editReview(sst, map);
+	}
+
 
 
 }

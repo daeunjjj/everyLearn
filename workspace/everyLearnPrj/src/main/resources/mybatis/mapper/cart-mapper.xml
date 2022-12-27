@@ -12,14 +12,36 @@
 		)
 		values
 		(
-		    , #{memberNo}
-		    , #{classNo}
+		  #{memberNo}
+		  , #{classNo}
 		)
 	</insert>
 	
-	<select id="selectCountInCart" resultType="String" parameterType="com.coding5.el.cart.vo.CartVo">
-		SELECT DECODE(COUNT(*), 0, 'false', 'true') from CART <!-- 0이면 false -> false일 때 카트에 저장 -->
+	<!-- <select id="selectCountInCart" resultType="String" parameterType="com.coding5.el.cart.vo.CartVo">
+		SELECT DECODE(COUNT(*), 0, 'false', 'true') from CART 0이면 false -> false일 때 카트에 저장
 		WHERE MEMBER_NO = #{memberNo}
 		and CLASS_NO = #{classNo}
-	</select>  
+	</select> -->  
+	
+	
+	<select id="getCartList" resultType="com.coding5.el.cart.vo.CartVo">
+     select
+		CART.MEMBER_NO
+		, CART.CLASS_NO
+		, CART.ORDER_YN
+		, C.CLASS_NAME AS className
+		, C.PRICE price
+		, C.TEACHER_NO AS teacherNo
+	from CART CART
+	
+	
+	join CLASS C
+	on C.NO = CART.CLASS_NO
+	
+	JOIN TEACHER TEA
+	ON C.TEACHER_NO = TEA.MEMBER_NO
+    
+    where CART.MEMBER_NO = #{mno}
+	and CART.ORDER_YN = 'N'
+	</select>
 </mapper>

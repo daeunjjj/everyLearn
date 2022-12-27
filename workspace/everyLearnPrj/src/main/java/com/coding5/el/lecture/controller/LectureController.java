@@ -139,9 +139,13 @@ public class LectureController {
 		// 클릭시 조회수 증가
 		int result = lectureService.increaseCount(bno);
 		
+		
+		System.out.println("loginMember: " + loginMember);
+		//System.out.println("lvo : " + lvo);
 		// 상세보기
 		if(result>0) {
 			LectureVo lvo = lectureService.classDetail(bno);
+			
 			
 			mv.addObject("lvo",lvo)
 			.addObject("mno", mno)
@@ -208,14 +212,28 @@ public class LectureController {
 	  
 	  //수강평 수정 get
 	  @GetMapping("detail/review/edit")
-	  public String editReview() {
-		  return "";
+	  public String editReview(String bno, String rno, Model model) {
+		  model.addAttribute("rno", rno);
+		  model.addAttribute("bno", bno);
+		  return "lecture/reviewEdit";
 	  }
 	  
 	  //수강평 수정
 	  @PostMapping("detail/review/edit")
-	  public String editReview(String bno, Model model, String writer, String content, String score) {
-		  return "";
+	  public String editReview(String bno, Model model, String writer, String content, String score, String rno) {
+		  HashMap<String, String>map = new HashMap<>();
+			map.put("bno", bno);
+			map.put("rno", rno);
+			map.put("content", content);
+			map.put("score", score);
+		  
+			int reviewVo = lectureService.editReview(map);
+			
+			if(reviewVo == 1) {
+		  return "redirect:?bno="+bno+"&pno=1";
+			}else {
+				return "common/error";
+			}
 	  }
 	  
 	  //수강평 삭제
