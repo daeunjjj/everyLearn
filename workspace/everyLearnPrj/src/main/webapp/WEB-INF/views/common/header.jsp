@@ -44,11 +44,31 @@
 					</div>
 				</c:if>
 
-				<c:if test="${loginMember != null}">
+				<c:if test="${loginMember != null }">
+
 					<!--**회원 로그인 후 -->
-	 				<div class="member">
+					<div class="member">
 						<div class="dropdown">
 								<div class="drop" id="mem-wrap"><img id="member-stu" src="/el/resources/img/member/stu.png" alt=""><a href="#" id="memName">${loginMember.memberNick }님</a></div>
+								<span class="dropbtn_icon"></span>
+								
+							<div class="dropdown-content">
+								<a href="/el/member/alert">알림</a>
+								<a href="#">내 강의</a>
+								<a href="/el/member/writeList">작성글</a>
+								<a href="/el/member/logout">로그아웃</a>
+							</div>
+						</div>
+						
+						<img id="cartimg" src="/el/resources/img/member/cartimg.png" alt="">
+						<img id="memberimg" src="/el/resources/img/member/memberimg.png" alt="" onclick="location.href='/el/member/alert'">
+
+					</div>
+
+					**강사 로그인 후
+					<div class="member">
+						<div class="dropdown">
+								<div class="drop" id="mem-wrap"><img id="member-tea" src="/el/resources/img/member/tea.png" alt=""><a href="#" id="memName">에브리님</a></div>
 								<span class="dropbtn_icon"></span>
 								
 							<div class="dropdown-content">
@@ -59,10 +79,11 @@
 							</div>
 						</div>
 						
-						<img id="cartimg" src="/el/resources/img/member/cartimg.png" alt="">
+						<img id="cartimg" src="/el/resources/img/member/teacher.png" alt="">
 						<img id="memberimg" src="/el/resources/img/member/memberimg.png" alt="">
-	
-					</div>  
+
+
+					</div>
 
 				</c:if>
 				

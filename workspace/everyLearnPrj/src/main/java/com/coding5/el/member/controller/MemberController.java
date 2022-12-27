@@ -97,7 +97,7 @@ public class MemberController {
 		
 	}
 	
-	
+	//회원수정
 	@GetMapping("modify")
 	public String modify() {
 		return "member/modify";
@@ -131,6 +131,14 @@ public class MemberController {
 		return "member/success_id_find";
 	}
 	
+	//로그아웃(메인으로 가게 다시 수정)
+	@GetMapping("logout")
+	public String logout(HttpSession session) {
+		
+		session.invalidate();
+		
+		return "redirect:/class/qna";
+	}
 	
 	@GetMapping("pwFind")
 	public String pwFind() {
