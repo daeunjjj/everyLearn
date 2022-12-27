@@ -80,7 +80,7 @@
 						</c:forEach>
                     </ul>
                     <div class="mail-btn-area">
-                        <button id="mail-btn">정지</button>
+                        <button id="mail-btn"><i class="bi bi-envelope"></i></button>
                     </div>
                 </form>
                 <nav class="page-area">

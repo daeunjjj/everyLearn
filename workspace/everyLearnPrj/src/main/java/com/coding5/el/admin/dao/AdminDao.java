@@ -8,8 +8,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
+import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
+import com.coding5.el.teacher.vo.TeacherVo;
 
 public interface AdminDao {
 	// 관리자 하나 가져오기
@@ -50,6 +52,30 @@ public interface AdminDao {
 	
 	// 학생회원 수정
 	public int updateStudent(SqlSessionTemplate sst, PointVo vo);
+	
+	// 강사 수 조회
+	public int selectTeacherCount(SqlSessionTemplate sst, SearchVo svo);
+	
+	// 강사 리스트 조회
+	public List<TeacherVo> selectTeacherList(SqlSessionTemplate sst, PageVo pv, SearchVo svo);
+	
+	// 강사 승인 대기 수 조회
+	public int selectTeacherStatusByN(SqlSessionTemplate sst);
+    
+	// 강사 한명 조회
+	public TeacherVo selectTeacherDetailByNo(SqlSessionTemplate sst, String no);
+	
+	// 강의 조회
+	public List<LectureVo> selectLectureList(SqlSessionTemplate sst, String no);
+	
+	// 강사 탈락
+	public int teacherDeleteByNo(SqlSessionTemplate sst, String no);
+	
+	// 강사 승인
+	public int teacherApprovalByNo(SqlSessionTemplate sst, String no);
+	
+	// 폐강
+	public int classDeleteByNo(SqlSessionTemplate sst, String cno);
 	
 
 	

@@ -1,5 +1,6 @@
 package com.coding5.el.admin.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,8 +14,10 @@ import com.coding5.el.admin.dao.AdminDao;
 import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
+import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
+import com.coding5.el.teacher.vo.TeacherVo;
 @Service
 public class AdminServiceImpl implements AdminService{
 	
@@ -161,19 +164,20 @@ public class AdminServiceImpl implements AdminService{
 	
 	/**
 	 * 학생회원 no로 가져오기
+	 * 학생회원 포인트 리스트 가져오기
 	 */
 	@Override
-	public MemberVo detailStudent(String no) {
-		return adminDao.selectStudentOneByNo(sst,no);
+	public Map<String, Object> detailStudent(String no) {
+		MemberVo vo = adminDao.selectStudentOneByNo(sst,no);
+		List<PointVo> pointList = adminDao.selectPointListByNo(sst,no);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("studentVo", vo);
+		map.put("pointList", pointList);
+		return map;
 	}
 	
-	/**
-	 * 포인트 리스트 가져오기
-	 */
-	@Override
-	public List<PointVo> selectPointList(String no) {
-		return adminDao.selectPointListByNo(sst,no);
-	}
+
 	/**
 	 * 포인트 수정
 	 * 포인트 테이블 insert
@@ -192,6 +196,71 @@ public class AdminServiceImpl implements AdminService{
 		}
 		
 		return insertResult * updateResult;
+	}
+	/**
+	 * 강사회원 수
+	 */
+	@Override
+	public int selectTeacherCount(SearchVo svo) {
+		return adminDao.selectTeacherCount(sst,svo);
+	}
+	/**
+	 * 강사리스트 조회
+	 */
+	@Override
+	public List<TeacherVo> selectTeacherList(PageVo pv, SearchVo svo) {
+		return adminDao.selectTeacherList(sst,pv,svo);
+	}
+	/**
+	 * 강사 승인 대기 조회
+	 */
+	@Override
+	public int selectTeacherStatusByN() {
+		return adminDao.selectTeacherStatusByN(sst);
+	}
+	
+	/**
+	 * 강사 디테일 조회
+	 * 강사 조회 후 승인된 강사면 강의 리스트 조회
+	 */
+	@Override
+	public Map<String, Object> selectTeacherDetail(String no) {
+		
+		TeacherVo tvo = adminDao.selectTeacherDetailByNo(sst, no);
+		
+		List<LectureVo> voList = null; 
+		
+		if("Y".equals(tvo.getStatusYn())) {
+			voList = adminDao.selectLectureList(sst,no);						
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("tvo", tvo);
+		map.put("voList", voList);
+		
+		return map;
+	}
+	/**
+	 * 강사 탈락
+	 */
+	@Override
+	public int teacherDelete(String no) {
+		return adminDao.teacherDeleteByNo(sst,no);
+	}
+	/**
+	 * 강사 승인
+	 */
+	@Override
+	public int teacherApproval(String no) {
+		return adminDao.teacherApprovalByNo(sst,no);
+	}
+	/**
+	 * 폐강
+	 */
+	@Override
+	public int classDelete(String cno) {
+
+		return adminDao.classDeleteByNo(sst,cno);
 	}
 
 

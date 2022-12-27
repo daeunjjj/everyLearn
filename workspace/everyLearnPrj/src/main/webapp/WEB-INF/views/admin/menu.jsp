@@ -15,6 +15,7 @@
             title: '<%=alertMsg%>',
           });
 		<%} %>
+		
 	</script>
 
 <aside class="menu-bar" id="menu-height">

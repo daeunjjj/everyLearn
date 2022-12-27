@@ -33,7 +33,7 @@
                                 <label for="id">아이디</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="id" value="${studentVo.memberId}" readonly>
+                                <input type="text" name="id" value="${map.studentVo.memberId}" readonly>
                             </div>
                         </div>
 
@@ -42,7 +42,7 @@
                                 <label for="name">이름</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="name" id="name" value="${studentVo.memberName }" readonly>
+                                <input type="text" name="name" id="name" value="${map.studentVo.memberName }" readonly>
                             </div>
                         </div>
                         <div class="info-items">
@@ -50,7 +50,7 @@
                                 <label for="nick">닉네임</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="nick" value="${studentVo.memberNick }" readonly>
+                                <input type="text" name="nick" value="${map.studentVo.memberNick }" readonly>
                             </div>
                         </div>
                         <div class="info-items">
@@ -58,7 +58,7 @@
                                 <label for="phone">전화번호</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="phone" value="${studentVo.phone}" readonly>
+                                <input type="text" name="phone" value="${map.studentVo.phone}" readonly>
                             </div>
                         </div>
                         <div class="info-items">
@@ -66,7 +66,7 @@
                                 <label for="email">이메일</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="email" value="${studentVo.email }" readonly>
+                                <input type="text" name="email" value="${map.studentVo.email }" readonly>
                             </div>
                         </div>
                         <div class="info-items">
@@ -74,7 +74,7 @@
                                 <label for="enrollDate">가입날짜</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="enrollDate" value="${studentVo.enrollDate }" readonly>
+                                <input type="text" name="enrollDate" value="${map.studentVo.enrollDate }" readonly>
                             </div>
                         </div>
                         <div class="info-items">
@@ -82,7 +82,7 @@
                                 <label for="birth">생년월일</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="birth" value="${studentVo.birth }" readonly>
+                                <input type="text" name="birth" value="${map.studentVo.birth }" readonly>
                             </div>
                         </div>
                         <div class="info-items">
@@ -90,7 +90,7 @@
                                 <label for="quitYn">탈퇴여부</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="quitYn" id="quitYn" value="${studentVo.quitYn }" readonly>
+                                <input type="text" name="quitYn" id="quitYn" value="${map.studentVo.quitYn }" readonly>
                             </div>
                         </div>
                         <div class="info-items">
@@ -98,7 +98,7 @@
                                 <label for="reportYn">신고여부</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="reportYn" id="reportYn" value="${studentVo.reportYn }" readonly>
+                                <input type="text" name="reportYn" id="reportYn" value="${map.studentVo.reportYn }" readonly>
                             </div>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                 <h3>포인트</h3>
                 <div class="point-box">
                     <form action="/el/admin/member/student/point-edit" method="post" onsubmit="return pwdCheck();">
-                        <input name="memberNo" value="${studentVo.memberNo}" hidden>
+                        <input name="memberNo" value="${map.studentVo.memberNo}" hidden>
                         <div>포인트 지급/차감</div>
                         <div class="point-top">
                             <div>
@@ -135,16 +135,16 @@
                             <div>일자</div>
                             <div>사유</div>
                             <div>증감</div>
-                            <div>총액 : ${studentVo.point}</div>
+                            <div>총액 : ${map.studentVo.point}</div>
                         </div>
-					 <c:forEach items="${pointList}"  var="list">
+					 <c:forEach items="${map.pointList}"  var="list">
                             <div class="list-content list">
                             <div>${list.enrollDate }</div>
                             <div>${list.history }</div>
                             <div>${list.change }</div>
                         </div>
                      </c:forEach>
-                     <c:if test="${empty pointList}">
+                     <c:if test="${empty map.pointList}">
 						<p id="empty-box">내역이 없습니다.</p>
                      </c:if>
 

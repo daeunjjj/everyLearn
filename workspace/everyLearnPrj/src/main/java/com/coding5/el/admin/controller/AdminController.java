@@ -24,6 +24,8 @@ import com.coding5.el.common.page.Pagination;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
+import com.coding5.el.teacher.vo.TeacherVo;
+
 
 import lombok.extern.slf4j.Slf4j;
 @RequestMapping("admin")
@@ -282,20 +284,21 @@ public class AdminController {
 		
 		log.info("화면 -> 컨트롤러 no ::: "+no);
 		
-		MemberVo studentVo = adminService.detailStudent(no);
-		if(studentVo == null) return "common/error";
+		Map<String, Object> map = adminService.detailStudent(no);
+		if(map == null) return "common/error";
 		
-		List<PointVo> pointList = adminService.selectPointList(no);
-		if(pointList == null) return "common/error";
+		log.info("map ::: " + map);
+
 		
-		log.info("studentVo ::: " + studentVo);
-		log.info("pointList" + pointList);
-		
-		model.addAttribute("studentVo", studentVo);
-		model.addAttribute("pointList", pointList);
+		model.addAttribute("map", map);
 		return "admin/member/student/detail";
 	}
 	
+	/**
+	 * 포인트 수정
+	 * @param vo
+	 * @return
+	 */
 	@PostMapping("member/student/point-edit")
 	public String pointEdit(PointVo vo) {
 		
@@ -317,6 +320,108 @@ public class AdminController {
 		return "redirect:/admin/member/student/detail?no="+ vo.getMemberNo();
 	}
 	
+	/**
+	 * 강사회원 리스트 조회
+	 * @param pno
+	 * @param svo
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("member/teacher/list")
+	public String teacherList(String pno, SearchVo svo , Model model) {
+		
+		int listCount = adminService.selectTeacherCount(svo);
+		int currentPage = Integer.parseInt(pno);
+		int pageLimit = 5;
+		int boardLimit = 10;
+		log.info("리스트 수 :::"+listCount);
+		log.info("화면에서 받아오는 데이터 mapSearch  :::" + svo);
+		log.info("화면에서 받아오는 데이터 pno ::: "+svo);
+		
+		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<TeacherVo> voList = adminService.selectTeacherList(pv, svo);		
+		
+		if(voList == null) return "admin/member/teacher/list";
+		
+		int cnt = adminService.selectTeacherStatusByN();
+		
+		log.info("db 결과 ::: " + voList);
+		log.info("승인 대기 수 :: " + cnt);
+		
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("svo", svo);
+		model.addAttribute("pv", pv);
+		model.addAttribute("voList", voList);
+		return "admin/member/teacher/list";
+	}
+	
+	/**
+	 * 강사회원 디테일 조회
+	 * @param no
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("member/teacher/detail")
+	public String teacherDetail(String no, Model model) {
+		
+		Map<String, Object> voMap = adminService.selectTeacherDetail(no);
+		
+		log.info("디비 결과 :::" +voMap);
+		
+		if(voMap == null) return "common/error";
+		
+		
+		model.addAttribute("map", voMap);
+		return "admin/member/teacher/detail";
+	}
+	/**
+	 * 강사 업데이트
+	 * @param no
+	 * @return
+	 */
+	@PostMapping("member/teacher/delete")
+	public String teacherDelete(String no, HttpSession session) {
+		
+		log.info("화면->컨트롤러 ::: " + no);
+
+		int result = adminService.teacherDelete(no);
+		
+		if(result != 1) return "common/error";
+		
+		session.setAttribute("resultMsg", "처리되었습니다.");
+		return "redirect:/admin/member/teacher/list?pno=1";
+	}
+	
+	/**
+	 * 강사 승인
+	 * @param no
+	 * @return
+	 */
+	@PostMapping("member/teacher/approval")
+	public String teacherApproval(String no, HttpSession session) {
+		
+		log.info("화면->컨트롤러 ::: " + no);
+		int result = adminService.teacherApproval(no);
+		
+		if(result != 1) return "common/error";
+		
+		session.setAttribute("resultMsg", "승인되었습니다.");
+		return "redirect:/admin/member/teacher/detail?no=" + no;
+	}
+	
+	@PostMapping("member/teacher/class/delete")
+	public String classDelete(String cno, String no, HttpSession session) {
+		
+		log.info("화면->컨트롤러 ::: " + cno);
+		int result = adminService.classDelete(cno);
+		
+		if(result != 1) return "common/error";
+		
+		session.setAttribute("resultMsg", "폐강되었습니다.");
+		return "redirect:/admin/member/teacher/detail?no=" + no;
+	}
+	
 	// 대시보드
 	@GetMapping("dashboard")
 	public String dashboard() {
@@ -325,11 +430,7 @@ public class AdminController {
 	
 
 	
-	// 강사회원 리스트 조회
-	@GetMapping("member/teacher/list")
-	public String teacherList() {
-		return "admin/member/teacher/list";
-	}
+
 	
 	// 기업회원 리스트 조회
 	@GetMapping("member/corporate/list")
@@ -337,11 +438,7 @@ public class AdminController {
 		return "admin/member/corporate/list";
 	}
 	
-	// 강사회원 디테일 조회
-	@GetMapping("member/teacher/detail")
-	public String teacherDetail() {
-		return "admin/member/teacher/detail";
-	}
+
 	
 	// 기업회원 디테일 조회
 	@GetMapping("member/corporate/detail")

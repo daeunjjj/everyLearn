@@ -10,8 +10,10 @@ import org.springframework.stereotype.Repository;
 import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
+import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
+import com.coding5.el.teacher.vo.TeacherVo;
 
 import lombok.extern.slf4j.Slf4j;
 @Repository
@@ -67,7 +69,7 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public int selectStudentCount( Map<String, String> mapSearch,SqlSessionTemplate sst) {
 		// 학생 회원 수 가져오기
-		return sst.selectOne("adminMapper.selectStudentConut",mapSearch);
+		return sst.selectOne("adminMapper.selectStudentCount",mapSearch);
 	}
 
 	@Override
@@ -102,6 +104,58 @@ public class AdminDaoImpl implements AdminDao{
 	public int updateStudent(SqlSessionTemplate sst, PointVo vo) {
 		// 학생회원 포인트 업뎃
 		return sst.update("adminMapper.updateStudent",vo);
+	}
+
+	@Override
+	public int selectTeacherCount(SqlSessionTemplate sst, SearchVo svo) {
+		// 강사 수 조회
+		return sst.selectOne("adminMapper.selectTeacherCount",svo);
+	}
+
+	@Override
+	public List<TeacherVo> selectTeacherList(SqlSessionTemplate sst, PageVo pv, SearchVo svo) {
+		// 강사 리스트 조회
+		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
+		int limit = pv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset,limit);
+		
+		return sst.selectList("adminMapper.selectTeacherList", svo, rb);
+	}
+
+	@Override
+	public int selectTeacherStatusByN(SqlSessionTemplate sst) {
+		// 강사 승인 대기 수
+		return sst.selectOne("adminMapper.selectTeacherStatusByN");
+	}
+
+	@Override
+	public TeacherVo selectTeacherDetailByNo(SqlSessionTemplate sst, String no) {
+		// 강사 조회
+		return sst.selectOne("adminMapper.selectTeacherDetailByNo", no);
+	}
+
+	@Override
+	public List<LectureVo> selectLectureList(SqlSessionTemplate sst, String no) {
+		// 강의 조회
+		return sst.selectList("adminMapper.selectLectureList",no);
+	}
+
+	@Override
+	public int teacherDeleteByNo(SqlSessionTemplate sst, String no) {
+		// 강사 탈락
+		return sst.update("adminMapper.teacherDeleteByNo",no);
+	}
+
+	@Override
+	public int teacherApprovalByNo(SqlSessionTemplate sst, String no) {
+		// 강사 승인
+		return sst.update("adminMapper.teacherApprovalByNo",no);
+	}
+
+	@Override
+	public int classDeleteByNo(SqlSessionTemplate sst, String cno) {
+		// 폐강
+		return sst.update("adminMapper.classDeleteByNo",cno);
 	}
 	
 
