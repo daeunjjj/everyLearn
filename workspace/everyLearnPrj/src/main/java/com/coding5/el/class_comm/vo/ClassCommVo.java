@@ -19,6 +19,7 @@ public class ClassCommVo {
 	private String accusor;
 	private String cate_no;
 	private String board;
+	private String orderBy;
 	
 
 }

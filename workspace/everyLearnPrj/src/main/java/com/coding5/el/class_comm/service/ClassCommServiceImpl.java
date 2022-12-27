@@ -11,6 +11,8 @@ import com.coding5.el.class_comm.dao.ClassCommDaoImpl;
 import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.member.dao.MemberDaoImpl;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service
 public class ClassCommServiceImpl implements ClassCommService{
 
@@ -43,6 +45,20 @@ public class ClassCommServiceImpl implements ClassCommService{
 	@Override
 	public int report(ClassCommVo vo) {
 		return dao.insertReport(sst, vo);
+	}
+
+	//스터디 게시판
+	@Override
+	public List<ClassCommVo> studyList(String orderBy) {
+		return dao.selectstudyList(sst, orderBy);
+	}
+	
+	
+
+	//자유게시판
+	@Override
+	public List<ClassCommVo> freeList(String orderBy) {
+		return dao.selectFreeList(sst, orderBy);
 	}
 
 }

@@ -53,7 +53,7 @@ public class ClassCommController {
 	public String qna(Model model) {
 		
 		List<ClassCommVo> qnaList = ccs.qnaList();
-//		log.info("큐앤에이 리스트" + qnaList);
+		log.info("큐앤에이 리스트" + qnaList);
 		model.addAttribute("qnaList", qnaList);
 //		log.info("qnaList" + qnaList);
 		
@@ -82,7 +82,7 @@ public class ClassCommController {
 		return "class_comm/detail";
 	}
 	
-	//신고(화면)
+	//신고(화면) >> 아직 작동 잘 안 됨!
 	@GetMapping("report")
 	public String report(String blacklist, String refortTitle, Model model) {
 		
@@ -131,13 +131,28 @@ public class ClassCommController {
 	
 	//스터디
 	@GetMapping("study")
-	public String study() {
+	public String study(String orderBy, Model model) {
+		
+		List<ClassCommVo> studyList = ccs.studyList(orderBy);
+//		log.info("리스트" + studyList);
+		model.addAttribute("studyList", studyList);
+		if(studyList == null) {
+			return "common/error";
+		}
 		return "class_comm/study";
 	}
 	
 	//자유게시판
 	@GetMapping("free")
-	public String free() {
+	public String free(String orderBy, Model model) {
+		
+		List<ClassCommVo> freeList = ccs.freeList(orderBy);
+//		log.info("리스트" + studyList);
+		model.addAttribute("freeList", freeList);
+		if(freeList == null) {
+			return "common/error";
+		}
+		
 		return "class_comm/free";
 	}
 	

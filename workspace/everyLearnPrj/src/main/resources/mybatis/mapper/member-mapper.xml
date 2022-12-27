@@ -54,4 +54,11 @@ INSERT INTO MEMBER
   	WHERE NICK = #{memberNick}
   </select>
   
+   <select id="selectIdFind" resultType="string">
+	SELECT ID
+	FROM MEMBER
+	WHERE NAME = #{memberName}
+	AND EMAIL = #{email}
+  </select>
+  
 </mapper>

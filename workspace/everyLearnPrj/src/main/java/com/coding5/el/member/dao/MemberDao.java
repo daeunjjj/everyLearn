@@ -13,4 +13,8 @@ public interface MemberDao {
 	
 	public String selectIdDup(SqlSessionTemplate sst, String memberId);
 
+	public String selectNickDup(SqlSessionTemplate sst, String memberNick);
+
+	public String idFindAjax(SqlSessionTemplate sst, MemberVo findVo);
+
 }

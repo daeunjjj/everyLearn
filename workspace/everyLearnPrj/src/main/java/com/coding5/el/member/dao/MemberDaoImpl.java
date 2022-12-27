@@ -26,4 +26,9 @@ public class MemberDaoImpl implements MemberDao{
 		return sst.selectOne("memberMapper.selectMemberNick", memberNick);
 	}
 
-}
+
+
+	@Override
+	public String idFindAjax(SqlSessionTemplate sst, MemberVo findVo) {
+		return sst.selectOne("memberMapper.selectIdFind", findVo);
+	}}

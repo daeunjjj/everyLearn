@@ -1,10 +1,10 @@
 package com.coding5.el.member.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +22,7 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
 	
 	//회원가입(화면)
 	@GetMapping("join")
@@ -102,21 +103,41 @@ public class MemberController {
 		return "member/modify";
 	}
 	
+	//아이디 찾기(화면)
 	@GetMapping("idFind")
 	public String idFind() {
 		return "member/id_find";
 	}
+	
+	//아이디 찾기 확인
+	@PostMapping("idFindAjax")
+	@ResponseBody
+	public String idFindAjax(String memberName, String memberEmail) {
+		MemberVo vo = new MemberVo();
+		vo.setMemberName(memberName);
+		vo.setEmail(memberEmail);
+		
+		String result = memberService.idFind(vo);
+		
+		return result;
+	}
+	
+	//아이디 찾기 성공
+	@GetMapping("successIdFind")
+	public String successIdFind(String findId, Model model) {
+		
+		model.addAttribute("findId", findId);
+		
+		return "member/success_id_find";
+	}
+	
 	
 	@GetMapping("pwFind")
 	public String pwFind() {
 		return "member/pw_find";
 	}
 	
-	@GetMapping("successIdFind")
-	public String successIdFind() {
-		return "member/success_id_find";
-	}
-	
+
 	@GetMapping("successPwdFind")
 	public String successPwdFind() {
 		return "member/success_pwd_find";

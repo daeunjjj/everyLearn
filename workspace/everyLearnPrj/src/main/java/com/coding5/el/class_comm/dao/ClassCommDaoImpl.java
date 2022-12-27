@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import com.coding5.el.class_comm.vo.ClassCommVo;
 
+
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Repository
 public class ClassCommDaoImpl implements ClassCommDao{
 
@@ -30,6 +33,18 @@ public class ClassCommDaoImpl implements ClassCommDao{
 	@Override
 	public int insertReport(SqlSessionTemplate sst, ClassCommVo vo) {
 		return sst.insert("classCommMapper.insertReport", vo);
+	}
+
+	//스터디게시판
+	@Override
+	public List<ClassCommVo> selectstudyList(SqlSessionTemplate sst, String orderBy) {
+		return sst.selectList("classCommMapper.selectStudyList",orderBy);
+	}
+
+	//freeList
+	@Override
+	public List<ClassCommVo> selectFreeList(SqlSessionTemplate sst, String orderBy) {
+		return sst.selectList("classCommMapper.selectFreeList", orderBy);
 	}
 
 }

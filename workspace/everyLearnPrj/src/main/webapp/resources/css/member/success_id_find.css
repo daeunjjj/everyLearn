@@ -111,6 +111,11 @@ input:focus {outline:none;}
     border-radius: 5px;
 }
 
+.btnJoin:hover{
+    color: lightgray;
+    opacity: 0.7;
+}
+
 .text-id_find{
     margin: auto;
     background-color: #1187CF;

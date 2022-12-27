@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.coding5.el.member.dao.MemberDaoImpl;
+import com.coding5.el.member.dao.MemberDao;
 import com.coding5.el.member.vo.MemberVo;
 
 @Service
@@ -18,7 +18,7 @@ public class MemberServiceImpl implements MemberService{
 	private BCryptPasswordEncoder enc;
 	
 	@Autowired
-	private MemberDaoImpl memberDao;
+	private MemberDao memberDao;
 	
 	//회원가입
 	@Override
@@ -69,6 +69,14 @@ public class MemberServiceImpl implements MemberService{
 		String nickDup = memberDao.selectNickDup(sst, memberNick);
 		return nickDup;
 	}
+
+
+	@Override
+	public String idFind(MemberVo findVo) {
+		return memberDao.idFindAjax(sst, findVo);
+	}
+
+
 	
 	
 }
