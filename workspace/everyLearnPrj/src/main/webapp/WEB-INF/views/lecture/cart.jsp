@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,34 +30,17 @@
 				<div id="leccart-price">49,900원</div>
 				<div id="leccart-teacher">강사이름</div>
 			</div>
-			<div id="cart-item">
-				<div id="leccart-check"><input type="checkbox" class="individual-checkbox"  checked="checked"></div>
-				<div id="leccart-img"><a href='#'><img src="/el/resources/img/lecture/lecpic.png" alt="강의이미지"></a></div>
-				<div id="leccart-name">아이패드로 일상 그리기, 프로크리에트를 이용한 드로잉 클래스</div>
-				<div id="leccart-price">49,900원</div>
-				<div id="leccart-teacher">강사이름</div>
-			</div>
-			<div id="cart-item">
-				<div id="leccart-check"><input type="checkbox" class="individual-checkbox" checked="checked"></div>
-				<div id="leccart-img"><a href='#'><img src="/el/resources/img/lecture/lecpic.png" alt="강의이미지"></a></div>
-				<div id="leccart-name">아이패드로 일상 그리기, 프로크리에트를 이용한 드로잉 클래스</div>
-				<div id="leccart-price">49,900원</div>
-				<div id="leccart-teacher">강사이름</div>
-			</div>
-			<div id="cart-item">
-				<div id="leccart-check"><input type="checkbox" class="individual-checkbox" checked="checked"></div>
-				<div id="leccart-img"><a href='#'><img src="/el/resources/img/lecture/lecpic.png" alt="강의이미지"></a></div>
-				<div id="leccart-name">아이패드로 일상 그리기, 프로크리에트를 이용한 드로잉 클래스</div>
-				<div id="leccart-price">49,900원</div>
-				<div id="leccart-teacher">강사이름</div>
-			</div>
-			<div id="cart-item">
-				<div id="leccart-check"><input type="checkbox" class="individual-checkbox" checked="checked"></div>
-				<div id="leccart-img"><a href='#'><img src="/el/resources/img/lecture/lecpic.png" alt="강의이미지"></a></div>
-				<div id="leccart-name">아이패드로 일상 그리기, 프로크리에트를 이용한 드로잉 클래스</div>
-				<div id="leccart-price">49,900원</div>
-				<div id="leccart-teacher">강사이름</div>
-			</div>
+			<c:forEach items="${list}" var="list">
+	            <div id="cart-item">
+					<div id="leccart-check"><input type="checkbox" class="individual-checkbox"  checked="checked"></div>
+					<div id="leccart-img"><a href='#'><img src="/el/resources/img/lecture/lecpic.png" alt="강의이미지"></a></div>
+					<div id="leccart-name">${list.className}</div>
+					<div id="leccart-price">${list.price}</div>
+					<div id="leccart-teacher">${list.teacherNo}</div>
+				</div>
+		        </c:forEach>
+			
+			
 
 				<div id="pay-wrap">
 					<form id="pay-square">

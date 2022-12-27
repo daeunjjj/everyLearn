@@ -66,6 +66,9 @@ public interface LectureService {
 	//수강평 삭제
 	public int deleteReview(String reviewNo);
 
+	//수강평 수정
+	public int editReview(HashMap<String, String> map);
+
 
 	
 
