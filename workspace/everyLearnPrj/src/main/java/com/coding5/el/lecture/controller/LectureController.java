@@ -22,8 +22,13 @@ import com.coding5.el.lecture.service.LectureService;
 import com.coding5.el.lecture.vo.DetailClassVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.lecture.vo.ReviewVo;
+import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.teacher.vo.TeacherVo;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@Slf4j
 @RequestMapping("lecture")
 public class LectureController {
 
@@ -125,7 +130,11 @@ public class LectureController {
 
 	//강의 세부조회
 	@RequestMapping("detail")
-	public ModelAndView detail (ModelAndView mv,int bno) {
+	public ModelAndView detail (ModelAndView mv,int bno, HttpSession session) {
+		
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		String mno = loginMember.getMemberNo();
+		
 		
 		// 클릭시 조회수 증가
 		int result = lectureService.increaseCount(bno);
@@ -135,6 +144,8 @@ public class LectureController {
 			LectureVo lvo = lectureService.classDetail(bno);
 			
 			mv.addObject("lvo",lvo)
+			.addObject("mno", mno)
+			.addObject("loginMember", loginMember)
 			  .setViewName("lecture/lec_detail");
 		}else {
 			mv.setViewName("common/errorPage");
@@ -149,7 +160,7 @@ public class LectureController {
 	// 강의 상세페이지 - 수강평
 	
 	  @GetMapping("detail/review") 
-	  public String review(int bno, String pno, Model model) {
+	  public String review(int bno, String pno, Model model, HttpSession session) {
 		  
 		// 카운트
 		int listCount = lectureService.selectReviewCount(bno);
@@ -159,6 +170,9 @@ public class LectureController {
 			
 		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		String mno = loginMember.getMemberNo();
+		
 		List<ReviewVo> reviewList = lectureService.selectReview(bno, pv);
 		
 		LectureVo lvo = lectureService.classDetail(bno);
@@ -166,14 +180,60 @@ public class LectureController {
 		model.addAttribute("pv", pv);
 		model.addAttribute("bno", bno);
 		model.addAttribute("lvo", lvo);
+		model.addAttribute("mno", mno);
 		model.addAttribute("reviewList", reviewList);
 
 		return "lecture/lec_review"; 
 	   }
 	
 	
+	//수강평 작성
+	  @PostMapping("detail/review") 
+	  public String review(String bno, Model model, String writer, String content, String score) {
 	
-
+		HashMap<String, String>map = new HashMap<>();
+		map.put("bno", bno);
+		map.put("writer", writer);
+		map.put("content", content);
+		map.put("score", score);
+		  
+		 int reviewVo = lectureService.insertReview(map);
+		  System.out.println(reviewVo);
+		  
+		  
+		  return reviewVo>0? "redirect:?bno="+bno+"&pno=1" : "common/errorPage";
+		  
+	
+	  }
+	  
+	  //수강평 수정 get
+	  @GetMapping("detail/review/edit")
+	  public String editReview() {
+		  return "";
+	  }
+	  
+	  //수강평 수정
+	  @PostMapping("detail/review/edit")
+	  public String editReview(String bno, Model model, String writer, String content, String score) {
+		  return "";
+	  }
+	  
+	  //수강평 삭제
+	  @PostMapping("detail/review/delete")
+	  public String deleteReview(String reviewNo, String bno, Model model, HttpSession session) {
+		  int deleteReview = lectureService.deleteReview(reviewNo);
+		  //System.out.println("delete :: " + deleteReview);
+		  
+		  if (deleteReview == 1) {
+			  model.addAttribute("bno", bno);
+			  session.setAttribute("alertMsg", " 게시글이 성공적으로 삭제되었습니다. ");
+			  return"redirect:/lecture/detail/review?bno="+bno+"&pno=1";
+		  }else {
+			  return "common/error";
+		  }
+	  }
+	  
+	  
 	// 본인이 결제한 강의 목차
 	@GetMapping("mylist")
 	public String mylist() {
@@ -198,11 +258,22 @@ public class LectureController {
 		return "lecture/qnadetail";
 	}
 
-	// 장바구니
-	@GetMapping("cart")
-	public String cart() {
-		return "lecture/cart";
-	}
+	/*
+	 * // 장바구니
+	 * 
+	 * @GetMapping("cart") public String cart() { return "lecture/cart"; }
+	 * 
+	 * //장바구니 (찐)
+	 * 
+	 * @PostMapping("cart") public String Cart(int bno, Model model) {
+	 * 
+	 * int result = lectureService.insertCart(bno);
+	 * 
+	 * if(result == 1) { return "lecture/cart"; } else { return "common/error"; }
+	 * 
+	 * 
+	 * }
+	 */
 
 	// 결제완료
 	@GetMapping("completePay")
@@ -210,22 +281,37 @@ public class LectureController {
 		return "lecture/complete_payment";
 	}
 
-	// 강의 등록
+	// 강의 등록 ///일단 멤버로
 	@GetMapping("insert")
-	public String insert() {
-		return "lecture/insert";
+	public String insert(HttpSession session, Model model) {
+		
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		String mno = loginMember.getMemberNo();
+		
+		if(loginMember == null) {
+			return "member/login";
+		}else {
+			log.info(mno);
+			System.out.println(loginMember);
+			
+			model.addAttribute(loginMember);
+			model.addAttribute("mno", mno);
+			return "lecture/insert";
+		}
 	}
 
 	// 강의 등록 - post
 	@PostMapping("insert")
 	public String insert(LectureVo lvo, MultipartFile upfile, HttpSession session, Model model) {
-
-		lvo.setTeacherNo((String) session.getAttribute("memberNo"));
+		String bno = lvo.getClassNo();
+		//lvo.setTeacherNo((String) session.getAttribute("memberNo"));
 
 		int result = lectureService.insertClassOne(lvo);
 
 		if (result == 1) {
 			session.setAttribute("alertMsg", "기본 정보 입력 완료.");
+			//model.addAttribute(lvo);
+			//model.addAttribute(bno);
 			return "redirect:/lecture/insert/detail";
 		} else {
 			model.addAttribute("errorMsg", " 게시글 등록에 실패하였습니다. ");
@@ -236,26 +322,38 @@ public class LectureController {
 
 	// 강의 등록 - 세부(목차)
 	@GetMapping("insert/detail")
-	public String insertDetail() {
+	public String insertDetail(LectureVo lvo, String bno, Model model) {
 		
-		return "lecture/insertDetail";
+		
 		/*
-		 * mv.addObject("bno", bno) .setViewName("lecture/insertDetail"); //return
-		 * "lecture/insertDetail"; return mv;
+		 * System.out.println("---------------------controller bno");
+		 * System.out.println(bno); model.addAttribute("bno", bno);
 		 */
+		return "lecture/insertDetail";
+		
 	}
 
 	// 강의 등록 - 세부(목차) - post
 	@PostMapping("insert/detail")
-	public String insertDetail(LectureVo lvo, List<LectureVo> dcList) {
-
+	public String insertDetail(LectureVo lvo, List<LectureVo> dcList, String no, String chapter, Model model) {
+		
 		int result = lectureService.insertClassDetail(lvo, dcList);
 
 		if (result == 1) {
+		
+			model.addAttribute(dcList);
+			System.out.println(dcList);
 			return "lecture/main";
 		} else {
 			return "common/errorPage";
 		}
 
+	}
+	
+	
+	//강의 찜하기
+	@PostMapping("wish")
+	public String wish(int bno) {
+		return "redirect:?pno=1";
 	}
 }

@@ -59,6 +59,14 @@ public interface LectureService {
 
 	//수강평 총 갯수
 	public int selectReviewCount(int bno);
+
+	//수강평 작성
+	public int insertReview(HashMap<String, String> map);
+
+	//수강평 삭제
+	public int deleteReview(String reviewNo);
+
+
 	
 
 

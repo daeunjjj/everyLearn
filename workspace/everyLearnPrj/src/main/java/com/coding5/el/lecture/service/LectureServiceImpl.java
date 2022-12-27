@@ -125,4 +125,19 @@ public class LectureServiceImpl implements LectureService {
 		return lectureDao.selectReviewCount(sst, bno);
 	}
 
+	//수강평 작성
+	@Override
+	public int insertReview(HashMap<String, String> map) {
+		return lectureDao.insertReview(sst, map);
+	}
+
+	
+	//수강평 리뷰 삭제
+	@Override
+	public int deleteReview(String reviewNo) {
+		return lectureDao.deleteReview(sst, reviewNo);
+	}
+
+
+
 }

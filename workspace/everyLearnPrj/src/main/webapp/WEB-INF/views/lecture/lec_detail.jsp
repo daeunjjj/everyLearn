@@ -15,6 +15,7 @@
 
 <main id="container">
 	<div class="wrap">
+		
         <div class= "lec-intro">
             <div id="lec-pic"><img src="/el/resources/img/lecture/lecpic2.png"></div>
             <div id="lec-int">
@@ -37,8 +38,12 @@
             <div id="lec-payment">
                 <div id="pay-wrap">
                     <div id="pay-price">${lvo.price} 원</div>
-                    <div id="pay-zzim"><i class="fa-regular fa-heart fa-2x"></i></div>
-                    <div id="pay-cart">장바구니에 담기</div>
+                    <div id="pay-zzim"><a href="/el/lecture/wish"><i class="fa-regular fa-heart fa-2x"></i></a></div>
+                    <form action="/el/cart/addCart" method="post">
+                    <input type="hidden" name="classNo" value="${bno }">
+                    <input type="hidden" name="memberNo" value="${loginMember.memberNo }">
+                    	<div><input id="pay-cart" type="submit" value="장바구니에 담기"></div>
+                    </form>
                     <div id="pay-real">결제하기</div>
                 </div>
             </div>

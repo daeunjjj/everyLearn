@@ -28,7 +28,7 @@
 			</div>
 			<div id="nav-container">
 				<div class="nav-list">
-					<a href="">강의</a> <a href="/el/class/qna">커뮤니티</a> <a href="">에브리런</a> <a
+					<a href="/el/lecture/main?pno=1">강의</a> <a href="/el/class/qna">커뮤니티</a> <a href="">에브리런</a> <a
 						href="">이벤트</a>
 				</div>
 				<div class="search-wrapper">
