@@ -1,5 +1,8 @@
 package com.coding5.el.cart.Service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +21,15 @@ public class CartServiceImpl implements CartService{
 	
 	//장바구니 등록
 	@Override
-	public int addCart(CartVo cartVo, MemberVo loginMember) {
-		return cartDao.addCart(cartVo, loginMember, sst);
+	public int addCart(HashMap<String, String> map) {
+		return cartDao.addCart(map, sst);
 	}
+	
+	//장바구니 목록 조회
+	@Override
+	public List<CartVo> getCartList(String mno) {
+		return cartDao.getCartList(mno, sst);
+	}
+	
 
 }

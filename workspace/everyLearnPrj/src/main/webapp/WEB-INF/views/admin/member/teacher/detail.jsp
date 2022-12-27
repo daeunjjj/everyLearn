@@ -99,14 +99,14 @@
 	                                    <div>${list.recomm }	</div>
 	                                    <div>${list.studentCnt }	</div>
 	                                    <div>
-	                                    <form action="/el/admin/member/teacher/class/delete" method="post">
+	                                    <form action="/el/admin/member/teacher/class/delete" method="post" onsubmit="return deleteCheck();">
 	                                    	<input name="cno" value="${list.no}" hidden>
 	                                    	<input name="no" value="${map.tvo.no}" hidden>
 	                                        <c:if test="${list.deleteYn eq 'N' }">
 	                                        	<button type="submit">강의중</button>	
 	                                        </c:if>
                                      	    <c:if test="${list.deleteYn eq 'Y' }">
-	                                        	<button type="submit" disabled="disabled" id="non-click">폐강</button>	
+	                                        	<button type="button" disabled="disabled" id="non-click">폐강</button>	
 	                                        </c:if>                                      
 	                                    </form>
 	                                    </div>
@@ -132,6 +132,17 @@
 
         </main>
     </div>
+    <script>
+        function deleteCheck() {
+            
+            if(!confirm("정말 폐강시키겠습니까?")){
+                return false;
+            } else{
+                return true;
+            }
+            
+        }
 
+    </script>
 </body>
 </html>

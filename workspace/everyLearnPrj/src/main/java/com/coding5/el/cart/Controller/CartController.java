@@ -1,10 +1,14 @@
 package com.coding5.el.cart.Controller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,28 +28,42 @@ public class CartController {
 	private CartService cartService;
 	
 	
+	
 	@GetMapping("addCart")
 	public String addCart() {
 		return "redirect:/lecture/cart";
 	}
 	
-	//장바구니 (찐)
+	//장바구니에 담기 (찐)
 	@PostMapping("addCart")
-	public String addCart(CartVo cartVo, HttpServletRequest request) {
-		// 로그인 체크
-		HttpSession session = request.getSession();
-		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+	public String addCart( HttpServletRequest request, String classNo, String memberNo) {
 		
-		System.out.println(loginMember);
 		
-		if(loginMember == null) {
-			return "member/login";
-		}
+		HashMap<String, String>map = new HashMap<>();
+		map.put("classNo", classNo);
+		map.put("memberNo", memberNo);
 		
-		int result = cartService.addCart(cartVo, loginMember);
 		
-		return result + "";
+		int result = cartService.addCart(map);
+		
+		//return result + "";
+		return "lecture/cart";
 	}
 	
+	//장바구니 화면
+	@GetMapping("cartList")
+	public String cartList(HttpSession session, Model model) {
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		String mno = loginMember.getMemberNo();
+		
+		List<CartVo> list = cartService.getCartList(mno);
+		System.out.println("controller list : " + list);
+		model.addAttribute(loginMember);
+		model.addAttribute(mno);
+		model.addAttribute("list", list);
+		return "redirect:/lecture/cart";
+		
+		
+	}
 
 }

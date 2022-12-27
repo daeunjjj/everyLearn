@@ -44,9 +44,9 @@
                             <label for="save">아이디 저장</label>
                         </div>
                         <div id="find-area">
-                            <a href="">아이디 찾기</a>
+                            <a href="/el/admin/find/id">아이디 찾기</a>
                             <span> | </span>
-                            <a href="">비밀번호 찾기</a>
+                            <a href="/el/admin/find/pwd">비밀번호 찾기</a>
                         </div>
                     </div>
                     <div class="btn">
@@ -76,7 +76,22 @@
             }
         }
 
+        // 포커스 효과
+        let inputArr = $('input');
+        for(let i = 0; i < inputArr.length; i++){
+            
+            inputArr[i].addEventListener('focus',()=>{
+                inputArr[i].style.border="1px solid #005297";
+            });
+        }
 
+        // 블러효과
+        for(let i = 0; i < inputArr.length; i++){
+
+            inputArr[i].addEventListener('blur',()=>{
+                inputArr[i].style.border="";
+            });
+        }
         
     </script>
 </body>

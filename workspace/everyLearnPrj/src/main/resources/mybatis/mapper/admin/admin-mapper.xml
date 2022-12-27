@@ -270,7 +270,7 @@
 		    ,T.RECORD
 		    ,T.ENROLL_DATE
 		    ,T.MODIFY_DATE
-		    ,DECODE(T.STATUS_YN, 'N','대기', 'Y','승인') AS STATUS_YN
+		    ,STATUS_YN
 		    ,T.DELETE_YN
 		    ,M.ID
 		    ,M.EMAIL
@@ -278,16 +278,17 @@
    			,M.PHONE
 		FROM TEACHER T
 		JOIN MEMBER M ON T.MEMBER_NO = M.NO
-		WHERE T.DELETE_YN = 'N'
-		<if test="keyword != null and keyword != ''">
-			AND M.${category} LIKE '%${keyword}%'
-		</if>
-		<if test="cate != null and keyword != ''">
-			AND T.CATEGORY IN
-			<foreach collection="cate" item="arr" open="(" close=")" separator=",">
-			#{arr}
-			</foreach>
-		</if>
+		<where>
+			<if test="keyword != null and keyword != ''">
+				M.${category} LIKE '%${keyword}%'
+			</if>
+			<if test="cate != null and keyword != ''">
+				AND T.CATEGORY IN
+				<foreach collection="cate" item="arr" open="(" close=")" separator=",">
+				#{arr}
+				</foreach>
+			</if>
+		</where>	
 		ORDER BY T.NO DESC
 	</select>
 	

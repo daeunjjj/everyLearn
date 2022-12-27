@@ -1,21 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>에브리런</title>
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
-
-<link rel="stylesheet" href="/el/resources/css/notice/adminList.css?히히">
+<link rel="stylesheet" href="/el/resources/css/faq/adminList.css">
 <link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <!-- 파비콘 -->
@@ -32,8 +28,8 @@
 				
 					<div class="th"><input type="checkbox" id="allCheck"></div>
 					<div class="th">번호</div>
+	                <div class="th">카테고리</div>
 	                <div class="th">제목</div>
-	                <div class="th"></div>
 	                <div class="th">작성일시</div>
 	                <div class="th">조회수</div>
 	                <div class="th"></div>
@@ -42,18 +38,18 @@
 				<c:forEach items="${list}" var="n">
 					<div class="td" id="check"><input type="checkbox" class="checkbox-del" value="${n.no}"></div>
 					<div class="td" id="no">${n.no}</div>
-	                <div class="td" id="title"><a href="/el/notice/detail?no=${ n.no }" target="_blank" id="title-a">${n.title}</a></div>
-	                <div class="td" id="adminNick">관리자</div>
+	                <div class="td" id="category">일반회원</div>
+	                <div class="td" id="title"><a href="/el/faq/detail?no=${ n.no }" target="_blank" id="title-a">${n.title}</a></div>
 	                <div class="td" id="enrollDate">${n.enrollDate}</div>
 	                <div class="td" id="hit">${n.hit}</div>
-	                <div class="td"><button onclick="location.href = '/el/notice/edit?no=${ n.no }'" id="edit">수정</button></div>
+	                <div class="td"><button onclick="location.href = '/el/faq/edit?no=${ n.no }'" id="edit">수정</button></div>
 	                <div class="td"><button onclick="del();" id="del">삭제</button></div>
 				</c:forEach>
 					
 			
 
 					<div id="main-bot">
-						<a href="/el/notice/write" class="btn btn-light" id="write">작성하기</a>
+						<a href="/el/faq/write" class="btn btn-light" id="write">작성하기</a>
 					</div>
 		
 				<!-- 페이징 start -->
