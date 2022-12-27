@@ -5,7 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="/el/resources/js/member/id_find.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link href="/el/resources/css/member/id_find.css" rel="stylesheet" type="text/css">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <br><br><br><br><br>
@@ -23,14 +26,14 @@
 
                 <h4><label for="">이름</label></h4>
                 <span class="id_find-box">
-                    <input type="text" name="memberName">
+                    <input type="text" name="memberName" id="memberName">
                 </span>            
                 <h4><label for="">이메일</label></h4>
                 <span class="id_find-box">
-                    <input type="email" name="memberEmail">
+                    <input type="email" name="memberEmail" id="memberEmail">
                 </span>
                 <div id="btn-id_find">
-                    <button type="button" id="btnJoin">
+                    <button type="button" id="btnJoin" onclick="idFind()">
                         <div id="text-id_find">아이디 찾기</div>
                     </button>
                 </div>

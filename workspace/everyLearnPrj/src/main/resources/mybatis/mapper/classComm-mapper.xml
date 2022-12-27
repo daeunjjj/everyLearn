@@ -64,7 +64,7 @@
 	
 	</select>
 	
-	<insert id="insertReport">
+ 	<insert id="insertReport">
 		INSERT INTO REPORT
 		(
 		    NO
@@ -86,5 +86,43 @@
 
 		)
 	</insert>
+	
+	<select id="selectStudyList" resultType="com.coding5.el.class_comm.vo.ClassCommVo">
+		SELECT CC.NO CLASS_COMM_NO
+		    ,CCA.NAME CATE_NO
+		    ,M.NAME WRITER
+		    ,TITLE 
+		    ,CONTENT
+		    ,ANSWER_YN
+		    ,CC.REPORT_YN REPORT_YN
+		    ,HIT
+		    ,CC.ENROLL_DATE ENROLL_DATE
+		FROM CLASS_COMM CC
+		JOIN COMM_CATE CCA
+		ON CC.CATE_NO = CCA.NO
+        JOIN MEMBER M
+        ON CC.WRITER = M.NO
+		WHERE CC.CATE_NO = 2
+		ORDER BY ${orderBy}
+	</select>
+	
+	<select id="selectFreeList" resultType="com.coding5.el.class_comm.vo.ClassCommVo">
+				SELECT CC.NO CLASS_COMM_NO
+		    ,CCA.NAME CATE_NO
+		    ,M.NAME WRITER
+		    ,TITLE 
+		    ,CONTENT
+		    ,ANSWER_YN
+		    ,CC.REPORT_YN REPORT_YN
+		    ,HIT
+		    ,CC.ENROLL_DATE ENROLL_DATE
+		FROM CLASS_COMM CC
+		JOIN COMM_CATE CCA
+		ON CC.CATE_NO = CCA.NO
+        JOIN MEMBER M
+        ON CC.WRITER = M.NO
+		WHERE CC.CATE_NO = 3
+		ORDER BY ${orderBy}
+	</select>
   
 </mapper>

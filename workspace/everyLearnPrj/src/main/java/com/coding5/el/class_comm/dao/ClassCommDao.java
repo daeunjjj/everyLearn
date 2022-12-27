@@ -13,5 +13,9 @@ public interface ClassCommDao {
 	public ClassCommVo selectDetailVo(SqlSessionTemplate sst, String classCommNo);
 	//신고 인서트
 	public int insertReport(SqlSessionTemplate sst, ClassCommVo vo);
+	//스터디게시판
+	public List<ClassCommVo> selectstudyList(SqlSessionTemplate sst, String orderBy);
+	//freeList
+	public List<ClassCommVo> selectFreeList(SqlSessionTemplate sst, String orderBy);
 
 }

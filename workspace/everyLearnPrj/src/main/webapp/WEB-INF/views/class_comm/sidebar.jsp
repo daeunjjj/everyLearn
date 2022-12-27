@@ -27,12 +27,12 @@
 	                </a>
                 </li>
                 <li>
-	                <a href="http://127.0.0.1:8888/el/class/study" class="item">
+	                <a href="/el/class/study?orderBy=ENROLL_DATE DESC" class="item">
 	                	<div>스터디</div>
 	                </a>
                 </li>
                 <li>
-	                <a href="http://127.0.0.1:8888/el/class/free" class="item">
+	                <a href="/el/class/free?orderBy=ENROLL_DATE DESC" class="item">
 	                	<div>자유게시판</div>
 	                </a>
                 </li>

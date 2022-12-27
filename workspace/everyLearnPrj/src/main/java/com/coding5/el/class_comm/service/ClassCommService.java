@@ -17,4 +17,10 @@ public interface ClassCommService {
 
 	//신고 인서트
 	public int report(ClassCommVo vo);
+
+	//스터디 게시판
+	public List<ClassCommVo> studyList(String orderBy);
+
+	//자유게시판
+	public List<ClassCommVo> freeList(String orderBy);
 }

@@ -21,17 +21,17 @@
                 <form action="" id="id_find-form">
                 <h3>아이디 찾기</h3>    
 
-                <h4><label for="">에브리 회원님의 아이디는</label></h4>
+                <h4><label for="">회원님의 아이디는</label></h4>
                 <div class="id_find-box">
-                    <div id="decla-id">ayj7137</div>
+                    <div id="decla-id">${findId}</div>
                 </div>            
                 <h4><label for="">입니다.</label></h4>
 
                 <div id="btn-id_find">
-                    <button type="button" class="btnJoin">
-                        <div class="text-id_find" id="find-pw">비밀번호 찾기</div>
+                    <button type="button" class="btnJoin" onclick="location.href='/el/member/pwFind'">
+                        <div class="text-id_find" id="find-pw" >비밀번호 찾기</div>
                     </button>
-                    <button type="button" class="btnJoin">
+                    <button type="button" class="btnJoin"  onclick="location.href='/el/member/login'">
                         <div class="text-id_find" id="login">로그인</div>
                     </button>
                 </div>

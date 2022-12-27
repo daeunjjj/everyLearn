@@ -96,8 +96,8 @@ body {
 
 
 button:hover{
-    background-color: #1187CF;
-    opacity: 0.7;
+  /*   background-color: #1187CF;
+    opacity: 0.7; */
 }
 
 
@@ -183,6 +183,7 @@ button:hover{
 
 #free-main a{
     text-decoration: none;
+    color: black
 }
 
 #page-alert{
