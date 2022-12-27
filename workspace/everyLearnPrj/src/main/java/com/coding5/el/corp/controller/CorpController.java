@@ -5,15 +5,20 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.coding5.el.corp.service.CorpService;
 import com.coding5.el.corp.vo.CorpVo;
+import com.coding5.el.corp.vo.EmploymentVo;
+
+import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("corp")
 @Controller
+@Slf4j
 public class CorpController {
 
 	@Autowired
@@ -74,9 +79,17 @@ public class CorpController {
 	
 	// 기업 마이페이지(화면)
 	@GetMapping("mypage")
-	public String mypage(CorpVo vo, HttpSession session) {
+	public String mypage(HttpSession session) {
 		
-		CorpVo cv = cs.selectMypage(vo);
+		CorpVo empMember = (CorpVo) session.getAttribute("empMember");
+		
+		if(empMember == null) {
+			return "redirect:/corp/login";
+		}
+		
+		CorpVo cv = cs.selectMypage(empMember);
+		
+		log.info(cv.toString());
 		
 		session.setAttribute("cv", cv);
 		
@@ -85,15 +98,55 @@ public class CorpController {
 	
 	// 기업 마이페이지
 	@PostMapping("mypage")
-	public String mypage(CorpVo vo) {
+	public String mypage(HttpSession session, CorpVo vo) {
+		
+		CorpVo empMember = (CorpVo) session.getAttribute("empMember");
+		vo.setNo(empMember.getNo());
 		
 		int result = cs.updateCorpInfo(vo);
+		
+		log.info(vo.toString());
+		
+		if(result != 1) {
+			log.info(vo.toString());
+			return "common/error";
+		}
+
+		return "redirect:/corp/mypage";
+	}
+	
+	// 기업 채용 공고 만들기(화면)
+	@GetMapping("position")
+	public String jobPost() {
+		return "emp/mypage/job-post";
+	}
+	
+	// 기업 채용 공고 만들기
+	@PostMapping("position")
+	public String jobPost(EmploymentVo vo, HttpSession session){
+		
+		CorpVo empMember = (CorpVo) session.getAttribute("empMember");
+		
+		if(empMember == null) {
+			return "redirect:/corp/login";
+		}
+		
+		vo.setCorpNo(empMember.getNo());
+		int result = cs.insertJobPost(vo);
 		
 		if(result != 1) {
 			return "common/error";
 		}
 		
-		return "redirect:/corp/mypage";
+		return "emp/mypage/status";
+	}
+	
+	// 채용 공고 지우기
+	@DeleteMapping("position")
+	public String jobPost(String no, HttpSession session) {
+		
+		return "";
+		
 	}
 	
 	// 채용중 페이지
@@ -120,9 +173,4 @@ public class CorpController {
 		return "emp/mypage/applicant";
 	}
 	
-	// 기업 채용 공고 만들기
-	@GetMapping("job-post")
-	public String jobPost() {
-		return "emp/mypage/job-post";
-	}
 }

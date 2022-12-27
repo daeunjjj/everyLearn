@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.coding5.el.corp.vo.CorpVo;
+import com.coding5.el.corp.vo.EmploymentVo;
 
 @Repository
 public class CorpDaoImpl implements CorpDao{
@@ -30,6 +31,12 @@ public class CorpDaoImpl implements CorpDao{
 	@Override
 	public int updateCorpInfo(SqlSessionTemplate sst, CorpVo vo) {
 		return sst.update("corpMapper.updateCorpInfo", vo);
+	}
+
+	// 기업 채용 공고 만들기
+	@Override
+	public int insertJobPost(SqlSessionTemplate sst, EmploymentVo vo) {
+		return sst.insert("corpMapper.insertJobPost", vo);
 	}
 
 

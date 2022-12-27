@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.coding5.el.corp.dao.CorpDao;
 import com.coding5.el.corp.vo.CorpVo;
+import com.coding5.el.corp.vo.EmploymentVo;
 
 @Service
 public class CorpServiceImpl implements CorpService {
@@ -48,6 +49,12 @@ public class CorpServiceImpl implements CorpService {
 	@Override
 	public int updateCorpInfo(CorpVo vo) {
 		return dao.updateCorpInfo(sst, vo);
+	}
+
+	// 기업 채용 공고 만들기
+	@Override
+	public int insertJobPost(EmploymentVo vo) {
+		return dao.insertJobPost(sst, vo);
 	}
 
 

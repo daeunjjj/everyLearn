@@ -8,12 +8,12 @@
 	<select id="selectResumeOne" resultType="ResumeVo">
 		SELECT 
 			NO
-			, MEMBER
+			, MEMBER_NO
 			, ADRESS
 			, LINK
 			, INTRODUCE
 		FROM RESUME
-		WHERE MEMBER = #{member}
+		WHERE MEMBER_NO = #{memberNo}
 	</select>
 	
 	<select id="selectEducation" resultType="ResumeVo">

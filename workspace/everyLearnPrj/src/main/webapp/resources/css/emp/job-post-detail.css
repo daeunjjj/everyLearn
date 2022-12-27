@@ -14,6 +14,40 @@
  padding: 0 30px;
 }
 
+.header h6{
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.header img{
+  border-radius: 50%;
+  border: 1px solid #f2f4f6;
+  width: 2.267rem;
+  height: 2.267rem;
+  margin-right: 4px;
+}
+
+.header h1{
+  font-size: 36px;
+  line-height: 2;
+  font-weight: bold;
+  word-break: break-all;
+  margin: 4px 0 0;
+}
+
+.thumb-wrapper{
+  width: 100%;
+  height: 350px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.thumb{
+  width: 100%;
+  height: 100%;
+}
+
 .category{
   width: 120px;
   font-size: 18px;
@@ -37,6 +71,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
+  word-break: break-all;
 }
 
 .items label{
@@ -54,12 +89,18 @@
   font-family: 'nanumsquare';
 }
 
+.items h3{
+  font-weight: bold;
+  line-height: 1.65;
+}
+
 .jobDetail{
+  width: 100%;
   margin-top: 30px;
 }
 
 .aside{
-  width: 20.933rem;
+  min-width: 17.933rem;
   position: sticky;
   padding: 24px;
   border: 1px solid gray;
@@ -76,16 +117,15 @@
   margin-bottom: 20px;
 }
 
-.aside dl label{
+.aside dl dd{
   width: 80px;
   font-size: 14px;
   color: #a1aab2;
 }
 
-.aside dl input{
+.aside dl dt{
   flex-grow: 1;
   border: none;
-  border-bottom: 1px solid black;
   outline: none;
   padding: 4px 6px;
 }

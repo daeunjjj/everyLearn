@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import com.coding5.el.emp.vo.AwardVo;
 import com.coding5.el.emp.vo.CareerVo;
 import com.coding5.el.emp.vo.CertificateVo;
 import com.coding5.el.emp.vo.EducationVo;
+import com.coding5.el.emp.vo.JobPostVo;
 import com.coding5.el.emp.vo.LanguageVo;
 import com.coding5.el.emp.vo.ResumeAttatchVo;
 import com.coding5.el.emp.vo.ResumeVo;
@@ -68,9 +70,9 @@ public class EmpController {
 	 * @return
 	 */
 	@PostMapping("resume")
-	public String resume(ResumeVo vo, List<EducationVo> evList) {
+	public String resume(List<EducationVo> evList) {
 		
-		int result = es.resumeWrite(vo, evList);
+		int result = es.resumeWrite(evList);
 		
 		if(result == 1) {
 			return "redirect:/emp/resume";
@@ -81,5 +83,13 @@ public class EmpController {
 	//, List<LanguageVo> lvList, List<AwardVo> avList, List<CareerVo> cvList, List<CertificateVo> cfvList, List<ResumeAttatchVo> ravList
 	//, lvList, avList, cvList, cfvList, ravList
 	
-
+	@GetMapping("position")
+	public String jobPostDetail(String no, Model model) {
+		
+		JobPostVo vo = es.jobPostDetail(no);
+		model.addAttribute("vo", vo);
+		
+		return "emp/job-post-detail";
+	}
+	
 }

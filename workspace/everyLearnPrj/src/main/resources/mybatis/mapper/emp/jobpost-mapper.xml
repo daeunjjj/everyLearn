@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jobPostMapper">
+  
+  <select id="selectJobPostDetail" resultType="JobPostVo">
+  	SELECT 
+  		EMP.NO
+		, EMP.CORP_NO
+		, EMP.CATEGORY
+		, EMP.TITLE
+		, EMP.RESPONSIBILITY
+		, EMP.QUALIFICATION
+		, EMP.PREFERENTIAL
+		, EMP.SALARY
+		, EMP.BENEFITS
+		, EMP.INTRODUCE
+		, EMP.SECTOR
+		, EMP.ADDRESS
+		, EMP.CAREER
+		, EMP.DEADLINE
+		, CORP.COMPANY_NAME
+		, CORP.COMPANY_ADDRESS
+		, EC.TYPE
+	FROM EMPLOYMENT EMP
+	JOIN CORPORATE_MEMBER CORP ON EMP.CORP_NO = CORP.NO
+	JOIN EMP_CATE EC ON EMP.CATEGORY = EC.NO
+	WHERE EMP.NO = #{no}
+  </select>
+  
+</mapper>

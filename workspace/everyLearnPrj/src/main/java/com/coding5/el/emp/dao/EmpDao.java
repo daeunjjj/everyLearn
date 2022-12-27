@@ -8,6 +8,7 @@ import com.coding5.el.emp.vo.AwardVo;
 import com.coding5.el.emp.vo.CareerVo;
 import com.coding5.el.emp.vo.CertificateVo;
 import com.coding5.el.emp.vo.EducationVo;
+import com.coding5.el.emp.vo.JobPostVo;
 import com.coding5.el.emp.vo.LanguageVo;
 import com.coding5.el.emp.vo.ResumeAttatchVo;
 import com.coding5.el.emp.vo.ResumeVo;
@@ -28,6 +29,10 @@ public interface EmpDao {
 
 	List<ResumeAttatchVo> selectAttach(SqlSessionTemplate sst, ResumeVo vo);
 
+	// 이력서 작성하기
 	int insertEducation(SqlSessionTemplate sst, List<EducationVo> evList);
+
+	// 채용 공고 상세
+	JobPostVo selectJobPostDetail(SqlSessionTemplate sst, String no);
 
 }

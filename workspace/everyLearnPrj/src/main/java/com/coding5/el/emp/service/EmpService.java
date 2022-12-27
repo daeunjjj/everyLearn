@@ -6,6 +6,7 @@ import com.coding5.el.emp.vo.AwardVo;
 import com.coding5.el.emp.vo.CareerVo;
 import com.coding5.el.emp.vo.CertificateVo;
 import com.coding5.el.emp.vo.EducationVo;
+import com.coding5.el.emp.vo.JobPostVo;
 import com.coding5.el.emp.vo.LanguageVo;
 import com.coding5.el.emp.vo.ResumeAttatchVo;
 import com.coding5.el.emp.vo.ResumeVo;
@@ -26,7 +27,13 @@ public interface EmpService {
 
 	List<ResumeAttatchVo> selectAttach(ResumeVo vo);
 
+	// 채용 이력서
 	int resumeWrite(ResumeVo vo, List<EducationVo> evList);
+
+	// 채용 공고 상세
+	JobPostVo jobPostDetail(String no);
+
+	int resumeWrite(List<EducationVo> evList);
 
 }
 // , List<LanguageVo> lvList, List<AwardVo> avList,
