@@ -15,6 +15,9 @@
 <link rel="stylesheet" href="/el/resources/css/notice/list.css">
 <link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
+
+<!-- 파비콘 -->
+<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 </head>
 <body>
 
