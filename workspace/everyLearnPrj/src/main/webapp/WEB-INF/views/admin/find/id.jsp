@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 - 아이디 찾기</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/el/resources/css/admin/find/id.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 </head>
@@ -23,16 +24,23 @@
                     </p>
                 </div>
                 <form>
-                    <section class="phone-area input-area">
+                    <section class="auth-area input-area">
                         <div>
-                            <label for="phone">휴대폰 번호</label>
-                            <div class="input-area">
-                                <input type="tel" id="phone" name="phone" placeholder="숫자만 입력해주세요.">
+                            <div class="left">
+                                <label>휴대폰 번호</label>
+                                <div class="input-area">
+                                    <input type="tel" placeholder="휴대폰 번호를 입력">
+                                </div>
+                            </div>
+                            <div class="right">
+                                <button>
+                                    <span>인증요청</span>
+                                </button>
                             </div>
                         </div>
-                        <p class="hidden">휴대폰 번호를 입력해주세요.</p>
+                        <p class="">인증번호를 입력해주세요.</p>
                     </section>
-                    <section class="auth-area input-area hidden">
+                    <section class="auth-area input-area">
                         <div>
                             <div class="left">
                                 <label>인증번호</label>
@@ -46,10 +54,10 @@
                                 </button>
                             </div>
                         </div>
-                        <p class="hidden">인증번호를 입력해주세요.</p>
+                        <p class="">인증번호를 입력해주세요.</p>
                     </section>
                     <section class="btn-area">
-                        <button>
+                        <button type="button" disabled="true" class="non-click">
                             <span>인증번호 받기</span>
                         </button>
                     </section>
@@ -57,5 +65,25 @@
             </div>
         </div>
     </div>
+    <script>
+        // 포커스 효과
+        let inputArr = $('input');
+        for(let i = 0; i < inputArr.length; i++){
+            
+            inputArr[i].addEventListener('focus',()=>{
+                inputArr[i].style.border="1px solid #005297";
+            });
+        }
+
+        // 블러효과
+        for(let i = 0; i < inputArr.length; i++){
+
+            inputArr[i].addEventListener('blur',()=>{
+                inputArr[i].style.border="";
+            });
+        }
+
+
+    </script>
 </body>
 </html>
