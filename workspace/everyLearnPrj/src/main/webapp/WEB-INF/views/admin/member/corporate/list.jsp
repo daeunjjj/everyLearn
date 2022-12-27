@@ -22,32 +22,30 @@
                             <div class="flex-area">
                                 <div class="checkbox-area">
                                     <div class="checkbox-top">
-                                        <label>전체
-                                            <input type="checkbox" name="status" value="all">
-                                        </label>
                                         <label>IT직군
-                                            <input type="checkbox" name="status" value="all">
+                                            <input type="checkbox" name="cate" value="all">
                                         </label>
                                         <label>경영/사무
-                                            <input type="checkbox" name="status" value="quit">
+                                            <input type="checkbox" name="cate" value="quit">
                                         </label>
                                     </div>
                                     <div class="checkbox-bottom">
                                         <label>디자인
-                                            <input type="checkbox" name="status" value="all">
+                                            <input type="checkbox" name="cate" value="all">
                                         </label>
                                         <label>마케팅
-                                            <input type="checkbox" name="status" value="quit">
+                                            <input type="checkbox" name="cate" value="quit">
                                         </label>
                                         <label>교육
-                                            <input type="checkbox" name="status" value="blacklist">
+                                            <input type="checkbox" name="cate" value="blacklist">
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="btn-area">
                                 <div>
-                                    <button id="wait-btn">승인대기 10</button>
+                                    승인대기
+                                    <span>10</span>
                                 </div>
                                 <div class="flex-area">
                                     <div>
@@ -71,10 +69,11 @@
                     </div>
                     <div>번호</div>
                     <div>기업이름</div>
-                    <div>사업자번호</div>
                     <div>직군</div>
                     <div>대표자명</div>
+                    <div>전화번호</div>
                     <div>이메일</div>
+                    <div>상태</div>
                     <div>관리</div>
                 </div>
                 <form action="">
@@ -87,13 +86,13 @@
                                 </div>
                                 <div>1</div>
                                 <div>kh352</div>
-                                <div>123-45-67890</div>
                                 <div>IT</div>
                                 <div>심투용</div>
+                                <div>010-1234-1234</div>
                                 <div>2dragon@gmail.com</div>
+                                <div>승인</div>
                                 <div>
                                     <button>상세</button>
-                                    <button>승인</button>
                                 </div>
                             </div>
                         </li>
@@ -104,27 +103,40 @@
                 </form>
                 <nav class="page-area">
                     <ul>
+
+                    <c:if test="${pv.currentPage != 1}">
                         <li>
-                            <a href="">이전</a>
+                            <c:if test="${empty svo }">
+                                <a id="before" href="/el/admin/member/corporate/list?pno=${pv.currentPage-1}">이전</a>                      		
+                            </c:if>
+                            <c:if test="${!empty svo }">
+                                <a id="before" href="/el/admin/member/corporate/list?pno=${pv.currentPage-1}&category=${svo.category}&keyword=${svo.keyword}">이전</a>                      		
+                            </c:if>
                         </li>
+                    </c:if>
+					
+					<c:forEach var="num" begin="${pv.startPage }" end="${pv.endPage }">
+
                         <li>
-                            <a href="">1</a>
+                        	<c:if test="${empty svo}">
+                          	  <a class="numBtn" href="/el/admin/member/corporate/list?pno=${num}">${num}</a>                        	
+                        	</c:if>
+                        	<c:if test="${!empty svo }">
+                        	  <a class="numBtn" href="/el/admin/member/corporate/list?pno=${num}&category=${svo.category}&keyword=${svo.keyword}">${num}</a>                        		
+                        	</c:if>
                         </li>
+					</c:forEach>
+
+                    <c:if test="${pv.currentPage != pv.maxPage }">
                         <li>
-                            <a href="">2</a>
+                            <c:if test="${empty svo }">
+                                <a id="after" href="/el/admin/member/corporate/list?pno=${pv.currentPage+1}">다음</a>                       		
+                            </c:if>
+                            <c:if test="${!empty svo }">
+                                <a id="after" href="/el/admin/member/corporate/list?pno=${pv.currentPage+1}&category=${svo.category}&keyword=${svo.keyword}">다음</a>                       		
+                            </c:if>
                         </li>
-                        <li>
-                            <a href="">3</a>
-                        </li>
-                        <li>
-                            <a href="">4</a>
-                        </li>
-                        <li>
-                            <a href="">5</a>
-                        </li>
-                        <li>
-                            <a href="">다음</a>
-                        </li>
+                    </c:if>
 
                     </ul>
                 </nav>

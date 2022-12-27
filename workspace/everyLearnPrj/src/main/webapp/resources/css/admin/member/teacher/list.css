@@ -37,7 +37,7 @@
 }
 
 .list-title>div:nth-child(3), .list-items>div:nth-child(3){
-    flex-basis: 100px;
+    flex-basis: 120px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -45,7 +45,7 @@
 }
 
 .list-title>div:nth-child(4), .list-items>div:nth-child(4){
-    flex-basis: 120px;
+    flex-basis: 140px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -53,7 +53,7 @@
 }
 
 .list-title>div:nth-child(5), .list-items>div:nth-child(5){
-    flex-basis: 120px;
+    flex-basis: 140px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -85,7 +85,7 @@
 }
 
 .list-title>div:nth-child(9), .list-items>div:nth-child(9){
-    flex-basis: 120px;
+    flex-basis: 100px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;

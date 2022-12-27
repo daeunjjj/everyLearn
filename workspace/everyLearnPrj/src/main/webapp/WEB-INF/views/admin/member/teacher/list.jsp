@@ -82,7 +82,7 @@
                     <div>상태</div>
                     <div>관리</div>
                 </div>
-                <form action="/el/admin/member/teacher/approval" method="post">
+                <form method="post">
                     <ul>
                         <c:forEach items="${voList}" var="list">
 	                       	<li>
@@ -97,17 +97,24 @@
 	                                <div>${list.classCate }</div>
 	                                <div>${list.email }</div>
 	                                <div>${list.phone }</div>
-	                                <div>${list.statusYn}</div>
+	                                <c:if test="${list.statusYn eq 'Y' }">
+		                                <div>승인</div>
+	                                </c:if>
+	                                <c:if test="${list.statusYn eq 'N' and list.deleteYn eq 'N'}">
+		                                <div>대기</div>
+	                                </c:if>
+	                                <c:if test="${list.deleteYn eq 'Y'}">
+		                                <div>탈락</div>
+	                                </c:if>
 	                                <div>
-	                                    <button type="button" onclick="location.href='/el/admin/member/teacher/detail?no=${list.no}'">상세</button>
-	                                    <button type="submit">승인</button>
+                                        <button type="button" onclick="location.href='/el/admin/member/teacher/detail?no=${list.no}'">상세</button>
 	                                </div>
 	                            </div>
 	                        </li>
                         </c:forEach>
                     </ul>
                     <div class="mail-btn-area">
-                        <button id="mail-btn">메일</button>
+                        <button type="submit" formaction="/el/admin/mail" id="mail-btn">메일</button>
                     </div>
                 </form>
                 <nav class="page-area">
