@@ -63,5 +63,13 @@ public interface LectureDao {
 
 	//강의 수강평 갯수 확인
 	public int selectReviewCount(SqlSessionTemplate sst, int bno);
-	
+
+	//수강평 작성
+	public int insertReview(SqlSessionTemplate sst, HashMap<String, String> map);
+
+	//수강평 삭제
+	public int deleteReview(SqlSessionTemplate sst, String reviewNo);
+
+
+
 }

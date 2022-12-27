@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +38,7 @@
 					<div>실제 수강생의 리뷰입니다. 생생한 후기를 확인하세요!</div>
 				</div>
 				<div id="write-wrap">
-					<form action="">
+					<form action="/el/lecture/detail/review" method="post">
 						<fieldset name="myform" id="myform">
 							<span class="myratings" style="color: #ccc;"></span>
 							
@@ -47,9 +48,10 @@
 							<input type="radio" name="score" value="2.0" id="rate4"><label for="rate4">★</label>
 							<input type="radio" name="score" value="1.0" id="rate5"><label for="rate5">★</label>
 						</fieldset>
-							<input type="text" id="write-input" name="review" placeholder="수강평을 남겨주세요">
 							<input type="hidden" name="bno" value="${bno }">
-							<input type="hidden" name="mno" >
+							<input type="hidden" value="${loginMember.memberNo}" name="writer" >
+							<input type="text" id="write-input" name="content" placeholder="수강평을 남겨주세요">
+							
 							<br>
 							<input type="submit" id="write-submit" value="작성" style="float: right;">
 					</form>
@@ -90,6 +92,24 @@
 						<div id="enroll-date">${list.enrollDate}</div>
 						<div id="written-nick"><i class="fa-regular fa-user"></i>${list.writer}</div>
 						<div id="review-content">${list.content}</div>
+						
+						  <c:choose>
+                        	<c:when test="${loginMember.memberNick eq list.writer}">
+							<!-- 리뷰 수정 -->
+								<div><a><button id="write-submit" class="reviewBTN mdf" id="mdf">수정</button></a></div>
+								
+								<!-- 리뷰 삭제 -->
+								<div>
+									<form action="/el/lecture/detail/review/delete" method="post">
+									
+									<input type="hidden" name="bno" value="${bno }">
+									<input type="hidden" name="reviewNo" value=${list.no }>
+									<input type="submit" id="write-submit"  value="삭제">
+									</form>
+								
+								</div>
+							</c:when>
+						</c:choose>
 					</div>
 				</c:forEach>
 				
@@ -99,10 +119,10 @@
 			    <!-- 페이징 -->
 	    <div id="page-area" class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
                 <div id="page-area2" class="btn-group me-2" role="group" aria-label="First group">
-	                <a id = "before" href="/el/lecture/detail/review?bno=${list.classNo }&pno=${pv.currentPage-1}" class="btn btn-outline-secondary"><</a>
+	                <a href="/el/lecture/detail/review?bno=${list.classNo }&pno=${pv.currentPage-1}" class="btn btn-outline-secondary"><</a>
 	                                    
                     <c:forEach var="num" begin="${pv.startPage }" end="${pv.endPage }">
-                        <a href="/el/lecture/detail/review?bno=${list.classNo }&pno=${num }" class="btn btn-outline-secondary">${num}</a>
+                        <a href="/el/lecture/detail/review?bno=${lvo.no }&pno=${num }" class="btn btn-outline-secondary">${num}</a>
 					</c:forEach>
 			
 	                <a href="/el/lecture/main?pno=${pv.currentPage+1}"class="btn btn-outline-secondary">></a>
@@ -117,7 +137,7 @@
                 <div id="pay-wrap">
                     <div id="pay-price">${lvo.price } 원</div>
                     <div id="pay-zzim"><i class="fa-regular fa-heart fa-2x"></i></div>
-                    <div id="pay-cart">장바구니에 담기</div>
+                    <a><div id="pay-cart">장바구니에 담기</div></a>
                     <div id="pay-real">결제하기</div>
                 </div>
             </div>
@@ -125,7 +145,12 @@
     </div>
 		
 	
-	
+	<script>
+	function editReview(){
+		console.log("수정~~");
+		alert("댓글이 수정되었습니다.");
+	}
+	</script>
 	
 	</main>
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>

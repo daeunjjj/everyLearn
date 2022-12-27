@@ -24,6 +24,7 @@
 					onclick='addRow()'>
 
 			<form action="/el/lecture/insert/detail" method="post">
+			<input type="hidden" name="bno" value="${bno }">
 				<table id="index-table">
 					<tr>
 						<th>목차</th>

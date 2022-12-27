@@ -127,6 +127,20 @@ public class LectureDaoImpl implements LectureDao{
 		return sst.selectOne("lectureMapper.selectReviewCount", bno);
 	}
 
+	
+	//강의 수강평 작성
+	@Override
+	public int insertReview(SqlSessionTemplate sst, HashMap<String, String> map) {
+		return sst.insert("lectureMapper.insertReview",map);
+	}
+
+	//수강평 삭제
+	@Override
+	public int deleteReview(SqlSessionTemplate sst, String reviewNo) {
+		return sst.update("lectureMapper.deleteReview", reviewNo);
+	}
+
+
 
 	
 

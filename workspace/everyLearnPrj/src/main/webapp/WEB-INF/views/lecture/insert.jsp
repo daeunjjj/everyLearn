@@ -19,6 +19,7 @@
 		</div>
 		<div id="insert-wrap">
 		<form action="/el/lecture/insert" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="teacherNo" value="${loginMember.memberNo}">
 			<table id="insert-table">
 				<tr>
 			        <td>이름</td>

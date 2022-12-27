@@ -22,7 +22,7 @@
 	VALUES
 		(
 		    SEQ_CLASS_NO.NEXTVAL
-		    , 1
+		    , #{teacherNo}
 		    , #{category}
 		    , #{className}
 		    , #{classContent}
@@ -32,21 +32,28 @@
 		    , 0
 		    , 0
 		)
+		
+	
+	
   </insert>
   
   
   <!-- 강의 목차 등록 -->
-	<insert id="insertClassDetail" parameterType="java.util.List">
-		INSERT INTO DETAIL_CLASS
+	<insert id="insertClassDetail">
+		INSERT ALL
+		<foreach collection="list" item="item" separator=",">
+
+		INTO DETAIL_CLASS
 			(
 			DETAIL_NO
 			, CLASS_NO
 			, CHAPTER
 			)
-		VALUES
-			<foreach collection="list" item="item" separator=",">
-				(#[item.no}, 2, #{item.chapter})
-			</foreach>
+		VALUES (#[item.no}, 2, #{item.chapter})
+		
+		</foreach>
+
+			
 	
 	</insert>
 	
@@ -68,6 +75,7 @@
 			,DELETE_YN
 			,CLASS_CNT 
         FROM CLASS
+        
         order by no desc
     
     </select>
@@ -306,7 +314,9 @@
 	        JOIN MEMBER MEM
         	ON MEM.NO = RE.WRITER
         	
-        	WHERE CLASS_NO = #{bno}
+        	WHERE RE.CLASS_NO = #{bno}
+        	and RE.DELETE_YN = 'N'
+        	order by re.enroll_date desc
 	        
 	        
 	    </select>
@@ -317,6 +327,45 @@
 		WHERE DELETE_YN = 'N'
 		AND CLASS_NO = #{bno}
 	</select>
+	
+	<insert id="insertReview">
+		insert into review_lec
+		(
+		    NO
+			, WRITER
+			, SCORE
+			, CONTENT
+			, ENROLL_DATE
+			, CLASS_NO
+		)
+		values
+		(
+		    SEQ_REVIEW_LEC_NO.NEXTVAL
+		    , #{writer}
+		    , #{score}
+		    , #{content}
+		    , SYSDATE
+		    , #{bno}
+		)
 
+	</insert>
+
+
+	
+	<update id="deleteReview">
+		update review_lec
+		set 
+         	DELETE_YN = 'Y'
+		where no = #{reviewNo}
+	</update>
+	
+	<update id = "editReview">
+		update review_lec
+		set
+			score = #{score}
+			, content = #{content}
+			, enrollDate = #{bno}
+		where no = #{reviewNo}
+	</update>
   
 </mapper>
