@@ -43,6 +43,8 @@ public class CorpController {
 		return "redirect:/corp/login";		
 	}
 	
+	// 아이디 중복체크
+	
 	// 기업 로그인(화면)
 	@GetMapping("login")
 	public String login() {
@@ -68,6 +70,12 @@ public class CorpController {
 		
 		session.setAttribute("empMember", empMember);
 		return "redirect:/corp/mypage";
+	}
+	
+	// 비밀번호 재설정
+	@GetMapping("reset-pwd")
+	public String resetPwd() {
+		return "emp/member/reset/pwd";
 	}
 	
 	// 기업 로그아웃
