@@ -30,10 +30,10 @@
 
             <div class="main-wrap">
 
-                <form action="/el/notice/edit" method="post" id="write-fr">
+                <form method="post" id="write-fr">
                     </div>
-                    <div id="title"><input type="text" name="title" required placeholder="제목">${ n.title }</div>
-                    <div id="content"><textarea name="content" required placeholder="내용">${ n.content }</textarea></div>
+                    <div id="title"><input type="text" name="title" required value="${ n.title }"></div>
+                    <div id="content"><textarea name="content" required>${ n.content }</textarea></div>
                     <div id="file"><input class="form-control form-control-sm" id="formFileSm" type="file" name="f"></div>
                     <div id="write"><button type="submit" class="btn btn-light" id="submit-btn">수정하기</button></div>
                 </form>		

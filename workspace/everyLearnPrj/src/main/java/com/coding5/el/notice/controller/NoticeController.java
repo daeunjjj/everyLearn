@@ -28,6 +28,11 @@ public class NoticeController {
 	
 	@Autowired NoticeService noticeService;
 	
+	@GetMapping("header")
+	public String header() {
+		return "notice/notice-header";
+	}
+	
 	//공지 상세 조회
 	@GetMapping("detail")
 	public String detail(String no, Model model) throws Exception {
@@ -137,7 +142,7 @@ public class NoticeController {
 		
 			session.setAttribute("alertMsg", "공지 수정 성공");
 			
-			return "redirect:notice/detail?=" + vo.getNo();
+			return "redirect:/notice/detail?no=" + vo.getNo();
 		}
 		else { // 실패 => 에러페이지 포워딩
 			
@@ -145,6 +150,8 @@ public class NoticeController {
 			
 			return "common/error";
 		}
+		
+		
 
 	}
 }

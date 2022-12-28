@@ -43,6 +43,7 @@ public class NoticeServiceImpl implements NoticeService {
 	//공지 수정
 	@Override
 	public int editNotice(NoticeVo vo) throws Exception {
+
 		return noticeDao.editNotice(sst, vo);
 	}
 
