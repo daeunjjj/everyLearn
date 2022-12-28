@@ -8,21 +8,26 @@ import com.coding5.el.notice.vo.PageVo;
 public interface NoticeService {
 	
 	//글쓰기
-	int write(NoticeVo vo) throws Exception;
+	public int write(NoticeVo vo) throws Exception;
 
 	//공지 리스트
-	List<NoticeVo> getNoticeList(PageVo pageVo) throws Exception;
+	public List<NoticeVo> getNoticeList(PageVo pageVo) throws Exception;
 
 	//공지 삭제
-	int deleteNotice(String str) throws Exception;
+	public int deleteNotice(String str) throws Exception;
 	
 	//공지 수정
-	int editNotice(NoticeVo vo) throws Exception;
+	public int editNotice(NoticeVo vo) throws Exception;
 
 	//공지 갯수
-	int getNoticeCnt() throws Exception;
+	public int getNoticeCnt() throws Exception;
 
 	//공지 상세 조회
-	NoticeVo selectDetail(String no) throws Exception;
+	public NoticeVo selectDetail(String no) throws Exception;
+
+	//조회수 +
+	public int increaseHit(String no) throws Exception;
+
+	
 
 }

@@ -190,6 +190,13 @@
 			<artifactId>sdk</artifactId>
 			<version>4.2.7</version>
 		</dependency>
+		
+		<!-- 웹소켓 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
 
 	</dependencies>
 	<build>
