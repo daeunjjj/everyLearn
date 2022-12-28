@@ -259,7 +259,7 @@
 	
 	<!-- 강의 상세조회 -->
 	<select id="classDetail" resultType="com.coding5.el.lecture.vo.LectureVo">
-        SELECT
+  SELECT
             C.NO
 			, MEM.NICK AS TEACHER_NO
 			,CATE.NAME as CATEGORY
@@ -272,7 +272,7 @@
 			,C.MODIFY_DATE
 			,C.DELETE_YN
 			,C.CLASS_CNT
-			, (SELECT count(*) FROM REVIEW_LEC REV WHERE REV.CLASS_NO = C.NO) as REVIEW_CNT 
+			, (SELECT count(*) FROM REVIEW_LEC REV WHERE REV.CLASS_NO = C.NO ) as REVIEW_CNT 
 			, (Select TRUNC(avg(rev.score), 2) from review_lec rev where rev.class_no = c.no) as REV_AVG
         FROM CLASS C
         JOIN CLASS_CATE CATE
@@ -286,7 +286,7 @@
         
 
         
-        WHERE C.NO =#{bno}
+        WHERE C.NO = #{bno}
         
 	</select>
 	
@@ -363,7 +363,7 @@
 		set
 			score = #{score}
 			, content = #{content}
-			, enrollDate = SYSDATE
+			, ENROLL_DATE = SYSDATE
 		where no = #{rno}
 	</update>
 	

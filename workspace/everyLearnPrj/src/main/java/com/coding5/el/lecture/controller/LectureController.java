@@ -134,9 +134,12 @@ public class LectureController {
 	public ModelAndView detail (ModelAndView mv,int bno, HttpSession session) {
 		
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		
+		if (loginMember == null) {
+			mv.setViewName("member/login");
+		}else {
+		
 		String mno = loginMember.getMemberNo();
-		
-		
 		// 클릭시 조회수 증가
 		int result = lectureService.increaseCount(bno);
 		
@@ -155,8 +158,9 @@ public class LectureController {
 		}else {
 			mv.setViewName("common/errorPage");
 		}
-	
+		}
 		return mv;
+		
 
 	}
 
@@ -176,6 +180,9 @@ public class LectureController {
 		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		if(loginMember == null) {
+			return "member/login";
+		}else {
 		String mno = loginMember.getMemberNo();
 		
 		List<ReviewVo> reviewList = lectureService.selectReview(bno, pv);
@@ -189,6 +196,7 @@ public class LectureController {
 		model.addAttribute("reviewList", reviewList);
 
 		return "lecture/lec_review"; 
+		}
 	   }
 	
 	
@@ -214,14 +222,18 @@ public class LectureController {
 	  //수강평 수정 get
 	  @GetMapping("detail/review/edit")
 	  public String editReview(String bno, String rno, Model model) {
+		  
+		  System.out.println("get rno : "+ rno);
 		  model.addAttribute("rno", rno);
 		  model.addAttribute("bno", bno);
+		  
 		  return "lecture/reviewEdit";
 	  }
 	  
 	  //수강평 수정
 	  @PostMapping("detail/review/edit")
 	  public String editReview(String bno, Model model, String writer, String content, String score, String rno) {
+		  System.out.println("post rno : " + rno);
 		  HashMap<String, String>map = new HashMap<>();
 			map.put("bno", bno);
 			map.put("rno", rno);
@@ -231,7 +243,7 @@ public class LectureController {
 			int reviewVo = lectureService.editReview(map);
 			
 			if(reviewVo == 1) {
-		  return "redirect:?bno="+bno+"&pno=1";
+		  return "redirect:/lecture/detail/review/?bno="+bno+"&pno=1";
 			}else {
 				return "common/error";
 			}

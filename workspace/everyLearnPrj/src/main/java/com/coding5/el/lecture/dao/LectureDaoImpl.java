@@ -145,7 +145,7 @@ public class LectureDaoImpl implements LectureDao{
 	//수강평 수정
 	@Override
 	public int editReview(SqlSessionTemplate sst, HashMap<String, String> map) {
-		return sst.update("lectureMapper.editReivew", map);
+		return sst.update("lectureMapper.editReview", map);
 	}
 
 

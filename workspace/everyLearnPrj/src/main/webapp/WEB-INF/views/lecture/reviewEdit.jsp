@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div id="write-wrap">
-					<form action="/el/lecture/detail/review" method="post">
+					<form action="/el/lecture/detail/review/edit" method="post">
 						<fieldset name="myform" id="myform">
 							<span class="myratings" style="color: #ccc;"></span>
 							
