@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,11 +22,16 @@
                         <p>인증한 휴대폰 번호로 가입된 계정입니다.</p>
                     </div>
                     <div class="result-wrap">
-                        <h3>아이디(이메일)</h3>
-                        <div>yoona0769@gmail.com</div>
-                        <span>가입일 : 2022-12-12</span>
+						<c:if test="${empty voList }">
+							<div>가입하신 정보가 없습니다.</div>
+						</c:if>
+						<c:forEach items="${voList}" var="list">
+							<h3>아이디(이메일)</h3>
+	                        <div>${list.id }</div>
+	                        <span>가입일 : ${list.enrollDate}</span>
+						</c:forEach>
                     </div>
-                    <button>로그인</button>
+                    <button onclick="location.href='/el/admin/login'">로그인</button>
                 </div>
             </div>
 

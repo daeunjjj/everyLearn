@@ -361,4 +361,19 @@
 		    DELETE_YN = 'Y'
 		WHERE NO = #{cno}
 	</update>
+	
+	<select id="selectAdminIdListByPhone" resultType="AdminVo">
+		SELECT 
+		    ID 
+		  , TO_CHAR(ENROLL_DATE, 'YYYY-MM-DD') AS ENROLL_DATE
+		FROM ADMIN 
+		WHERE QUIT_YN = 'N'
+		AND PHONE = #{phone}
+	</select>
+	
+	<update id="updateAdminQuityByNo">
+		UPDATE ADMIN
+		    SET QUIT_YN = 'Y'
+		WHERE NO = #{no}
+	</update>
 </mapper>

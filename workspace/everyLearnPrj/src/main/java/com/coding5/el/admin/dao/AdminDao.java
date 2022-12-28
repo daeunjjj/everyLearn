@@ -77,6 +77,12 @@ public interface AdminDao {
 	// 폐강
 	public int classDeleteByNo(SqlSessionTemplate sst, String cno);
 	
+	// 아이디 가져오기
+	public List<AdminVo> selectAdminIdListByPhone(SqlSessionTemplate sst, String phone);
+	
+	// 탈퇴처리
+	public int updateAdminQuityByNo(SqlSessionTemplate sst, String no);
+	
 
 	
 }

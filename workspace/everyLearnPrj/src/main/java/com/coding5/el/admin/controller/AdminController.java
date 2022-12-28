@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.coding5.el.admin.service.AdminService;
 import com.coding5.el.admin.vo.AdminVo;
@@ -99,7 +100,7 @@ public class AdminController {
 	 * @return
 	 */
 	@PostMapping("master/join")
-	public String adminJoin(AdminVo vo,Model model, HttpSession session) {
+	public String adminJoin(AdminVo vo,Model model, RedirectAttributes redirect) {
 		
 		int result = adminService.join(vo);
 		
@@ -108,7 +109,7 @@ public class AdminController {
 			return "admin/master/join";
 		}
 		
-		session.setAttribute("resultMsg", "관리자 등록 완료!");
+		redirect.addFlashAttribute("resultMsg", "관리자 등록 완료!");
 		return "redirect:/admin/master/join";
 	}
 	
@@ -160,7 +161,7 @@ public class AdminController {
 			profileName = FileUploader.upload(session, vo.getProfile());
 		}
 		
-		vo.setProfileName(profileName);
+		vo.setProfileName("admin_"+profileName);
 		
 		
 		
@@ -227,7 +228,7 @@ public class AdminController {
 	 * @return
 	 */
 	@PostMapping("master/modify")
-	public String adminModify(AdminVo vo, HttpSession session) {
+	public String adminModify(AdminVo vo, RedirectAttributes redirect) {
 
 		int result = adminService.adminModify(vo);
 		
@@ -235,8 +236,23 @@ public class AdminController {
 			return "common/error";
 		}
 		
-		session.setAttribute("resultMsg", "수정 완료!");
+		redirect.addFlashAttribute("resultMsg", "수정 완료!");
 		return "redirect:/admin/master/detail?no="+vo.getNo();
+	}
+	/**
+	 * 탈퇴처리
+	 * @param no
+	 * @return
+	 */
+	@PostMapping("master/quit")
+	@ResponseBody
+	public String adminQuit(String no) {
+		int result = adminService.adminQuit(no);
+		
+		if(result != 1) {
+			return "";
+		}
+		return "ok";
 	}
 	
 	/**
@@ -381,7 +397,7 @@ public class AdminController {
 	 * @return
 	 */
 	@PostMapping("member/teacher/delete")
-	public String teacherDelete(String no, HttpSession session) {
+	public String teacherDelete(String no, RedirectAttributes redirect) {
 		
 		log.info("화면->컨트롤러 ::: " + no);
 
@@ -389,7 +405,7 @@ public class AdminController {
 		
 		if(result != 1) return "common/error";
 		
-		session.setAttribute("resultMsg", "처리되었습니다.");
+		redirect.addFlashAttribute("resultMsg", "처리되었습니다.");
 		return "redirect:/admin/member/teacher/list?pno=1";
 	}
 	
@@ -399,26 +415,32 @@ public class AdminController {
 	 * @return
 	 */
 	@PostMapping("member/teacher/approval")
-	public String teacherApproval(String no, HttpSession session) {
+	public String teacherApproval(String no,RedirectAttributes redirect) {
 		
 		log.info("화면->컨트롤러 ::: " + no);
 		int result = adminService.teacherApproval(no);
 		
 		if(result != 1) return "common/error";
 		
-		session.setAttribute("resultMsg", "승인되었습니다.");
+		redirect.addFlashAttribute("resultMsg", "승인되었습니다.");
 		return "redirect:/admin/member/teacher/detail?no=" + no;
 	}
-	
+	/**
+	 * 폐강
+	 * @param cno
+	 * @param no
+	 * @param redirect
+	 * @return
+	 */
 	@PostMapping("member/teacher/class/delete")
-	public String classDelete(String cno, String no, HttpSession session) {
+	public String classDelete(String cno, String no, RedirectAttributes redirect) {
 		
 		log.info("화면->컨트롤러 ::: " + cno);
 		int result = adminService.classDelete(cno);
 		
 		if(result != 1) return "common/error";
 		
-		session.setAttribute("resultMsg", "폐강되었습니다.");
+		redirect.addFlashAttribute("resultMsg", "폐강되었습니다.");
 		return "redirect:/admin/member/teacher/detail?no=" + no;
 	}
 	
@@ -470,11 +492,30 @@ public class AdminController {
 	public String findPwd() {
 		return "admin/find/pwd";
 	}
-	
 	// 아이디 찾기 결과
 	@GetMapping("find/result/id")
 	public String resultId() {
+		
+
 		return "admin/find/result/id";
+	}
+	/**
+	 * 아이디 찾기 결과
+	 * @param phone
+	 * @param redirect
+	 * @return
+	 */
+	@PostMapping("find/result/id")
+	public String resultId(String phone, RedirectAttributes redirect) {
+		
+		log.info(phone);
+		
+		List<AdminVo> voList = adminService.selectAdminIdList(phone);
+		
+		log.info("디비 다녀옴 ::: " + voList);
+		
+		redirect.addFlashAttribute("voList", voList);
+		return "redirect:/admin/find/result/id";
 	}
 	
 	// 비번 찾기 결과
@@ -521,11 +562,19 @@ public class AdminController {
 		return "admin/mail/list";
 	}
 	
-	// 로그아웃
+	/**
+	 *  로그아웃
+	 * @param session
+	 * @return
+	 */
 	@GetMapping("logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "admin/login";
 	}
 	
+	@GetMapping("pwd-check")
+	public String check() {
+		return "admin/check";
+	}
 }

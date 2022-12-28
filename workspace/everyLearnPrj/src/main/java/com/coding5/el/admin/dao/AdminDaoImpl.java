@@ -157,6 +157,18 @@ public class AdminDaoImpl implements AdminDao{
 		// 폐강
 		return sst.update("adminMapper.classDeleteByNo",cno);
 	}
+
+	@Override
+	public List<AdminVo> selectAdminIdListByPhone(SqlSessionTemplate sst, String phone) {
+		// 아이디 가져오기
+		return sst.selectList("adminMapper.selectAdminIdListByPhone", phone);
+	}
+
+	@Override
+	public int updateAdminQuityByNo(SqlSessionTemplate sst, String no) {
+		// 탈퇴처리
+		return sst.update("adminMapper.updateAdminQuityByNo",no);
+	}
 	
 
 

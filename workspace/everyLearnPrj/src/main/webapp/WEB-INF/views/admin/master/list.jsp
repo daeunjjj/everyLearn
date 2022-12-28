@@ -80,8 +80,9 @@
                                             <div>${list.phone}</div>
                                             <div>${list.quitYn}</div>
                                             <div>
-                                                <button class="detailBtn" type="button" onclick="location.href='/el/admin/master/detail?no=${list.no}'">상세</button>
-                                                <button type="submit">탈퇴</button>
+                                                <button class="detailBtn" type="button" onclick="detailBtn('${list.no}');">상세</button>
+                                                <button type="button" onclick="quitBtn('${list.no}');">탈퇴</button>
+                                                <input id="checkPwd" value="" hidden>
                                             </div>
                                         </div>
                                     </li>
@@ -137,5 +138,41 @@
             </div>
         </main>
     </div>
+    <script>
+        function detailBtn(no) {
+            window.location.href='/el/admin/master/detail?no='+no;
+        }
+
+        function quitBtn(no){
+            if(confirm("탈퇴처리하시겠습니까?")){
+                console.log('예');
+                $.ajax({
+                    url : "/el/admin/master/quit",
+                    type : "post",
+                    data : {"no": no},
+                    success : function(result){
+                        if(result == "ok"){
+                            Swal.fire({
+                                confirmButtonColor: '#1187CF',
+                                title: '탈퇴처리되었습니다.'
+                            });
+
+                            window.location.href = "/el/admin/master/list?pno=1";
+                        } else{
+                            Swal.fire({
+                                confirmButtonColor: '#1187CF',
+                                title: '에러'
+                            });
+                        }
+                    },
+                    error : function(){
+                        alert("실패");
+                    },
+                });
+            } else{
+                console.log('아니오');
+            }
+        }
+    </script>
 </body>
 </html>

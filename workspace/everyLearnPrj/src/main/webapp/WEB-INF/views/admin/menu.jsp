@@ -4,7 +4,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<%
+<%-- <%
 	String alertMsg = (String)session.getAttribute("resultMsg"); 
 	session.removeAttribute("resultMsg");	
 %>
@@ -16,7 +16,15 @@
           });
 		<%} %>
 		
-	</script>
+	</script> --%>
+	<c:if test="${!empty resultMsg}">
+		<script>
+	        Swal.fire({
+	            confirmButtonColor: '#1187CF',
+	            title: '${resultMsg}'
+	          });
+		</script>	
+	</c:if>
 
 <aside class="menu-bar" id="menu-height">
     <nav>
