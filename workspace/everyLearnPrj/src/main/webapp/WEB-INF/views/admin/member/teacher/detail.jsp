@@ -23,7 +23,7 @@
                         <div class="flex-items" id="profile-wrap">
                             <div>프로필사진</div>
                             <div>
-                                <img src="/el/resources/upload/${map.tvo.changeName }" alt="프로필사진" width="150" height="200">
+                                <img src="/el/resources/upload/imgTeacher/${map.tvo.changeName }" alt="프로필사진" width="150" height="200">
                             </div>
                         </div>
                         <div class="flex-items">
@@ -52,13 +52,13 @@
                         </div>
                     </div>
                     <div class="resume-bottom">
-<%--                         <div class="bottom-wrap">
+                        <div class="bottom-wrap">
                             <div>이력</div>
                             <div>
                                 <i class="bi bi-dot"></i>
-                                ${map.tvo.record }
+                                <a href="${map.tvo.changeName }" download="/el/resources/upload/imgTeacher/${map.tvo.changeName }">${map.tvo.changeName }</a>
                             </div>
-                        </div> --%>
+                        </div>
                        <div class="bottom-wrap">
                             <div>포부</div>
                             <div id="short-intro-content">

@@ -72,4 +72,10 @@ public interface AdminService {
 	// 강의 삭제
 	public int classDelete(String cno);
 	
+	// 아이디 가져오기
+	public List<AdminVo> selectAdminIdList(String phone);
+	
+	// 관리자 탈퇴처리
+	public int adminQuit(String no);
+	
 }

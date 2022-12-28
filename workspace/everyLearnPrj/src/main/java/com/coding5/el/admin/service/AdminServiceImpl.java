@@ -262,6 +262,20 @@ public class AdminServiceImpl implements AdminService{
 
 		return adminDao.classDeleteByNo(sst,cno);
 	}
+	/**
+	 * 아이디 가져오기
+	 */
+	@Override
+	public List<AdminVo> selectAdminIdList(String phone) {
+		return adminDao.selectAdminIdListByPhone(sst,phone);
+	}
+	/**
+	 * 관리자 탈퇴처리
+	 */
+	@Override
+	public int adminQuit(String no) {
+		return adminDao.updateAdminQuityByNo(sst,no);
+	}
 
-
+	
 }
