@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="faqMapper">
+
+	<!-- 카테고리 리스트 -->
+	<select id="selectCateList" resultType="com.coding5.el.faq.vo.CateVo">
+		SELECT
+		    NO,
+		    TYPE
+		FROM FAQ_CATE
+	</select>
+
+
+	<!-- 글쓰기 -->
+	<insert id="insertFaq" parameterType="com.coding5.el.faq.vo.FaqVo">
+		INSERT INTO FAQ
+			(
+			     NO
+			    ,CATEGORY
+			    ,ADMIN
+			    ,TITLE
+			    ,CONTENT 
+			)
+			VALUES
+			(
+			     SEQ_FAQ_NO.NEXTVAL
+			    ,#{category}
+			    ,1
+			    ,#{title}
+			    ,#{content}
+			)
+	</insert>
+	
+ 	
+ 	<!-- 삭제 -->
+ 	<update id="deleteFaq" >
+ 		UPDATE NOTICE
+ 		SET
+ 		DELETE_YN = 'Y'
+ 		WHERE NO IN 
+ 		<foreach collection="array" item="n" open="(" close=")" separator=",">
+ 		#{n}
+ 		</foreach>
+ 	</update>
+ 	
+	
+	<!-- 수정 -->
+	<update id="editFaq">
+		UPDATE NOTICE 
+        	SET TITLE = #{title}, 
+        		CONTENT = #{content}, 
+        		MODIFY_DATE = TO_CHAR(SYSDATE,'YY.MM.DD HH24:MI') 
+        WHERE NO = #{no}
+	</update>
+	
+	<!-- 디테일 -->
+	<select id="selectDetail" resultType="com.coding5.el.faq.vo.FaqVo">
+		SELECT 
+		    N.NO ,
+		    N.TITLE ,
+		    N.CONTENT ,
+		    N.HIT ,
+		    N.ENROLL_DATE ,
+		    N.MODIFY_DATE ,
+		    N.DELETE_YN ,
+		    A.NICK AS ADMIN
+		FROM NOTICE N
+		JOIN ADMIN A ON N.ADMIN = A.NO 
+		WHERE N.NO = #{no} AND N.DELETE_YN = 'N'
+	</select>
+	
+  
+</mapper>

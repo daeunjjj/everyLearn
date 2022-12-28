@@ -32,12 +32,18 @@ public class NoticeController {
 	@GetMapping("detail")
 	public String detail(String no, Model model) throws Exception {
 		
-		NoticeVo n = noticeService.selectDetail(no);
-		//log.info(no);
+		int result = noticeService.increaseHit(no);
 		
-		model.addAttribute("n", n);
+		if(result > 0) {
+			NoticeVo n = noticeService.selectDetail(no);
+			model.addAttribute("n", n);
+			return "notice/detail";
+		} else {
+			return "common/error";
+		}
+
 		
-		return "notice/detail";
+		
 	}
 	
 	//회원이 보는 공지 리스트

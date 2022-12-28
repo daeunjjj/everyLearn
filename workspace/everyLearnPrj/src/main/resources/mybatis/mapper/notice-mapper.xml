@@ -72,15 +72,23 @@
 		    N.NO ,
 		    N.TITLE ,
 		    N.CONTENT ,
-		    N.HIT ,
+		    N.HIT,
 		    N.ENROLL_DATE ,
 		    N.MODIFY_DATE ,
 		    N.DELETE_YN ,
 		    A.NICK AS ADMIN
 		FROM NOTICE N
 		JOIN ADMIN A ON N.ADMIN = A.NO 
-		WHERE N.NO = #{no} AND N.DELETE_YN = 'N'
+		WHERE N.NO = #{no}
 	</select>
+	
+	<!-- 조회수 + -->
+	<update id="increaseHit" parameterType="noticeVo">
+		UPDATE NOTICE
+			SET
+				HIT = HIT+1
+		WHERE NO = #{no}
+	</update>
 	
   
 </mapper>
