@@ -44,7 +44,9 @@
 					</div>
 				</c:if>
 
-				<c:if test="${loginMember != null }">
+				<c:choose>
+
+				<c:when test="${loginMember != null }">
 
 					<!--**회원 로그인 후 -->
 					<div class="member">
@@ -64,29 +66,31 @@
 						<img id="memberimg" src="/el/resources/img/member/memberimg.png" alt="" onclick="location.href='/el/member/alert'">
 
 					</div>
-
-					**강사 로그인 후
+				</c:when>
+			<%-- 	 	<c:when test="${loginMember != null && loginMember.teaStatusYnNo == 1 }">
+					<!-- 강사로그인 후 -->
 					<div class="member">
 						<div class="dropdown">
 								<div class="drop" id="mem-wrap"><img id="member-tea" src="/el/resources/img/member/tea.png" alt=""><a href="#" id="memName">에브리님</a></div>
 								<span class="dropbtn_icon"></span>
 								
 							<div class="dropdown-content">
-								<a href="#">알림</a>
-								<a href="#">내 강의</a>
-								<a href="#">작성글</a>
-								<a href="#">로그아웃</a>
+								<a href="/el/member/alert">알림</a>
+								<a href="">내 강의</a>
+								<a href="/el/member/writeList">작성글</a>
+								<a href="/el/member/logout">로그아웃</a>
 							</div>
 						</div>
 						
-						<img id="cartimg" src="/el/resources/img/member/teacher.png" alt="">
-						<img id="memberimg" src="/el/resources/img/member/memberimg.png" alt="">
+						<img id="cartimg" src="/el/resources/img/member/teacher.png" alt="" onclick="/el/teacher/detail">
+						<img id="memberimg" src="/el/resources/img/member/memberimg.png" alt="" onclick="location.href='/el/member/alert'">
 
 
 					</div>
 
-				</c:if>
-				
+				</c:when>	 --%>
+
+				</c:choose>
 
 		</nav>
 	</header>

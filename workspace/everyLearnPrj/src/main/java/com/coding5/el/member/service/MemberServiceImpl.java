@@ -76,6 +76,18 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.idFindAjax(sst, findVo);
 	}
 
+	@Override
+	public int updateMember(MemberVo vo) {
+		
+		//암호화
+		String pwd = vo.getMemberPwd1();
+		String newPwd = enc.encode(pwd);
+		vo.setMemberPwd(newPwd);
+		
+		
+		return memberDao.updateMember(sst, vo);
+	}
+
 
 	
 	

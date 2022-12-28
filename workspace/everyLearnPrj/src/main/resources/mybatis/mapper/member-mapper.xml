@@ -37,23 +37,25 @@ INSERT INTO MEMBER
   </insert>
   
   <select id="selectMemberOne" resultType="com.coding5.el.member.vo.MemberVo" resultMap="memberMap">
-  	SELECT     
-  	NO
-    ,ID
-    ,PWD
-    ,NAME
-    ,TO_CHAR(BIRTH, 'YYYY-MM-DD') AS BIRTH
-    ,PHONE
-    ,NICK
-    ,EMAIL
-    ,ENROLL_DATE
-    ,MODIFY_DATE
-    ,PROFILE_IMG
-    ,POINT
-    ,REPORT_YN
-    ,QUIT_YN
-  	FROM MEMBER
-  	WHERE ID = #{memberId}
+		  	SELECT 
+		    NO
+		    ,ID
+		    ,PWD
+		    ,NAME
+		    ,TO_CHAR(BIRTH, 'YYYY-MM-DD') AS BIRTH
+		    ,PHONE
+		    ,NICK
+		    ,EMAIL
+		    ,ENROLL_DATE
+		    ,MODIFY_DATE
+		    ,PROFILE_IMG
+		    ,POINT
+		    ,REPORT_YN
+		    ,QUIT_YN
+		FROM MEMBER 
+		where ID = #{memberId}
+
+  	
   </select>
   
   <select id="selectIdDup" resultType="string">
@@ -74,5 +76,17 @@ INSERT INTO MEMBER
 	WHERE NAME = #{memberName}
 	AND EMAIL = #{email}
   </select>
+  
+  <update id="updateMemberOne">
+  UPDATE MEMBER
+	SET 
+	PROFILE_IMG = #{profileImg}
+	,PWD = #{memberPwd}
+	,NAME = #{memberName}
+	,PHONE = #{phone}
+	,NICK = '#{memberNick}
+	,MODIFY_DATE = TO_CHAR(SYSDATE,'YY.MM.DD HH24:MI')
+	WHERE NO = #{memberNo};
+  </update>
   
 </mapper>

@@ -188,3 +188,18 @@ input:focus {outline:none;}
     border: 2px solid #dadada;
     border-radius: 5px;
 }
+
+.warning{
+    margin: auto;
+    width: 350px;
+    font-size: small;
+    color: red;
+}
+
+.nick-double-check{
+    font-size: 11px;
+    background-color: #1187CF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}

@@ -13,7 +13,15 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	public MemberVo selectMemberOne(SqlSessionTemplate sst, MemberVo vo) {
-		return sst.selectOne("memberMapper.selectMemberOne", vo);
+		
+		MemberVo loginMember = sst.selectOne("memberMapper.selectMemberOne", vo);
+		
+		if(loginMember == null) {
+			loginMember.setMemberId("error");
+			return loginMember;
+		}
+		
+		return loginMember;
 	}
 
 	//아이디 중복
@@ -31,4 +39,9 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public String idFindAjax(SqlSessionTemplate sst, MemberVo findVo) {
 		return sst.selectOne("memberMapper.selectIdFind", findVo);
+	}
+
+	@Override
+	public int updateMember(SqlSessionTemplate sst, MemberVo vo) {
+		return sst.update("memberMapper.updateMemberOne",vo);
 	}}

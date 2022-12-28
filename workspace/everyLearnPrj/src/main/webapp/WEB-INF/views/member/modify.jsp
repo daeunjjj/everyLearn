@@ -9,7 +9,7 @@
         <link href="${pageContext.request.contextPath}/resources/css/member/modify.css" rel="stylesheet"
             type="text/css">
         <script src="/el/resources/js/member/modify.js"></script>
-        
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     </head>
 
     <body>
@@ -31,12 +31,12 @@
 
                 <div id="wrap-modify">
 
-                    <form action="" id="modify-form">
+                    <form action="/el/member/modify" method="post" id="modify-form" onsubmit="modifySubmit()">
 
                         <div id="wrap-img">
                             <div id='View_area'></div>
                                 <div id="f">
-                                    <input type="file" class="form-control mt-3" name="imgTeacher" id="profile_pt"
+                                    <input type="file" class="form-control mt-3" name="profileImg" id="profile_pt"
                                         onchange="previewImage(this,'View_area')" style="margin-left: 0px; height: 23px;">
                                 </div>
                         </div>
@@ -47,8 +47,9 @@
                         </span>
                         <h4><label for="">비밀번호 수정</label></h4>
                         <span class="modify-box">
-                            <input type="password" name="memberPwd1">
+                            <input type="password" name="memberPwd1" id="memberPwd1" onblur="checkPw()">
                         </span>
+                        <div class="warning" id="pwdch"></div>    
                         <span>
                             <pre>
     - 영문자(대소문자 구분)/숫자/특수문자 모두 사용
@@ -57,20 +58,21 @@
                         </span>
                         <h4><label for="">비밀번호 확인</label></h4>
                         <span class="modify-box">
-                            <input type="password" name="memberPwd2">
-
+                            <input type="password" name="memberPwd2" id="memberPwd2" onblur="pwdDup(); emptyPwd();">
                         </span>
+                        <div class="warning" id="pwdDup"></div>
                         <h4><label for="">이름</label></h4>
+                        <input type="hidden" name="memberNo" value="${memberNo}">
                         <span class="modify-box">
-                            <input type="text" name="memberName" placeholder="${loginMember.memberName }">
+                            <input type="text" name="memberName" placeholder="${loginMember.memberName }" value="${loginMember.memberName }">
                         </span>
                         <h4><label for="">휴대폰 번호</label></h4>
                         <span class="modify-box">
-                            <input type="tel" name="memberTel" placeholder="${loginMember.phone }">
+                            <input type="text" name="phone" id="test_id" value="${loginMember.phone }" placeholder="${loginMember.phone }" onkeyup="chk_tel(this.value,'test_id')"">
                         </span>
                         <h4><label for="">이메일</label></h4>
                         <span class="modify-box">
-                            <input type="email" name="memberEmail" placeholder="${loginMember.email }">
+                            <input type="email" name="memberEmail" placeholder="${loginMember.email }" value="${loginMember.email }">
                         </span>
                         <h4><label for="">생년월일</label></h4>
                         <span class="modify-box">
@@ -79,11 +81,12 @@
                         </span>
                         <h4><label for="">닉네임</label></h4>
                         <span class="modify-box">
-                            <input type="text" name="memberNick" placeholder="${loginMember.memberNick }">
-                            <button type="button" id="nick-double-check" onclick="nickDup()">중복확인</button>
+                            <input type="text" name="memberNick" id="memberNick" placeholder="${loginMember.memberNick }" value="${loginMember.memberNick }">
+                            <button type="button" class="nick-double-check" onclick="nickDup();">중복확인</button>
                         </span>
+                        <div class="warning" id="nickDup"> </div>
                         <div id="btn-modify">
-                            <button type="button" class="btnJoin">
+                            <button type="submit" class="btnJoin">
                                 <div class="text-modify">수정하기</div>
                             </button>
                             <button onclick="memberDelete()" type="button" class="btnJoin" id="delete">
