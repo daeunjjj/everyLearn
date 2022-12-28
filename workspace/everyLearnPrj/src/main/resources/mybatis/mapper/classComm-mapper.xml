@@ -26,15 +26,15 @@
 	</insert>
 	
 	<select id="selectQnaList" resultType="com.coding5.el.class_comm.vo.ClassCommVo">
-		SELECT CC.NO CLASS_COMM_NO
-		    ,CCA.NAME CATE_NO
-		    ,M.NAME WRITER
+		SELECT CC.NO AS CLASS_COMM_NO
+		    ,CCA.NAME AS CATE_NO
+		    ,M.NAME AS WRITER
 		    ,TITLE 
 		    ,CONTENT
 		    ,ANSWER_YN
-		    ,CC.REPORT_YN REPORT_YN
+		    ,CC.REPORT_YN AS REPORT_YN
 		    ,HIT
-		    ,CC.ENROLL_DATE ENROLL_DATE
+		    ,CC.ENROLL_DATE AS ENROLL_DATE
 		FROM CLASS_COMM CC
 		JOIN COMM_CATE CCA
 		ON CC.CATE_NO = CCA.NO
@@ -45,16 +45,16 @@
 	
 	<select id="selectDetailVo" resultType="com.coding5.el.class_comm.vo.ClassCommVo">
 		SELECT 
-		    CC.NO CLASS_COMM_NO
-		    , CCA.NAME CATE_NO
-	        , M.NO WRITER_NO
-		    ,M.NAME WRITER
+		    CC.NO AS CLASS_COMM_NO
+		    , CCA.NAME AS CATE_NO
+	        , M.NO AS WRITER_NO
+		    ,M.NAME AS WRITER
 		    ,TITLE 
 		    ,CONTENT
 		    ,ANSWER_YN
-		    ,CC.REPORT_YN REPORT_YN
+		    ,CC.REPORT_YN AS REPORT_YN
 		    ,HIT
-		    ,CC.ENROLL_DATE ENROLL_DATE
+		    ,CC.ENROLL_DATE AS ENROLL_DATE
 		FROM CLASS_COMM CC
 		JOIN COMM_CATE CCA
 		ON CC.CATE_NO = CCA.NO

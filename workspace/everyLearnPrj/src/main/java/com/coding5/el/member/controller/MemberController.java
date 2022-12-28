@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.coding5.el.member.service.MemberService;
 import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.file.FileUploader;
 
 import lombok.extern.slf4j.Slf4j;
@@ -105,7 +107,7 @@ public class MemberController {
 //			}
 			
 			
-			return "redirect:/class/qna";
+			return "redirect:/mainPage";
 			
 		}else {
 			return "common/error";
@@ -120,29 +122,37 @@ public class MemberController {
 	}
 	
 	//회원수정
-//	@PostMapping("modify")
-//	public String modify(MemberVo vo, HttpServletRequest req, HttpSession session) {
-//		
-//		/*
-//		 * NO
-//			TEACHER_NO
-//			ORIGIN_NAME
-//			CHANGE_NAME
-//		 */
-//		
-//		String changeName = "";
-//		
-//		if(!vo.getProfileImg().isEmpty()) {
-//			changeName = FileUploader.upload(session, vo.getProfileImg());
-//		}
-//		
-//		vo.setProfileImg(changeName);
-//		
-//		log.info(vo.toString());
-//		memberService.updateMember(vo);
-//		
-//		return "member/modify";
-//	}
+	@PostMapping("modify")
+	public String modify(MemberVo vo, HttpSession session) {
+		log.info("수정!"+vo);
+		
+		/*
+		 * NO
+			TEACHER_NO
+			ORIGIN_NAME
+			CHANGE_NAME
+		 */
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");		
+		vo.setMemberNo(loginMember.getMemberNo());
+		log.info("loginMember!"+ loginMember);
+		
+		String changeName = "";
+		
+		if(!vo.getProfileImg().isEmpty()) {
+			changeName = FileUploader.upload(session, vo.getProfileImg());
+		}
+		
+		vo.setProfileImgName(changeName);
+		
+		MemberVo updateMember =  memberService.updateMember(vo);
+		log.info(""+vo);
+		
+		if(updateMember == null) {
+			return "common/error";
+		}
+		
+		return "redirect:/mainPage";
+	}
 	
 	//아이디 찾기(화면)
 	@GetMapping("idFind")
@@ -178,7 +188,7 @@ public class MemberController {
 		
 		session.invalidate();
 		
-		return "redirect:/class/qna";
+		return "redirect:/mainPage";
 	}
 	
 	@GetMapping("pwFind")

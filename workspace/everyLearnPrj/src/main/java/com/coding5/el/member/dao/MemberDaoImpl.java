@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import com.coding5.el.member.vo.MemberVo;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Repository
 public class MemberDaoImpl implements MemberDao{
 
@@ -15,6 +17,7 @@ public class MemberDaoImpl implements MemberDao{
 	public MemberVo selectMemberOne(SqlSessionTemplate sst, MemberVo vo) {
 		
 		MemberVo loginMember = sst.selectOne("memberMapper.selectMemberOne", vo);
+		log.info("dao록인멤버 : " + loginMember);
 		
 		if(loginMember == null) {
 			loginMember.setMemberId("error");
