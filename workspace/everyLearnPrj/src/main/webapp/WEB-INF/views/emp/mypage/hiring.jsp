@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,30 +27,15 @@
                     </tr>
                 </thead>
                 <tbody>
+               <c:forEach items="${list}" var="vo">
                     <tr>
                         <td>1</td>
-                        <td>java개발자 모집</td>
-                        <td>2022.12.25</td>
-                        <td>2022.12.29</td>
-                        <td>채용중</td>
-                        <td><button class="emp-btn">채용 마감</button></td>
+                        <td>${vo.title}</td>
+                        <td>${vo.enrollDate}</td>
+                        <td>${vo.deadline}</td>
+                        <td>${vo.status}</td>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>java개발자 모집</td>
-                        <td>2022.12.25</td>
-                        <td>2022.12.29</td>
-                        <td>채용중</td>
-                        <td><button class="emp-btn">채용 마감</button></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>java개발자 모집</td>
-                        <td>2022.12.25</td>
-                        <td>2022.12.29</td>
-                        <td>채용중</td>
-                        <td><button class="emp-btn">채용 마감</button></td>
-                    </tr>
+               </c:forEach>
                 </tbody>
             </table>
         </div>

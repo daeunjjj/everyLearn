@@ -1,5 +1,7 @@
 package com.coding5.el.corp.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -10,6 +12,7 @@ public class CorpVo {
 	private String pwd;
 	private String companyName;
 	private String companyAddress;
+	private String detailAddress;
 	private String name;
 	private String phone;
 	private String introduce;
@@ -22,4 +25,8 @@ public class CorpVo {
 	private String empNum;
 	private String sales;
 	private String homepage;
+	private MultipartFile logo;
+	private MultipartFile thumb;
+	private String logoName;
+	private String thumbName;
 }

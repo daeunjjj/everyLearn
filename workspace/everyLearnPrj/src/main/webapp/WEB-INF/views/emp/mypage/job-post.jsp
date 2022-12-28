@@ -17,7 +17,7 @@
     <%@ include file="/WEB-INF/views/common/emp-header.jsp" %>
 
       <main id="container">
-        <form action="/el/corp/job-post" method="POST">
+        <form action="/el/corp/position" method="POST">
           <div class="jobContent">
             <div class="post">
               <header class="header">

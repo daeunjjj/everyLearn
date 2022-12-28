@@ -28,6 +28,13 @@
 	)
   </insert>
   
+  <!-- 아이디 중복 체크 -->
+  <select id="selectCorpMemberById" resultType="CorpVo">
+  	SELECT ID 
+  	FROM CORPORATE_MEMBER 
+  	WHERE ID = #{id}
+  </select>
+  
   <!-- 로그인 -->
   <select id="selectOneCorpMember" resultType="CorpVo">
   	SELECT 
@@ -46,24 +53,14 @@
 	FROM CORPORATE_MEMBER
 	WHERE ID = #{id}
   </select>
-  
+
   <!-- 기업 마이페이지(회사정보 화면) -->
   <select id="selectOneCorpInfo" resultType="CorpVo">
-  	SELECT 
-  		NO
-		, ID
-		, PWD
-		, COMPANY_NAME
-		, COMPANY_ADDRESS
-		, NAME
-		, PHONE
-		, ENROLL_DATE
-		, MODIFY_DATE
-		, COMPANY_NUM
-		, QUIT_YN
-		, CHECK_YN
-	FROM CORPORATE_MEMBER
-	WHERE ID = #{id}
+  	SELECT CM.*, CAL.FILE_PATH AS LOGO_NAME, CAT.FILE_PATH AS THUMB_NAME
+	FROM CORPORATE_MEMBER CM
+	LEFT JOIN CORP_ATTATCH CAL ON CAL.CORP_NO = CM.NO AND CAL.TYPE = 1
+	LEFT JOIN CORP_ATTATCH CAT ON CAT.CORP_NO = CM.NO AND CAT.TYPE = 2
+	WHERE CM.ID = #{id}
   </select>
   
   <!-- 기업 마이페이지(회사정보 수정) -->
@@ -73,6 +70,7 @@
   		COMPANY_NAME = #{companyName}
   		, COMPANY_NUM = #{companyNum}
   		, COMPANY_ADDRESS = #{companyAddress}
+  		, DETAIL_ADDRESS = #{detailAddress}
   		, INTRODUCE = #{introduce}
   		, SECTOR = #{sector}
   		, EMP_NUM = #{empNum}
@@ -117,5 +115,97 @@
 		 , #{deadline}
 	)
   </insert>
+  
+  <!-- 채용중 페이징 -->
+  <select id="selectHiringCnt" resultType="int">
+  	SELECT COUNT(*)
+  	FROM EMPLOYMENT
+  	WHERE CORP_NO = #{corpNo}
+  	AND DELETE_YN = 'N'
+  	AND DEADLINE > TO_CHAR(SYSDATE,'YYYY-MM-DD')
+  </select>
+  
+  <!-- 채용중 페이지 리스트 -->
+  <select id="selectHiringList" resultType="EmploymentVo">
+  	SELECT
+  		NO
+		, CORP_NO
+		, TITLE
+		, DEADLINE
+		, ENROLL_DATE
+	FROM EMPLOYMENT
+	WHERE CORP_NO = #{corpNo}
+	AND DELETE_YN = 'N'
+	AND DEADLINE > TO_CHAR(SYSDATE,'YYYY-MM-DD')
+	ORDER BY NO DESC
+  </select>
+  
+  <!-- 회사 로고 업데이트 -->
+  <insert id="insertCorpLogo">
+  	INSERT INTO CORP_ATTATCH
+  	(
+	  	NO
+		, CORP_NO
+		, FILE_PATH
+		, TYPE
+  	)
+  	VALUES
+  	(
+  		SEQ_CORP_ATTATCH_NO.NEXTVAL
+  		, #{no}
+  		, #{logoName}
+  		, 1
+  	)
+  </insert>
+  
+  <!-- 회사 이미지 업데이트 -->
+  <insert id="insertCorpThumb">
+	  INSERT INTO CORP_ATTATCH
+	  	(
+		  	NO
+			, CORP_NO
+			, FILE_PATH
+			, TYPE
+	  	)
+	  	VALUES
+	  	(
+	  		SEQ_CORP_ATTATCH_NO.NEXTVAL
+	  		, #{no}
+	  		, #{thumbName}
+	  		, 2
+	  	)
+  </insert>
+  
+  <!-- 기업 마이페이지(회사정보 수정) -->
+  <update id="updateJobPost">
+  	UPDATE EMPLOYMENT
+  	SET
+  		DELETE_YN = 'Y'
+  	WHERE NO = #{no}
+  </update>
+  
+  <!-- 채용 마감 페이징 -->
+  <select id="selectDeadlineCnt">
+  	SELECT COUNT(*)
+  	FROM EMPLOYMENT
+  	WHERE CORP_NO = #{corpNo}
+  	AND DELETE_YN = 'N'
+  	AND DEADLINE < TO_CHAR(SYSDATE,'YYYY-MM-DD')
+  </select>
+  
+  <!-- 채용 마감 리스트 -->
+  <select id="getDeadlineList">
+	SELECT
+	  		NO
+			, CORP_NO
+			, TITLE
+			, DEADLINE
+			, ENROLL_DATE
+	FROM EMPLOYMENT
+	WHERE CORP_NO = #{corpNo}
+	AND DELETE_YN = 'N'
+	AND DEADLINE < TO_CHAR(SYSDATE,'YYYY-MM-DD')
+	ORDER BY NO DESC
+  </select>
   
 </mapper>

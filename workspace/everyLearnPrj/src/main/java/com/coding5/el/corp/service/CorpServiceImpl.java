@@ -1,10 +1,14 @@
 package com.coding5.el.corp.service;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.coding5.el.common.page.PageVo;
 import com.coding5.el.corp.dao.CorpDao;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
@@ -32,6 +36,19 @@ public class CorpServiceImpl implements CorpService {
 		
 		return dao.insertCorpMember(sst, vo);
 	}
+	
+	// 아이디 중복체크
+	@Override
+	public String checkId(String id) {
+		
+		CorpVo vo = dao.checkId(sst, id);
+		
+		if(vo != null) {
+			return "dup";
+		}
+		
+		return "okId";
+	}
 
 	// 로그인
 	@Override
@@ -48,6 +65,10 @@ public class CorpServiceImpl implements CorpService {
 	// 기업 마이페이지(회사정보 수정)
 	@Override
 	public int updateCorpInfo(CorpVo vo) {
+		
+		dao.insertCorpLogo(sst, vo);
+		dao.insertCorpThumb(sst, vo);
+		
 		return dao.updateCorpInfo(sst, vo);
 	}
 
@@ -56,6 +77,77 @@ public class CorpServiceImpl implements CorpService {
 	public int insertJobPost(EmploymentVo vo) {
 		return dao.insertJobPost(sst, vo);
 	}
+
+	// 채용중 페이징
+	@Override
+	public int selectHiringCnt(String corpNo) {
+		return dao.selectHiringCnt(sst, corpNo);
+	}
+
+	// 채용중 페이지 리스트
+	@Override
+	public List<EmploymentVo> getList(PageVo pv, String corpNo) {
+		
+		List<EmploymentVo> list = dao.selectHiringList(sst, pv, corpNo);
+		// 현재 날짜
+		LocalDate now = LocalDate.now();
+		
+		for(int i = 0; i < list.size(); i++) {
+			EmploymentVo item = list.get(i);
+			String deadline = item.getDeadline();
+			if(now.toString().compareTo(deadline) > 0) {
+				// 채용 마감
+				item.setStatus("채용마감");
+			}else {
+				item.setStatus("채용중");
+			}
+			
+			String enrollDate = item.getEnrollDate();
+			String sliced = enrollDate.substring(0, 10);
+			item.setEnrollDate(sliced);
+		}
+		
+		return list;
+	}
+
+	// 채용 공고 지우기
+	@Override
+	public int deleteJobPost(String no) {
+		return dao.updateJobPost(sst, no);
+	}
+
+	// 채용 마감 페이징
+	@Override
+	public int selectDeadlineCnt(String corpNo) {
+		return dao.selectDeadlineCnt(sst, corpNo);
+	}
+
+	// 채용 마감 리스트
+	@Override
+	public List<EmploymentVo> getDeadlineList(PageVo pv, String corpNo) {
+		
+		List<EmploymentVo> list = dao.getDeadlineList(sst, pv, corpNo);
+		// 현재 날짜
+		LocalDate now = LocalDate.now();
+		
+		for(int i = 0; i < list.size(); i++) {
+			EmploymentVo item = list.get(i);
+			String deadline = item.getDeadline();
+			if(now.toString().compareTo(deadline) > 0) {
+				// 채용 마감
+				item.setStatus("채용마감");
+			}else {
+				item.setStatus("채용중");
+			}
+			
+			String enrollDate = item.getEnrollDate();
+			String sliced = enrollDate.substring(0, 10);
+			item.setEnrollDate(sliced);
+		}
+		
+		return list;
+	}
+
 
 
 }

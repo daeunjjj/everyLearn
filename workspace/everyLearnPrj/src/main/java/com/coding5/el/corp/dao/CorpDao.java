@@ -1,7 +1,10 @@
 package com.coding5.el.corp.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.coding5.el.common.page.PageVo;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
 
@@ -21,6 +24,30 @@ public interface CorpDao {
 
 	// 기업 채용 공고 만들기
 	public int insertJobPost(SqlSessionTemplate sst, EmploymentVo vo);
+
+	// 아이디 중복체크
+	public CorpVo checkId(SqlSessionTemplate sst, String id);
+
+	// 체용중 페이징
+	public int selectHiringCnt(SqlSessionTemplate sst, String corpNo);
+
+	// 채용중 페이지 리스트
+	public List<EmploymentVo> selectHiringList(SqlSessionTemplate sst, PageVo pv, String corpNo);
+
+	// 기업 로고 사진 인서트
+	public void insertCorpLogo(SqlSessionTemplate sst, CorpVo vo);
+
+	// 기업 이미지 인서트
+	public void insertCorpThumb(SqlSessionTemplate sst, CorpVo vo);
+
+	// 채용 공고 지우기
+	public int updateJobPost(SqlSessionTemplate sst, String no);
+
+	// 채용마감 페이징
+	public int selectDeadlineCnt(SqlSessionTemplate sst, String corpNo);
+
+	// 채용마감 리스트
+	public List<EmploymentVo> getDeadlineList(SqlSessionTemplate sst, PageVo pv, String corpNo);
 
 
 

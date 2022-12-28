@@ -17,7 +17,7 @@
       <nav class="nav">
         <header class="header">
           <a href="/el/emp/main" class="logo"><img src="/el/resources/img/logo/logo_white.png"
-            alt=""></a> <a href="/el/corp/job-post" class="create">
+            alt=""></a> <a href="/el/corp/position" class="create">
             <button>+ 새 채용 공고 만들기</button>
           </a>
         </header>
