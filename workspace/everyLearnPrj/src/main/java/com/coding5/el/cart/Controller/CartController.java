@@ -29,11 +29,10 @@ public class CartController {
 	
 	
 	
-	@GetMapping("addCart")
-	public String addCart() {
-		return "redirect:/lecture/cart";
-	}
-	
+	/*
+	 * @GetMapping("addCart") public String addCart() { return
+	 * "redirect:/lecture/cart"; }
+	 */
 	//장바구니에 담기 (찐)
 	@PostMapping("addCart")
 	public String addCart( HttpServletRequest request, String classNo, String memberNo) {
@@ -47,21 +46,21 @@ public class CartController {
 		int result = cartService.addCart(map);
 		
 		//return result + "";
-		return "lecture/cart";
+		return "redirect:/cart/addCart";
 	}
 	
 	//장바구니 화면
-	@GetMapping("cartList")
+	@GetMapping("addCart")
 	public String cartList(HttpSession session, Model model) {
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 		String mno = loginMember.getMemberNo();
 		
 		List<CartVo> list = cartService.getCartList(mno);
-		System.out.println("controller list : " + list);
-		model.addAttribute(loginMember);
-		model.addAttribute(mno);
+		//System.out.println("controller list : " + list);
+		model.addAttribute("loginMember", loginMember);
+		model.addAttribute("mno", mno);
 		model.addAttribute("list", list);
-		return "redirect:/lecture/cart";
+		return "lecture/cart";
 		
 		
 	}

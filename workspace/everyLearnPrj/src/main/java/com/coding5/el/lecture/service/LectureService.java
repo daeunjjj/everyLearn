@@ -2,6 +2,7 @@ package com.coding5.el.lecture.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.lecture.vo.DetailClassVo;
@@ -16,7 +17,7 @@ public interface LectureService {
 
 	
 	//강의 목차 등록
-	int insertClassDetail(LectureVo lvo, List<LectureVo> dcList);
+	int insertClassDetail(List<LectureVo> list);
 
 	//강의 메인리스트 조회
 	public List<LectureVo> getList(PageVo pv);
@@ -68,6 +69,9 @@ public interface LectureService {
 
 	//수강평 수정
 	public int editReview(HashMap<String, String> map);
+
+	//
+	int selectBno();
 
 
 	

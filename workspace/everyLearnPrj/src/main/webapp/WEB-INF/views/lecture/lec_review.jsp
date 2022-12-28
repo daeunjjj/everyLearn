@@ -169,7 +169,12 @@
                 <div id="pay-wrap">
                     <div id="pay-price">${lvo.price } 원</div>
                     <div id="pay-zzim"><i class="fa-regular fa-heart fa-2x"></i></div>
-                    <a><div id="pay-cart">장바구니에 담기</div></a>
+                    <!-- 장바구니 -->
+                    <form action="/el/cart/addCart" method="post">
+	                    <input type="hidden" name="classNo" value="${lvo.no }">
+	                    <input type="hidden" name="memberNo" value="${loginMember.memberNo }">
+                    	<div><input id="pay-cart" type="submit" value="장바구니에 담기"></div>
+                    </form>
                     <div id="pay-real">결제하기</div>
                 </div>
             </div>

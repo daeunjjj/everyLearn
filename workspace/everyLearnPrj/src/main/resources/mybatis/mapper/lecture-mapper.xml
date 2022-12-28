@@ -41,7 +41,7 @@
   <!-- 강의 목차 등록 -->
 	<insert id="insertClassDetail">
 		INSERT ALL
-		<foreach collection="dcList" item="x" separator=",">
+		<foreach collection="list" item="vo" >
 
 		INTO DETAIL_CLASS
 			(
@@ -49,12 +49,11 @@
 			, CLASS_NO
 			, CHAPTER
 			)
-		VALUES (#{x.detailNo}, 2, #{x.chapter})
+		VALUES (#{vo.detailno}, #{vo.classNo}, #{vo.chapter})
 		
 		</foreach>
-
-			
-	
+		select 1 from dual
+		
 	</insert>
 	
 	<!-- 강의 메인 리스트 조회 -->
@@ -367,6 +366,10 @@
 			, enrollDate = SYSDATE
 		where no = #{rno}
 	</update>
+	
+	<select id="selectBno" resultType="int">
+		SELECT SEQ_CLASS_NO.CURRVAL FROM DUAL
+	</select>
 	
   
 </mapper>

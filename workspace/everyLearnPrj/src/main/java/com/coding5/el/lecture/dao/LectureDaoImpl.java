@@ -2,6 +2,7 @@ package com.coding5.el.lecture.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -26,10 +27,10 @@ public class LectureDaoImpl implements LectureDao{
 	
 	//강의 목차 등록
 	@Override
-	public int insertClassDetail(SqlSessionTemplate sst, LectureVo lvo,
-			List<LectureVo> dcList) {
-		System.out.println("dao : " + dcList);
-		return sst.insert("lectureMapper.insertClassDetail", dcList);
+	public int insertClassDetail(SqlSessionTemplate sst, List<LectureVo> voList) {
+		System.out.println("DAO =====");
+		System.out.println(voList);
+		return sst.insert("lectureMapper.insertClassDetail", voList);
 	}
 
 	//강의 리스트 조회
@@ -145,6 +146,12 @@ public class LectureDaoImpl implements LectureDao{
 	@Override
 	public int editReview(SqlSessionTemplate sst, HashMap<String, String> map) {
 		return sst.update("lectureMapper.editReivew", map);
+	}
+
+
+	@Override
+	public int selectBno(SqlSessionTemplate sst) {
+		return sst.selectOne("lectureMapper.selectBno");
 	}
 
 
