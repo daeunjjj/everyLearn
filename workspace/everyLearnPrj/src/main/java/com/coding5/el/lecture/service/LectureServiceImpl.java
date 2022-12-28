@@ -2,6 +2,7 @@ package com.coding5.el.lecture.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,8 @@ public class LectureServiceImpl implements LectureService {
 	
 	//강의 목차 등록!
 	@Override
-	public int insertClassDetail(LectureVo lvo, List<LectureVo> dcList) {
-		
-		return lectureDao.insertClassDetail(sst, lvo, dcList);
+	public int insertClassDetail(List<LectureVo> list) {
+		return lectureDao.insertClassDetail(sst, list);
 	}
 
 
@@ -142,6 +142,12 @@ public class LectureServiceImpl implements LectureService {
 	@Override
 	public int editReview(HashMap<String, String> map) {
 		return lectureDao.editReview(sst, map);
+	}
+
+
+	@Override
+	public int selectBno() {
+		return lectureDao.selectBno(sst);
 	}
 
 

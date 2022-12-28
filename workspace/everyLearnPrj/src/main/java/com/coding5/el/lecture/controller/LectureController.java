@@ -3,6 +3,7 @@ package com.coding5.el.lecture.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -321,15 +322,15 @@ public class LectureController {
 	// 강의 등록 - post
 	@PostMapping("insert")
 	public String insert(LectureVo lvo, MultipartFile upfile, HttpSession session, Model model) {
-		String bno = lvo.getClassNo();
 		//lvo.setTeacherNo((String) session.getAttribute("memberNo"));
 
 		int result = lectureService.insertClassOne(lvo);
+		int bno = lectureService.selectBno();
 
 		if (result == 1) {
 			session.setAttribute("alertMsg", "기본 정보 입력 완료.");
 			//model.addAttribute(lvo);
-			//model.addAttribute(bno);
+			model.addAttribute("bno" , bno);
 			return "redirect:/lecture/insert/detail";
 		} else {
 			model.addAttribute("errorMsg", " 게시글 등록에 실패하였습니다. ");
@@ -343,25 +344,35 @@ public class LectureController {
 	public String insertDetail(LectureVo lvo, String bno, Model model) {
 		
 		
-		/*
-		 * System.out.println("---------------------controller bno");
-		 * System.out.println(bno); model.addAttribute("bno", bno);
-		 */
+		
+		  System.out.println("---------------------controller bno");
+		  System.out.println(bno); 
+		  model.addAttribute("bno", bno);
+		 
 		return "lecture/insertDetail";
 		
 	}
 
 	// 강의 등록 - 세부(목차) - post
 	@PostMapping("insert/detail")
-	public String insertDetail(LectureVo lvo, List<LectureVo> dcList, String no, String chapter, Model model) {
+	public String insertDetail(String[] no , String[] chapter , String bno , Model model) {
 		
-		int result = lectureService.insertClassDetail(lvo, dcList);
+		List<LectureVo> list = new ArrayList<LectureVo>();
+		
+		for (int i = 0; i < no.length; i++) {
+			LectureVo lvo = new LectureVo();
+			lvo.setDetailno(no[i]);
+			lvo.setChapter(chapter[i]);
+			lvo.setClassNo(bno);
+			list.add(lvo);
+		}
+				
+		int result = lectureService.insertClassDetail(list);
+		
+		System.out.println("insert all 결과 : " + result);
 
-		if (result == 1) {
-		
-			model.addAttribute(dcList);
-			System.out.println(dcList);
-			return "lecture/main";
+		if (result > 0) {
+			return "redirect:/lecture/main?pno=1";
 		} else {
 			return "common/errorPage";
 		}

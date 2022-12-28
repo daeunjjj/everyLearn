@@ -2,6 +2,7 @@ package com.coding5.el.lecture.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -17,11 +18,9 @@ public interface LectureDao {
 	//insert lecture
 	public int insertClassOne(SqlSessionTemplate sst, LectureVo lvo);
 
-	
 	//insert 세부사항 - 목차
-	public int insertClassDetail(SqlSessionTemplate sst, LectureVo lvo, List<LectureVo> dcList);
+	public int insertClassDetail(SqlSessionTemplate sst, List<LectureVo> list);
 
-	
 	//강의 전체 목록 리스트 조회
 	public List<LectureVo> getList(SqlSessionTemplate sst, PageVo pv);
 
@@ -72,6 +71,9 @@ public interface LectureDao {
 
 	//수강평 수정
 	public int editReview(SqlSessionTemplate sst, HashMap<String, String> map);
+
+
+	public int selectBno(SqlSessionTemplate sst);
 
 
 
