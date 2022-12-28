@@ -39,3 +39,11 @@ function searchArr() {
       }
   }).open();
 }
+
+// 사업자등록번호 정규식(하이픈 자동추가)
+const autoHyphen = (target) => {
+    target.value = target.value
+      .replace(/[^0-9]/g, '')
+      .replace(/^(\d{0,3})(\d{0,2})(\d{0,5})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+  
+  }

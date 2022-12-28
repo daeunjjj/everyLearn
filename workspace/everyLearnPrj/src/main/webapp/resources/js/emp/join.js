@@ -1,5 +1,6 @@
 const inputId = document.getElementById('id');
 const inputPwd = document.getElementById('pwd');
+const inputPwdCheck = document.getElementById('pwdCheck');
 const inputName = document.getElementById('name');
 const inputcompanyName = document.getElementById('companyName');
 const inputphone = document.getElementById('phone');
@@ -20,16 +21,21 @@ const phone = /^(\d{0,3})\-(\d{0,4})\-(\d{0,4})$/g;
 const activeBtn = () => {
   const idValue = inputId.value;
   const pwdValue = inputPwd.value;
+  const pwdCheckValue = inputPwdCheck.value;
   const nameValue = inputName.value;
   const companyNameValue = inputcompanyName.value;
   const phoneValue = inputphone.value;
 
-  if (emailId.test(idValue) && pwd.test(pwdValue) && nameValue.length && companyNameValue && phoneValue.length === 13 && terms.checked && privacy.checked) {
+  if (emailId.test(idValue) && pwd.test(pwdValue) && pwdValue === pwdCheckValue && nameValue.length && companyNameValue && phoneValue.length === 13 && terms.checked && privacy.checked) {
     const btn = document.getElementById('joinBtn')
     btn.removeAttribute('disabled');
+  }else{
+    const btn = document.getElementById('joinBtn')
+    btn.setAttribute('disabled', '');
   }
   validateId(true);
   validatePwd(true);
+  validateCheck(true);
   validateName(true);
   validateCompanyName(true);
   validatePhone(true);
@@ -103,13 +109,33 @@ const checkId = () => {
 // 비밀번호를 입력해주세요
 const validatePwd = (isTyping) => {
   const pwdValue = inputPwd.value;
-  const show = document.getElementById("input-pwd")
+  const show = document.getElementById("input-pwd");
+  const okPwd = document.getElementById("use-pwd");
 
   if (pwd.test(pwdValue)) {
     show.style.display = 'none';
+    okPwd.style.display = 'flex';
   } else if (!isTyping) {
     show.style.display = 'flex';
+    okPwd.style.display = 'none';
   }
+}
+
+// 비밀번호 확인
+const validateCheck = (isTyping) => {
+  const pwdValue = inputPwd.value;
+  const pwdCheckValue = inputPwdCheck.value;
+  const show = document.getElementById('use-pwdCheck');
+  const failPwd = document.getElementById('input-pwdCheck');
+
+  if(pwdValue === pwdCheckValue){
+    show.style.display = 'flex';
+    failPwd.style.display = 'none';
+  } else if (!isTyping) {
+    failPwd.style.display = 'flex';
+    show.style.display = 'none';
+  }
+
 }
 
 // 이름을 입력해주세요

@@ -66,18 +66,6 @@ public class CorpDaoImpl implements CorpDao{
 		return sst.selectList("corpMapper.selectHiringList", corpNo, rb);
 	}
 
-	// 기업 로고 이미지 인서트
-	@Override
-	public void insertCorpLogo(SqlSessionTemplate sst, CorpVo vo) {
-		sst.insert("corpMapper.insertCorpLogo", vo);
-	}
-
-	// 기업 대표 이미지 인서트
-	@Override
-	public void insertCorpThumb(SqlSessionTemplate sst, CorpVo vo) {
-		sst.insert("corpMapper.insertCorpThumb", vo);
-	}
-
 	// 채용 공고 지우기
 	@Override
 	public int updateJobPost(SqlSessionTemplate sst, String no) {
@@ -99,6 +87,23 @@ public class CorpDaoImpl implements CorpDao{
 		RowBounds rb = new RowBounds(offset,limit);
 		
 		return sst.selectList("corpMapper.getDeadlineList", corpNo, rb);
+	}
+
+	// 채용 전체보기 페이징
+	@Override
+	public int selectTotalCnt(SqlSessionTemplate sst, String corpNo) {
+		return sst.selectOne("corpMapper.selectTotalCnt", corpNo);
+	}
+
+	// 채용 전체보기 리스트
+	@Override
+	public List<EmploymentVo> getTotalList(SqlSessionTemplate sst, PageVo pv, String corpNo) {
+		
+		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
+		int limit = pv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset,limit);
+		
+		return sst.selectList("corpMapper.getTotalList", corpNo, rb);
 	}
 
 

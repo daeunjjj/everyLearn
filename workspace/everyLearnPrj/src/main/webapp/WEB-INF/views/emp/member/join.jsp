@@ -15,9 +15,9 @@
 	<div class="container">
 		<header class="header">
 			<div class="header-wrapper">
-				<div class="img">
-					<img src="/el/resources/img/logo/logo.svg" alt="">
-				</div>
+				<a href="/el/emp/main" class="img">
+					<img src="/el/resources/img/logo/logo.svg">
+				</a>
 			</div>
 		</header>
 		<main class="main">
@@ -43,13 +43,33 @@
 						<div class="join-title">
 							<p>비밀번호</p>
 						</div>
-						<input type="password" placeholder="•••••••••••" name="pwd"
+						<input type="password" placeholder="영문/숫자/특수문자 포함 8자리 이상" name="pwd"
 							id="pwd" class="input" oninput="activeBtn();" onblur="validatePwd();">
 						<!-- 눈표시 -->
 						<div id="input-pwd" class="x-icon" style="display: none;">
 							<div><svg width="12" height="12" fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.686 2.686a.635.635 0 0 1 .897 0L8 7.103l4.417-4.417a.635.635 0 0 1 .897.897L8.897 8l4.417 4.417a.635.635 0 1 1-.897.897L8 8.897l-4.417 4.417a.635.635 0 1 1-.897-.897L7.103 8 2.686 3.583a.635.635 0 0 1 0-.897z" fill="#e50000"></path></svg></div>
-							<span class="essential">비밀번호를 입력해 주세요.</span>
+							<span class="essential">영문/숫자/특수문자 포함 8자리 이상 입력해주세요.</span>
 						</div>
+						<div id="use-pwd" class="x-icon" style="display: none;">
+							<div><img src="/el/resources/img/emp/v-icon.svg" alt=""></div>
+							<span class="okId">사용가능한 비밀번호입니다.</span>
+            </div>
+					</div>
+					<div class="wrapper">
+						<div class="join-title">
+							<p>비밀번호 확인</p>
+						</div>
+						<input type="password" placeholder="" name="pwdCheck"
+							id="pwdCheck" class="input" oninput="activeBtn();" onblur="validateCheck();">
+						<!-- 눈표시 -->
+						<div id="input-pwdCheck" class="x-icon" style="display: none;">
+							<div><svg width="12" height="12" fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.686 2.686a.635.635 0 0 1 .897 0L8 7.103l4.417-4.417a.635.635 0 0 1 .897.897L8.897 8l4.417 4.417a.635.635 0 1 1-.897.897L8 8.897l-4.417 4.417a.635.635 0 1 1-.897-.897L7.103 8 2.686 3.583a.635.635 0 0 1 0-.897z" fill="#e50000"></path></svg></div>
+							<span class="essential">비밀번호가 일치하지 않습니다.</span>
+						</div>
+						<div id="use-pwdCheck" class="x-icon" style="display: none;">
+							<div><img src="/el/resources/img/emp/v-icon.svg" alt=""></div>
+							<span class="okId">비밀번호가 일치합니다.</span>
+            </div>
 					</div>
 					<div class="wrapper">
 						<div class="name-top">

@@ -34,9 +34,9 @@
                     <h5>채용관리</h5>
                   </div>
                   <ul class="employment">
+                    <li><a href="/el/corp/total">전체</a></li>
                     <li><a href="/el/corp/hiring">채용중</a></li>
                     <li><a href="/el/corp/deadLine">채용 마감</a></li>
-                    <li><a href="/el/corp/status">승인 상태</a></li>
                   </ul>
                 </li>
                 <li><a href="/el/corp/applicant">지원자 현황</a></li>

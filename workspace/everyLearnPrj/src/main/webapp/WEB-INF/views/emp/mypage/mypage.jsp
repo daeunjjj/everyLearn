@@ -36,7 +36,7 @@
 											<span>사업자등록번호</span> <span>*</span>
 										</div>
 										<input type="text" name="companyNum"
-											placeholder="000-00-00000" value="${cv.companyNum}">
+											placeholder="000-00-00000" value="${cv.companyNum}" oninput="autoHyphen(this);"maxlength="12">
 									</div>
 								</div>
 								<div class="second interval">

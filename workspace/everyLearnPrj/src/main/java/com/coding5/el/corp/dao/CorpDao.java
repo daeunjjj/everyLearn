@@ -34,12 +34,6 @@ public interface CorpDao {
 	// 채용중 페이지 리스트
 	public List<EmploymentVo> selectHiringList(SqlSessionTemplate sst, PageVo pv, String corpNo);
 
-	// 기업 로고 사진 인서트
-	public void insertCorpLogo(SqlSessionTemplate sst, CorpVo vo);
-
-	// 기업 이미지 인서트
-	public void insertCorpThumb(SqlSessionTemplate sst, CorpVo vo);
-
 	// 채용 공고 지우기
 	public int updateJobPost(SqlSessionTemplate sst, String no);
 
@@ -48,6 +42,12 @@ public interface CorpDao {
 
 	// 채용마감 리스트
 	public List<EmploymentVo> getDeadlineList(SqlSessionTemplate sst, PageVo pv, String corpNo);
+
+	// 채용 전체보기 페이징
+	public int selectTotalCnt(SqlSessionTemplate sst, String corpNo);
+
+	// 채용 전체보기 리스트
+	public List<EmploymentVo> getTotalList(SqlSessionTemplate sst, PageVo pv, String corpNo);
 
 
 

@@ -65,10 +65,6 @@ public class CorpServiceImpl implements CorpService {
 	// 기업 마이페이지(회사정보 수정)
 	@Override
 	public int updateCorpInfo(CorpVo vo) {
-		
-		dao.insertCorpLogo(sst, vo);
-		dao.insertCorpThumb(sst, vo);
-		
 		return dao.updateCorpInfo(sst, vo);
 	}
 
@@ -127,6 +123,37 @@ public class CorpServiceImpl implements CorpService {
 	public List<EmploymentVo> getDeadlineList(PageVo pv, String corpNo) {
 		
 		List<EmploymentVo> list = dao.getDeadlineList(sst, pv, corpNo);
+		// 현재 날짜
+		LocalDate now = LocalDate.now();
+		
+		for(int i = 0; i < list.size(); i++) {
+			EmploymentVo item = list.get(i);
+			String deadline = item.getDeadline();
+			if(now.toString().compareTo(deadline) > 0) {
+				// 채용 마감
+				item.setStatus("채용마감");
+			}else {
+				item.setStatus("채용중");
+			}
+			
+			String enrollDate = item.getEnrollDate();
+			String sliced = enrollDate.substring(0, 10);
+			item.setEnrollDate(sliced);
+		}
+		
+		return list;
+	}
+
+	// 채용 전체보기 페이징
+	@Override
+	public int selectTotalCnt(String corpNo) {
+		return dao.selectTotalCnt(sst, corpNo);
+	}
+
+	// 채용 전체보기 리스트
+	@Override
+	public List<EmploymentVo> getTotalList(PageVo pv, String corpNo) {
+		List<EmploymentVo> list = dao.getTotalList(sst, pv, corpNo);
 		// 현재 날짜
 		LocalDate now = LocalDate.now();
 		

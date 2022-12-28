@@ -49,17 +49,14 @@
 		, MODIFY_DATE
 		, COMPANY_NUM
 		, QUIT_YN
-		, CHECK_YN
 	FROM CORPORATE_MEMBER
 	WHERE ID = #{id}
   </select>
 
   <!-- 기업 마이페이지(회사정보 화면) -->
   <select id="selectOneCorpInfo" resultType="CorpVo">
-  	SELECT CM.*, CAL.FILE_PATH AS LOGO_NAME, CAT.FILE_PATH AS THUMB_NAME
+  	SELECT CM.*
 	FROM CORPORATE_MEMBER CM
-	LEFT JOIN CORP_ATTATCH CAL ON CAL.CORP_NO = CM.NO AND CAL.TYPE = 1
-	LEFT JOIN CORP_ATTATCH CAT ON CAT.CORP_NO = CM.NO AND CAT.TYPE = 2
 	WHERE CM.ID = #{id}
   </select>
   
@@ -76,6 +73,9 @@
   		, EMP_NUM = #{empNum}
   		, SALES = #{sales}
   		, HOMEPAGE = #{homepage}
+  		, LOGO = #{logoName}
+  		, THUMB = #{thumbName}
+  	WHERE NO = #{no}
   </update>
   
   <!-- 기업 채용 공고 만들기 -->
@@ -122,7 +122,7 @@
   	FROM EMPLOYMENT
   	WHERE CORP_NO = #{corpNo}
   	AND DELETE_YN = 'N'
-  	AND DEADLINE > TO_CHAR(SYSDATE,'YYYY-MM-DD')
+  	AND DEADLINE >= TO_CHAR(SYSDATE,'YYYY-MM-DD')
   </select>
   
   <!-- 채용중 페이지 리스트 -->
@@ -136,45 +136,9 @@
 	FROM EMPLOYMENT
 	WHERE CORP_NO = #{corpNo}
 	AND DELETE_YN = 'N'
-	AND DEADLINE > TO_CHAR(SYSDATE,'YYYY-MM-DD')
+	AND DEADLINE >= TO_CHAR(SYSDATE,'YYYY-MM-DD')
 	ORDER BY NO DESC
   </select>
-  
-  <!-- 회사 로고 업데이트 -->
-  <insert id="insertCorpLogo">
-  	INSERT INTO CORP_ATTATCH
-  	(
-	  	NO
-		, CORP_NO
-		, FILE_PATH
-		, TYPE
-  	)
-  	VALUES
-  	(
-  		SEQ_CORP_ATTATCH_NO.NEXTVAL
-  		, #{no}
-  		, #{logoName}
-  		, 1
-  	)
-  </insert>
-  
-  <!-- 회사 이미지 업데이트 -->
-  <insert id="insertCorpThumb">
-	  INSERT INTO CORP_ATTATCH
-	  	(
-		  	NO
-			, CORP_NO
-			, FILE_PATH
-			, TYPE
-	  	)
-	  	VALUES
-	  	(
-	  		SEQ_CORP_ATTATCH_NO.NEXTVAL
-	  		, #{no}
-	  		, #{thumbName}
-	  		, 2
-	  	)
-  </insert>
   
   <!-- 기업 마이페이지(회사정보 수정) -->
   <update id="updateJobPost">
@@ -185,7 +149,7 @@
   </update>
   
   <!-- 채용 마감 페이징 -->
-  <select id="selectDeadlineCnt">
+  <select id="selectDeadlineCnt" resultType="int">
   	SELECT COUNT(*)
   	FROM EMPLOYMENT
   	WHERE CORP_NO = #{corpNo}
@@ -194,7 +158,7 @@
   </select>
   
   <!-- 채용 마감 리스트 -->
-  <select id="getDeadlineList">
+  <select id="getDeadlineList" resultType="EmploymentVo">
 	SELECT
 	  		NO
 			, CORP_NO
@@ -205,6 +169,28 @@
 	WHERE CORP_NO = #{corpNo}
 	AND DELETE_YN = 'N'
 	<![CDATA[AND DEADLINE < TO_CHAR(SYSDATE,'YYYY-MM-DD')]]>
+	ORDER BY NO DESC
+  </select>
+  
+  <!-- 채용 전체보기 페이징 -->
+  <select id="selectTotalCnt" resultType="int">
+  	SELECT COUNT(*)
+  	FROM EMPLOYMENT
+  	WHERE CORP_NO = #{corpNo}
+  	AND DELETE_YN = 'N'
+  </select>
+  
+  <!-- 채용 전체보기 리스트 -->
+  <select id="getTotalList" resultType="EmploymentVo">
+  	SELECT
+	  		NO
+			, CORP_NO
+			, TITLE
+			, DEADLINE
+			, ENROLL_DATE
+	FROM EMPLOYMENT
+	WHERE CORP_NO = #{corpNo}
+	AND DELETE_YN = 'N'
 	ORDER BY NO DESC
   </select>
   
