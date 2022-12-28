@@ -16,7 +16,7 @@
 	<main id="container">
 	<div class="wrap">
 		<div class= "lec-intro">
-			<div id="lec-pic"><img src="/el/resources/img/lecture/lecpic2.png"></div>
+			<div id="lec-pic"><img src="/el/resources/img/lecture/lecpic3.png"></div>
 			<div id="lec-int">
 				<div id="lec-cate">${lvo.category }</div>
 				<div id="lec-name">${lvo.className }</div>
@@ -105,7 +105,7 @@
 								★★★
 								</c:when>
 								<c:when test="${list.score == 2 }">
-								★★★★★
+								★★
 								</c:when>
 								
 								<c:otherwise>
@@ -133,9 +133,8 @@
 								<!-- 리뷰 삭제 -->
 								<div>
 									<form action="/el/lecture/detail/review/delete" method="post">
-									
-									
 									<input type="hidden" name="reviewNo" value=${list.no }>
+									<input type="hidden" name="bno" value="${bno }">
 									<input type="submit" id="write-submit"  value="삭제">
 									</form>
 								
@@ -173,7 +172,7 @@
                     <form action="/el/cart/addCart" method="post">
 	                    <input type="hidden" name="classNo" value="${lvo.no }">
 	                    <input type="hidden" name="memberNo" value="${loginMember.memberNo }">
-                    	<div><input id="pay-cart" type="submit" value="장바구니에 담기"></div>
+                    	<div id="cartbtn"><input id="pay-cart" type="submit" value="장바구니에 담기"></div>
                     </form>
                     <div id="pay-real">결제하기</div>
                 </div>
@@ -182,37 +181,7 @@
     </div>
 		
 	
-	<script>
-	function editReview(){
-		
-		
-		console.log("수정~~");
-		var htmls = "";
-		htmls += "<div id="editWrap">";
-		htmls += "<form action="/el/lecture/detail/review" method="post">";
-		htmls += "<fieldset name="myform" id="myform">";
-		htmls += "<span class="myratings" style="color: #ccc;"></span>";
-			
-		htmls +="<input type="radio" name="score" value="5.0" id="rate1"><label for="rate1">★</label>";
-
-		htmls += "<input type="radio" name="score" value="4.0" id="rate2"><label for="rate2">★</label>";
-		htmls += "<input type="radio" name="score" value="3.0" id="rate3"><label for="rate3">★</label>";
-		htmls += "<input type="radio" name="score" value="2.0" id="rate4"><label for="rate4">★</label>";
-		htmls += "<input type="radio" name="score" value="1.0" id="rate5"><label for="rate5">★</label>";
-		htmls += "</fieldset>";
-		htmls += "<input type="hidden" name="rno" value="${list.no }">"	;
-		htmls += "<input type="text" id="write-input" name="content" placeholder="수강평을 남겨주세요">";
-			
-		htmls += "<br>";
-		htmls += "<input type="submit" id="write-submit" value="작성" style="float: right;">";
-		htmls += "</form>";
-		htmls += "</div>";
-		
-		
-		
-		alert("댓글이 수정되었습니다.");
-	}
-	</script>
+	
 	
 	</main>
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>

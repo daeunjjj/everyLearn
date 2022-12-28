@@ -17,7 +17,7 @@
 	<div class="wrap">
 		
         <div class= "lec-intro">
-            <div id="lec-pic"><img src="/el/resources/img/lecture/lecpic2.png"></div>
+            <div id="lec-pic"><img src="/el/resources/img/lecture/lecpic3.png" width="400px" height="280px"></div>
             <div id="lec-int">
                 <div id="lec-cate">${lvo.category }</div>
                 <div id="lec-name">${lvo.className}</div>
