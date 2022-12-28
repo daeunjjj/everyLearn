@@ -23,30 +23,30 @@
                                 <div class="checkbox-area">
                                     <div class="checkbox-top">
                                         <label>IT직군
-                                            <input type="checkbox" name="cate" value="all">
+                                            <input type="checkbox" name="cate" value="IT직군">
                                         </label>
                                         <label>경영/사무
-                                            <input type="checkbox" name="cate" value="quit">
+                                            <input type="checkbox" name="cate" value="경영/사무">
                                         </label>
                                     </div>
                                     <div class="checkbox-bottom">
                                         <label>디자인
-                                            <input type="checkbox" name="cate" value="all">
+                                            <input type="checkbox" name="cate" value="디자인">
                                         </label>
                                         <label>마케팅
-                                            <input type="checkbox" name="cate" value="quit">
+                                            <input type="checkbox" name="cate" value="마케팅">
                                         </label>
                                         <label>교육
-                                            <input type="checkbox" name="cate" value="blacklist">
+                                            <input type="checkbox" name="cate" value="교육">
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="btn-area">
-                                <div>
+                                <a href="/el/admin/member/corporate/list?pno=1&category=status_yn&keyword=N">
                                     승인대기
-                                    <span>10</span>
-                                </div>
+                                    <span>${map.cnt}</span>
+                                </a>
                                 <div class="flex-area">
                                     <div>
                                         <select name="category">
@@ -72,30 +72,40 @@
                     <div>직군</div>
                     <div>대표자명</div>
                     <div>전화번호</div>
-                    <div>이메일</div>
+                    <div>아이디</div>
                     <div>상태</div>
                     <div>관리</div>
                 </div>
                 <form action="">
                     <ul>
-                        <li>
-                            <div class="list-items">
-                                <div>
-                                    <input type="checkbox" id="check">
-                                    <label for="check"></label>
-                                </div>
-                                <div>1</div>
-                                <div>kh352</div>
-                                <div>IT</div>
-                                <div>심투용</div>
-                                <div>010-1234-1234</div>
-                                <div>2dragon@gmail.com</div>
-                                <div>승인</div>
-                                <div>
-                                    <button>상세</button>
-                                </div>
-                            </div>
-                        </li>
+                        <c:forEach items="${map.voList}" var="list">
+	                        <li>
+	                            <div class="list-items">
+	                                <div>
+	                                    <input type="checkbox" id="check">
+	                                    <label for="check"></label>
+	                                </div>
+	                                <div>${list.no}</div>
+	                                <div>${list.companyName }</div>
+	                                <div>${list.sector }</div>
+	                                <div>${list.name }</div>
+	                                <div>${list.phone }</div>
+	                                <div>${list.id }</div>
+	                                <c:if test="${list.statusYn eq 'Y' }">
+		                                <div>승인</div>
+	                                </c:if>
+	                                <c:if test="${list.statusYn eq 'N' and list.deleteYn eq 'N'}">
+		                                <div>대기</div>
+	                                </c:if>
+	                                <c:if test="${list.deleteYn eq 'Y'}">
+		                                <div>탈락</div>
+	                                </c:if>
+	                                <div>
+                                        <button type="button" onclick="location.href='/el/admin/member/corporate/detail?no=${list.no}'">상세</button>
+	                                </div>
+	                            </div>
+	                        </li>
+                        </c:forEach>
                     </ul>
                     <div class="mail-btn-area">
                         <button id="mail-btn">승인</button>

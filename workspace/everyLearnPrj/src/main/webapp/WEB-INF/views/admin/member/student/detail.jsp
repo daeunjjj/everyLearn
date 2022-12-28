@@ -95,7 +95,7 @@
                         </div>
                         <div class="info-items">
                             <div class="title-wrap">
-                                <label for="reportYn">신고여부</label>
+                                <label for="reportYn">상태</label>
                             </div>
                             <div class="input-wrap">
                                 <input type="text" name="reportYn" id="reportYn" value="${map.studentVo.reportYn }" readonly>

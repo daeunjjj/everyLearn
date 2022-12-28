@@ -50,10 +50,10 @@
                                 </div>
                             </div>
                             <div class="btn-area">
-                                <div>
+                                <a href="el/admin/member/teacher/list?pno=1&category=status_yn&keyword=N">
                                     승인대기
-                                    <span>${cnt}</span>
-                                </div>
+                                    <span>${map.cnt}</span>
+                                </a>
                                 <div class="flex-area">
                                     <div>
                                         <select name="category">
@@ -84,7 +84,7 @@
                 </div>
                 <form method="post">
                     <ul>
-                        <c:forEach items="${voList}" var="list">
+                        <c:forEach items="${map.voList}" var="list">
 	                       	<li>
 	                            <div class="list-items">
 	                                <div>

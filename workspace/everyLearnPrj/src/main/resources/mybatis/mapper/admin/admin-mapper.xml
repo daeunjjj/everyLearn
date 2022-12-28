@@ -186,7 +186,7 @@
 		    ,PROFILE_IMG
 		    ,POINT
 		    ,REPORT_YN
-		    ,DECODE(QUIT_YN, 'N','유지', 'Y','탈퇴') AS QUIT_YN
+		    ,QUIT_YN
 		FROM MEMBER
 		<if test="keyword != null and keyword != ''">
 			WHERE ${category} LIKE '%${keyword}%'
@@ -207,8 +207,8 @@
 		    ,MODIFY_DATE
 		    ,PROFILE_IMG
 		    ,POINT
-		    ,REPORT_YN
-		    ,QUIT_YN
+		    ,DECODE(REPORT_YN, 'N','활동', 'Y','정지') AS REPORT_YN
+		    ,DECODE(QUIT_YN, 'N','유지', 'Y','탈퇴') AS QUIT_YN
 		FROM MEMBER
 		WHERE NO = #{memberNo}
 	</select>
@@ -296,6 +296,7 @@
 		SELECT COUNT(*)
 		FROM TEACHER
 		WHERE STATUS_YN = 'N'
+		AND DELETE_YN = 'N'
 	</select>
 	
 	<select id="selectTeacherDetailByNo" resultType="com.coding5.el.teacher.vo.TeacherVo">
@@ -306,7 +307,7 @@
 		    ,T.CAREER
 		    ,T.SHORT_INTRO
 		    ,T.INTRODUCE
-		    ,T.RECORD
+		    ,T.RECORD AS CHANGE_NAME2
 		    ,T.ENROLL_DATE
 		    ,T.MODIFY_DATE
 		    ,T.STATUS_YN
@@ -376,4 +377,60 @@
 		    SET QUIT_YN = 'Y'
 		WHERE NO = #{no}
 	</update>
+	
+	<select id="selectCorporateCount" resultType="int">
+		SELECT COUNT(*)
+		FROM CORPORATE_MEMBER
+		<if test="keyword != null and keyword != ''">
+			WHERE ${category} LIKE '%${keyword}%'
+		</if>
+		<if test="cate != null and keyword != ''">
+			AND SECTOR IN
+			<foreach collection="cate" item="arr" open="(" close=")" separator=",">
+			#{arr}
+			</foreach>
+		</if>
+	</select>
+	
+	<select id="selectCorporateList" resultType="CorpVo">
+		SELECT 
+		    NO
+		    ,ID
+		    ,PWD
+		    ,COMPANY_NAME
+		    ,COMPANY_ADDRESS
+		    ,DETAIL_ADDRESS
+		    ,NAME
+		    ,PHONE
+		    ,INTRODUCE
+		    ,ENROLL_DATE
+		    ,MODIFY_DATE
+		    ,COMPANY_NUM
+		    ,QUIT_YN
+		    ,STATUS_YN
+		    ,SECTOR
+		    ,EMP_NUM
+		    ,SALES
+		    ,HOMEPAGE
+		    ,DELETE_YN
+		FROM CORPORATE_MEMBER
+		<where>
+			<if test="keyword != null and keyword != ''">
+				${category} LIKE '%${keyword}%'
+			</if>
+			<if test="cate != null and keyword != ''">
+				AND SECTOR IN
+				<foreach collection="cate" item="arr" open="(" close=")" separator=",">
+				#{arr}
+				</foreach>
+			</if>
+		</where>	
+		ORDER BY NO DESC
+	</select>
+	<select id="selectCorporateStatusByN" resultType="int">
+		SELECT COUNT(*)
+		FROM CORPORATE_MEMBER
+		WHERE STATUS_YN = 'N'
+		AND DELETE_YN = 'N'
+	</select>
 </mapper>
