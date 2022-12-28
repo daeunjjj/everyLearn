@@ -175,7 +175,7 @@ public class CorpController {
 			return "common/error";
 		}
 		
-		return "emp/mypage/status";
+		return "redirect:/corp/total";
 	}
 	
 	// 채용 공고 지우기
@@ -242,7 +242,7 @@ public class CorpController {
 		PageVo pv = Pagination.getPageVo(totalCount, currentPage, pageLimit, boardLimit);
 		
 		List<EmploymentVo> list = cs.getDeadlineList(pv, corpNo);
-		
+		log.info(pv.toString());
 		model.addAttribute("pv", pv);
 		model.addAttribute("list", list);
 		
@@ -250,9 +250,31 @@ public class CorpController {
 	}
 	
 	// 채용 승인 여부 페이지
-	@GetMapping("status")
-	public String status() {
-		return "emp/mypage/status";
+	@GetMapping("total")
+	public String total(Model model, @RequestParam(value="pno", defaultValue = "1") String pno, HttpSession session) {
+		
+		CorpVo corpMember = (CorpVo) session.getAttribute("corpMember");
+		
+		if(corpMember == null) {
+			return "redirect:/corp/login";
+		}
+		
+		String corpNo = corpMember.getNo();
+		
+		// 카운트
+		int totalCount = cs.selectTotalCnt(corpNo);
+		int currentPage = Integer.parseInt(pno);
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageVo pv = Pagination.getPageVo(totalCount, currentPage, pageLimit, boardLimit);
+		
+		List<EmploymentVo> list = cs.getTotalList(pv, corpNo);
+		
+		model.addAttribute("pv", pv);
+		model.addAttribute("list", list);
+		
+		return "emp/mypage/total";
 	}
 	
 	// 지원자 현황 페이지

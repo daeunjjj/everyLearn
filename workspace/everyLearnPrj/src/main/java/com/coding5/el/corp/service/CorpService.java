@@ -41,5 +41,11 @@ public interface CorpService {
 	// 채용 마감 리스트
 	public List<EmploymentVo> getDeadlineList(PageVo pv, String corpNo);
 
+	// 채용 전체보기 페이징
+	public int selectTotalCnt(String corpNo);
+
+	// 채용 전체보기 리스트
+	public List<EmploymentVo> getTotalList(PageVo pv, String corpNo);
+
 
 }

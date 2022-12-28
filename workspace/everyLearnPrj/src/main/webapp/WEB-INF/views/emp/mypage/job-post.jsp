@@ -59,8 +59,10 @@
                       <input type="text" name="career">
                   </dl>
                   <dl>
-                      <label>최소 연봉</label>
-                      <input type="text" name="salary">
+                      <label>연봉</label>
+                      <div class="min-sales">
+                        <input type="text" name="salary"><span>만원</span>
+                      </div>
                   </dl>
                   <dl>
                     <label>직군</label>

@@ -109,3 +109,17 @@
 .aside dl input.close{
   flex-grow: 0;
 }
+
+.min-sales{
+  position: relative;
+  flex-grow: 1;
+}
+
+.min-sales>input{
+  width: 100%;
+}
+
+.min-sales>span{
+  position: absolute;
+  right: 10px;
+}

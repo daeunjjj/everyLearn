@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
+<link rel="stylesheet" href="/el/resources/css/emp/mypage/total.css">
 <link rel="stylesheet" href="/el/resources/css/common/font.css">
-<link rel="stylesheet" href="/el/resources/css/emp/mypage/deadLine.css">
 <link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 </head>
 <body>
@@ -29,14 +29,14 @@
                     </thead>
                     <tbody>
                         <c:forEach items="${list}" var="vo">
-                        <tr>
-                            <td>${vo.no}</td>
-                            <td>${vo.title}</td>
-                            <td>${vo.enrollDate}</td>
-                            <td>${vo.deadline}</td>
-                            <td>${vo.status}</td>
-                        </tr>
-                   </c:forEach>
+                            <tr>
+                                <td>${vo.no}</td>
+                                <td>${vo.title}</td>
+                                <td>${vo.enrollDate}</td>
+                                <td>${vo.deadline}</td>
+                                <td>${vo.status}</td>
+                            </tr>
+                       </c:forEach>
                     </tbody>
                 </table>
             </div>
@@ -44,22 +44,23 @@
                 <ul>
                 <c:if test="${pv.currentPage != 1}">
                     <li>
-                        <a id="before" href="/el/corp/deadline?pno=${pv.currentPage-1}">이전</a>
+                        <a id="before" href="/el/corp/total?pno=${pv.currentPage-1}">이전</a>
                     </li>
                 </c:if>
                 <c:forEach var="num" begin="${pv.startPage }" end="${pv.endPage }">
                     <li>
-                        <a class="numBtn" href="/el/corp/deadline?pno=${num}">${num}</a>
+                        <a class="numBtn" href="/el/corp/total?pno=${num}">${num}</a>
                     </li>
                 </c:forEach>
                 <c:if test="${pv.currentPage != pv.maxPage && pv.maxPage != 0}">
                     <li>
-                        <a id="after" href="/el/corp/deadline?pno=${pv.currentPage+1}">다음</a>                       		
+                        <a id="after" href="/el/corp/total?pno=${pv.currentPage+1}">다음</a>                       		
                     </li>
                 </c:if>
                 </ul>
             </nav>
         </div>
+
     </div>
        
     </div>
