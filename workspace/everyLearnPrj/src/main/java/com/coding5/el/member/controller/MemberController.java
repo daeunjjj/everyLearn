@@ -1,5 +1,6 @@
 package com.coding5.el.member.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coding5.el.member.service.MemberService;
 import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.common.file.FileUploader;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -84,24 +86,63 @@ public class MemberController {
 	public String login(MemberVo vo, HttpSession session) {
 		
 		MemberVo loginMember = memberService.login(vo);
-		log.debug("로그인 멤버 : " + loginMember);
 		
-		if(loginMember != null) {
+//		log.info(loginMember.getTeaStatusYn());
+		log.info("로그인 멤버 : " + loginMember);
+		
+		if(loginMember != null && !loginMember.getMemberId().equals("error")) {
 			
 			session.setAttribute("loginMember", loginMember);
 			
+//			if(loginMember.getTeaStatusYn().equals("Y")) {
+//				log.info("예스");
+//				loginMember.setTeaStatusYnNo(1);
+//			}else if(loginMember.getTeaStatusYn().equals("N")){
+//				log.info("노");
+//				loginMember.setTeaStatusYnNo(-1);
+//			}else if(loginMember.getTeaStatusYn() == null){
+//				loginMember.setTeaStatusYnNo(-1);
+//			}
+			
+			
 			return "redirect:/class/qna";
+			
 		}else {
 			return "common/error";
 		}
 		
 	}
 	
-	//회원수정
+	//회원수정(화면)
 	@GetMapping("modify")
 	public String modify() {
 		return "member/modify";
 	}
+	
+	//회원수정
+//	@PostMapping("modify")
+//	public String modify(MemberVo vo, HttpServletRequest req, HttpSession session) {
+//		
+//		/*
+//		 * NO
+//			TEACHER_NO
+//			ORIGIN_NAME
+//			CHANGE_NAME
+//		 */
+//		
+//		String changeName = "";
+//		
+//		if(!vo.getProfileImg().isEmpty()) {
+//			changeName = FileUploader.upload(session, vo.getProfileImg());
+//		}
+//		
+//		vo.setProfileImg(changeName);
+//		
+//		log.info(vo.toString());
+//		memberService.updateMember(vo);
+//		
+//		return "member/modify";
+//	}
 	
 	//아이디 찾기(화면)
 	@GetMapping("idFind")

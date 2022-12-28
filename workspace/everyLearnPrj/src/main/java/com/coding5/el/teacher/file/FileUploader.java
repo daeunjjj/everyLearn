@@ -10,18 +10,15 @@ public class FileUploader {
 	
 	public static String upload(HttpServletRequest req, TeacherVo vo) {
 		
-		//ÃÖ»ó´Ü °æ·Î
+		//ï¿½Ö»ï¿½ï¿½ ï¿½ï¿½ï¿½
 		String path = req.getSession().getServletContext().getRealPath("/resources/upload/imgTeacher/");
 		String originName = vo.getImgTeacher().get(0).getOriginalFilename();
-//		String ext(== È®ÀåÀÚ) = originName.substring(µÚ¿¡¼­ ¼¼¾îº» Á¡ÀÇ ÀÎµ¦½º, ¹®ÀÚ¿­ ±æÀÌ);
 		String ext = originName.substring(originName.lastIndexOf("."), originName.length());
 		
 		String changeName = "imgTeacher_ " + System.nanoTime()+ ext;
 		
 		File target = new File(path + changeName);
-		
-		//profile.transferTo(Å¸°ÙÆÄÀÏ);
-		//ÀÌ°Í¸¸ ¾²¸é Å¸°ÙÆÄÀÏ¿¡ ÆÄÀÏ ÀúÀåÇÒ ¼ö ÀÖÀ½!!
+
 		try {
 			vo.getImgTeacher().get(0).transferTo(target);
 		} catch (Exception e) {
@@ -33,18 +30,18 @@ public class FileUploader {
 	
 	public static String upload2(HttpServletRequest req, TeacherVo vo) {
 		
-		//ÃÖ»ó´Ü °æ·Î
+		//ï¿½Ö»ï¿½ï¿½ ï¿½ï¿½ï¿½
 		String path = req.getSession().getServletContext().getRealPath("/resources/upload/record/");
 		String originName = vo.getRecord().get(0).getOriginalFilename();
-//		String ext(== È®ÀåÀÚ) = originName.substring(µÚ¿¡¼­ ¼¼¾îº» Á¡ÀÇ ÀÎµ¦½º, ¹®ÀÚ¿­ ±æÀÌ);
+//		String ext(== È®ï¿½ï¿½ï¿½ï¿½) = originName.substring(ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½îº» ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½);
 		String ext = originName.substring(originName.lastIndexOf("."), originName.length());
 		
 		String changeName2 = "record_ " + System.nanoTime()+ ext;
 		
 		File target = new File(path + changeName2);
 		
-		//profile.transferTo(Å¸°ÙÆÄÀÏ);
-		//ÀÌ°Í¸¸ ¾²¸é Å¸°ÙÆÄÀÏ¿¡ ÆÄÀÏ ÀúÀåÇÒ ¼ö ÀÖÀ½!!
+		//profile.transferTo(Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½);
+		//ï¿½Ì°Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!
 		try {
 			vo.getRecord().get(0).transferTo(target);
 		} catch (Exception e) {

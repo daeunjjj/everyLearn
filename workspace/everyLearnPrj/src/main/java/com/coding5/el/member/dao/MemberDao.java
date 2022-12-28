@@ -17,4 +17,6 @@ public interface MemberDao {
 
 	public String idFindAjax(SqlSessionTemplate sst, MemberVo findVo);
 
+	public int updateMember(SqlSessionTemplate sst, MemberVo vo);
+
 }

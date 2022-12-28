@@ -17,5 +17,7 @@ public interface MemberService {
 
 	//아이디 찾기
 	public String idFind(MemberVo findVo);
+
+	public int updateMember(MemberVo vo);
 	
 }
