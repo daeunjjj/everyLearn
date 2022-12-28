@@ -26,6 +26,7 @@ public class MemberVo {
 	private int teaStatusYnNo;
 	private String memberPwd1;
 	private MultipartFile profileImg;
+	private String profileImgName;
 
 	//파일 업로드
 	public boolean isEmpty() {

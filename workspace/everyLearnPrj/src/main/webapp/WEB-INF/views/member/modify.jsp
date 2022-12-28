@@ -31,7 +31,7 @@
 
                 <div id="wrap-modify">
 
-                    <form action="/el/member/modify" method="post" id="modify-form" onsubmit="modifySubmit()">
+                    <form action="/el/member/modify" method="post" id="modify-form" onsubmit="return modifySubmit();" enctype="multipart/form-data">
 
                         <div id="wrap-img">
                             <div id='View_area'></div>
@@ -42,12 +42,13 @@
                         </div>
 
                         <h4><label for="">아이디</label></h4>
-                        <span class="modify-box" onclick="noModi()">
-                            <div >${loginMember.memberId}</div>
-                        </span>
+                        <span class="modify-box" >
+                            <div >${loginMember.memberId}</div>     
+                            <input type="hidden" name="memberId" value="${loginMember.memberId}">                  
+                          </span>
                         <h4><label for="">비밀번호 수정</label></h4>
                         <span class="modify-box">
-                            <input type="password" name="memberPwd1" id="memberPwd1" onblur="checkPw()">
+                            <input type="password" name="memberPwd" id="memberPwd1" onblur="checkPw()">
                         </span>
                         <div class="warning" id="pwdch"></div>    
                         <span>
@@ -77,6 +78,7 @@
                         <h4><label for="">생년월일</label></h4>
                         <span class="modify-box">
                             <div>${loginMember.birth}</div>
+                              <input type="hidden" name="memberNo" value="${memberNo}">
                             <!-- <input type="text" name="memberBirth" placeholder="${loginMember.birth}"> -->
                         </span>
                         <h4><label for="">닉네임</label></h4>
@@ -89,13 +91,13 @@
                             <button type="submit" class="btnJoin">
                                 <div class="text-modify">수정하기</div>
                             </button>
+                    </form>
                             <button onclick="memberDelete()" type="button" class="btnJoin" id="delete">
                                 <div class="text-modify" style="background-color: gray;">회원탈퇴</div>
                             </button>
                         </div>
 
 
-                    </form>
                 </div>
             </div>
             

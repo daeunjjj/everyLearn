@@ -54,7 +54,7 @@
                     <div id="comm-study" onclick="location.href='/el/class/detail?classCommNo='+ ${study.classCommNo}">
                         <div class="study-write" id="study-title" onclick="location.href='/el/class/detail?classCommNo='+ ${study.classCommNo}">${study.title}</div>
                         <div class="study-write" id="study-content">
-                        	${study.title}
+                        	${study.content}
                         </div>
                     </div>
                     <div class="study-context">
@@ -67,39 +67,7 @@
                     </div>
                 </div>
                </c:forEach>
-                <div id="study-context">
-                    <div id="comm-study">
-                        <div class="study-write" id="study-title">토익 스터디 구합니다(900점 목표~~^^)</div>
-                        <div class="study-write" id="study-content">토익 스터디 구합니다(900점 목표~~^^) 
-                            하루에 20시간 이상 하실 분!!!!!~~~~~~~~~~
-                        </div>
-                    </div>
-                    <div class="study-context">
-                        <div id="comment">
-                            <button id="btn-comment">
-                                <p>댓글</p>
-                                <p>(11)</p>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="study-context">
-                    <div id="comm-study">
-                        <div class="study-write" id="study-title">토익 스터디 구합니다(900점 목표~~^^)</div>
-                        <div class="study-write" id="study-content">토익 스터디 구합니다(900점 목표~~^^) 
-                            하루에 20시간 이상 하실 분!!!!!~~~~~~~~~~
-                        </div>
-                    </div>
-                    <div class="study-context">
-                        <div id="comment">
-                            <button id="btn-comment">
-                                <p>댓글</p>
-                                <p>(11)</p>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+               
                 
             </div>
             

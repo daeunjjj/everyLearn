@@ -77,15 +77,21 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int updateMember(MemberVo vo) {
+	public MemberVo updateMember(MemberVo vo) {
 		
 		//암호화
-		String pwd = vo.getMemberPwd1();
+		String pwd = vo.getMemberPwd();
 		String newPwd = enc.encode(pwd);
 		vo.setMemberPwd(newPwd);
 		
+		int result = memberDao.updateMember(sst, vo);
 		
-		return memberDao.updateMember(sst, vo);
+		if(result != 1) {
+			return null;
+		}
+		
+		
+		return memberDao.selectMemberOne(sst, vo);
 	}
 
 
