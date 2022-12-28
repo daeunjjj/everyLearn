@@ -5,6 +5,11 @@
     width: 4%;
 }
 
+.d-inline-block{	/* 헤더 로고 이미지  */
+	position: relative;
+    left: 11px;
+}
+
 
 .nav-menu-area{
     display: flex;
@@ -14,16 +19,18 @@
     width: 90%;
 }
 
-.nav-info1{
-    float: left;
+.nav-info1{	/* 알람 모양  */
     width: 3%;
     margin-right: -50px;
+    position: relative;
+    right: 30px;
 }
 
-.nav-info2{
-    float: left;
+.nav-info2{	/* 프로필  */
     width: 3%;
-    margin-left: 20px;
+    margin-left: 25px;
+    position: relative;
+    right: 15px;
 }
 
 .nav-menu{

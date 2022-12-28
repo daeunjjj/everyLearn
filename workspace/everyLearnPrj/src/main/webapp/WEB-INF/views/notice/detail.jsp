@@ -40,7 +40,7 @@
                 	<span>${ n.hit }</span>
                 </div>
                 <div class="content" name="content">
-                           	${ n.content }
+                   <textarea id="content">${ n.content }</textarea>
                 </div>
             </div>
           

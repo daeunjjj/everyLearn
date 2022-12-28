@@ -9,7 +9,7 @@
 <title>에브리런</title>
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
 
-<link rel="stylesheet" href="/el/resources/css/notice/adminList.css?히히">
+<link rel="stylesheet" href="/el/resources/css/notice/adminList.css?히히3">
 <link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
 
 
@@ -17,7 +17,6 @@
 
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 <!-- 파비콘 -->
 <link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 </head>
