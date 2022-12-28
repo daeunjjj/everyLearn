@@ -123,11 +123,12 @@ label{
 }
 
 .page-area{
-    position: absolute;
+    /* position: absolute;
     top: 100%;
     left: 60%;
     transform: translate(-50%, 0);
-    height: 10px;
+    height: 10px; */
+    text-align: center;
 }
 
 .page-area>ul{

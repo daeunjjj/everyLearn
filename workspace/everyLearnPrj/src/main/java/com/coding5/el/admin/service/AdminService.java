@@ -55,10 +55,8 @@ public interface AdminService {
 	public int selectTeacherCount(SearchVo svo);
 	
 	// 강사 회원 리스트 조회
-	public List<TeacherVo> selectTeacherList(PageVo pv, SearchVo svo);
+	public Map<String, Object> selectTeacherList(PageVo pv, SearchVo svo);
 	
-	// 강사 승인 대기 인원
-	public int selectTeacherStatusByN();
 	
 	// 강사 디테일 조회
 	public Map<String, Object> selectTeacherDetail(String no);
@@ -77,5 +75,11 @@ public interface AdminService {
 	
 	// 관리자 탈퇴처리
 	public int adminQuit(String no);
+	
+	// 기업회원 수
+	public int selectCorporateCount(SearchVo svo);
+	
+	// 기업회원리스트가져오기
+	public Map<String, Object> selectCorporateList(PageVo pv, SearchVo svo);
 	
 }

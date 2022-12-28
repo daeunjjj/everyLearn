@@ -56,7 +56,7 @@
                             <div>이력</div>
                             <div>
                                 <i class="bi bi-dot"></i>
-                                <a href="${map.tvo.changeName }" download="/el/resources/upload/imgTeacher/${map.tvo.changeName }">${map.tvo.changeName }</a>
+                                <a href="/el/resources/upload/record/${map.tvo.changeName2 }" download="${map.tvo.changeName2 }">${map.tvo.changeName2 }</a>
                             </div>
                         </div>
                        <div class="bottom-wrap">
@@ -82,6 +82,7 @@
                             <div>최종수정</div>
                             <div>추천수</div>
                             <div>수강생수</div>
+                            <div>좋아요</div>
                             <div>관리</div>
                         </div>
                         <div>
@@ -98,6 +99,7 @@
 	                                    <div>${list.modifyDate }	</div>
 	                                    <div>${list.recomm }	</div>
 	                                    <div>${list.studentCnt }	</div>
+                                        <div>${list.classCnt}</div>
 	                                    <div>
 	                                    <form action="/el/admin/member/teacher/class/delete" method="post" onsubmit="return deleteCheck();">
 	                                    	<input name="cno" value="${list.no}" hidden>

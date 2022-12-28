@@ -19,8 +19,8 @@ public class CorpVo {
 	private String enrollDate;
 	private String modifyDate;
 	private String companyNum;
-	private String quitYN;
-	private String statusYN;
+	private String quitYn;
+	private String statusYn;
 	private String sector;
 	private String empNum;
 	private String sales;
@@ -29,4 +29,5 @@ public class CorpVo {
 	private MultipartFile thumb;
 	private String logoName;
 	private String thumbName;
+	private String deleteYn;
 }

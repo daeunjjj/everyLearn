@@ -25,8 +25,6 @@ import com.coding5.el.common.page.Pagination;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
-import com.coding5.el.teacher.vo.TeacherVo;
-
 
 import lombok.extern.slf4j.Slf4j;
 @RequestMapping("admin")
@@ -161,11 +159,13 @@ public class AdminController {
 			profileName = FileUploader.upload(session, vo.getProfile());
 		}
 		
-		vo.setProfileName("admin_"+profileName);
+		vo.setProfileName(profileName);
 		
 		
 		
 		AdminVo updateAdmin = adminService.myInfoModify(vo);
+		
+		log.info("관리자 :: " + updateAdmin);
 		
 		if(updateAdmin == null) {
 			model.addAttribute("resultMsg", "정보 수정 실패");
@@ -356,19 +356,16 @@ public class AdminController {
 		
 		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		
-		List<TeacherVo> voList = adminService.selectTeacherList(pv, svo);		
+		Map<String, Object> map = adminService.selectTeacherList(pv, svo);		
 		
-		if(voList == null) return "admin/member/teacher/list";
+		if(map == null) return "admin/member/teacher/list";
 		
-		int cnt = adminService.selectTeacherStatusByN();
 		
-		log.info("db 결과 ::: " + voList);
-		log.info("승인 대기 수 :: " + cnt);
+		log.info("db 결과 ::: " + map);
 		
-		model.addAttribute("cnt", cnt);
 		model.addAttribute("svo", svo);
 		model.addAttribute("pv", pv);
-		model.addAttribute("voList", voList);
+		model.addAttribute("map", map);
 		return "admin/member/teacher/list";
 	}
 	
@@ -456,7 +453,29 @@ public class AdminController {
 	
 	// 기업회원 리스트 조회
 	@GetMapping("member/corporate/list")
-	public String corpList() {
+	public String corpList(String pno, SearchVo svo , Model model) {
+		
+		int listCount = adminService.selectCorporateCount(svo);
+		int currentPage = Integer.parseInt(pno);
+		int pageLimit = 5;
+		int boardLimit = 10;
+		log.info("리스트 수 :::"+listCount);
+		log.info("화면에서 받아오는 데이터 mapSearch  :::" + svo);
+		log.info("화면에서 받아오는 데이터 pno ::: "+svo);
+		
+		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		Map<String, Object> map = adminService.selectCorporateList(pv, svo);		
+		
+		if(map == null) return "admin/member/corporate/list";
+		
+		
+		log.info("db 결과 ::: " + map);
+		
+		model.addAttribute("svo", svo);
+		model.addAttribute("pv", pv);
+		model.addAttribute("map", map);
+
 		return "admin/member/corporate/list";
 	}
 	

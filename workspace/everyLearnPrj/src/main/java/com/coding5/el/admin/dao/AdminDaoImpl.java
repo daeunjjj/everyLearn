@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
+import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
@@ -168,6 +169,27 @@ public class AdminDaoImpl implements AdminDao{
 	public int updateAdminQuityByNo(SqlSessionTemplate sst, String no) {
 		// 탈퇴처리
 		return sst.update("adminMapper.updateAdminQuityByNo",no);
+	}
+
+	@Override
+	public int selectCorporateCount(SqlSessionTemplate sst, SearchVo svo) {
+		// 기업회원 수
+		return sst.selectOne("adminMapper.selectCorporateCount",svo);
+	}
+
+	@Override
+	public List<CorpVo> selectCorporateList(SqlSessionTemplate sst, PageVo pv, SearchVo svo) {
+		// 기업회원리스트
+		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
+		int limit = pv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset,limit);
+		return sst.selectList("adminMapper.selectCorporateList",svo,rb);
+	}
+
+	@Override
+	public int selectCorporateStatusByN(SqlSessionTemplate sst) {
+		// 기업회원 승인대기 수
+		return sst.selectOne("adminMapper.selectCorporateStatusByN");
 	}
 	
 

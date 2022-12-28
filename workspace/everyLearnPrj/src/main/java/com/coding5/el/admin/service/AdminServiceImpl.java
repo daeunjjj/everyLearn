@@ -14,6 +14,7 @@ import com.coding5.el.admin.dao.AdminDao;
 import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
+import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
@@ -33,6 +34,9 @@ public class AdminServiceImpl implements AdminService{
 
 	@Autowired
 	private BCryptPasswordEncoder pwdEnc;
+	
+
+	Map<String, Object> map = new HashMap<String, Object>();
 	
 	/**
 	 * 로그인
@@ -171,7 +175,6 @@ public class AdminServiceImpl implements AdminService{
 		MemberVo vo = adminDao.selectStudentOneByNo(sst,no);
 		List<PointVo> pointList = adminDao.selectPointListByNo(sst,no);
 		
-		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("studentVo", vo);
 		map.put("pointList", pointList);
 		return map;
@@ -208,16 +211,18 @@ public class AdminServiceImpl implements AdminService{
 	 * 강사리스트 조회
 	 */
 	@Override
-	public List<TeacherVo> selectTeacherList(PageVo pv, SearchVo svo) {
-		return adminDao.selectTeacherList(sst,pv,svo);
+	public Map<String, Object> selectTeacherList(PageVo pv, SearchVo svo) {
+		List<TeacherVo> voList = adminDao.selectTeacherList(sst,pv,svo);
+		
+		if(voList == null) return null;
+		
+		int cnt = adminDao.selectTeacherStatusByN(sst);
+		
+		map.put("voList", voList);
+		map.put("cnt", cnt);
+		return map;
 	}
-	/**
-	 * 강사 승인 대기 조회
-	 */
-	@Override
-	public int selectTeacherStatusByN() {
-		return adminDao.selectTeacherStatusByN(sst);
-	}
+
 	
 	/**
 	 * 강사 디테일 조회
@@ -234,7 +239,6 @@ public class AdminServiceImpl implements AdminService{
 			voList = adminDao.selectLectureList(sst,no);						
 		}
 		
-		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("tvo", tvo);
 		map.put("voList", voList);
 		
@@ -275,6 +279,30 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public int adminQuit(String no) {
 		return adminDao.updateAdminQuityByNo(sst,no);
+	}
+	/**
+	 * 기업 회원 수
+	 */
+	@Override
+	public int selectCorporateCount(SearchVo svo) {
+		return adminDao.selectCorporateCount(sst,svo);
+	}
+	/**
+	 * 기업회원리스트
+	 * 기업회원 승인대기 수 가져오기
+	 */
+	@Override
+	public Map<String, Object> selectCorporateList(PageVo pv, SearchVo svo) {
+		
+		List<CorpVo> voList = adminDao.selectCorporateList(sst,pv, svo);
+		
+		if(voList == null) return null;
+		
+		int cnt = adminDao.selectCorporateStatusByN(sst);
+		
+		map.put("voList", voList);
+		map.put("cnt", cnt);
+		return map;
 	}
 
 	

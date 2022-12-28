@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
+import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
@@ -82,6 +83,15 @@ public interface AdminDao {
 	
 	// 탈퇴처리
 	public int updateAdminQuityByNo(SqlSessionTemplate sst, String no);
+	
+	// 기업회원 수
+	public int selectCorporateCount(SqlSessionTemplate sst, SearchVo svo);
+	
+	// 기업회원 리스트 조회
+	public List<CorpVo> selectCorporateList(SqlSessionTemplate sst, PageVo pv, SearchVo svo);
+	
+	// 기업회원 승인 대기 수
+	public int selectCorporateStatusByN(SqlSessionTemplate sst);
 	
 
 	

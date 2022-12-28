@@ -70,7 +70,15 @@
                                 <div>${list.email }</div>
                                 <div>${list.phone }</div>
                                 <div>${list.enrollDate }</div>
-                                <div>${list.quitYn}</div>
+                                <c:if test="${list.quitYn eq 'Y'}">
+	                                <div>탈퇴</div>
+                                </c:if>
+                                <c:if test="${list.quitYn eq 'N' and list.reportYn eq 'N'}">
+	                                <div>유지</div>
+                                </c:if>
+                                <c:if test="${list.quitYn eq 'N' and list.reportYn eq 'Y'}">
+	                                <div>정지</div>
+                                </c:if>
                                 <div>
                                     <button type="button" onclick="location.href='/el/admin/member/student/detail?no=${list.memberNo}'">상세</button>
                                     <button>정지</button>
