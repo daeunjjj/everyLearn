@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>기업 회원가입 - EveryLearn</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/el/resources/css/emp/member/join.css">
 <link rel="stylesheet" href="/el/resources/css/common/font.css">
 <link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
@@ -30,8 +31,12 @@
 						<input type="text" name="id" id="id"
 							placeholder="everylearn@everylearn.com" class="input" oninput="activeBtn();" onblur="validateId();">
 						<div id="input-id" class="x-icon" style="display: none;">
-							<div><svg width="12" height="12" fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.686 2.686a.635.635 0 0 1 .897 0L8 7.103l4.417-4.417a.635.635 0 0 1 .897.897L8.897 8l4.417 4.417a.635.635 0 1 1-.897.897L8 8.897l-4.417 4.417a.635.635 0 1 1-.897-.897L7.103 8 2.686 3.583a.635.635 0 0 1 0-.897z" fill="#e50000"></path></svg></div>
+							<div><img src="/el/resources/img/emp/x-icon.svg" alt=""></div>
 							<span class="essential">아이디를 입력해 주세요.</span>
+            </div>
+						<div id="use-id" class="x-icon" style="display: none;">
+							<div><img src="/el/resources/img/emp/v-icon.svg" alt=""></div>
+							<span class="okId">사용가능한 아이디입니다.</span>
             </div>
 					</div>
 					<div class="wrapper">

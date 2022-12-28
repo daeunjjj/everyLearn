@@ -65,7 +65,7 @@
 					</dl>
 					<dl>
 						<dd>최소 연봉</dd>
-						<dt>${vo.salary}</dt>
+						<dt>${vo.salary} 만원</dt>
 					</dl>
 					<dl>
 						<dd>직군</dd>

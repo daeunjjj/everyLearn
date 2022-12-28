@@ -5,14 +5,13 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>기업 회원 마이페이지</title>
 <link rel="stylesheet" href="/el/resources/css/emp/mypage/mypage.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 <link rel="stylesheet" href="/el/resources/css/common/font.css">
 <link rel="icon" type="image/png" sizes="16x16"
 	href="/el/resources/img/logo/favicon-16x16.png">
 </head>
-
 <body>
 
 	<div class="container">
@@ -20,7 +19,7 @@
 		<div class="content">
 			<div class="wrapper">
 				<main class="main">
-					<form action="/el/corp/mypage" method="POST">
+					<form action="/el/corp/mypage" method="POST" enctype="multipart/form-data">
 						<section class="info-section">
 							<h1 class="section-title">회사 정보</h1>
 							<div class="info-wrapper">
@@ -37,7 +36,7 @@
 											<span>사업자등록번호</span> <span>*</span>
 										</div>
 										<input type="text" name="companyNum"
-											placeholder="000-00-00000">
+											placeholder="000-00-00000" value="${cv.companyNum}">
 									</div>
 								</div>
 								<div class="second interval">
@@ -45,15 +44,15 @@
 										<span>회사주소</span> <span>*</span>
 									</div>
 									<div class="grid">
-										<input type="text" name="companyAddress" placeholder="주소">
-										<input type="text" name="companyAddress" placeholder="상세주소">
+										<input type="text" name="companyAddress" placeholder="주소" onclick="searchArr();" id="address" value="${cv.companyAddress}">
+										<input type="text" name="detailAddress" placeholder="나머지 주소를 입력해주세요." id="detailAddress" value="${cv.detailAddress}">
 									</div>
 								</div>
 								<div class="third interval">
 									<div class="title">
 										<span>회사 소개</span> <span>*</span>
 									</div>
-									<textarea name="introduce" class="introduce"></textarea>
+									<textarea name="introduce" class="introduce">${cv.introduce}</textarea>
 								</div>
 								<div class="grid interval">
 									<div>
@@ -61,13 +60,15 @@
 											<!-- 드롭다운 -->
 											<span>산업군</span> <span>*</span>
 										</div>
-										<input type="text" name="sector">
+										<input type="text" name="sector" value="${cv.sector}">
 									</div>
 									<div>
 										<div class="title">
 											<span>직원수</span> <span>*</span>
 										</div>
-										<input type="text" name="empNum">
+										<div class="input-sales">
+											<input type="text" name="empNum" value="${cv.empNum}"><span>명</span>
+										</div>
 									</div>
 								</div>
 								<div class="grid">
@@ -76,7 +77,7 @@
 											<span>연 매출</span> <span>*</span>
 										</div>
 										<div class="input-sales">
-											<input type="text" name="sales" placeholder=""><span>억원</span>
+											<input type="text" name="sales" placeholder="" value="${cv.sales}"><span>억원</span>
 										</div>
 									</div>
 								</div>
@@ -85,7 +86,7 @@
 										<span>홈페이지 주소</span> <span>*</span>
 									</div>
 									<input type="text" name="homepage"
-										placeholder="https:// 또는 http://">
+										placeholder="https:// 또는 http://" value="${cv.homepage}">
 								</div>
 							</div>
 						</section>
@@ -126,7 +127,7 @@
 										<label>
 											<div>
 												<div class="img-input">
-													<input type="file" accept=".jpg,.jpeg,.png" name="thmb"><img
+													<input type="file" accept=".jpg,.jpeg,.png" name="thumb"><img
 														alt="">
 													<div class="image-uploader-cover css-1ngnjh4"></div>
 													<div>
@@ -163,6 +164,8 @@
 		</div>
 	</div>
 
+	<script src="/el/resources/js/emp/mypage.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 
 </html>

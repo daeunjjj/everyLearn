@@ -10,6 +10,9 @@ const marketing = document.getElementById('marketing');
 // 이메일 정규식
 const emailId = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
+// 비밀번호 정규식(문자/ 특수문자/ 번호 포함 8~15자리)
+const pwd = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+
 // 휴대폰 번호 정규식
 const phone = /^(\d{0,3})\-(\d{0,4})\-(\d{0,4})$/g;
 
@@ -21,7 +24,7 @@ const activeBtn = () => {
   const companyNameValue = inputcompanyName.value;
   const phoneValue = inputphone.value;
 
-  if (emailId.test(idValue) && pwdValue.length >= 8 && nameValue.length && companyNameValue && phoneValue.length === 13 && terms.checked && privacy.checked) {
+  if (emailId.test(idValue) && pwd.test(pwdValue) && nameValue.length && companyNameValue && phoneValue.length === 13 && terms.checked && privacy.checked) {
     const btn = document.getElementById('joinBtn')
     btn.removeAttribute('disabled');
   }
@@ -52,13 +55,48 @@ const autoHyphen = (target) => {
 // 아이디를 입력해주세요
 const validateId = (isTyping) => {
   const idValue = inputId.value;
-  const show = document.getElementById("input-id")
+  const show = document.getElementById("input-id");
+  const isOk = document.getElementById("use-id");
+  const warn = document.querySelector(".essential");
 
+  isOk.style.display = 'none';
   if (emailId.test(idValue)) {
     show.style.display = 'none';
-  }else if(!isTyping) {
+    if (!isTyping) {
+      checkId();
+    }
+  } else if (!isTyping) {
+    warn.innerHTML = "아이디를 입력해 주세요.";
     show.style.display = 'flex';
   }
+}
+
+// 아이디 onblur
+const checkId = () => {
+  const idValue = inputId.value;
+  const show = document.getElementById("input-id");
+  const isOk = document.getElementById("use-id");
+  const warn = document.querySelector(".essential");
+  const okId = document.querySelector(".okId");
+
+  $.ajax({
+    url: "/el/corp/checkId",
+    method: "POST",
+    data: {
+      id: idValue
+    },
+    success: function (result) {
+      if (result === "okId") {
+        okId.innerHTML = "사용가능한 아이디입니다.";
+        show.style.display = 'none';
+        isOk.style.display = 'flex';
+      } else {
+        warn.innerHTML = "중복된 아이디입니다.";
+        isOk.style.display = 'none';
+        show.style.display = 'flex';
+      }
+    }
+  });
 
 }
 
@@ -67,9 +105,9 @@ const validatePwd = (isTyping) => {
   const pwdValue = inputPwd.value;
   const show = document.getElementById("input-pwd")
 
-  if(pwdValue.length >= 8){
+  if (pwd.test(pwdValue)) {
     show.style.display = 'none';
-  }else if(!isTyping){
+  } else if (!isTyping) {
     show.style.display = 'flex';
   }
 }
@@ -79,9 +117,9 @@ const validateName = (isTyping) => {
   const nameValue = inputName.value;
   const show = document.getElementById("input-name")
 
-  if(nameValue.length){
+  if (nameValue.length) {
     show.style.display = 'none';
-  }else if(!isTyping){
+  } else if (!isTyping) {
     show.style.display = 'flex';
   }
 }
@@ -91,9 +129,9 @@ const validateCompanyName = (isTyping) => {
   const companyNameValue = inputcompanyName.value;
   const show = document.getElementById('input-companyName');
 
-  if(companyNameValue.length){
+  if (companyNameValue.length) {
     show.style.display = 'none';
-  }else if(!isTyping){
+  } else if (!isTyping) {
     show.style.display = 'flex';
   }
 }
@@ -103,9 +141,9 @@ const validatePhone = (isTyping) => {
   const phoneValue = inputphone.value;
   const show = document.getElementById('input-phone');
 
-  if(phone.test(phoneValue)){
+  if (phone.test(phoneValue)) {
     show.style.display = 'none';
-  }else if(!isTyping){
+  } else if (!isTyping) {
     show.style.display = 'flex';
   }
 }

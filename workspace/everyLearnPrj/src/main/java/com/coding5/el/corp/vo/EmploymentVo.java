@@ -24,4 +24,7 @@ public class EmploymentVo {
 	private String modifyDate;
 	private String deleteYN;
 	
+	// 채용 공고 상태
+	private String status;
+	
 }
