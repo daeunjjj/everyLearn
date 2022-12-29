@@ -205,3 +205,41 @@ button:hover{
 /* ------------------------ */
 
 
+#title-wrap{
+    height: 35px;
+    width: 100px;
+    text-overflow: ellipsis;
+    white-space : nowrap;
+}
+
+#content-wrap{
+    text-overflow: ellipsis;
+    white-space : nowrap;
+    height: 35px;
+    width: 500px;
+}
+
+#title{
+    display: block;
+    text-overflow: unset;
+    white-space : nowrap;
+    height: 35px;
+    width: 140px;
+    overflow: hidden; 
+    margin: auto;
+}
+
+#content{
+    display: block;
+    text-overflow: clip;
+    height: 35px;
+    width: 300px;
+    overflow: hidden; 
+    white-space : nowrap;
+    overflow: hidden;  		
+  text-overflow: ellipsis;  	
+  white-space: nowrap; 		
+  word-break:break-all;
+  margin: auto;
+}
+

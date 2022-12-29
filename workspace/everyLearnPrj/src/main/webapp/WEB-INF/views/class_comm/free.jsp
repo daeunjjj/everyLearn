@@ -63,11 +63,11 @@
 					</div>
 				<c:forEach items="${freeList }" var="free">
 					<div id="free-main">
-						<div>
-							<a href="/el/class/detail?classCommNo=${free.classCommNo}">${free.title}</a>
+						<div id="title-wrap">
+							<a id="title" href="/el/class/detail?classCommNo=${free.classCommNo}">${free.title}</a>
 						</div>
-						<div>
-							<a href="/el/class/detail?classCommNo=${free.classCommNo}">${free.content}</a>
+						<div id="content-wrap">
+							<a id="content" href="/el/class/detail?classCommNo=${free.classCommNo}">${free.content}</a>
 						</div>
 						<div>
 							<a href="">${free.hit }</a>

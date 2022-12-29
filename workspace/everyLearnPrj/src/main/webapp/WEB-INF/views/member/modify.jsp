@@ -34,13 +34,12 @@
                     <form action="/el/member/modify" method="post" id="modify-form" onsubmit="return modifySubmit();" enctype="multipart/form-data">
 
                         <div id="wrap-img">
-                            <div id='View_area'></div>
+                            <div id='View_area'><img style="height: 150px; width: 150px;" src="/el/resources/upload/${loginMember.profileImgName}" alt=""></div>
                                 <div id="f">
                                     <input type="file" class="form-control mt-3" name="profileImg" id="profile_pt"
                                         onchange="previewImage(this,'View_area')" style="margin-left: 0px; height: 23px;">
                                 </div>
-                        </div>
-
+                       
                         <h4><label for="">아이디</label></h4>
                         <span class="modify-box" >
                             <div >${loginMember.memberId}</div>     

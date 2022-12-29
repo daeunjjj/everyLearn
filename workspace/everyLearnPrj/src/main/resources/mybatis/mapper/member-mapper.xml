@@ -10,6 +10,7 @@
 	<result property="memberPwd" column="PWD"/>
 	<result property="memberName" column="NAME"/>
 	<result property="memberNick" column="NICK"/>
+	<result property="profileImgName" column="PROFILE_IMG_NAME"/>
 	
 </resultMap>
 
@@ -48,6 +49,8 @@ INSERT INTO MEMBER
 		    ,EMAIL
 		    ,ENROLL_DATE
 		    ,MODIFY_DATE
+		   
+			    ,PROFILE_IMG_NAME
 		    
 		    ,POINT
 		    ,REPORT_YN

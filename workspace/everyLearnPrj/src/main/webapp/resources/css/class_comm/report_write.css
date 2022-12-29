@@ -26,11 +26,19 @@
     margin: auto;
     border-top: 2px solid #1187CF;
     border-bottom: 2px solid #1187CF;
-    width: 350px;
-    height: 50px;
-    font-size: small;
+    width: 280px;
+    height: 70px;
+    font-size: large;
     color: gray;
     margin-bottom: 20px;
+    text-align: center;
+
+}
+
+p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #btn-wrap{
@@ -51,4 +59,10 @@
     border-radius: 10px;
     font-size: large;
     color: white;
+}
+
+img{
+    display: inline;
+    height: 20px;
+    width: 20px;
 }

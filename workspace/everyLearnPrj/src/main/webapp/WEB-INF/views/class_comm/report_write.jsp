@@ -22,7 +22,8 @@
             <div id="report-top"><h1>신고</h1></div>
           <br>
             <div id="blacklist">
-              <p style="margin-bottom: 5px;">[신고대상] ${reportMap.blacklist}</p>
+              <img src="/el/resources/img/class-comm/warning2.png" alt="">
+              <p style="height: 45px; width: 280px; "> ${reportMap.blacklist}</p>
             </div>
             <form action="/el/class/report" method="post" onsubmit="completion()">
             <div class="form-check">
