@@ -11,6 +11,7 @@ import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.corp.vo.CorpVo;
+import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
@@ -190,6 +191,18 @@ public class AdminDaoImpl implements AdminDao{
 	public int selectCorporateStatusByN(SqlSessionTemplate sst) {
 		// 기업회원 승인대기 수
 		return sst.selectOne("adminMapper.selectCorporateStatusByN");
+	}
+
+	@Override
+	public CorpVo selectCorpDetailByNo(SqlSessionTemplate sst, String no) {
+		// 기업회원디테일
+		return sst.selectOne("adminMapper.selectCorpDetailByNo",no);
+	}
+
+	@Override
+	public List<EmploymentVo> selectEmploymentList(SqlSessionTemplate sst, String no) {
+		// 채용공고 리스트들 조회
+		return sst.selectList("adminMapper.selectEmploymentList",no);
 	}
 	
 

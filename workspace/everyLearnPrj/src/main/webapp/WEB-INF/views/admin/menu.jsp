@@ -86,7 +86,7 @@
                                     <a href="/el/notice/adminList">공지사항</a>
                                 </li>
                                 <li class="detail-cate" id="faq">
-                                    <a href="">자주묻는질문</a>
+                                    <a href="/el/faq/adminList">자주묻는질문</a>
                                 </li>
                                 <li class="detail-cate" id="qna">
                                     <a href="">QNA</a>

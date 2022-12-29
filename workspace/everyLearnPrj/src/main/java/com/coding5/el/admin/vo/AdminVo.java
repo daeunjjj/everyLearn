@@ -20,7 +20,6 @@ public class AdminVo {
 	private String quitYn;
 	private String profileName;
 	private MultipartFile profile;
-	
 	private String rawPwd;
 	
 	// 암호화

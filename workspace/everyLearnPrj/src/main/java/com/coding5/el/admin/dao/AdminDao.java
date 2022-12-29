@@ -9,6 +9,7 @@ import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.corp.vo.CorpVo;
+import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
@@ -92,6 +93,12 @@ public interface AdminDao {
 	
 	// 기업회원 승인 대기 수
 	public int selectCorporateStatusByN(SqlSessionTemplate sst);
+
+	// 기업회원디테일
+	public CorpVo selectCorpDetailByNo(SqlSessionTemplate sst, String no);
+	
+	// 채용공고 조회
+	public List<EmploymentVo> selectEmploymentList(SqlSessionTemplate sst, String no);
 	
 
 	

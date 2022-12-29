@@ -46,6 +46,7 @@ public class AdminController {
 	 */
 	@GetMapping("login")
 	public String login() {
+		
 		return "admin/login";
 	}
 	
@@ -61,6 +62,7 @@ public class AdminController {
 	@PostMapping("login")
 	public String login(AdminVo vo, String save, HttpSession session, Model model, HttpServletResponse resp) {
 		
+		log.info("로그인  :: " + vo);
 		
 		AdminVo loginAdmin = adminService.login(vo);
 		
@@ -165,7 +167,7 @@ public class AdminController {
 		
 		AdminVo updateAdmin = adminService.myInfoModify(vo);
 		
-		log.info("관리자 :: " + updateAdmin);
+		log.info("관리자 정보 수정 (db다녀옴) :: " + updateAdmin);
 		
 		if(updateAdmin == null) {
 			model.addAttribute("resultMsg", "정보 수정 실패");
@@ -190,7 +192,7 @@ public class AdminController {
 		int pageLimit = 5;
 		int boardLimit = 10;
 		
-		log.info("화면에서 받아오는 데이터  mapSearch :::" + mapSearch);
+		log.info("관리자 조회 - 화면에서 받아오는 데이터  mapSearch :::" + mapSearch);
 		
 		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		
@@ -270,16 +272,16 @@ public class AdminController {
 		int currentPage = Integer.parseInt(pno);
 		int pageLimit = 5;
 		int boardLimit = 10;
-		log.info("리스트 수 :::"+listCount);
-		log.info("화면에서 받아오는 데이터 mapSearch  :::" + mapSearch);
-		log.info("화면에서 받아오는 데이터 pno ::: "+mapSearch);
+		log.info("학생 리스트 - 리스트 수 :::"+listCount);
+		log.info("학생 리스트 - 화면에서 받아오는 데이터 mapSearch  :::" + mapSearch);
+		log.info("학생 리스트 - 화면에서 받아오는 데이터 pno ::: "+mapSearch);
 		
 		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		
 		
 		List<MemberVo> voList = adminService.selectStudentList(pv,mapSearch);
 		
-		log.info("화면에서 받아오는 listVo ::: " + voList);
+		log.info("학생 리스트 - 화면에서 받아오는 listVo ::: " + voList);
 		
 		if(voList == null) return "common/error";
 		
@@ -451,7 +453,13 @@ public class AdminController {
 	
 
 	
-	// 기업회원 리스트 조회
+	/**
+	 * 기업회원리스트 조회
+	 * @param pno
+	 * @param svo
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("member/corporate/list")
 	public String corpList(String pno, SearchVo svo , Model model) {
 		
@@ -460,8 +468,8 @@ public class AdminController {
 		int pageLimit = 5;
 		int boardLimit = 10;
 		log.info("리스트 수 :::"+listCount);
-		log.info("화면에서 받아오는 데이터 mapSearch  :::" + svo);
-		log.info("화면에서 받아오는 데이터 pno ::: "+svo);
+		log.info("화면에서 받아오는 데이터 svo  :::" + svo);
+		log.info("화면에서 받아오는 데이터 pno ::: "+pno);
 		
 		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		
@@ -483,7 +491,15 @@ public class AdminController {
 	
 	// 기업회원 디테일 조회
 	@GetMapping("member/corporate/detail")
-	public String corporateDetail() {
+	public String corporateDetail(String no, Model model) {
+		
+		Map<String, Object> map = adminService.selectCorpAndEmp(no);
+		
+		if(map == null) return "common/error";
+		
+		log.info("기업회원 디테일 조회 - 디비다녀옴 ::: " + map);
+		
+		model.addAttribute("map", map);
 		return "admin/member/corporate/detail";
 	}
 	

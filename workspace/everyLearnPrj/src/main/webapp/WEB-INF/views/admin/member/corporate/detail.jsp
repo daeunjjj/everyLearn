@@ -22,35 +22,53 @@
                         <div class="info-top">
                             <div class="flex-items">
                                 <div>기업이름</div>
-                                <div>kh352</div>
+                                <div>${map.corpMember.companyName }</div>
                             </div>
                             <div class="flex-items">
                                 <div>대표자명</div>
-                                <div>심투용</div>
+                                <div>${map.corpMember.name }</div>
                             </div>
                             <div class="flex-items">
                                 <div>직군</div>
-                                <div>IT</div>
+                                <div>${map.corpMember.sector }</div>
                             </div>
                             <div class="flex-items">
                                 <div>주소</div>
-                                <div>서울특별시 강남구 테헤란로 무슨빌딩 5층</div>
+                                <div>${map.corpMember.companyAddress }</div>
                             </div>
                             <div class="flex-items">
                                 <div>전화번호</div>
-                                <div>010-1234-5678</div>
+                                <div>${map.corpMember.phone }</div>
                             </div>
                             <div class="flex-items">
                                 <div>이메일</div>
-                                <div>2dragon@gmail.com</div>
+                                <div>${map.corpMember.id }</div>
                             </div>
                             <div class="flex-items">
                                 <div>사업자번호</div>
-                                <div>123-45-67890</div>
+                                <div>${map.corpMember.companyNum }</div>
+                            </div>
+                            <div class="flex-items">
+                                <div>직원수</div>
+                                <div>${map.corpMember.empNum }</div>
+                            </div>
+                            <div class="flex-items">
+                                <div>연매출</div>
+                                <div>${map.corpMember.sales }</div>
+                            </div>
+                            <div class="flex-items">
+                                <div>홈페이지</div>
+                                <div>
+	                                <a href="${map.corpMember.homepage }">${map.corpMember.homepage }</a>                                
+                                </div>
+                            </div>
+                            <div class="flex-items">
+                                <div>회사소개</div>
+                                <div>${map.corpMember.introduce}</div>
                             </div>
                         </div>
                         <div class="map-area">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d50646.0540677786!2d127.03290900000002!3d37.498993000000006!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3565475c3365c5bb!2zS0jsoJXrs7TqtZDsnKHsm5A!5e0!3m2!1sko!2skr!4v1670336673821!5m2!1sko!2skr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <div id="map" style="width:100%;height:100%;"></div>
                         </div>
                     </div>
                     <div class="detail-list-wrap">
@@ -89,5 +107,47 @@
 
         </main>
     </div>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=398deca262e64e258d8911a7ae6a1fe3&libraries=services"></script>
+    <script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+        mapOption = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };  
+    
+    // 지도를 생성합니다    
+    var map = new kakao.maps.Map(mapContainer, mapOption); 
+    
+    // 주소-좌표 변환 객체를 생성합니다
+    var geocoder = new kakao.maps.services.Geocoder();
+    
+    const address = '${map.corpMember.companyAddress }';
+    const name = '${map.corpMember.companyName }';
+
+    // 주소로 좌표를 검색합니다
+    geocoder.addressSearch(address, function(result, status) {
+    
+        // 정상적으로 검색이 완료됐으면 
+         if (status === kakao.maps.services.Status.OK) {
+    
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords
+            });
+    
+            // 인포윈도우로 장소에 대한 설명을 표시합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                content: '<div style="width:150px;text-align:center;padding:6px 0;">'+name+'</div>'
+            });
+            infowindow.open(map, marker);
+    
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(coords);
+        } 
+    });    
+    </script>
 </body>
 </html>

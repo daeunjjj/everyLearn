@@ -82,4 +82,7 @@ public interface AdminService {
 	// 기업회원리스트가져오기
 	public Map<String, Object> selectCorporateList(PageVo pv, SearchVo svo);
 	
+	// 기업회원 디테일 조회
+	public Map<String, Object> selectCorpAndEmp(String no);
+	
 }

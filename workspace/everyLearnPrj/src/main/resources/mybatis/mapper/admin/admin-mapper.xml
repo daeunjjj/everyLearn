@@ -248,9 +248,14 @@
 			SELECT COUNT(*)
 			FROM TEACHER T
 			JOIN MEMBER M ON T.MEMBER_NO = M.NO
-		<if test="keyword != null and keyword != ''">
-			WHERE M.${category} LIKE '%${keyword}%'
-		</if>
+		<where>
+			<if test="keyword != null and keyword != ''">
+				M.${category} LIKE '%${keyword}%'
+			</if>
+			<if test="category == 'status'">
+				AND T.STATUS_YN = 'N'
+			</if>
+		</where>
 		<if test="cate != null and keyword != ''">
 			AND T.CATEGORY IN
 			<foreach collection="cate" item="arr" open="(" close=")" separator=",">
@@ -270,7 +275,7 @@
 		    ,T.RECORD
 		    ,T.ENROLL_DATE
 		    ,T.MODIFY_DATE
-		    ,STATUS_YN
+		    ,T.STATUS_YN
 		    ,T.DELETE_YN
 		    ,M.ID
 		    ,M.EMAIL
@@ -281,6 +286,9 @@
 		<where>
 			<if test="keyword != null and keyword != ''">
 				M.${category} LIKE '%${keyword}%'
+			</if>
+			<if test="category == 'status'">
+				T.STATUS_YN = 'N'
 			</if>
 			<if test="cate != null and keyword != ''">
 				AND T.CATEGORY IN
@@ -432,5 +440,54 @@
 		FROM CORPORATE_MEMBER
 		WHERE STATUS_YN = 'N'
 		AND DELETE_YN = 'N'
+	</select>
+	
+	<select id="selectCorpDetailByNo" resultType="CorpVo">
+		SELECT 
+		    NO
+		    ,ID
+		    ,PWD
+		    ,COMPANY_NAME
+		    ,COMPANY_ADDRESS
+		    ,DETAIL_ADDRESS
+		    ,NAME
+		    ,PHONE
+		    ,INTRODUCE
+		    ,ENROLL_DATE
+		    ,MODIFY_DATE
+		    ,COMPANY_NUM
+		    ,QUIT_YN
+		    ,STATUS_YN
+		    ,SECTOR
+		    ,EMP_NUM
+		    ,SALES
+		    ,HOMEPAGE
+		    ,DELETE_YN
+		FROM CORPORATE_MEMBER
+		WHERE NO = #{no}
+	</select>
+	
+	<select id="selectEmploymentList" resultType="EmploymentVo">
+		SELECT
+		    NO
+		    ,CORP_NO
+		    ,CATEGORY
+		    ,TITLE
+		    ,RESPONSIBILITY
+		    ,QUALIFICATION
+		    ,PREFERENTIAL
+		    ,SALARY
+		    ,BENEFITS
+		    ,INTRODUCE
+		    ,SECTOR
+		    ,ADDRESS
+		    ,CAREER
+		    ,DEADLINE
+		    ,WISH_CNT
+		    ,ENROLL_DATE
+		    ,MODIFY_DATE
+		    ,DELETE_YN
+		FROM EMPLOYMENT
+		WHERE CORP_NO = #{no}
 	</select>
 </mapper>
