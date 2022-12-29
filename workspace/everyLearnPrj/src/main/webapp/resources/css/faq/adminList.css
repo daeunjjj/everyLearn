@@ -45,7 +45,7 @@
 
 .list-wrap{
     display: grid;
-    grid-template-columns: 0.5fr 0.3fr 2fr 1fr 1fr 0.5fr 0.3fr 0.3fr;
+    grid-template-columns: 0.3fr 0.2fr 0.5fr 2fr 0.5fr 0.8fr 0.2fr 0.3fr;
     grid-template-rows: repeat(11, 45px);
     align-content: center;
     padding: 10px;
@@ -87,9 +87,7 @@
 
 #main-bot {
     grid-column: span 8;
-    display: flex;
-    flex-direction: row-reverse;   
-    margin: 15px;
+    margin-top: 25px;
 }
 
 #write{

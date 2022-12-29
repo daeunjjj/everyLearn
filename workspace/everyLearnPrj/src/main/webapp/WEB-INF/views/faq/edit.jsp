@@ -39,7 +39,6 @@
                     <br>
                     <div id="title"><input type="text" name="title" required placeholder="제목"></div>
                     <div id="content"><textarea name="content" required placeholder="내용"></textarea></div>
-                    <div id="file"><input class="form-control form-control-sm" id="formFileSm" type="file" name="f"></div>
                     <div id="write"><button type="submit" class="btn btn-light" id="submit-btn">수정하기</button></div>
                 </form>		
 
