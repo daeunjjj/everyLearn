@@ -15,6 +15,9 @@
   <div class="container">
     <%@ include file="/WEB-INF/views/emp/mypage/navbar.jsp"%>
     <div class="content">
+        <div class="title">
+            <h1>채용중</h1>
+        </div>
         <div class="table-container">
             <div class="table-wrapper">
                 <table class="list">
@@ -31,7 +34,7 @@
                    <c:forEach items="${list}" var="vo">
                         <tr>
                             <td>${vo.no}</td>
-                            <td>${vo.title}</td>
+                            <td><a href="/el/corp/position?no=${vo.no}">${vo.title}</a></td>
                             <td>${vo.enrollDate}</td>
                             <td>${vo.deadline}</td>
                             <td>${vo.status}</td>
@@ -59,9 +62,8 @@
                 </c:if>
                 </ul>
             </nav>
-        </div>
     </div>
-       
+</div>
     </div>
 
 </body>

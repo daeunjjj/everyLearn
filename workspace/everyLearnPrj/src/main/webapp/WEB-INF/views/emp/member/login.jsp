@@ -16,7 +16,7 @@
 		<div class="wrapper">
 			<section class="left">
 				<div class="logo">
-					<img src="/el/resources/img/emp/login.png" alt="emp-img">
+					<a href="/el/emp/main"><img src="/el/resources/img/emp/login.png" alt="emp-img"></a>
 				</div>
 			</section>
 			<section class="right">

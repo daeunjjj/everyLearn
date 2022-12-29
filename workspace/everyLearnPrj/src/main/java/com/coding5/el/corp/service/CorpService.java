@@ -5,6 +5,7 @@ import java.util.List;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
+import com.coding5.el.emp.vo.JobPostVo;
 
 public interface CorpService {
 
@@ -46,6 +47,15 @@ public interface CorpService {
 
 	// 채용 전체보기 리스트
 	public List<EmploymentVo> getTotalList(PageVo pv, String corpNo);
+
+	// 공고 세부조회
+	public JobPostVo selectJobPost(CorpVo corpMember, String no);
+
+	// 공고 조회(기업용)
+	public EmploymentVo selectEmployment(CorpVo corpMember, String no);
+
+	// 공고 수정
+	public int editJobPost(EmploymentVo vo, CorpVo corpMember);
 
 
 }

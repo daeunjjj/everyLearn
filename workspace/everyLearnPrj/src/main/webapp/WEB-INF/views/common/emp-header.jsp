@@ -18,7 +18,7 @@
 					<li><a href="#">채용</a></li>
 				</ul>
 				<ul class="teacher">
-					<li><a href="/el/corp/login">기업서비스</a></li>
+					<li><a href="/el/corp/mypage">기업서비스</a></li>
 				</ul>
 			</div>
 		</div>

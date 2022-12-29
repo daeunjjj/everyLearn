@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
+import com.coding5.el.emp.vo.JobPostVo;
 
 public interface CorpDao {
 
@@ -48,6 +49,15 @@ public interface CorpDao {
 
 	// 채용 전체보기 리스트
 	public List<EmploymentVo> getTotalList(SqlSessionTemplate sst, PageVo pv, String corpNo);
+
+	// 채용 공고 세부조회
+	public JobPostVo selectJobPost(SqlSessionTemplate sst, String no);
+
+	// 공고 조회(기업용)
+	public EmploymentVo selectEmployment(SqlSessionTemplate sst, String no);
+
+	// 채용 공고 수정
+	public int updateEmployment(SqlSessionTemplate sst, EmploymentVo vo);
 
 
 

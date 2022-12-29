@@ -22,5 +22,7 @@ public class JobPostVo {
 	private String companyName;
 	private String companyAddress;
 	private String type;
+	private String logo;
+	private String thumb;
 	
 }

@@ -15,6 +15,9 @@
   <div class="container">
     <%@ include file="/WEB-INF/views/emp/mypage/navbar.jsp"%>
     <div class="content">
+        <div class="title">
+            <h1>채용 마감</h1>
+        </div>
         <div class="table-container">
             <div class="table-wrapper">
                 <table class="list">
@@ -31,7 +34,7 @@
                         <c:forEach items="${list}" var="vo">
                         <tr>
                             <td>${vo.no}</td>
-                            <td>${vo.title}</td>
+                            <td><a href="/el/corp/position?no=${vo.no}">${vo.title}</a></td>
                             <td>${vo.enrollDate}</td>
                             <td>${vo.deadline}</td>
                             <td>${vo.status}</td>
@@ -44,17 +47,17 @@
                 <ul>
                 <c:if test="${pv.currentPage != 1}">
                     <li>
-                        <a id="before" href="/el/corp/deadline?pno=${pv.currentPage-1}">이전</a>
+                        <a id="before" href="/el/corp/deadLine?pno=${pv.currentPage-1}">이전</a>
                     </li>
                 </c:if>
                 <c:forEach var="num" begin="${pv.startPage }" end="${pv.endPage }">
                     <li>
-                        <a class="numBtn" href="/el/corp/deadline?pno=${num}">${num}</a>
+                        <a class="numBtn" href="/el/corp/deadLine?pno=${num}">${num}</a>
                     </li>
                 </c:forEach>
                 <c:if test="${pv.currentPage != pv.maxPage && pv.maxPage != 0}">
                     <li>
-                        <a id="after" href="/el/corp/deadline?pno=${pv.currentPage+1}">다음</a>                       		
+                        <a id="after" href="/el/corp/deadLine?pno=${pv.currentPage+1}">다음</a>                       		
                     </li>
                 </c:if>
                 </ul>

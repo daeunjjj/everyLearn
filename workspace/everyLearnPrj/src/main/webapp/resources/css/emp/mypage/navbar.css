@@ -60,6 +60,7 @@ a{
 
 .list-title{
   margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .list-title>h3{
@@ -81,7 +82,7 @@ a{
 }
 
 .employment>li:not(:last-child){
- margin-bottom: 8px;
+ margin-bottom: 10px;
 }
 
 .logout{

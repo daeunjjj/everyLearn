@@ -5,7 +5,7 @@
 <mapper namespace="jobPostMapper">
   
   <select id="selectJobPostDetail" resultType="JobPostVo">
-  	SELECT 
+  	 	SELECT 
   		EMP.NO
 		, EMP.CORP_NO
 		, EMP.CATEGORY
@@ -22,6 +22,8 @@
 		, EMP.DEADLINE
 		, CORP.COMPANY_NAME
 		, CORP.COMPANY_ADDRESS
+		, CORP.LOGO
+		, CORP.THUMB
 		, EC.TYPE
 	FROM EMPLOYMENT EMP
 	JOIN CORPORATE_MEMBER CORP ON EMP.CORP_NO = CORP.NO

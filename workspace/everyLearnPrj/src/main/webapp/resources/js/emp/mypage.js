@@ -45,5 +45,28 @@ const autoHyphen = (target) => {
     target.value = target.value
       .replace(/[^0-9]/g, '')
       .replace(/^(\d{0,3})(\d{0,2})(\d{0,5})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
-  
+
+    validate();
+  }
+
+  const validate = () => {
+    const companyName = document.getElementById('companyName').value;
+    const companyNum = document.getElementById('companyNum').value;
+    const address = document.getElementById('address').value;
+    const detailAddress = document.getElementById('detailAddress').value;
+    const introduce = document.getElementById('introduce').value;
+    const sector = document.getElementById('sector').value;
+    const empNum = document.getElementById('empNum').value;
+    const sales = document.getElementById('sales').value;
+    const homepage = document.getElementById('homepage').value;
+    const logo = document.getElementById('logo').value;
+    const thumb = document.getElementById('thumb').value;
+    const btn = document.querySelector('.admin-btn');
+
+    if(companyName && companyNum.length === 12 && address && detailAddress && introduce && sector && empNum && sales && homepage && logo && thumb){
+        btn.removeAttribute('disabled');
+    }else{
+        btn.setAttribute('disabled', '');
+    }
+
   }
