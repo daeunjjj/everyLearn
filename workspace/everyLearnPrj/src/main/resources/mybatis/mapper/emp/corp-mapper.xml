@@ -194,4 +194,59 @@
 	ORDER BY NO DESC
   </select>
   
+  <!-- 채용 공고 세부조회 -->
+  <select id="selectJobPost" resultType="JobPostVo">
+  	SELECT 
+  		EMP.NO
+		, EMP.CORP_NO
+		, EMP.CATEGORY
+		, EMP.TITLE
+		, EMP.RESPONSIBILITY
+		, EMP.QUALIFICATION
+		, EMP.PREFERENTIAL
+		, EMP.SALARY
+		, EMP.BENEFITS
+		, EMP.INTRODUCE
+		, EMP.SECTOR
+		, EMP.ADDRESS
+		, EMP.CAREER
+		, EMP.DEADLINE
+		, CORP.COMPANY_NAME
+		, CORP.COMPANY_ADDRESS
+		, CORP.LOGO
+		, CORP.THUMB
+		, EC.TYPE
+	FROM EMPLOYMENT EMP
+	JOIN CORPORATE_MEMBER CORP ON EMP.CORP_NO = CORP.NO
+	JOIN EMP_CATE EC ON EMP.CATEGORY = EC.NO
+	WHERE EMP.NO = #{no}
+  </select>
+  
+  <select id="selectEmployment" resultType="EmploymentVo">
+  	SELECT *
+  	FROM EMPLOYMENT
+  	WHERE NO = #{no}
+  </select>
+  
+  <!-- 채용 공고 수정하기 -->
+  <update id="updateEmployment">
+   UPDATE EMPLOYMENT
+  	SET
+  		CATEGORY = #{category}
+		, TITLE = #{title}
+		, RESPONSIBILITY = #{responsibility}
+		, QUALIFICATION = #{qualification}
+		, PREFERENTIAL = #{preferential}
+		, SALARY = #{salary}
+		, BENEFITS = #{benefits}
+		, INTRODUCE = #{introduce}
+		, SECTOR = #{sector}
+		, ADDRESS = #{address}
+		, CAREER = #{career}
+		, DEADLINE = #{deadline}
+		, MODIFY_DATE = SYSDATE
+  	WHERE NO = #{no}
+  	AND CORP_NO = #{corpNo}
+  </update>
+  
 </mapper>

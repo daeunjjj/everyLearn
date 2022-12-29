@@ -136,6 +136,11 @@ input{
   width: 9.333rem;
 }
 
+.admin-btn:disabled{
+  cursor: not-allowed;
+  background-color: rgba(17, 134, 207, 0.349);
+}
+
 .img-upload-wrapper{
   margin-bottom: 30px;
 }

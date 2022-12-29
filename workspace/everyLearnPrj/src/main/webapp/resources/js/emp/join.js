@@ -128,10 +128,10 @@ const validateCheck = (isTyping) => {
   const show = document.getElementById('use-pwdCheck');
   const failPwd = document.getElementById('input-pwdCheck');
 
-  if(pwdValue === pwdCheckValue){
+  if(pwdValue === pwdCheckValue && pwdCheckValue !== ""){
     show.style.display = 'flex';
     failPwd.style.display = 'none';
-  } else if (!isTyping) {
+  } else if (!isTyping && pwdCheckValue !== "") {
     failPwd.style.display = 'flex';
     show.style.display = 'none';
   }

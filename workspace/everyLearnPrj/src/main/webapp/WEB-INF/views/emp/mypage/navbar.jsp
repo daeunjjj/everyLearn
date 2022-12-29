@@ -17,7 +17,7 @@
       <nav class="nav">
         <header class="header">
           <a href="/el/emp/main" class="logo"><img src="/el/resources/img/logo/logo_white.png"
-            alt=""></a> <a href="/el/corp/position" class="create">
+            alt=""></a> <a href="/el/corp/register-position" class="create">
             <button>+ 새 채용 공고 만들기</button>
           </a>
         </header>
@@ -34,9 +34,9 @@
                     <h5>채용관리</h5>
                   </div>
                   <ul class="employment">
-                    <li><a href="/el/corp/total">전체</a></li>
-                    <li><a href="/el/corp/hiring">채용중</a></li>
-                    <li><a href="/el/corp/deadLine">채용 마감</a></li>
+                    <li id="total"><a href="/el/corp/total">전체</a></li>
+                    <li id="hiring"><a href="/el/corp/hiring">채용중</a></li>
+                    <li id="deadLine"><a href="/el/corp/deadLine">채용 마감</a></li>
                   </ul>
                 </li>
                 <li><a href="/el/corp/applicant">지원자 현황</a></li>

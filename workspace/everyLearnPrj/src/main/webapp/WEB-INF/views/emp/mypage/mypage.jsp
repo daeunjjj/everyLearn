@@ -28,14 +28,13 @@
 										<div class="title">
 											<span>회사명</span> <span>*</span>
 										</div>
-										<input type="text" name="companyName" placeholder="회사이름"
-											value="${cv.companyName}">
+										<input oninput="validate();" type="text" name="companyName" id="companyName" placeholder="회사이름" value="${cv.companyName}">
 									</div>
 									<div>
 										<div class="title">
 											<span>사업자등록번호</span> <span>*</span>
 										</div>
-										<input type="text" name="companyNum"
+										<input type="text" name="companyNum" id="companyNum"
 											placeholder="000-00-00000" value="${cv.companyNum}" oninput="autoHyphen(this);"maxlength="12">
 									</div>
 								</div>
@@ -44,15 +43,15 @@
 										<span>회사주소</span> <span>*</span>
 									</div>
 									<div class="grid">
-										<input type="text" name="companyAddress" placeholder="주소" onclick="searchArr();" id="address" value="${cv.companyAddress}">
-										<input type="text" name="detailAddress" placeholder="나머지 주소를 입력해주세요." id="detailAddress" value="${cv.detailAddress}">
+										<input oninput="validate();" type="text" name="companyAddress" placeholder="주소" onclick="searchArr();" id="address" value="${cv.companyAddress}">
+										<input oninput="validate();" type="text" name="detailAddress" placeholder="나머지 주소를 입력해주세요." id="detailAddress" value="${cv.detailAddress}">
 									</div>
 								</div>
 								<div class="third interval">
 									<div class="title">
 										<span>회사 소개</span> <span>*</span>
 									</div>
-									<textarea name="introduce" class="introduce">${cv.introduce}</textarea>
+									<textarea name="introduce" id="introduce" class="introduce">${cv.introduce}</textarea>
 								</div>
 								<div class="grid interval">
 									<div>
@@ -60,14 +59,14 @@
 											<!-- 드롭다운 -->
 											<span>산업군</span> <span>*</span>
 										</div>
-										<input type="text" name="sector" value="${cv.sector}">
+										<input oninput="validate();" type="text" name="sector" id="sector" value="${cv.sector}">
 									</div>
 									<div>
 										<div class="title">
 											<span>직원수</span> <span>*</span>
 										</div>
 										<div class="input-sales">
-											<input type="text" name="empNum" value="${cv.empNum}"><span>명</span>
+											<input oninput="validate();" type="text" name="empNum" id="empNum" value="${cv.empNum}"><span>명</span>
 										</div>
 									</div>
 								</div>
@@ -77,7 +76,7 @@
 											<span>연 매출</span> <span>*</span>
 										</div>
 										<div class="input-sales">
-											<input type="text" name="sales" placeholder="" value="${cv.sales}"><span>억원</span>
+											<input oninput="validate();" type="text" name="sales" id="sales" placeholder="" value="${cv.sales}"><span>억원</span>
 										</div>
 									</div>
 								</div>
@@ -85,8 +84,8 @@
 									<div class="title">
 										<span>홈페이지 주소</span> <span>*</span>
 									</div>
-									<input type="text" name="homepage"
-										placeholder="https:// 또는 http://" value="${cv.homepage}">
+									<input oninput="validate();" type="text" name="homepage"
+										placeholder="https:// 또는 http://" id="homepage" value="${cv.homepage}">
 								</div>
 							</div>
 						</section>
@@ -101,7 +100,7 @@
 										<label>
 											<div>
 												<div class="img-input">
-													<input type="file" accept=".jpg,.jpeg,.png" name="logo"><img
+													<input oninput="validate();" type="file" accept=".jpg,.jpeg,.png" name="logo" id="logo"><img
 														alt="">
 													<div class="image-uploader-cover css-1ngnjh4"></div>
 													<div>
@@ -127,7 +126,7 @@
 										<label>
 											<div>
 												<div class="img-input">
-													<input type="file" accept=".jpg,.jpeg,.png" name="thumb"><img
+													<input oninput="validate();" type="file" accept=".jpg,.jpeg,.png" name="thumb" id="thumb"><img
 														alt="">
 													<div class="image-uploader-cover css-1ngnjh4"></div>
 													<div>
@@ -151,7 +150,7 @@
 						</section>
 						<section class="admin-submit">
 							<div>
-								<button type="submit" class="admin-btn">승인 요청</button>
+								<button type="submit" class="admin-btn" disabled>승인 요청</button>
 							</div>
 						</section>
 					</form>

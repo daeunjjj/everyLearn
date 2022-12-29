@@ -20,6 +20,7 @@ import com.coding5.el.common.page.Pagination;
 import com.coding5.el.corp.service.CorpService;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
+import com.coding5.el.emp.vo.JobPostVo;
 import com.coding5.el.lecture.vo.LectureVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -64,13 +65,8 @@ public class CorpController {
 		return "emp/member/login";
 	}
 	
-	/**
-	 * 로그인
-	 * @param vo
-	 * @param session
-	 * @param model
-	 * @return
-	 */
+
+	// 기업 로그인
 	@PostMapping("login")
 	public String login(CorpVo vo, HttpSession session, Model model) {
 		
@@ -153,13 +149,30 @@ public class CorpController {
 	}
 	
 	// 기업 채용 공고 만들기(화면)
-	@GetMapping("position")
-	public String jobPost() {
+	@GetMapping("register-position")
+	public String jobPost(HttpSession session, String no, Model model) {
+		
+		CorpVo corpMember = (CorpVo) session.getAttribute("corpMember");
+		
+		if(corpMember == null) {
+			return "redirect:/corp/login";
+		}
+		
+		if(no != null) {
+			EmploymentVo ev = cs.selectEmployment(corpMember, no);
+
+			if(ev == null) {
+				return "redirect:/corp/login";
+			}
+			
+			model.addAttribute("ev", ev);
+		}
+		
 		return "emp/mypage/job-post";
 	}
 	
 	// 기업 채용 공고 만들기
-	@PostMapping("position")
+	@PostMapping("register-position")
 	public String jobPost(EmploymentVo vo, HttpSession session){
 		
 		CorpVo corpMember = (CorpVo) session.getAttribute("corpMember");
@@ -178,6 +191,49 @@ public class CorpController {
 		return "redirect:/corp/total";
 	}
 	
+	
+	// 채용 공고 세부 조회
+	@GetMapping("position")
+	public String position(HttpSession session, String no, Model model) {
+		
+		CorpVo corpMember = (CorpVo) session.getAttribute("corpMember");
+		
+		if(corpMember == null) {
+			return "redirect:/corp/login";
+		}
+		
+		JobPostVo jp = cs.selectJobPost(corpMember, no);
+		
+		if(jp == null) {
+			return "redirect:/corp/login";
+		}
+		
+		model.addAttribute("jp", jp);
+		
+		return "emp/member/corp-position";
+	}
+	
+	// 채용 공고 수정하기
+	@PostMapping("edit-position")
+	public String editPost(HttpSession session, EmploymentVo vo) {
+		
+		CorpVo corpMember = (CorpVo) session.getAttribute("corpMember");
+		
+		if(corpMember == null) {
+			return "redirect:/corp/login";
+		}
+		
+		int result = cs.editJobPost(vo, corpMember);
+		
+		if(result != 1) {
+			log.info(corpMember.toString());
+			log.info(vo.toString());
+			return "common/error";
+		}
+		
+		return "redirect:/corp/total";
+	}
+	
 	// 채용 공고 지우기
 	@GetMapping("delete-position")
 	public String jobPost(String no, HttpSession session) {
@@ -185,10 +241,11 @@ public class CorpController {
 		int result = cs.deleteJobPost(no);
 		
 		if(result != 1) {
+			log.info("" + result);
 			return "common/error";
 		}
 		
-		return "redirect:corp/mypage";
+		return "redirect:/corp/mypage";
 		
 	}
 	

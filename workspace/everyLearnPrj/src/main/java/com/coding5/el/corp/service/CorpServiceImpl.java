@@ -12,6 +12,7 @@ import com.coding5.el.common.page.PageVo;
 import com.coding5.el.corp.dao.CorpDao;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
+import com.coding5.el.emp.vo.JobPostVo;
 
 @Service
 public class CorpServiceImpl implements CorpService {
@@ -173,6 +174,41 @@ public class CorpServiceImpl implements CorpService {
 		}
 		
 		return list;
+	}
+
+	// 공고 세부조회
+	@Override
+	public JobPostVo selectJobPost(CorpVo corpMember, String no) {
+		
+		JobPostVo item = dao.selectJobPost(sst, no);
+		
+		if(item.getCorpNo().equals(corpMember.getNo())) {
+			return item;
+		}else {
+			return null;
+		}
+		
+	}
+
+	// 공고 조회하기(기업용)
+	@Override
+	public EmploymentVo selectEmployment(CorpVo corpMember, String no) {
+		
+		EmploymentVo item = dao.selectEmployment(sst, no);
+		
+		// 공고의 기업 회원 번호와 로그인 된 기업 회원 번호가 같은지 확인
+		if(item.getCorpNo().equals(corpMember.getNo())) {
+			return item;
+		}else {
+			return null;
+		}
+	}
+
+	// 채용 공고 수정
+	@Override
+	public int editJobPost(EmploymentVo vo, CorpVo corpMember) {
+		vo.setCorpNo(corpMember.getNo());
+		return dao.updateEmployment(sst, vo);
 	}
 
 
