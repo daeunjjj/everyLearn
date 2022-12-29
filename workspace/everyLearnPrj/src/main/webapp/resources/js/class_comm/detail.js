@@ -66,7 +66,7 @@ function postData() {
             }	
         },
         error : function(){
-            alert("아 작 스 실 패") 
+            // alert("아 작 스 실 패") 
         }
     });
 }

@@ -38,14 +38,14 @@ public class TeacherController {
 		String changeName = "";
 		if(!vo.isEmpty()) {
 			changeName = FileUploader.upload(req, vo);
-			
+			System.out.println(changeName);
 		}
 		
 		
 		String changeName2 = "";
 		if(!vo.isEmpty2()) {
 			changeName2 = FileUploader.upload2(req, vo);
-			
+			System.out.println(changeName2);
 		}
 		
 		vo.setChangeName(changeName);

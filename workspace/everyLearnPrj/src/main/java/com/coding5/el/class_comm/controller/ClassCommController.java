@@ -45,7 +45,7 @@ public class ClassCommController {
 			return "common/error";
 		}
 		
-		return "class_comm/qna";
+		return "redirect:/class/qna";
 	}
 	
 	//질답 화면

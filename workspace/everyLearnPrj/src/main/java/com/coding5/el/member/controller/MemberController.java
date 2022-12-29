@@ -92,6 +92,7 @@ public class MemberController {
 //		log.info(loginMember.getTeaStatusYn());
 		log.info("로그인 멤버 : " + loginMember);
 		
+		
 		if(loginMember != null && !loginMember.getMemberId().equals("error")) {
 			
 			session.setAttribute("loginMember", loginMember);
@@ -145,7 +146,10 @@ public class MemberController {
 		vo.setProfileImgName(changeName);
 		
 		MemberVo updateMember =  memberService.updateMember(vo);
-		log.info(""+vo);
+		log.info("업데이트 : " + updateMember);
+		session.setAttribute("loginMember", updateMember);
+		loginMember.setProfileImgName(updateMember.getProfileImgName());
+		
 		
 		if(updateMember == null) {
 			return "common/error";

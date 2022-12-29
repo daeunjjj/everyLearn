@@ -41,6 +41,7 @@
         JOIN MEMBER M
         ON CC.WRITER = M.NO
 		WHERE CC.CATE_NO = 1
+        ORDER BY ENROLL_DATE DESC
 	</select>
 	
 	<select id="selectDetailVo" resultType="com.coding5.el.class_comm.vo.ClassCommVo">
