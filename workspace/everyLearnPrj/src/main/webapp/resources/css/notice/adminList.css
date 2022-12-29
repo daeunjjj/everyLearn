@@ -87,7 +87,7 @@
 
 #main-bot {
     grid-column: span 8;
-    margin: 15px;
+    margin-top: 25px;
 }
 
 #write{

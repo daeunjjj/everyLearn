@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>에브리런</title>
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
-<link rel="stylesheet" href="/el/resources/css/faq/adminList.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/faq/adminList.css">
 <link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
 
 
@@ -21,7 +21,7 @@
 	<div class="wrap">
         <%@include file="/WEB-INF/views/admin/menu.jsp" %>
         <main>
-        <h1>NOTICE</h1>
+        <h1>자주 묻는 질문</h1>
         <div id="line"></div>
         <div class="main-wrap">
 			<div class="list-wrap">
@@ -30,24 +30,43 @@
 					<div class="th">번호</div>
 	                <div class="th">카테고리</div>
 	                <div class="th">제목</div>
+	                <div class="th"></div>
 	                <div class="th">작성일시</div>
-	                <div class="th">조회수</div>
 	                <div class="th"></div>
 	                <div class="th"></div>
+
 				
-				<c:forEach items="${list}" var="n">
+				<%-- <c:forEach items="${list}" var="n">
 					<div class="td" id="check"><input type="checkbox" class="checkbox-del" value="${n.no}"></div>
 					<div class="td" id="no">${n.no}</div>
 	                <div class="td" id="category">일반회원</div>
 	                <div class="td" id="title"><a href="/el/faq/detail?no=${ n.no }" target="_blank" id="title-a">${n.title}</a></div>
 	                <div class="td" id="enrollDate">${n.enrollDate}</div>
-	                <div class="td" id="hit">${n.hit}</div>
 	                <div class="td"><button onclick="location.href = '/el/faq/edit?no=${ n.no }'" id="edit">수정</button></div>
 	                <div class="td"><button onclick="del();" id="del">삭제</button></div>
-				</c:forEach>
+				</c:forEach> --%>
+				
+				
+				<!-- 지울 거 -->
+					<div class="td" id="check"><input type="checkbox" class="checkbox-del" value="${n.no}"></div>
+					<div class="td" id="no">2</div>
+	                <div class="td" id="category">기업회원</div>
+	                <div class="td" id="title"><a href="/el/faq/detail?no=${ n.no }" target="_blank" id="title-a">제목입니다</a></div>
+	                <div class="td" id="adminNick">관리자</div>
+	                <div class="td" id="enrollDate">22.12.28 15:30</div>
+	                <div class="td"><button onclick="location.href = '/el/faq/edit?no=${ n.no }'" id="edit">수정</button></div>
+	                <div class="td"><button onclick="del();" id="del">삭제</button></div>
 					
-			
-
+					<div class="td" id="check"><input type="checkbox" class="checkbox-del" value="${n.no}"></div>
+					<div class="td" id="no">1</div>
+	                <div class="td" id="category">일반회원</div>
+	                <div class="td" id="title"><a href="/el/faq/detail?no=${ n.no }" target="_blank" id="title-a">제목입니다</a></div>
+	                <div class="td" id="adminNick">관리자</div>
+	                <div class="td" id="enrollDate">22.12.28 15:30</div>
+	                <div class="td"><button onclick="location.href = '/el/faq/edit?no=${ n.no }'" id="edit">수정</button></div>
+	                <div class="td"><button onclick="del();" id="del">삭제</button></div>
+	                
+				<!-- 지울 거 -->
 					<div id="main-bot">
 						<a href="/el/faq/write" class="btn btn-light" id="write">작성하기</a>
 					</div>

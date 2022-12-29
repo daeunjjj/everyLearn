@@ -33,8 +33,8 @@ public class FaqController {
 	@GetMapping("list")
 	public String list(Model model) throws Exception {
 	
-		List<FaqVo> list = faqService.getFaqList();
-		model.addAttribute("list", list);
+		//List<FaqVo> list = faqService.getFaqList();
+		//model.addAttribute("list", list);
 
 		return "faq/list";
 	}
@@ -43,8 +43,8 @@ public class FaqController {
 	@GetMapping("adminList")
 	public String adminList(Model model) throws Exception {
 	
-		List<FaqVo> list = faqService.getFaqList();
-		model.addAttribute("list", list);
+		//List<FaqVo> list = faqService.getFaqList();
+		//model.addAttribute("list", list);
 		return "faq/adminList";
 	}
 	
