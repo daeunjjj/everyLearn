@@ -210,9 +210,7 @@ public class LectureController {
 		map.put("content", content);
 		map.put("score", score);
 		  
-		 int reviewVo = lectureService.insertReview(map);
-		  System.out.println(reviewVo);
-		  
+		 int reviewVo = lectureService.insertReview(map);		  
 		  
 		  return reviewVo>0? "redirect:?bno="+bno+"&pno=1" : "common/errorPage";
 		  
@@ -223,7 +221,7 @@ public class LectureController {
 	  @GetMapping("detail/review/edit")
 	  public String editReview(String bno, String rno, Model model) {
 		  
-		  System.out.println("get rno : "+ rno);
+		  //System.out.println("get rno : "+ rno);
 		  model.addAttribute("rno", rno);
 		  model.addAttribute("bno", bno);
 		  
@@ -233,7 +231,7 @@ public class LectureController {
 	  //수강평 수정
 	  @PostMapping("detail/review/edit")
 	  public String editReview(String bno, Model model, String writer, String content, String score, String rno) {
-		  System.out.println("post rno : " + rno);
+		  //System.out.println("post rno : " + rno);
 		  HashMap<String, String>map = new HashMap<>();
 			map.put("bno", bno);
 			map.put("rno", rno);
@@ -317,13 +315,12 @@ public class LectureController {
 	public String insert(HttpSession session, Model model) {
 		
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
-		String mno = loginMember.getMemberNo();
 		
 		if(loginMember == null) {
 			return "member/login";
 		}else {
+			String mno = loginMember.getMemberNo();
 			log.info(mno);
-			System.out.println(loginMember);
 			
 			model.addAttribute(loginMember);
 			model.addAttribute("mno", mno);
