@@ -72,10 +72,13 @@
 			,ENROLL_DATE
 			,MODIFY_DATE
 			,DELETE_YN
-			,CLASS_CNT 
-        FROM CLASS
+			,CLASS_CNT
+		
+        FROM CLASS 
         
-        order by no desc
+         WHERE DELETE_YN = 'N'
+        
+        order by NO desc
     
     </select>
 	
