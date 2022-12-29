@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="btn-area">
-                                <a href="el/admin/member/teacher/list?pno=1&category=status_yn&keyword=N">
+                                <a href="/el/admin/member/teacher/list?pno=1&&category=status">
                                     승인대기
                                     <span>${map.cnt}</span>
                                 </a>

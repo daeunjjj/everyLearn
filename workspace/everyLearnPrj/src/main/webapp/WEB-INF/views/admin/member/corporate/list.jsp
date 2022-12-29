@@ -18,6 +18,7 @@
             <div class="main-wrap">
                 <div class="search-area">
                     <form action="" method="get">
+                        <input name="pno" value="1" hidden>
                         <div id="input-area">
                             <div class="flex-area">
                                 <div class="checkbox-area">
@@ -50,9 +51,9 @@
                                 <div class="flex-area">
                                     <div>
                                         <select name="category">
-                                            <option value="companyName">기업이름</option>
+                                            <option value="company_name">기업이름</option>
                                             <option value="name">대표자명</option>
-                                            <option value="companyNum">사업자번호</option>
+                                            <option value="company_num">사업자번호</option>
                                         </select>
                                         <input type="text" name="keyword">
                                     </div>
@@ -101,7 +102,7 @@
 		                                <div>탈락</div>
 	                                </c:if>
 	                                <div>
-                                        <button type="button" onclick="location.href='/el/admin/member/corporate/detail?no=${list.no}'">상세</button>
+                                        <button type="button" onclick="detailBtn('${list.no}');">상세</button>
 	                                </div>
 	                            </div>
 	                        </li>
@@ -154,5 +155,10 @@
             </div>
         </main>
     </div>
+    <script>
+        function detailBtn(no){
+            window.location.href='/el/admin/member/corporate/detail?no='+no;
+        }
+    </script>
 </body>
 </html>

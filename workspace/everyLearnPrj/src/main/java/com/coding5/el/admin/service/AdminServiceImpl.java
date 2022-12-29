@@ -15,6 +15,7 @@ import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.corp.vo.CorpVo;
+import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
@@ -302,6 +303,24 @@ public class AdminServiceImpl implements AdminService{
 		
 		map.put("voList", voList);
 		map.put("cnt", cnt);
+		return map;
+	}
+	/**
+	 * 기업회원 디테일조회
+	 * 채용 조회
+	 */
+	@Override
+	public Map<String, Object> selectCorpAndEmp(String no) {
+		
+		CorpVo corpMember = adminDao.selectCorpDetailByNo(sst,no);
+		
+		List<EmploymentVo> voList = null; 
+		if("Y".equals(corpMember.getStatusYn())) {
+			voList = adminDao.selectEmploymentList(sst,no);
+		}
+		
+		map.put("voList", voList);
+		map.put("corpMember", corpMember);
 		return map;
 	}
 
