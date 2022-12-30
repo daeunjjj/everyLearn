@@ -249,8 +249,8 @@ public class AdminServiceImpl implements AdminService{
 	 * 강사 탈락
 	 */
 	@Override
-	public int teacherDelete(String no) {
-		return adminDao.teacherDeleteByNo(sst,no);
+	public int teacherDelete(String[] arrNo) {
+		return adminDao.teacherDeleteByNo(sst,arrNo);
 	}
 	/**
 	 * 강사 승인
@@ -322,6 +322,43 @@ public class AdminServiceImpl implements AdminService{
 		map.put("voList", voList);
 		map.put("corpMember", corpMember);
 		return map;
+	}
+	/**
+	 * 학생 탈퇴
+	 */
+	@Override
+	public int studentQuit(String[] arrNo) {
+		
+		return adminDao.studentQuit(sst,arrNo);
+	}
+	
+	/**
+	 * 기업회원 탈퇴
+	 */
+	@Override
+	public int corporateQuit(String[] arrNo) {
+		return adminDao.corporateQuit(sst,arrNo);
+	}
+	/**
+	 * 채용공고삭제
+	 */
+	@Override
+	public int empBoardDelete(String eno) {
+		return adminDao.empBoardDelete(sst,eno);
+	}
+	/**
+	 * 기업 거절/승인취소
+	 */
+	@Override
+	public int corporateDelete(String no) {
+		return adminDao.corporateDelete(sst, no);
+	}
+	/**
+	 * 기업승인
+	 */
+	@Override
+	public int corporateApproval(String no) {
+		return adminDao.corporateApproval(sst, no);
 	}
 
 	

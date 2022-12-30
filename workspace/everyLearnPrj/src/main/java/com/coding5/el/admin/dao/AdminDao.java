@@ -71,7 +71,7 @@ public interface AdminDao {
 	public List<LectureVo> selectLectureList(SqlSessionTemplate sst, String no);
 	
 	// 강사 탈락
-	public int teacherDeleteByNo(SqlSessionTemplate sst, String no);
+	public int teacherDeleteByNo(SqlSessionTemplate sst, String[] arrNo);
 	
 	// 강사 승인
 	public int teacherApprovalByNo(SqlSessionTemplate sst, String no);
@@ -99,6 +99,21 @@ public interface AdminDao {
 	
 	// 채용공고 조회
 	public List<EmploymentVo> selectEmploymentList(SqlSessionTemplate sst, String no);
+	
+	// 학생회원 탈퇴
+	public int studentQuit(SqlSessionTemplate sst, String[] arrNo);
+	
+	// 기업회원 탈퇴
+	public int corporateQuit(SqlSessionTemplate sst, String[] arrNo);
+	
+	// 채용공고삭제
+	public int empBoardDelete(SqlSessionTemplate sst, String eno);
+	
+	// 기업 거절, 취소
+	public int corporateDelete(SqlSessionTemplate sst, String no);
+	
+	// 기업 승인
+	public int corporateApproval(SqlSessionTemplate sst, String no);
 	
 
 	

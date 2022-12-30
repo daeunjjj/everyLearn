@@ -90,7 +90,7 @@
 								<c:forEach items="${map.voList}" var="list">
 									<li class="detail-list-area">
 	                                    <div>
-	                                        <a href="">
+	                                        <a href="/el/lecture/detail?bno=${list.no}" target="_blank">
 	                                            ${list.className }	
 	                                            <i class="bi bi-box-arrow-up-right"></i>
 	                                        </a>
@@ -121,7 +121,7 @@
                    	
                     <form method="post">
                         <div class="btn-area">
-                            <input name="no" value="${map.tvo.no}" hidden>
+                            <input name="arrNo" value="${map.tvo.no}" hidden>
                             <button type="submit" formaction="/el/admin/member/teacher/delete" id="refusal-btn" name="result" value="delete">탈락</button>
                             <c:if test="${map.tvo.statusYn eq 'N' }">
                                 <button type="submit" formaction="/el/admin/member/teacher/approval" id="approval-btn" >승인</button>                        
@@ -144,7 +144,14 @@
             }
             
         }
+        
+    const status = '${map.tvo.statusYn}';
 
+    if(status == 'Y'){
+        $('#refusal-btn').text('승인취소');
+    } else{
+        $('#refusal-btn').text('탈락');
+    }
     </script>
 </body>
 </html>
