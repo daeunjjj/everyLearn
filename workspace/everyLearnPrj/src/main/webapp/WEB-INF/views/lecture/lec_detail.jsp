@@ -44,7 +44,7 @@
 				
 				( ${lvo.revAvg } / 5.0 )</div>
                 <div id="lec-recom">이 강의를 ${lvo.recomm }명이 조회했습니다!</div>
-                <div id="lec-teacher"><i class="fa-regular fa-user"></i>${lvo.teacherNo }</div>
+                <div id="lec-teacher"><a id="teacher-detail" href="/el/teacher/detail?teacherNick=${lvo.teacherNo }">${lvo.teacherNo }</a></div>
             </div>
         </div>
         <div class= "navi">
@@ -59,7 +59,17 @@
             <div id="lec-payment">
                 <div id="pay-wrap">
                     <div id="pay-price">${lvo.price} 원</div>
-                    <div id="pay-zzim"><a href="/el/lecture/wish"><i class="fa-regular fa-heart fa-2x"></i></a></div>
+                    
+                    <%-- <c:choose> 널값으로 받아오면 다르게 해주고 싶은데.... 
+                    <c:when test="${lvo.no  != null && loginMember.memberNo !=null }"> --%>
+	                    <form action="/el/cart/addWish" method="post">
+		                    <input type="hidden" name="classNo" value="${lvo.no }">
+		                    <input type="hidden" name="memberNo" value="${loginMember.memberNo }">
+	                    	<div id="pay-zzim"><input type="image" src="/el/resources/img/lecture/heart.png" /></div>
+	                    </form>
+                  <%--   </c:when>
+                    </c:choose> --%>
+                    <!--  <div id="pay-zzim"><a href="/el/cart/wish"><i class="fa-regular fa-heart fa-2x"></i></a></div>-->
                     <form action="/el/cart/addCart" method="post">
 	                    <input type="hidden" name="classNo" value="${lvo.no }">
 	                    <input type="hidden" name="memberNo" value="${loginMember.memberNo }">

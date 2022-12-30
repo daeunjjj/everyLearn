@@ -134,6 +134,7 @@ public class LectureController {
 	public ModelAndView detail (ModelAndView mv,int bno, HttpSession session) {
 		
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+
 		
 		if (loginMember == null) {
 			mv.setViewName("member/login");

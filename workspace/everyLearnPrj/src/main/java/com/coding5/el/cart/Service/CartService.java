@@ -13,5 +13,11 @@ public interface CartService {
 
 	//장바구니 목록 조회
 	public List<CartVo> getCartList(String mno);
+	
+	//찜 추가
+	public int addWish(HashMap<String, String> map);
+	
+	//찜 목록 조회
+	public List<CartVo> getWishList(String mno);
 
 }

@@ -49,4 +49,42 @@
     where CART.MEMBER_NO = #{mno}
 	and CART.ORDER_YN = 'N'
 	</select>
+	
+	<insert id="addWishOne">
+		insert into WISH
+		(
+		MEMBER_NO
+		, CLASS_NO
+		)
+		values
+		(
+		  #{memberNo}
+		  , #{classNo}
+		)
+	</insert>
+	
+	<select id="getWishList" resultType="com.coding5.el.cart.vo.CartVo">
+     select
+		WISH.MEMBER_NO
+		, WISH.CLASS_NO
+		, C.CLASS_NAME
+		, C.PRICE
+		, mem.nick as teacher_no
+	from WISH WISH
+	
+	
+	join CLASS C
+	on C.NO = WISH.CLASS_NO
+	
+	JOIN TEACHER TEA
+	ON C.TEACHER_NO = TEA.no
+    
+    join member mem
+    on mem.no = tea.member_no
+    
+    where WISH.MEMBER_NO = #{mno}
+	</select>
+  
+	
+	
 </mapper>

@@ -48,7 +48,7 @@
 		            <div id="lec-list">
 		                <div id="lec-pic"><a href="/el/lecture/detail?bno=${list.no }">사진</a></div>
 		                <div id="lec-int"><a href="/el/lecture/detail?bno=${list.no }">${list.className}</a></div>
-		                <div id="lec-teacher"><i class="fa-regular fa-user">${list.teacherNo}</i></div>
+		                <div id="lec-teacher"><a id="teacher-detail" href="/el/teacher/detail?teacherNick=${list.teacherNo }">${list.teacherNo }</a></div>
 		            </div>
 		        </c:forEach>
 	            

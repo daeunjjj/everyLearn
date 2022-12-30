@@ -45,11 +45,12 @@
 
 		INTO DETAIL_CLASS
 			(
+			
 			DETAIL_NO
 			, CLASS_NO
 			, CHAPTER
 			)
-		VALUES (#{vo.detailno}, #{vo.classNo}, #{vo.chapter})
+		VALUES ( #{vo.detailno}, #{vo.classNo}, #{vo.chapter})
 		
 		</foreach>
 		select 1 from dual
@@ -61,24 +62,30 @@
     <select id="getList" resultType="com.coding5.el.lecture.vo.LectureVo">
     
         SELECT 
-        	NO
-			,TEACHER_NO
-			,CATEGORY
-			,CLASS_NAME
-			,CLASS_CONTENT
-			,RECOMM
-			,STUDENT_CNT
-			,PRICE
-			,ENROLL_DATE
-			,MODIFY_DATE
-			,DELETE_YN
-			,CLASS_CNT
+        	C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
 		
-        FROM CLASS 
+        FROM CLASS C
+       
         
-         WHERE DELETE_YN = 'N'
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
         
-        order by NO desc
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+         WHERE C.DELETE_YN = 'N'
+        
+        order by C.NO desc
     
     </select>
 	
