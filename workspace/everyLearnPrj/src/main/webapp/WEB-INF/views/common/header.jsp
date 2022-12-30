@@ -14,8 +14,8 @@
 		<div class="container-wrapper">
 			<div id="container-top">
 				<ul class="page">
-					<li class="choose-tap"><a href="#">강의</a></li>
-					<li><a href="#">채용</a></li>
+					<li class="choose-tap"><a href="/el/main">강의</a></li>
+					<li><a href="/el/emp/main">채용</a></li>
 				</ul>
 				<ul class="teacher">
 					<li><a href="http://127.0.0.1:8888/el/teacher/main">런문가 되기</a></li>

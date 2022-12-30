@@ -22,8 +22,8 @@ public class CorpDaoImpl implements CorpDao{
 
 	// 로그인
 	@Override
-	public CorpVo selectOneCorpMember(SqlSessionTemplate sst, CorpVo vo) {
-		return sst.selectOne("corpMapper.selectOneCorpMember", vo);
+	public CorpVo selectOneCorpMember(SqlSessionTemplate sst, String id) {
+		return sst.selectOne("corpMapper.selectOneCorpMember", id);
 	}
 
 	// 아이디 중복체크

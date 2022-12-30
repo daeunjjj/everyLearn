@@ -14,8 +14,8 @@
 		<div class="container-wrapper">
 			<div id="container-top">
 				<ul class="page">
-					<li class="choose-tap"><a href="#">강의</a></li>
-					<li><a href="#">채용</a></li>
+					<li class="choose-tap"><a href="/el/main">강의</a></li>
+					<li><a href="/el/emp/main">채용</a></li>
 				</ul>
 				<ul class="teacher">
 					<li><a href="/el/corp/mypage">기업서비스</a></li>
@@ -37,7 +37,7 @@
 					</div>
 				</div>
 				<div class="member">
-					<a href="" class="login">로그인</a><a href="" class="join">회원가입</a>
+					<a href="/el/member/login" class="login">로그인</a><a href="/el/member/join" class="join">회원가입</a>
 				</div>
 			</div>
 		</nav>

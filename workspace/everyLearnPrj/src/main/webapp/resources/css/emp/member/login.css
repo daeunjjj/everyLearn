@@ -155,3 +155,8 @@ img{
   line-height: 1.5;
   color: rgb(229, 0, 0);
 }
+
+.swal2-title{
+  padding: 1.8000000000000007em 1em 0 !important; 
+  font-size: 24px !important;
+}

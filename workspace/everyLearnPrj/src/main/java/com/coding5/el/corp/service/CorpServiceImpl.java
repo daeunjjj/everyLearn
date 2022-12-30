@@ -54,7 +54,23 @@ public class CorpServiceImpl implements CorpService {
 	// 로그인
 	@Override
 	public CorpVo login(CorpVo vo) {
-		return dao.selectOneCorpMember(sst, vo);
+		
+		CorpVo loginCorpMember = dao.selectOneCorpMember(sst, vo.getId());
+		
+		if(loginCorpMember == null) {
+			return null;
+		}
+		
+		String pwd = vo.getPwd();
+		String newPwd = loginCorpMember.getPwd();
+		
+		if(!enc.matches(pwd, newPwd)) {
+			return null;
+		}
+		
+		loginCorpMember.setPrePwd(pwd);
+		
+		return loginCorpMember;
 	}
 
 	// 기업 마이페이지(회사정보 화면)

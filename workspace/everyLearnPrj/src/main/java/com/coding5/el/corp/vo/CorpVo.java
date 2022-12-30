@@ -10,6 +10,7 @@ public class CorpVo {
 	private String no;
 	private String id;
 	private String pwd;
+	private String prePwd;
 	private String companyName;
 	private String companyAddress;
 	private String detailAddress;
