@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/el/resources/css/emp/job-post-detail.css">
 <link rel="icon" type="image/png" sizes="16x16"
 	href="/el/resources/img/logo/favicon-16x16.png">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -80,7 +81,7 @@
 					</dl>
 					<c:if test="${not empty corpMember}">
 					<div>
-						<a href="/el/corp/delete-position?no=${jp.no}"><button class="submit-btn">삭제하기</button></a>
+						<a onclick="deleteBtn();"><button class="submit-btn">삭제하기</button></a>
 						<a href="/el/corp/register-position?no=${jp.no}"><button class="submit-btn">수정하기</button></a>
 					</div>
 					</c:if>
@@ -89,6 +90,32 @@
 	</main>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+
+	<script>
+		function deleteBtn() {
+			const no = '${jp.no}';
+			console.log(no);
+			Swal.fire({
+						title: '삭제 하시겠습니까?',
+						text: "삭제하시면 다시 복구시킬 수 없습니다",
+						icon: 'warning',
+						showCancelButton: true,
+						confirmButtonColor: '#1187CF',
+						cancelButtonColor: '#d33',
+						confirmButtonText: '삭제',
+						cancelButtonText: '취소'
+					}).then((result) => {
+						if (result.isConfirmed) {
+							Swal.fire(
+								'삭제 되었습니다.',
+								).then(() => {
+									location.href = '/el/corp/delete-position?no=' + no
+							}) 
+							}
+						})
+		}
+	</script>
+
 
 </body>
 

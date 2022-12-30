@@ -103,7 +103,6 @@ const checkId = () => {
       }
     }
   });
-
 }
 
 // 비밀번호를 입력해주세요
@@ -174,3 +173,16 @@ const validatePhone = (isTyping) => {
   }
 }
 
+const join = (target) => {
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: '회원가입 완료!',
+    showConfirmButton: false,
+    timer: 1500
+  }).then(() => {
+    target.submit();
+  })
+
+  return false;
+}

@@ -8,6 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/el/resources/css/emp/member/join.css">
 <link rel="stylesheet" href="/el/resources/css/common/font.css">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 </head>
 <body>
@@ -23,7 +24,7 @@
 		<main class="main">
 			<div class="content">
 				<h2 class="title">기업 회원가입</h2>
-				<form action="/el/corp/join" method="POST" class="login-form">
+				<form action="/el/corp/join" method="POST" class="login-form" onsubmit="return join(this);">
 					<div class="wrapper">
 						<div class="join-title">
 							<p>아이디(이메일)</p>

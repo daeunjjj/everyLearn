@@ -95,6 +95,12 @@ public class CorpController {
 		return "emp/member/login";
 	}
 	
+	// 기업 회원 탈퇴
+//	@PostMapping("quit")
+//	public String quitCorpMember() {
+//		
+//	}
+	
 	// 기업 마이페이지(화면)
 	@GetMapping("mypage")
 	public String mypage(HttpSession session) {
@@ -245,7 +251,7 @@ public class CorpController {
 			return "common/error";
 		}
 		
-		return "redirect:/corp/mypage";
+		return "redirect:/corp/total";
 		
 	}
 	
@@ -279,7 +285,7 @@ public class CorpController {
 	}
 	
 	// 채용 마감 페이지
-	@GetMapping("deadLine")
+	@GetMapping("deadline")
 	public String deadLine(Model model, @RequestParam(value="pno", defaultValue = "1") String pno, HttpSession session) {
 
 		CorpVo corpMember = (CorpVo) session.getAttribute("corpMember");
@@ -303,7 +309,7 @@ public class CorpController {
 		model.addAttribute("pv", pv);
 		model.addAttribute("list", list);
 		
-		return "emp/mypage/deadLine";
+		return "emp/mypage/deadline";
 	}
 	
 	// 채용 승인 여부 페이지

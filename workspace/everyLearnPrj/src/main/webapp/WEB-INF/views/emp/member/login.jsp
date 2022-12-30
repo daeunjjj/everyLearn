@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
 <link rel="stylesheet" href="/el/resources/css/emp/member/login.css">
 <link rel="stylesheet" href="/el/resources/css/common/font.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 </head>
 <body>
@@ -46,7 +48,7 @@
 								<span class="essential">비밀번호를 입력해 주세요.</span>
 							</div>
 						</div>
-						<button type="submit" class="btn" id="loginBtn" disabled>로그인</button>
+						<button type="submit" class="btn" id="loginBtn" disabled onclick="loginBtn();">로그인</button>
 					</form>
 					<div class="choose">
 						<a href="">비밀번호 재설정</a>
@@ -60,6 +62,13 @@
 			<p class="footer">©EveryLearn.All rights reserved.</p>
 		</footer>
 	</div>
+
+	<c:if test="${msg != null }">
+		<script>
+            Swal.fire('아이디(이메일) 또는 비밀번호를 확인해주세요.');
+		</script>
+	</c:if>
+
 	<script src="/el/resources/js/emp/login.js"></script>
 </body>
 </html>

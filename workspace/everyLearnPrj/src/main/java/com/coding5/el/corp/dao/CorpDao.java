@@ -15,7 +15,7 @@ public interface CorpDao {
 	public int insertCorpMember(SqlSessionTemplate sst, CorpVo vo);
 
 	// 로그인
-	public CorpVo selectOneCorpMember(SqlSessionTemplate sst, CorpVo vo);
+	public CorpVo selectOneCorpMember(SqlSessionTemplate sst, String id);
 
 	// 기업 마이페이지(회사정보 화면)
 	public CorpVo selectOneCorpInfo(SqlSessionTemplate sst, CorpVo vo);
