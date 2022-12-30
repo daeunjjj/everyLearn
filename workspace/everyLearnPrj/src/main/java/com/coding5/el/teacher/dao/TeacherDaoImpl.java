@@ -1,5 +1,7 @@
 package com.coding5.el.teacher.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -9,15 +11,21 @@ import com.coding5.el.teacher.vo.TeacherVo;
 @Repository
 public class TeacherDaoImpl implements TeacherDao{
 	
-	//°­»çµî·Ï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public int insertTeacher(SqlSessionTemplate sst,TeacherVo vo) {
 		return sst.insert("teacherMapper.insertTeacher", vo);
 	}
 
-	//ÀÌ¹ÌÁö µî·Ï
+	//ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@Override
 	public int insertImg(SqlSessionTemplate sst, TeacherVo vo) {
 		return sst.insert("teacherMapper.insertImg", vo);
+	}
+
+	//ê°•ì‚¬ ë””í…Œì¼
+	@Override
+	public List<TeacherVo> selectTeacherDetail(SqlSessionTemplate sst, String teacherNick) {
+		return sst.selectList("teacherMapper.selectTeacher", teacherNick);
 	}
 
 }

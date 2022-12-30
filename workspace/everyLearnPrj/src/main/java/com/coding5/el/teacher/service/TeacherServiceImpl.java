@@ -1,5 +1,7 @@
 package com.coding5.el.teacher.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,7 @@ public class TeacherServiceImpl implements TeacherService{
 	@Autowired
 	private TeacherDao teacherDao;
 
-	//°­»ç µî·Ï
+	//ê°•ì‚¬ ë“±ë¡
 	@Override
 	public int teacherEnroll(TeacherVo vo) {
 
@@ -26,11 +28,18 @@ public class TeacherServiceImpl implements TeacherService{
 		return result;
 	}
 
-	//°­»ç ÇÁ·ÎÇÊ µî·Ï
+	//ì´ë¯¸ì§€ë“±ë¡
 	@Override
 	public int teacherImgEnroll(TeacherVo vo) {
 		int imgOk = teacherDao.insertImg(sst, vo);
 		return imgOk;
+	}
+
+	//ê°•ì‚¬ë””í…Œì¼
+	@Override
+	public List<TeacherVo> teacherDetail(String teacherNick) {
+		
+		return teacherDao.selectTeacherDetail(sst, teacherNick);
 	}
 
 

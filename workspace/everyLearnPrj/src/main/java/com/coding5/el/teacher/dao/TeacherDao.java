@@ -1,5 +1,7 @@
 package com.coding5.el.teacher.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -8,9 +10,12 @@ import com.coding5.el.teacher.vo.TeacherVo;
 
 public interface TeacherDao {
 	
-	//°­»çµî·Ï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public int insertTeacher(SqlSessionTemplate sst,TeacherVo vo);
 
 	public int insertImg(SqlSessionTemplate sst, TeacherVo vo);
+
+	//ê°•ì‚¬ë””í…Œì¼
+	public List<TeacherVo> selectTeacherDetail(SqlSessionTemplate sst, String teacherNick);
 
 }

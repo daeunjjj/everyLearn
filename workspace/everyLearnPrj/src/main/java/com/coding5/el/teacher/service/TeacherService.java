@@ -1,15 +1,19 @@
 package com.coding5.el.teacher.service;
 
+import java.util.List;
+
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.teacher.vo.TeacherVo;
 
 public interface TeacherService {
-	//°­»ç µî·Ï
+	//ê°•ì‚¬ ë“±ë¡
 	public int teacherEnroll(TeacherVo vo);
 	
 	public int teacherImgEnroll(TeacherVo vo);
 
+	//ê°•ì‚¬ë””í…Œì¼
+	public List<TeacherVo> teacherDetail(String teacherNick);
 
 
-	//°­»çÁ¶È¸
+
 }
