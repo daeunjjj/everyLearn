@@ -22,10 +22,9 @@
                         <img class="card-img-top" id="teacher-img" src="/el/resources/img/teacher/person.png" alt="Card image"
                             >
                         <div class="card-body">
-                            <h4 class="card-title">박강사</h4>
+                            <h4 class="card-title">${teacherNick}</h4>
                             <pre class="card-text">
-프로그래밍 실력 향상
-박강사와 함께라면 어려울게 없습니다!!
+                                ${teacherDetailList[0].shortIntro}
                             </pre>
                         </div>
                     </div>

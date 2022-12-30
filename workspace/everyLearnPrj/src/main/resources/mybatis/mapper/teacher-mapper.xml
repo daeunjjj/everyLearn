@@ -50,9 +50,43 @@
 		VALUES
 		(
 		SEQ_TEACHER_ATTATCH_NO.NEXTVAL
-		,#{no}
+		,#{teacherNo}
 		,#{changeName}
 		)
 	</insert>
+	
+	<select id="selectTeacher" resultType="com.coding5.el.teacher.vo.TeacherVo">
+		SELECT C.NO CLASS_NO
+		    ,T.NO TEACHER_NO
+		    ,T.CATEGORY CLASS_CATE
+		    ,T.CAREER CAREER
+		    ,T.SHORT_INTRO SHORT_INTRO
+		    ,T.INTRODUCE INTRODUCE
+		    ,C.TEACHER_NO TEACHER_NO
+		    ,C.CATEGORY CLASS_CATE
+		    ,C.CLASS_NAME CLASS_NAME
+		    ,C.CLASS_CONTENT CLASS_CONTENT
+		    ,C.RECOMM RECOMM
+		    ,C.STUDENT_CNT STUDENT_CNT
+		    ,C.PRICE PRICE 
+		    ,C.ENROLL_DATE ENROLL_DATE
+		    ,C.MODIFY_DATE MODIFY_DATE
+		    ,C.DELETE_YN DELETE_YN
+		    ,C.CLASS_CNT CLASS_CNT
+		    ,C.REV_AVG REV_AVG
+		    ,C.REVIEW_CNT REVIEW_CNT
+		    
+		FROM CLASS  C
+		JOIN TEACHER T
+		ON C.TEACHER_NO = T.NO
+		WHERE TEACHER_NO = (
+		    SELECT M.NO
+		    FROM TEACHER T
+		    JOIN MEMBER M
+		    ON T.MEMBER_NO = M.NO
+		    WHERE M.NICK = #{teacherNick}
+		)
+	
+	</select>
 
 </mapper>
