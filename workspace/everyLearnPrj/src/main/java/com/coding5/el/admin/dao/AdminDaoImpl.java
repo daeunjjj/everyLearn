@@ -143,9 +143,9 @@ public class AdminDaoImpl implements AdminDao{
 	}
 
 	@Override
-	public int teacherDeleteByNo(SqlSessionTemplate sst, String no) {
+	public int teacherDeleteByNo(SqlSessionTemplate sst, String[] arrNo) {
 		// 강사 탈락
-		return sst.update("adminMapper.teacherDeleteByNo",no);
+		return sst.update("adminMapper.teacherDeleteByNo",arrNo);
 	}
 
 	@Override
@@ -203,6 +203,36 @@ public class AdminDaoImpl implements AdminDao{
 	public List<EmploymentVo> selectEmploymentList(SqlSessionTemplate sst, String no) {
 		// 채용공고 리스트들 조회
 		return sst.selectList("adminMapper.selectEmploymentList",no);
+	}
+
+	@Override
+	public int studentQuit(SqlSessionTemplate sst, String[] arrNo) {
+		// 학생탈퇴
+		return sst.update("adminMapper.studentQuit",arrNo);
+	}
+
+	@Override
+	public int corporateQuit(SqlSessionTemplate sst, String[] arrNo) {
+		// 기업회원탈퇴
+		return sst.update("adminMapper.corporateQuit",arrNo);
+	}
+
+	@Override
+	public int empBoardDelete(SqlSessionTemplate sst, String eno) {
+		// 채용공고
+		return sst.update("adminMapper.empBoardDelete", eno);
+	}
+
+	@Override
+	public int corporateDelete(SqlSessionTemplate sst, String no) {
+		// 기업 거절 / 취소
+		return sst.update("adminMapper.corporateDelete", no);
+	}
+
+	@Override
+	public int corporateApproval(SqlSessionTemplate sst, String no) {
+		// 기업승인
+		return sst.update("adminMapper.corporateApproval", no);
 	}
 	
 

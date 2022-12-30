@@ -55,13 +55,13 @@
                     <div>상태</div>
                     <div>관리</div>
                 </div>
-                <form action="/el/admin/member/student/detail">
+                <form action="/el/admin/member/student/quit" method="post" onsubmit="return deleteCheck();">
                     <ul>
 						<c:forEach items="${voList}" var="list">
 						 <li>
                             <div class="list-items">
                                 <div>
-                                    <input type="checkbox" id="check">
+                                    <input type="checkbox" class="check" name="arrNo" value="${list.memberNo}">
                                     <label for="check"></label>
                                 </div>
                                 <div>${list.memberNo}</div>
@@ -80,7 +80,7 @@
 	                                <div>정지</div>
                                 </c:if>
                                 <div>
-                                    <button type="button" onclick="location.href='/el/admin/member/student/detail?no=${list.memberNo}'">상세</button>
+                                    <button type="button" onclick="detailBtn('${list.memberNo}');">상세</button>
                                     <button>정지</button>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
 						</c:forEach>
                     </ul>
                     <div class="mail-btn-area">
-                        <button id="mail-btn"><i class="bi bi-envelope"></i></button>
+                        <button id="mail-btn" type="submit">삭제</button>
                     </div>
                 </form>
                 <nav class="page-area">
@@ -133,5 +133,30 @@
             </div>
         </main>
     </div>
+    <script>
+
+        function detailBtn(no) {
+            window.location.href='/el/admin/member/student/detail?no='+no;
+        }
+
+        function deleteCheck(){
+            let cnt = 0;
+            for(let i = 0; i < check.length; i++){
+                if(check[i].checked){
+                    cnt++;
+                }
+            }
+
+            if(cnt == 0){
+                return false;
+            } else{
+                if(confirm("탈퇴처리하시겠습니까?")){
+                    return true;
+                } else{
+                    return false;
+                }
+            }
+        }
+    </script>
 </body>
 </html>

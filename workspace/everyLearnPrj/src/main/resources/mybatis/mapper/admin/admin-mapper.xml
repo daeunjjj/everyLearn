@@ -343,7 +343,7 @@
 			,STUDENT_CNT
 			,PRICE
 			,ENROLL_DATE
-			,MODIFY_DATE
+			,TO_CHAR(MODIFY_DATE, 'YYYY-MM-DD') AS MODIFY_DATE
 			,DELETE_YN
 			,CLASS_CNT
 		FROM CLASS
@@ -355,7 +355,10 @@
 		SET 
 		    STATUS_YN = 'N'
 		  , DELETE_YN = 'Y'
-		WHERE NO = #{no}
+		WHERE NO IN
+		<foreach collection="array" item="no" open="(" close=")" separator=",">
+			#{no}
+		</foreach>
 	</update>
 	<update id="teacherApprovalByNo">
 		UPDATE TEACHER
@@ -469,25 +472,60 @@
 	
 	<select id="selectEmploymentList" resultType="EmploymentVo">
 		SELECT
-		    NO
-		    ,CORP_NO
-		    ,CATEGORY
-		    ,TITLE
-		    ,RESPONSIBILITY
-		    ,QUALIFICATION
-		    ,PREFERENTIAL
-		    ,SALARY
-		    ,BENEFITS
-		    ,INTRODUCE
-		    ,SECTOR
-		    ,ADDRESS
-		    ,CAREER
-		    ,DEADLINE
-		    ,WISH_CNT
-		    ,ENROLL_DATE
-		    ,MODIFY_DATE
-		    ,DELETE_YN
-		FROM EMPLOYMENT
+		    E.NO
+		    ,E.CORP_NO
+		    ,C.TYPE AS CATEGORY
+		    ,E.TITLE
+		    ,E.RESPONSIBILITY
+		    ,E.QUALIFICATION
+		    ,E.PREFERENTIAL
+		    ,E.SALARY
+		    ,E.BENEFITS
+		    ,E.INTRODUCE
+		    ,E.SECTOR
+		    ,E.ADDRESS
+		    ,E.CAREER
+		    ,E.DEADLINE
+		    ,E.WISH_CNT
+		    ,E.ENROLL_DATE
+		    ,TO_CHAR(MODIFY_DATE, 'YYYY-MM-DD') AS MODIFY_DATE
+		    ,E.DELETE_YN
+		FROM EMPLOYMENT E
+		JOIN EMP_CATE C ON E.CATEGORY = C.NO
 		WHERE CORP_NO = #{no}
 	</select>
+	
+	<update id="studentQuit">
+		UPDATE MEMBER
+		SET QUIT_YN = 'Y'
+		WHERE NO IN 
+		<foreach collection="array" item="no" open="(" close=")" separator=",">
+			#{no}
+		</foreach>
+	</update>
+	<update id="corporateQuit">
+		UPDATE CORPORATE_MEMBER
+		SET QUIT_YN = 'Y'
+		WHERE NO IN 
+		<foreach collection="array" item="no" open="(" close=")" separator=",">
+			#{no}
+		</foreach>
+	</update>
+	<update id="empBoardDelete">
+		UPDATE EMPLOYMENT
+		SET DELETE_YN = 'Y'
+		WHERE NO = #{eno}
+	</update>
+	
+	<update id="corporateDelete">
+		UPDATE CORPORATE_MEMBER
+		SET DELETE_YN = 'Y'
+		WHERE NO = #{no}
+	</update>
+	
+	<update id="corporateApproval">
+		UPDATE CORPORATE_MEMBER
+		SET STATUS_YN = 'Y'
+		WHERE NO = #{no}
+	</update>
 </mapper>

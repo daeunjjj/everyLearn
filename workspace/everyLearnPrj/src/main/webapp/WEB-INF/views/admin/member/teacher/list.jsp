@@ -82,13 +82,13 @@
                     <div>상태</div>
                     <div>관리</div>
                 </div>
-                <form method="post">
+                <form action="/el/admin/member/teacher/delete" method="post" onsubmit="return deleteCheck();">
                     <ul>
                         <c:forEach items="${map.voList}" var="list">
 	                       	<li>
 	                            <div class="list-items">
 	                                <div>
-	                                    <input type="checkbox" id="check">
+	                                    <input type="checkbox" id="check" name="arrNo" value="${list.no }">
 	                                    <label for="check"></label>
 	                                </div>
 	                                <div>${list.no }</div>
@@ -114,7 +114,7 @@
                         </c:forEach>
                     </ul>
                     <div class="mail-btn-area">
-                        <button type="submit" formaction="/el/admin/mail" id="mail-btn">메일</button>
+                        <button type="submit" id="mail-btn">탈락</button>
                     </div>
                 </form>
                 <nav class="page-area">
@@ -160,5 +160,26 @@
             </div>
         </main>
     </div>
+    <script>
+
+    function deleteCheck(){
+            let cnt = 0;
+            for(let i = 0; i < check.length; i++){
+                if(check[i].checked){
+                    cnt++;
+                }
+            }
+
+            if(cnt == 0){
+                return false;
+            } else{
+                if(confirm("탈퇴처리하시겠습니까?")){
+                    return true;
+                } else{
+                    return false;
+                }
+            }
+        }
+    </script>
 </body>
 </html>

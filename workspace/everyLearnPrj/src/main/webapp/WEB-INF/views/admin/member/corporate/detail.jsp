@@ -59,7 +59,7 @@
                             <div class="flex-items">
                                 <div>홈페이지</div>
                                 <div>
-	                                <a href="${map.corpMember.homepage }">${map.corpMember.homepage }</a>                                
+	                                <a href="${map.corpMember.homepage }" target="_blank">${map.corpMember.homepage }</a>                                
                                 </div>
                             </div>
                             <div class="flex-items">
@@ -71,35 +71,55 @@
                             <div id="map" style="width:100%;height:100%;"></div>
                         </div>
                     </div>
-                    <div class="detail-list-wrap">
-                        <h3>채용목록</h3>
-                        <div class="detail-list-area">
-                            <div>직군</div>
-                            <div>제목</div>
-                            <div>마감일</div>
-                            <div>수정날짜</div>
-                            <div>관리</div>
-                        </div>
-                        <div>
-                            <ul>
-                                <li class="detail-list-area">
-                                    <div>IT</div>
-                                    <div>신입 개발자구합니다.</div>
-                                    <div>2023-01-15</div>
-                                    <div>2022-12-07</div>
-                                    <div>
-                                        <button>삭제</button>
-                                    </div>
-                                </li>
-                            
-                            </ul>
-                        </div>
-                    </div>
+                   <c:if test="${!empty map.voList }">
+	                   <div class="detail-list-wrap">
+	                        <h3>채용목록</h3>
+	                        <div class="detail-list-area">
+	                            <div>직군</div>
+	                            <div>제목</div>
+	                            <div>마감일</div>
+	                            <div>수정날짜</div>
+	                            <div>찜개수</div>
+	                            <div>관리</div>
+	                        </div>
+	                        <div>
+	                            <ul>
+									<c:forEach items="${map.voList }" var="list">
+										<li class="detail-list-area">
+		                                    <div>${list.category }</div>
+		                                    <div>${list.title }</div>
+		                                    <div class="deadline">${list.deadline }</div>
+		                                    <div>${list.modifyDate}</div>
+	                                        <div>${list.wishCnt}</div>
+ 										<div>
+		                                    <form action="/el/admin/member/corporate/emp-board/delete" method="post" onsubmit="return deleteCheck();">
+		                                    	<input name="eno" value="${list.no}" hidden>
+		                                    	<input name="no" value="${map.corpMember.no}" hidden>
+		                                        <c:if test="${list.deleteYN eq 'N' }">
+		                                        	<button type="submit">공개중</button>	
+		                                        </c:if>
+	                                     	    <c:if test="${list.deleteYN eq 'Y' }">
+		                                        	<button type="button" disabled="disabled" id="non-click">삭제</button>	
+		                                        </c:if>                                      
+		                                    </form>
+	                                    </div>
+		                                </li>
+									</c:forEach>
+	                            
+	                            </ul>
+	                        </div>
+	                    </div>
+                   </c:if>
                     <div class="resume-bottom">
-                        <div class="btn-area">
-                            <button id="refusal-btn">거절</button>
-                            <button id="approval-btn">승인</button>
-                        </div>
+                        <form method="post">
+                            <div class="btn-area">
+                                <input name="no" value="${map.corpMember.no}" hidden>
+                                <button type="submit" formaction="/el/admin/member/corporate/delete" id="refusal-btn" name="result" value="delete">승인취소</button>
+                                <c:if test="${map.corpMember.statusYn eq 'N' }">
+                                    <button type="submit" formaction="/el/admin/member/corporate/approval" id="approval-btn" >승인</button>                        
+                                </c:if>
+                            </div>
+                        </form>
                     </div>
                 </div>
            	</div>
@@ -147,7 +167,26 @@
             // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
             map.setCenter(coords);
         } 
-    });    
+    });
+
+    function deleteCheck() {
+            
+        if(!confirm("정말 삭제하시겠습니까?")){
+            return false;
+        } else{
+            return true;
+        }
+        
+    }
+
+    const status = '${map.corpMember.statusYn}';
+
+    if(status == 'Y'){
+        $('#refusal-btn').text('승인취소');
+    } else{
+        $('#refusal-btn').text('거절');
+    }
+
     </script>
 </body>
 </html>

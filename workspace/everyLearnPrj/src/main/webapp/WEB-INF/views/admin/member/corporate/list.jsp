@@ -77,13 +77,13 @@
                     <div>상태</div>
                     <div>관리</div>
                 </div>
-                <form action="">
+                <form action="/el/admin/member/corporate/quit" method="post" onsubmit="return deleteCheck();">
                     <ul>
                         <c:forEach items="${map.voList}" var="list">
 	                        <li>
 	                            <div class="list-items">
 	                                <div>
-	                                    <input type="checkbox" id="check">
+	                                    <input type="checkbox" id="check" name="arrNo" value="${list.no}">
 	                                    <label for="check"></label>
 	                                </div>
 	                                <div>${list.no}</div>
@@ -92,14 +92,17 @@
 	                                <div>${list.name }</div>
 	                                <div>${list.phone }</div>
 	                                <div>${list.id }</div>
-	                                <c:if test="${list.statusYn eq 'Y' }">
+	                                <c:if test="${list.statusYn eq 'Y' and list.quitYn eq 'N' and list.deleteYn eq 'N'}">
 		                                <div>승인</div>
 	                                </c:if>
-	                                <c:if test="${list.statusYn eq 'N' and list.deleteYn eq 'N'}">
+	                                <c:if test="${list.statusYn eq 'N' and list.deleteYn eq 'N' and list.quitYn eq 'N'}">
 		                                <div>대기</div>
 	                                </c:if>
-	                                <c:if test="${list.deleteYn eq 'Y'}">
-		                                <div>탈락</div>
+	                                <c:if test="${list.deleteYn eq 'Y' and list.quitYn eq 'N'}">
+		                                <div>거절</div>
+	                                </c:if>
+                                    <c:if test="${list.quitYn eq 'Y'}">
+		                                <div>탈퇴</div>
 	                                </c:if>
 	                                <div>
                                         <button type="button" onclick="detailBtn('${list.no}');">상세</button>
@@ -109,7 +112,7 @@
                         </c:forEach>
                     </ul>
                     <div class="mail-btn-area">
-                        <button id="mail-btn">승인</button>
+                        <button id="mail-btn">삭제</button>
                     </div>
                 </form>
                 <nav class="page-area">
@@ -158,6 +161,26 @@
     <script>
         function detailBtn(no){
             window.location.href='/el/admin/member/corporate/detail?no='+no;
+        }
+
+       
+        function deleteCheck(){
+            let cnt = 0;
+            for(let i = 0; i < check.length; i++){
+                if(check[i].checked){
+                    cnt++;
+                }
+            }
+
+            if(cnt == 0){
+                return false;
+            } else{
+                if(confirm("탈퇴처리하시겠습니까?")){
+                    return true;
+                } else{
+                    return false;
+                }
+            }
         }
     </script>
 </body>

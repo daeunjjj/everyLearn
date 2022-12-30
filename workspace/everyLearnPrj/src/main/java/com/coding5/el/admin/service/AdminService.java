@@ -62,7 +62,7 @@ public interface AdminService {
 	public Map<String, Object> selectTeacherDetail(String no);
 	
 	// 강사 박탈
-	public int teacherDelete(String no);
+	public int teacherDelete(String[] arrNo);
 	
 	// 강사 승인
 	public int teacherApproval(String no);
@@ -84,5 +84,20 @@ public interface AdminService {
 	
 	// 기업회원 디테일 조회
 	public Map<String, Object> selectCorpAndEmp(String no);
+	
+	// 학생 탈퇴
+	public int studentQuit(String[] arrNo);
+	
+	// 기업회원탈퇴
+	public int corporateQuit(String[] arrNo);
+	
+	//채용공고삭제
+	public int empBoardDelete(String eno);
+	
+	// 기업 거절/승인취소
+	public int corporateDelete(String no);
+	
+	// 기업승인
+	public int corporateApproval(String no);
 	
 }
