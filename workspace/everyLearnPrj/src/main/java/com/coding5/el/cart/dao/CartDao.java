@@ -15,5 +15,11 @@ public interface CartDao {
 
 	//장바구니 조회
 	public List<CartVo> getCartList(String mno, SqlSessionTemplate sst);
+	
+	//찜 목록 조회
+	public List<CartVo> getWishList(String mno, SqlSessionTemplate sst);
+
+	//찜에 넣기
+	public int addWish(HashMap<String, String> map, SqlSessionTemplate sst);
 
 }

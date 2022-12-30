@@ -31,5 +31,19 @@ public class CartServiceImpl implements CartService{
 		return cartDao.getCartList(mno, sst);
 	}
 	
+	//찜 등록
+	@Override
+	public int addWish(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return cartDao.addWish(map, sst);
+	}
+	
+	//찜 목록 조회
+	@Override
+	public List<CartVo> getWishList(String mno) {
+		// TODO Auto-generated method stub
+		return cartDao.getWishList(mno, sst);
+	}
+	
 
 }

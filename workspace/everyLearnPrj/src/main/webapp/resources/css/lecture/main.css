@@ -134,6 +134,22 @@ li a {
     font-size: 13px;
 }
 
+#lec-teacher a{
+	text-decoration: none;
+}
+
+/*css 코드 수정 */
+/* 강사 css 추가 (연주) */
+#teacher-detail:link { text-decoration: none !important;}
+#teacher-detail:visited {  text-decoration: none !important;}
+#teacher-detail:hover { text-decoration: none !important;}
+#teacher-detail{
+    text-decoration: none;
+    color: #5a5a5a !important; 
+    font-size: 15px !important;
+}
+
+
 /*페이징*/
 #page-area{
     grid-column: span 6;

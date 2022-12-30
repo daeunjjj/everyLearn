@@ -18,13 +18,13 @@
 	<div class="wrap">
 	
 		<div id="wrap-top">
-			<div id="cate-name">장바구니</div>
+			<div id="cate-name">찜</div>
 			<c:choose>
 			<c:when test="${empty list}">
-			<div style="margin-top:100px; text-align:center; font-size:22px; font-weight:600;">장바구니에 담긴 강의가 없습니다.</div>
+			<div style="margin-top:100px; text-align:center; font-size:22px; font-weight:600;">찜 목록에 담긴 강의가 없습니다.</div>
 			</c:when>
 			<c:otherwise>
-			<div id="carts-num">5개 강의가 장바구니에 있습니다.</div>
+			<div id="carts-num">5개 강의가 찜 목록에 있습니다.</div>
 			
 		</div>
 		<div id="cart-wrap">

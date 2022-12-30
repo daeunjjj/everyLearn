@@ -256,3 +256,14 @@ margin-top: 3px;
     color: #5a5a5a; 
     font-size: 18px;
 }
+
+/*css 코드 수정 */
+/* 강사 css 추가 (연주) */
+#teacher-detail:link { text-decoration: none !important;}
+#teacher-detail:visited {  text-decoration: none !important;}
+#teacher-detail:hover { text-decoration: none !important;}
+#teacher-detail{
+    text-decoration: none;
+    color: #5a5a5a !important; 
+    font-size: 15px !important;
+}
