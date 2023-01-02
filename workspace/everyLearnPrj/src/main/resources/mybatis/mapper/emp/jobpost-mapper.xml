@@ -5,7 +5,7 @@
 <mapper namespace="jobPostMapper">
   
   <select id="selectJobPostDetail" resultType="JobPostVo">
-  	 	SELECT 
+ 	SELECT 
   		EMP.NO
 		, EMP.CORP_NO
 		, EMP.CATEGORY
@@ -29,6 +29,22 @@
 	JOIN CORPORATE_MEMBER CORP ON EMP.CORP_NO = CORP.NO
 	JOIN EMP_CATE EC ON EMP.CATEGORY = EC.NO
 	WHERE EMP.NO = #{no}
+  </select>
+  
+  <select id="selectJobPostList" resultType="JobPostVo">
+  	SELECT
+  		EMP.NO
+		, EMP.CATEGORY
+		, EMP.TITLE
+		, EMP.SECTOR
+		, EMP.ADDRESS
+		, EMP.CAREER
+		, CORP.COMPANY_NAME
+	FROM EMPLOYMENT EMP
+	JOIN CORPORATE_MEMBER CORP ON EMP.CORP_NO = CORP.NO
+	WHERE EMP.DELETE_YN = 'N'
+	AND EMP.DEADLINE >= TO_CHAR(SYSDATE,'YYYY-MM-DD')
+	ORDER BY EMP.NO DESC
   </select>
   
 </mapper>

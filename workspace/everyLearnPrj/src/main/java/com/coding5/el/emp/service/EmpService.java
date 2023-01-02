@@ -2,6 +2,7 @@ package com.coding5.el.emp.service;
 
 import java.util.List;
 
+import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.emp.vo.AwardVo;
 import com.coding5.el.emp.vo.CareerVo;
 import com.coding5.el.emp.vo.CertificateVo;
@@ -34,6 +35,9 @@ public interface EmpService {
 	JobPostVo jobPostDetail(String no);
 
 	int resumeWrite(List<EducationVo> evList);
+
+	// 채용 메인 페이지 리스트
+	List<JobPostVo> jobPostList(String no);
 
 }
 // , List<LanguageVo> lvList, List<AwardVo> avList,

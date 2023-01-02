@@ -50,15 +50,13 @@
 									<div class="list">
 										<p>관심 직군</p>
 										<div class="dropdown">
-											<input type="text" name="blog" class="input">
-											<!-- <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-												Dropdown button
-											</button>
-											<ul class="dropdown-menu">
-												<li><a class="dropdown-item" href="#">Link 1</a></li>
-												<li><a class="dropdown-item" href="#">Link 2</a></li>
-												<li><a class="dropdown-item" href="#">Link 3</a></li>
-											</ul> -->
+											<select name="category" class="input">
+												<option value="1">IT직군</option>
+												<option value="2">경영/사무</option>
+												<option value="3">디자인</option>
+												<option value="4">마케팅</option>
+												<option value="5">교육</option>
+											</select>
 										</div>
 									</div>
 									<!-- 주소 api -->
@@ -118,8 +116,8 @@
 												<div class="list">
 													<p>교육기간</p>
 													<div>
-														<input type="text" name="evList[0].enterSchool" class="input">
-														<input type="text" name="evList[0].graduate" class="input">
+														<input type="date" name="evList[0].enterSchool" class="input">
+														<input type="date" name="evList[0].graduate" class="input">
 													</div>
 												</div>
 											</div>

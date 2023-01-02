@@ -63,6 +63,10 @@
   margin-bottom: 8px;
 }
 
+.essential{
+  color: rgb(229, 0, 0);
+}
+
 input{
   width: 100%;
   height: 1.9rem;
@@ -88,11 +92,11 @@ input{
   padding-right: 50px;
 }
 
-.input-sales{
+.input-wrapper{
   position: relative;
 }
 
-.input-sales>span{
+.input-wrapper>span{
   position: absolute;
   right: 10px;
   line-height: 1.9rem;
@@ -205,7 +209,6 @@ input{
   font-size: 11px;
   line-height: 1.45;
   font-weight: bold;
-  z-index: 3;
   margin-top: 16px;
 }
 
@@ -221,3 +224,23 @@ input{
   line-height: 1.5;
   color: rgb(135, 142, 152);
 }
+
+.x-icon{
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.x-icon>div{
+  display: flex;
+  align-items: center;
+  margin-right: 1px;
+}
+
+.uploaded{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+

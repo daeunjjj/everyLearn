@@ -14,7 +14,10 @@ import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.emp.vo.JobPostVo;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class CorpServiceImpl implements CorpService {
 
 	@Autowired
@@ -225,6 +228,15 @@ public class CorpServiceImpl implements CorpService {
 	public int editJobPost(EmploymentVo vo, CorpVo corpMember) {
 		vo.setCorpNo(corpMember.getNo());
 		return dao.updateEmployment(sst, vo);
+	}
+
+	// 회원탈퇴
+	@Override
+	public int quitCorpMember(CorpVo vo) {
+		
+		log.info(vo.toString());
+		
+		return dao.updateCorpMember(sst, vo);
 	}
 
 

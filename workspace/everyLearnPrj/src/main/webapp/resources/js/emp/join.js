@@ -26,7 +26,7 @@ const activeBtn = () => {
   const companyNameValue = inputcompanyName.value;
   const phoneValue = inputphone.value;
 
-  if (emailId.test(idValue) && pwd.test(pwdValue) && pwdValue === pwdCheckValue && nameValue.length && companyNameValue && phoneValue.length === 13 && terms.checked && privacy.checked) {
+  if(emailId.test(idValue) && pwd.test(pwdValue) && pwdValue === pwdCheckValue && nameValue.length && companyNameValue && phoneValue.length === 13 && terms.checked && privacy.checked) {
     const btn = document.getElementById('joinBtn')
     btn.removeAttribute('disabled');
   }else{

@@ -125,6 +125,12 @@ public class CorpDaoImpl implements CorpDao{
 		return sst.update("corpMapper.updateEmployment", vo);
 	}
 
+	// 회원 탈퇴
+	@Override
+	public int updateCorpMember(SqlSessionTemplate sst, CorpVo vo) {
+		return sst.update("corpMapper.updateCorpMember", vo);
+	}
+
 
 
 }

@@ -59,6 +59,9 @@ public interface CorpDao {
 	// 채용 공고 수정
 	public int updateEmployment(SqlSessionTemplate sst, EmploymentVo vo);
 
+	// 회원 탈퇴
+	public int updateCorpMember(SqlSessionTemplate sst, CorpVo vo);
+
 
 
 }
