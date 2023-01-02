@@ -22,4 +22,8 @@ public interface CartDao {
 	//찜에 넣기
 	public int addWish(HashMap<String, String> map, SqlSessionTemplate sst);
 
+	
+	//장바구니 삭제
+	public int deleteCart(HashMap<String, String> map, SqlSessionTemplate sst);
+
 }

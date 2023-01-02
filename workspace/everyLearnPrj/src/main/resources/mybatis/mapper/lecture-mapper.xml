@@ -37,7 +37,14 @@
 	
   </insert>
   
-  
+  <!-- 함수 등록 -->
+  <!-- <create>
+	  CREATE FUNCTION get_seq RETURN NUMBER IS
+	BEGIN
+	  RETURN SEQ_DETAIL_CLASS_NO.nextval;
+	END;
+	</create> -->
+	
   <!-- 강의 목차 등록 -->
 	<insert id="insertClassDetail">
 		INSERT ALL
@@ -45,12 +52,12 @@
 
 		INTO DETAIL_CLASS
 			(
-			
-			DETAIL_NO
+			NO
+			, DETAIL_NO
 			, CLASS_NO
 			, CHAPTER
 			)
-		VALUES ( #{vo.detailno}, #{vo.classNo}, #{vo.chapter})
+		VALUES ( get_seq, #{vo.detailno}, #{vo.classNo}, #{vo.chapter})
 		
 		</foreach>
 		select 1 from dual

@@ -44,6 +44,13 @@ public class CartServiceImpl implements CartService{
 		// TODO Auto-generated method stub
 		return cartDao.getWishList(mno, sst);
 	}
+
+	//장바구니 삭제
+
+	@Override
+	public int deleteCart(HashMap<String, String> map) {
+		return cartDao.deleteCart(map, sst);
+	}
 	
 
 }

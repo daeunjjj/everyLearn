@@ -44,9 +44,13 @@ public class CartController {
 		map.put("memberNo", memberNo);
 
 		int result = cartService.addCart(map);
-
+		if (result == 1) {
 		// return result + "";
 		return "redirect:/cart/addCart";
+		}else {
+			return "common/error";
+		}
+		
 	}
 
 	// 장바구니 화면
@@ -106,24 +110,30 @@ public class CartController {
 	  }
 	 
 
-	/*
-	 * // 찜하기
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @PostMapping("/store/likes") public long likes(String classNo, String
-	 * memberNo, String likes, HttpServletRequest request, HttpServletResponse
-	 * response, HttpSession session) throws UnsupportedEncodingException {
-	 * System.out.println("찜하기id =  " + memberNo + " " + likes);
-	 * 
-	 * MemberVo loginMember = (MemberVo)session.getAttribute("loginMember"); String
-	 * mno = loginMember.getMemberNo(); if (loginMember == null) {
-	 * 
-	 * 
-	 * } else { System.out.println("찜하기 회원"); userId = user.getUser().getId();
-	 * storeService.likes(id, likes, userId); }
-	 * 
-	 * return userId; }
-	 */
+	  //장바구니 삭제
+	  @PostMapping("delete")
+	  public String deleteList(HttpSession session, Model model, String classNo, String memberNo) {
+		  
+		  MemberVo loginMember = (MemberVo)session.getAttribute("loginMember"); 
+		 
+		  if (loginMember == null) {
+				return "member/login";
+			}
+		  memberNo = loginMember.getMemberNo();
+		 log.info("delete memberNo : " + memberNo);
+		 
+		 HashMap<String, String>map = new HashMap<>(); 
+		 	map.put("classNo", classNo);
+		 	map.put("memberNo", memberNo);
+		  int result = cartService.deleteCart(map);
+		  
+		  if(result == 1) {
+		 //model.addAttribute(no);
+		  return "redirect:/cart/addCart";
+		  }else {
+			  return "common/error";
+		  }
+		  
+	  }
 
 }
