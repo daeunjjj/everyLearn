@@ -3,9 +3,11 @@ package com.coding5.el.class_comm.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.core.impl.MementoMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,13 +18,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coding5.el.class_comm.service.ClassCommService;
 import com.coding5.el.class_comm.vo.ClassCommVo;
+import com.coding5.el.class_comm.vo.CommentVo;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@RequestMapping("class")
+//@RequestMapping("class")
+@RequestMapping(value = "class", produces = "application/text; charset=utf8")
 @Controller
 public class ClassCommController {
 	
@@ -76,10 +80,54 @@ public class ClassCommController {
 	//게시글 상세(화면)
 	@GetMapping("detail")
 	public String detail(String classCommNo, Model model) {
+		
+		
 		ClassCommVo detailVo = ccs.detailVo(classCommNo);
 		model.addAttribute("detailVo", detailVo);
 		
+		log.info("디테일브이오" + detailVo);
+		
+		//댓글 정보 조회
+		List<CommentVo> commentList = ccs.commentList(classCommNo);
+		log.info("댓글리스트" + commentList);
+		model.addAttribute("commentList", commentList);
+		model.addAttribute("classCommNo", classCommNo);
+		
+		
+		
+		
 		return "class_comm/detail";
+	}
+	
+	//댓글 에이젝스
+
+	@PostMapping("commentAjax")
+	@ResponseBody
+	public String comment(String content, String memberNo, String classCommNo) {
+		
+		//댓글 인서트
+		CommentVo vo = new CommentVo();
+		vo.setComContent(content);
+		vo.setComWriterNo(memberNo);
+		vo.setComCommentNo(classCommNo);
+		
+		int result = ccs.writeComment(vo);
+		log.info("vo ::" + vo);
+		
+		//댓글 셀렉트
+//		List<CommentVo> commentOne = ccs.commemtOne(vo);
+		List<CommentVo> commentList = ccs.commentList(classCommNo);
+		
+		Gson gson = new Gson();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("commentList", commentList);
+		String commentListString = gson.toJson(commentList);
+		
+		log.info("commentOneString ::" + commentListString);
+		
+		
+		return commentListString;
+		
 	}
 	
 	//신고(화면) >> 아직 작동 잘 안 됨!
@@ -107,27 +155,42 @@ public class ClassCommController {
 
 	
 	//신고
-	@PostMapping("report")
-	public String report(String blacklistNo, String accusor, String cate_op, String board) {
+	@PostMapping("reportInfo")
+	@ResponseBody
+	public String reportInfo(String blacklistNo, String accusor, String board, Model model) {
 		
 		ClassCommVo vo = new ClassCommVo();
 		vo.setBlacklistNo(blacklistNo);
 		vo.setAccusor(accusor);
-		vo.setCate_no(cate_op);
 		vo.setBoard(board);
 		
+		log.info("이건 인포" + vo);
 		
-		int result = ccs.report(vo);
+		model.addAttribute("vo",vo);
+		
 		
 		return "class_comm/report_write";
 	}
 	
-	@PostMapping("comment")
-	public String comment(String content) {
+	//신고
+	@PostMapping("report")
+	public String report(String blacklistNo, String accusor, String board, String cate_no ) {
 		
-		return "success";
+
 		
+		log.info("신고 :: "+blacklistNo);
+
+		
+		
+//		log.info("신고"+vo);
+		
+//		int result = ccs.report(vo);
+		
+		return "main";
 	}
+	
+
+
 	
 	//스터디
 	@GetMapping("study")

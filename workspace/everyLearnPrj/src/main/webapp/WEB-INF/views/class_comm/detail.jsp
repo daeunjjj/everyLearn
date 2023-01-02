@@ -32,14 +32,13 @@
                             </div>
                             <div style="padding-bottom: 3px;">
                                 
-                                <img onclick=" new_window(); postData(); "
+                                <img onclick="  postData(); new_window(); "
                                 style="height: 15px; width: 18px; margin-bottom: 4px; margin-left: 5px;"
                                 src="/el/resources/img/class-comm/warning2.png" alt="">
 
 
                                     <input type="hidden" name="blacklist" id="blacklistNo" value="${detailVo.writerNo}">
                                     <input type="hidden" name="accusor" id="accusor" value="${loginMember.memberNo}">
-                                   
                                     
                                     <input type="hidden" name="cate_no" id="cate_no" value="1">
                                     <input type="hidden" name="board" id="board" value="${detailVo.classCommNo}">
@@ -50,7 +49,7 @@
 
                                     
                                 
-                                <div id="writer">
+                                <div class="writer" id="writer">
 									${detailVo.writer}
                                 </div>
                                 <div id="enrollDate">
@@ -65,52 +64,62 @@
                     <div id="comment-top">댓글(3)</div>
                     <div style=" margin: 10px 10px;"></div>
                     <div id="comment-main">
+                    <c:forEach items="${commentList}" var="comment">
                         <!-- 댓글반복문 -->
                         <div id="comment-wrap">
                             <img onclick="new_window();" style="height: 15px; width: 18px; margin-bottom: 4px; margin-left: 5px;"
                                 src="/el/resources/img/class-comm/warning2.png" alt="">
                             <div id="writer">
-                                투자가답이다
+                                ${comment.comWriter}
                             </div>
                             <div id="enrollDate">
-                                2022-12-22 12:22:34
+                                ${comment.comEnrollDate}
                             </div>
                         </div>
-                        <pre style="margin-bottom: 10px; margin-top: 5px;">
-투자원금 3배 이상 보장합니다. 믿고 맡겨주세요. 제 주소 링크 들어오시면 됩니다. 초기자본 제한 없습니다 편안하게 상담</pre>
+                        <pre style="margin-bottom: 10px; margin-top: 5px;"> ${comment.comContent}</pre>
                         <!-- 댓글반복문 끝 -->
-                        <div id="comment-wrap">
-                            <img onclick="new_window();" id="re" style="height: 15px; width: 18px; margin-bottom: 4px; margin-left: 5px;"
-                                src="/el/resources/img/class-comm/warning2.png" alt="">
-                            <div id="writer">
-                                투자가답이다
-                            </div>
-                            <div id="enrollDate">
-                                2022-12-22 12:22:34
-                            </div>
-                        </div>
-                        <pre style="margin-bottom: 10px; margin-top: 5px;">
-투자원금 3배 이상 보장합니다. 믿고 맡겨주세요. 제 주소 링크 들어오시면 됩니다. 초기자본 제한 없습니다 편안하게 상담</pre>
+                    </c:forEach>
+
+                    
+
+          
+
                     </div>
-                    <form method="post" action="/el/class/comment">
+                    <!-- <form method="post" action="/el/class/comment"> -->
                     <div id="comm-write">
                         <div id="comm-content">
-                                <textarea id="content" name="content" cols="60" rows="3" style="resize: none;"></textarea>
+                                <textarea id="data1" name="content" cols="60" rows="3" style="resize: none;"></textarea>
+                                <!-- <input type="text" id="data1" name="content" cols="60" rows="3" style="resize: none;"></input> -->
+                    
+                 
                                 <input id="memberNo" name="memberNo" type="hidden" value="${loginMember.memberNo}">
-                                <input id="classCommNo"  name="classCommNo" type="hidden" value="${detailVo.classCommNo}">
+                                <input id="classCommNo"  name="classCommNo" type="hidden" value="${classCommNo}">
+                                <!-- <input type="button" onclick="getValueInText();" value="버튼"> -->
                             </div>
                             <div id="div-btn">
-                                <button type="button" id="btn-write" onclick="commentEnroll()">작성</button>
+                                <button type="button" id="btn-write" onclick="commentWrite();" value="작성">작성</button>
                             </div>
-                        </form>
+                  
+                     
                     </div>
-				<form action="">
-					<input type="hidden" value="">
-				</form>
+
 
                 </div>
 
+                <script>
+                    function jin(params) {
+                        return true;
+                    }
+                </script>
 
+<!-- <input type="text" Id="data1">
+<input type="button" value="Send" onclick="getValueInText();"> -->
+<script>
+
+
+
+</script>
+                
             </main>
             <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 

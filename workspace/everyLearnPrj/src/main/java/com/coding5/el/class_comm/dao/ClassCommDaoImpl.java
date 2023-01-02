@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.coding5.el.class_comm.vo.ClassCommVo;
-
+import com.coding5.el.class_comm.vo.CommentVo;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -45,6 +45,28 @@ public class ClassCommDaoImpl implements ClassCommDao{
 	@Override
 	public List<ClassCommVo> selectFreeList(SqlSessionTemplate sst, String orderBy) {
 		return sst.selectList("classCommMapper.selectFreeList", orderBy);
+	}
+
+	//commentList
+	@Override
+	public List<CommentVo> selectCommentList(SqlSessionTemplate sst, String classCommNo) {
+		
+		log.info("classCommNo :: " + classCommNo);		
+		List<CommentVo> commentList =  sst.selectList("classCommMapper.selectCommentList", classCommNo);
+		log.info("코멘트리스트DAO :: " + commentList);		
+		return commentList;
+	}
+
+	//insertComment
+	@Override
+	public int insertComment(SqlSessionTemplate sst, CommentVo vo) {
+		return sst.insert("classCommMapper.insertCommentOne",vo);
+	}
+
+	//selectCommentOne
+	@Override
+	public CommentVo selectCommentOne(SqlSessionTemplate sst, CommentVo vo) {
+		return sst.selectOne("classCommMapper.selectCommentOne", vo);
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.coding5.el.class_comm.vo.ClassCommVo;
+import com.coding5.el.class_comm.vo.CommentVo;
 
 public interface ClassCommDao {
 
@@ -17,5 +18,11 @@ public interface ClassCommDao {
 	public List<ClassCommVo> selectstudyList(SqlSessionTemplate sst, String orderBy);
 	//freeList
 	public List<ClassCommVo> selectFreeList(SqlSessionTemplate sst, String orderBy);
+	//commentList
+	public List<CommentVo> selectCommentList(SqlSessionTemplate sst, String classCommNo);
+	//insertComment
+	public int insertComment(SqlSessionTemplate sst, CommentVo vo);
+	//select commentOne
+	public CommentVo selectCommentOne(SqlSessionTemplate sst, CommentVo vo);
 
 }

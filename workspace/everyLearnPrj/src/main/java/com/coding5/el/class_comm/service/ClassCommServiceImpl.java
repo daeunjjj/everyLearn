@@ -7,9 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.coding5.el.class_comm.dao.ClassCommDao;
-import com.coding5.el.class_comm.dao.ClassCommDaoImpl;
 import com.coding5.el.class_comm.vo.ClassCommVo;
-import com.coding5.el.member.dao.MemberDaoImpl;
+import com.coding5.el.class_comm.vo.CommentVo;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -59,6 +58,24 @@ public class ClassCommServiceImpl implements ClassCommService{
 	@Override
 	public List<ClassCommVo> freeList(String orderBy) {
 		return dao.selectFreeList(sst, orderBy);
+	}
+
+	//댓글 정보 조회
+	@Override
+	public List<CommentVo> commentList(String classCommNo) {
+		return dao.selectCommentList(sst, classCommNo);
+	}
+
+	//댓글 인서트
+	@Override
+	public int writeComment(CommentVo vo) {
+		return dao.insertComment(sst, vo);
+	}
+
+	//댓글 작성 한 개 조회
+	@Override
+	public CommentVo commemtOne(CommentVo vo) {
+		return dao.selectCommentOne(sst, vo);
 	}
 
 }
