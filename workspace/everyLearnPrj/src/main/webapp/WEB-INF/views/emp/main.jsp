@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -30,6 +31,7 @@
 						</div>
 					</div>
 					<ul class="announcement">
+					<c:forEach items="${list}" var="list" begin="0" end="11" step="1">
 						<li>
 							<div class="announcement-wrapper">
 								<a href="">
@@ -38,174 +40,21 @@
 									</figure>
 									<div class="emp-info">
 										<div>
-											<div class="emp-name">(주)코딩파이브</div>
-											<div class="position">Back-end Web개발자</div>
+											<div class="emp-name">${list.companyName}</div>
+											<a href="/el/emp/position?no=${list.no}" class="position">${list.title}</a>
 										</div>
 										<ul class="skill">
 											<li>Java</li>
 											<li>Spring</li>
 										</ul>
 										<div class="etc">
-											<span>신입 | </span> <span>강남</span>
+											<span>${list.career} | </span> <span>${list.address}</span>
 										</div>
 									</div>
 								</a>
 							</div>
 						</li>
-						<li>
-							<div class="announcement-wrapper">
-								<a href="">
-									<figure class="img-wrapper">
-										<img src="/el/resources/img/logo/logo_white.png" alt="img">
-									</figure>
-									<div class="emp-info">
-										<div>
-											<div class="emp-name">(주)코딩파이브</div>
-											<div class="position">Back-end Web개발자</div>
-										</div>
-										<ul class="skill">
-											<li>Java</li>
-											<li>Spring</li>
-										</ul>
-										<div class="etc">
-											<span>신입 | </span> <span>강남</span>
-										</div>
-									</div>
-								</a>
-							</div>
-						</li>
-						<li>
-							<div class="announcement-wrapper">
-								<a href="">
-									<figure class="img-wrapper">
-										<img src="/el/resources/img/logo/logo_white.png" alt="img">
-									</figure>
-									<div class="emp-info">
-										<div>
-											<div class="emp-name">(주)코딩파이브</div>
-											<div class="position">Back-end Web개발자</div>
-										</div>
-										<ul class="skill">
-											<li>Java</li>
-											<li>Spring</li>
-										</ul>
-										<div class="etc">
-											<span>신입 | </span> <span>강남</span>
-										</div>
-									</div>
-								</a>
-							</div>
-						</li>
-						<li>
-							<div class="announcement-wrapper">
-								<a href="">
-									<figure class="img-wrapper">
-										<img src="/el/resources/img/logo/logo_white.png" alt="img">
-									</figure>
-									<div class="emp-info">
-										<div>
-											<div class="emp-name">(주)코딩파이브</div>
-											<div class="position">Back-end Web개발자</div>
-										</div>
-										<ul class="skill">
-											<li>Java</li>
-											<li>Spring</li>
-										</ul>
-										<div class="etc">
-											<span>신입 | </span> <span>강남</span>
-										</div>
-									</div>
-								</a>
-							</div>
-						</li>
-						<li>
-							<div class="announcement-wrapper">
-								<a href="">
-									<figure class="img-wrapper">
-										<img src="/el/resources/img/logo/logo_white.png" alt="img">
-									</figure>
-									<div class="emp-info">
-										<div>
-											<div class="emp-name">(주)코딩파이브</div>
-											<div class="position">Back-end Web개발자</div>
-										</div>
-										<ul class="skill">
-											<li>Java</li>
-											<li>Spring</li>
-										</ul>
-										<div class="etc">
-											<span>신입 | </span> <span>강남</span>
-										</div>
-									</div>
-								</a>
-							</div>
-						</li>
-						<li>
-							<div class="announcement-wrapper">
-								<a href="">
-									<figure class="img-wrapper">
-										<img src="/el/resources/img/logo/logo_white.png" alt="img">
-									</figure>
-									<div class="emp-info">
-										<div>
-											<div class="emp-name">(주)코딩파이브</div>
-											<div class="position">Back-end Web개발자</div>
-										</div>
-										<ul class="skill">
-											<li>Java</li>
-											<li>Spring</li>
-										</ul>
-										<div class="etc">
-											<span>신입 | </span> <span>강남</span>
-										</div>
-									</div>
-								</a>
-							</div>
-						</li>
-						<li>
-							<div class="announcement-wrapper">
-								<a href="">
-									<figure class="img-wrapper">
-										<img src="/el/resources/img/logo/logo_white.png" alt="img">
-									</figure>
-									<div class="emp-info">
-										<div>
-											<div class="emp-name">(주)코딩파이브</div>
-											<div class="position">Back-end Web개발자</div>
-										</div>
-										<ul class="skill">
-											<li>Java</li>
-											<li>Spring</li>
-										</ul>
-										<div class="etc">
-											<span>신입 | </span> <span>강남</span>
-										</div>
-									</div>
-								</a>
-							</div>
-						</li>
-						<li>
-							<div class="announcement-wrapper">
-								<a href="">
-									<figure class="img-wrapper">
-										<img src="/el/resources/img/logo/logo_white.png" alt="img">
-									</figure>
-									<div class="emp-info">
-										<div>
-											<div class="emp-name">(주)코딩파이브</div>
-											<div class="position">Back-end Web개발자</div>
-										</div>
-										<ul class="skill">
-											<li>Java</li>
-											<li>Spring</li>
-										</ul>
-										<div class="etc">
-											<span>신입 | </span> <span>강남</span>
-										</div>
-									</div>
-								</a>
-							</div>
-						</li>
+					</c:forEach>
 					</ul>
 				</div>
 			</div>

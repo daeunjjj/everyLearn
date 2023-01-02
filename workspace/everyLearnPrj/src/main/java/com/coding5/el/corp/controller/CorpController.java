@@ -96,10 +96,28 @@ public class CorpController {
 	}
 	
 	// 기업 회원 탈퇴
-//	@PostMapping("quit")
-//	public String quitCorpMember() {
-//		
-//	}
+	@PostMapping("quit")
+	public String quitCorpMember(HttpSession session, CorpVo vo) {
+		
+		CorpVo corpMember = (CorpVo) session.getAttribute("corpMember");
+		
+		
+		if(corpMember == null) {
+			return "redirect:/corp/login";
+		}
+	
+		vo.setNo(corpMember.getNo());
+		
+		int result = cs.quitCorpMember(vo);
+		
+		if(result != 1) {
+			log.info("" + result);
+			return "common/error";
+		}
+		
+		return "redirect:/corp/login";
+		
+	}
 	
 	// 기업 마이페이지(화면)
 	@GetMapping("mypage")

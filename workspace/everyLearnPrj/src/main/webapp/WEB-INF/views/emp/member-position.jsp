@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/el/resources/css/emp/main.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 <link rel="stylesheet" href="/el/resources/css/common/font.css">
-<link rel="stylesheet" href="/el/resources/css/emp/job-post-detail.css">
+<link rel="stylesheet" href="/el/resources/css/emp/member-position.css">
 <link rel="icon" type="image/png" sizes="16x16"
 	href="/el/resources/img/logo/favicon-16x16.png">
 </head>
@@ -20,12 +20,13 @@
 	<%@ include file="/WEB-INF/views/common/emp-header.jsp"%>
 
 	<main id="container">
-		<form action="/el/corp/job-post" method="POST">
+		<form action="/el/emp/position" method="POST">
 			<div class="jobContent">
 				<div class="post">
 					<header class="header">
 						<h6>
-							<img src="/el/resources/upload/${vo.logo}" alt="">${vo.companyName}</h6>
+							<img src="/el/resources/upload/${vo.logo}" alt="">${vo.companyName}
+						</h6>
 						<h1>${vo.title}</h1>
 					</header>
 					<div class="thumb-wrapper">

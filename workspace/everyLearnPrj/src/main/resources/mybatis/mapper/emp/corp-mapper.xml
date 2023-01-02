@@ -140,7 +140,7 @@
 	ORDER BY NO DESC
   </select>
   
-  <!-- 기업 마이페이지(회사정보 수정) -->
+  <!-- 채용공고 수정 -->
   <update id="updateJobPost">
   	UPDATE EMPLOYMENT
   	SET
@@ -247,6 +247,13 @@
 		, MODIFY_DATE = SYSDATE
   	WHERE NO = #{no}
   	AND CORP_NO = #{corpNo}
+  </update>
+  
+  <update id="updateCorpMember">
+  	UPDATE CORPORATE_MEMBER
+  	SET
+  		QUIT_YN = 'Y'
+  	WHERE NO = #{no}
   </update>
   
 </mapper>

@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.emp.dao.EmpDao;
 import com.coding5.el.emp.vo.AwardVo;
 import com.coding5.el.emp.vo.CareerVo;
@@ -81,6 +82,12 @@ public class EmpServiceImpl implements EmpService{
 	public int resumeWrite(List<EducationVo> evList) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	// 채용 메인 페이지 리스트
+	@Override
+	public List<JobPostVo> jobPostList(String no) {
+		return dao.selectJobPostList(sst, no);
 	}
 
 }

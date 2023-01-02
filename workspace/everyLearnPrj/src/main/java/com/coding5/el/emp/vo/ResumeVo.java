@@ -15,4 +15,5 @@ public class ResumeVo {
 	private String modifyDate;
 	
 	
+	
 }

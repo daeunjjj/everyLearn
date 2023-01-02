@@ -57,5 +57,8 @@ public interface CorpService {
 	// 공고 수정
 	public int editJobPost(EmploymentVo vo, CorpVo corpMember);
 
+	// 회원 탈퇴
+	public int quitCorpMember(CorpVo vo);
+
 
 }

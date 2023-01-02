@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.emp.service.EmpService;
 import com.coding5.el.emp.vo.AwardVo;
 import com.coding5.el.emp.vo.CareerVo;
@@ -31,10 +32,25 @@ public class EmpController {
 	
 	// 채용 메인 페이지(화면)
 	@GetMapping("main")
-	public String empMain() {
+	public String empMain(String no, Model model) {
+		
+		List<JobPostVo> list = es.jobPostList(no);
+		
+		model.addAttribute("list", list);
+		
 		return "emp/main";
 	}
 	
+	// 채용 공고 세부조회
+	@GetMapping("position")
+	public String jobPostDetail(String no, Model model) {
+		
+		JobPostVo vo = es.jobPostDetail(no);
+		model.addAttribute("vo", vo);
+		
+		return "emp/member-position";
+	}
+		
 	// 채용 이력서(화면)
 	@GetMapping("resume")
 	public String resume(ResumeVo vo, HttpSession session) {
@@ -58,17 +74,7 @@ public class EmpController {
 		return "emp/resume";
 	}
 	
-	/**
-	 * 채용 이력서
-	 * @param vo
-	 * @param evList
-	 * @param lvList
-	 * @param avList
-	 * @param cvList
-	 * @param cfvList
-	 * @param ravList
-	 * @return
-	 */
+	// 채용 이력서
 	@PostMapping("resume")
 	public String resume(List<EducationVo> evList) {
 		
@@ -83,13 +89,6 @@ public class EmpController {
 	//, List<LanguageVo> lvList, List<AwardVo> avList, List<CareerVo> cvList, List<CertificateVo> cfvList, List<ResumeAttatchVo> ravList
 	//, lvList, avList, cvList, cfvList, ravList
 	
-	@GetMapping("position")
-	public String jobPostDetail(String no, Model model) {
-		
-		JobPostVo vo = es.jobPostDetail(no);
-		model.addAttribute("vo", vo);
-		
-		return "emp/job-post-detail";
-	}
+	
 	
 }

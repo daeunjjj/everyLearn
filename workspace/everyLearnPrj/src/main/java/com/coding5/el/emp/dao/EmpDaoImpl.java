@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.emp.vo.AwardVo;
 import com.coding5.el.emp.vo.CareerVo;
 import com.coding5.el.emp.vo.CertificateVo;
@@ -62,6 +63,12 @@ public class EmpDaoImpl implements EmpDao {
 	@Override
 	public JobPostVo selectJobPostDetail(SqlSessionTemplate sst, String no) {
 		return sst.selectOne("jobPostMapper.selectJobPostDetail", no);
+	}
+
+	// 채용 메인페이지 리스트
+	@Override
+	public List<JobPostVo> selectJobPostList(SqlSessionTemplate sst, String no) {
+		return sst.selectList("jobPostMapper.selectJobPostList", no);
 	}
 
 

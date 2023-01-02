@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.emp.vo.AwardVo;
 import com.coding5.el.emp.vo.CareerVo;
 import com.coding5.el.emp.vo.CertificateVo;
@@ -34,5 +35,8 @@ public interface EmpDao {
 
 	// 채용 공고 상세
 	JobPostVo selectJobPostDetail(SqlSessionTemplate sst, String no);
+
+	// 채용 메인 페이지 리스트
+	List<JobPostVo> selectJobPostList(SqlSessionTemplate sst, String no);
 
 }

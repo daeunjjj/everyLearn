@@ -67,7 +67,7 @@
                   <dl>
                       <label>연봉</label>
                       <div class="min-sales">
-                        <input type="text" name="salary" value="${ev.salary}"><span>만원</span>
+                        <input type="text" name="salary" class="number" value="${ev.salary}"><span>만원</span>
                       </div>
                   </dl>
                   <dl>
@@ -91,6 +91,7 @@
 
       <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
+      <script src="/el/resources/js/emp/job-post.js"></script>
   </body>
 
   </html>
