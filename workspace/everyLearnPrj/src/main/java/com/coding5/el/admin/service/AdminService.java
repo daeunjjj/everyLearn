@@ -100,4 +100,5 @@ public interface AdminService {
 	// 기업승인
 	public int corporateApproval(String no);
 	
+	
 }

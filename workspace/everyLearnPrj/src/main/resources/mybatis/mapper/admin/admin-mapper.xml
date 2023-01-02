@@ -528,4 +528,103 @@
 		SET STATUS_YN = 'Y'
 		WHERE NO = #{no}
 	</update>
+	
+	<select id="selectReportCount" resultType="int">
+		SELECT COUNT(*)
+		FROM REPORT R
+		JOIN MEMBER B ON R.BLACKLIST = B.NO
+		JOIN MEMBER A ON R.ACCUSOR = A.NO
+		<if test="keyword != null and keyword != ''">
+			WHERE ${category} LIKE '%${keyword}%'
+		</if>
+	</select>
+	
+	<select id="selectReportList" resultType="ReportVo">
+		SELECT 
+		    R.NO
+		    ,B.ID AS BLACKLIST
+		    ,A.ID AS ACCUSOR
+		    ,T.TYPE
+		    ,R.CATE_NO
+		    ,R.BOARD
+		    ,TO_CHAR(REPORT_DATE, 'YYYY-MM-DD HH:MI') AS REPORT_DATE
+		    ,R.HANDLE_YN
+		    ,TO_CHAR(PROCESS_DATE, 'YYYY-MM-DD HH:MI') AS PROCESS_DATE
+		    ,TO_CHAR(FINISH_DATE, 'YYYY-MM-DD') AS FINISH_DATE
+		    ,M.METHOD
+		FROM REPORT R
+		JOIN MEMBER B ON R.BLACKLIST = B.NO
+		JOIN MEMBER A ON R.ACCUSOR = A.NO
+		FULL JOIN PROCESS_METHOD M ON R.METHOD = M.NO
+		JOIN REPORT_TYPE T ON R.TYPE = T.NO
+    	<if test="keyword != null and keyword != ''">
+	    	WHERE ${category} LIKE '%${keyword}%'
+    	</if>
+	    ORDER BY R.REPORT_DATE DESC
+	</select>
+	
+	    	
+    <select id="selectHandleN" resultType="int">
+		SELECT COUNT(*)
+		FROM REPORT
+		WHERE HANDLE_YN = 'N'
+	</select>
+	
+	<select id="selectReportOneByNo" resultType="ReportVo">
+		SELECT 
+		    R.NO
+		    ,B.ID AS BLACKLIST_ID
+		    ,A.ID AS ACCUSOR_ID
+		    ,BLACKLIST
+		    ,ACCUSOR
+		    ,T.TYPE
+		    ,R.CATE_NO
+		    ,R.BOARD
+		    ,TO_CHAR(REPORT_DATE, 'YYYY-MM-DD HH:MI') AS REPORT_DATE
+		    ,R.HANDLE_YN
+		    ,TO_CHAR(PROCESS_DATE, 'YYYY-MM-DD HH:MI') AS PROCESS_DATE
+		    ,TO_CHAR(FINISH_DATE, 'YYYY-MM-DD') AS FINISH_DATE
+		FROM REPORT R
+		JOIN MEMBER B ON R.BLACKLIST = B.NO
+		JOIN MEMBER A ON R.ACCUSOR = A.NO
+		JOIN REPORT_TYPE T ON R.TYPE = T.NO
+		WHERE R.NO = #{no}
+	</select>
+	
+	<update id="reportUpdate">
+		UPDATE REPORT 
+		    SET METHOD = #{method}
+		    ,HANDLE_YN = 'Y' 
+		    ,PROCESS_DATE = TO_CHAR(SYSDATE,'YY-MM-DD HH24:MI')
+		<if test="finishDate != null and finishDate != ''">
+	    	,FINISH_DATE = #{finishDate}
+    	</if>    
+		WHERE NO = #{no}
+	</update>
+	
+	<update id="memberUpdate">
+		UPDATE MEMBER 
+			SET REPORT_YN = 'Y'
+		<if test="method == '3'">
+	    	,QUIT_YN = 'Y'
+    	</if>   
+		WHERE NO = #{blacklist}
+	</update>
+	
+	<insert id="insertAlert">
+		INSERT INTO ALERT
+		(
+		    NO
+		    ,MEMBER_NO
+		    ,CATEGORY
+		    ,TITLE
+		)
+		VALUES
+		(
+		    SEQ_ALERT_NO.NEXTVAL
+		    ,#{memberNo}
+		    ,4
+		    ,#{title}
+		)
+	</insert>
 </mapper>

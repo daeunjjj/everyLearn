@@ -25,6 +25,7 @@ import com.coding5.el.common.page.Pagination;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
+import com.coding5.el.report.vo.ReportVo;
 
 import lombok.extern.slf4j.Slf4j;
 @RequestMapping("admin")
@@ -283,17 +284,7 @@ public class AdminController {
 	}
 	
 	
-	// 신고 (강의) 리스트 조회
-	@GetMapping("report/list")
-	public String reportList() {
-		return "admin/report/list";
-	}
-	
-	// 신고처리 화면
-	@GetMapping("report/process")
-	public String reportProcess() {
-		return "admin/report/process";
-	}
+
 	
 	
 	// 아이디 찾기

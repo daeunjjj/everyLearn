@@ -96,18 +96,13 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-items" id="report">
-                    <a class="nav-items-a" href="/el/admin/report/list">
-                        <span>신고관리</span>
-                        <i class="bi bi-chevron-compact-right"></i>
-                    </a>
-                </li>
-                <li class="nav-items">
+
+                <!-- <li class="nav-items">
                     <a class="nav-items-a" href="">
                         <span>통계</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-items" id="request">
                     <a class="nav-items-a" href="/el/admin/request/list">
                         <span>요청관리</span>
@@ -125,6 +120,12 @@
                             </ul>
                         </div>
                     </div>
+                </li>
+                <li class="nav-items" id="report">
+                    <a class="nav-items-a" href="/el/admin/report/list?pno=1">
+                        <span>신고관리</span>
+                        <i class="bi bi-chevron-compact-right"></i>
+                    </a>
                 </li>
                 <li class="nav-items" id="admin">
                     <a class="nav-items-a" href="/el/admin/master/list?pno=1">
