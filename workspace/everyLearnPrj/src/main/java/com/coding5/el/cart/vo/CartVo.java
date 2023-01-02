@@ -16,8 +16,11 @@ public class CartVo {
 	private String price;
 	
 	//결제
-	private int pointPrice;
+	private String selectPrice; //선택된 전체 강의 금액
+    private String totalPrice; // 포인트를 차감한 금액
+    private String totalCnt;
     
-    private int totalPrice;
+    private String point; //선택된 포인트
+    private String totalPoint; //너는... 몰까.. 가지고 있는 포인트..?
 
 }

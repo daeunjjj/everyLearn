@@ -4,6 +4,8 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cartMapper">
   
+  
+  <!-- 장바구니 카트 추가 -->
   <insert id="addCartOne">
 		insert into CART
 		(
@@ -26,6 +28,7 @@
 	</select> -->  
 	
 	
+	<!-- 장바구니 카트 리스트 조회 -->
 	<select id="getCartList" resultType="com.coding5.el.cart.vo.CartVo">
      select
 		CART.MEMBER_NO
@@ -50,6 +53,8 @@
 	and CART.ORDER_YN = 'N'
 	</select>
 	
+	
+	<!-- 찜 추가 -->
 	<insert id="addWishOne">
 		insert into WISH
 		(
@@ -63,6 +68,7 @@
 		)
 	</insert>
 	
+	<!-- 찜 목록 조회 -->
 	<select id="getWishList" resultType="com.coding5.el.cart.vo.CartVo">
      select
 		WISH.MEMBER_NO
@@ -85,6 +91,15 @@
     where WISH.MEMBER_NO = #{mno}
 	</select>
   
+  
+  	<!-- 장바구니 카트 삭제 -->
+	<delete id="deleteCart">
+	
+		delete from cart 
+		where MEMBER_NO = #{memberNo}
+		and CLASS_NO = #{classNo}
+	
+	</delete>
 	
 	
 </mapper>

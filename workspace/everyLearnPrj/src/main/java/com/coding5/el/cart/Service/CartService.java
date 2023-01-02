@@ -20,4 +20,7 @@ public interface CartService {
 	//찜 목록 조회
 	public List<CartVo> getWishList(String mno);
 
+	//장바구니 삭제
+	public int deleteCart(HashMap<String, String> map);
+
 }

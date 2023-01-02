@@ -35,6 +35,13 @@ public class CartDaoImpl implements CartDao{
 	public int addWish(HashMap<String, String> map, SqlSessionTemplate sst) {
 		return sst.insert("cartMapper.addWishOne", map);
 	}
+	
+	
+	//장바구니 삭제
+	@Override
+	public int deleteCart(HashMap<String, String> map, SqlSessionTemplate sst) {
+		return sst.delete("cartMapper.deleteCart", map);
+	}
 
 
 
