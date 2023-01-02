@@ -9,7 +9,7 @@ public class FaqVo {
 	private String admin;
 	private String title;
 	private String content;
-	private String enroll_date;
-	private String modify_date;
+	private String enrollDate;
+	private String modifyDate;
 	private String del;
 }

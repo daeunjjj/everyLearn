@@ -33,6 +33,11 @@ public class NoticeController {
 		return "notice/notice-header";
 	}
 	
+	@GetMapping("writeTest")
+	public String writeTest() {
+		return "notice/writeTest";
+	}
+	
 	//공지 상세 조회
 	@GetMapping("detail")
 	public String detail(String no, Model model) throws Exception {

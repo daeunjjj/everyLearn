@@ -31,8 +31,8 @@
                     <br>
                     <div id="category">
                         <select name="category" id="category-btn">
-                            <option value="employment">일반 회원</option>
-                            <option value="changeJobs">기업 회원</option>
+                            <option value="1">일반회원</option>
+                            <option value="2">기업회원</option>
                         </select>
                     </div>
                     <br>
@@ -47,6 +47,16 @@
         </main>
 
     </div>
+    
+    <script type="text/javascript">
+    
+	    const submitBtn = document.querySelector("#submit-btn");
+	
+	    submitBtn.addEventListener('click', function(){
+	        confirm('작성하시겠습니까?');
+	    })
+    	
+    </script>
 
 </body>
 </html>
