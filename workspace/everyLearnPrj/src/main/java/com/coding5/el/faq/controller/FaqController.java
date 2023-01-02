@@ -58,6 +58,9 @@ public class FaqController {
 	@PostMapping("write")
 	public String write(FaqVo vo, HttpSession session, Model model) throws Exception {
 		
+		List<CateVo> cateList = faqService.cateList();
+		model.addAttribute("cateList", cateList);
+		
 		int result = faqService.write(vo);
 		if(result > 0) {
 			session.setAttribute("alertMsg", "FAQ 등록 성공");
