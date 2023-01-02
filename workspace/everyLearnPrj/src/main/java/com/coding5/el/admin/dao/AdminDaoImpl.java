@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.page.PageVo;
+import com.coding5.el.common.page.Pagination;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
@@ -49,9 +50,7 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public List<AdminVo> selectAdminList(SqlSessionTemplate sst, PageVo pv,  Map<String, String> mapSearch) {
 		// 관리자 리스트 가져오기
-		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
-		int limit = pv.getBoardLimit();
-		RowBounds rb = new RowBounds(offset,limit);
+		RowBounds rb = Pagination.getRowBounds(pv);
 		
 		return sst.selectList("adminMapper.selectAdminList",mapSearch,rb);
 	}
@@ -77,9 +76,7 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public List<MemberVo> selectStudentList(SqlSessionTemplate sst, PageVo pv,  Map<String, String> mapSearch) {
 		// 학생회원 리스트 가져오기
-		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
-		int limit = pv.getBoardLimit();
-		RowBounds rb = new RowBounds(offset,limit);
+		RowBounds rb = Pagination.getRowBounds(pv);
 		
 		return sst.selectList("adminMapper.selectStudentList", mapSearch, rb);
 	}
@@ -117,9 +114,7 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public List<TeacherVo> selectTeacherList(SqlSessionTemplate sst, PageVo pv, SearchVo svo) {
 		// 강사 리스트 조회
-		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
-		int limit = pv.getBoardLimit();
-		RowBounds rb = new RowBounds(offset,limit);
+		RowBounds rb = Pagination.getRowBounds(pv);
 		
 		return sst.selectList("adminMapper.selectTeacherList", svo, rb);
 	}
@@ -181,9 +176,8 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public List<CorpVo> selectCorporateList(SqlSessionTemplate sst, PageVo pv, SearchVo svo) {
 		// 기업회원리스트
-		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
-		int limit = pv.getBoardLimit();
-		RowBounds rb = new RowBounds(offset,limit);
+		RowBounds rb = Pagination.getRowBounds(pv);
+		
 		return sst.selectList("adminMapper.selectCorporateList",svo,rb);
 	}
 

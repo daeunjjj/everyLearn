@@ -20,12 +20,16 @@
                         <div id="input-area">
                             <div class="flex-area">
                                 <div>
-                                    <div>신고 수 :</div>
+                                    <a>
+                                    미처리신고
+                                    <span>${map.cnt }</span>
+                                    </a>
                                 </div>
                                 <div class="search">
+                                    <input name="pno" value="1" hidden>
                                     <select name="category">
-                                        <option value="id">신고자</option>
-                                        <option value="id">피신고자</option>
+                                        <option value="b.id">신고자</option>
+                                        <option value="a.id">피신고자</option>
                                     </select>
                                     <input type="text" name="keyword" placeholder="아이디를 입력해주세요.">
                                     <button id="search-btn">검색</button>
@@ -47,56 +51,64 @@
                     </div>
 
 
-                   <div class="list-items list">
-                        <div>1</div>
-                        <div>user0123</div>
-                        <div>user02</div>
-                        <div>욕설/비방</div>
-                        <div>2022-01-21</div>
-                        <div>2022-01-21</div>
-                        <div>미처리</div>
+				<c:forEach items="${map.voList}" var="list">
+					<div class="list-items list">
+						<div>${list.no }</div>
+						<div>${list.accusor }</div>
+						<div>${list.blacklist }</div>
+                        <div>${list.type }</div>
+                        <div>${list.reportDate}</div>
+                        <c:if test="${list.handleYn eq 'Y' }">
+                        	<div>${list.processDate}</div>
+                        	<div>${list.method}</div>
+                        </c:if>
+                        <c:if test="${list.handleYn eq 'N' }">
+                        	<div>처리예정</div>
+                        	<div>미처리</div>
+                        </c:if>
                         <div>
-                            <button>처리</button>
+                            <button onclick="processBtn('${list.no}');">처리</button>
                         </div>
                    </div>
+				</c:forEach>
                    
-                   <div class="list-items list">
-                        <div>1</div>
-                        <div>user0123</div>
-                        <div>user02</div>
-                        <div>욕설/비방</div>
-                        <div>2022-01-21</div>
-                        <div>2022-01-21</div>
-                        <div>미처리</div>
-                        <div>
-                            <button>처리</button>
-                        </div>
-                    </div>
-                </div>
 
                 <nav class="page-area">
                     <ul>
+
+                    <c:if test="${pv.currentPage != 1}">
                         <li>
-                            <a href="">이전</a>
+                            <c:if test="${empty mapSearch }">
+                                <a id="before" href="/el/admin/report/list?pno=${pv.currentPage-1}">이전</a>                      		
+                            </c:if>
+                            <c:if test="${!empty mapSearch }">
+                                <a id="before" href="/el/admin/report/list?pno=${pv.currentPage-1}&category=${svo.category}&keyword=${svo.keyword}">이전</a>                      		
+                            </c:if>
                         </li>
+                    </c:if>
+					
+					<c:forEach var="num" begin="${pv.startPage }" end="${pv.endPage }">
+
                         <li>
-                            <a href="">1</a>
+                        	<c:if test="${empty mapSearch}">
+                          	  <a class="numBtn" href="/el/admin/report/list?pno=${num}">${num}</a>                        	
+                        	</c:if>
+                        	<c:if test="${!empty mapSearch }">
+                        	  <a class="numBtn" href="/el/admin/report/list?pno=${num}&category=${svo.category}&keyword=${svo.keyword}">${num}</a>                        		
+                        	</c:if>
                         </li>
+					</c:forEach>
+
+                    <c:if test="${pv.currentPage != pv.maxPage }">
                         <li>
-                            <a href="">2</a>
+                            <c:if test="${empty mapSearch }">
+                                <a id="after" href="/el/admin/report/list?pno=${pv.currentPage+1}">다음</a>                       		
+                            </c:if>
+                            <c:if test="${!empty mapSearch }">
+                                <a id="after" href="/el/admin/report/list?pno=${pv.currentPage+1}&category=${svo.category}&keyword=${svo.keyword}">다음</a>                       		
+                            </c:if>
                         </li>
-                        <li>
-                            <a href="">3</a>
-                        </li>
-                        <li>
-                            <a href="">4</a>
-                        </li>
-                        <li>
-                            <a href="">5</a>
-                        </li>
-                        <li>
-                            <a href="">다음</a>
-                        </li>
+                    </c:if>
 
                     </ul>
                 </nav>
@@ -104,5 +116,14 @@
             </div>
         </main>
     </div>
+    <script>
+
+        function processBtn(no){  
+            window.location.href = "/el/admin/report/process?no="+no;
+
+        }
+
+        
+    </script>
 </body>
 </html>

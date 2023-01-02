@@ -29,11 +29,21 @@
 
 
                    <div class="list-items list">
-                        <div>1</div>
-                        <div>user01</div>
-                        <div>user02</div>
-                        <div>욕설/비방</div>
-                        <div>2022-01-21 23:23:42</div>
+                        <div>${vo.no }</div>
+						<div>
+							<a href="/el/admin/member/student/detail?no=${vo.accusor}" target="_blank">
+		                        ${vo.accusorId }
+		                        <i class="bi bi-box-arrow-up-right"></i>						
+							</a>
+						</div>
+						<div>
+							<a href="/el/admin/member/student/detail?no=${vo.blacklist}" target="_blank">
+		                        ${vo.blacklistId }
+		                        <i class="bi bi-box-arrow-up-right"></i>						
+							</a>
+						</div>
+                        <div>${vo.type }</div>
+                        <div>${vo.reportDate}</div>
                         <div>
                             <a href="">
                                 게시물
@@ -46,13 +56,17 @@
                 <div class="process-wrap">
                     <h2>신고작성</h2>
                     <div class="form-wrap">
-                        <form action="">
+                        <form action="/el/admin/report/process" method="post">
+                            <input name="no" value="${vo.no}" hidden>
                             <div class="input-wrap">
                                 <div>
-                                    <label for="blacklist">피신고자</label>
+                                    <label for="blacklist">수신인</label>
                                 </div>
                                 <div>
-                                    <input type="text" id="blacklist" value="user01" name="blacklist" readonly>
+                                    <select name="memberNo">
+                                        <option value="${vo.accusor}">신고자</option>
+                                        <option value="${vo.blacklist}">피신고자</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="input-wrap">
@@ -60,8 +74,9 @@
                                     처리방법
                                 </div>
                                 <div>
-                                    <label>회원정지<input type="radio" name="method"></label>
-                                    <label>사유불충분<input type="radio" name="method"></label>
+                                    <label>사유불충분<input type="radio" name="method" id="insufficient" value="1"></label>
+                                	<label>회원정지<input type="radio" name="method" id="stop" value="2"></label>
+                                	<label>회원탈퇴<input type="radio" name="method" id="quit" value="3"></label>
                                 </div>
                             </div>
                             <div class="input-wrap">
@@ -69,17 +84,17 @@
                                     <label for="message">회원메시지</label>
                                 </div>
                                 <div class="textarea-wrap">
-                                    <textarea name="message" id="message">[신고]회원님께서는 2022-01-21 23:23:42 시간에 작성한 게시물이 신고 당하여 금일부터 7일간 회원정지 처리되었습니다. ::: 회원정지 누르면 이 문장 띄어주고 사유 불충분 누르면 없애주기!</textarea>
+                                    <textarea name="title" id="message"></textarea>
                                 </div>
                             </div>
                             <div class="input-wrap input-date">
                                 <div>
                                     <label for="start">시작일-만료일</label>
                                 </div>
-                                <div>
-                                    <input type="date" name="start" id="start">
+                                <div id="date-box" hidden>
+                                    <input type="date" name="processDate" id="start">
                                     <span>-</span>
-                                    <input type="date" name="finish" id="finish">
+                                    <input type="date" name="finishDate" id="finish">
                                 </div>
                                     
                             </div>
@@ -92,5 +107,24 @@
                 </div>
         </main>
     </div>
+    <script>
+        const reportDate = '${vo.reportDate}';
+        const type = '${vo.type}';
+
+        $(document).ready(function(){
+            $("input[name='method']").change(function(){
+                if($("#insufficient").is(":checked")){
+                    $("#date-box").css('display', 'none');
+                    $('#message').text("회원님께서 "+reportDate+" 시각에 신고하신 게시글이 사유불충분으로 신고가 반려되었습니다. 감사합니다.");
+                } else if($("#stop").is(":checked")){
+                    $("#date-box").css('display', 'block');
+                    $('#message').text("회원님께서 작성하신 게시글이 "+reportDate+" 시각에 작성하신 게시글이 "+ type+"으로 신고되어 회원님의 계정이 익일부터 7일간 정지되었음을 알립니다.");
+                } else if($("#quit").is(":checked")){
+                    $("#date-box").css('display', 'none');
+                    $('#message').text("")
+                }
+            });
+        });
+    </script>
 </body>
 </html>

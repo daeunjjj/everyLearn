@@ -360,6 +360,7 @@ public class AdminServiceImpl implements AdminService{
 	public int corporateApproval(String no) {
 		return adminDao.corporateApproval(sst, no);
 	}
+	
 
 	
 }

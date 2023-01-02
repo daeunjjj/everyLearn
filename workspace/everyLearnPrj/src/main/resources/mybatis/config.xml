@@ -16,6 +16,7 @@
 		<typeAlias type="com.coding5.el.emp.vo.ResumeVo" alias="ResumeVo"/>
 		<typeAlias type="com.coding5.el.emp.vo.JobPostVo" alias="JobPostVo"/>
 		<typeAlias type="com.coding5.el.notice.vo.NoticeVo" alias="NoticeVo"/>
+		<typeAlias type="com.coding5.el.report.vo.ReportVo" alias="ReportVo"/>
 	</typeAliases>
   
   
