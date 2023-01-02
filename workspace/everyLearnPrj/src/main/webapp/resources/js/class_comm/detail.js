@@ -18,25 +18,97 @@ function new_window() {
     );
 }
 
+function commentWrite(){
+	let content = document.getElementById("data1").value;
+	let memberNo = document.getElementById("memberNo").value;
+	let classCommNo = document.getElementById("classCommNo").value;
+
+    console.log(content);
+    console.log(memberNo);
+    console.log(classCommNo);
+
+    $.ajax({
+        url : "/el/class/commentAjax"
+        , type : "post"
+        , data : {
+            "content" : content
+            , "memberNo" : memberNo
+            , "classCommNo" : classCommNo
+        }
+        // ,dataType : "json"
+        // ,contentType: "application/x-www-form-urlencoded; charset=UTF-8"
+        ,success : function (data) {
+
+            console.log(data);
+            location.reload();
+
+            // const wrap = document.querySelector('#comment-wrap')
+            // for(let i=0; i<arr.length; ++i){
+            //     const data = arr[i];
+
+            //     const commWrite =document.querySelector("#commWriter");
+            //     commWrite.append(data.comWriter);
+            //     wrap.appendChild(commWrite.append(data.comWriter));
+
+            //     // const writer = $("#writer").html("비번 필수입력사항입니다.")
+            // //    $("#commWriter").html(data.comWriter);
+               
+               
+            // }
+          
+        }
+        , error : function (params) {
+            alert('댓글에이젝스에러');
+        }
+    });
+
+
+}
+
+function write() {
+			
+    let comment_content = $('#comment_content').val();
+    let memberNo = $('#memberNo').val();
+    let classCommNo = $('#classCommNo').val();
+    console.log(comment_content);
+    // $.ajax({
+    //     url : "/el/commentAjax"
+    //     , type : "post"
+    //     , data : {
+    //         "content" : comment_content
+    //     }
+    //     , success : function (x) {
+    //         if(x != null){
+    //             console.log("성 공ㅇㅇㅇㅇㅇ" + x);
+    //             return true;
+    //         }
+    //     }
+    //     , error : function () {
+    //         alert("아 작 스 실 패");
+    //     }
+    // });// 댓글 비동기 끝
+    
+};// 댓글등록 이벤트 끝
+
 function commentEnroll() {
     let content = $('#content').val();
     let memberNo = $('#memberNo').val();
     let classCommNo = $('#classCommNo').val();
-
+    console.log(content);
     $.ajax({
-        url : "/el/class/comment"
+        url : "/el/commentAjax"
         , type : "post"
         , data : {
             "content" : content
         }
         , success : function (x) {
-            if(result != null){
+            if(x != null){
                 console.log("성 공ㅇㅇㅇㅇㅇ" + x);
                 return true;
             }
         }
         , error : function () {
-            // alert("아 작 스 실 패");
+            alert("아 작 스 실 패");
         }
     });
 
@@ -52,21 +124,22 @@ function postData() {
     let board = $('#board').val();
 
     $.ajax({
-        url : "/el/class/report",	
+        url : "/el/class/reportInfo",	
         type : "post",
         data : {"blacklistNo" : blacklistNo
                 , "accusor" : accusor
-                // , "cate_no" : cate_no
                 , "board" : board
                 }
         ,
         success : function(result){
             if(result != ''){
-                // alert("데이터 넘어갔음~")
+                 alert("데이터 넘어갔음~")
+
+           
             }	
         },
         error : function(){
-            // alert("아 작 스 실 패") 
+             alert("아 작 스 실 패") 
         }
     });
 }

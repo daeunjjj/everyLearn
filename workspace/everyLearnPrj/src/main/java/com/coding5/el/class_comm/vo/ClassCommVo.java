@@ -22,4 +22,6 @@ public class ClassCommVo {
 	private String orderBy;
 	
 
+	
+
 }

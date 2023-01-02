@@ -3,6 +3,7 @@ package com.coding5.el.class_comm.service;
 import java.util.List;
 
 import com.coding5.el.class_comm.vo.ClassCommVo;
+import com.coding5.el.class_comm.vo.CommentVo;
 
 public interface ClassCommService {
 
@@ -23,4 +24,13 @@ public interface ClassCommService {
 
 	//자유게시판
 	public List<ClassCommVo> freeList(String orderBy);
+
+	//댓글정보조회
+	public List<CommentVo> commentList(String classCommNo);
+
+	//댓글 인서트
+	public int writeComment(CommentVo vo);
+
+	//내 댓글 한 
+	public CommentVo commemtOne(CommentVo vo);
 }

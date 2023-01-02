@@ -5,125 +5,191 @@
 <mapper namespace="classCommMapper">
 
 	<insert id="insertWrite">
-	
+
 		INSERT INTO CLASS_COMM
 		(
-			NO
-			, WRITER
-			, CATE_NO
-			, TITLE
-			, CONTENT
+		NO
+		, WRITER
+		, CATE_NO
+		, TITLE
+		, CONTENT
 		)
 		VALUES
 		(
-			SEQ_CLASS_COMM_NO.NEXTVAL
-			, ${writer}
-			, ${cateNo}
-			, #{title}
-			, #{content}
+		SEQ_CLASS_COMM_NO.NEXTVAL
+		, ${writer}
+		, ${cateNo}
+		, #{title}
+		, #{content}
 		)
-		
+
 	</insert>
-	
-	<select id="selectQnaList" resultType="com.coding5.el.class_comm.vo.ClassCommVo">
+
+	<select id="selectQnaList"
+		resultType="com.coding5.el.class_comm.vo.ClassCommVo">
 		SELECT CC.NO AS CLASS_COMM_NO
-		    ,CCA.NAME AS CATE_NO
-		    ,M.NAME AS WRITER
-		    ,TITLE 
-		    ,CONTENT
-		    ,ANSWER_YN
-		    ,CC.REPORT_YN AS REPORT_YN
-		    ,HIT
-		    ,CC.ENROLL_DATE AS ENROLL_DATE
+		,CCA.NAME AS CATE_NO
+		,M.NAME AS WRITER
+		,TITLE
+		,CONTENT
+		,ANSWER_YN
+		,CC.REPORT_YN AS REPORT_YN
+		,HIT
+		,CC.ENROLL_DATE AS ENROLL_DATE
 		FROM CLASS_COMM CC
 		JOIN COMM_CATE CCA
-		ON CC.CATE_NO = CCA.NO
-        JOIN MEMBER M
-        ON CC.WRITER = M.NO
+		ON CC.CATE_NO =
+		CCA.NO
+		JOIN MEMBER M
+		ON CC.WRITER = M.NO
 		WHERE CC.CATE_NO = 1
-        ORDER BY ENROLL_DATE DESC
+		ORDER BY ENROLL_DATE DESC
 	</select>
-	
-	<select id="selectDetailVo" resultType="com.coding5.el.class_comm.vo.ClassCommVo">
-		SELECT 
-		    CC.NO AS CLASS_COMM_NO
-		    , CCA.NAME AS CATE_NO
-	        , M.NO AS WRITER_NO
-		    ,M.NAME AS WRITER
-		    ,TITLE 
-		    ,CONTENT
-		    ,ANSWER_YN
-		    ,CC.REPORT_YN AS REPORT_YN
-		    ,HIT
-		    ,CC.ENROLL_DATE AS ENROLL_DATE
+
+	<select id="selectDetailVo"
+		resultType="com.coding5.el.class_comm.vo.ClassCommVo">
+		SELECT
+		CC.NO AS CLASS_COMM_NO
+		, CCA.NAME AS CATE_NO
+		, M.NO AS WRITER_NO
+		,M.NAME AS WRITER
+		,TITLE
+		,CONTENT
+		,ANSWER_YN
+		,CC.REPORT_YN AS REPORT_YN
+		,HIT
+		,CC.ENROLL_DATE AS ENROLL_DATE
+		FROM CLASS_COMM CC
+		JOIN COMM_CATE CCA
+		ON CC.CATE_NO =
+		CCA.NO
+		JOIN MEMBER M
+		ON CC.WRITER = M.NO
+		WHERE CC.NO = ${classCommNo}
+
+	</select>
+
+	<insert id="insertReport">
+		INSERT INTO REPORT
+		(
+		NO
+		,BLACKLIST
+		,ACCUSOR
+		, TYPE
+		, CATE_NO
+		, BOARD
+		)
+		VALUES
+		(
+		SEQ_REPORT_NO.NEXTVAL
+		, ${blacklistNo}
+		, ${accusor}
+		, 1
+		, ${cate_no}
+		, ${board}
+
+
+		)
+	</insert>
+
+	<select id="selectStudyList"
+		resultType="com.coding5.el.class_comm.vo.ClassCommVo">
+		SELECT CC.NO CLASS_COMM_NO
+		,CCA.NAME CATE_NO
+		,M.NAME WRITER
+		,TITLE
+		,CONTENT
+		,ANSWER_YN
+		,CC.REPORT_YN REPORT_YN
+		,HIT
+		,CC.ENROLL_DATE ENROLL_DATE
 		FROM CLASS_COMM CC
 		JOIN COMM_CATE CCA
 		ON CC.CATE_NO = CCA.NO
 		JOIN MEMBER M
 		ON CC.WRITER = M.NO
-		WHERE CC.NO = ${classCommNo}
-	
-	</select>
-	
- 	<insert id="insertReport">
-		INSERT INTO REPORT
-		(
-		    NO
-		    ,BLACKLIST
-		    ,ACCUSOR
-		    , TYPE
-		    , CATE_NO
-		    , BOARD
-		)
-		VALUES
-		(
-		    SEQ_REPORT_NO.NEXTVAL
-		    , ${blacklistNo}
-		    , ${accusor}
-		    , 1
-		    , ${cate_no}
-		    , ${board}
-		    
-
-		)
-	</insert>
-	
-	<select id="selectStudyList" resultType="com.coding5.el.class_comm.vo.ClassCommVo">
-		SELECT CC.NO CLASS_COMM_NO
-		    ,CCA.NAME CATE_NO
-		    ,M.NAME WRITER
-		    ,TITLE 
-		    ,CONTENT
-		    ,ANSWER_YN
-		    ,CC.REPORT_YN REPORT_YN
-		    ,HIT
-		    ,CC.ENROLL_DATE ENROLL_DATE
-		FROM CLASS_COMM CC
-		JOIN COMM_CATE CCA
-		ON CC.CATE_NO = CCA.NO
-        JOIN MEMBER M
-        ON CC.WRITER = M.NO
 		WHERE CC.CATE_NO = 2
 		ORDER BY ${orderBy}
 	</select>
-	
-	<select id="selectFreeList" resultType="com.coding5.el.class_comm.vo.ClassCommVo">
-				SELECT CC.NO CLASS_COMM_NO
-		    ,CCA.NAME CATE_NO
-		    ,M.NAME WRITER
-		    ,TITLE 
-		    ,CONTENT
-		    ,ANSWER_YN
-		    ,CC.REPORT_YN REPORT_YN
-		    ,HIT
-		    ,CC.ENROLL_DATE ENROLL_DATE
+
+	<select id="selectFreeList"
+		resultType="com.coding5.el.class_comm.vo.ClassCommVo">
+		SELECT CC.NO CLASS_COMM_NO
+		,CCA.NAME CATE_NO
+		,M.NAME WRITER
+		,TITLE
+		,CONTENT
+		,ANSWER_YN
+		,CC.REPORT_YN REPORT_YN
+		,HIT
+		,CC.ENROLL_DATE ENROLL_DATE
 		FROM CLASS_COMM CC
 		JOIN COMM_CATE CCA
 		ON CC.CATE_NO = CCA.NO
-        JOIN MEMBER M
-        ON CC.WRITER = M.NO
+		JOIN MEMBER M
+		ON CC.WRITER = M.NO
 		WHERE CC.CATE_NO = 3
 		ORDER BY ${orderBy}
 	</select>
-  
+
+<resultMap type="com.coding5.el.class_comm.vo.CommentVo" id="commentMap">
+	<result property="comWriter" column="COM_WRITER"/>
+	<result property="comContent" column="COM_CONTENT"/>
+	<result property="comWriterNo" column="COM_WRITER_NO"/>
+	<result property="comEnrollDate" column="COM_ENROLL_DATE"/>
+	<result property="comCommentNo" column="COM_COMMENT_NO"/>
+	<result property="comClassCommNo" column="COM_CLASS_COMM_NO"/>
+	
+</resultMap>
+
+	<select id="selectCommentList"
+		resultType="com.coding5.el.class_comm.vo.CommentVo" resultMap="commentMap">
+		SELECT 
+		    CMC.NO COM_COMMENT_NO
+		    ,CMC.COMM_NO COM_CLASS_COMM_NO
+		    ,CMC.WRITER COM_WRITER_NO
+		    ,CMC.CONTENT COM_CONTENT
+		    ,TO_CHAR(CMC.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') COM_ENROLL_DATE
+		    ,M.NICK COM_WRITER
+		FROM COMM_COMMENT CMC
+		JOIN MEMBER M
+		ON CMC.WRITER = M.NO
+		WHERE CMC.COMM_NO = ${comCommentNo}
+
+	</select>
+	
+	<insert id="insertCommentOne">
+	INSERT INTO COMM_COMMENT ( 
+    NO
+    ,COMM_NO
+    ,WRITER
+    ,CONTENT
+	) VALUES 
+	( 
+	    SEQ_COMM_COMMENT_NO.NEXTVAL
+	    ,${comCommentNo}
+	    ,${comWriterNo}
+	    ,#{comContent}
+	)
+	</insert>
+	
+	<select id="selectCommentOne" resultType="com.coding5.el.class_comm.vo.CommentVo" resultMap="commentMap">
+	SELECT 
+	    CMC.NO COM_COMMENT_NO
+	    ,CMC.COMM_NO COM_CLASS_COMM_NO
+	    ,CMC.WRITER COM_WRITER_NO
+	    ,CMC.CONTENT COM_CONTENT
+	    ,TO_CHAR(CMC.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') COM_ENROLL_DATE
+	    ,M.NICK COM_WRITER
+	FROM COMM_COMMENT CMC
+	JOIN MEMBER M
+	ON CMC.WRITER = M.NO
+	WHERE ROWNUM = 1
+	AND CMC.WRITER = ${comWriterNo}
+	AND CMC.COMM_NO = ${comCommentNo}
+	ORDER BY CMC.ENROLL_DATE
+
+	</select>
+	
+
 </mapper>

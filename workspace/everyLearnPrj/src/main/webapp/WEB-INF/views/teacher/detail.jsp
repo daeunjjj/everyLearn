@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!DOCTYPE html>
     <html>
 
@@ -34,51 +35,22 @@
                 <div id="career">
                     <label for="">경력</label> 
                 </div>
-                <pre id="main-career">
-- 코딩짱잘해 자격증 1급
-- KH 프로그래밍 대회 대상 수상
-- 네카라쿠배 경력 10년 이상
-                </pre>
+                <div id="main-career">
+					- ${teacherDetailList[0].career}
+                </div>
                 <div id="lecture">
                     <label for="">강의</label>
                 </div>
                 <div id="list-wrap">
+                <c:forEach items="${teacherDetailList}" var="detail">
                     <div class="lec-list">
                         <img id="lec-img" src="/el/resources/img/teacher/ex.png" alt="">
-                        <div id="lec-name">프로그래밍 한 방에 이해하기</div>
-                        <div id="teacher-name">박강사</div>
-                        <div id="lec-reomm">추천수(200)</div>
-                        <div id="lec-price">50,000\</div>
+                        <div id="lec-name">${detail.className }</div>
+                        <div id="teacher-name">${teacherNick}</div>
+                        <div id="lec-reomm">추천수(${detail.recomm})</div>
+                        <div id="lec-price">${detail.recomm }\</div>
                     </div>
-                    <div class="lec-list">
-                        <img id="lec-img" src="/el/resources/img/teacher/ex.png" alt="">
-                        <div id="lec-name">프로그래밍 한 방에 이해하기</div>
-                        <div id="teacher-name">박강사</div>
-                        <div id="lec-reomm">추천수(200)</div>
-                        <div id="lec-price">50,000\</div>
-                    </div>
-                    <div class="lec-list">
-                        <img id="lec-img" src="/el/resources/img/teacher/ex.png" alt="">
-                        <div id="lec-name">프로그래밍 한 방에 이해하기</div>
-                        <div id="teacher-name">박강사</div>
-                        <div id="lec-reomm">추천수(200)</div>
-                        <div id="lec-price">50,000\</div>
-                    </div>
-                    <div class="lec-list">
-                        <img id="lec-img" src="/el/resources/img/teacher/ex.png" alt="">
-                        <div id="lec-name">프로그래밍 한 방에 이해하기</div>
-                        <div id="teacher-name">박강사</div>
-                        <div id="lec-reomm">추천수(200)</div>
-                        <div id="lec-price">50,000\</div>
-                    </div>
-                    <div class="lec-list">
-                        <img id="lec-img" src="/el/resources/img/teacher/ex.png" alt="">
-                        <div id="lec-name">프로그래밍 한 방에 이해하기</div>
-                        <div id="teacher-name">박강사</div>
-                        <div id="lec-reomm">추천수(200)</div>
-                        <div id="lec-price">50,000\</div>
-                    </div>
-
+                </c:forEach>
                 </div>
                 
             </div>

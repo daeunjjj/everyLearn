@@ -25,7 +25,6 @@ function check() {
 
 
 function completion() {
-    Swal.fire('신고가 완료되었습니다.')
-    // window.close();
+
     return true;
 }

@@ -27,6 +27,11 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@GetMapping("memberStudy")
+	public String memberStudy() {
+		return "member/member_study";
+	}
+	
 	
 	//회원가입(화면)
 	@GetMapping("join")
@@ -108,7 +113,7 @@ public class MemberController {
 //			}
 			
 			
-			return "redirect:/mainPage";
+			return "redirect:/main";
 			
 		}else {
 			return "common/error";
@@ -155,7 +160,7 @@ public class MemberController {
 			return "common/error";
 		}
 		
-		return "redirect:/mainPage";
+		return "redirect:/main";
 	}
 	
 	//아이디 찾기(화면)
@@ -192,7 +197,7 @@ public class MemberController {
 		
 		session.invalidate();
 		
-		return "redirect:/mainPage";
+		return "redirect:/main";
 	}
 	
 	@GetMapping("pwFind")

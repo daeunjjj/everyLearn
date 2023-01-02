@@ -24,8 +24,16 @@
             <div id="blacklist">
               <img src="/el/resources/img/class-comm/warning2.png" alt="">
               <p style="height: 45px; width: 280px; "> ${reportMap.blacklist}</p>
+              ${reportMap.blacklist}
             </div>
-            <form action="/el/class/report" method="post" onsubmit="completion()">
+            <form action="/el/class/report" method="post" onsubmit="completion();">
+              <input type="hidden" name="blacklistNo" id="blacklistNo" value="${vo.blacklistNo}">
+              <input type="hidden" name="accusor" id="accusor" value="${vo.accusor}">
+             라이트넘버${vo}
+
+              
+              <input type="hidden" name="cate_no" id="cate_no" value="1">
+              <input type="hidden" name="board" id="board" value="${vo.board}">
             <div class="form-check">
               <div class="check-wrap">
                 <input style="margin-left: -10px; margin-right: 10px;" type="radio" class="form-check-input" name="cate_no" value="1" >
