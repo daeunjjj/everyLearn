@@ -26,4 +26,10 @@ public interface CartDao {
 	//장바구니 삭제
 	public int deleteCart(HashMap<String, String> map, SqlSessionTemplate sst);
 
+	//찜 삭제
+	public int deleteWish(HashMap<String, String> map, SqlSessionTemplate sst);
+	
+	//포인트 가져오기
+	public int getPoint(SqlSessionTemplate sst, String mno);
+
 }

@@ -100,40 +100,67 @@
 	<select id="getListDrawing" resultType="com.coding5.el.lecture.vo.LectureVo">
     
         SELECT 
-        	NO
-			,TEACHER_NO
-			,CATEGORY
-			,CLASS_NAME
-			,CLASS_CONTENT
-			,RECOMM
-			,STUDENT_CNT
-			,PRICE
-			,ENROLL_DATE
-			,MODIFY_DATE
-			,DELETE_YN
-			,CLASS_CNT 
-        FROM CLASS
-        WHERE CATEGORY = '1'
+        	C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
+		
+        FROM CLASS C
+       
+        
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+         WHERE C.DELETE_YN = 'N'
+        and C.CATEGORY = '1'
+        order by C.NO desc
+        
+        
+        
+        
     
     </select>
     <!-- 강의 메인 - 요리 / 베이킹 -->
     <select id="getListCook" resultType="com.coding5.el.lecture.vo.LectureVo">
     
         SELECT 
-        	NO
-			,TEACHER_NO
-			,CATEGORY
-			,CLASS_NAME
-			,CLASS_CONTENT
-			,RECOMM
-			,STUDENT_CNT
-			,PRICE
-			,ENROLL_DATE
-			,MODIFY_DATE
-			,DELETE_YN
-			,CLASS_CNT 
-        FROM CLASS
-        WHERE CATEGORY = '2'
+        	C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
+		
+        FROM CLASS C
+       
+        
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+         WHERE C.DELETE_YN = 'N'
+        AND C.CATEGORY = '2'
+        
+        order by C.NO desc
+        
+        
     
     </select>
     
@@ -141,102 +168,165 @@
      <select id="getListWorkout" resultType="com.coding5.el.lecture.vo.LectureVo">
     
         SELECT 
-        	NO
-			,TEACHER_NO
-			,CATEGORY
-			,CLASS_NAME
-			,CLASS_CONTENT
-			,RECOMM
-			,STUDENT_CNT
-			,PRICE
-			,ENROLL_DATE
-			,MODIFY_DATE
-			,DELETE_YN
-			,CLASS_CNT 
-        FROM CLASS
-        WHERE CATEGORY = '3'
+        	C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
+		
+        FROM CLASS C
+       
+        
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+         WHERE C.DELETE_YN = 'N'
+        AND C.CATEGORY = '3'
+        
+        order by C.NO desc
+        
     
     </select>
     
     <!-- 강의 메인 - 카테고리 음악 -->
      <select id="getListMusic" resultType="com.coding5.el.lecture.vo.LectureVo">
     
-        SELECT
-        	NO
-			,TEACHER_NO
-			,CATEGORY
-			,CLASS_NAME
-			,CLASS_CONTENT
-			,RECOMM
-			,STUDENT_CNT
-			,PRICE
-			,ENROLL_DATE
-			,MODIFY_DATE
-			,DELETE_YN
-			,CLASS_CNT 
-        FROM CLASS
-        WHERE CATEGORY = '4'
+        SELECT 
+        	C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
+		
+        FROM CLASS C
+       
+        
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+         WHERE C.DELETE_YN = 'N'
+        AND C.CATEGORY = '4'
+        
+        order by C.NO desc
+        
+        
     
     </select>
     
     <!-- 강의 메인 - 카테고리 it -->
      <select id="getListItTech" resultType="com.coding5.el.lecture.vo.LectureVo">
     
-        SELECT 
-        	NO
-			,TEACHER_NO
-			,CATEGORY
-			,CLASS_NAME
-			,CLASS_CONTENT
-			,RECOMM
-			,STUDENT_CNT
-			,PRICE
-			,ENROLL_DATE
-			,MODIFY_DATE
-			,DELETE_YN
-			,CLASS_CNT 
-        FROM CLASS
-        WHERE CATEGORY = '5'
+       SELECT 
+        	C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
+		
+        FROM CLASS C
+       
+        
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+         WHERE C.DELETE_YN = 'N'
+        AND C.CATEGORY = '5'
+        
+        order by C.NO desc
+        
+        
     
     </select>
     
     <!-- 강의 메인 - 카테고리 언어 -->
      <select id="getListLanguage" resultType="com.coding5.el.lecture.vo.LectureVo">
     
-        SELECT 	NO
-			,TEACHER_NO
-			,CATEGORY
-			,CLASS_NAME
-			,CLASS_CONTENT
-			,RECOMM
-			,STUDENT_CNT
-			,PRICE
-			,ENROLL_DATE
-			,MODIFY_DATE
-			,DELETE_YN
-			,CLASS_CNT 
-        FROM CLASS
-        WHERE CATEGORY = '6'
+        SELECT 
+        	C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
+		
+        FROM CLASS C
+       
+        
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+         WHERE C.DELETE_YN = 'N'
+        AND C.CATEGORY = '6'
+        
+        order by C.NO desc
+        
     
     </select>
     
     <!-- 강의 메인 - 카테고리 금융 -->
      <select id="getListFinance" resultType="com.coding5.el.lecture.vo.LectureVo">
     
-        SELECT 	NO
-			,TEACHER_NO
-			,CATEGORY
-			,CLASS_NAME
-			,CLASS_CONTENT
-			,RECOMM
-			,STUDENT_CNT
-			,PRICE
-			,ENROLL_DATE
-			,MODIFY_DATE
-			,DELETE_YN
-			,CLASS_CNT 
-        FROM CLASS
-        WHERE CATEGORY = '7'
+        SELECT 
+        	C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT
+		
+        FROM CLASS C
+       
+        
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+         WHERE C.DELETE_YN = 'N'
+        AND C.CATEGORY = '7'
+        
+        order by C.NO desc
     
     </select>
     

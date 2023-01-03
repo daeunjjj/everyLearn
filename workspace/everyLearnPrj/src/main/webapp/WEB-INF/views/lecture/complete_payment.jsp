@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/el/resources/css/lecture/complete_payment.css" />
+<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 <script src="https://kit.fontawesome.com/0c7f523053.js" crossorigin="anonymous"></script>
 
 </head>

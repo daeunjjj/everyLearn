@@ -8,7 +8,9 @@
 <title>Insert title here</title>
 <script src="https://kit.fontawesome.com/0c7f523053.js" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 <link rel="stylesheet" href="/el/resources/css/lecture/cart.css" />
+<link rel="stylesheet" href="/el/resources/js/lecture/payment.js" />
 </head>
 <body>
 	
@@ -56,8 +58,8 @@
 						<div id="leccart-img"><a href='#'><img src="/el/resources/img/lecture/lecpic.png" alt="강의이미지"></a></div>
 						<div id="leccart-name">${list.className}</div>
 						<div id="leccart-price">${list.price} 원</div>
-						<div id="leccart-teacher">${list.teacherNo}</div>
 						<button type="button" class="remove" onclick="deleteOne(${list.classNo})">삭제</button>
+						<div id="leccart-teacher">${list.teacherNo}</div>
 					</div>
 			        </c:forEach>
 			        
@@ -81,14 +83,16 @@
 								<div id="all-price"><span class="productPrice">0</span> 원</div>
 								<div id="using-po">포인트 사용</div>
 								
-								<div id="using-point"><input type="text" name="usePoint" id="use-point" width="60%" placeholder="사용할 포인트를 입력해주세요.">
-								</div>
-								<div id="usable-point">보유금액 2000원 
-									<button onclick="pointButton();">사용하기</button>
+								<div id="using-point"><input type="text" name="use-point" id="use-point" onchange="inputValueChange()" width="60%" placeholder="사용할 포인트를 입력해주세요.">
 								</div>
 								
+								
+									<div id="usable-point">보유금액 ${mp } 원</div>
+								
+								
+								
 								<div id="checked-pr">결제금액</div>
-								<div id="checked-price"><span class="finalPrice">0</span> 원</div>
+								<div id="checked-price"><span class="finalPrice" id="finalPrice">0</span> 원</div>
 								<div id="pay-btn"><input type="submit" id="btns" value="결제하기"></div>
 							</form>
 						</div>
@@ -176,6 +180,12 @@
 			  })
 			}
 		
+		function inputValueChange(){
+	        let usedPoint = document.getElementById('use-point').value;
+	        console.log("usedPoint :: " + usedPoint)
+	        setTotalInfo();
+	    }
+		
 		/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 		function setTotalInfo(){
 			
@@ -204,12 +214,20 @@
 			document.getElementById('cnt').innerText = cnt;
 			
 			//포인트
-			let usedPoint = document.querySelector('#use-point input[name=userPoint]');
+			let usedPoint = document.getElementById('use-point').value;
 			let finalPrice = 0;
-			console.log("usedpoint : " + usedPoint);
-			if(usedPoint == null ){
-				finalPrice  = totalPrice;
+						
+			if(usedPoint == null || usedPoint == 0){
+				finalPrice  += totalPrice;
+			}else if(usedPoint > ${mp}){
+				alert('보유 포인트보다 입력한 포인트가 많습니다.');
+			}else{
+				finalPrice = totalPrice - usedPoint;
 			}
+			
+			//finalPrice.innerHTML = finalPricetoLocaleString(undefined, {maximumFractionDigits: 5});
+			console.log("finalprice : " + finalPrice);
+			document.getElementById('finalPrice').innerText = finalPrice.toLocaleString(undefined, {maximumFractionDigits: 5});
 			
 			
 		}

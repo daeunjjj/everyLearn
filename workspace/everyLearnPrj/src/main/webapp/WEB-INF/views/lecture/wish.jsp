@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <script src="https://kit.fontawesome.com/0c7f523053.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/el/resources/css/lecture/cart.css" />
+<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 </head>
 <body>
 	
@@ -28,26 +29,34 @@
 			
 		</div>
 		<div id="cart-wrap">
-			<div id="check-yn"><input type="checkbox" checked="checked" id="allCheck"><span class="all-check">전체 선택 해제</span></div>
-			<!-- <div id="cart-item">
-				<div id="leccart-check"><input type="checkbox" class="individual-checkbox" checked="checked"></div>
-				<div id="leccart-img"><a href='#'><img src="/el/resources/img/lecture/lecpic.png" alt="강의이미지"></a></div>
-				<div id="leccart-name">아이패드로 일상 그리기, 프로크리에트를 이용한 드로잉 클래스</div>
-				<div id="leccart-price">49,900원</div>
-				<div id="leccart-teacher">강사이름</div>
-				
-			</div> -->
+			<!-- 체크박스 전체 여부 -->
+				<div class="all_check_input_div">
+					<input id="all" type="checkbox" onchange="classCheckAll()"><label for="all">전체선택</label>
+				</div>	
+			
 			
 			
 				<c:forEach items="${list}" var="list">
-		            <div id="cart-item">
-						<div id="leccart-check"><input type="checkbox" class="checkbox-del"  checked="checked"></div>
+		            <div id="cart-item" class="cart_info_div">
+						<!-- <div id="leccart-check"><input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked"></div> -->
+						<div id="leccart-check"><input type="checkbox" name="check" value="${list.classNo}" onchange="classCheckOne()"></div>
+						<input type="hidden" name="price" value="${list.price}">
+						<input type="hidden" name="classNo" value="${list.classNo}">
+						<%-- <input type="hidden" class="individual_totalPrice_input" value="${list.price}"> --%>
 						<div id="leccart-img"><a href='#'><img src="/el/resources/img/lecture/lecpic.png" alt="강의이미지"></a></div>
 						<div id="leccart-name">${list.className}</div>
 						<div id="leccart-price">${list.price} 원</div>
+						<button type="button" class="remove" onclick="deleteOne(${list.classNo})">삭제</button>
 						<div id="leccart-teacher">${list.teacherNo}</div>
 					</div>
 			        </c:forEach>
+			        
+			        <c:set var="total" value="0" />
+	             <c:set var="totalCnt" value="0"/>
+	             <c:forEach var="list" items="${list}">
+	                 <c:set var="total" value="${total + Integer.parseInt(list.price)}" />
+	                 <c:set var="totalCnt" value="${totalCnt + 1}"/>
+	             </c:forEach>
 		     </c:otherwise>
 		    </c:choose>
 			
@@ -81,24 +90,59 @@
 </main>
 
 <script type="text/javascript">
-		//전체 선택
-		//let allCheck = document.querySelector('#allCheck');
-		let allCheck = document.querySelector('div input[type=checkbox]');
-		let delArr = document.getElementsByClassName('checkbox-del');
+
+$(document).ready(function(){
+	
+	/* 종합 정보 섹션 정보 삽입 */
+	setTotalInfo();	
+	
+	
+	
+	
+});	
+
+//전체선택
+function chooseAll(e){
+  // product-area에 있는 모든 input을 꺼내와서 checkbox에 담아준다.
+  const checkbox = document.querySelectorAll('.cart_info_div input[type="checkbox"]')
+  for (let i = 0; i < checkbox.length; i++) {
+    // 타겟이 전체선택 checkbox가 체크 되면 product-area에 있는 checkbox들이 체크 된다.
+    checkbox[i].checked = e.target.checked
+  }
+  setTotalInfo();
+}
+document.querySelector('#all').addEventListener('change', chooseAll)
+
+$('#all').click();
+
+
+//전체
+function classCheckAll(){
+    setTotalInfo();
+}
+
+//각각선택
+function classCheckOne() {
+    
+    document.querySelector('#all').checked = false;
+    setTotalInfo();
+}
 		
-		allCheck.onchange = function(e){
-			//console.log(e.target.checked);
-			console.log(this.checked);
-			if(this.checked){
-				for(let i=0; i<delArr.length; i++){
-					delArr[i].checked = true;
-				}
-			}else{
-				for(let i=0; i<delArr.length; i++){
-					delArr[i].checked = false;
-				}
+		//찜 목록 삭제
+		function deleteOne(classNo) {
+			  $.ajax({
+			      method: 'POST',
+			      url: '/el/cart/wish/delete',
+			      traditional : true,
+			      data: {
+			          classNo: [classNo]
+			      },
+			      success: function (result){			          
+			        $('input[value='+ classNo +']').parent().remove() // 페이지 새로고침
+			        //setTotalInfo();
+			      }  
+			  })
 			}
-		}
 		
 	</script>
 

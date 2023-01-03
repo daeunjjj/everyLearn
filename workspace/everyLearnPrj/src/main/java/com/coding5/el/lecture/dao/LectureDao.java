@@ -25,7 +25,7 @@ public interface LectureDao {
 	public List<LectureVo> getList(SqlSessionTemplate sst, PageVo pv);
 
 	//강의 전체 목록 리스트 조회 - 드로잉
-	public List<LectureVo> getListDrawing(SqlSessionTemplate sst);
+	public List<LectureVo> getListDrawing(SqlSessionTemplate sst, PageVo pv);
 
 	//강의 전체 목록 리스트 조회 - 요리 베이킹
 	public List<LectureVo> getListCook(SqlSessionTemplate sst);

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/el/resources/css/lecture/insertDetail.css" />
 <link rel="stylesheet" href="/el/resources/js/lecture/insert.js" />
+<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 </head>
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>

@@ -22,5 +22,7 @@ public class CartVo {
     
     private String point; //선택된 포인트
     private String totalPoint; //너는... 몰까.. 가지고 있는 포인트..?
+    
+    private String mp; //멤버 개인 포인트
 
 }

@@ -51,6 +51,21 @@ public class CartServiceImpl implements CartService{
 	public int deleteCart(HashMap<String, String> map) {
 		return cartDao.deleteCart(map, sst);
 	}
+
+	//찜 삭제
+	@Override
+	public int deleteWish(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return cartDao.deleteWish(map, sst);
+	}
+	
+	//포인트 조회
+	@Override
+	public int getPoint(String mno) {
+		return cartDao.getPoint(sst, mno);
+	}
+	
+	//
 	
 
 }
