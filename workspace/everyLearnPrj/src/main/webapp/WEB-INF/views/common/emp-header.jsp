@@ -28,7 +28,7 @@
 			</div>
 			<div id="nav-container">
 				<div class="nav-list">
-					<a href="">채용공고</a><a href="/el/emp/resume">이력서</a><a href="">커뮤니티</a>
+					<a href="/el/emp/job-post">채용공고</a><a href="/el/emp/resume">이력서</a><a href="">커뮤니티</a>
 				</div>
 				<div class="search-wrapper">
 					<div class="search">

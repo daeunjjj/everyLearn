@@ -16,6 +16,7 @@
 		WHERE MEMBER_NO = #{memberNo}
 	</select>
 	
+	<!-- 학력 조회하기 -->
 	<select id="selectEducation" resultType="ResumeVo">
 		SELECT
 			NO
@@ -30,6 +31,7 @@
 		WHERE RESUME_NO = #{no}
 	</select>
 	
+	<!-- 언어 조회하기 -->
 	<select id="selectLanguage" resultType="ResumeVo">
 		SELECT
 			NO
@@ -40,6 +42,7 @@
 		WHERE RESUME_NO = #{no}
 	</select>
 	
+	<!-- 수상내역 조회하기 -->
 	<select id="selectAward" resultType="ResumeVo">
 		SELECT
 			NO
@@ -51,6 +54,7 @@
 		WHERE RESUME_NO = #{no}
 	</select>
 	
+	<!-- 경력 조회하기 -->
 	<select id="selectCareer" resultType="ResumeVo">
 		SELECT
 			NO
@@ -66,6 +70,7 @@
 		WHERE RESUME_NO = #{no}
 	</select>
 	
+	<!-- 자격증 조회하기 -->
 	<select id="selectCertificate" resultType="ResumeVo">
 		SELECT
 			NO
@@ -77,6 +82,7 @@
 		WHERE RESUME_NO = #{no}
 	</select>
 	
+	<!-- 첨부파일 조회하기 -->
 	<select id="selectAttach" resultType="ResumeVo">
 		SELECT
 			NO
@@ -89,34 +95,240 @@
 		WHERE RESUME_NO = #{no}
 	</select>
 	
+	<!-- 이력서 작성하기 -->
+	<update id="updateResume">
+		MERGE INTO RESUME
+			USING DUAL
+			ON 
+			(
+				NO = #{no}
+				AND MEMBER_NO = #{memberNo}
+			)
+		WHEN MATCHED THEN
+			UPDATE SET
+				 ADRESS = #{adress}
+				, LINK = #{link}
+				, INTRODUCE = #{introduce}
+				, MODIFY_DATE = SYSDATE
+		WHEN NOT MATCHED THEN
+			INSERT
+			(
+				NO
+				, MEMBER_NO
+				, ADRESS
+				, LINK
+				, INTRODUCE
+				, ENROLL_DATE
+			)
+			VALUES
+			(
+				SEQ_RESUME_NO.NEXTVAL
+				, #{memberNo}
+				, #{adress}
+				, #{link}
+				, #{introduce}
+				, SYSDATE
+			)
+	</update>
+	
+	<!-- 이력서 시퀀스 번호 가져오기 -->
+	<select id="selectResumeSeqNo" resultType="String">
+		SELECT SEQ_RESUME_NO.CURRVAL AS RESUME_NO
+		FROM RESUME 
+	</select>
+	
 	<!-- 학력 인서트 -->
-	<insert id="resumeMapper.insertEducation" parameterType="java.util.List">
-		INSERT INTO EDUCATION
-		(	
-			NO
-			, RESUME_NO
-			, STATUS
-			, EDUCATION
-			, SCHOOL_NAME
-			, MAJOR
-			, ENTER
-			, GRADUATE
-		)
-		VALUES
-		<foreach collection="evList" item="ev" separator="," open="INSERT ALL" close="">
-		(
-			SEQ_CORPORATE_MEMBER_NO.NEXTVAL
-			, #{ev.resumeNo}
-			, #{ev.status}
-			, #{ev.education}
-			, #{ev.schoolName}
-			, #{ev.major}
-			, #{ev.enterSchool}
-			, #{ev.graduate}
-		)
+	<update id="updateEducation" parameterType="java.util.List">
+	<foreach collection="list" item="ev" open="INSERT ALL" close="SELECT * FROM SYS.DUAL">
+		MERGE INTO EDUCATION
+			USING DUAL
+			ON 
+				(
+					NO = #{ev.educationNo}
+					AND RESUME_NO = #{ev.resumeNo}
+				)
+			WHEN MATCHED THEN
+				UPDATE SET
+						 STATUS = #{ev.status}
+						, EDUCATION = #{ev.education}
+						, SCHOOL_NAME = #{ev.schoolName}
+						, MAJOR = #{ev.major}
+						, ENTER = #{ev.enterSchool}
+						, GRADUATE = #{ev.graduate}
+			WHEN NOT MATCHED THEN
+				INSERT
+				(
+					NO
+					, RESUME_NO
+					, STATUS
+					, EDUCATION
+					, SCHOOL_NAME
+					, MAJOR
+					, ENTER
+					, GRADUATE
+				)
+				VALUES
+				(
+					SEQ_EDUCATION_NO.NEXTVAL
+					, #{ev.resumeNo}
+					, #{ev.status}
+					, #{ev.education}
+					, #{ev.schoolName}
+					, #{ev.major}
+					, #{ev.enterSchool}
+					, #{ev.graduate}
+				)
 		</foreach>
-			
-		
-	</insert>
-
+	</update>
+	
+	<!-- 수상내역 작성하기 -->
+	<update id="updateAward" parameterType="java.util.List">
+		<foreach collection="List" item="av" open="(" close=")" separator="," index="index">
+		MERGE INTO AWARD
+			USING DUAL
+			ON 
+				(
+					NO = #{av.awardNo}
+					AND RESUME_NO = #{av.resumeNo}
+				)
+			WHEN MATCHED THEN
+				UPDATE SET
+					 AWARD_NAME = ${av.awardName}
+					, AWARD_DATE = ${av.awardDate}
+					, AGENCY = ${av.awardAgency}
+			WHEN NOT MATCHED THEN
+				INSERT
+				(
+					NO
+					, RESUME_NO
+					, AWARD_NAME
+					, AWARD_DATE
+					, AGENCY
+				)
+				VALUES
+				(
+					SEQ_AWARD_NO.NEXTVAL
+					, #{av.resumeNo}
+					, #{av.awardName}
+					, #{av.awardDate}
+					, #{av.awardAgency}
+				)
+		</foreach>
+	</update>
+	
+	<!-- 경력 작성하기 -->
+	<update id="updateCareer" parameterType="java.util.List">
+	<foreach collection="list" item="cv" open="(" close=")" separator="," index="index">
+		MERGE INTO CAREER
+			USING DUAL
+			ON 
+				(
+					NO = #{cv.careerNo}
+					AND RESUME_NO = #{cv.resumeNo}
+				)
+			WHEN MATCHED THEN
+				UPDATE SET
+					 TYPE = #{cv.type}
+					, COMPANY_NAME = #{cv.companyName}
+					, TEAM = #{cv.team}
+					, POSITION = #{cv.position}
+					, ENTER = #{cv.joinCompany}
+					, LEAVE = #{cv.leave}
+					, CURRENT_YN = #{cv.currentYN}
+			WHEN NOT MATCHED THEN
+				INSERT
+				(
+					NO
+					, RESUME_NO
+					, TYPE
+					, COMPANY_NAME
+					, TEAM
+					, POSITION
+					, ENTER
+					, LEAVE
+					, CURRENT_YN
+				)
+				VALUES
+				(
+					SEQ_CAREER_NO.NEXTVAL
+					 #{cv.resumeNo}
+					, #{cv.type}
+					, #{cv.companyName}
+					, #{cv.team}
+					, #{cv.position}
+					, #{cv.joinCompany}
+					, #{cv.leave}
+					, #{cv.currentYN}
+					
+				)
+		</foreach>
+	</update>
+	
+	<!-- 자격증 내역 작성하기 -->
+	<update id="updateCertificate" parameterType="java.util.List">
+		<foreach collection="list" item="cfv" open="(" close=")" separator="," index="index">
+		MERGE INTO CERTIFICATE
+			USING DUAL
+			ON 
+				(
+					NO = #{cfv.certificateNo}
+					AND RESUME_NO = #{cfv.resumeNo}
+				)
+			WHEN MATCHED THEN
+				UPDATE SET
+					 CERTIFICATE_NAME = #{cfv.certificateName}
+					, CERTIFICATE_DATE = #{cfv.certificateDate}
+					, AGENCY = #{cfv.certificateAgency}
+			WHEN NOT MATCHED THEN
+				INSERT
+				(
+					NO
+					, RESUME_NO
+					, CERTIFICATE_NAME
+					, CERTIFICATE_DATE
+					, AGENCY
+				)
+				VALUES
+				(
+					SEQ_CERTIFICATE_NO.NEXTVAL
+					, #{cfv.resumeNo}
+					, #{cfv.certificateName}
+					, #{cfv.certificateDate}
+					, #{cfv.certificateAgency}
+				)
+		</foreach>
+	</update>
+	
+	<!-- 언어 작성하기 -->
+	<update id="updateLanguage" parameterType="java.util.List">
+	<foreach collection="list" item="lv" open="(" close=")" separator="," index="index">
+		MERGE INTO LANGUAGE
+			USING DUAL
+			ON 
+				(
+					NO = #{lv.languageNo}
+					AND RESUME_NO = #{lv.resumeNo}
+				)
+			WHEN MATCHED THEN
+				UPDATE SET
+					 LANGUAGE = #{lv.language}
+					, LANGUAGE_LEVEL = #{lv.languageLevel}
+			WHEN NOT MATCHED THEN
+				INSERT
+				(
+					NO
+					, RESUME_NO
+					, LANGUAGE
+					, LANGUAGE_LEVEL
+				)
+				VALUES
+				(
+					SEQ_LANGUAGE_NO.NEXTVAL
+					, #{lv.resumeNo}
+					, #{lv.language}
+					, #{lv.languageLevel}
+				)
+		</foreach>
+	</update>
+	
 </mapper>

@@ -1,5 +1,7 @@
 package com.coding5.el.emp.vo;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -11,5 +13,7 @@ public class CertificateVo {
 	private String certificateName;
 	private String certificateDate;
 	private String certificateAgency;
+	
+	private List<CertificateVo> cfvList;
 	
 }

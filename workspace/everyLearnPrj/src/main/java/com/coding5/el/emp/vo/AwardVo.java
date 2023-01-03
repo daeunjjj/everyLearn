@@ -1,5 +1,7 @@
 package com.coding5.el.emp.vo;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -11,5 +13,7 @@ public class AwardVo {
 	private String awardName;
 	private String awardDate;
 	private String awardAgency;
+	
+	private List<AwardVo> avList;
 
 }

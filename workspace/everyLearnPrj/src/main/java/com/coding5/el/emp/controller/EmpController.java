@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.coding5.el.common.page.PageVo;
+import com.coding5.el.common.page.Pagination;
 import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.emp.service.EmpService;
 import com.coding5.el.emp.vo.AwardVo;
@@ -22,9 +24,13 @@ import com.coding5.el.emp.vo.JobPostVo;
 import com.coding5.el.emp.vo.LanguageVo;
 import com.coding5.el.emp.vo.ResumeAttatchVo;
 import com.coding5.el.emp.vo.ResumeVo;
+import com.coding5.el.member.vo.MemberVo;
+
+import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("emp")
 @Controller
+@Slf4j
 public class EmpController {
 	
 	@Autowired
@@ -34,11 +40,40 @@ public class EmpController {
 	@GetMapping("main")
 	public String empMain(String no, Model model) {
 		
-		List<JobPostVo> list = es.jobPostList(no);
+		// 카운트
+		int totalCount = es.selectPostList();
+		int currentPage = 1;
+		int pageLimit = 5;
+		int boardLimit = 12;
+		
+		PageVo pv = Pagination.getPageVo(totalCount, currentPage, pageLimit, boardLimit);
+				
+		
+		List<JobPostVo> list = es.jobPostList(no, pv);
 		
 		model.addAttribute("list", list);
 		
 		return "emp/main";
+	}
+	
+	// 채용 공고 페이지
+	@GetMapping("job-post")
+	public String postList(String no, Model model, @RequestParam(value="pno", defaultValue = "1") String pno) {
+		
+		// 카운트
+		int totalCount = es.selectPostList();
+		int currentPage = Integer.parseInt(pno);
+		int pageLimit = 5;
+		int boardLimit = 12;
+		
+		PageVo pv = Pagination.getPageVo(totalCount, currentPage, pageLimit, boardLimit);
+		
+		List<JobPostVo> list = es.jobPostList(no, pv);
+		
+		model.addAttribute("pv", pv);
+		model.addAttribute("list", list);
+		
+		return "emp/post-list";
 	}
 	
 	// 채용 공고 세부조회
@@ -50,39 +85,105 @@ public class EmpController {
 		
 		return "emp/member-position";
 	}
+	
+	// 지원하기(화면)
+	@GetMapping("apply")
+	public String apply(HttpSession session, Model model) {
+		
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		if(loginMember == null) {
+			return "member/login";
+		}
+		
+		String memberNo = loginMember.getMemberNo();
+		
+		ResumeVo rv = es.selectResume(memberNo);
+		List<EducationVo> eduList = es.selectEducation(rv);
+		List<LanguageVo> langList = es.selectLanguage(rv);
+		List<AwardVo> awardList = es.selectAward(rv);
+		List<CareerVo> careerList = es.selectCareer(rv);
+		List<CertificateVo> certificateList = es.selectCertificate(rv);
+		List<ResumeAttatchVo> attachList = es.selectAttach(rv);
+		
+		model.addAttribute("rv", rv);
+		model.addAttribute("eduList", eduList);
+		model.addAttribute("langList", langList);
+		model.addAttribute("awardList", awardList);
+		model.addAttribute("careerList", careerList);
+		model.addAttribute("certificateList", certificateList);
+		model.addAttribute("attachList", attachList);
+		
+		return "emp/apply";
+		
+	}
+	
+	// 지원하기
+	@PostMapping("apply")
+//	public String apply(HttpSession session, ResumeVo vo, String[] awardNo, String[] awardName, String[] awardDate, String[] awardAgency, 
+//			String[] careerNo, String[] type, String[] companyName, 
+//			String[] team, String[] position, String[] joinCompany, String[] leave, String[] currentYN, 
+//			String[] certificateNo, String[] certificateName, String[] certificateDate, String[] certificateAgency, String[] educationNo, 
+//			String[] status, String[] education, String[] schoolName, String[] major, String[] enterSchool, 
+//			String[] graduate, String[] languageNo, String[] language, String[] languageLevel, 
+//			String[] attachNo, String[] originName, String[] changeName, String[] filePath) {
+//		
+//		return "";
+//		
+//	}
+	public String apply(HttpSession session, EducationVo ev) {
+		
+		log.info(ev.toString());
+		
+		return"";
+		
+	}
+	
 		
 	// 채용 이력서(화면)
 	@GetMapping("resume")
-	public String resume(ResumeVo vo, HttpSession session) {
+	public String resume(HttpSession session, Model model) {
 		
-		ResumeVo rv = es.selectResume(vo);
-		List<EducationVo> eduList = es.selectEducation(vo);
-		List<LanguageVo> langList = es.selectLanguage(vo);
-		List<AwardVo> awardList = es.selectAward(vo);
-		List<CareerVo> careerList = es.selectCareer(vo);
-		List<CertificateVo> certificateList = es.selectCertificate(vo);
-		List<ResumeAttatchVo> attachList = es.selectAttach(vo);
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 		
-		session.setAttribute("rv", rv);
-		session.setAttribute("eduList", eduList);
-		session.setAttribute("langList", langList);
-		session.setAttribute("awardList", awardList);
-		session.setAttribute("careerList", careerList);
-		session.setAttribute("certificateList", certificateList);
-		session.setAttribute("attachList", attachList);
+		if(loginMember != null) {
+			String memberNo = loginMember.getMemberNo();
+			
+			ResumeVo rv = es.selectResume(memberNo);
+			List<EducationVo> eduList = es.selectEducation(rv);
+			List<LanguageVo> langList = es.selectLanguage(rv);
+			List<AwardVo> awardList = es.selectAward(rv);
+			List<CareerVo> careerList = es.selectCareer(rv);
+			List<CertificateVo> certificateList = es.selectCertificate(rv);
+			List<ResumeAttatchVo> attachList = es.selectAttach(rv);
+			
+			model.addAttribute("rv", rv);
+			model.addAttribute("eduList", eduList);
+			model.addAttribute("langList", langList);
+			model.addAttribute("awardList", awardList);
+			model.addAttribute("careerList", careerList);
+			model.addAttribute("certificateList", certificateList);
+			model.addAttribute("attachList", attachList);
+		}
+		
 		
 		return "emp/resume";
 	}
 	
 	// 채용 이력서
 	@PostMapping("resume")
-	public String resume(List<EducationVo> evList) {
+	public String resume(HttpSession session, ResumeVo rv, EducationVo ev, AwardVo av, CareerVo cv, CertificateVo cfv, LanguageVo lv) {
 		
-		int result = es.resumeWrite(evList);
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 		
-		if(result == 1) {
-			return "redirect:/emp/resume";
+		if(loginMember == null) {
+			return "member/login";
 		}
+		
+		String memberNo = loginMember.getMemberNo();
+		
+		int result = es.insertResume(memberNo, rv, ev, av, cv, cfv, lv);
+		
 		return "redirect:/emp/resume";
 		
 	}
