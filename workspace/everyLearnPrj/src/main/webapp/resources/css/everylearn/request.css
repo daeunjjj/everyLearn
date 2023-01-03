@@ -119,7 +119,7 @@
     cursor: pointer;
 }
 /* 라디오 체크 시 */
-#check{
+.select-area .check{
     background-color: #fff;
     color: #1187CF;
     border: 1px solid #1187CF;
@@ -157,7 +157,7 @@
     display: none;
 }
 /*라디오 체크 시*/
-#check>i{
+.check>i{
     display: block;
 }
 

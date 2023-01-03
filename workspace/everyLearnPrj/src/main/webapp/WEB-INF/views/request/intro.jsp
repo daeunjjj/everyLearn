@@ -4,12 +4,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>에브리런 - 요청</title>
 <link rel="stylesheet" href="/el/resources/css/everylearn/request.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
+	<c:if test="${!empty msg}">
+		<script>
+	        Swal.fire({
+	            confirmButtonColor: '#1187CF',
+	            title: '${msg}'
+	          });
+		</script>	
+	</c:if>
 	<main id="container">
 		<section id="feedback-header">
 			<div class="feedback-wrap">
@@ -45,18 +56,21 @@
 				</div>
 			</div>
 			<div class="btn-area">
-				<button type="submit">
+				<button type="button" onclick="Btn();">
 					<span>계속
 						<i class="bi bi-arrow-return-left"></i>
 					</span>
 				</button>
 			</div>
-			<a href="/el/request#feedback-header">테스트</a>
 		</section>
 		
 	<!--<%@ include file="/WEB-INF/views/common/footer.jsp" %>-->
 	</main>
-
+	<script>
+		function Btn() {
+			window.location.href = "/el/request#feedback-header";
+		}
+	</script>
 	
 </body>
 </html>

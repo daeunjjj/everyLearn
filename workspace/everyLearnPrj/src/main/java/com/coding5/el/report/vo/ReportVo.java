@@ -14,6 +14,7 @@ public class ReportVo {
 	private String reportDate;
 	private String handleYn;
 	private String processDate;
+	private String startDate;
 	private String finishDate;
 	private String blacklistId;
 	private String accusorId;
