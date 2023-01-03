@@ -68,17 +68,20 @@ public class AdminReportServiceImpl implements AdminReportService{
 	public int reportProcess(ReportVo reportVo, AlertVo alertVo) {
 		// 신고처리
 		int reportResult = adminReportDao.reportUpdate(sst,reportVo);
-		
+		log.info("디에이오 결고ㅏ reportResult :::"+reportResult);
 		// 멤버
 		int memberResult = 0;
 		if(reportResult == 1 && !"1".equals(reportVo.getMethod())) { 
+			log.info("멤버넘버" + reportVo.getBlacklist());
 			log.info("멤버 업댓인서트 통과~"+reportVo.getMethod());
 			memberResult = adminReportDao.memberUpdate(sst,reportVo);
+			
+			log.info("디에이오 결고 :::"+memberResult);
 		}
 		
 		// 알림
 		int alertResult = 0;
-		if(reportResult + memberResult != 0 && alertVo != null) {
+		if(reportResult + memberResult != 0 && alertVo.getTitle() != null) {
 			log.info("알림인서트 통과~");
 			alertResult = adminReportDao.insertAlert(sst,alertVo);
 		} 

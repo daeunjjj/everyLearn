@@ -98,7 +98,15 @@
                                 <label for="reportYn">상태</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="reportYn" id="reportYn" value="${map.studentVo.reportYn }" readonly>
+                                <input type="text" name="reportYn" id="reportYn" readonly>
+                            </div>
+                        </div>
+                        <div class="info-items">
+                            <div class="title-wrap">
+                                <label for="reportCnt">신고횟수</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="text" name="reportCnt" id="reportCnt" value="${map.studentVo.reportCnt }" readonly>
                             </div>
                         </div>
                     </div>
@@ -156,6 +164,17 @@
         </main>
     </div>
     <script>
+        const finish = '${map.studentVo.finishDate}';
+        const today = new Date().toISOString().slice(0,10);
+        console.log(today < finish);
+        window.onload = function () {
+            if(today < finish){
+                $('#reportYn').val('정지');
+            } else{
+                $('#reportYn').val('활동');
+            }
+        }
+
          function pwdCheck() {
             const loginPwd = '${loginAdmin.rawPwd}';
             const inputPwd = $('#pwd-check').val();

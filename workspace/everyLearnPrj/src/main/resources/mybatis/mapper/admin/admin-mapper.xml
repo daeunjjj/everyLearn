@@ -185,8 +185,7 @@
 		    ,MODIFY_DATE
 		    ,PROFILE_IMG
 		    ,POINT
-		    ,REPORT_YN
-		    ,QUIT_YN
+		    ,DECODE(QUIT_YN, 'N','유지', 'Y','탈퇴') AS QUIT_YN
 		FROM MEMBER
 		<if test="keyword != null and keyword != ''">
 			WHERE ${category} LIKE '%${keyword}%'
@@ -195,22 +194,25 @@
 	
 	<select id="selectStudentOneByNo" resultType="com.coding5.el.member.vo.MemberVo" resultMap="memberMap">
 		SELECT
-		    NO
-		    ,ID
-		    ,PWD
-		    ,NAME
+		    M.NO
+		    ,M.ID
+		    ,M.PWD
+		    ,M.NAME
 		    ,TO_CHAR(BIRTH, 'YYYY-MM-DD') AS BIRTH
-		    ,PHONE
-		    ,NICK
-		    ,EMAIL
-		    ,ENROLL_DATE
-		    ,MODIFY_DATE
-		    ,PROFILE_IMG
-		    ,POINT
-		    ,DECODE(REPORT_YN, 'N','활동', 'Y','정지') AS REPORT_YN
+		    ,M.PHONE
+		    ,M.NICK
+		    ,M.EMAIL
+		    ,M.ENROLL_DATE
+		    ,M.MODIFY_DATE
+		    ,M.PROFILE_IMG
+		    ,M.POINT
 		    ,DECODE(QUIT_YN, 'N','유지', 'Y','탈퇴') AS QUIT_YN
-		FROM MEMBER
-		WHERE NO = #{memberNo}
+		    ,M.REPORT_CNT
+		    ,TO_CHAR(START_DATE, 'YYYY-MM-DD') AS START_DATE
+		    ,TO_CHAR(FINISH_DATE, 'YYYY-MM-DD') AS FINISH_DATE
+		FROM MEMBER M
+		FULL JOIN REPORT R ON M.NO = R.BLACKLIST 
+		WHERE M.NO = #{memberNo}
 	</select>
 	<select id="selectPointListByNo" resultType="com.coding5.el.member.vo.PointVo">
 		SELECT
@@ -560,7 +562,7 @@
     	<if test="keyword != null and keyword != ''">
 	    	WHERE ${category} LIKE '%${keyword}%'
     	</if>
-	    ORDER BY R.REPORT_DATE DESC
+	    ORDER BY R.NO DESC
 	</select>
 	
 	    	
@@ -597,6 +599,9 @@
 		    ,HANDLE_YN = 'Y' 
 		    ,PROCESS_DATE = TO_CHAR(SYSDATE,'YY-MM-DD HH24:MI')
 		<if test="finishDate != null and finishDate != ''">
+	    	,START_DATE = #{startDate}
+    	</if> 
+		<if test="finishDate != null and finishDate != ''">
 	    	,FINISH_DATE = #{finishDate}
     	</if>    
 		WHERE NO = #{no}
@@ -604,10 +609,7 @@
 	
 	<update id="memberUpdate">
 		UPDATE MEMBER 
-			SET REPORT_YN = 'Y'
-		<if test="method == '3'">
-	    	,QUIT_YN = 'Y'
-    	</if>   
+			SET REPORT_CNT = +1
 		WHERE NO = #{blacklist}
 	</update>
 	

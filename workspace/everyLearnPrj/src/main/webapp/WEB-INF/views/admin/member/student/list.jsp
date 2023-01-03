@@ -25,7 +25,7 @@
                                 <span>|</span>
                                 <a href="/el/admin/member/student/list?pno=1&category=quit_yn&keyword=Y">탈퇴회원</a>
                                 <span>|</span>
-                                <a href="/el/admin/member/student/list?pno=1&category=report_yn&keyword=Y">신고회원</a>
+                                <a href="/el/admin/member/student/list?pno=1&category=quit_yn&keyword=N">유지회원</a>
                             </div>
                             <div class="flex-area">
                                 <div>
@@ -70,15 +70,7 @@
                                 <div>${list.email }</div>
                                 <div>${list.phone }</div>
                                 <div>${list.enrollDate }</div>
-                                <c:if test="${list.quitYn eq 'Y'}">
-	                                <div>탈퇴</div>
-                                </c:if>
-                                <c:if test="${list.quitYn eq 'N' and list.reportYn eq 'N'}">
-	                                <div>유지</div>
-                                </c:if>
-                                <c:if test="${list.quitYn eq 'N' and list.reportYn eq 'Y'}">
-	                                <div>정지</div>
-                                </c:if>
+                                <div>${list.quitYn}</div>
                                 <div>
                                     <button type="button" onclick="detailBtn('${list.memberNo}');">상세</button>
                                     <button>정지</button>

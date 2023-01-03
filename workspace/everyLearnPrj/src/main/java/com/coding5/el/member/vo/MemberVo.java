@@ -27,6 +27,9 @@ public class MemberVo {
 	private String memberPwd1;
 	private MultipartFile profileImg;
 	private String profileImgName;
+	private String reportCnt;
+	private String startDate;
+	private String finishDate;
 
 	//파일 업로드
 	public boolean isEmpty() {
