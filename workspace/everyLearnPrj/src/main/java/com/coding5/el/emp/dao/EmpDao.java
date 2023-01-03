@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.coding5.el.common.page.PageVo;
 import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.emp.vo.AwardVo;
 import com.coding5.el.emp.vo.CareerVo;
@@ -16,7 +17,8 @@ import com.coding5.el.emp.vo.ResumeVo;
 
 public interface EmpDao {
 
-	ResumeVo selectResumeOne(SqlSessionTemplate sst, ResumeVo vo);
+	// 이력서 조회 
+	ResumeVo selectResumeOne(SqlSessionTemplate sst, String memberNo);
 
 	List<EducationVo> selectEducation(SqlSessionTemplate sst, ResumeVo vo);
 
@@ -30,13 +32,34 @@ public interface EmpDao {
 
 	List<ResumeAttatchVo> selectAttach(SqlSessionTemplate sst, ResumeVo vo);
 
-	// 이력서 작성하기
-	int insertEducation(SqlSessionTemplate sst, List<EducationVo> evList);
-
 	// 채용 공고 상세
 	JobPostVo selectJobPostDetail(SqlSessionTemplate sst, String no);
 
 	// 채용 메인 페이지 리스트
-	List<JobPostVo> selectJobPostList(SqlSessionTemplate sst, String no);
+	List<JobPostVo> selectJobPostList(SqlSessionTemplate sst, String no, PageVo pv);
+
+	// 채용 공고 리스트 페이징
+	int selectPostList(SqlSessionTemplate sst);
+
+	// 이력서 작성하기
+	int updateResume(SqlSessionTemplate sst, ResumeVo rv);
+
+	// 이력서 시퀀스 번호 받아오기
+	String selectResumeSeqNo(SqlSessionTemplate sst);
+	
+	// 학력 작성하기
+	int updateEducation(SqlSessionTemplate sst, List<EducationVo> evList);
+
+	// 수상내역 작성하기
+	int updateAward(SqlSessionTemplate sst, List<AwardVo> avList);
+
+	// 경력 작성하기
+	int updateCareer(SqlSessionTemplate sst, List<CareerVo> cvList);
+
+	// 자격증 작성하기
+	int updateCertificate(SqlSessionTemplate sst, List<CertificateVo> cfvList);
+
+	// 언어 작성하기
+	int updateLanguage(SqlSessionTemplate sst, List<LanguageVo> lvList);
 
 }

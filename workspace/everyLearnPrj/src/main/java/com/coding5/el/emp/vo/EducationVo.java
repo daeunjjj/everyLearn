@@ -1,5 +1,7 @@
 package com.coding5.el.emp.vo;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -14,5 +16,7 @@ public class EducationVo {
 	private String major;
 	private String enterSchool;
 	private String graduate;
+	
+	private List<EducationVo> evList;
 	
 }

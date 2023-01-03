@@ -1,11 +1,14 @@
 package com.coding5.el.emp.service;
 
 import java.util.List;
+import java.util.ListIterator;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.coding5.el.common.page.PageVo;
 import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.emp.dao.EmpDao;
 import com.coding5.el.emp.vo.AwardVo;
@@ -27,8 +30,8 @@ public class EmpServiceImpl implements EmpService{
 	private EmpDao dao;
 
 	@Override
-	public ResumeVo selectResume(ResumeVo vo) {
-		return dao.selectResumeOne(sst, vo);
+	public ResumeVo selectResume(String memberNo) {
+		return dao.selectResumeOne(sst, memberNo);
 	}
 
 	@Override
@@ -61,33 +64,67 @@ public class EmpServiceImpl implements EmpService{
 		return dao.selectAttach(sst, vo);
 	}
 
-	// 이력서 작성하기
-	@Override
-	public int resumeWrite(ResumeVo vo, List<EducationVo> evList) {
-		
-		int education = dao.insertEducation(sst, evList);
-		
-		return education;
-	}
-	// , List<LanguageVo> lvList, List<AwardVo> avList,
-//	List<CareerVo> cvList, List<CertificateVo> cfvList, List<ResumeAttatchVo> ravList
-
 	// 채용 공고 상세
 	@Override
 	public JobPostVo jobPostDetail(String no) {
 		return dao.selectJobPostDetail(sst, no);
 	}
 
-	@Override
-	public int resumeWrite(List<EducationVo> evList) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	// 채용 메인 페이지 리스트
 	@Override
-	public List<JobPostVo> jobPostList(String no) {
-		return dao.selectJobPostList(sst, no);
+	public List<JobPostVo> jobPostList(String no, PageVo pv) {
+		return dao.selectJobPostList(sst, no, pv);
+	}
+
+	// 채용 공고 리스트 페이징
+	@Override
+	public int selectPostList() {
+		return dao.selectPostList(sst);
+	}
+
+	// 이력서 작성하기
+	@Override
+	@Transactional
+	public int insertResume(String memberNo, ResumeVo rv, EducationVo ev, AwardVo av, CareerVo cv, CertificateVo cfv,
+			LanguageVo lv) {
+		
+		rv.setMemberNo(memberNo);
+		
+		int rvResult = dao.updateResume(sst, rv);
+		String resumeNo = dao.selectResumeSeqNo(sst);
+		
+		 ListIterator<EducationVo> evIterator = ev.getEvList().listIterator();
+		 while(evIterator.hasNext()) {
+			 evIterator.next().setResumeNo(resumeNo);
+		 }
+		 
+		 ListIterator<AwardVo> avIterator = av.getAvList().listIterator();
+		 while(avIterator.hasNext()) {
+			 avIterator.next().setResumeNo(resumeNo);
+		 }
+		 
+		 ListIterator<CareerVo> cvIterator = cv.getCvList().listIterator();
+		 while(cvIterator.hasNext()) {
+			 cvIterator.next().setResumeNo(resumeNo);
+		 }
+		 
+		 ListIterator<CertificateVo> cfvIterator = cfv.getCfvList().listIterator();
+		 while(cfvIterator.hasNext()) {
+			 cfvIterator.next().setResumeNo(resumeNo);
+		 }
+		 
+		 ListIterator<LanguageVo> lvIterator = lv.getLvList().listIterator();
+		 while(lvIterator.hasNext()) {
+			 lvIterator.next().setResumeNo(resumeNo);
+		 }
+		
+		int evResult = dao.updateEducation(sst, ev.getEvList());
+		int avResult = dao.updateAward(sst, av.getAvList());
+		int cvResult = dao.updateCareer(sst, cv.getCvList());
+		int cfvResult = dao.updateCertificate(sst, cfv.getCfvList());
+		int lvResult = dao.updateLanguage(sst, lv.getLvList());
+		
+		return rvResult;
 	}
 
 }

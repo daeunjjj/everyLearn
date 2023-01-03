@@ -2,9 +2,11 @@ package com.coding5.el.emp.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.coding5.el.common.page.PageVo;
 import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.emp.vo.AwardVo;
 import com.coding5.el.emp.vo.CareerVo;
@@ -18,9 +20,10 @@ import com.coding5.el.emp.vo.ResumeVo;
 @Repository
 public class EmpDaoImpl implements EmpDao {
 
+	// 이력서 조회
 	@Override
-	public ResumeVo selectResumeOne(SqlSessionTemplate sst, ResumeVo vo) {
-		return sst.selectOne("resumeMapper.selectResumeOne", vo);
+	public ResumeVo selectResumeOne(SqlSessionTemplate sst, String memberNo) {
+		return sst.selectOne("resumeMapper.selectResumeOne", memberNo);
 	}
 
 	@Override
@@ -53,12 +56,6 @@ public class EmpDaoImpl implements EmpDao {
 		return sst.selectList("resumeMapper.selectAttach", vo);
 	}
 
-	// 이력서 작성하기
-	@Override
-	public int insertEducation(SqlSessionTemplate sst, List<EducationVo> evList) {
-		return sst.insert("resumeMapper.insertEducation", evList);
-	}
-
 	// 채용 공고 상세
 	@Override
 	public JobPostVo selectJobPostDetail(SqlSessionTemplate sst, String no) {
@@ -67,8 +64,61 @@ public class EmpDaoImpl implements EmpDao {
 
 	// 채용 메인페이지 리스트
 	@Override
-	public List<JobPostVo> selectJobPostList(SqlSessionTemplate sst, String no) {
-		return sst.selectList("jobPostMapper.selectJobPostList", no);
+	public List<JobPostVo> selectJobPostList(SqlSessionTemplate sst, String no, PageVo pv) {
+		
+		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
+		int limit = pv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset,limit);
+		
+		return sst.selectList("jobPostMapper.selectJobPostList", no, rb);
+	}
+
+	// 채용 공고 리스트 페이징
+	@Override
+	public int selectPostList(SqlSessionTemplate sst) {
+		return sst.selectOne("jobPostMapper.selectPostList");
+	}
+
+	// 이력서 작성하기
+	@Override
+	public int updateResume(SqlSessionTemplate sst, ResumeVo rv) {
+		return sst.update("resumeMapper.updateResume", rv);
+	}
+
+	// 이력서 시퀀스 번호 가져오기
+	@Override
+	public String selectResumeSeqNo(SqlSessionTemplate sst) {
+		return sst.selectOne("resumeMapper.selectResumeSeqNo");
+	}
+	
+	// 학력 작성하기
+	@Override
+	public int updateEducation(SqlSessionTemplate sst, List<EducationVo> evList) {
+		return sst.update("resumeMapper.updateEducation", evList);
+	}
+
+	// 수상내역 작성하기
+	@Override
+	public int updateAward(SqlSessionTemplate sst, List<AwardVo> avList) {
+		return sst.update("resumeMapper.updateAward", avList);
+	}
+
+	// 경력 작성하기
+	@Override
+	public int updateCareer(SqlSessionTemplate sst, List<CareerVo> cvList) {
+		return sst.update("resumeMapper.updateCareer", cvList);
+	}
+
+	// 자격증 내역 작성하기
+	@Override
+	public int updateCertificate(SqlSessionTemplate sst, List<CertificateVo> cfvList) {
+		return sst.update("resumeMapper.updateCertificate", cfvList);
+	}
+
+	// 언어 작성하기
+	@Override
+	public int updateLanguage(SqlSessionTemplate sst, List<LanguageVo> lvList) {
+		return sst.update("resumeMapper.updateLanguage", lvList);
 	}
 
 

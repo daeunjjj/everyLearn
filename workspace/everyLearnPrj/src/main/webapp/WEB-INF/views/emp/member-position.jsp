@@ -82,7 +82,7 @@
 					</dl>
 					<c:if test="${not empty loginMember}">
 					<div>
-						<button class="submit-btn">지원하기</button>
+						<a href="/el/emp/apply?${vo.no}"><button class="submit-btn">지원하기</button></a>
 					</div>
 					</c:if>
 				</aside>
