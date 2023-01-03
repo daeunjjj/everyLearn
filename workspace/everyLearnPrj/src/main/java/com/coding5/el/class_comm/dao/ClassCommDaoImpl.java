@@ -69,4 +69,18 @@ public class ClassCommDaoImpl implements ClassCommDao{
 		return sst.selectOne("classCommMapper.selectCommentOne", vo);
 	}
 
+	//delete write comment
+	@Override
+	public int deleteWriteComment(SqlSessionTemplate sst, String classCommNo) {
+		return sst.delete("classCommMapper.deleteWriteComm", classCommNo);
+	}
+
+	//delete write
+	@Override
+	public int deleteWriteWrite(SqlSessionTemplate sst, String classCommNo) {
+		return sst.delete("classCommMapper.deleteWrite", classCommNo);
+	}
+	
+	
+
 }

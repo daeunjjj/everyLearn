@@ -26,6 +26,7 @@
                         </label>
                     </div>
                     <div id="detail-wrap">
+                    <div id="modify-grid">      
                         <div id="title-wrap">
                             <div id="title">
                              ${detailVo.title }
@@ -46,17 +47,30 @@
                                  
                                     <input type="hidden" name="blacklist" id="blacklist" value="${detailVo.writer}">
                                     <input type="hidden" name="refortTitle" id="refortTitle" value="${detailVo.title}">
-
                                     
-                                
-                                <div class="writer" id="writer">
-									${detailVo.writer}
-                                </div>
-                                <div id="enrollDate">
-                                    ${detailVo.enrollDate}
+                                    
+                                    
+                                    <div class="writer" id="writer">
+                                        ${detailVo.writer}
+                                    <input id="hidden-writer" type="hidden" value="${detailVo.writer}">
+                                    </div>
+                                    <div id="enrollDate">
+                                        ${detailVo.enrollDate}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <div id="modi_delete">
+                                <div><img id="main-modify" src="/el/resources/img/member/edit.png" alt="" onclick="modify();"></div>
+                                <div><img id="main-delete" src="/el/resources/img/member/delete.png" alt="" onclick="mainDelete();"></div>
+                            </div>
+                    </div>  
+                    <!-- <div id="hidden-member">dfff</div> -->
+                    <input type="hidden" name="hidden-member" id="hidden-member" value="${loginMember.memberNick}">
+                    <input type="hidden" name="hidden-commNo" id="hidden-classCommNo" value="${detailVo.classCommNo}">
+                    ${detailVo}
+                    ${loginMember.memberNick}
+
+
                         <div id="content">
                             <pre>${detailVo.content}</pre>
                         </div>

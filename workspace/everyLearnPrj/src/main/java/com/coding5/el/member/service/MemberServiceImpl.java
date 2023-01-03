@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.coding5.el.member.dao.MemberDao;
 import com.coding5.el.member.vo.MemberVo;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service
 public class MemberServiceImpl implements MemberService{
 
@@ -37,16 +39,27 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVo login(MemberVo vo) {
 		
 		MemberVo loginMember = memberDao.selectMemberOne(sst, vo);
+		
+		if(loginMember == null) {
+			
+			log.info("널일때 x" + loginMember);
+			
+			return loginMember;
+		}
+		
+		log.info("서비스에서 실행 됨?" + loginMember);
 		//암호화
 		String memberPwd = vo.getMemberPwd();
 		String encMemberPwd = loginMember.getMemberPwd();
 		boolean isMatch = enc.matches(memberPwd, encMemberPwd);
 		
 		if(isMatch) {
+			log.info("서비스  오케이 : " + loginMember );
 			return loginMember;
 		}else {
-			
-			return null;
+			loginMember.setMemberId("1");
+			log.info("서비스  null : " + loginMember );
+			return loginMember;
 		}
 		
 	}

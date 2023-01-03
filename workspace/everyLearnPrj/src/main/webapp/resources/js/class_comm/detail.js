@@ -177,3 +177,50 @@ function completion() {
     // window.close();
     return true;
 }
+
+function modify() {
+    let memberNick = $('#hidden-member').val();
+    let writer = $('#hidden-writer').val();
+    console.log(memberNick);
+    console.log(writer);
+
+    if(memberNick != writer){
+        alert('작성자 본인만 수정 가능합니다');
+    }
+
+    return true;
+}
+
+function mainDelete() {
+    let memberNick = $('#hidden-member').val();
+    let writer = $('#hidden-writer').val();
+    let classCommNo = $('#hidden-classCommNo').val();
+    console.log(memberNick);
+    console.log(writer);
+    console.log(classCommNo);
+
+    $.ajax({
+        url : "/el/class/deleteAjax"
+        , type : "post"
+        , data : {
+            "classCommNo" : classCommNo
+        }
+        , success : function(result){
+            if(result != null){
+                alert("삭제가 완료되었습니다.");
+                let url = "/el/class/qna"
+                location.replace(url);
+            }
+
+        }
+        , error : function () {
+            alert("에이젝스 오 류")
+        }
+    })
+
+    // if(memberNick != writer){
+    //     alert('작성자 본인만 수정 가능합니다');
+    // }
+
+    return true;
+}

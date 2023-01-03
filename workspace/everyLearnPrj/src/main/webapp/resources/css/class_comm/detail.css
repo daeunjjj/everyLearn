@@ -23,9 +23,9 @@ body{
 
 #title-wrap{
     margin: auto;
-    width: 560px;
+    width: 500px;
     height: 55px;
-    border-bottom: 2px solid #1187CF;
+
     margin-top: 10px;
 
 }
@@ -123,4 +123,34 @@ textarea:focus{
     background-color: #1187CF;
     color: white;
     border: none;
+}
+
+#modify-grid{
+    display: grid;
+    grid-template-columns: 530px 50px;
+    border-bottom: 2px solid #1187CF;
+}
+
+#modi_delete{
+    display: flex;
+    justify-items: right;
+    align-items: flex-end;
+
+}
+
+#modi_delete>div{
+    width: 30px;
+    text-align: center;
+    
+    
+}
+
+#modi_delete img{
+    width: 13px;
+    height: 13px;
+    padding-bottom: 3px;
+}
+
+#hidden-member{
+    display:none 
 }

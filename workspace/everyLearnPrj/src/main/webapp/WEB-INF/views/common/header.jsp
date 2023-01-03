@@ -56,7 +56,7 @@
 								
 							<div class="dropdown-content">
 								<a href="/el/member/alert">알림</a>
-								<a href="#">내 강의</a>
+								<a href="/el/member/memberStudy">내 강의</a>
 								<a href="/el/member/writeList">작성글</a>
 								<a href="/el/member/logout">로그아웃</a>
 							</div>

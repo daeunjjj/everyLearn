@@ -20,7 +20,8 @@ public class MemberDaoImpl implements MemberDao{
 		log.info("dao록인멤버 : " + loginMember);
 		
 		if(loginMember == null) {
-			loginMember.setMemberId("error");
+			
+			log.info("error 디에이오 로그인멤버 : " + loginMember);
 			return loginMember;
 		}
 		

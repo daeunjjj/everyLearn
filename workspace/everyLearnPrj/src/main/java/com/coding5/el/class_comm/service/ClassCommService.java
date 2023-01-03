@@ -33,4 +33,7 @@ public interface ClassCommService {
 
 	//내 댓글 한 
 	public CommentVo commemtOne(CommentVo vo);
+
+	//댓글 삭제
+	public int deleteWrite(String classCommNo);
 }

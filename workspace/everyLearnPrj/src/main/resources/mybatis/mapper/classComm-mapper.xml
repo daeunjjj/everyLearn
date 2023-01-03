@@ -191,5 +191,12 @@
 
 	</select>
 	
-
+	  <delete id="deleteWriteComm">
+	  	DELETE FROM COMM_COMMENT WHERE COMM_NO = ${classCommNo}       
+	  </delete>
+	  
+	  <delete id="deleteWrite">
+		DELETE FROM CLASS_COMM WHERE NO = ${classCommNo}  
+	  </delete>
+	  
 </mapper>
