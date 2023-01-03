@@ -45,7 +45,7 @@
 
 .list-wrap{
     display: grid;
-    grid-template-columns: 0.3fr 0.2fr 0.5fr 2fr 0.5fr 0.8fr 0.2fr 0.3fr;
+    grid-template-columns: 0.2fr 0.3fr 0.3fr 1fr 1fr 0.1fr 0.2fr;
     grid-template-rows: repeat(11, 45px);
     align-content: center;
     padding: 10px;
@@ -55,7 +55,7 @@
 /*페이징부분*/
 #page-area{
     margin-top: 50px;
-    grid-column: span 8;
+    grid-column: span 7;
     text-align: center;
     margin-top: 50px;
     border-bottom: none;
@@ -86,7 +86,7 @@
 
 
 #main-bot {
-    grid-column: span 8;
+    grid-column: span 7;
     margin-top: 25px;
 }
 

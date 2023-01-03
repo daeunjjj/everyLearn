@@ -40,15 +40,18 @@
     <div class="container">
 
         <div class="a1">
-            <div id="h1">💡개인 회원 자주 묻는 질문</div>
+            <div id="h1">💡일반 회원 자주 묻는 질문</div>
             <br>
-            <button class="accordion">구매했던 강의가 전부 사라졌습니다.</button>
+            
+            <c:forEach var="m" items="${ memberFaqList }">
+            <button class="accordion"><div>${ m.title }</div></button>
             <div class="panel">
                 <br>
-                <p>어쩔 수 없죵,,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>${ m.content }</p>
                 <br>
             </div>
-
+			</c:forEach>
+			
             <button class="accordion">비밀번호를 바꾸고 싶습니다.</button>
             <div class="panel">
                 <br>
@@ -56,32 +59,21 @@
                 <br>
             </div>
 
-            <button class="accordion">에브리런 서비스 중 오류가 발생해요.</button>
-            <div class="panel">
-                <br>
-                <p>,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <br>
-            </div>
-
-            <button class="accordion">에브리런 서비스 중 오류가 발생해요.</button>
-            <div class="panel">
-                <br>
-                <p>,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <br>
-            </div>
-
-            <button class="accordion">에브리런 서비스 중 오류가 발생해요.</button>
-            <div class="panel">
-                <br>
-                <p>,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <br>
-            </div>
 
         </div>
         <div id="hr"></div>
         <div class="a2">
             <div id="h1">💡기업 회원 자주 묻는 질문</div>
             <br>
+            
+            <c:forEach var="e" items="${ empFaqList }">
+	            <button class="accordion">${ e.title }</button>
+	            <div class="panel">
+	                <br>
+	                <p>${ e.content }</p>
+	                <br>
+	            </div>
+			</c:forEach>
 
             <button class="accordion">기업 서비스 가입, 이용 절차가 궁금합니다.</button>
             <div class="panel">

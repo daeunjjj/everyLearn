@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>에브리런</title>
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/faq/adminList.css">
+<link rel="stylesheet" href="/el/resources/css/faq/adminList.css">
 <link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
 
 
@@ -30,50 +30,28 @@
 					<div class="th">번호</div>
 	                <div class="th">카테고리</div>
 	                <div class="th">제목</div>
-	                <div class="th"></div>
 	                <div class="th">작성일시</div>
 	                <div class="th"></div>
 	                <div class="th"></div>
 
+
 				
-				<%-- <c:forEach items="${list}" var="n">
-					<div class="td" id="check"><input type="checkbox" class="checkbox-del" value="${n.no}"></div>
-					<div class="td" id="no">${n.no}</div>
-	                <div class="td" id="category">일반회원</div>
-	                <div class="td" id="title"><a href="/el/faq/detail?no=${ n.no }" target="_blank" id="title-a">${n.title}</a></div>
-	                <div class="td" id="enrollDate">${n.enrollDate}</div>
-	                <div class="td"><button onclick="location.href = '/el/faq/edit?no=${ n.no }'" id="edit">수정</button></div>
+				<c:forEach items="${list}" var="f">
+					<div class="td" id="check"><input type="checkbox" class="checkbox-del" value="${ f.no }"></div>
+					<div class="td" id="no">${ f.no }</div>
+	                <div class="td" id="category">${ f.category }</div>
+	                <div class="td" id="title"><a href="/el/faq/detail?no=${ f.no }" target="_blank" id="title-a">${ f.title }</a></div>
+	                <div class="td" id="enrollDate">${ f.enrollDate }</div>
+	                <div class="td"><button onclick="location.href = '/el/faq/edit?no=${ f.no }'" id="edit">수정</button></div>
 	                <div class="td"><button onclick="del();" id="del">삭제</button></div>
-				</c:forEach> --%>
+				</c:forEach>
 				
 				
-				<!-- 지울 거 -->
-					<div class="td" id="check"><input type="checkbox" class="checkbox-del" value="${n.no}"></div>
-					<div class="td" id="no">2</div>
-	                <div class="td" id="category">기업회원</div>
-	                <div class="td" id="title"><a href="/el/faq/detail?no=${ n.no }" target="_blank" id="title-a">제목입니다</a></div>
-	                <div class="td" id="adminNick">관리자</div>
-	                <div class="td" id="enrollDate">22.12.28 15:30</div>
-	                <div class="td"><button onclick="location.href = '/el/faq/edit?no=${ n.no }'" id="edit">수정</button></div>
-	                <div class="td"><button onclick="del();" id="del">삭제</button></div>
-					
-					<div class="td" id="check"><input type="checkbox" class="checkbox-del" value="${n.no}"></div>
-					<div class="td" id="no">1</div>
-	                <div class="td" id="category">일반회원</div>
-	                <div class="td" id="title"><a href="/el/faq/detail?no=${ n.no }" target="_blank" id="title-a">제목입니다</a></div>
-	                <div class="td" id="adminNick">관리자</div>
-	                <div class="td" id="enrollDate">22.12.28 15:30</div>
-	                <div class="td"><button onclick="location.href = '/el/faq/edit?no=${ n.no }'" id="edit">수정</button></div>
-	                <div class="td"><button onclick="del();" id="del">삭제</button></div>
-	                
-				<!-- 지울 거 -->
 					<div id="main-bot">
 						<a href="/el/faq/write" class="btn btn-light" id="write">작성하기</a>
 					</div>
 		
 				<!-- 페이징 start -->
-				
-	       	    
 	       	    <div id="page-area" >
 	   				<ul>
 				        	<c:if test="${page.startPage != 1}">
@@ -86,10 +64,10 @@
 
                         <li>
                            <c:if test="${page.currentPage != i and i <= page.lastPage}">
-                           		<a class="numBtn" href="/el/notice/adminList/${i}">${i}</a>                           
+                           		<a class="numBtn" href="/el/faq/adminList/${i}">${i}</a>                           
                            </c:if>
                            <c:if test="${page.currentPage == i and i <= page.lastPage}">
-                           		<a class="numBtn" href="/el/notice/adminList/${i}">${i}</a> 
+                           		<a class="numBtn" href="/el/faq/adminList/${i}">${i}</a> 
                            </c:if>
                         </li>
                			</c:forEach>   
@@ -112,12 +90,10 @@
     
     <script type="text/javascript">
 		//전체 선택
-		//let allCheck = document.querySelector('#allCheck');
 		let allCheck = document.querySelector('div input[type=checkbox]');
 		let delArr = document.getElementsByClassName('checkbox-del');
 		
 		allCheck.onchange = function(e){
-			//console.log(e.target.checked);
 			console.log(this.checked);
 			if(this.checked){
 				for(let i=0; i<delArr.length; i++){
@@ -148,7 +124,7 @@
 			}
 			
 			$.ajax({
-				url : "/el/notice/delete",
+				url : "/el/faq/delete",
 				data : {"str" : result},
 				type : "post",
 				success : function(data){
