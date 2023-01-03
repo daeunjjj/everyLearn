@@ -32,6 +32,11 @@ public class MemberController {
 		return "member/member_study";
 	}
 	
+	@GetMapping("memberStudyDetail")
+	public String memberStudyDetail() {
+		return "member/member_studyDetail";
+	}
+	
 	
 	//회원가입(화면)
 	@GetMapping("join")
@@ -98,26 +103,22 @@ public class MemberController {
 		log.info("로그인 멤버 : " + loginMember);
 		
 		
+		if(loginMember==null) {
+			log.info("null 로그인 멤버 : " + loginMember);
+			session.setAttribute("error", "아이디와 비밀번호를 다시 한 번 확인해주세요.");
+			return "member/login";
+		}
+		
+		
 		if(loginMember != null && !loginMember.getMemberId().equals("error")) {
 			
 			session.setAttribute("loginMember", loginMember);
 			
-//			if(loginMember.getTeaStatusYn().equals("Y")) {
-//				log.info("예스");
-//				loginMember.setTeaStatusYnNo(1);
-//			}else if(loginMember.getTeaStatusYn().equals("N")){
-//				log.info("노");
-//				loginMember.setTeaStatusYnNo(-1);
-//			}else if(loginMember.getTeaStatusYn() == null){
-//				loginMember.setTeaStatusYnNo(-1);
-//			}
-			
-			
-			return "redirect:/main";
-			
-		}else {
-			return "common/error";
 		}
+		
+		return "redirect:/main";
+		
+		
 		
 	}
 	

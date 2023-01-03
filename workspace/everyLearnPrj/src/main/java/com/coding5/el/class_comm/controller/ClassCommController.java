@@ -32,6 +32,18 @@ public class ClassCommController {
 	
 	@Autowired
 	private ClassCommService ccs;
+	
+	//게시글 삭제 (에이젝스)
+	@PostMapping("deleteAjax")
+	public String deleteAjax(String classCommNo) {
+		
+		int result = ccs.deleteWrite(classCommNo);
+		
+		log.info("result ::" + result);
+		
+		
+		return "class_comm/qna";
+	}
 
 	//게시글 등록(화면)
 	@GetMapping("write")

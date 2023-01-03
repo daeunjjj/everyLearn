@@ -20,7 +20,7 @@ body{
     margin: auto;
     width: 580px;
     height: 100px;
-    border-bottom: 2px solid #1187CF;
+    
     text-align: center;
     display: flex;
     align-self: center;
@@ -32,7 +32,7 @@ body{
 
 #writeList-top{
     margin: auto;
-    /* border: 1px solid #1187CF; */
+    border: 1px solid #1187CF;
     /* width: 500px; */
     /* height: 20px; */
 }
@@ -103,3 +103,15 @@ th{
     font-weight: 500;
 }
 
+thead{
+    border: 2px solid #1187CF;
+}
+
+.nav-link active{
+    text-align: center;
+}
+
+#community:hover:hover{
+    color: black !important;
+    font-weight: 700 !important;
+}

@@ -49,6 +49,14 @@ body{
 #lec-pic{
     padding: 20px;
     padding-left: 50px;
+
+}
+
+#lec-pic-Img{
+    width: 380px;
+    height: 260px;
+    margin-top: 15px;
+    margin-left: 20px;
 }
 
 #lec-int{

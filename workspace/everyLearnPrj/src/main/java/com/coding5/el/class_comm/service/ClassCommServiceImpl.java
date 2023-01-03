@@ -78,4 +78,13 @@ public class ClassCommServiceImpl implements ClassCommService{
 		return dao.selectCommentOne(sst, vo);
 	}
 
+	//게시글 삭제
+	@Override
+	public int deleteWrite(String classCommNo) {
+		
+		dao.deleteWriteComment(sst, classCommNo);
+		
+		return dao.deleteWriteWrite(sst, classCommNo);
+	}
+
 }

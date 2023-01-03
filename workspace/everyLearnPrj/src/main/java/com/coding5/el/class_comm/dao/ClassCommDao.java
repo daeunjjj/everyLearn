@@ -24,5 +24,9 @@ public interface ClassCommDao {
 	public int insertComment(SqlSessionTemplate sst, CommentVo vo);
 	//select commentOne
 	public CommentVo selectCommentOne(SqlSessionTemplate sst, CommentVo vo);
+	//delete Write comment
+	public int deleteWriteComment(SqlSessionTemplate sst, String classCommNo);
+	//delete write
+	public int deleteWriteWrite(SqlSessionTemplate sst, String classCommNo);
 
 }

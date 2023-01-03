@@ -25,13 +25,37 @@
                     <div id="writeList-main">
                         <div id="writeList-wrap">
                             <div id="writeList">작성글</div>
-                            <div><strong>작성한 게시글을 확인해보세요.</strong></div>
+                            <br>
+                            <div><strong></strong></div>
+                            <br>
                         </div>
                     </div>
-                    <br>
 
-                    <div class="container mt-3">
-                        <table class="table table-hover" style="width: 570px;">
+
+                  
+                    <nav class="navbar navbar-expand-sm bg-light navbar-light" style="width: 700px; border-radius: 5px; background-color: #1187CF;">
+                        <div class="container-fluid">
+                          <ul class="navbar-nav">
+                            <li class="nav-item">
+                              <a id="community" class="nav-link active" href="#" style="width: 100px; text-align: center; font-size: medium; font-weight: 700; color: gray;"> 커뮤니티</a>
+                            </li>   
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#" style="width: 100px; text-align: center; font-size: medium; font-weight: 700; color: gray;"> 수강후기</a>
+                            </li>     
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#" style="width: 100px; text-align: center; font-size: medium; font-weight: 700; color: gray;"> 채용후기</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#" style="width: 100px; text-align: center; font-size: medium; font-weight: 700; color: gray;">댓글</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </nav>
+                  
+
+
+                    <div class="container mt-3" style="margin-top: 0px; ">
+                        <table class="table table-hover" style="width: 590px;">
                             <thead>
                                 <tr id="write-top">
                                     <th>카테고리</th>
