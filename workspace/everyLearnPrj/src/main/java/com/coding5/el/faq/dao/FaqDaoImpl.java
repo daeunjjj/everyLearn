@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.coding5.el.faq.vo.CateVo;
 import com.coding5.el.faq.vo.FaqVo;
 import com.coding5.el.notice.dao.NoticeDaoImpl;
+import com.coding5.el.notice.vo.PageVo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,40 +17,52 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FaqDaoImpl implements FaqDao {
 
-	@Autowired private SqlSessionTemplate sst;
 	
-	@Override
-	public List<CateVo> cateList() throws Exception {
-		// 카테고리
-		return sst.selectList("faqMapper.selectCateList");
-	}
-	
-	@Override
-	public int write(FaqVo vo) throws Exception {
-		// faq 글쓰기
+	@Override	//글작성
+	public int write(SqlSessionTemplate sst, FaqVo vo) throws Exception {
 		return sst.insert("faqMapper.insertFaq", vo);
 	}
 
-	@Override
-	public List<FaqVo> getFaqList() throws Exception {
-		// faq 리스트
-		return sst.selectList("faqMapper.getFaqList");
+	@Override	//리스트
+	public List<FaqVo> adminList(SqlSessionTemplate sst, PageVo pageVo) {
+		return sst.selectList("faqMapper.adminList", pageVo);
 	}
 
+	@Override	//글 갯수 카운트
+	public int getFaqCnt(SqlSessionTemplate sst) {
+		return sst.selectOne("faqMapper.getFaqCnt");
+	}
+
+	@Override	//카테고리 리스트
+	public List<CateVo> cateList(SqlSessionTemplate sst) throws Exception {
+		return sst.selectList("faqMapper.cateList");
+	}
+	
+	@Override	//일반 회원 질문 리스트
+	public List<FaqVo> getMemberFaqList(SqlSessionTemplate sst) {
+		return sst.selectList("faqMapper.getMemberFaqList");
+	}
+
+	@Override	//기업 회원 질문 리스트
+	public List<FaqVo> getEmpFaqList(SqlSessionTemplate sst) {
+		return sst.selectList("faqMapper.getEmpFaqList");
+	}
+
+
 	@Override
-	public int deleteFaq(String[] delArr) throws Exception {
+	public int deleteFaq(SqlSessionTemplate sst, String[] delArr) throws Exception {
 		// 삭제하기
 		return sst.update("faqMapper.deleteFaq", delArr);
 	}
 
 	@Override
-	public int editFaq(FaqVo vo) throws Exception {
+	public int editFaq(SqlSessionTemplate sst, FaqVo vo) throws Exception {
 		// 수정하기
 		return sst.update("faqMapper.editFaq", vo);
 	}
 
 	@Override
-	public FaqVo selectDetail(String no) throws Exception {
+	public FaqVo selectDetail(SqlSessionTemplate sst, String no) throws Exception {
 		// 상세조회
 		return sst.selectOne("faqMapper.selectDetail", no);
 	}
