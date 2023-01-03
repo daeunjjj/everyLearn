@@ -101,5 +101,22 @@
 	
 	</delete>
 	
+	<!-- 장바구니 카트 삭제 -->
+	<delete id="deleteWish">
+	
+		delete from wish 
+		where MEMBER_NO = #{memberNo}
+		and CLASS_NO = #{classNo}
+	
+	</delete>
+	
+	<!-- 포인트 합 구하기 -->
+	<select id="getPoint" resultType="int">
+	
+	select NVL(sum(change), 0) as mp
+	from point
+	where MEMBER_NO = #{mno}
+	</select>
+	
 	
 </mapper>

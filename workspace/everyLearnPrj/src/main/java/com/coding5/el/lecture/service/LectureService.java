@@ -23,7 +23,7 @@ public interface LectureService {
 	public List<LectureVo> getList(PageVo pv);
 	
 	//강의 메인리스트 조회 - 드로잉
-	public List<LectureVo> getListDrawing();
+	public List<LectureVo> getListDrawing(PageVo pv);
 
 	//강의 메인리스트 조회 - 요리/베이킹
 	public List<LectureVo> getListCook();

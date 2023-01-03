@@ -62,12 +62,14 @@ public class CartController {
 			return "member/login";
 		}
 		String mno = loginMember.getMemberNo();
+		int mp = cartService.getPoint(mno);
 
 		List<CartVo> list = cartService.getCartList(mno);
 		// System.out.println("controller list : " + list);
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("mno", mno);
 		model.addAttribute("list", list);
+		model.addAttribute("mp", mp);
 		return "lecture/cart";
 
 	}
@@ -133,6 +135,32 @@ public class CartController {
 		  }else {
 			  return "common/error";
 		  }
+		  
+	  }
+	  
+	  //찜 목록 삭제
+	  @PostMapping("wish/delete")
+	  public String deleteWish(HttpSession session, Model model, String classNo, String memberNo) {
+		  MemberVo loginMember = (MemberVo)session.getAttribute("loginMember"); 
+			 
+		  if (loginMember == null) {
+				return "member/login";
+			}
+		  memberNo = loginMember.getMemberNo();
+		  log.info("delete memberNo : " + memberNo);
+		  System.out.println("여기까진 옴?");
+			 
+			 HashMap<String, String>map = new HashMap<>(); 
+			 	map.put("classNo", classNo);
+			 	map.put("memberNo", memberNo);
+			  int result = cartService.deleteWish(map);
+			  
+			  if(result == 1) {
+			 //model.addAttribute(no);
+			  return "redirect:/cart/addWish";
+			  }else {
+				  return "common/error";
+			  }
 		  
 	  }
 

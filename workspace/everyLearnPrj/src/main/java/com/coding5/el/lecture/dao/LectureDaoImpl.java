@@ -46,8 +46,13 @@ public class LectureDaoImpl implements LectureDao{
 
 	//강의 메인 - 드로잉
 	@Override
-	public List<LectureVo> getListDrawing(SqlSessionTemplate sst) {
-		return sst.selectList("lectureMapper.getListDrawing");
+	public List<LectureVo> getListDrawing(SqlSessionTemplate sst, PageVo pv) {
+		
+		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
+		int limit = pv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset,limit);
+		
+		return sst.selectList("lectureMapper.getListDrawing", null, rb);
 	}
 
 	//강의 메인 - 요리 베이킹

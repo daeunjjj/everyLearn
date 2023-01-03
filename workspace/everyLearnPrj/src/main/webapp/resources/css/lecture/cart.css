@@ -103,13 +103,22 @@ body{
     line-height: 100px;
 }
 
+#wishcart-price{
+	grid-row: span 2;
+	grid-column: span 3;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 100px;
+}
+
 #pay-square{
     --border: 1px solid gold;
     height: 300px;
-    width: 500px;
+    width: 600px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1.3fr 1.3fr;
+    grid-template-columns: 1fr 1fr 1.2fr;
+    grid-template-rows: 1.2fr 1.3fr 1fr 1.3fr;
 }
 
 #pay-square>div{
@@ -132,8 +141,7 @@ body{
     --margin-left: 10px;
     font-size: 10px;
     color: #5a5a5a;
-    display:grid;
-    grid-template-rows: 4fr 2fr
+    
 }
 
 #pay-btn{

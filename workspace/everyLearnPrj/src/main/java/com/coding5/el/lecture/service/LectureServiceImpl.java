@@ -46,8 +46,8 @@ public class LectureServiceImpl implements LectureService {
 
 	//드로잉
 	@Override
-	public List<LectureVo> getListDrawing() {
-		return lectureDao.getListDrawing(sst);
+	public List<LectureVo> getListDrawing(PageVo pv) {
+		return lectureDao.getListDrawing(sst, pv);
 	}
 
 	//요리 베이킹

@@ -60,10 +60,22 @@ public class LectureController {
 
 	// 강의 메인리스트 - 카테고리 드로잉
 	@GetMapping("main/drawing")
-	public String mainDrawing(Model model) {
-		List<LectureVo> list = lectureService.getListDrawing();
+	public String mainDrawing(String pno, Model model) {
+		// 카운트
+		int listCount = lectureService.selectLectureCount();
+		int currentPage = Integer.parseInt(pno);
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
+
+		List<LectureVo> list = lectureService.getListDrawing(pv);
+		
+		model.addAttribute("pv", pv);
 		model.addAttribute("list", list);
+		
 		return "lecture/main";
+	
 	}
 
 	// 강의 메인리스트 - 카테고리 요리/베이킹

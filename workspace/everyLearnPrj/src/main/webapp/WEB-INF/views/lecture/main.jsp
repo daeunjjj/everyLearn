@@ -9,6 +9,7 @@
 
 <script src="https://kit.fontawesome.com/0c7f523053.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/el/resources/css/lecture/main.css" />
+<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
 		<div class="wrap">
 			<ul class="sidebar">
 				<li><a href="/el/lecture/main?pno=1">전체 강의</a></li>
-				<li><a href="/el/lecture/main/drawing">드로잉</a></li>
+				<li><a href="/el/lecture/main/drawing?pno=1">드로잉</a></li>
 				<li><a href="/el/lecture/main/cook">요리 / 베이킹</a></li>
 				<li><a href="/el/lecture/main/workout">운동</a></li>
 				<li><a href="/el/lecture/main/music">음악</a></li>
