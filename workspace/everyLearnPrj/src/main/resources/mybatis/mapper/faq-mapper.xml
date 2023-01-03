@@ -5,7 +5,7 @@
 <mapper namespace="faqMapper">
 
 	<!-- 글쓰기 -->
-	<insert id="insertFaq" parameterType="com.coding5.el.faq.vo.FaqVo">
+	<insert id="insertFaq" parameterType="faqVo">
 		INSERT INTO FAQ
 		(
 		     NO
@@ -25,7 +25,7 @@
 	</insert>
 	
 	<!-- 페이징 -->
-	<select id="adminList" resultType="com.coding5.el.faq.vo.FaqVo">
+	<select id="adminList" resultType="faqVo">
  		SELECT * FROM
  		(
 	 		SELECT ROWNUM RN, T.*
@@ -100,7 +100,7 @@
 	</update>
 	
 	<!-- 디테일 -->
-	<select id="selectDetail" resultType="com.coding5.el.faq.vo.FaqVo">
+	<select id="selectDetail" resultType="faqVo">
 		SELECT 
 		    N.NO ,
 		    N.TITLE ,

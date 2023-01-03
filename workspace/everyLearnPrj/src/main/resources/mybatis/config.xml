@@ -17,6 +17,7 @@
 		<typeAlias type="com.coding5.el.emp.vo.JobPostVo" alias="JobPostVo"/>
 		<typeAlias type="com.coding5.el.notice.vo.NoticeVo" alias="NoticeVo"/>
 		<typeAlias type="com.coding5.el.report.vo.ReportVo" alias="ReportVo"/>
+		<typeAlias type="com.coding5.el.faq.vo.FaqVo" alias="FaqVo"/>
 	</typeAliases>
   
   
