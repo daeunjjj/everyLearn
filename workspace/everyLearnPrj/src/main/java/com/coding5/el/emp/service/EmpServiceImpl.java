@@ -20,7 +20,11 @@ import com.coding5.el.emp.vo.LanguageVo;
 import com.coding5.el.emp.vo.ResumeAttatchVo;
 import com.coding5.el.emp.vo.ResumeVo;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
+@Transactional
 public class EmpServiceImpl implements EmpService{
 	
 	@Autowired
@@ -84,7 +88,6 @@ public class EmpServiceImpl implements EmpService{
 
 	// 이력서 작성하기
 	@Override
-	@Transactional
 	public int insertResume(String memberNo, ResumeVo rv, EducationVo ev, AwardVo av, CareerVo cv, CertificateVo cfv,
 			LanguageVo lv) {
 		
@@ -92,6 +95,8 @@ public class EmpServiceImpl implements EmpService{
 		
 		int rvResult = dao.updateResume(sst, rv);
 		String resumeNo = dao.selectResumeSeqNo(sst);
+		
+		log.info(resumeNo);
 		
 		 ListIterator<EducationVo> evIterator = ev.getEvList().listIterator();
 		 while(evIterator.hasNext()) {

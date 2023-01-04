@@ -139,7 +139,7 @@
 	
 	<!-- 학력 인서트 -->
 	<update id="updateEducation" parameterType="java.util.List">
-	<foreach collection="list" item="ev" open="INSERT ALL" close="SELECT * FROM SYS.DUAL">
+	<foreach collection="list" item="ev" open="DECLARE BEGIN" close="; END;">
 		MERGE INTO EDUCATION
 			USING DUAL
 			ON 
