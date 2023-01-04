@@ -1,5 +1,7 @@
 package com.coding5.el.member.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.coding5.el.member.service.MemberService;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.admin.vo.AdminVo;
+import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.common.file.FileUploader;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +29,27 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@PostMapping("writeListClass")
+	public String writeListClass() {
+		return "member/writeList";
+	}
+	
+	
+	
+	//작성글 조회
+	@GetMapping("writeList")
+	public String writeList(String memberNo, Model model) {
+		
+		List<ClassCommVo> commWriteList =  memberService.commWrite_List(memberNo);
+		model.addAttribute("commWriteList", commWriteList);
+		log.info("" + commWriteList);
+		
+		return "member/writeList";
+		
+	}
+	
+	
 	
 	@GetMapping("memberStudy")
 	public String memberStudy() {
@@ -232,10 +256,7 @@ public class MemberController {
 		return "member/point";
 	}
 	
-	@GetMapping("writeList")
-	public String writeList() {
-		return "member/writeList";
-	}
+
 	
 	@GetMapping("delete")
 	public String delete() {

@@ -1,6 +1,9 @@
 package com.coding5.el.member.service;
 
 
+import java.util.List;
+
+import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.member.vo.MemberVo;
 
 public interface MemberService {
@@ -19,5 +22,8 @@ public interface MemberService {
 	public String idFind(MemberVo findVo);
 
 	public MemberVo updateMember(MemberVo vo);
+
+	//커뮤니티 내 작성글 조회
+	public List<ClassCommVo> commWrite_List(String memberNo);
 	
 }

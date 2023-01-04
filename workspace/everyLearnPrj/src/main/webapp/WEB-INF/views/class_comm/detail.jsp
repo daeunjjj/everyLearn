@@ -67,8 +67,7 @@
                     <!-- <div id="hidden-member">dfff</div> -->
                     <input type="hidden" name="hidden-member" id="hidden-member" value="${loginMember.memberNick}">
                     <input type="hidden" name="hidden-commNo" id="hidden-classCommNo" value="${detailVo.classCommNo}">
-                    ${detailVo}
-                    ${loginMember.memberNick}
+       
 
 
                         <div id="content">

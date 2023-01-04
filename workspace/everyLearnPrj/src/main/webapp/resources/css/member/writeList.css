@@ -12,7 +12,7 @@ body{
 #wrap{
     margin: auto;
     /* border: 1px solid black; */
-    width: 600px;
+    width: 700px;
     height: 500px;
 }
 
@@ -89,6 +89,11 @@ th{
     text-align: center;
 }
 
+#write-top>th{
+    text-align: center;
+    color: grey !important;
+}
+
 #write-cate{
     font-weight: 700;
 }
@@ -111,7 +116,8 @@ thead{
     text-align: center;
 }
 
-#community:hover:hover{
+.navbar-nav a:hover:hover{
     color: black !important;
     font-weight: 700 !important;
 }
+

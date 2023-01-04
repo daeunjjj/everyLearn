@@ -1,10 +1,13 @@
 package com.coding5.el.member.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.member.dao.MemberDao;
 import com.coding5.el.member.vo.MemberVo;
 
@@ -105,6 +108,12 @@ public class MemberServiceImpl implements MemberService{
 		
 		
 		return memberDao.selectMemberOne(sst, vo);
+	}
+
+	//커뮤  내 작성글 조회
+	@Override
+	public List<ClassCommVo> commWrite_List(String memberNo) {
+		return memberDao.selectCommWriteList(sst,memberNo);
 	}
 
 

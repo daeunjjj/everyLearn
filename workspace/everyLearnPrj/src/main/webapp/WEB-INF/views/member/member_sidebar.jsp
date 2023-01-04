@@ -7,8 +7,10 @@
 <title>Insert title here</title>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/el/resources/css/member/member_sidebar.css">
-    <script src="https://kit.fontawesome.com/c86765768f.js" crossorigin="anonymous"></script>    
+<link rel="stylesheet" href="/el/resources/css/member/member_sidebar.css">
+<script src="https://kit.fontawesome.com/c86765768f.js" crossorigin="anonymous"></script>    
+<script src="/el/resources/js/member/sidebar.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -20,7 +22,8 @@
             <input type="checkbox" id="expand-menu" name="expand-menu">
             <ul>
                 <li>
-                    <a href="http://127.0.0.1:8888/el/member/alert" class="item">
+                    <a href="http://127.0.0.1:8888/el/member/alert" onclick="test()"  class="item">
+   
                         <div>알림</div>
                     </a>
                 </li>
@@ -30,7 +33,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="http://127.0.0.1:8888/el/member/writeList" class="item">
+                    <a href="javascript:listView('${loginMember.memberNo}')" class="item">
+                        <input type="hidden" id="memberNo" value="${loginMember.memberNo}"> 
                         <div>작성글</div>
                     </a>
                 </li>

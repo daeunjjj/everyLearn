@@ -92,6 +92,16 @@ INSERT INTO MEMBER
 	WHERE NO = ${memberNo}
   </update>
   
-
+	<select id="selectCommWriteList" resultType="com.coding5.el.class_comm.vo.ClassCommVo">
+	SELECT 
+	CLC.TITLE
+    , TO_CHAR(CLC.ENROLL_DATE, 'YY-MM-DD HH24:MI') AS ENROLL_DATE
+    , CA.NAME CATEGORY
+    , CLC.NO CLASS_COMM_NO
+	FROM CLASS_COMM CLC 
+	JOIN COMM_CATE CA
+	ON CLC.CATE_NO = CA.NO
+	WHERE WRITER = ${memberNo}
+	</select>
   
 </mapper>

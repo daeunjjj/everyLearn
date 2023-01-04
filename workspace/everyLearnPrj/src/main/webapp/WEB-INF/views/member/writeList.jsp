@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
+<!DOCTYPE html>
     <html>
 
     <head>
@@ -8,7 +9,9 @@
         <link rel="stylesheet" href="/el/resources/css/member/writeList.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript" src="/el/resources/js/member/member_alert.js"></script>
+        <!-- <script type="text/javascript" src="/el/resources/js/member/member_alert.js"></script> -->
+        <script src="/el/resources/js/member/sidebar.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     </head>
 
     <body>
@@ -33,14 +36,14 @@
 
 
                   
-                    <nav class="navbar navbar-expand-sm bg-light navbar-light" style="width: 700px; border-radius: 5px; background-color: #1187CF;">
+                    <nav class="navbar navbar-expand-sm bg-light navbar-light" style="width: 700px; border-radius: 10px; background-color: #1187CF;">
                         <div class="container-fluid">
                           <ul class="navbar-nav">
                             <li class="nav-item">
-                              <a id="community" class="nav-link active" href="#" style="width: 100px; text-align: center; font-size: medium; font-weight: 700; color: gray;"> 커뮤니티</a>
+                              <a id="community" class="nav-link active" href="/el/member/writeList?memberNo=${loginMember.memberNo}" style="width: 100px; text-align: center; font-size: medium; font-weight: 700; color: gray;"> 커뮤니티</a>
                             </li>   
                             <li class="nav-item">
-                                <a class="nav-link active" href="#" style="width: 100px; text-align: center; font-size: medium; font-weight: 700; color: gray;"> 수강후기</a>
+                                <!-- <a class="nav-link active" href="javascript:classReview('${loginMember.memberNo}')" style="width: 100px; text-align: center; font-size: medium; font-weight: 700; color: gray;"> 수강후기</href=> -->
                             </li>     
                             <li class="nav-item">
                                 <a class="nav-link active" href="#" style="width: 100px; text-align: center; font-size: medium; font-weight: 700; color: gray;"> 채용후기</a>
@@ -52,10 +55,10 @@
                         </div>
                       </nav>
                   
-
-
                     <div class="container mt-3" style="margin-top: 0px; ">
-                        <table class="table table-hover" style="width: 590px;">
+                    <table class="table table-hover" style="width: 650px !important;">
+                    <c:choose> 
+					<c:when test="${commWriteList != null }">
                             <thead>
                                 <tr id="write-top">
                                     <th>카테고리</th>
@@ -64,28 +67,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr style="text-align: center;">
-                                    <td id="write-cate">[취업고민]</td>
-                                    <td id="write-date">22.12.14</td>
-                                    <td id="write-title">si / sm / solution 중</td>
-                                </tr>
-                                <tr style="text-align: center;">
-                                    <td id="write-cate">[스터디]</td>
-                                    <td id="write-date">23.12.14</td>
-                                    <td id="write-title">밴드동호회 하실 분! 드럼!</td>
-                                </tr>
-                                <tr style="text-align: center;">
-                                    <td id="write-cate">[질문/답변]</td>
-                                    <td id="write-date">19.12.14</td>
-                                    <td id="write-title">질문합니다 질문</td>
-                                </tr>
-                                <tr style="text-align: center;">
-                                    <td id="write-cate">[취업고민]</td>
-                                    <td id="write-date">22.12.14</td>
-                                    <td id="write-title">si / sm / solution 중</td>
-                                </tr>
+
+								<c:forEach items="${commWriteList}" var="commWrite">
+	                                <tr style="text-align: center;">
+	                                    <td id="write-cate">${commWrite.category}</td>
+	                                    <td id="write-date">${commWrite.enrollDate}</td>
+	                                    <td id="write-title"><a href="/el/class/detail?classCommNo=${commWrite.classCommNo}">${commWrite.title}</a></td>
+	                                </tr>
+                                </c:forEach>
                             </tbody>
-                        </table>
+                        </c:when> 
+                        <c:when test="${count > 10  and count < 20 }">
+                            count가 10보다 크고 20보다 작은 경우
+                        </c:when> 
+                        <c:otherwise>
+                            count가 20보다 큰 경우
+                        </c:otherwise> 
+                    </c:choose> 
+                    </table>
+
                     </div>
 
                     <br>
