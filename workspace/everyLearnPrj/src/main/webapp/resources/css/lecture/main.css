@@ -71,6 +71,7 @@ li a {
     border: 0;
     padding-bottom: 5px;
     border-bottom: 1px solid lightgray;
+    position: absolute;
     
 }
 
