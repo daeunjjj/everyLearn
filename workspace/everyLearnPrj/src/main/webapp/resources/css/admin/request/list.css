@@ -12,7 +12,7 @@
 .cate-area{
     padding: 30px 0px 10px;
     display: flex;
-    justify-content: end;
+    justify-content: start;
     border-bottom: 1px solid rgb(51, 51, 51);
 }
 
@@ -24,9 +24,11 @@
 
 
 
-.grid-area{
-    display: grid;
-    grid-template-columns: 1.5fr 3fr 2fr 8fr 2fr;
+.flex-area{
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 2fr 2.5fr 9fr; */
+    display: flex;
+    align-items: center;
 }
 
 .title-area{
@@ -37,19 +39,40 @@
     padding: 13px 0px 13px 20px;
 }
 
-.content-area>.grid-area{
+.content-area>.flex-area{
     padding: 12px 0px 11px 20px;
     border-bottom: 1px solid rgb(207, 207, 207);
 
 }
 
-.content-area>.grid-area:last-child{
-    border-bottom: 1px solid rgb(51, 51, 51);
-
+.flex-area>div:nth-child(1){
+    flex-basis: 50px;
+    text-align: left;
 }
 
-.content-area>.grid-area>div:first-child{
-    padding-left: 12px;
+.flex-area>div:nth-child(2){
+    flex-basis: 60px;
+    text-align: left;
+}
+
+.flex-area>div:nth-child(3){
+    flex-basis: 120px;
+    text-align: left;
+}
+
+.flex-area>div:nth-child(4){
+    flex-basis: 160px;
+    text-align: left;
+}
+
+.flex-area>div:nth-child(5){
+    flex-basis: 580px;
+    text-align: left;
+}
+
+.flex-area>div:nth-child(6){
+    flex-basis: 50px;
+    text-align: center;
 }
 
 .grid-area button{
@@ -86,4 +109,21 @@
 
 .grid-area a{
     color: rgb(51, 51, 51);
+}
+
+.check-btn-area{
+    text-align: end;
+}
+
+#check-btn{
+    height: 30px;
+    background: #005297;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1rem;
+    border-radius: 3px;
+    margin-left: -1rem;
+    border: none;
+    vertical-align: middle;
+    margin-top: 10px;
 }

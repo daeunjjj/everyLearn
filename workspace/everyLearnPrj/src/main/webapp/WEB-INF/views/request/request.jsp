@@ -23,37 +23,23 @@
 		</section>
 		<section id="question">
 			<div>
-				<form action="/el/request" method="post" onsubmit="return check();">
+				<form action="/el/request/submit" method="post" onsubmit="return check();">
 					<div class="main-wrap question-area">
 						<fieldset class="radio-area">
 							<legend>
 								<span>1.</span>
 								<span>에브리런에 어떤 것을 요청하고 싶은가요?</span>
 							</legend>
-							<div class="select-area">
-								<label id="lecture">
-									<span>A</span>
-									<span>새로운 강의를 듣고싶어요.</span>
-									<i class="bi bi-check-lg"></i>
-									<input type="radio" name="request" value="1" id="lecture">
-								</label>
-							</div>
-							<div class="select-area">
-								<label id="request">
-									<span>B</span>
-									<span>개선 및 기능 요청이 있어요.</span>
-									<i class="bi bi-check-lg"></i>
-									<input type="radio" name="request" value="2" id="request">
-								</label>
-							</div>
-							<div class="select-area"> 
-								<label id="cheer">
-									<span>C</span>
-									<span>에브리런을 응원해주세요.</span>
-									<i class="bi bi-check-lg"></i>
-									<input type="radio" name="request" value="3" id="cheer">
-								</label>
-							</div>
+							<c:forEach items="${voList}" var="list">
+								<div class="select-area">
+									<label class="uncheck" id="lecture">
+										<span></span>
+										<span>${list.type }</span>
+										<i class="bi bi-check-lg"></i>
+										<input type="radio" name="type" value="${list.no}">
+									</label>
+								</div>
+							</c:forEach>
 						</fieldset>
 						<fieldset class="text-area">
 							<legend>
@@ -83,7 +69,7 @@
 
 		
 			
-			if($(':radio[name="request"]:checked').length < 1){
+			if($(':radio[name="type"]:checked').length < 1){
 				Swal.fire({
 					icon: 'error',
 					title: '요청을 체크해주세요.',
@@ -104,24 +90,22 @@
 			return true;
 		}
 
-		$("input[name='request']:radio").change(function () {
+
+
+
+		$("input[name='type']:radio").change(function () {
         //라디오 버튼 값을 가져온다.
         var requestVal = this.value;
 
-			if(requestVal == '1'){
-				$('#lecture').addClass('check');
-				$('#cheer').removeClass('check');
-				$('#request').removeClass('check');
-			} else if(requestVal == '2'){
-				$('#request').addClass('check');
-				$('#cheer').removeClass('check');
-				$('#lecture').removeClass('check');
-			} else if(requestVal == '3'){
-				$('#cheer').addClass('check');
-				$('#request').removeClass('check');
-				$('#lecture').removeClass('check');
-			}
-                  
+			$('.uncheck').each(function (index) {
+				if(requestVal == index+1){
+					$(this).addClass('check');
+				} else{
+					$(this).removeClass('check');
+				}
+			});	
+
+
 		});
 	</script>
 	

@@ -19,6 +19,7 @@ import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
+import com.coding5.el.request.vo.RequestVo;
 import com.coding5.el.teacher.vo.TeacherVo;
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -359,6 +360,35 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public int corporateApproval(String no) {
 		return adminDao.corporateApproval(sst, no);
+	}
+	
+	/**
+	 * 요청가져오기
+	 */
+	@Override
+	public Map<String, Object> selectRequest(Map<String, String> mapSearch,PageVo pv) {
+		
+		List<RequestVo> voList = adminDao.selectRequest(sst,mapSearch,pv);
+		
+		if(voList == null) return null;
+		
+		int cnt = adminDao.selectRequestCheckN(sst);
+		
+		map.put("voList", voList);
+		map.put("cnt", cnt);
+		return map;
+	}
+	/**
+	 * 요청 리스트 수
+	 */
+	@Override
+	public int selectRequestConut(Map<String, String> mapSearch) {
+		return adminDao.selectRequestConut(sst,mapSearch);
+	}
+
+	@Override
+	public int requestCheck(String[] arrNo) {
+		return adminDao.requestCheckY(sst,arrNo);
 	}
 	
 

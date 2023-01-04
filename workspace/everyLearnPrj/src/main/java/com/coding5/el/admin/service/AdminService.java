@@ -10,6 +10,7 @@ import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
+import com.coding5.el.request.vo.RequestVo;
 import com.coding5.el.teacher.vo.TeacherVo;
 
 public interface AdminService {
@@ -99,6 +100,15 @@ public interface AdminService {
 	
 	// 기업승인
 	public int corporateApproval(String no);
+	
+	// 요청들 가져오기
+	public Map<String, Object> selectRequest(Map<String, String> mapSearch,PageVo pv);
+	
+	// 요청 리스트 수
+	public int selectRequestConut(Map<String, String> mapSearch);
+	
+	// 요청 관리자 확인 완 
+	public int requestCheck(String[] arrNo);
 	
 	
 }

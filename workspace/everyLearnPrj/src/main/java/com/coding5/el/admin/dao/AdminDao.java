@@ -13,6 +13,7 @@ import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
+import com.coding5.el.request.vo.RequestVo;
 import com.coding5.el.teacher.vo.TeacherVo;
 
 public interface AdminDao {
@@ -114,6 +115,18 @@ public interface AdminDao {
 	
 	// 기업 승인
 	public int corporateApproval(SqlSessionTemplate sst, String no);
+	
+	// 요청 리스트 가져오기
+	public List<RequestVo> selectRequest(SqlSessionTemplate sst, Map<String, String> mapSearch,PageVo pv);
+	
+	// 요청 리스트 수 가져오기
+	public int selectRequestConut(SqlSessionTemplate sst, Map<String, String> mapSearch);
+	
+	// 요청 확인 수
+	public int selectRequestCheckN(SqlSessionTemplate sst);
+	
+	// 요청 관리자 확인
+	public int requestCheckY(SqlSessionTemplate sst, String[] arrNo);
 	
 
 	

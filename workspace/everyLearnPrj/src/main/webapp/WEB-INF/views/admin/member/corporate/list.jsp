@@ -112,7 +112,7 @@
                         </c:forEach>
                     </ul>
                     <div class="mail-btn-area">
-                        <button id="mail-btn">삭제</button>
+                        <button type="submit" id="mail-btn">삭제</button>
                     </div>
                 </form>
                 <nav class="page-area">

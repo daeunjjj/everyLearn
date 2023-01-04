@@ -112,7 +112,7 @@
                         <div class="detail-wrap">
                             <ul>
                                 <li class="detail-cate" id="request-list">
-                                    <a href="/el/admin/request/list">회원요청조회</a>
+                                    <a href="/el/admin/request/list?pno=1">회원요청조회</a>
                                 </li>
                                 <li class="detail-cate" id="request-edit">
                                     <a href="/el/admin/request/edit">질문수정</a>
