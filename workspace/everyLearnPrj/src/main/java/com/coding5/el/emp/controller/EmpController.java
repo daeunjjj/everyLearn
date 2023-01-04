@@ -24,6 +24,7 @@ import com.coding5.el.emp.vo.JobPostVo;
 import com.coding5.el.emp.vo.LanguageVo;
 import com.coding5.el.emp.vo.ResumeAttatchVo;
 import com.coding5.el.emp.vo.ResumeVo;
+import com.coding5.el.member.service.MemberService;
 import com.coding5.el.member.vo.MemberVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +36,35 @@ public class EmpController {
 	
 	@Autowired
 	private EmpService es;
+	
+//	@Autowired
+//	private MemberService memberService;
+//	
+//	//로그인
+//	@PostMapping("login")
+//	public String login(MemberVo vo, HttpSession session) {
+//		
+//		MemberVo loginMember = memberService.login(vo);
+//		
+//		log.info("로그인 멤버 : " + loginMember);
+//		
+//		
+//		if(loginMember==null) {
+//			log.info("null 로그인 멤버 : " + loginMember);
+//			session.setAttribute("error", "아이디와 비밀번호를 다시 한 번 확인해주세요.");
+//			return "member/login";
+//		}
+//		
+//		
+//		if(loginMember != null && !loginMember.getMemberId().equals("error")) {
+//			
+//			session.setAttribute("loginMember", loginMember);
+//			
+//		}
+//		
+//		return "redirect:/emp/main";
+//		
+//	}
 	
 	// 채용 메인 페이지(화면)
 	@GetMapping("main")
