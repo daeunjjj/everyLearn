@@ -22,10 +22,6 @@ import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.file.FileUploader;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.page.Pagination;
-import com.coding5.el.common.vo.SearchVo;
-import com.coding5.el.member.vo.MemberVo;
-import com.coding5.el.member.vo.PointVo;
-import com.coding5.el.report.vo.ReportVo;
 
 import lombok.extern.slf4j.Slf4j;
 @RequestMapping("admin")
@@ -276,6 +272,49 @@ public class AdminController {
 		return "ok";
 	}
 	
+	
+	/**
+	 * 기능요청 리스트
+	 * @param pno
+	 * @param model
+	 * @param mapSearch
+	 * @return
+	 */
+	@GetMapping("request/list")
+	public String requestList(String pno, Model model, @RequestParam Map<String, String> mapSearch) {
+		// 카운트
+		int listCount = adminService.selectRequestConut(mapSearch);
+		int currentPage = Integer.parseInt(pno);
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		log.info("기능요청 리스트 - 화면에서 받아오는 데이터  mapSearch :::" + mapSearch);
+		
+		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		Map<String, Object> map = adminService.selectRequest(mapSearch,pv);
+		
+		if(map == null) return "common/error";
+		
+		model.addAttribute("svo", mapSearch);
+		model.addAttribute("pv", pv);
+		model.addAttribute("map", map);
+		return "admin/request/list";
+	}
+	
+	@PostMapping("request/check")
+	public String requestCheck(String[] arrNo) {
+		log.info("에이잭스 실행 완" + arrNo[0]);
+		
+		int result = adminService.requestCheck(arrNo);
+		
+		if(result == 0) {
+			return "";			
+		}
+		
+		return "redirect:/admin/request/list?pno=1";
+		
+	}
 
 	// 대시보드
 	@GetMapping("dashboard")
@@ -320,11 +359,8 @@ public class AdminController {
 		return "admin/class/list";
 	}
 	
-	// 기능요청 리스트
-	@GetMapping("request/list")
-	public String requestList() {
-		return "admin/request/list";
-	}
+
+
 	// 질문 수정
 	@GetMapping("request/edit")
 	public String requestEdit() {

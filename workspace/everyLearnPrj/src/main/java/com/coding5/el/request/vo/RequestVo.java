@@ -6,6 +6,7 @@ import lombok.Data;
 public class RequestVo {
 	private String no;
 	private String memberNo;
+	private String id;
 	private String type;
 	private String content;
 	private String checkYn;

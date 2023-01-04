@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="requestMapper">
+	<select id="selectQuestion" resultType="com.coding5.el.request.vo.RequestVo">
+		SELECT NO, TYPE FROM REQUEST_TYPE
+	</select>
+	
+	<insert id="insertRequest">
+		INSERT INTO REQUEST
+		(
+		    NO
+		    ,MEMBER_NO
+		    ,TYPE
+		    ,CONTENT
+		
+		)
+		VALUES
+		(
+		    SEQ_REQUEST_NO.NEXTVAL
+		    , #{memberNo}
+		    , #{type}
+		    , #{content}
+		)
+	</insert>
+	
+	<select id="selectRequest" resultType="com.coding5.el.request.vo.RequestVo">
+		SELECT 
+		    R.NO
+		    , R.MEMBER_NO
+		    , M.ID
+		    , RT.TYPE
+		    , R.CONTENT
+		    , DECODE(CHECK_YN, 'N','X', 'Y','O') AS CHECK_YN
+		FROM REQUEST R
+		JOIN REQUEST_TYPE RT ON R.TYPE = RT.NO
+		JOIN MEMBER M ON R.MEMBER_NO = M.NO
+		<if test="keyword != null and keyword != ''">
+			WHERE ${category} LIKE '%${keyword}%'
+		</if>
+		ORDER BY R.NO DESC
+	</select>
+	
+	<select id="selectRequestCount" resultType="int">
+		SELECT COUNT(*)
+		FROM REQUEST
+		<if test="keyword != null and keyword != ''">
+			WHERE ${category} LIKE '%${keyword}%'
+		</if>
+		
+	</select>
+	<select id="selectRequestCheckN" resultType="int">
+		SELECT COUNT(*)
+		FROM REQUEST
+		WHERE CHECK_YN = 'N'
+	</select>
+	
+	<update id="requestCheckY">
+		UPDATE REQUEST
+		SET CHECK_YN = 'Y'
+		WHERE NO IN 
+		<foreach collection="array" item="no" open="(" close=")" separator=",">
+			#{no}
+		</foreach>
+	</update>
+</mapper>

@@ -16,6 +16,7 @@ import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
+import com.coding5.el.request.vo.RequestVo;
 import com.coding5.el.teacher.vo.TeacherVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -227,6 +228,31 @@ public class AdminDaoImpl implements AdminDao{
 	public int corporateApproval(SqlSessionTemplate sst, String no) {
 		// 기업승인
 		return sst.update("adminMapper.corporateApproval", no);
+	}
+
+	@Override
+	public List<RequestVo> selectRequest(SqlSessionTemplate sst, Map<String, String> mapSearch, PageVo pv) {
+		// 요청 가져오기
+		RowBounds rb = Pagination.getRowBounds(pv);
+		return sst.selectList("requestMapper.selectRequest",mapSearch,rb);
+	}
+
+	@Override
+	public int selectRequestConut(SqlSessionTemplate sst, Map<String, String> mapSearch) {
+		// 요청 게시글 수
+		return sst.selectOne("requestMapper.selectRequestCount",mapSearch);
+	}
+
+	@Override
+	public int selectRequestCheckN(SqlSessionTemplate sst) {
+		// 요청 체크 안한 수
+		return sst.selectOne("requestMapper.selectRequestCheckN");
+	}
+
+	@Override
+	public int requestCheckY(SqlSessionTemplate sst, String[] arrNo) {
+		// 관리자 확인 완
+		return sst.update("requestMapper.requestCheckY", arrNo);
 	}
 	
 

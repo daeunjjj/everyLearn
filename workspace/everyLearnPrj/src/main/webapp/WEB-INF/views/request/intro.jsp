@@ -68,7 +68,7 @@
 	</main>
 	<script>
 		function Btn() {
-			window.location.href = "/el/request#feedback-header";
+			window.location.href = "/el/request/submit#feedback-header";
 		}
 	</script>
 	
