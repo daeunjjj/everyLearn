@@ -33,10 +33,16 @@ public class FaqController {
 		//페이지 필요없음
 		//리스트 조회
 		//**여기서 조회 안 되면 사용자용 리스트 메소드 따로 만들어야 함**
-		List<FaqVo> memberFaqList = faqService.getMemberFaqList();
+		
 		List<FaqVo> empFaqList = faqService.getEmpFaqList();
+		List<FaqVo> memberFaqList = faqService.getMemberFaqList();
+		
 		model.addAttribute("memberFaqList", memberFaqList);	//일반 회원 질문 리스트
 		model.addAttribute("empFaqList", empFaqList);	//기업 회원 질문 리스트
+		
+		log.info(""+ memberFaqList);
+		log.info("" + empFaqList);
+		
 		return "faq/list";
 	}
 	
@@ -52,7 +58,7 @@ public class FaqController {
 		PageVo pageVo = new PageVo(page, cntPerPage, pageBtnCnt, totalRow);
 	
 		//리스트 조회
-		List<FaqVo> adminList = faqService.adminList(pageVo);
+		List<FaqVo> adminList = faqService.getAdminList(pageVo);
 		
 		model.addAttribute("adminList", adminList);
 		model.addAttribute("page", pageVo);

@@ -27,8 +27,8 @@ public class FaqServiceImpl implements FaqService {
 	}
 
 	@Override	//관리자 전용 리스트
-	public List<FaqVo> adminList(PageVo pageVo) throws Exception {
-		return faqDao.adminList(sst, pageVo);
+	public List<FaqVo> getAdminList(PageVo pageVo) throws Exception {
+		return faqDao.getAdminList(sst, pageVo);
 	}
 
 	@Override	//사용자 전용 리스트

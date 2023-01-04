@@ -36,7 +36,7 @@
 
 
 				
-				<c:forEach items="${list}" var="f">
+				<c:forEach items="${adminList}" var="f">
 					<div class="td" id="check"><input type="checkbox" class="checkbox-del" value="${ f.no }"></div>
 					<div class="td" id="no">${ f.no }</div>
 	                <div class="td" id="category">${ f.category }</div>
@@ -45,7 +45,6 @@
 	                <div class="td"><button onclick="location.href = '/el/faq/edit?no=${ f.no }'" id="edit">수정</button></div>
 	                <div class="td"><button onclick="del();" id="del">삭제</button></div>
 				</c:forEach>
-				
 				
 					<div id="main-bot">
 						<a href="/el/faq/write" class="btn btn-light" id="write">작성하기</a>

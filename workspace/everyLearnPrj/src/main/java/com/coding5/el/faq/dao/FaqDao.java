@@ -15,7 +15,7 @@ public interface FaqDao {
 	int write(SqlSessionTemplate sst, FaqVo vo) throws Exception;
 
 	//리스트
-	List<FaqVo> adminList(SqlSessionTemplate sst, PageVo pageVo) throws Exception;
+	List<FaqVo> getAdminList(SqlSessionTemplate sst, PageVo pageVo) throws Exception;
 
 	//글 갯수 카운트
 	int getFaqCnt(SqlSessionTemplate sst) throws Exception;

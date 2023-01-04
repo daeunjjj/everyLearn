@@ -24,8 +24,8 @@ public class FaqDaoImpl implements FaqDao {
 	}
 
 	@Override	//리스트
-	public List<FaqVo> adminList(SqlSessionTemplate sst, PageVo pageVo) {
-		return sst.selectList("faqMapper.adminList", pageVo);
+	public List<FaqVo> getAdminList(SqlSessionTemplate sst, PageVo pageVo) {
+		return sst.selectList("faqMapper.getAdminList", pageVo);
 	}
 
 	@Override	//글 갯수 카운트

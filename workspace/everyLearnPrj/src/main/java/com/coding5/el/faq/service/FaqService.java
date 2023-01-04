@@ -12,7 +12,7 @@ public interface FaqService {
 	int write(FaqVo vo) throws Exception;
 	
 	//관리자 전용 리스트
-	List<FaqVo> adminList(PageVo pageVo) throws Exception;
+	List<FaqVo> getAdminList(PageVo pageVo) throws Exception;
 	
 	//사용자 전용 리스트
 	List<FaqVo> getFaqList();

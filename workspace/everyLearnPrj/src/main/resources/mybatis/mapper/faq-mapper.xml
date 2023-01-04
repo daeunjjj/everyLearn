@@ -10,7 +10,7 @@
 		(
 		     NO
 		    ,CATEGORY
-		    ,ADMIN
+		    ,WRITER
 		    ,TITLE
 		    ,CONTENT 
 		)
@@ -25,7 +25,7 @@
 	</insert>
 	
 	<!-- 페이징 -->
-	<select id="adminList" resultType="faqVo">
+	<select id="getAdminList" resultType="faqVo">
  		SELECT * FROM
  		(
 	 		SELECT ROWNUM RN, T.*
@@ -55,13 +55,16 @@
  	
  	<!-- 일반 회원 질문 리스트 -->
  	<select id="getMemberFaqList" resultType="faqVo">
- 		SELECT 
-		    CATEGORY
-		    , TITLE
-		    , CONTENT
-		FROM FAQ
-		WHERE CATEGORY = 1
-		ORDER BY NO DESC
+ 		SELECT F.NO
+	        ,C.NAME AS CATEGORY
+	        ,F.TITLE 
+	        ,F.CONTENT
+	    FROM FAQ F
+	    FULL OUTER JOIN FAQ_CATE C
+	    ON F.CATEGORY = C.NO
+	    WHERE F.DELETE_YN = 'N'
+	    AND C.NAME = '일반회원'
+	    ORDER BY F.NO DESC
  	</select>
  	
  	<!-- 기업 회원 질문 리스트 -->
@@ -100,7 +103,7 @@
 	</update>
 	
 	<!-- 디테일 -->
-	<select id="selectDetail" resultType="faqVo">
+	<select id="selectDetail" resultType="FaqVo">
 		SELECT 
 		    N.NO ,
 		    N.TITLE ,

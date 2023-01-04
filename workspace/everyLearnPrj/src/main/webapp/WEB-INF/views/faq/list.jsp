@@ -43,13 +43,13 @@
             <div id="h1">💡일반 회원 자주 묻는 질문</div>
             <br>
             
-            <c:forEach var="m" items="${ memberFaqList }">
-            <button class="accordion"><div>${ m.title }</div></button>
-            <div class="panel">
-                <br>
-                <p>${ m.content }</p>
-                <br>
-            </div>
+            <c:forEach items="${ memberFaqList }" var="m" >
+	            <button class="accordion"><div>${m.Faq.title}</div></button>
+	            <div class="panel">
+	                <br>
+	                <p>${m.content}</p>
+	                <br>
+	            </div>
 			</c:forEach>
 			
             <button class="accordion">비밀번호를 바꾸고 싶습니다.</button>
