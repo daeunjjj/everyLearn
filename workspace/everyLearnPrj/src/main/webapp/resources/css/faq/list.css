@@ -1,12 +1,13 @@
 @charset "UTF-8";
 
 .container{
-    width: 80%;
+    width: 75% !important;
     height: 70%;
     --border: 1px solid black;
     display: flex;
     justify-content: space-between;
     margin-top: 50px;
+    margin-bottom: 150px;
 }
 
 #searchBar {
@@ -45,10 +46,7 @@
     padding: 15px;
 }
 
-#hr{
-    border-left : 1px solid lightgray;
-    height : 100vh;
-}
+#hr{border-left : 1px solid lightgray;}
 
 .a1{width: 40%;}
 .a2{width: 40%;}
