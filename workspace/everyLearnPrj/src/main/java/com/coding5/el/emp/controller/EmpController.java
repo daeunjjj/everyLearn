@@ -117,36 +117,36 @@ public class EmpController {
 	}
 	
 	// 지원하기(화면)
-	@GetMapping("apply")
-	public String apply(HttpSession session, Model model) {
-		
-		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-		
-		if(loginMember == null) {
-			return "member/login";
-		}
-		
-		String memberNo = loginMember.getMemberNo();
-		
-		ResumeVo rv = es.selectResume(memberNo);
-		List<EducationVo> eduList = es.selectEducation(rv);
-		List<LanguageVo> langList = es.selectLanguage(rv);
-		List<AwardVo> awardList = es.selectAward(rv);
-		List<CareerVo> careerList = es.selectCareer(rv);
-		List<CertificateVo> certificateList = es.selectCertificate(rv);
-		List<ResumeAttatchVo> attachList = es.selectAttach(rv);
-		
-		model.addAttribute("rv", rv);
-		model.addAttribute("eduList", eduList);
-		model.addAttribute("langList", langList);
-		model.addAttribute("awardList", awardList);
-		model.addAttribute("careerList", careerList);
-		model.addAttribute("certificateList", certificateList);
-		model.addAttribute("attachList", attachList);
-		
-		return "emp/apply";
-		
-	}
+//	@GetMapping("apply")
+//	public String apply(HttpSession session, Model model) {
+//		
+//		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+//		
+//		if(loginMember == null) {
+//			return "member/login";
+//		}
+//		
+//		String memberNo = loginMember.getMemberNo();
+//		
+//		ResumeVo rv = es.selectResume(memberNo);
+//		List<EducationVo> eduList = es.selectEducation(rv);
+//		List<LanguageVo> langList = es.selectLanguage(rv);
+//		List<AwardVo> awardList = es.selectAward(rv);
+//		List<CareerVo> careerList = es.selectCareer(rv);
+//		List<CertificateVo> certificateList = es.selectCertificate(rv);
+//		List<ResumeAttatchVo> attachList = es.selectAttach(rv);
+//		
+//		model.addAttribute("rv", rv);
+//		model.addAttribute("eduList", eduList);
+//		model.addAttribute("langList", langList);
+//		model.addAttribute("awardList", awardList);
+//		model.addAttribute("careerList", careerList);
+//		model.addAttribute("certificateList", certificateList);
+//		model.addAttribute("attachList", attachList);
+//		
+//		return "emp/apply";
+//		
+//	}
 	
 	// 지원하기
 	@PostMapping("apply")
@@ -212,13 +212,14 @@ public class EmpController {
 		
 		String memberNo = loginMember.getMemberNo();
 		
+		
 		int result = es.insertResume(memberNo, rv, ev, av, cv, cfv, lv);
+		log.info(ev.toString());
 		
 		return "redirect:/emp/resume";
 		
 	}
-	//, List<LanguageVo> lvList, List<AwardVo> avList, List<CareerVo> cvList, List<CertificateVo> cfvList, List<ResumeAttatchVo> ravList
-	//, lvList, avList, cvList, cfvList, ravList
+
 	
 	
 	

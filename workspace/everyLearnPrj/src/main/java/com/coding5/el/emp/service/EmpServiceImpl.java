@@ -94,40 +94,48 @@ public class EmpServiceImpl implements EmpService{
 		rv.setMemberNo(memberNo);
 		
 		int rvResult = dao.updateResume(sst, rv);
-		String resumeNo = dao.selectResumeSeqNo(sst);
+		String resumeNo = dao.selectResumeSeqNo(sst, memberNo);
 		
-		log.info(resumeNo);
+		if(ev.getEvList() != null && ev.getEvList().size() != 0) {
+			ListIterator<EducationVo> evIterator = ev.getEvList().listIterator();
+			while(evIterator.hasNext()) {
+				evIterator.next().setResumeNo(resumeNo);
+			}
+			int evResult = dao.updateEducation(sst, ev.getEvList());
+		}
 		
-		 ListIterator<EducationVo> evIterator = ev.getEvList().listIterator();
-		 while(evIterator.hasNext()) {
-			 evIterator.next().setResumeNo(resumeNo);
-		 }
-		 
-		 ListIterator<AwardVo> avIterator = av.getAvList().listIterator();
-		 while(avIterator.hasNext()) {
-			 avIterator.next().setResumeNo(resumeNo);
-		 }
-		 
-		 ListIterator<CareerVo> cvIterator = cv.getCvList().listIterator();
-		 while(cvIterator.hasNext()) {
-			 cvIterator.next().setResumeNo(resumeNo);
-		 }
-		 
-		 ListIterator<CertificateVo> cfvIterator = cfv.getCfvList().listIterator();
-		 while(cfvIterator.hasNext()) {
-			 cfvIterator.next().setResumeNo(resumeNo);
-		 }
-		 
-		 ListIterator<LanguageVo> lvIterator = lv.getLvList().listIterator();
-		 while(lvIterator.hasNext()) {
-			 lvIterator.next().setResumeNo(resumeNo);
-		 }
+		if(av.getAvList() != null && av.getAvList().size() != 0) {
+			ListIterator<AwardVo> avIterator = av.getAvList().listIterator();
+			while(avIterator.hasNext()) {
+				avIterator.next().setResumeNo(resumeNo);
+			}
+			int avResult = dao.updateAward(sst, av.getAvList());
+		}
 		
-		int evResult = dao.updateEducation(sst, ev.getEvList());
-		int avResult = dao.updateAward(sst, av.getAvList());
-		int cvResult = dao.updateCareer(sst, cv.getCvList());
-		int cfvResult = dao.updateCertificate(sst, cfv.getCfvList());
-		int lvResult = dao.updateLanguage(sst, lv.getLvList());
+		if(cv.getCvList() != null && cv.getCvList().size() != 0) {
+			ListIterator<CareerVo> cvIterator = cv.getCvList().listIterator();
+			while(cvIterator.hasNext()) {
+				cvIterator.next().setResumeNo(resumeNo);
+			}
+			int cvResult = dao.updateCareer(sst, cv.getCvList());
+		}
+		
+		if(cfv.getCfvList() != null && cfv.getCfvList().size() != 0) {
+			 
+			ListIterator<CertificateVo> cfvIterator = cfv.getCfvList().listIterator();
+			while(cfvIterator.hasNext()) {
+				cfvIterator.next().setResumeNo(resumeNo);
+			}
+			int cfvResult = dao.updateCertificate(sst, cfv.getCfvList());
+		}
+		
+		if(lv.getLvList() != null && lv.getLvList().size() != 0) { 
+			ListIterator<LanguageVo> lvIterator = lv.getLvList().listIterator();
+			while(lvIterator.hasNext()) {
+				lvIterator.next().setResumeNo(resumeNo);
+			}
+			int lvResult = dao.updateLanguage(sst, lv.getLvList());
+		}
 		
 		return rvResult;
 	}

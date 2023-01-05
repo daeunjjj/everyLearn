@@ -45,7 +45,7 @@ public interface EmpDao {
 	int updateResume(SqlSessionTemplate sst, ResumeVo rv);
 
 	// 이력서 시퀀스 번호 받아오기
-	String selectResumeSeqNo(SqlSessionTemplate sst);
+	String selectResumeSeqNo(SqlSessionTemplate sst, String memberNo);
 	
 	// 학력 작성하기
 	int updateEducation(SqlSessionTemplate sst, List<EducationVo> evList);

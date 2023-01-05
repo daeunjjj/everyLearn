@@ -1,5 +1,6 @@
 package com.coding5.el.emp.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -17,7 +18,10 @@ import com.coding5.el.emp.vo.LanguageVo;
 import com.coding5.el.emp.vo.ResumeAttatchVo;
 import com.coding5.el.emp.vo.ResumeVo;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Repository
+@Slf4j
 public class EmpDaoImpl implements EmpDao {
 
 	// 이력서 조회
@@ -87,8 +91,8 @@ public class EmpDaoImpl implements EmpDao {
 
 	// 이력서 시퀀스 번호 가져오기
 	@Override
-	public String selectResumeSeqNo(SqlSessionTemplate sst) {
-		return sst.selectOne("resumeMapper.selectResumeSeqNo");
+	public String selectResumeSeqNo(SqlSessionTemplate sst, String memberNo) {
+		return sst.selectOne("resumeMapper.selectResumeSeqNo", memberNo);
 	}
 	
 	// 학력 작성하기
