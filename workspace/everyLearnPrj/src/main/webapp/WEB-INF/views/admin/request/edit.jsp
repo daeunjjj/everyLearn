@@ -25,37 +25,24 @@
                         질문내용
                     </div>
                 </div>
-                <form action="">
+                <form action="/el/admin/request/edit" method="post">
                     <div class="question-content">
-                        <div class="question-area grid-area">
-                            <div>1</div>
-                            <div>
-                                <input type="text" name="content" value="어떤 기능을 추가하고싶으신가요?">
-                            </div>
-                            <div class="quit-btn">
-                                <button>삭제</button>
-                            </div>
-                        </div>
-                        <div class="question-area grid-area">
-                            <div>2</div>
-                            <div>
-                                <input type="text" name="content" value="에브리런에서 어떤 강의를 듣고 싶으신가요?">
-                            </div>
-                            <div class="quit-btn">
-                                <button>삭제</button>
-                            </div>
-                        </div>
-                        <div class="question-area grid-area" id="add">
-                            <div>3</div>
-                            <div>
-                                <input type="text" name="content" value="응원해주세요!">
-                            </div>
-                            <div class="quit-btn">
-                                <button>삭제</button>
-                            </div>
-                        </div>      
+                        
+                        <c:forEach items="${voList}" var="list" varStatus="status">
+                            <input name="voList[${status.index+1 }].no" value="${list.no}" hidden>
+							<div class="question-area grid-area">
+                                <div>${status.index+1}</div>
+	                            <div>
+	                                <input type="text" name="voList[${status.index+1 }].type" value="${list.type }">
+	                            </div>
+	                            <div class="quit-btn">
+                                    <button type="button" onclick="deleteBtn('${list.no}','${status.index+1 }');">삭제</button>
+	                            </div>
+	                        </div>
+						</c:forEach>
+                        <div id="add"></div>
                         <div class="add-btn-area btn">
-                            <button type="button" onclick="add();">
+                            <button id="addBtn" type="button" onclick="add();">
                                 <span>
                                     질문
                                     <i class="bi bi-plus"></i>
@@ -63,7 +50,7 @@
                             </button>
                         </div>
                         <div class="btn-area btn">
-                            <button type="submit">등록</button>
+                            <button type="submit">수정</button>
                         </div>
                     </div>
                 </form>
@@ -73,7 +60,35 @@
 
     <script>
         function add(){
-            $("#add").append('<div id="add-icon"><i class="bi bi-plus"></i></div><div class="question-area grid-area" id="add-question"><input type="text" name="content"></div><div class="quit-btn"><button>삭제</button></div>');}
+            $("#add").append('<div class="question-area grid-area new-div"> <div><i class="bi bi-plus"></i></div> <div> <input type="text" name="voList[0].type"> </div> <div class="quit-btn"> <button type="button" onclick="deleteBox();">삭제</button> </div> </div>');
+            $("#addBtn").attr("disabled", true);
+        }
+        
+        function deleteBox(){
+            $(".new-div").remove();
+            $("#addBtn").attr("disabled", false);
+        }
+
+        function deleteBtn(no, idx){
+            console.log(no);
+            if(confirm(idx+'번 질문을 삭제하시겠습니까?')){
+                $.ajax({
+                    url : "/el/admin/request/delete",
+                    method : "post",
+                    data : { "no" : no },
+                    success : function(result){
+                        if(result != ""){
+                            window.location.href = "/el/admin/request/edit";
+                        }
+                    },
+                    error : function(){
+                        alert('통신실패');
+                    }
+
+
+                });
+            } 
+        }
     </script>
 </body>
 </html>

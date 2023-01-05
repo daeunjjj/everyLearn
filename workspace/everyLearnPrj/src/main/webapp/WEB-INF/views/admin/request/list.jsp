@@ -116,35 +116,6 @@
                 return true;
             }
 
-            // let checkboxValues = [];
-            // $("input[name='arrNo']:checked").each(function(i) {
-            //     checkboxValues.push($(this).val());
-            // });
-
-            //let checkBox = $("input[name='arrNo']:checked");
-
-
-            // if(cnt > 0){
-            //     $.ajax({
-            //         url : "/el/admin/request/check",
-            //         method : "POST",
-            //         data : {"arrNo" : checkboxValues},
-            //         success : function(result){
-            //             if(result == ""){
-            //                 // 중복
-            //                 alert('실패');
-            //             } else{
-                          
-
-                            
-            //             }
-
-            //         },
-            //         error : function(){
-            //             alert('통신실패');
-            //         }
-            //     })
-            // } 
         }
 
 

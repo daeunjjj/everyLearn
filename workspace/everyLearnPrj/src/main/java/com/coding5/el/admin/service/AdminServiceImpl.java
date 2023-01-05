@@ -385,10 +385,64 @@ public class AdminServiceImpl implements AdminService{
 	public int selectRequestConut(Map<String, String> mapSearch) {
 		return adminDao.selectRequestConut(sst,mapSearch);
 	}
-
+	/**
+	 * 요청 읽음으로 바꿈
+	 */
 	@Override
 	public int requestCheck(String[] arrNo) {
 		return adminDao.requestCheckY(sst,arrNo);
+	}
+	
+	/**
+	 * 질문가져오기
+	 */
+	@Override
+	public List<RequestVo> selectQuestion() {
+		// TODO Auto-generated method stub
+		return adminDao.selectQuestion(sst);
+	}
+	/**
+	 * 질문 수정
+	 */
+	@Override
+	public int requestEdit(List<RequestVo> voList) {
+		
+		int result = 0;
+		
+		if(voList.get(0).getType() == null) {
+			for(int i = 1; i < voList.size(); i++) {
+				adminDao.requestUpsert(sst, voList.get(i));
+			}
+		} else {
+			for(int i = 0; i < voList.size(); i++) {
+				adminDao.requestUpsert(sst, voList.get(i));
+			}
+		}
+		
+		return result;
+	}
+	/**
+	 * 질문 삭제
+	 */
+	@Override
+	public int questionDelete(String no) {
+		return adminDao.questionDelete(sst,no);
+	}
+
+	@Override
+	public Map<String, Object> selectDashboardAlert() {
+		
+		int teacherRequstCnt = adminDao.selectTeacherStatusByN(sst);
+		int corpRequestCnt = adminDao.selectCorporateStatusByN(sst);
+		int requestCnt = adminDao.selectRequestCheckN(sst);
+		int reportCnt = adminDao.selectReportHandleN(sst);
+		
+		map.put("teacherRequestCnt", teacherRequstCnt);
+		map.put("corpRequestCnt", corpRequestCnt);
+		map.put("requestCnt", requestCnt);
+		map.put("reportCnt", reportCnt);
+		
+		return map;
 	}
 	
 

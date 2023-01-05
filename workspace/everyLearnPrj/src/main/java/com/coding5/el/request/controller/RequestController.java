@@ -67,4 +67,5 @@ public class RequestController {
 		redirect.addFlashAttribute("msg", "요청이 제출되었습니다. 감사합니다. ^^");
 		return "redirect:/request/intro";
 	}
+	
 }

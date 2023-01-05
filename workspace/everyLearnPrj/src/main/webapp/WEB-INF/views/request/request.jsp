@@ -30,13 +30,14 @@
 								<span>1.</span>
 								<span>에브리런에 어떤 것을 요청하고 싶은가요?</span>
 							</legend>
-							<c:forEach items="${voList}" var="list">
+							<c:forEach items="${voList}" var="list" varStatus="status">
+								
 								<div class="select-area">
-									<label class="uncheck" id="lecture">
-										<span></span>
+									<input type="radio" name="type" value="${list.no}" id="${list.no}">
+									<label class="uncheck" for="${list.no}">
+										<span class="idx">${status.index+1}</span>
 										<span>${list.type }</span>
 										<i class="bi bi-check-lg"></i>
-										<input type="radio" name="type" value="${list.no}">
 									</label>
 								</div>
 							</c:forEach>
@@ -90,23 +91,6 @@
 			return true;
 		}
 
-
-
-
-		$("input[name='type']:radio").change(function () {
-        //라디오 버튼 값을 가져온다.
-        var requestVal = this.value;
-
-			$('.uncheck').each(function (index) {
-				if(requestVal == index+1){
-					$(this).addClass('check');
-				} else{
-					$(this).removeClass('check');
-				}
-			});	
-
-
-		});
 	</script>
 	
 </body>

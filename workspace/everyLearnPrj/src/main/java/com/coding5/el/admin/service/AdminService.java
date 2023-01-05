@@ -110,5 +110,19 @@ public interface AdminService {
 	// 요청 관리자 확인 완 
 	public int requestCheck(String[] arrNo);
 	
+	// 질문 수정 가져오기
+	public List<RequestVo> selectQuestion();
+	
+	// 질문 수정(찐)
+	public int requestEdit(List<RequestVo> voList);
+	
+	// 질문 삭제
+	public int questionDelete(String no);
+	
+	// 대쉬보드 알람가져오기
+	public Map<String, Object> selectDashboardAlert();
+	
+
+	
 	
 }

@@ -254,6 +254,30 @@ public class AdminDaoImpl implements AdminDao{
 		// 관리자 확인 완
 		return sst.update("requestMapper.requestCheckY", arrNo);
 	}
+
+	@Override
+	public List<RequestVo> selectQuestion(SqlSessionTemplate sst) {
+		// 질문가져오기
+		return sst.selectList("requestMapper.selectQuestion");
+	}
+
+	@Override
+	public int requestUpsert(SqlSessionTemplate sst, RequestVo requestVo) {
+		// 질문수정
+		return sst.update("requestMapper.requestUpsert", requestVo);
+	}
+
+	@Override
+	public int questionDelete(SqlSessionTemplate sst, String no) {
+		// 질문삭제
+		return sst.delete("requestMapper.questionDelete",no);
+	}
+
+	@Override
+	public int selectReportHandleN(SqlSessionTemplate sst) {
+		// 미처리 신고 게시글 수
+		return sst.selectOne("adminMapper.selectHandleN");
+	}
 	
 
 

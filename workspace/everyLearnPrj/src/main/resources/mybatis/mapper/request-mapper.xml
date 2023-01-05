@@ -4,7 +4,11 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="requestMapper">
 	<select id="selectQuestion" resultType="com.coding5.el.request.vo.RequestVo">
-		SELECT NO, TYPE FROM REQUEST_TYPE
+		SELECT 
+			NO
+			, TYPE 
+		FROM REQUEST_TYPE
+		ORDER BY NO
 	</select>
 	
 	<insert id="insertRequest">
@@ -64,4 +68,19 @@
 			#{no}
 		</foreach>
 	</update>
+	
+	<update id="requestUpsert">
+		MERGE INTO REQUEST_TYPE RT
+		USING DUAL
+		   ON (RT.NO =  #{no})	    
+		WHEN MATCHED THEN
+		    UPDATE SET RT.TYPE = #{type}
+		WHEN NOT MATCHED THEN
+		    INSERT ( RT.NO, RT.TYPE)
+		    VALUES (SEQ_REQUEST_NO.NEXTVAL, #{type})
+	</update>
+	
+	<delete id="questionDelete">
+		DELETE FROM REQUEST_TYPE WHERE NO = #{no}
+	</delete>
 </mapper>
