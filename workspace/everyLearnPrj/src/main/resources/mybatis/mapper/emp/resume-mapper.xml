@@ -13,13 +13,13 @@
 			, LINK
 			, INTRODUCE
 		FROM RESUME
-		WHERE MEMBER_NO = #{memberNo}
+		WHERE MEMBER_NO = #{value}
 	</select>
 	
 	<!-- 학력 조회하기 -->
-	<select id="selectEducation" resultType="ResumeVo">
+	<select id="selectEducation" resultType="EducationVo">
 		SELECT
-			NO
+			NO AS EDUCATION_NO
 			, RESUME_NO
 			, STATUS
 			, EDUCATION
@@ -32,9 +32,9 @@
 	</select>
 	
 	<!-- 언어 조회하기 -->
-	<select id="selectLanguage" resultType="ResumeVo">
+	<select id="selectLanguage" resultType="LanguageVo">
 		SELECT
-			NO
+			NO AS LANGUAGE_NO
 			, RESUME_NO
 			, LANGUAGE
 			, LANGUAGE_LEVEL
@@ -43,9 +43,9 @@
 	</select>
 	
 	<!-- 수상내역 조회하기 -->
-	<select id="selectAward" resultType="ResumeVo">
+	<select id="selectAward" resultType="AwardVo">
 		SELECT
-			NO
+			NO AS AWARD_NO
 			, RESUME_NO
 			, AWARD_NAME
 			, AWARD_DATE
@@ -55,9 +55,9 @@
 	</select>
 	
 	<!-- 경력 조회하기 -->
-	<select id="selectCareer" resultType="ResumeVo">
+	<select id="selectCareer" resultType="CareerVo">
 		SELECT
-			NO
+			NO AS CAREER_NO
 			, RESUME_NO
 			, TYPE
 			, COMPANY_NAME
@@ -71,9 +71,9 @@
 	</select>
 	
 	<!-- 자격증 조회하기 -->
-	<select id="selectCertificate" resultType="ResumeVo">
+	<select id="selectCertificate" resultType="CertificateVo">
 		SELECT
-			NO
+			NO AS CERTIFICATE_NO
 			, RESUME_NO
 			, CERTIFICATE_NAME
 			, CERTIFICATE_DATE
@@ -83,9 +83,9 @@
 	</select>
 	
 	<!-- 첨부파일 조회하기 -->
-	<select id="selectAttach" resultType="ResumeVo">
+	<select id="selectAttach" resultType="ResumeAttatchVo">
 		SELECT
-			NO
+			NO AS RESUME_ATTATCH_NO
 			, RESUME_NO
 			, ORIGIN_NAME
 			, CHANGE_NAME
@@ -133,13 +133,14 @@
 	
 	<!-- 이력서 시퀀스 번호 가져오기 -->
 	<select id="selectResumeSeqNo" resultType="String">
-		SELECT SEQ_RESUME_NO.CURRVAL AS RESUME_NO
-		FROM RESUME 
+		SELECT NO
+		FROM RESUME
+		WHERE MEMBER_NO = #{value} 
 	</select>
 	
 	<!-- 학력 인서트 -->
 	<update id="updateEducation" parameterType="java.util.List">
-	<foreach collection="list" item="ev" open="DECLARE BEGIN" close="; END;">
+	<foreach collection="list" item="ev" open="" close="" index="index">
 		MERGE INTO EDUCATION
 			USING DUAL
 			ON 
@@ -158,7 +159,7 @@
 			WHEN NOT MATCHED THEN
 				INSERT
 				(
-					NO
+					NO 
 					, RESUME_NO
 					, STATUS
 					, EDUCATION
@@ -183,7 +184,7 @@
 	
 	<!-- 수상내역 작성하기 -->
 	<update id="updateAward" parameterType="java.util.List">
-		<foreach collection="List" item="av" open="(" close=")" separator="," index="index">
+		<foreach collection="list" item="av" open="" close=""  index="index">
 		MERGE INTO AWARD
 			USING DUAL
 			ON 
@@ -193,9 +194,9 @@
 				)
 			WHEN MATCHED THEN
 				UPDATE SET
-					 AWARD_NAME = ${av.awardName}
-					, AWARD_DATE = ${av.awardDate}
-					, AGENCY = ${av.awardAgency}
+					 AWARD_NAME = #{av.awardName}
+					, AWARD_DATE = #{av.awardDate}
+					, AGENCY = #{av.awardAgency}
 			WHEN NOT MATCHED THEN
 				INSERT
 				(
@@ -218,7 +219,7 @@
 	
 	<!-- 경력 작성하기 -->
 	<update id="updateCareer" parameterType="java.util.List">
-	<foreach collection="list" item="cv" open="(" close=")" separator="," index="index">
+	<foreach collection="list" item="cv" open="" close="" index="index">
 		MERGE INTO CAREER
 			USING DUAL
 			ON 
@@ -251,7 +252,7 @@
 				VALUES
 				(
 					SEQ_CAREER_NO.NEXTVAL
-					 #{cv.resumeNo}
+					, #{cv.resumeNo}
 					, #{cv.type}
 					, #{cv.companyName}
 					, #{cv.team}
@@ -266,7 +267,7 @@
 	
 	<!-- 자격증 내역 작성하기 -->
 	<update id="updateCertificate" parameterType="java.util.List">
-		<foreach collection="list" item="cfv" open="(" close=")" separator="," index="index">
+		<foreach collection="list" item="cfv" open="" close="" index="index">
 		MERGE INTO CERTIFICATE
 			USING DUAL
 			ON 
@@ -301,7 +302,7 @@
 	
 	<!-- 언어 작성하기 -->
 	<update id="updateLanguage" parameterType="java.util.List">
-	<foreach collection="list" item="lv" open="(" close=")" separator="," index="index">
+	<foreach collection="list" item="lv" open="" close="" index="index">
 		MERGE INTO LANGUAGE
 			USING DUAL
 			ON 

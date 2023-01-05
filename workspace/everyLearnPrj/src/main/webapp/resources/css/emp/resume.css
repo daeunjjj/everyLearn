@@ -133,24 +133,4 @@ button{
   font-weight: bold;
 }
 
-.date-wrapper{
-  display: flex;
-}
 
-.date-input{
-  display: flex;
-  align-items: center;
-}
-
-.tilde{
-  margin: 0 10px;
-}
-
-.small{
-  width: 60px;
-  height: 1.5rem;
-}
-
-.start{
-
-}
