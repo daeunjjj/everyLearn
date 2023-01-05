@@ -20,7 +20,7 @@
                         <div id="input-area">
                             <div class="flex-area">
                                 <div>
-                                    <a>
+                                    <a href="/el/admin/report/list?pno=1&category=handle_yn&keyword=N">
                                     미처리신고
                                     <span>${map.cnt }</span>
                                     </a>

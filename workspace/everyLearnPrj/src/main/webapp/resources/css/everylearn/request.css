@@ -125,6 +125,12 @@
     border: 1px solid #1187CF;
 }
 
+input[type=radio]:checked+label{
+    background-color: #fff;
+    color: #1187CF;
+    border: 1px solid #1187CF;
+}
+
 .select-area input[type=radio]{
     display: none;
 }
@@ -198,4 +204,10 @@
 .btn-area span{
     
     font-size: 16px;
+}
+
+.idx{
+    margin: 0 5px 0 8px;
+    padding: 0 3px 0 3px;
+    font-size: 18px;
 }

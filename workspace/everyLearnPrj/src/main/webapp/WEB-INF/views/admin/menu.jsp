@@ -104,7 +104,7 @@
                     </a>
                 </li> -->
                 <li class="nav-items" id="request">
-                    <a class="nav-items-a" href="/el/admin/request/list">
+                    <a class="nav-items-a" href="/el/admin/request/list?pno=1">
                         <span>요청관리</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>

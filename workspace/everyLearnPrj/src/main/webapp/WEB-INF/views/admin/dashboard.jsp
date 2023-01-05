@@ -18,22 +18,22 @@
             <div class="main-wrap">
                 <h2>알림</h2>
                 <div class="todo-area">
-                    <div class="todo-items">
+                    <a href="/el/admin/member/teacher/list?pno=1&&category=status" class="todo-items">
                         <div>강사신청</div>
-                        <span>0</span>
-                    </div>
-                    <div class="todo-items">
+                        <span>${map.teacherRequestCnt}</span>
+                    </a>
+                    <a href="/el/admin/member/corporate/list?pno=1&category=status_yn&keyword=N" class="todo-items">
                         <div>기업신청</div>
-                        <span>0</span>
-                    </div>
-                    <div class="todo-items">
+                        <span>${map.corpRequestCnt}</span>
+                    </a>
+                    <a href="/el/admin/request/list?pno=1&category=check_yn&keyword=N" class="todo-items">
                         <div>요청</div>
-                        <span>0</span>
-                    </div>
-                    <div class="todo-items">
+                        <span>${map.requestCnt}</span>
+                    </a>
+                    <a href="/el/admin/report/list?pno=1&category=handle_yn&keyword=N" class="todo-items">
                         <div>신고</div>
-                        <span>0</span>
-                    </div>
+                        <span>${map.reportCnt}</span>
+                    </a>
                     <div class="todo-items">
                         <div>문의</div>
                         <span>0</span>

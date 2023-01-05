@@ -22,6 +22,7 @@ import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.file.FileUploader;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.page.Pagination;
+import com.coding5.el.request.vo.RequestVo;
 
 import lombok.extern.slf4j.Slf4j;
 @RequestMapping("admin")
@@ -315,10 +316,60 @@ public class AdminController {
 		return "redirect:/admin/request/list?pno=1";
 		
 	}
+	
+	/**
+	 * 질문수정 화면 보여주기
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("request/edit")
+	public String requestEdit(Model model) {
 
+		List<RequestVo> voList = adminService.selectQuestion();
+		
+		if(voList == null) return "common/error";
+		
+		model.addAttribute("voList", voList);
+		
+		return "admin/request/edit";
+	}
+	
+	@PostMapping("request/edit")
+	public String requestEdit(RequestVo vo) {
+
+		log.info("질문 수정-화면 > 컨트롤러 voList ::: "+ vo.getVoList().get(0));
+
+		int result = adminService.requestEdit(vo.getVoList());
+		
+		log.info("질문수정-디에이오 > 컨트롤러 결과  ::: " + result);
+		
+		return "redirect:/admin/request/edit";
+	}
+	
+	@PostMapping("request/delete")
+	@ResponseBody
+	public String questionDelete(String no) {
+		
+		log.info("질문 삭제 - no :: " + no);
+		
+		int result = adminService.questionDelete(no);
+		
+		if(result != 1) return "";
+		
+		return "ok";
+	}
+	
 	// 대시보드
 	@GetMapping("dashboard")
-	public String dashboard() {
+	public String dashboard(Model model) {
+		
+		Map<String, Object> map =  adminService.selectDashboardAlert();
+		
+		if(map == null) return "common/error";
+		
+		log.info("cnt :: "+map);
+		
+		model.addAttribute("map", map);
 		return "admin/dashboard";
 	}
 	
@@ -361,11 +412,7 @@ public class AdminController {
 	
 
 
-	// 질문 수정
-	@GetMapping("request/edit")
-	public String requestEdit() {
-		return "admin/request/edit";
-	}
+
 	
 	// 전체 메일 전송
 	@GetMapping("mail/all-send")

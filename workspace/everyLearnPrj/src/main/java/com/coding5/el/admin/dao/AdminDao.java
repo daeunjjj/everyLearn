@@ -128,6 +128,17 @@ public interface AdminDao {
 	// 요청 관리자 확인
 	public int requestCheckY(SqlSessionTemplate sst, String[] arrNo);
 	
+	// 질문가져오기
+	public List<RequestVo> selectQuestion(SqlSessionTemplate sst);
+	
+	// 질문 수정
+	public int requestUpsert(SqlSessionTemplate sst, RequestVo requestVo);
+	
+	// 질문 삭제
+	public int questionDelete(SqlSessionTemplate sst, String no);
+
+	public int selectReportHandleN(SqlSessionTemplate sst);
+	
 
 	
 }
