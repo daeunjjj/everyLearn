@@ -191,6 +191,9 @@
 	        setTotalInfo();
 	    }
 		
+		var finalPrice = 0;
+		var usedPoint = 0;
+		
 		/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 		function setTotalInfo(){
 			
@@ -218,9 +221,9 @@
 		
 			document.getElementById('cnt').innerText = cnt;
 			
-			//포인트
-			let usedPoint = document.getElementById('use-point').value;
-			let finalPrice = 0;
+			 //포인트
+			usedPoint = document.getElementById('use-point').value;
+			finalPrice = 0; 
 						
 			if(usedPoint == null || usedPoint == 0){
 				finalPrice  += totalPrice;
@@ -228,22 +231,20 @@
 				alert('보유 포인트보다 입력한 포인트가 많습니다.');
 			}else{
 				finalPrice = totalPrice - usedPoint;
-			}
+			} 
 			
 			//finalPrice.innerHTML = finalPricetoLocaleString(undefined, {maximumFractionDigits: 5});
 			console.log("finalprice : " + finalPrice);
 			document.getElementById('finalPrice').innerText = finalPrice.toLocaleString(undefined, {maximumFractionDigits: 5});
 			document.getElementById('finalTotalPrice').value = finalPrice;
-			
-			
-			
-		};
 		
-    	    
-	
-
-        const finalTotalPrice = finalPrice;
+			
+			
+		}
+		
+    	            
         let prodName = '${list.get(0).className}';
+        console.log("prodName : " + prodName);
         const cnt = ${list.size()};
         if(cnt > 1){
             prodName += ' 외 ' +(cnt-1) +'건'
@@ -256,7 +257,7 @@
 
 /////////////////////////////////결제
 		var IMP = window.IMP; // 생략 가능
-    	IMP.init("imp60434644"); //가맹점 식별코드
+    	IMP.init("imp06204768"); //가맹점 식별코드
     	
     	 function requestPay() {
       	      // IMP.request_pay(param, callback) 결제창 호출
@@ -264,7 +265,7 @@
       	          pg: "INIpayTest",
       	          merchant_uid : 'merchant_'+new Date().getTime(),
       	          name: prodName,
-      	          amount: finalTotalPrice,
+      	          amount: finalPrice,
       	          buyer_email: email,
       	          buyer_name: name,
       	          buyer_tel: phone,
@@ -275,20 +276,27 @@
       	    	        jQuery.ajax({
       	    	            url: "/el/payment/info", // 예: https://www.myservice.com/payments/complete
       	    	            method: "POST",
-      	    	            headers: { "Content-Type": "application/json" },
+      	    	            headers: { "Content-Type": "application/x-www-form-urlencoded" },
       	    	            data: {
       	    	                imp_uid: rsp.imp_uid,
-      	    	                merchant_uid: rsp.merchant_uid
+      	    	                merchant_uid: rsp.merchant_uid,
+      	    	                amount: finalPrice,
+      	    	                usePoint: usedPoint,
+      	    	                //classNum : $('.cart_info_div input[name=check]').val()
       	    	            }
+      	    	            
       	    	        })
-   						.done(function (data) {
+
+   						/* .done(function (data) {
       	    	           //가맹점 서버 결제 API 성공시 로직
-      	    	        })
-      	    	      } else {
+      	    	        }) */
+      	    	      } 
+      	    	  else {
       	    	        alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
       	    	      }
+
       	    	    })
-      	    	    }
+    	}
   		  
             </script>
 
