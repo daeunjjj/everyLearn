@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.coding5.el.class_comm.dao.ClassCommDao;
 import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.class_comm.vo.CommentVo;
+import com.coding5.el.common.page.PageVo;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -48,8 +49,8 @@ public class ClassCommServiceImpl implements ClassCommService{
 
 	//스터디 게시판
 	@Override
-	public List<ClassCommVo> studyList(String orderBy) {
-		return dao.selectstudyList(sst, orderBy);
+	public List<ClassCommVo> studyList(String orderBy,  PageVo pv) {
+		return dao.selectstudyList(sst, orderBy, pv);
 	}
 	
 	
@@ -85,6 +86,12 @@ public class ClassCommServiceImpl implements ClassCommService{
 		dao.deleteWriteComment(sst, classCommNo);
 		
 		return dao.deleteWriteWrite(sst, classCommNo);
+	}
+
+	//게시글 갯수 조회(페이징)
+	@Override
+	public int selectCnt(String commCateNo) {
+		return dao.selectCntOne(sst, commCateNo);
 	}
 
 }

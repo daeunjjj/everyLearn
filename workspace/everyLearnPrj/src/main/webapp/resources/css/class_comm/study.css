@@ -222,3 +222,8 @@ p{
 #page-active{
     background-color: #1187CF;
 }
+
+a:visited { 
+    background-color: #1187CF !important; 
+    color: aliceblue !important;
+}

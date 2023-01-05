@@ -199,4 +199,10 @@
 		DELETE FROM CLASS_COMM WHERE NO = ${classCommNo}  
 	  </delete>
 	  
+	  <select id="selectCntOne" resultType="int">
+	  	SELECT COUNT(*)
+		FROM CLASS_COMM
+		WHERE CATE_NO = ${commCateNo}
+	  </select>
+	  
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.member.dao.MemberDao;
+import com.coding5.el.member.vo.ClassListVo;
 import com.coding5.el.member.vo.MemberVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -114,6 +115,12 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<ClassCommVo> commWrite_List(String memberNo) {
 		return memberDao.selectCommWriteList(sst,memberNo);
+	}
+
+	//수강평 작성글 조회
+	@Override
+	public List<ClassListVo> classReviewList(String mNo) {
+		return memberDao.selectClassReviewList(sst, mNo);
 	}
 
 

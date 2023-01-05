@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.class_comm.vo.CommentVo;
+import com.coding5.el.common.page.PageVo;
 
 public interface ClassCommDao {
 
@@ -15,7 +16,7 @@ public interface ClassCommDao {
 	//신고 인서트
 	public int insertReport(SqlSessionTemplate sst, ClassCommVo vo);
 	//스터디게시판
-	public List<ClassCommVo> selectstudyList(SqlSessionTemplate sst, String orderBy);
+	public List<ClassCommVo> selectstudyList(SqlSessionTemplate sst, String orderBy, PageVo pv);
 	//freeList
 	public List<ClassCommVo> selectFreeList(SqlSessionTemplate sst, String orderBy);
 	//commentList
@@ -28,5 +29,7 @@ public interface ClassCommDao {
 	public int deleteWriteComment(SqlSessionTemplate sst, String classCommNo);
 	//delete write
 	public int deleteWriteWrite(SqlSessionTemplate sst, String classCommNo);
+	//select count (paging)
+	public int selectCntOne(SqlSessionTemplate sst, String commCateNo);
 
 }

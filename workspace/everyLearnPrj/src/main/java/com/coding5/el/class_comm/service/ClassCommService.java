@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.class_comm.vo.CommentVo;
+import com.coding5.el.common.page.PageVo;
 
 public interface ClassCommService {
 
@@ -20,7 +21,7 @@ public interface ClassCommService {
 	public int report(ClassCommVo vo);
 
 	//스터디 게시판
-	public List<ClassCommVo> studyList(String orderBy);
+	public List<ClassCommVo> studyList(String orderBy, PageVo pv);
 
 	//자유게시판
 	public List<ClassCommVo> freeList(String orderBy);
@@ -36,4 +37,7 @@ public interface ClassCommService {
 
 	//댓글 삭제
 	public int deleteWrite(String classCommNo);
+
+	//게시글 카운트
+	public int selectCnt(String commCateNo);
 }

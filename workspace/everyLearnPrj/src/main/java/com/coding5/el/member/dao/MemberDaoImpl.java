@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.coding5.el.class_comm.vo.ClassCommVo;
+import com.coding5.el.member.vo.ClassListVo;
 import com.coding5.el.member.vo.MemberVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -56,4 +57,9 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public List<ClassCommVo> selectCommWriteList(SqlSessionTemplate sst, String memberNo) {
 		return sst.selectList("memberMapper.selectCommWriteList", memberNo);
+	}
+
+	@Override
+	public List<ClassListVo> selectClassReviewList(SqlSessionTemplate sst, String mNo) {
+		return sst.selectList("memberMapper.selectClassReviewList", mNo);
 	}}

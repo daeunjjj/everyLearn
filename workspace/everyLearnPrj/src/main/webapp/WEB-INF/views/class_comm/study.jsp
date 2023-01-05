@@ -75,11 +75,21 @@
         
         <div class="container mt-3" id="page-alert">
             <ul class="pagination" id="pagenation">
-                <li class="page-item"><a class="page-link" href="#">이전</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" ><a class="page-link" href="#" id="page-active">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">다음</a></li>
+            <c:if test="${pv.currentPage != 0}">
+                <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${pv.startPage }">이전</a></li>
+            </c:if>
+            
+            <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
+            <c:if test="${pv.currentPage != i and i <= pv.endPage}">
+                <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${i}">${i}</a></li>
+            </c:if>   
+            <c:if test="${pv.currentPage == i and i <= pv.endPage}">
+                <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${i}">${i}</a></li>
+            </c:if>
+            </c:forEach>
+            <c:if test="${pv.currentPage != pv.maxPage }">
+                <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${pv.currentPage+1}">다음</a></li>
+            </c:if>
             </ul>
         </div>
         
