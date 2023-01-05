@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coding5.el.faq.service.FaqService;
@@ -39,9 +40,6 @@ public class FaqController {
 		
 		model.addAttribute("memberFaqList", memberFaqList);	//일반 회원 질문 리스트
 		model.addAttribute("empFaqList", empFaqList);	//기업 회원 질문 리스트
-		
-		log.info(""+ memberFaqList);
-		log.info("" + empFaqList);
 		
 		return "faq/list";
 	}
@@ -106,7 +104,8 @@ public class FaqController {
 	
 	//자주 묻는 질문 글 수정하기
 	@GetMapping("edit")
-	public String edit() {
+	public String edit(@RequestParam("no")String no, Model model) {
+		
 		return "faq/edit";
 	}
 }

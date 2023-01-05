@@ -83,7 +83,7 @@
  	
  	<!-- 삭제 -->
  	<update id="deleteFaq" >
- 		UPDATE NOTICE
+ 		UPDATE FAQ
  		SET
  		DELETE_YN = 'Y'
  		WHERE NO IN 
@@ -95,7 +95,7 @@
 	
 	<!-- 수정 -->
 	<update id="editFaq">
-		UPDATE NOTICE 
+		UPDATE FAQ
         	SET TITLE = #{title}, 
         		CONTENT = #{content}, 
         		MODIFY_DATE = TO_CHAR(SYSDATE,'YY.MM.DD HH24:MI') 
