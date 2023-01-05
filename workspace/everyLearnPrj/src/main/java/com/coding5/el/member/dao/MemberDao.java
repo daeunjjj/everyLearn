@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.coding5.el.class_comm.vo.ClassCommVo;
+import com.coding5.el.member.vo.ClassListVo;
 import com.coding5.el.member.vo.MemberVo;
 
 
@@ -23,5 +24,7 @@ public interface MemberDao {
 	public int updateMember(SqlSessionTemplate sst, MemberVo vo);
 
 	public List<ClassCommVo> selectCommWriteList(SqlSessionTemplate sst, String memberNo);
+
+	public List<ClassListVo> selectClassReviewList(SqlSessionTemplate sst, String mNo);
 
 }

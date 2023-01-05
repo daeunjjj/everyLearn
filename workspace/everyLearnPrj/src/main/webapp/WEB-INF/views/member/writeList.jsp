@@ -43,8 +43,8 @@
                               <a id="community" class="nav-link active" href="/el/member/writeList?memberNo=${loginMember.memberNo}" style="width: 100px; text-align: center; font-size: medium; font-weight: 700; color: gray;"> 커뮤니티</a>
                             </li>   
                             <li class="nav-item">
-                                <!-- <a class="nav-link active" href="javascript:classReview('${loginMember.memberNo}')" style="width: 100px; text-align: center; font-size: medium; font-weight: 700; color: gray;"> 수강후기</href=> -->
-                            </li>     
+                                <a class="nav-link active" href="/el/member/writeListClass?mNo=${loginMember.memberNo}" style="width: 100px; text-align: center; font-size: medium; font-weight: 700; color: gray;"> 수강후기</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="#" style="width: 100px; text-align: center; font-size: medium; font-weight: 700; color: gray;"> 채용후기</a>
                             </li>
@@ -62,8 +62,8 @@
                             <thead>
                                 <tr id="write-top">
                                     <th>카테고리</th>
-                                    <th>등록일시</th>
                                     <th>제목</th>
+                                    <th>등록일시</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -71,14 +71,29 @@
 								<c:forEach items="${commWriteList}" var="commWrite">
 	                                <tr style="text-align: center;">
 	                                    <td id="write-cate">${commWrite.category}</td>
-	                                    <td id="write-date">${commWrite.enrollDate}</td>
 	                                    <td id="write-title"><a href="/el/class/detail?classCommNo=${commWrite.classCommNo}">${commWrite.title}</a></td>
+	                                    <td id="write-date">${commWrite.enrollDate}</td>
 	                                </tr>
                                 </c:forEach>
                             </tbody>
                         </c:when> 
-                        <c:when test="${count > 10  and count < 20 }">
-                            count가 10보다 크고 20보다 작은 경우
+                        <c:when test="${classReviewList != null }">
+                            <thead>
+                                <tr id="write-top">
+                                    <th>강의명</th>
+                                    <th>내용</th>
+                                    <th>등록일시</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+								<c:forEach items="${classReviewList}" var="classReview">
+	                                <tr style="text-align: center;">
+	                                    <td id="write-cate">${classReview.className}</td>
+	                                    <td id="write-title"><a href="/el/lecture/detail?bno=${classReview.classNo}">${classReview.content}</a></td>
+	                                    <td id="write-date">${classReview.enrollDate}</td>
+	                                </tr>
+                                </c:forEach>
+                            </tbody>
                         </c:when> 
                         <c:otherwise>
                             count가 20보다 큰 경우
@@ -91,9 +106,10 @@
                     <br>
                     <div class="container mt-3" id="page-alert" style="width: 600px;">
                         <ul class="pagination" id="pagenation">
+                            
                             <li class="page-item"><a class="page-link" href="#">이전</a></li>
                             <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active"><a class="page-link" href="#" id="page-active">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#" id="page-active">2</a></li>
                             <li class="page-item"><a class="page-link" href="#">3</a></li>
                             <li class="page-item"><a class="page-link" href="#">다음</a></li>
                         </ul>

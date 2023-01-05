@@ -1,13 +1,8 @@
 package com.coding5.el.class_comm.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
-import org.apache.logging.log4j.core.impl.MementoMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.coding5.el.class_comm.service.ClassCommService;
 import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.class_comm.vo.CommentVo;
+import com.coding5.el.common.page.PageVo;
+import com.coding5.el.common.page.Pagination;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -206,11 +202,29 @@ public class ClassCommController {
 	
 	//스터디
 	@GetMapping("study")
-	public String study(String orderBy, Model model) {
+	public String study(String orderBy, String pNo,  Model model) {
 		
-		List<ClassCommVo> studyList = ccs.studyList(orderBy);
-//		log.info("리스트" + studyList);
+		//데이터 꺼내기
+		if(pNo == null) {
+			pNo = "1";
+		}
+		
+		String commCateNo = "2";
+		
+		//PageVo 객체 만들기
+		int listCount = ccs.selectCnt(commCateNo);
+		int currentPage =  Integer.parseInt(pNo);
+		int pageLimit = 5;
+		int boardLimit = 3;
+		
+		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<ClassCommVo> studyList = ccs.studyList(orderBy, pv);
+		log.info("리스트" + studyList);
+		log.info("pv :: " + pv);
 		model.addAttribute("studyList", studyList);
+		model.addAttribute("pv", pv);
+		
 		if(studyList == null) {
 			return "common/error";
 		}

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.coding5.el.member.service.MemberService;
+import com.coding5.el.member.vo.ClassListVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.class_comm.vo.ClassCommVo;
@@ -30,14 +31,23 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	@PostMapping("writeListClass")
-	public String writeListClass() {
+	//작성글조회(수강평)
+	@GetMapping("writeListClass")
+	public String writeListClass(String mNo, Model model) {
+		
+		
+		List<ClassListVo> classReviewList = memberService.classReviewList(mNo);
+		log.info("클래스리스트"+ classReviewList);
+		
+		model.addAttribute("classReviewList",classReviewList);
+		
+		
 		return "member/writeList";
 	}
 	
 	
 	
-	//작성글 조회
+	//작성글 조회(강의커뮤)
 	@GetMapping("writeList")
 	public String writeList(String memberNo, Model model) {
 		

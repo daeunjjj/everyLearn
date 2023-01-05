@@ -93,15 +93,29 @@ INSERT INTO MEMBER
   </update>
   
 	<select id="selectCommWriteList" resultType="com.coding5.el.class_comm.vo.ClassCommVo">
-	SELECT 
-	CLC.TITLE
-    , TO_CHAR(CLC.ENROLL_DATE, 'YY-MM-DD HH24:MI') AS ENROLL_DATE
-    , CA.NAME CATEGORY
-    , CLC.NO CLASS_COMM_NO
-	FROM CLASS_COMM CLC 
-	JOIN COMM_CATE CA
-	ON CLC.CATE_NO = CA.NO
-	WHERE WRITER = ${memberNo}
+		SELECT 
+		CLC.TITLE
+	    , TO_CHAR(CLC.ENROLL_DATE, 'YY-MM-DD HH24:MI') AS ENROLL_DATE
+	    , CA.NAME CATEGORY
+	    , CLC.NO CLASS_COMM_NO
+		FROM CLASS_COMM CLC 
+		JOIN COMM_CATE CA
+		ON CLC.CATE_NO = CA.NO
+		WHERE WRITER = ${memberNo}
+		ORDER BY ENROLL_DATE DESC
+	</select>
+	
+	<select id="selectClassReviewList" resultType="com.coding5.el.member.vo.ClassListVo">
+		SELECT R.SCORE SCORE
+		, R.CONTENT CONTENT
+		, TO_CHAR(R.ENROLL_DATE, 'YY-MM-DD HH24:MI' ) ENROLL_DATE
+		, R.CLASS_NO CLASS_NO
+		, C.CLASS_NAME CLASS_NAME
+		FROM REVIEW_LEC R
+		JOIN CLASS C
+		ON R.CLASS_NO = C.NO
+		WHERE WRITER = ${mNo}
+		ORDER BY ENROLL_DATE DESC
 	</select>
   
 </mapper>

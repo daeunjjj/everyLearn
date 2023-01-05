@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,8 +33,8 @@
                         <div>프로필/수정</div>
                     </a>
                 </li>
-                <li>
-                    <a href="javascript:listView('${loginMember.memberNo}')" class="item">
+          <a href="javascript:listView('${loginMember.memberNo}')"      <li>
+                     class="item">
                         <input type="hidden" id="memberNo" value="${loginMember.memberNo}"> 
                         <div>작성글</div>
                     </a>
