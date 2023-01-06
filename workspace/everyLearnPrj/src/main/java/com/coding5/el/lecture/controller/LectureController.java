@@ -153,11 +153,21 @@ public class LectureController {
 		}else {
 		
 		String mno = loginMember.getMemberNo();
+		 
 		// 클릭시 조회수 증가
 		int result = lectureService.increaseCount(bno);
 		
+		//찜 목록에 있는지 확인
+		String bno1 = Integer.toString(bno);
 		
-		System.out.println("loginMember: " + loginMember);
+		HashMap<String, String>map = new HashMap<>(); 
+		map.put("bno1", bno1);
+	 	map.put("mno", mno);
+		System.out.println("=========");
+		int checkWish = lectureService.checkWish(map);
+		log.info("checkwish :: " + checkWish);
+		
+		
 		//System.out.println("lvo : " + lvo);
 		// 상세보기
 		if(result>0) {
@@ -167,6 +177,9 @@ public class LectureController {
 			mv.addObject("lvo",lvo)
 			.addObject("mno", mno)
 			.addObject("loginMember", loginMember)
+			.addObject("checkWish", checkWish)
+			//이 체크위시는 1이거나 0이어야 하는데...?
+			
 			  .setViewName("lecture/lec_detail");
 		}else {
 			mv.setViewName("common/errorPage");
@@ -199,7 +212,7 @@ public class LectureController {
 		String mno = loginMember.getMemberNo();
 		
 		List<ReviewVo> reviewList = lectureService.selectReview(bno, pv);
-		
+				
 		LectureVo lvo = lectureService.classDetail(bno);
 		
 		model.addAttribute("pv", pv);
@@ -278,7 +291,19 @@ public class LectureController {
 	  
 	// 본인이 결제한 강의 목차
 	@GetMapping("mylist")
-	public String mylist() {
+	public String mylist(Model Model, HttpSession session ) {
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		if(loginMember == null) {
+			return "member/login";
+		}else {
+			String mno = loginMember.getMemberNo();
+			
+			HashMap<String, String>map = new HashMap<>();
+			map.put("mno", mno); // 사실 이것도 필요 없잖아?
+			
+			
+		}
+		
 		return "lecture/mylist";
 	}
 
@@ -407,4 +432,6 @@ public class LectureController {
 	public String wish(int bno) {
 		return "redirect:?pno=1";
 	}
+	
+	
 }

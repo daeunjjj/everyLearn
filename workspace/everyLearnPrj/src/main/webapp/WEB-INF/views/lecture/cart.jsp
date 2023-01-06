@@ -244,7 +244,7 @@
 		
     	            
         let prodName = '${list.get(0).className}';
-        console.log("prodName : " + prodName);
+        //console.log("prodName : " + prodName);
         const cnt = ${list.size()};
         if(cnt > 1){
             prodName += ' 외 ' +(cnt-1) +'건'
@@ -259,6 +259,21 @@
 		var IMP = window.IMP; // 생략 가능
     	IMP.init("imp06204768"); //가맹점 식별코드
     	
+    	
+    	 
+    	 
+    	    // name이 같은 체크박스의 값들을 배열에 담는다.
+    	    var checkboxValues = [];
+    	    $("input[name='check']:checked").each(function(i) {
+    	        checkboxValues.push($(this).val());
+    	    });
+    	    
+    	 	// 사용자 ID(문자열)와 체크박스 값들(배열)을 name/value 형태로 담는다.
+    	    var allData = { "checkArray": checkboxValues };
+    	    const json = JSON.stringify(allData);
+    	    console.log("-------------------");
+    	 	console.log("올데이터:  " + allData);
+    	
     	 function requestPay() {
       	      // IMP.request_pay(param, callback) 결제창 호출
       	      IMP.request_pay({ // param
@@ -269,23 +284,27 @@
       	          buyer_email: email,
       	          buyer_name: name,
       	          buyer_tel: phone,
-      	          // buyer_postcode: "01181"
       	      }, function (rsp) { // callback
       	    	  if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-      	    	        // jQuery로 HTTP 요청
+      	    		
+      	    		  // jQuery로 HTTP 요청
       	    	        jQuery.ajax({
       	    	            url: "/el/payment/info", // 예: https://www.myservice.com/payments/complete
       	    	            method: "POST",
       	    	            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      	    	          	traditional: true,
       	    	            data: {
       	    	                imp_uid: rsp.imp_uid,
       	    	                merchant_uid: rsp.merchant_uid,
       	    	                amount: finalPrice,
       	    	                usePoint: usedPoint,
-      	    	                //classNum : $('.cart_info_div input[name=check]').val()
+      	    	              	//classData : allData
+      	    	                classData : json
+      	    	                //classNum : $('.cart_info_div input[name=check]').val() --> 이러면 하나만 넘어감
       	    	            }
       	    	            
       	    	        })
+      	    	           
 
    						/* .done(function (data) {
       	    	           //가맹점 서버 결제 API 성공시 로직

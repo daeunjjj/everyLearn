@@ -16,6 +16,10 @@ body{
     margin: auto;
 }
 
+.lecture-main{
+    margin-top: 50px;
+}
+
 .sidebar{
     --width: 15%;
     height: 500px;
@@ -50,7 +54,7 @@ li a {
     width: 30%;
     height: 30px;
     --border: 1px solid gray;
-    margin-top: 50px;
+    
     margin-left: auto;
     margin-bottom: 20px;
     display: flex;

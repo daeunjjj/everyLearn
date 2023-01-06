@@ -75,6 +75,9 @@ public interface LectureDao {
 
 	public int selectBno(SqlSessionTemplate sst);
 
+	//찜 목록에 이 강의 있는지 확인하기
+	public int checkWish(HashMap<String, String> map, SqlSessionTemplate sst);
+
 
 
 }

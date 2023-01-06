@@ -44,6 +44,12 @@ body{
     border-bottom: 1px solid lightgray;
 }
 
+a{
+    color:black;
+    text-decoration:none;
+}
+
+
 #carts-num{
     margin-top: 20px;
     border-bottom: 1px solid lightgray;
