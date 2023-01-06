@@ -41,7 +41,7 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class=" nav-link active" aria-current="page" href="/el/mainPage">Home 
+                            <a class=" nav-link active" aria-current="page" href="/el/main">Home 
                                 <div id="home"><span class="material-symbols-outlined">home</span></div>
                             </a> 
                         </li>
@@ -92,7 +92,7 @@
                             <a class="a nav-link" href="/el/qna/list">1:1 문의</a>
                         </li>
                         <br><br><br><br>
-                        <li>감사합니당 ;)</li>
+                        <li>좋은 하루 되세요 :)</li>
 
                       
                     </ul>
@@ -132,6 +132,17 @@
       
 </header>
 
+<script>
+    (function() {
+    var link = document.createElement('link');
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon';
+    link.href = '/el/resources/img/logo/favicon-16x16.png';
+    document.getElementsByTagName('head')[0].appendChild(link);
+    }());
+</script>
 
 </body>
+
+
 </html>

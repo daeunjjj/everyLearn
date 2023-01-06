@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +26,16 @@
             <div class="main-wrap">
 
                 <form action="" method="post" id="write-fr">
+                	<br>
+                    <div id="category">
+                        <select name="category" id="category-btn">
+                            <option value="1">강의</option>
+                            <option value="2">결제</option>
+                            <option value="3">채용</option>
+                            <option value="4">기타</option>
+                        </select>
+                    </div>
+                
                     </div>
                     <div id="title"><input type="text" name="title" required placeholder="제목"></div>
                     <div id="content"><textarea name="content" required placeholder="내용"></textarea></div>

@@ -105,17 +105,24 @@
 	<!-- 디테일 -->
 	<select id="selectDetail" resultType="FaqVo">
 		SELECT 
-		    N.NO ,
-		    N.TITLE ,
-		    N.CONTENT ,
-		    N.HIT ,
-		    N.ENROLL_DATE ,
-		    N.MODIFY_DATE ,
-		    N.DELETE_YN ,
+		    F.NO ,
+		    F.TITLE ,
+		    F.CONTENT ,
+		    F.ENROLL_DATE ,
+		    F.MODIFY_DATE ,
+		    F.DELETE_YN ,
 		    A.NICK AS ADMIN
-		FROM NOTICE N
-		JOIN ADMIN A ON N.ADMIN = A.NO 
-		WHERE N.NO = #{no} AND N.DELETE_YN = 'N'
+		FROM FAQ F
+		JOIN ADMIN A ON F.WRITER = A.NO 
+		WHERE F.NO = #{no}
+	</select>
+	
+	<!-- 카테고리 리스트 -->
+	<select id="cateList" resultType="faqVo">
+		SELECT 
+		    NO,
+            NAME
+		FROM FAQ_CATE
 	</select>
 	
   

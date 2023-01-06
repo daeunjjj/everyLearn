@@ -1,5 +1,6 @@
 package com.coding5.el.faq.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,10 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.coding5.el.faq.service.FaqService;
 import com.coding5.el.faq.vo.CateVo;
 import com.coding5.el.faq.vo.FaqVo;
+import com.coding5.el.notice.vo.NoticeVo;
 import com.coding5.el.notice.vo.PageVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +30,8 @@ import lombok.extern.slf4j.Slf4j;
 public class FaqController {
 	
 	@Autowired FaqService faqService;
-
+	
+	
 	//자주 묻는 질문 리스트
 	@GetMapping("/list")
 	public String list(Model model) throws Exception {
@@ -91,8 +95,6 @@ public class FaqController {
 		
 		int result = faqService.deleteFaq(str);
 		
-		//log.warn("선택한 row 개수 : {}", result);
-		
 		if(result == str.length()/2) {
 			return "ok";
 		}else {
@@ -101,11 +103,50 @@ public class FaqController {
 		
 	}
 	
+
 	
-	//자주 묻는 질문 글 수정하기
+	
+	//자주 묻는 질문 수정하기(화면)
 	@GetMapping("edit")
-	public String edit(@RequestParam("no")String no, Model model) {
+	public void edit(@RequestParam("no")String no, Model model) throws Exception {
 		
-		return "faq/edit";
+		List<CateVo> cateList = faqService.cateList();
+		
+		model.addAttribute("n", faqService.selectDetail(no));	
+		model.addAttribute("cateList", faqService.cateList());
 	}
-}
+	
+	//공지사항 수정하기(찐)
+	@PostMapping("edit")
+	public String edit(FaqVo vo, HttpSession session, Model model) throws Exception {
+		
+		int result = faqService.editFaq(vo);	
+		
+		if(result > 0) { 
+		
+			session.setAttribute("alertMsg", "공지 수정 성공");
+			
+			return "redirect:/faq/adminList";
+		}
+		else { // 실패 => 에러페이지 포워딩
+			
+			model.addAttribute("errorMsg", "공지 수정 실패");
+			
+			return "common/error";
+		}
+		
+	}
+	
+	
+	//faq 상세 조회
+	@GetMapping("detail")
+	public String detail(String no, Model model) throws Exception {
+		
+		FaqVo vo = faqService.selectDetail(no);
+	
+		model.addAttribute("vo", vo);
+		return "faq/detail";
+
+	}
+	
+}//class

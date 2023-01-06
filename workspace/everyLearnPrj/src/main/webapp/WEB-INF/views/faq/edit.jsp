@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,15 +31,15 @@
 
                 <form action="" method="post" id="write-fr">
                     <br>
-                    <div id="category">
-                        <select name="category" id="category-btn">
-                            <option value="employment">개인 회원</option>
-                            <option value="changeJobs">일반 회원</option>
-                        </select>
-                    </div>
+	                    <div id="category">
+	                        <select name="category" id="category-btn">
+	                            <option value="1">일반회원</option>
+	                            <option value="2">기업회원</option>
+	                        </select>
+	                    </div>
                     <br>
-                    <div id="title"><input type="text" name="title" required placeholder="제목"></div>
-                    <div id="content"><textarea name="content" required placeholder="내용"></textarea></div>
+                    <div id="title"><input type="text" name="title" required value="${ n.title }"></div>
+                    <div id="content"><textarea name="content" required placeholder="내용">${ n.content }</textarea></div>
                     <div id="write"><button type="submit" class="btn btn-light" id="submit-btn">수정하기</button></div>
                 </form>		
 

@@ -6,6 +6,6 @@ import lombok.Data;
 public class CateVo {
 	
 	private String no;
-	private String type;	// 1.일반회원		2.기업회원
+	private String name;	// 1.일반회원		2.기업회원
 
 }
