@@ -150,6 +150,13 @@ public class LectureServiceImpl implements LectureService {
 		return lectureDao.selectBno(sst);
 	}
 
+	//찜 목록에 이 강의 있는지 확인하기
+	@Override
+	public int checkWish(HashMap<String, String> map) {
+		return lectureDao.checkWish(map, sst);
+	}
+
+	
 
 
 }

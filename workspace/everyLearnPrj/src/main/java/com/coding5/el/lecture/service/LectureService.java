@@ -70,8 +70,14 @@ public interface LectureService {
 	//수강평 수정
 	public int editReview(HashMap<String, String> map);
 
-	//
+	//강의 상세 추가시 -> 번호 셀렉트
 	int selectBno();
+
+	
+	//찜 목록에 이 강의 있는지 확인하기
+	public int checkWish(HashMap<String, String> map);
+
+
 
 
 	

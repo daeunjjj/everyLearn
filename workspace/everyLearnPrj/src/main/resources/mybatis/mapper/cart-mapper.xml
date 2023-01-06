@@ -118,5 +118,12 @@
 	where MEMBER_NO = #{mno}
 	</select>
 	
+	<!-- 찜 목록에 이 강의 있는지 확인하기 -->
+	<select id="checkWish" resultType = "int">
+		select count(*) from wish
+    	where member_no = #{mno}
+    	and class_no = #{bno1}
+	</select>
+	
 	
 </mapper>

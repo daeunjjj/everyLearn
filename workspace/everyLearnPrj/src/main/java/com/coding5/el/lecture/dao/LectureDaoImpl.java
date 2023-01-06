@@ -159,6 +159,12 @@ public class LectureDaoImpl implements LectureDao{
 		return sst.selectOne("lectureMapper.selectBno");
 	}
 
+	//찜 목록에 이 강의 있는지 확인하기
+	@Override
+	public int checkWish(HashMap<String, String> map, SqlSessionTemplate sst) {
+		return sst.selectOne("cartMapper.checkWish", map);
+	}
+
 
 
 	

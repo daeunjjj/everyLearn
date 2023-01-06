@@ -6,6 +6,10 @@ body{
 
 }
 
+*{
+    box-sizing: border-box;
+  }
+
 .wrap{
     width: 70vw;
     height: 1800px;
@@ -96,7 +100,38 @@ body{
     justify-content : center;
     align-items : center;
     border-radius: 5px;
+    box-sizing: border-box;
 }
+
+
+
+#pay-zzim>a{
+    height: 50px !important;
+    width: 50px !important;
+}
+
+#pay-zzim a img{
+    height: 50px ;
+    width: 50px ;
+    object-fit: cover;
+}
+
+#pay-zzim>a>img{
+    height: 50px ;
+    width: 50px ;
+    object-fit: cover;
+}
+
+#whywhy{
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    position: fixed;
+
+}
+
+
+
 
 #pay-cart{
     grid-column: span 2;

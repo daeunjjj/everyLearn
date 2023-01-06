@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://kit.fontawesome.com/0c7f523053.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/el/resources/css/lecture/cart.css" />
 <link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 </head>
@@ -25,7 +26,7 @@
 			<div style="margin-top:100px; text-align:center; font-size:22px; font-weight:600;">찜 목록에 담긴 강의가 없습니다.</div>
 			</c:when>
 			<c:otherwise>
-			<div id="carts-num">5개 강의가 찜 목록에 있습니다.</div>
+			<div id="carts-num"> <span id="cnt">0</span>개 강의가 선택되었습니다.</div>
 			
 		</div>
 		<div id="cart-wrap">
@@ -44,7 +45,7 @@
 						<input type="hidden" name="classNo" value="${list.classNo}">
 						<%-- <input type="hidden" class="individual_totalPrice_input" value="${list.price}"> --%>
 						<div id="leccart-img"><a href='#'><img src="/el/resources/img/lecture/lecpic.png" alt="강의이미지"></a></div>
-						<div id="leccart-name">${list.className}</div>
+						<a href="/el/lecture/detail?bno=${list.classNo}" class="atag"><div id="leccart-name">${list.className}</div></a>
 						<div id="leccart-price">${list.price} 원</div>
 						<button type="button" class="remove" onclick="deleteOne(${list.classNo})">삭제</button>
 						<div id="leccart-teacher">${list.teacherNo}</div>
@@ -60,24 +61,7 @@
 		     </c:otherwise>
 		    </c:choose>
 			
-				<c:choose>
-					<c:when test="${empty list}">
-					</c:when>
-					<c:otherwise>
-						<div id="pay-wrap">
-							<form id="pay-square">
-								<div id="all-pr">선택상품 금액</div>
-								<div id="all-price">249,500원</div>
-								<div id="using-po">포인트 사용</div>
-								<div id="using-point"><input type="text" id="use-point" width="60%" placeholder="사용할 포인트를 입력해주세요."></div>
-								<div id="usable-point">보유금액 2000원</div>
-								<div id="checked-pr">결제금액</div>
-								<div id="checked-price">247,700원</div>
-								<div id="pay-btn"><input type="submit" id="btns" value="결제하기"></div>
-							</form>
-						</div>
-					</c:otherwise>
-				</c:choose>
+				
 
 		</div>
 		
@@ -92,14 +76,26 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-	
-	/* 종합 정보 섹션 정보 삽입 */
-	setTotalInfo();	
-	
-	
-	
-	
-});	
+			
+			/* 종합 정보 섹션 정보 삽입 */
+			setTotalInfo();	
+			
+		});	
+
+function setTotalInfo(){
+	let checkArr = document.querySelectorAll('.cart_info_div input[name=check]');
+	let cnt = 0;
+
+	for(let i = 0; i < checkArr.length; i++){
+		        if(checkArr[i].checked === true){
+		            
+		            cnt += 1;
+		        }
+	}	
+	console.log("cnt: " + cnt);
+	document.getElementById('cnt').innerText = cnt;
+
+}
 
 //전체선택
 function chooseAll(e){
@@ -109,7 +105,9 @@ function chooseAll(e){
     // 타겟이 전체선택 checkbox가 체크 되면 product-area에 있는 checkbox들이 체크 된다.
     checkbox[i].checked = e.target.checked
   }
+
   setTotalInfo();
+ 
 }
 document.querySelector('#all').addEventListener('change', chooseAll)
 
@@ -139,7 +137,7 @@ function classCheckOne() {
 			      },
 			      success: function (result){			          
 			        $('input[value='+ classNo +']').parent().remove() // 페이지 새로고침
-			        //setTotalInfo();
+			        console.log("잉?")
 			      }  
 			  })
 			}
