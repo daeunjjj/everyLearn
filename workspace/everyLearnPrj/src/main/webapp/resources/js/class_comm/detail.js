@@ -131,12 +131,11 @@ function postData() {
                 , "board" : board
                 }
         ,
-        success : function(result){
-            if(result != ''){
-                 alert("데이터 넘어갔음~")
-
+        success : function(){
+         
+                console.log("성공");
            
-            }	
+            
         },
         error : function(){
              alert("아 작 스 실 패") 

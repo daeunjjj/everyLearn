@@ -54,5 +54,7 @@
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
 	
+	<!--gson 객체  -->
+	<beans:bean class="com.google.gson.Gson"/>
 	
 </beans:beans>

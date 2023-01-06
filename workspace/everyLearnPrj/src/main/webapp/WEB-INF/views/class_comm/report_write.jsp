@@ -29,10 +29,10 @@
             <form action="/el/class/report" method="post" onsubmit="completion();">
               <input type="hidden" name="blacklistNo" id="blacklistNo" value="${vo.blacklistNo}">
               <input type="hidden" name="accusor" id="accusor" value="${vo.accusor}">
-             라이트넘버${vo}
+             브이오${reportVo}
 
               
-              <input type="hidden" name="cate_no" id="cate_no" value="1">
+              <!-- <input type="hidden" name="cate_no" id="cate_no" value="1"> -->
               <input type="hidden" name="board" id="board" value="${vo.board}">
             <div class="form-check">
               <div class="check-wrap">

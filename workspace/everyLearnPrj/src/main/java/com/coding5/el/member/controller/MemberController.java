@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -127,34 +128,41 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	//로그인
+
+	
+	
 	@PostMapping("login")
-	public String login(MemberVo vo, HttpSession session) {
-		
-		MemberVo loginMember = memberService.login(vo);
-		
-//		log.info(loginMember.getTeaStatusYn());
-		log.info("로그인 멤버 : " + loginMember);
-		
-		
-		if(loginMember==null) {
-			log.info("null 로그인 멤버 : " + loginMember);
-			session.setAttribute("error", "아이디와 비밀번호를 다시 한 번 확인해주세요.");
-			return "member/login";
-		}
-		
-		
-		if(loginMember != null && !loginMember.getMemberId().equals("error")) {
-			
-			session.setAttribute("loginMember", loginMember);
-			
-		}
-		
-		return "redirect:/main";
-		
-		
-		
-	}
+    public String login(MemberVo vo, HttpSession session, @RequestParam(value="type", defaultValue = "main" ) String type) {
+
+        MemberVo loginMember = memberService.login(vo);
+
+//        log.info(loginMember.getTeaStatusYn());
+        log.info("로그인 멤버 : " + loginMember);
+
+
+        if(loginMember==null) {
+            log.info("null 로그인 멤버 : " + loginMember);
+            session.setAttribute("error", "아이디와 비밀번호를 다시 한 번 확인해주세요.");
+            return "member/login";
+        }
+
+
+        if(loginMember != null && !loginMember.getMemberId().equals("error")) {
+
+            session.setAttribute("loginMember", loginMember);
+
+        }
+        log.info(type);
+        if(type.equals("emp")){
+            return "redirect:/emp/main";
+        }
+
+        return "redirect:/main";
+
+
+
+    }
+	
 	
 	//회원수정(화면)
 	@GetMapping("modify")

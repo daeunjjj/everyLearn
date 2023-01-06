@@ -1,6 +1,7 @@
 package com.coding5.el.class_comm.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -39,13 +40,13 @@ public class ClassCommDaoImpl implements ClassCommDao{
 
 	//스터디게시판
 	@Override
-	public List<ClassCommVo> selectstudyList(SqlSessionTemplate sst, String orderBy, PageVo pv) {
+	public List<ClassCommVo> selectstudyList(SqlSessionTemplate sst,  PageVo pv, Map<String, String> search) {
 		
 		int offset = (pv.getCurrentPage()-1)* pv.getBoardLimit();
 		int limit = pv.getBoardLimit();
 		RowBounds rb = new RowBounds(offset, limit);
 		
-		return sst.selectList("classCommMapper.selectStudyList",orderBy, rb);
+		return sst.selectList("classCommMapper.selectStudyList", search ,rb);
 	}
 
 	//freeList
@@ -90,8 +91,13 @@ public class ClassCommDaoImpl implements ClassCommDao{
 
 	//게시글 갯수 조회
 	@Override
-	public int selectCntOne(SqlSessionTemplate sst, String commCateNo) {
-		return sst.selectOne("classCommMapper.selectCntOne", commCateNo);
+	public int selectCntOne(SqlSessionTemplate sst,Map<String, String> search) {
+		return sst.selectOne("classCommMapper.selectCntOne", search);
+	}
+
+	@Override
+	public int insertReportInfo(SqlSessionTemplate sst, ClassCommVo reportVo) {
+		return sst.insert("classCommMapper.insertReportInfo", reportVo);
 	}
 	
 	
