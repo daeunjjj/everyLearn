@@ -39,4 +39,5 @@ public interface FaqService {
 	List<FaqVo> getEmpFaqList() throws Exception;
 
 
+
 }

@@ -81,3 +81,26 @@
 }
 
 #submit-btn:hover{ background-color: #0d73b2;}
+
+#category > select{
+    width: 80px;
+    height: 30px;
+    outline: none;
+    border-style: none;
+    background-color: #E9ECEF;
+    color: black;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+#category > select:hover{
+    background-color: #e1e4e6;
+    color: black;
+}
+
+option{
+	color: black;
+	text-align: center;
+}

@@ -128,7 +128,6 @@
 				type : "post",
 				success : function(data){
 					confirm('삭제하시겠습니까?');
-					confirm('정말?');
 					console.log(data);
 				}, 
 				error : function(error){
