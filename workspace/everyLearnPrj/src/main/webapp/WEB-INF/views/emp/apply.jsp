@@ -20,7 +20,13 @@
 			<div class="title">
 				<h5>정확하게 입력했는지 다시 한번 확인해주세요!</h5>
 			</div>
-			<form action="/el/emp/resume" method="POST" enctype="multipart/form-data">
+			<form method="POST" enctype="multipart/form-data">
+				<input type="hidden" name="no" value="${rv.no}">
+				<input type="hidden" name="avList[0].awardNo" value="${awardList[0].awardNo}">
+				<input type="hidden" name="cvList[0].careerNo" value="${careerList[0].careerNo}">
+				<input type="hidden" name="cfvList[0].certificateNo" value="${certificateList[0].certificateNo}">
+				<input type="hidden" name="evList[0].educationNo" value="${eduList[0].educationNo}">
+				<input type="hidden" name="lvList[0].languageNo" value="${langList[0].languageNo}">
 				<div class="main">
 					<div class="main-wrapper">
 						<section class="section">
@@ -32,19 +38,19 @@
 									<div class="list">
 										<p>이름</p>
 										<div>
-											<input type="text" name="name" class="input">
+											<input type="text" name="name" class="input" value="${rv.name}">
 										</div>
 									</div>
 									<div class="list">
 										<p>전화번호</p>
 										<div>
-											<input type="text" name="phone" class="input">
+											<input type="text" name="phone" class="input" value="${rv.phone}">
 										</div>
 									</div>
 									<div class="list">
 										<p>이메일</p>
 										<div>
-											<input type="text" name="email" class="input">
+											<input type="text" name="email" class="input" value="${rv.email}">
 										</div>
 									</div>
 									<!-- 드롭다운으로 변경 예정 -->
@@ -64,14 +70,14 @@
 									<div class="list expand">
 										<p>주소</p>
 										<div>
-											<input type="text" name="address" class="input additional">
+											<input type="text" name="address" class="input additional" value="${rv.address}">
 										</div>
 									</div>
 									<div class="list expand">
 										<p>상세주소</p>
 										<div>
-											<input type="text" name="address-deatail"
-												class="input additional">
+											<input type="text" name="detailAddress"
+												class="input additional" value="${rv.detailAddress}">
 										</div>
 									</div>
 								</div>
@@ -92,39 +98,45 @@
 												<div class="list">
 													<p>학력</p>
 													<div>
-														<input type="text" name="evList[0].education" class="input">
+														<input type="text" name="evList[0].education" class="input" value="${eduList[0].education}">
 													</div>
 												</div>
 												<div class="list">
 													<p>학교명</p>
 													<div>
-														<input type="text" name="evList[0].schoolName" class="input">
+														<input type="text" name="evList[0].schoolName" class="input" value="${eduList[0].schoolName}">
 													</div>
 												</div>
 												<div class="list">
 													<p>전공</p>
 													<div>
-														<input type="text" name="evList[0].major" class="input">
+														<input type="text" name="evList[0].major" class="input"  value="${eduList[0].major}">
 													</div>
 												</div>
 												<!-- 드롭다운 변경 예정 -->
 												<div class="list">
 													<p>졸업 여부</p>
 													<div>
-														<input type="text" name="evList[0].status" class="input">
+														<select name="evList[0].status" class="input">
+															<option value="1">졸업</option>
+															<option value="2">재학</option>
+															<option value="3">중퇴</option>
+														</select>
 													</div>
 												</div>
 												<div class="list">
-													<p>교육기간</p>
+													<p>입학날짜</p>
 													<div class="date-wrapper">
 														<div class="date-input start">
-															<input type="text" name="evList[0].enterSchool" class="input small year">년
-															<input type="text" name="evList[0].graduate" class="input small">월
+															<input type="month" name="evList[0].enterSchool" class="input" value="${eduList[0].enterSchool}">
 														</div>
-														<div class="tilde"> ~ </div>
-														<div class="date-input finish">
-															<input type="text" name="evList[0].enterSchool" class="input small">년
-															<input type="text" name="evList[0].graduate" class="input small">월
+													</div>
+												</div>
+												<div class="list">
+													<p>졸업날짜</p>
+													<div class="date-wrapper">
+														<div class="date-input start">
+															<input type="month" name="evList[0].graduate" class="input" value="${eduList[0].graduate}">
 														</div>
 													</div>
 												</div>
@@ -141,47 +153,58 @@
 													<div class="list">
 														<p>회사명</p>
 														<div>
-															<input type="text" name="company" class="input">
+															<input type="text" name="cvList[0].companyName" class="input" value="${careerList[0].companyName}">
 														</div>
 													</div>
 													<div class="list">
 														<p>부서명</p>
 														<div>
-															<input type="text" name="team" class="input">
+															<input type="text" name="cvList[0].team" class="input" value="${careerList[0].team}">
 														</div>
 													</div>
 													<div class="list">
 														<p>직책</p>
 														<div>
-															<input type="text" name="position" class="input">
-														</div>
-													</div>
-													<div class="list">
-														<p>재직기간</p>
-														<div class="date-wrapper">
-															<div class="date-input start">
-																<input type="text" name="evList[0].enterSchool" class="input small year">년
-																<input type="text" name="evList[0].graduate" class="input small">월
-															</div>
-															<div class="tilde"> ~ </div>
-															<div class="date-input finish">
-																<input type="text" name="evList[0].enterSchool" class="input small">년
-																<input type="text" name="evList[0].graduate" class="input small">월
-															</div>
+															<input type="text" name="cvList[0].position" class="input" value="${careerList[0].position}"> 
 														</div>
 													</div>
 													<!-- 드롭 다운 -->
 													<div class="list">
 														<p>근무유형</p>
 														<div>
-															<input type="text" name="type" class="input">
+															<select name="cvList[0].type" class="input">
+																<option value="1">인턴</option>
+																<option value="2">계약직</option>
+																<option value="3">정규직</option>
+																<option value="4">개인사업</option>
+																<option value="5">프리랜서</option>
+															</select>
+														</div>
+													</div>
+													<div class="list">
+														<p>입사일</p>
+														<div class="date-wrapper">
+															<div class="date-input start">
+																<input type="date" name="cvList[0].joinCompany" class="input" value="${careerList[0].joinCompany}">
+															</div>
+														</div>
+													</div>
+													<div class="list">
+														<p>퇴사일</p>
+														<div class="date-wrapper">
+															<div class="date-input start">
+																<input type="date" name="cvList[0].leave" class="input" value="${careerList[0].leave}">
+															</div>
 														</div>
 													</div>
 													<!-- 드롭 다운 -->
 													<div class="list">
 														<p>재직 여부</p>
 														<div>
-															<input type="text" name="status" class="input">
+															<select name="cvList[0].currentYN" class="input">
+																<option value="Y">재직중</option>
+																<option value="N">퇴사</option>
+															</select>
 														</div>
 													</div>
 												</div>
@@ -207,20 +230,20 @@
 													<div class="list">
 														<p>수상내역</p>
 														<div>
-															<input type="text" name="award" class="input">
+															<input type="text" name="avList[0].awardName" class="input" value="${awardList[0].awardName}">
 														</div>
 													</div>
 													<div class="list">
 														<p>수상년도</p>
 														<div>
-															<input type="text" name="award-date" class="input">
+															<input type="month" name="avList[0].awardDate" class="input" value="${awardList[0].awardDate}">
 														</div>
 													</div>
 													<!-- textarea -->
 													<div class="list">
 														<p>수상기관</p>
 														<div>
-															<input type="text" name="award-detail" class="input">
+															<input type="text" name="avList[0].awardAgency" class="input" value="${awardList[0].awardAgency}">
 														</div>
 													</div>
 												</div>
@@ -237,21 +260,21 @@
 													<div class="list">
 														<p>자격증명</p>
 														<div>
-															<input type="text" name="certificate" class="input">
+															<input type="text" name="cfvList[0].certificateName" class="input" value="${certificateList[0].certificateName}">
 														</div>
 													</div>
 													<!-- textarea -->
 													<div class="list">
 														<p>취득일</p>
 														<div>
-															<input type="text" name="certificate-detail"
-																class="input">
+															<input type="month" name="cfvList[0].certificateDate"
+																class="input"  value="${certificateList[0].certificateDate}">
 														</div>
 													</div>
 													<div class="detail">
 														<p>발급기관</p>
 														<div>
-															<input type="text" name="certificate-date" class="input">
+															<input type="text" name="cfvList[0].certificateAgency" class="input"  value="${certificateList[0].certificateAgency}">
 														</div>
 													</div>
 												</div>
@@ -268,14 +291,18 @@
 													<div class="list">
 														<p>언어명</p>
 														<div>
-															<input type="text" name="language" class="input">
+															<input type="text" name="lvList[0].language" class="input" value="${langList[0].language}">
 														</div>
 													</div>
 													<!-- 드롭다운 -->
 													<div class="list">
 														<p>수준</p>
 														<div>
-															<input type="text" name="level" class="input">
+															<select name="lvList[0].languageLevel" class="input">
+																<option value="1">상</option>
+																<option value="2">중</option>
+																<option value="3">하</option>
+															</select>
 														</div>
 													</div>
 												</div>
@@ -298,7 +325,7 @@
 										</div>
 										<div class="textarea">
 											<textarea type="text" name="introduce" class="introduce"
-												maxlength="5000"></textarea>
+												maxlength="5000">${rv.introduce}</textarea>
 										</div>
 									</div>
 								</div>
@@ -312,15 +339,18 @@
 									<div class="list">
 										<p>링크</p>
 										<div>
-											<input type="text" name="link" class="input additional">
+											<input type="text" name="link" class="input additional" value="${rv.link}">
 										</div>
 									</div>
 									<div class="list">
 										<p>첨부파일</p>
 										<div>
-											<input type="text" name="attachments"
-												class="input additional">
+											<input type="file" name="attach"
+												class="input additional" value="${rv.attach}">
 										</div>
+										<c:if test="${not empty rv.attachName}">
+											<a href="/el/resources/upload/${rv.attachName}" download="${rv.attachName}">${rv.attachName}</a>
+										</c:if>
 									</div>
 								</div>
 							</div>

@@ -8,10 +8,16 @@
 	<select id="selectResumeOne" resultType="ResumeVo">
 		SELECT 
 			NO
-			, MEMBER_NO
-			, ADRESS
-			, LINK
-			, INTRODUCE
+            , MEMBER_NO
+            , CATEGORY
+            , NAME
+            , PHONE
+            , EMAIL
+            , ADDRESS
+            , DETAIL_ADDRESS
+            , LINK
+            , INTRODUCE
+            , ATTACH AS ATTACH_NAME
 		FROM RESUME
 		WHERE MEMBER_NO = #{value}
 	</select>
@@ -25,7 +31,7 @@
 			, EDUCATION
 			, SCHOOL_NAME
 			, MAJOR
-			, ENTER
+			, ENTER AS ENTER_SCHOOL
 			, GRADUATE
 		FROM EDUCATION
 		WHERE RESUME_NO = #{no}
@@ -49,7 +55,7 @@
 			, RESUME_NO
 			, AWARD_NAME
 			, AWARD_DATE
-			, AGENCY
+			, AGENCY AS AWARD_AGENCY
 		FROM AWARD
 		WHERE RESUME_NO = #{no}
 	</select>
@@ -63,7 +69,7 @@
 			, COMPANY_NAME
 			, TEAM
 			, POSITION
-			, ENTER
+			, ENTER AS JOIN_COMPANY
 			, LEAVE
 			, CURRENT_YN
 		FROM CAREER
@@ -77,27 +83,14 @@
 			, RESUME_NO
 			, CERTIFICATE_NAME
 			, CERTIFICATE_DATE
-			, AGENCY
+			, AGENCY AS CERTIFICATE_AGENCY
 		FROM CERTIFICATE
-		WHERE RESUME_NO = #{no}
-	</select>
-	
-	<!-- 첨부파일 조회하기 -->
-	<select id="selectAttach" resultType="ResumeAttatchVo">
-		SELECT
-			NO AS RESUME_ATTATCH_NO
-			, RESUME_NO
-			, ORIGIN_NAME
-			, CHANGE_NAME
-			, FILE_PATH
-			, ENROLL_DATE
-		FROM RESUME_ATTATCH
 		WHERE RESUME_NO = #{no}
 	</select>
 	
 	<!-- 이력서 작성하기 -->
 	<update id="updateResume">
-		MERGE INTO RESUME
+		   MERGE INTO RESUME
 			USING DUAL
 			ON 
 			(
@@ -106,28 +99,46 @@
 			)
 		WHEN MATCHED THEN
 			UPDATE SET
-				 ADRESS = #{adress}
+                CATEGORY = #{category}
+                , NAME = #{name}
+                , PHONE = #{phone}
+                , EMAIL = #{email}
+				, ADDRESS = #{address}
+                , DETAIL_ADDRESS = #{detailAddress}
 				, LINK = #{link}
 				, INTRODUCE = #{introduce}
 				, MODIFY_DATE = SYSDATE
+                , ATTACH = #{attachName}
 		WHEN NOT MATCHED THEN
 			INSERT
 			(
 				NO
-				, MEMBER_NO
-				, ADRESS
-				, LINK
-				, INTRODUCE
-				, ENROLL_DATE
+                , MEMBER_NO
+                , CATEGORY
+                , NAME
+                , PHONE
+                , EMAIL
+                , ADDRESS
+                , DETAIL_ADDRESS
+                , LINK
+                , INTRODUCE
+                , ENROLL_DATE
+                , ATTACH
 			)
 			VALUES
 			(
 				SEQ_RESUME_NO.NEXTVAL
 				, #{memberNo}
-				, #{adress}
+				, #{category}
+				, #{name}
+				, #{phone}
+				, #{email}
+				, #{address}
+				, #{detailAddress}
 				, #{link}
 				, #{introduce}
 				, SYSDATE
+				, #{attachName}
 			)
 	</update>
 	

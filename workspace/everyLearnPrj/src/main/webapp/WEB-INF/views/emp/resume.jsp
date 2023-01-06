@@ -22,6 +22,11 @@
 			</div>
 			<form action="/el/emp/resume" method="POST" enctype="multipart/form-data">
 				<input type="hidden" name="no" value="${rv.no}">
+				<input type="hidden" name="avList[0].awardNo" value="${awardList[0].awardNo}">
+				<input type="hidden" name="cvList[0].careerNo" value="${careerList[0].careerNo}">
+				<input type="hidden" name="cfvList[0].certificateNo" value="${certificateList[0].certificateNo}">
+				<input type="hidden" name="evList[0].educationNo" value="${eduList[0].educationNo}">
+				<input type="hidden" name="lvList[0].languageNo" value="${langList[0].languageNo}">
 				<div class="main">
 					<div class="main-wrapper">
 						<section class="section">
@@ -93,7 +98,6 @@
 												<div class="list">
 													<p>학력</p>
 													<div>
-														<input type="hidden" name="evList[0].educationNo" value="${eduList[0].educationNo}">
 														<input type="text" name="evList[0].education" class="input" value="${eduList[0].education}">
 													</div>
 												</div>
@@ -168,7 +172,7 @@
 													<div class="list">
 														<p>근무유형</p>
 														<div>
-															<select name="cvList[0].status" class="input">
+															<select name="cvList[0].type" class="input">
 																<option value="1">인턴</option>
 																<option value="2">계약직</option>
 																<option value="3">정규직</option>
@@ -232,7 +236,7 @@
 													<div class="list">
 														<p>수상년도</p>
 														<div>
-															<input type="date" name="avList[0].awardDate" class="input" value="${awardList[0].awardDate}">
+															<input type="month" name="avList[0].awardDate" class="input" value="${awardList[0].awardDate}">
 														</div>
 													</div>
 													<!-- textarea -->
@@ -341,9 +345,12 @@
 									<div class="list">
 										<p>첨부파일</p>
 										<div>
-											<input type="file" name="attatch"
-												class="input additional" value="${rv.attatch}">
+											<input type="file" name="attach"
+												class="input additional" value="${rv.attach}">
 										</div>
+										<c:if test="${not empty rv.attachName}">
+											<a href="/el/resources/upload/${rv.attachName}" download="${rv.attachName}">${rv.attachName}</a>
+										</c:if>
 									</div>
 								</div>
 							</div>

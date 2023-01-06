@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -206,7 +207,14 @@
 					</section>
 					<section class="admin-submit">
 						<div>
-							<button type="submit" class="admin-btn" disabled>승인 요청</button>
+						<c:choose>
+							<c:when test="${'Y' eq corpMember.statusYn}">
+								<button type="submit" class="admin-btn">저장 하기</button>
+							</c:when>
+							<c:otherwise>
+								<button type="submit" class="admin-btn" disabled>승인 요청</button>
+							</c:otherwise>
+						</c:choose>
 						</div>
 					</section>
 				</form>

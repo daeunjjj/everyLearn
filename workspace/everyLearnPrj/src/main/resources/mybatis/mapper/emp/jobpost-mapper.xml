@@ -24,10 +24,10 @@
 		, CORP.COMPANY_ADDRESS
 		, CORP.LOGO
 		, CORP.THUMB
-		, EC.TYPE
+		, JOB.TYPE
 	FROM EMPLOYMENT EMP
 	JOIN CORPORATE_MEMBER CORP ON EMP.CORP_NO = CORP.NO
-	JOIN EMP_CATE EC ON EMP.CATEGORY = EC.NO
+	JOIN JOB_CATE JOB ON EMP.CATEGORY = JOB.NO
 	WHERE EMP.NO = #{no}
   </select>
   
@@ -54,5 +54,21 @@
   	WHERE DELETE_YN = 'N'
   	AND DEADLINE >= TO_CHAR(SYSDATE,'YYYY-MM-DD')
   </select>
+  
+  <!-- 지원하기 -->
+  <insert id="insertApplyByMember">
+  	INSERT INTO APPLY
+  	(
+  		NO
+		, MEMBER_NO
+		, EMP_NO
+  	)
+  	VALUES
+  	(
+  		SEQ_APPLY_NO.NEXTVAL
+  		, #{memberNo}
+  		, #{empNo}
+  	)
+  </insert>
   
 </mapper>

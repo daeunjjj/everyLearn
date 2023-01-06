@@ -6,6 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/el/resources/css/common/header.css">
+<script>
+	(function() {
+    var link = document.createElement('link');
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon';
+    link.href = '/el/resources/img/logo/favicon-16x16.png';
+    document.getElementsByTagName('head')[0].appendChild(link);
+	}());
+</script>
 </head>
 <body>
 
@@ -24,7 +33,7 @@
 		</div>
 		<nav id="navbar">
 			<div class="logoTop">
-				<a href="/el/emp/main"><img src="/el/resources/img/logo/logo.svg" alt="로고"></a>
+				<a href="/el/emp/main"><img src="/el/resources/img/logo/logo.svg" alt="로고" class="el-logo"></a>
 			</div>
 			<div id="nav-container">
 				<div class="nav-list">
@@ -39,7 +48,7 @@
 					</div>
 				</div>
 				<div class="member">
-					<a href="/el/member/login" class="login">로그인</a><a href="/el/member/join" class="join">회원가입</a>
+					<a href="/el/member/login?type=emp" class="login">로그인</a><a href="/el/member/join" class="join">회원가입</a>
 				</div>
 			</div>
 		</nav>

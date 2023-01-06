@@ -20,7 +20,6 @@
 	<%@ include file="/WEB-INF/views/common/emp-header.jsp"%>
 
 	<main id="container">
-		<form action="/el/emp/position" method="POST">
 			<div class="jobContent">
 				<div class="post">
 					<header class="header">
@@ -82,12 +81,11 @@
 					</dl>
 					<c:if test="${not empty loginMember}">
 					<div>
-						<a href="/el/emp/apply?${vo.no}"><button class="submit-btn">지원하기</button></a>
+						<a href="/el/emp/apply?empNo=${vo.no}"><button class="submit-btn">지원하기</button></a>
 					</div>
 					</c:if>
 				</aside>
 			</div>
-		</form>
 	</main>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>

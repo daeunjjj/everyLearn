@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="/el/resources/css/emp/main.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 <link rel="stylesheet" href="/el/resources/css/common/font.css">
-<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 </head>
 
 <body>
@@ -19,7 +18,7 @@
 
 	<main id="container">
 		<div class="advertisment">
-			<img src="/el/resources/img/logo/logo_white.png" alt="">
+			<img src="" alt="">
 		</div>
 		<div class="emp-container">
 			<div class="emp">
@@ -34,7 +33,7 @@
 					<c:forEach items="${list}" var="list" begin="0" end="11" step="1">
 						<li>
 							<div class="announcement-wrapper">
-								<a href="">
+								<a href="/el/emp/position?no=${list.no}">
 									<figure class="img-wrapper">
 										<img src="/el/resources/img/logo/logo_white.png" alt="img">
 									</figure>

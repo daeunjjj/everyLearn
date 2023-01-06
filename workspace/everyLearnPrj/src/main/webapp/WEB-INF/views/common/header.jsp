@@ -7,6 +7,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/el/resources/css/common/header.css">
+<script>
+	(function() {
+    var link = document.createElement('link');
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon';
+    link.href = '/el/resources/img/logo/favicon-16x16.png';
+    document.getElementsByTagName('head')[0].appendChild(link);
+	}());
+</script>
 </head>
 <body>
 
@@ -24,7 +33,7 @@
 		</div>
 		<nav id="navbar">
 			<div class="logoTop">
-				<a href=""><img src="/el/resources/img/logo/logo.svg" alt="로고"></a>
+				<a href=""><img src="/el/resources/img/logo/logo.svg" alt="로고" class="el-logo"></a>
 			</div>
 			<div id="nav-container">
 				<div class="nav-list">

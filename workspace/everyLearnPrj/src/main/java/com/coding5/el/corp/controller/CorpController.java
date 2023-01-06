@@ -78,6 +78,8 @@ public class CorpController {
 			return "emp/member/login";
 		}
 		
+		log.info(corpMember.getStatusYn());
+		
 		session.setAttribute("corpMember", corpMember);
 		return "redirect:/corp/mypage";
 	}
@@ -121,7 +123,7 @@ public class CorpController {
 	
 	// 기업 마이페이지(화면)
 	@GetMapping("mypage")
-	public String mypage(HttpSession session) {
+	public String mypage(HttpSession session, Model model) {
 		
 		CorpVo corpMember = (CorpVo) session.getAttribute("corpMember");
 		
@@ -131,7 +133,8 @@ public class CorpController {
 		
 		CorpVo cv = cs.selectMypage(corpMember);
 		
-		session.setAttribute("cv", cv);
+		session.setAttribute("corpMember", cv);
+		model.addAttribute("cv", cv);
 		
 		return "emp/mypage/mypage";
 	}
@@ -146,18 +149,18 @@ public class CorpController {
 		// 회사 로고  이미지 저장
 		String logoName = "";
 		if(!vo.getLogo().isEmpty()) {
-			logoName = FileUploader.upload(session, vo.getLogo());
+			logoName = FileUploader.upload(session, vo.getLogoFile());
 		}
 		
-		vo.setLogoName(logoName);
+		vo.setLogo(logoName);
 		
 		// 회사 이미지 저장
 		String thumbName = "";
 		if(!vo.getThumb().isEmpty()) {
-			thumbName = FileUploader.upload(session, vo.getThumb());
+			thumbName = FileUploader.upload(session, vo.getThumbFile());
 		}
 		
-		vo.setThumbName(thumbName);
+		vo.setThumb(thumbName);
 		
 		int result = cs.updateCorpInfo(vo);
 		

@@ -12,17 +12,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.coding5.el.common.file.FileUploader;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.page.Pagination;
 import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.emp.service.EmpService;
+import com.coding5.el.emp.vo.ApplyVo;
 import com.coding5.el.emp.vo.AwardVo;
 import com.coding5.el.emp.vo.CareerVo;
 import com.coding5.el.emp.vo.CertificateVo;
 import com.coding5.el.emp.vo.EducationVo;
 import com.coding5.el.emp.vo.JobPostVo;
 import com.coding5.el.emp.vo.LanguageVo;
-import com.coding5.el.emp.vo.ResumeAttatchVo;
 import com.coding5.el.emp.vo.ResumeVo;
 import com.coding5.el.member.service.MemberService;
 import com.coding5.el.member.vo.MemberVo;
@@ -36,35 +37,6 @@ public class EmpController {
 	
 	@Autowired
 	private EmpService es;
-	
-//	@Autowired
-//	private MemberService memberService;
-//	
-//	//로그인
-//	@PostMapping("login")
-//	public String login(MemberVo vo, HttpSession session) {
-//		
-//		MemberVo loginMember = memberService.login(vo);
-//		
-//		log.info("로그인 멤버 : " + loginMember);
-//		
-//		
-//		if(loginMember==null) {
-//			log.info("null 로그인 멤버 : " + loginMember);
-//			session.setAttribute("error", "아이디와 비밀번호를 다시 한 번 확인해주세요.");
-//			return "member/login";
-//		}
-//		
-//		
-//		if(loginMember != null && !loginMember.getMemberId().equals("error")) {
-//			
-//			session.setAttribute("loginMember", loginMember);
-//			
-//		}
-//		
-//		return "redirect:/emp/main";
-//		
-//	}
 	
 	// 채용 메인 페이지(화면)
 	@GetMapping("main")
@@ -117,58 +89,68 @@ public class EmpController {
 	}
 	
 	// 지원하기(화면)
-//	@GetMapping("apply")
-//	public String apply(HttpSession session, Model model) {
-//		
-//		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-//		
-//		if(loginMember == null) {
-//			return "member/login";
-//		}
-//		
-//		String memberNo = loginMember.getMemberNo();
-//		
-//		ResumeVo rv = es.selectResume(memberNo);
-//		List<EducationVo> eduList = es.selectEducation(rv);
-//		List<LanguageVo> langList = es.selectLanguage(rv);
-//		List<AwardVo> awardList = es.selectAward(rv);
-//		List<CareerVo> careerList = es.selectCareer(rv);
-//		List<CertificateVo> certificateList = es.selectCertificate(rv);
-//		List<ResumeAttatchVo> attachList = es.selectAttach(rv);
-//		
-//		model.addAttribute("rv", rv);
-//		model.addAttribute("eduList", eduList);
-//		model.addAttribute("langList", langList);
-//		model.addAttribute("awardList", awardList);
-//		model.addAttribute("careerList", careerList);
-//		model.addAttribute("certificateList", certificateList);
-//		model.addAttribute("attachList", attachList);
-//		
-//		return "emp/apply";
-//		
-//	}
-	
-	// 지원하기
-	@PostMapping("apply")
-//	public String apply(HttpSession session, ResumeVo vo, String[] awardNo, String[] awardName, String[] awardDate, String[] awardAgency, 
-//			String[] careerNo, String[] type, String[] companyName, 
-//			String[] team, String[] position, String[] joinCompany, String[] leave, String[] currentYN, 
-//			String[] certificateNo, String[] certificateName, String[] certificateDate, String[] certificateAgency, String[] educationNo, 
-//			String[] status, String[] education, String[] schoolName, String[] major, String[] enterSchool, 
-//			String[] graduate, String[] languageNo, String[] language, String[] languageLevel, 
-//			String[] attachNo, String[] originName, String[] changeName, String[] filePath) {
-//		
-//		return "";
-//		
-//	}
-	public String apply(HttpSession session, EducationVo ev) {
+	@GetMapping("apply")
+	public String apply(HttpSession session, Model model) {
 		
-		log.info(ev.toString());
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 		
-		return"";
+		if(loginMember == null) {
+			return "redirect:/member/login";
+		}
+		
+		String memberNo = loginMember.getMemberNo();
+		
+		ResumeVo rv = es.selectResume(memberNo);
+		List<EducationVo> eduList = es.selectEducation(rv);
+		List<LanguageVo> langList = es.selectLanguage(rv);
+		List<AwardVo> awardList = es.selectAward(rv);
+		List<CareerVo> careerList = es.selectCareer(rv);
+		List<CertificateVo> certificateList = es.selectCertificate(rv);
+		
+		model.addAttribute("rv", rv);
+		model.addAttribute("eduList", eduList);
+		model.addAttribute("langList", langList);
+		model.addAttribute("awardList", awardList);
+		model.addAttribute("careerList", careerList);
+		model.addAttribute("certificateList", certificateList);
+		
+		return "emp/apply";
 		
 	}
 	
+	// 지원하기
+	@PostMapping("apply")
+	public String apply(HttpSession session, ResumeVo rv, EducationVo ev, AwardVo av, CareerVo cv, CertificateVo cfv, LanguageVo lv, @RequestParam("empNo") String empNo) {
+		
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		
+		if(loginMember == null) {
+			return "redirect:/member/login";
+		}	
+		
+		// 파일 업로드
+		String memberNo = loginMember.getMemberNo();
+		
+		String attach = "";
+		if(!rv.getAttach().isEmpty()) {
+			attach = FileUploader.upload(session, rv.getAttach());
+			rv.setAttachName(attach);
+		}
+		
+		ApplyVo vo = new ApplyVo();
+		vo.setMemberNo(memberNo);
+		vo.setEmpNo(empNo);
+		
+		int result = es.insertResume(memberNo, rv, ev, av, cv, cfv, lv);
+		int apply = es.apply(vo);
+		
+		if(result != 1) {
+			return "common/error";
+		}
+		
+		return "redirect:/emp/position?no=" + empNo;
+		
+	}
 		
 	// 채용 이력서(화면)
 	@GetMapping("resume")
@@ -185,7 +167,6 @@ public class EmpController {
 			List<AwardVo> awardList = es.selectAward(rv);
 			List<CareerVo> careerList = es.selectCareer(rv);
 			List<CertificateVo> certificateList = es.selectCertificate(rv);
-			List<ResumeAttatchVo> attachList = es.selectAttach(rv);
 			
 			model.addAttribute("rv", rv);
 			model.addAttribute("eduList", eduList);
@@ -193,7 +174,6 @@ public class EmpController {
 			model.addAttribute("awardList", awardList);
 			model.addAttribute("careerList", careerList);
 			model.addAttribute("certificateList", certificateList);
-			model.addAttribute("attachList", attachList);
 		}
 		
 		
@@ -207,14 +187,24 @@ public class EmpController {
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 		
 		if(loginMember == null) {
-			return "member/login";
-		}
+			return "redirect:/member/login";
+		}	
 		
+		// 파일 업로드
 		String memberNo = loginMember.getMemberNo();
+		
+		String attach = "";
+		if(!rv.getAttach().isEmpty()) {
+			attach = FileUploader.upload(session, rv.getAttach());
+			rv.setAttachName(attach);
+		}
 		
 		
 		int result = es.insertResume(memberNo, rv, ev, av, cv, cfv, lv);
-		log.info(ev.toString());
+
+		if(result != 1) {
+			return "common/error";
+		}
 		
 		return "redirect:/emp/resume";
 		
