@@ -9,13 +9,13 @@ import org.springframework.stereotype.Repository;
 
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.corp.vo.EmploymentVo;
+import com.coding5.el.emp.vo.ApplyVo;
 import com.coding5.el.emp.vo.AwardVo;
 import com.coding5.el.emp.vo.CareerVo;
 import com.coding5.el.emp.vo.CertificateVo;
 import com.coding5.el.emp.vo.EducationVo;
 import com.coding5.el.emp.vo.JobPostVo;
 import com.coding5.el.emp.vo.LanguageVo;
-import com.coding5.el.emp.vo.ResumeAttatchVo;
 import com.coding5.el.emp.vo.ResumeVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -53,11 +53,6 @@ public class EmpDaoImpl implements EmpDao {
 	@Override
 	public List<CertificateVo> selectCertificate(SqlSessionTemplate sst, ResumeVo vo) {
 		return sst.selectList("resumeMapper.selectCertificate", vo);
-	}
-
-	@Override
-	public List<ResumeAttatchVo> selectAttach(SqlSessionTemplate sst, ResumeVo vo) {
-		return sst.selectList("resumeMapper.selectAttach", vo);
 	}
 
 	// 채용 공고 상세
@@ -123,6 +118,12 @@ public class EmpDaoImpl implements EmpDao {
 	@Override
 	public int updateLanguage(SqlSessionTemplate sst, List<LanguageVo> lvList) {
 		return sst.update("resumeMapper.updateLanguage", lvList);
+	}
+
+	// 지원하기
+	@Override
+	public int insertApplyByMember(SqlSessionTemplate sst, ApplyVo vo) {
+		return sst.insert("jobPostMapper.insertApplyByMember", vo);
 	}
 
 

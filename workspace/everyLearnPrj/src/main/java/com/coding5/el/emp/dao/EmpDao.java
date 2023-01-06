@@ -6,13 +6,13 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.corp.vo.EmploymentVo;
+import com.coding5.el.emp.vo.ApplyVo;
 import com.coding5.el.emp.vo.AwardVo;
 import com.coding5.el.emp.vo.CareerVo;
 import com.coding5.el.emp.vo.CertificateVo;
 import com.coding5.el.emp.vo.EducationVo;
 import com.coding5.el.emp.vo.JobPostVo;
 import com.coding5.el.emp.vo.LanguageVo;
-import com.coding5.el.emp.vo.ResumeAttatchVo;
 import com.coding5.el.emp.vo.ResumeVo;
 
 public interface EmpDao {
@@ -29,8 +29,6 @@ public interface EmpDao {
 	List<CareerVo> selectCareer(SqlSessionTemplate sst, ResumeVo vo);
 
 	List<CertificateVo> selectCertificate(SqlSessionTemplate sst, ResumeVo vo);
-
-	List<ResumeAttatchVo> selectAttach(SqlSessionTemplate sst, ResumeVo vo);
 
 	// 채용 공고 상세
 	JobPostVo selectJobPostDetail(SqlSessionTemplate sst, String no);
@@ -61,5 +59,8 @@ public interface EmpDao {
 
 	// 언어 작성하기
 	int updateLanguage(SqlSessionTemplate sst, List<LanguageVo> lvList);
+
+	// 지원하기
+	int insertApplyByMember(SqlSessionTemplate sst, ApplyVo vo);
 
 }

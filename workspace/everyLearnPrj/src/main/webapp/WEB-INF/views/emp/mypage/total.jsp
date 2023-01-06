@@ -24,10 +24,12 @@
                     <thead>
                         <tr>
                             <th width="5%">No</th>
-                            <th width="50%">공고 제목</th>
+                            <th width="35%">공고 제목</th>
                             <th width="15%">등록 날짜</th>
                             <th width="15%">채용 기한</th>
-                            <th width="15%">채용 상태</th>
+                            <th width="10%">채용 상태</th>
+                            <th width="10%">지원자 수</th>
+                            <th width="10%"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +40,8 @@
                                 <td>${vo.enrollDate}</td>
                                 <td>${vo.deadline}</td>
                                 <td>${vo.status}</td>
+                                <td>5명</td>
+                                <td><a href=""><button>상세보기</button></a></td>
                             </tr>
                        </c:forEach>
                     </tbody>

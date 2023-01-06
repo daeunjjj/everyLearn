@@ -4,13 +4,13 @@ import java.util.List;
 
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.corp.vo.EmploymentVo;
+import com.coding5.el.emp.vo.ApplyVo;
 import com.coding5.el.emp.vo.AwardVo;
 import com.coding5.el.emp.vo.CareerVo;
 import com.coding5.el.emp.vo.CertificateVo;
 import com.coding5.el.emp.vo.EducationVo;
 import com.coding5.el.emp.vo.JobPostVo;
 import com.coding5.el.emp.vo.LanguageVo;
-import com.coding5.el.emp.vo.ResumeAttatchVo;
 import com.coding5.el.emp.vo.ResumeVo;
 
 public interface EmpService {
@@ -28,7 +28,6 @@ public interface EmpService {
 
 	List<CertificateVo> selectCertificate(ResumeVo vo);
 
-	List<ResumeAttatchVo> selectAttach(ResumeVo vo);
 
 	// 채용 공고 상세
 	JobPostVo jobPostDetail(String no);
@@ -41,7 +40,8 @@ public interface EmpService {
 
 	// 이력서 입력
 	int insertResume(String memberNo, ResumeVo rv, EducationVo ev, AwardVo av, CareerVo cv, CertificateVo cfv, LanguageVo lv);
+	
+	// 지원하기
+	int apply(ApplyVo vo);
 
 }
-// , List<LanguageVo> lvList, List<AwardVo> avList,
-//List<CareerVo> cvList, List<CertificateVo> cfvList, List<ResumeAttatchVo> ravList

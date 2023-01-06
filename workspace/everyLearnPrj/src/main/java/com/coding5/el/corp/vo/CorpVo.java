@@ -26,9 +26,9 @@ public class CorpVo {
 	private String empNum;
 	private String sales;
 	private String homepage;
-	private MultipartFile logo;
-	private MultipartFile thumb;
-	private String logoName;
-	private String thumbName;
+	private MultipartFile logoFile;
+	private MultipartFile thumbFile;
+	private String logo;
+	private String thumb;
 	private String deleteYn;
 }

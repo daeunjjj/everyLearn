@@ -25,7 +25,7 @@
 
             <div id="wrap-join">
                 
-                <form action="/el/member/login" method="post" id="join-form" onsubmit="loginOk()">
+                <form method="post" id="join-form" onsubmit="loginOk()">
 
                 <h4><label for="">아이디</label></h4>
                 <span class="join-box">

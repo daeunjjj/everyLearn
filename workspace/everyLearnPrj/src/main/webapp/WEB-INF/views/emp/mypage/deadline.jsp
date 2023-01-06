@@ -24,10 +24,12 @@
                     <thead>
                         <tr>
                             <th width="5%">No</th>
-                            <th width="50%">공고 제목</th>
+                            <th width="40%">공고 제목</th>
                             <th width="15%">등록 날짜</th>
                             <th width="15%">채용 기한</th>
-                            <th width="15%">채용 상태</th>
+                            <th width="10%">채용 상태</th>
+                            <th width="5%">지원자 수</th>
+                            <th width="10%"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +40,8 @@
                             <td>${vo.enrollDate}</td>
                             <td>${vo.deadline}</td>
                             <td>${vo.status}</td>
+                            <td>5명</td>
+                            <td><a href=""><button>상세보기</button></a></td>
                         </tr>
                    </c:forEach>
                     </tbody>
@@ -47,17 +51,17 @@
                 <ul>
                 <c:if test="${pv.currentPage != 1}">
                     <li>
-                        <a id="before" href="/el/corp/deadLine?pno=${pv.currentPage-1}">이전</a>
+                        <a id="before" href="/el/corp/deadline?pno=${pv.currentPage-1}">이전</a>
                     </li>
                 </c:if>
                 <c:forEach var="num" begin="${pv.startPage }" end="${pv.endPage }">
                     <li>
-                        <a class="numBtn" href="/el/corp/deadLine?pno=${num}">${num}</a>
+                        <a class="numBtn" href="/el/corp/deadline?pno=${num}">${num}</a>
                     </li>
                 </c:forEach>
                 <c:if test="${pv.currentPage != pv.maxPage && pv.maxPage != 0}">
                     <li>
-                        <a id="after" href="/el/corp/deadLine?pno=${pv.currentPage+1}">다음</a>                       		
+                        <a id="after" href="/el/corp/deadline?pno=${pv.currentPage+1}">다음</a>                       		
                     </li>
                 </c:if>
                 </ul>
