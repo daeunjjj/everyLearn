@@ -11,6 +11,15 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+    (function() {
+    var link = document.createElement('link');
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon';
+    link.href = '/el/resources/img/logo/favicon-16x16.png';
+    document.getElementsByTagName('head')[0].appendChild(link);
+    }());
+</script>
 </head>
 <body>
 	<c:if test="${failMsg != null }">

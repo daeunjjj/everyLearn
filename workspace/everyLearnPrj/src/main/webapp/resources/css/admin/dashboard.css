@@ -31,3 +31,20 @@ main *{
     margin-left: 5px;
     color: red;
 }
+
+.stats-area{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.chart-area>div:first-child{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.chart-top{
+    display: flex;
+    justify-content: space-between;
+}

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.coding5.el.admin.vo.AdminVo;
+import com.coding5.el.chart.vo.ChartVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.member.vo.MemberVo;
@@ -121,6 +122,9 @@ public interface AdminService {
 	
 	// 대쉬보드 알람가져오기
 	public Map<String, Object> selectDashboardAlert();
+	
+	// 통계 연령대 별
+	public List<ChartVo> selectAgeChart();
 	
 
 	

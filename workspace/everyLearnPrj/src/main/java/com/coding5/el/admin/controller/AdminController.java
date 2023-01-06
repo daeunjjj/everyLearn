@@ -19,10 +19,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.coding5.el.admin.service.AdminService;
 import com.coding5.el.admin.vo.AdminVo;
+import com.coding5.el.chart.vo.ChartVo;
 import com.coding5.el.common.file.FileUploader;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.page.Pagination;
 import com.coding5.el.request.vo.RequestVo;
+import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
 @RequestMapping("admin")
@@ -37,7 +39,8 @@ public class AdminController {
 	
 	private final AdminService adminService;
 	
-
+//	@Autowired
+//	private Gson gson;
 	/**
 	 * 로그인
 	 * @return
@@ -333,7 +336,11 @@ public class AdminController {
 		
 		return "admin/request/edit";
 	}
-	
+	/**
+	 * 질문수정
+	 * @param vo
+	 * @return
+	 */
 	@PostMapping("request/edit")
 	public String requestEdit(RequestVo vo) {
 
@@ -345,7 +352,11 @@ public class AdminController {
 		
 		return "redirect:/admin/request/edit";
 	}
-	
+	/**
+	 * 질문 삭제
+	 * @param no
+	 * @return
+	 */
 	@PostMapping("request/delete")
 	@ResponseBody
 	public String questionDelete(String no) {
@@ -358,8 +369,11 @@ public class AdminController {
 		
 		return "ok";
 	}
-	
-	// 대시보드
+	/**
+	 * 대시보드 알림
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("dashboard")
 	public String dashboard(Model model) {
 		
@@ -373,6 +387,18 @@ public class AdminController {
 		return "admin/dashboard";
 	}
 	
+	@GetMapping("dashboard/age-chart")
+	@ResponseBody
+	public String ageChart() {
+		
+		List<ChartVo> voAge = adminService.selectAgeChart();
+		
+		log.info("ageChart 디비 다녀옴 :::"+voAge);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(voAge);
+	}
 	
 
 	

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.coding5.el.admin.dao.AdminDao;
 import com.coding5.el.admin.vo.AdminVo;
+import com.coding5.el.chart.vo.ChartVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.corp.vo.CorpVo;
@@ -428,7 +429,9 @@ public class AdminServiceImpl implements AdminService{
 	public int questionDelete(String no) {
 		return adminDao.questionDelete(sst,no);
 	}
-
+	/**
+	 * 대쉬보드 알림
+	 */
 	@Override
 	public Map<String, Object> selectDashboardAlert() {
 		
@@ -443,6 +446,12 @@ public class AdminServiceImpl implements AdminService{
 		map.put("reportCnt", reportCnt);
 		
 		return map;
+	}
+
+	@Override
+	public List<ChartVo> selectAgeChart() {
+
+		return adminDao.selectAgeChart(sst);
 	}
 	
 

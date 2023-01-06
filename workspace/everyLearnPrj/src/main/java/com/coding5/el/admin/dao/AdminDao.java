@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.coding5.el.admin.vo.AdminVo;
+import com.coding5.el.chart.vo.ChartVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.corp.vo.CorpVo;
@@ -138,6 +139,8 @@ public interface AdminDao {
 	public int questionDelete(SqlSessionTemplate sst, String no);
 
 	public int selectReportHandleN(SqlSessionTemplate sst);
+
+	public List<ChartVo> selectAgeChart(SqlSessionTemplate sst);
 	
 
 	
