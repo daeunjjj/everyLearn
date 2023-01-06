@@ -36,7 +36,7 @@
 	                                <input type="text" name="voList[${status.index+1 }].type" value="${list.type }">
 	                            </div>
 	                            <div class="quit-btn">
-                                    <button type="button" onclick="deleteBtn('${list.no}','${status.index+1 }');">삭제</button>
+                                    <!-- <button type="button" onclick="deleteBtn('${list.no}','${status.index+1 }');">삭제</button> -->
 	                            </div>
 	                        </div>
 						</c:forEach>
@@ -69,26 +69,26 @@
             $("#addBtn").attr("disabled", false);
         }
 
-        function deleteBtn(no, idx){
-            console.log(no);
-            if(confirm(idx+'번 질문을 삭제하시겠습니까?')){
-                $.ajax({
-                    url : "/el/admin/request/delete",
-                    method : "post",
-                    data : { "no" : no },
-                    success : function(result){
-                        if(result != ""){
-                            window.location.href = "/el/admin/request/edit";
-                        }
-                    },
-                    error : function(){
-                        alert('통신실패');
-                    }
+        // function deleteBtn(no, idx){
+        //     console.log(no);
+        //     if(confirm(idx+'번 질문을 삭제하시겠습니까?')){
+        //         $.ajax({
+        //             url : "/el/admin/request/delete",
+        //             method : "post",
+        //             data : { "no" : no },
+        //             success : function(result){
+        //                 if(result != ""){
+        //                     window.location.href = "/el/admin/request/edit";
+        //                 }
+        //             },
+        //             error : function(){
+        //                 alert('통신실패');
+        //             }
 
 
-                });
-            } 
-        }
+        //         });
+        //     } 
+        // }
     </script>
 </body>
 </html>

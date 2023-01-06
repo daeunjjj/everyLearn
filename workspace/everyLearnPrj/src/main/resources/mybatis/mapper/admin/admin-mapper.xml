@@ -629,4 +629,19 @@
 		    ,#{title}
 		)
 	</insert>
+	
+	<select id="selectAgeChart" resultType="com.coding5.el.chart.vo.ChartVo">
+		SELECT 
+		    LABEL
+		    , COUNT(*) AS DATA
+		FROM (
+		        SELECT 
+		            FLOOR((TO_CHAR(SYSDATE, 'YYYY')- TO_CHAR(BIRTH, 'YYYY')) / 10) * 10 AS LABEL
+		        FROM
+		            MEMBER
+		    ) O
+		GROUP BY LABEL
+		ORDER BY LABEL
+	</select>
+	
 </mapper>

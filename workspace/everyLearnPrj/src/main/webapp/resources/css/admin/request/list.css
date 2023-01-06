@@ -61,12 +61,12 @@
 }
 
 .flex-area>div:nth-child(4){
-    flex-basis: 160px;
+    flex-basis: 180px;
     text-align: left;
 }
 
 .flex-area>div:nth-child(5){
-    flex-basis: 580px;
+    flex-basis: 560px;
     text-align: left;
 }
 

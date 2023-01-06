@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.coding5.el.admin.vo.AdminVo;
+import com.coding5.el.chart.vo.ChartVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.page.Pagination;
 import com.coding5.el.common.vo.SearchVo;
@@ -277,6 +278,12 @@ public class AdminDaoImpl implements AdminDao{
 	public int selectReportHandleN(SqlSessionTemplate sst) {
 		// 미처리 신고 게시글 수
 		return sst.selectOne("adminMapper.selectHandleN");
+	}
+
+	@Override
+	public List<ChartVo> selectAgeChart(SqlSessionTemplate sst) {
+		// TODO Auto-generated method stub
+		return sst.selectList("adminMapper.selectAgeChart");
 	}
 	
 
