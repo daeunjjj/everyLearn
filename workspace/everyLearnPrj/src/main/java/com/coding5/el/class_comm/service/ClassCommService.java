@@ -1,6 +1,7 @@
 package com.coding5.el.class_comm.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.class_comm.vo.CommentVo;
@@ -21,7 +22,7 @@ public interface ClassCommService {
 	public int report(ClassCommVo vo);
 
 	//스터디 게시판
-	public List<ClassCommVo> studyList(String orderBy, PageVo pv);
+	public List<ClassCommVo> studyList(PageVo pv, Map<String, String> search);
 
 	//자유게시판
 	public List<ClassCommVo> freeList(String orderBy);
@@ -39,5 +40,8 @@ public interface ClassCommService {
 	public int deleteWrite(String classCommNo);
 
 	//게시글 카운트
-	public int selectCnt(String commCateNo);
+	public int selectCnt(Map<String, String> search);
+
+	//신고 인서트 정보
+	public int reportInfo(ClassCommVo reportVo);
 }

@@ -32,7 +32,9 @@
                 </pre>
             </div>
             <div id="serch">
-            <input class="search_input" type="text" placeholder="검색어를 입력해주세요.">
+            <form action="/el/class/study" method="get">
+	            <input class="search_input" name="keyword" type="text" placeholder="검색어를 입력해주세요.">
+            </form>
             </div>
             <!-- <div id="btn-write" class="btn-write">
                 <button class="btn-write" type="button">글쓰기</button>
@@ -76,19 +78,39 @@
         <div class="container mt-3" id="page-alert">
             <ul class="pagination" id="pagenation">
             <c:if test="${pv.currentPage != 0}">
-                <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${pv.startPage }">이전</a></li>
+                <c:if test="${search.keyword != null}">
+                    <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${pv.startPage}&keyword=${search.keyword}">이전</a></li>
+                </c:if>
+                <c:if test="${search.keyword == null}">
+                    <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${pv.startPage }">이전</a></li>
+                </c:if>    
             </c:if>
             
             <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage}">
             <c:if test="${pv.currentPage != i and i <= pv.endPage}">
-                <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${i}">${i}</a></li>
+                <c:if test="${search.keyword != null}">
+                    <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${i}&keyword=${search.keyword}">${i}</a></li>
+                </c:if>
+                <c:if test="${search.keyword == null}">
+                    <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${i}">${i}</a></li>
+                </c:if>    
             </c:if>   
             <c:if test="${pv.currentPage == i and i <= pv.endPage}">
-                <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${i}">${i}</a></li>
+                <c:if test="${search.keyword != null}">
+                    <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${i}&keyword=${search.keyword}">${i}</a></li>
+                </c:if>
+                <c:if test="${search.keyword == null}">
+                    <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${i}">${i}</a></li>
+                </c:if>    
             </c:if>
             </c:forEach>
             <c:if test="${pv.currentPage != pv.maxPage }">
-                <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${pv.currentPage+1}">다음</a></li>
+                <c:if test="${search.keyword != null}">
+                    <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${pv.currentPage+1}&keyword=${search.keyword}">다음</a></li>
+                </c:if>
+                <c:if test="${search.keyword != null}">
+                    <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${pv.currentPage+1}">다음</a></li>
+                </c:if>
             </c:if>
             </ul>
         </div>

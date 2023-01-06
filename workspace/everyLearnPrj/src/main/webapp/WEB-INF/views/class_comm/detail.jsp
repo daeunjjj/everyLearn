@@ -48,7 +48,7 @@
                                     <input type="hidden" name="blacklist" id="blacklist" value="${detailVo.writer}">
                                     <input type="hidden" name="refortTitle" id="refortTitle" value="${detailVo.title}">
                                     
-                                    
+                                    블랙넘버${detailVo.writerNo}
                                     
                                     <div class="writer" id="writer">
                                         ${detailVo.writer}

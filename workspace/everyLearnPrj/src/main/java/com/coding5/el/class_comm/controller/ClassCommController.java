@@ -2,6 +2,7 @@ package com.coding5.el.class_comm.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,9 @@ public class ClassCommController {
 	
 	@Autowired
 	private ClassCommService ccs;
+	
+	@Autowired
+	private Gson gson;
 	
 	//게시글 삭제 (에이젝스)
 	@PostMapping("deleteAjax")
@@ -162,19 +166,20 @@ public class ClassCommController {
 	
 
 	
-	//신고
+	//신고인포
 	@PostMapping("reportInfo")
-	@ResponseBody
 	public String reportInfo(String blacklistNo, String accusor, String board, Model model) {
 		
-		ClassCommVo vo = new ClassCommVo();
-		vo.setBlacklistNo(blacklistNo);
-		vo.setAccusor(accusor);
-		vo.setBoard(board);
+		ClassCommVo reportVo = new ClassCommVo();
+		reportVo.setBlacklistNo(blacklistNo);
+		reportVo.setAccusor(accusor);
+		reportVo.setBoard(board);
+		log.info("reportVo :: " + reportVo);
 		
-		log.info("이건 인포" + vo);
+		int result = ccs.reportInfo(reportVo);
 		
-		model.addAttribute("vo",vo);
+		log.info("result :: " + result);
+		
 		
 		
 		return "class_comm/report_write";
@@ -186,7 +191,7 @@ public class ClassCommController {
 		
 
 		
-		log.info("신고 :: "+blacklistNo);
+		log.info("신고 :: "+cate_no);
 
 		
 		
@@ -202,7 +207,8 @@ public class ClassCommController {
 	
 	//스터디
 	@GetMapping("study")
-	public String study(String orderBy, String pNo,  Model model) {
+	public String study(String orderBy, String pNo, String keyword,  Model model, Map<String, String> search) {
+		
 		
 		//데이터 꺼내기
 		if(pNo == null) {
@@ -211,19 +217,30 @@ public class ClassCommController {
 		
 		String commCateNo = "2";
 		
+		search.put("keyword", keyword);
+		search.put("commCateNo", commCateNo);
+		search.put("orderBy", orderBy);
+		
+		log.info("맵 : " + search);
+		
+		
+		
 		//PageVo 객체 만들기
-		int listCount = ccs.selectCnt(commCateNo);
+		int listCount = ccs.selectCnt(search);
 		int currentPage =  Integer.parseInt(pNo);
 		int pageLimit = 5;
 		int boardLimit = 3;
 		
 		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 		
-		List<ClassCommVo> studyList = ccs.studyList(orderBy, pv);
+		
+		
+		List<ClassCommVo> studyList = ccs.studyList( pv, search);
 		log.info("리스트" + studyList);
 		log.info("pv :: " + pv);
 		model.addAttribute("studyList", studyList);
 		model.addAttribute("pv", pv);
+		model.addAttribute("search", search);
 		
 		if(studyList == null) {
 			return "common/error";

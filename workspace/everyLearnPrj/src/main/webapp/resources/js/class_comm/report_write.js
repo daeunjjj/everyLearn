@@ -14,7 +14,7 @@ function check() {
         ,
         success : function(result){
             if(result != ''){
-                // alert("데이터 넘어갔음~")
+                alert("신고 데이터 넘어갔음~")
             }	
         },
         error : function(){

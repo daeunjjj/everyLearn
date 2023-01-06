@@ -1,6 +1,7 @@
 package com.coding5.el.class_comm.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -16,7 +17,7 @@ public interface ClassCommDao {
 	//신고 인서트
 	public int insertReport(SqlSessionTemplate sst, ClassCommVo vo);
 	//스터디게시판
-	public List<ClassCommVo> selectstudyList(SqlSessionTemplate sst, String orderBy, PageVo pv);
+	public List<ClassCommVo> selectstudyList(SqlSessionTemplate sst, PageVo pv, Map<String, String> search);
 	//freeList
 	public List<ClassCommVo> selectFreeList(SqlSessionTemplate sst, String orderBy);
 	//commentList
@@ -30,6 +31,8 @@ public interface ClassCommDao {
 	//delete write
 	public int deleteWriteWrite(SqlSessionTemplate sst, String classCommNo);
 	//select count (paging)
-	public int selectCntOne(SqlSessionTemplate sst, String commCateNo);
+	public int selectCntOne(SqlSessionTemplate sst, Map<String, String> search);
+	//insert reportInfo
+	public int insertReportInfo(SqlSessionTemplate sst, ClassCommVo reportVo);
 
 }

@@ -1,6 +1,7 @@
 package com.coding5.el.class_comm.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +50,8 @@ public class ClassCommServiceImpl implements ClassCommService{
 
 	//스터디 게시판
 	@Override
-	public List<ClassCommVo> studyList(String orderBy,  PageVo pv) {
-		return dao.selectstudyList(sst, orderBy, pv);
+	public List<ClassCommVo> studyList(PageVo pv, Map<String, String> search) {
+		return dao.selectstudyList(sst, pv, search);
 	}
 	
 	
@@ -90,8 +91,14 @@ public class ClassCommServiceImpl implements ClassCommService{
 
 	//게시글 갯수 조회(페이징)
 	@Override
-	public int selectCnt(String commCateNo) {
-		return dao.selectCntOne(sst, commCateNo);
+	public int selectCnt(Map<String, String> search) {
+		return dao.selectCntOne(sst,search);
+	}
+
+	//신고 인서트 정보
+	@Override
+	public int reportInfo(ClassCommVo reportVo) {
+		return dao.insertReportInfo(sst,reportVo);
 	}
 
 }

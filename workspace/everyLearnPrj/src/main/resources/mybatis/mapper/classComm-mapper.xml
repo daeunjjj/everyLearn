@@ -109,7 +109,16 @@
 		JOIN MEMBER M
 		ON CC.WRITER = M.NO
 		WHERE CC.CATE_NO = 2
+		<if test="keyword != null and keyword != ''">
+		AND TITLE LIKE '%${keyword}%'
+		OR CONTENT LIKE '%${keyword}%'
+		</if>
+		<if test="orderBy == null and orderBy ==''">
+		ORDER BY ENROLL_DATE DESC
+		</if>
+		<if test="orderBy != null and orderBy !=''">
 		ORDER BY ${orderBy}
+		</if>
 	</select>
 
 	<select id="selectFreeList"
@@ -203,6 +212,26 @@
 	  	SELECT COUNT(*)
 		FROM CLASS_COMM
 		WHERE CATE_NO = ${commCateNo}
+		<if test="keyword != null ">
+		AND TITLE LIKE '%${keyword}%'
+		OR CONTENT LIKE '%${keyword}%'
+		</if>
 	  </select>
+	  
+	  <insert id="insertReportInfo">
+	  	INSERT INTO REPORTINFO
+		(
+		   NO
+		    ,BLACKLIST
+		    ,ACCUSOR
+		    ,BOARD 
+		)VALUES
+		(
+		    SEQ_REPORT_NO.NEXTVAL 
+		    ,${blacklistNo}
+		    ,${accusor}
+		    ,${board}
+		)
+	  </insert>
 	  
 </mapper>
