@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +19,8 @@ import com.coding5.el.common.page.Pagination;
 import com.coding5.el.corp.service.CorpService;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
+import com.coding5.el.emp.vo.ApplyVo;
 import com.coding5.el.emp.vo.JobPostVo;
-import com.coding5.el.lecture.vo.LectureVo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -113,7 +112,7 @@ public class CorpController {
 		int result = cs.quitCorpMember(vo);
 		
 		if(result != 1) {
-			log.info("" + result);
+			log.info("" + result);	
 			return "common/error";
 		}
 		
@@ -333,7 +332,7 @@ public class CorpController {
 		return "emp/mypage/deadline";
 	}
 	
-	// 채용 승인 여부 페이지
+	// 채용 전체보기 페이지
 	@GetMapping("total")
 	public String total(Model model, @RequestParam(value="pno", defaultValue = "1") String pno, HttpSession session) {
 		
@@ -363,7 +362,31 @@ public class CorpController {
 	
 	// 지원자 현황 페이지
 	@GetMapping("applicant")
-	public String applicant() {
+	public String applicant(Model model, @RequestParam(value="empNo") String empNo, @RequestParam(value="pno", defaultValue = "1") String pno, HttpSession session) {
+		
+		CorpVo corpMember = (CorpVo) session.getAttribute("corpMember");
+		
+		if(corpMember == null) {
+			return "redirect:/corp/login";
+		}
+		
+		// 카운트
+		int totalCount = cs.selectApplyCnt(empNo);
+		int currentPage = Integer.parseInt(pno);
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageVo pv = Pagination.getPageVo(totalCount, currentPage, pageLimit, boardLimit);
+		
+		List<ApplyVo> list = cs.applyList(pv, empNo);
+		EmploymentVo ev = cs.selectEmployment(corpMember, empNo);
+		
+		log.info(list.toString());
+		
+		model.addAttribute("pv", pv);
+		model.addAttribute("list", list);
+		model.addAttribute("ev", ev);
+		
 		return "emp/mypage/applicant";
 	}
 	

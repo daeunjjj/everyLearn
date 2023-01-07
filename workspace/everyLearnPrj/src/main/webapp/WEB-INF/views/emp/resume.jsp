@@ -6,10 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" />
 <link rel="stylesheet" href="/el/resources/css/emp/empMain.css">
 <link rel="stylesheet" href="/el/resources/css/emp/resume.css">
 <link rel="stylesheet" href="/el/resources/css/common/font.css">
-<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
+<script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>
 </head>
 <body>
 
@@ -70,14 +71,14 @@
 									<div class="list expand">
 										<p>주소</p>
 										<div>
-											<input type="text" name="address" class="input additional" value="${rv.address}">
+											<input type="text" name="address" class="input additional" value="${rv.address}" onclick="searchArr();" id="address">
 										</div>
 									</div>
 									<div class="list expand">
 										<p>상세주소</p>
 										<div>
 											<input type="text" name="detailAddress"
-												class="input additional" value="${rv.detailAddress}">
+												class="input additional" value="${rv.detailAddress}" id="detailAddress">
 										</div>
 									</div>
 								</div>
@@ -126,19 +127,19 @@
 												</div>
 												<div class="list">
 													<p>입학날짜</p>
-													<div class="date-wrapper">
-														<div class="date-input start">
-															<input type="month" name="evList[0].enterSchool" class="input" value="${eduList[0].enterSchool}">
-														</div>
+													<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+														<input type="text" id="edu-start" aria-label="Date-Time" class="input" name="evList[0].enterSchool" value="${eduList[0].enterSchool}"/>
+															<span class="tui-ico-date"></span>
 													</div>
+													<div id="edu-start-container" style="margin-top: -1px;"></div>
 												</div>
 												<div class="list">
 													<p>졸업날짜</p>
-													<div class="date-wrapper">
-														<div class="date-input start">
-															<input type="month" name="evList[0].graduate" class="input" value="${eduList[0].graduate}">
-														</div>
+													<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+														<input type="text" id="edu-graduate" aria-label="Date-Time" class="input" name="evList[0].graduate" value="${eduList[0].graduate}"/>
+															<span class="tui-ico-date"></span>
 													</div>
+													<div id="edu-graduate-container" style="margin-top: -1px;"></div>	
 												</div>
 											</div>
 										</div>
@@ -183,19 +184,19 @@
 													</div>
 													<div class="list">
 														<p>입사일</p>
-														<div class="date-wrapper">
-															<div class="date-input start">
-																<input type="date" name="cvList[0].joinCompany" class="input" value="${careerList[0].joinCompany}">
-															</div>
+														<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+															<input type="text" id="cv-enter" aria-label="Date-Time" class="input" name="cvList[0].joinCompany" value="${careerList[0].joinCompany}"/>
+																<span class="tui-ico-date"></span>
 														</div>
+														<div id="cv-enter-container" style="margin-top: -1px;"></div>	
 													</div>
 													<div class="list">
 														<p>퇴사일</p>
-														<div class="date-wrapper">
-															<div class="date-input start">
-																<input type="date" name="cvList[0].leave" class="input" value="${careerList[0].leave}">
-															</div>
+														<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+															<input type="text" id="cv-leave" aria-label="Date-Time" class="input" name="cvList[0].leave" value="${careerList[0].leave}"/>
+																<span class="tui-ico-date"></span>
 														</div>
+														<div id="cv-leave-container" style="margin-top: -1px;"></div>	
 													</div>
 													<!-- 드롭 다운 -->
 													<div class="list">
@@ -235,9 +236,11 @@
 													</div>
 													<div class="list">
 														<p>수상년도</p>
-														<div>
-															<input type="month" name="avList[0].awardDate" class="input" value="${awardList[0].awardDate}">
+														<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+															<input type="text" id="av-date" aria-label="Date-Time" class="input" name="avList[0].awardDate" value="${awardList[0].awardDate}"/>
+																<span class="tui-ico-date"></span>
 														</div>
+														<div id="av-date-container" style="margin-top: -1px;"></div>	
 													</div>
 													<!-- textarea -->
 													<div class="list">
@@ -266,10 +269,11 @@
 													<!-- textarea -->
 													<div class="list">
 														<p>취득일</p>
-														<div>
-															<input type="month" name="cfvList[0].certificateDate"
-																class="input"  value="${certificateList[0].certificateDate}">
+														<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+															<input type="text" id="cfv-date" aria-label="Date-Time" class="input" name="cfvList[0].certificateDate" value="${certificateList[0].certificateDate}"/>
+																<span class="tui-ico-date"></span>
 														</div>
+														<div id="cfv-date-container" style="margin-top: -1px;"></div>	
 													</div>
 													<div class="detail">
 														<p>발급기관</p>
@@ -346,7 +350,7 @@
 										<p>첨부파일</p>
 										<div>
 											<input type="file" name="attach"
-												class="input additional" value="${rv.attach}">
+												class="additional" value="${rv.attach}">
 										</div>
 										<c:if test="${not empty rv.attachName}">
 											<a href="/el/resources/upload/${rv.attachName}" download="${rv.attachName}">${rv.attachName}</a>
@@ -365,7 +369,69 @@
 		</article>
 	</main>
 
+	<script>
+	const DatePicker = tui.DatePicker;
+
+	new DatePicker(document.getElementById('edu-start-container'), {
+		language: 'ko',
+		type: 'month',
+		input: {
+				element: document.getElementById('edu-start'),
+				format: 'yyyy-MM'
+		},
+		date: new Date('${eduList[0].enterSchool}')
+		
+	});
+
+	new DatePicker(document.getElementById('edu-graduate-container'), {
+		language: 'ko',
+		type: 'month',
+		input: {
+				element: document.getElementById('edu-graduate'),
+				format: 'yyyy-MM'
+		},
+		date: new Date('${eduList[0].graduate}')
+		
+	});
+
+	new DatePicker(document.getElementById('cv-enter-container'), {
+		language: 'ko',
+		type: 'date',
+		input: {
+				element: document.getElementById('cv-enter'),
+				format: 'yyyy-MM-dd'
+		},
+		date: new Date('${careerList[0].joinCompany}')
+		
+	});
+
+	new DatePicker(document.getElementById('cv-leave-container'), {
+		language: 'ko',
+		type: 'date',
+		input: {
+				element: document.getElementById('cv-leave'),
+				format: 'yyyy-MM-dd'
+		},
+		date: new Date('${careerList[0].leave}')
+		
+	});
+
+	new DatePicker(document.getElementById('cfv-date-container'), {
+		language: 'ko',
+		type: 'month',
+		input: {
+				element: document.getElementById('cfv-date'),
+				format: 'yyyy-MM'
+		},
+		date: new Date('${certificateList[0].certificateDate}')
+		
+	});
+
+	</script>
+
+
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	<script src="/el/resources/js/emp/resume.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 </html>

@@ -132,13 +132,16 @@ header .click-search{
 header .member{
   display: flex;
   justify-content: space-around;
-  width: 200px;
+  width: 175px;
 
 }
 
 header .login{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 75px;
-  height: 25px;
+  height: 30px;
   text-align: center;
   vertical-align: middle;
   border: 2px solid #1187CF;
@@ -147,15 +150,30 @@ header .login{
 }
 
 header .join{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 75px;
-  height: 25px;
-  text-align: center;
+  height: 30px;
   vertical-align: bottom;
   border: 2px solid #1187CF;
   background-color: #1187CF;
   color: white;
   border-radius: 5px;
   line-height: 25px;
+}
+
+header .search-btn-wrapper{
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+header .search-btn{
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  right: 0;
 }
 
 /*  */

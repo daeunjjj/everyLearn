@@ -40,8 +40,13 @@
                                 <td>${vo.enrollDate}</td>
                                 <td>${vo.deadline}</td>
                                 <td>${vo.status}</td>
-                                <td>5명</td>
-                                <td><a href=""><button>상세보기</button></a></td>
+                                <c:if test="${empty vo.cnt}">
+                                <td>0명</td>                                
+                                </c:if>
+                                <c:if test="${not empty vo.cnt}">
+                                <td>${vo.cnt}명</td>
+                                </c:if>
+                                <td><a href="/el/corp/applicant?empNo=${vo.no}"><button>상세보기</button></a></td>
                             </tr>
                        </c:forEach>
                     </tbody>

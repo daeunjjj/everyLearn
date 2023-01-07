@@ -10,4 +10,10 @@ public class ApplyVo {
 	private String empNo;
 	private String status;
 	
+	
+	// 회원 정보
+	private String name;
+	private String phone;
+	private String email;
+	
 }

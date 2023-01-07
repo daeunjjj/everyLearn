@@ -56,39 +56,123 @@ a{
 }
 
 .menu{
-  height: 300px;
   display: flex;
+  width: 100%;
+  height: 300px;
   flex-direction: column;
+  align-items: center;
   justify-content: space-between;
   margin-top: 30px;
   font-size: 14px;
 }
 
-.list-title{
+.menu-wrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.corp-info-menu{
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 2.933rem;
+  border-radius: 8px;
+}
+
+.corp-info-menu:hover{
+  background-color:  rgba(233, 232, 232, 0.788);
+}
+
+.nav-list-title{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 10px;
   font-weight: bold;
 }
 
-.list-title>h3{
+.nav-list-title>h3{
   font-size: 18px;
   font-weight: bold;
 }
 
-.list-title>h5{
-  font-size: 12px;
+.nav-list-title>h5{
+  font-size: 18px;
 }
 
+.nav-list-wrapper{
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-.list>li:not(:last-child){
+.nav-list{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.employment-wrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.employment{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 30px;
 }
 
-.list>li:first-child{
-  margin: 30px 0;
+.sort{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-.employment>li:not(:last-child){
- margin-bottom: 10px;
+.icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon>img{
+  margin-right: 10px;
+}
+
+.total, .hiring, .deadLine{
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+  height: 2.933rem;
+  border-radius: 8px;
+  padding-left: 50px;
+}
+
+.total:hover{
+  background-color:  rgba(233, 232, 232, 0.788);
+}
+
+.hiring:hover{
+  background-color:  rgba(233, 232, 232, 0.788);
+}
+
+.deadLine:hover{
+  background-color:  rgba(233, 232, 232, 0.788);
 }
 
 .logout{

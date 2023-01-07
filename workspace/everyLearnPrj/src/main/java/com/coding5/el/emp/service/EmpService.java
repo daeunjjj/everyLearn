@@ -1,6 +1,7 @@
 package com.coding5.el.emp.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.corp.vo.EmploymentVo;
@@ -43,5 +44,14 @@ public interface EmpService {
 	
 	// 지원하기
 	int apply(ApplyVo vo);
+
+	// 회원 번호 가져오기(지원)
+	ApplyVo selectApply(String applyNo);
+
+	// 채용공고 검색
+	List<JobPostVo> searchJobPostList(Map<String, String> map, PageVo pv);
+
+	// 채용공고 페이징
+	int searchListCnt(String keyword);
 
 }

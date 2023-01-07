@@ -27,4 +27,7 @@ public class EmploymentVo {
 	// 채용 공고 상태
 	private String status;
 	
+	// 지원자 수 
+	private String cnt;
+	
 }

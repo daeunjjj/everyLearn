@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
+import com.coding5.el.emp.vo.ApplyVo;
 import com.coding5.el.emp.vo.JobPostVo;
 
 public interface CorpDao {
@@ -61,6 +62,12 @@ public interface CorpDao {
 
 	// 회원 탈퇴
 	public int updateCorpMember(SqlSessionTemplate sst, CorpVo vo);
+
+	// 지원자 현황 페이징
+	public int selectApplyCnt(SqlSessionTemplate sst, String empNo);
+
+	// 지원자 현황 페이지
+	public List<ApplyVo> selectApplyList(SqlSessionTemplate sst, PageVo pv, String empNo);
 
 
 

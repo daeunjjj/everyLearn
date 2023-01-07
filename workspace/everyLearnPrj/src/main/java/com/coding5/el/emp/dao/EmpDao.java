@@ -1,6 +1,7 @@
 package com.coding5.el.emp.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -62,5 +63,14 @@ public interface EmpDao {
 
 	// 지원하기
 	int insertApplyByMember(SqlSessionTemplate sst, ApplyVo vo);
+
+	// 회원번호(지원하기)
+	ApplyVo selectApply(SqlSessionTemplate sst, String applyNo);
+
+	// 채용 공고 검색
+	List<JobPostVo> selectSearchJobPostList(SqlSessionTemplate sst, Map<String, String> map, PageVo pv);
+
+	// 채용 공고 검색 페이징
+	int selectSearchListCnt(SqlSessionTemplate sst, String keyword);
 
 }

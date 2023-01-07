@@ -2,6 +2,7 @@ package com.coding5.el.emp.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -124,6 +125,29 @@ public class EmpDaoImpl implements EmpDao {
 	@Override
 	public int insertApplyByMember(SqlSessionTemplate sst, ApplyVo vo) {
 		return sst.insert("jobPostMapper.insertApplyByMember", vo);
+	}
+
+	// 회원번호 가져오기(지원)
+	@Override
+	public ApplyVo selectApply(SqlSessionTemplate sst, String applyNo) {
+		return sst.selectOne("jobPostMapper.selectApply", applyNo);
+	}
+
+	// 채용 공고 검색
+	@Override
+	public List<JobPostVo> selectSearchJobPostList(SqlSessionTemplate sst, Map<String, String> map, PageVo pv) {
+		
+		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
+		int limit = pv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset,limit);
+		
+		return sst.selectList("jobPostMapper.selectSearchJobPostList", map, rb);
+	}
+
+	// 채용 공고 검색 페이징
+	@Override
+	public int selectSearchListCnt(SqlSessionTemplate sst, String keyword) {
+		return sst.selectOne("jobPostMapper.selectSearchListCnt", keyword);
 	}
 
 
