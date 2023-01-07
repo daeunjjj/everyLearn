@@ -79,7 +79,18 @@
                     <form action="/el/cart/addCart" method="post">
 	                    <input type="hidden" name="classNo" value="${lvo.no }">
 	                    <input type="hidden" name="memberNo" value="${loginMember.memberNo }">
-                    	<div><input id="pay-cart" type="submit" value="장바구니에 담기"></div>
+	                    
+	                <c:choose>
+	                	<c:when test="${checkBuy != 0 }">
+	                		<div><a href="#"><button type = "button" id="pay-cart">학습하러 가기</button></a></div>
+	                	</c:when>
+	                	<c:when test="${checkCart != 0 }">
+	                		<div><a href="/el/cart/addCart"><button type ="button" id="pay-cart" onclick="checkCart()">장바구니로 이동</button></a></div>
+	                	</c:when>
+	                	<c:otherwise>
+	                    	<div><input id="pay-cart" type="submit" value="장바구니에 담기"></div>
+	                	</c:otherwise>
+	                </c:choose>
                     </form>
                     <div id="pay-real">결제하기</div>
                 </div>
@@ -88,6 +99,13 @@
 
     </div>
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+    
+    
+    <script>
+    function checkCart(){
+    	alert('이미 장바구니에 추가된 강의입니다.');
+    }
+    </script>
     </main>
 </body>
 </html>

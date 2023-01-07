@@ -77,6 +77,12 @@ public interface LectureService {
 	//찜 목록에 이 강의 있는지 확인하기
 	public int checkWish(HashMap<String, String> map);
 
+	//장바구니 목록에 이 강의 있는지 확인하기
+	public int checkCart(HashMap<String, String> map);
+
+	//구매 내역에 이 강의 있는지 확인하기
+	public int checkBuy(HashMap<String, String> map);
+
 
 
 

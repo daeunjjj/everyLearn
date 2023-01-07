@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,56 +16,87 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.payment.service.PaymentService;
+import com.coding5.el.payment.vo.PaymentVo;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import kotlinx.serialization.descriptors.StructureKind.MAP;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
 @RequestMapping("payment")
 public class PaymentController {
-	
-	
-  @Autowired 
-  private PaymentService paymentService;
-	 
-	
-	//결제 내용 저장
+
+	@Autowired
+	private PaymentService paymentService;
+
+	//결제 정보 저장 : 주문 -> 결제 테이브 순으로
 	@PostMapping("info")
-	public String info(HttpSession session,  HttpServletRequest req,  String amount, String usePoint, String classData) {
+	public String payInfo(String classData, String usedPoint, String amount, HttpServletRequest req, HttpSession session) {
+		System.out.println("=====");
+		System.out.println(classData);
+		System.out.println("=====");
 		
-		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-		String mno = loginMember.getMemberNo();
-	
-		  
-		/*
-		 * log.info("클래스 data : " + classData.toString()); String[]
-		 * lang=req.getParameterValues("classData"); for(int i=0;i<lang.length;i++) {
-		 * System.out.println(lang[i].toString()); }
-		 */
-		log.info("클래스data : " + classData);
-		System.out.println("mno :: " + mno);
-		System.out.println("amount :: " + amount);
-		System.out.println("up :: " + usePoint);
+		// 회원 불러오기(session)
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		String no = loginMember.getMemberNo();
+		LectureVo lecVo = (LectureVo)session.getAttribute("lecVo");
 		
-		HashMap<String, String> map = new HashMap<>();
-		map.put("mno", mno);
-		map.put("amount", amount);
-		map.put("usePoint", usePoint);
-		
-		int result = paymentService.addPayInfo(map);
-		//buy로 바꿔서 구매정보 먼저 만들고 buy -> buylist ->payment 순으로 갈 수 있게끔
-		//배열 받아오기 질문
-		
-		if(result == 1) {
-			int result2 = paymentService.addPoint(map);
-			return "lecture/complete_payment";
-		}else {
-			return "common/error";
+		//포인트 사용 안하면 0으로
+		if (usedPoint == null ) {
+			usedPoint = "0";
 		}
+		//json 문자열 => list
+		String jsonStr = classData;
+		
+		// Gson 객체 생성
+		Gson gson = new Gson();
+
+//		List<PaymentVo> numList = gson.fromJson(jsonStr, new TypeToken<List<PaymentVo>>(){}.getType());
+		Map<String , List> numMap = gson.fromJson(jsonStr, Map.class);
+		List list = numMap.get("checkArray");
+		System.out.println("list : " + list);
 		
 		
+		double percent = 0.01;
+		double num = Double.parseDouble(amount);
+		double savedPoint = num * percent;
+		
+		String savedPointstr = String.format("%.0f", savedPoint);
+		System.out.println("str : " + savedPointstr);
+		
+		List<PaymentVo> payList = new ArrayList<PaymentVo>();
+		  for(int i = 0; i < list.size(); i++) { 
+			  PaymentVo payVo = new PaymentVo();
+			  payVo.setMemberNo(no); 
+			  payVo.setClassNo((String) list.get(i));
+			  payVo.setUsePoint(usedPoint);
+			  payVo.setSavePoint(savedPointstr);
+			  payVo.setSum(amount);
+			  payList.add(payVo);
+		  
+		  }
+		 
+		
+		
+		System.out.println("no : " + no);
+		System.out.println("포인트 : " + usedPoint);
+		
+		//주문 테이블 추가
+		int result = paymentService.addBuy(payList, lecVo);
+		if (result > 0) {
+			//주문정보 테이블 추가
+			//int result2 = paymentService.addBuyList(payList);
+			System.out.println("====================");
+			System.out.println("드 디 어 완 료");
+			return "lecture/complete_payment";
+		}
+				
+		return "lecture/complete_payment";
 	}
 
 }

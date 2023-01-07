@@ -156,6 +156,18 @@ public class LectureServiceImpl implements LectureService {
 		return lectureDao.checkWish(map, sst);
 	}
 
+	//장바구니에 이 강의 있는지 확인하기
+	@Override
+	public int checkCart(HashMap<String, String> map) {
+		return lectureDao.checkCart(map, sst);
+	}
+
+	//구매 내역에 이 강의 있는지 확인하기
+	@Override
+	public int checkBuy(HashMap<String, String> map) {
+		return lectureDao.checkBuy(map, sst);
+	}
+
 	
 
 
