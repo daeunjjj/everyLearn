@@ -1,6 +1,8 @@
 package com.coding5.el.emp.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.coding5.el.common.file.FileUploader;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.page.Pagination;
+import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.emp.service.EmpService;
 import com.coding5.el.emp.vo.ApplyVo;
@@ -199,6 +202,7 @@ public class EmpController {
 			rv.setAttachName(attach);
 		}
 		
+		log.info(ev.getEvList().get(0).getEnterSchool());
 		
 		int result = es.insertResume(memberNo, rv, ev, av, cv, cfv, lv);
 
@@ -210,7 +214,56 @@ public class EmpController {
 		
 	}
 
+	// 회원 이력서 조회(기업회원)
+	@GetMapping("applicant")
+	public String resume(@RequestParam(value = "applyNo") String applyNo,HttpSession session, Model model) {
+		
+		CorpVo corpMember = (CorpVo) session.getAttribute("corpMember");
+		
+		if(corpMember != null) {
+
+			ApplyVo applyVo =  es.selectApply(applyNo);
+			String memberNo = applyVo.getMemberNo();
+			
+			ResumeVo rv = es.selectResume(memberNo);
+			List<EducationVo> eduList = es.selectEducation(rv);
+			List<LanguageVo> langList = es.selectLanguage(rv);
+			List<AwardVo> awardList = es.selectAward(rv);
+			List<CareerVo> careerList = es.selectCareer(rv);
+			List<CertificateVo> certificateList = es.selectCertificate(rv);
+			
+			model.addAttribute("rv", rv);
+			model.addAttribute("eduList", eduList);
+			model.addAttribute("langList", langList);
+			model.addAttribute("awardList", awardList);
+			model.addAttribute("careerList", careerList);
+			model.addAttribute("certificateList", certificateList);
+		}
+		return "emp/resume";
+	}
 	
-	
+	// 채용 공고 검색
+	@GetMapping("job-post/search")
+	public String search(@RequestParam(value = "keyword") String keyword, Model model, @RequestParam(value="pno", defaultValue = "1") String pno) {
+		
+		// 카운트
+		int totalCount = es.searchListCnt(keyword);
+		int currentPage = Integer.parseInt(pno);
+		int pageLimit = 5;
+		int boardLimit = 12;
+		
+		PageVo pv = Pagination.getPageVo(totalCount, currentPage, pageLimit, boardLimit);
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("keyword", keyword);
+		
+		List<JobPostVo> list = es.searchJobPostList(map, pv);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("pv", pv);
+		model.addAttribute("keyword", keyword);
+		
+		return "emp/post-list";
+	}
 	
 }

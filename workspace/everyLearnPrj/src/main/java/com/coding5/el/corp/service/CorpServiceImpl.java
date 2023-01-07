@@ -12,6 +12,7 @@ import com.coding5.el.common.page.PageVo;
 import com.coding5.el.corp.dao.CorpDao;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
+import com.coding5.el.emp.vo.ApplyVo;
 import com.coding5.el.emp.vo.JobPostVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -238,6 +239,19 @@ public class CorpServiceImpl implements CorpService {
 		
 		return dao.updateCorpMember(sst, vo);
 	}
+
+	// 지원자 현황 페이징
+	@Override
+	public int selectApplyCnt(String empNo) {
+		return dao.selectApplyCnt(sst, empNo);
+	}
+	
+	// 지원자 현황
+	@Override
+	public List<ApplyVo> applyList(PageVo pv, String empNo) {
+		return dao.selectApplyList(sst, pv, empNo);
+	}
+
 
 
 

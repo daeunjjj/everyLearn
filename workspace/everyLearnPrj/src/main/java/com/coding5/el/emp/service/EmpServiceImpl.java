@@ -2,6 +2,7 @@ package com.coding5.el.emp.service;
 
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -145,6 +146,24 @@ public class EmpServiceImpl implements EmpService{
 	@Override
 	public int apply(ApplyVo vo) {
 		return dao.insertApplyByMember(sst, vo);
+	}
+
+	// 회원 번호 가져오기(지원)
+	@Override
+	public ApplyVo selectApply(String applyNo) {
+		return dao.selectApply(sst, applyNo);
+	}
+
+	// 채용 공고 검색
+	@Override
+	public List<JobPostVo> searchJobPostList(Map<String, String> map, PageVo pv) {
+		return dao.selectSearchJobPostList(sst, map, pv);
+	}
+
+	// 채용 공고 검색 페이징
+	@Override
+	public int searchListCnt(String keyword) {
+		return dao.selectSearchListCnt(sst, keyword);
 	}
 
 }

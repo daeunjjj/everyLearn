@@ -10,8 +10,7 @@
 <link rel="stylesheet" href="/el/resources/css/emp/mypage/mypage.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 <link rel="stylesheet" href="/el/resources/css/common/font.css">
-<link rel="icon" type="image/png" sizes="16x16"
-	href="/el/resources/img/logo/favicon-16x16.png">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -84,15 +83,14 @@
 										<!-- 드롭다운 -->
 										<span>산업군</span> <span class="essential">*</span>
 									</div>
-									<!-- <select name="category" class="category" onselect="validate();" onblur="validateSector();">
-										<option value="0">선택</option>
+									<select name="sector" class="category" onselect="validate();" onblur="validateSector();" id="sector">
+										<option disabled selected>선택</option>
 										<option value="1">IT직군</option>
 										<option value="2">경영/사무</option>
 										<option value="3">디자인</option>
 										<option value="4">마케팅</option>
 										<option value="5">교육</option>
-									</select> -->
-									<input oninput="validate();" onblur="validateSector();" type="text" name="sector" id="sector" value="${cv.sector}">
+									</select>
 									<div id="input-sector" class="x-icon" style="display: none;">
 										<div><img src="/el/resources/img/emp/x-icon.svg" alt=""></div>
 										<span class="essential">필수입력 항목입니다.</span>
@@ -204,6 +202,9 @@
 									저작권 등 위배되는 사진은 등록이 불가하며, 발생하는 결과에 대한 모든 책임은 등록한 본인에게 있습니다.
 								</p>
 							</div>
+							<div class="quit">
+								<button type="submit" for="quit" onclick="quitBtn();">회원 탈퇴</button>
+							</div>
 					</section>
 					<section class="admin-submit">
 						<div>
@@ -218,6 +219,7 @@
 						</div>
 					</section>
 				</form>
+				<form action="/el/corp/quit" method="POST" id="quit"></form>
 			</main>
 			<footer>
 				<p class="footer">©EveryLearn.All rights reserved.</p>
@@ -226,6 +228,32 @@
 
 	</div>
 </div>
+
+<!-- <script>
+		function quitBtn() {
+			const no = '${cv.no}';
+			console.log(no);
+			Swal.fire({
+						title: '탈퇴 하시겠습니까?',
+						text: "탈퇴하시면 다시 복구시킬 수 없습니다",
+						icon: 'warning',
+						showCancelButton: true,
+						confirmButtonColor: '#1187CF',
+						cancelButtonColor: '#d33',
+						confirmButtonText: '탈퇴',
+						cancelButtonText: '취소'
+					}).then((result) => {
+						if (result.isConfirmed) {
+							Swal.fire(
+								'탈퇴 되었습니다.',
+								).then(() => {
+									location.href = '/el/corp/quit';
+							}) 
+							}
+						})
+		}
+	</script> -->
+
 
 	<script src="/el/resources/js/emp/mypage.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

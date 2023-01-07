@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
+import com.coding5.el.emp.vo.ApplyVo;
 import com.coding5.el.emp.vo.JobPostVo;
 
 @Repository
@@ -129,6 +130,23 @@ public class CorpDaoImpl implements CorpDao{
 	@Override
 	public int updateCorpMember(SqlSessionTemplate sst, CorpVo vo) {
 		return sst.update("corpMapper.updateCorpMember", vo);
+	}
+
+	// 지원자 현황 페이징
+	@Override
+	public int selectApplyCnt(SqlSessionTemplate sst, String corpNo) {
+		return sst.selectOne("corpMapper.selectApplyCnt", corpNo);
+	}
+
+	// 지원자 현황 페이지
+	@Override
+	public List<ApplyVo> selectApplyList(SqlSessionTemplate sst, PageVo pv, String empNo) {
+		
+		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
+		int limit = pv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset,limit);
+		
+		return sst.selectList("corpMapper.selectApplyList", empNo, rb);
 	}
 
 

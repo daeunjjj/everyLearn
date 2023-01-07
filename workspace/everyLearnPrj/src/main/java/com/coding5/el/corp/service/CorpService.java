@@ -5,6 +5,7 @@ import java.util.List;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
+import com.coding5.el.emp.vo.ApplyVo;
 import com.coding5.el.emp.vo.JobPostVo;
 
 public interface CorpService {
@@ -59,6 +60,13 @@ public interface CorpService {
 
 	// 회원 탈퇴
 	public int quitCorpMember(CorpVo vo);
+
+	// 지원자 현황 페이징
+	public int selectApplyCnt(String empNo);
+	
+	// 지원자 현황
+	public List<ApplyVo> applyList(PageVo pv, String empNo);
+
 
 
 }

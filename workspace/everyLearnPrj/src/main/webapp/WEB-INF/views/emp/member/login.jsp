@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="/el/resources/css/common/font.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 </head>
 <body>
 

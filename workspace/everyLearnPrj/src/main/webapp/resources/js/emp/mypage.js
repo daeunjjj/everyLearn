@@ -123,8 +123,9 @@ const validateSector = (isTyping) => {
 	const sectorValue = sector.value;
 	const show = document.getElementById('input-sector');
 
-	if(sectorValue.length){
+	if(sectorValue){
 		show.style.display = 'none';
+		console.log(sectorValue)
 	}else if(!isTyping){
 		show.style.display = 'flex';
 	}

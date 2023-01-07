@@ -55,9 +55,11 @@
   padding-bottom: 20px;
 }
 
-.input{
+.input, .tui-datetime-input{
   width: 350px;
   height: 2.933rem;
+  border: 1px solid #aaa;
+  border-radius: 5px;
 }
 
 .bottom{
