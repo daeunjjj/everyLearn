@@ -11,6 +11,7 @@ import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
+import com.coding5.el.email.vo.MailVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
@@ -137,10 +138,21 @@ public interface AdminDao {
 	
 	// 질문 삭제
 	public int questionDelete(SqlSessionTemplate sst, String no);
-
-	public int selectReportHandleN(SqlSessionTemplate sst);
-
+	
+	
+	// 연령대별 회원수 차트
 	public List<ChartVo> selectAgeChart(SqlSessionTemplate sst);
+	
+	// 카테고리별 인기 강의
+	public List<ChartVo> selectClassChart(SqlSessionTemplate sst, String cateNo);
+	
+	// 암호화 된 비번 디비에 넣어주기
+	public int updateTempPwd(SqlSessionTemplate sst, AdminVo vo);
+
+	// 이메일 테이블에 내용 넣기 (어테치 x)
+	public int insertEmailAndSelectPk(SqlSessionTemplate sst, MailVo vo);
+	
+
 	
 
 	

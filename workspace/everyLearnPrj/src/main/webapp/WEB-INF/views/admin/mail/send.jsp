@@ -17,11 +17,24 @@
             <div class="main-wrap">
                 <h2>메일쓰기</h2>
                 <div class="mail-wrap">
-                    <form action="">
+                    <form action="/el/admin/mail/send" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="name" value="홍길동">
                         <div class="input-area" >
-                           <label for="receiver">받는사람</label>
-                           <div class="receiver-wrap" id="add-next">
-                               <input type="text" id="receiver" name="receiver" >
+                           <label for="toAddress">받는사람</label>
+                           <div class="receiver-wrap">
+                               <input type="text" id="toAddress" name="toAddress" >
+                            </div>
+                        </div>
+                        <div class="input-area">
+                            <label for="title">제목</label>
+                            <div>
+                                <input type="text" id="title" name="title">
+                            </div>
+                        </div>
+                        <div class="input-area">
+                            <label for="multipartFile">첨부파일</label>
+                            <div class="attach-wrap" >
+                                <input type="file" id="multipartFile" name="multipartFile" >
                             </div>
                             <div class="add-btn-area">
                                 <button type="button" class="add-btn" onclick="add();">
@@ -31,12 +44,7 @@
                                 </button>
                             </div> 
                         </div>
-                        <div class="input-area">
-                            <label for="title">제목</label>
-                            <div>
-                                <input type="text" id="title" name="title">
-                            </div>
-                        </div>
+                        <div id="add-next"></div>
                         <div class="input-area content">
                             <label>내용</label>
                             <div  class="text-wrap">
@@ -55,8 +63,18 @@
     </div>
     <script>
         function add(){
-            $("#add-next").append('<div class="receiver-wrap  new-receiver"><input type="text" id="receiver" name="receiver" ></div>');
+            $("#add-next").append('<div class="input-area" > <label for="multipartFile"></label> <div class="attach-wrap"> <input type="file" id="multipartFile" name="multipartFile" > </div> </div>');
         }
+
+        // 쿼리스트링에 메일 가져오기
+        const urlSearch = new URLSearchParams(location.search);
+        const mailAddress = urlSearch.get('address');
+
+        // 널이 아니면 input에 값 넣어주기
+        if(mailAddress != ''){
+            $("#toAddress").val(mailAddress);
+        }
+
     </script>
 </body>
 </html>

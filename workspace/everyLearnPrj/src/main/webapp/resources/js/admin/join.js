@@ -171,6 +171,7 @@ $('#phone').on('keyup', function(){
     }
 })
 
+// 모든 유효성 검사
 function joinCheck() {
     if(!idCheck){
         Swal.fire({

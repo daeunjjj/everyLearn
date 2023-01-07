@@ -35,7 +35,7 @@ main *{
 .stats-area{
     margin-top: 50px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .chart-area>div:first-child{
@@ -48,3 +48,4 @@ main *{
     display: flex;
     justify-content: space-between;
 }
+

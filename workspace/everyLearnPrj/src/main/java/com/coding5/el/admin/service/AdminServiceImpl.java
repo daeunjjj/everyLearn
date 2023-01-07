@@ -11,26 +11,34 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.coding5.el.admin.dao.AdminDao;
+import com.coding5.el.admin.report.dao.AdminReportDao;
 import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.chart.vo.ChartVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
+import com.coding5.el.email.vo.MailVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
 import com.coding5.el.request.vo.RequestVo;
 import com.coding5.el.teacher.vo.TeacherVo;
+
+import lombok.extern.slf4j.Slf4j;
 @Service
+@Slf4j
 public class AdminServiceImpl implements AdminService{
 	
 	@Autowired
-	public AdminServiceImpl(AdminDao adminDao) {
+	public AdminServiceImpl(AdminDao adminDao, AdminReportDao adminReportDao) {
 		this.adminDao = adminDao;
-	}
+		this.adminReportDao = adminReportDao;
+	}	
 
 	private final AdminDao adminDao;
+	
+	private final AdminReportDao adminReportDao;
 	
 	@Autowired
 	private SqlSessionTemplate sst;
@@ -438,7 +446,7 @@ public class AdminServiceImpl implements AdminService{
 		int teacherRequstCnt = adminDao.selectTeacherStatusByN(sst);
 		int corpRequestCnt = adminDao.selectCorporateStatusByN(sst);
 		int requestCnt = adminDao.selectRequestCheckN(sst);
-		int reportCnt = adminDao.selectReportHandleN(sst);
+		int reportCnt = adminReportDao.selectReportHandleN(sst);
 		
 		map.put("teacherRequestCnt", teacherRequstCnt);
 		map.put("corpRequestCnt", corpRequestCnt);
@@ -447,13 +455,56 @@ public class AdminServiceImpl implements AdminService{
 		
 		return map;
 	}
-
+	/**
+	 * 대시보드 연령대 별 그래프
+	 */
 	@Override
 	public List<ChartVo> selectAgeChart() {
 
 		return adminDao.selectAgeChart(sst);
 	}
+	/**
+	 * 대시보드 카테고리 별 인기강의
+	 */
+	@Override
+	public List<ChartVo> selectClassChart(String cateNo) {
+		return adminDao.selectClassChart(sst,cateNo);
+	}
+	// 디비에 이메일 있는지 확인
+	@Override
+	public AdminVo adminEmailCheck(String email) {
+		return adminDao.selectOneAdminById(sst, email);
+	}
 	
+	// 임시 비번으로 업로드
+	@Override
+	public int updateTempPwd(AdminVo vo) {
+		// 암호화
+		vo.encode(pwdEnc);
+		
+		return adminDao.updateTempPwd(sst,vo);
+		
+	}
+	/**
+	 * 전송 메일 디비에 넣기
+	 * 1. 메일 내용 성공하면
+	 * 2. 첨부파일
+	 */
+	@Override
+	@Transactional
+	public int insertMail(MailVo vo) {
+		
+		int result = adminDao.insertEmailAndSelectPk(sst,vo);
+		
+		log.info("시퀀스 가져오나"+result);
+		
+		return 0;
+	}
+	
+
+	
+	
+
 
 	
 }
