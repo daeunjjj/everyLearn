@@ -163,12 +163,17 @@ public class LectureController {
 		HashMap<String, String>map = new HashMap<>(); 
 		map.put("bno1", bno1);
 	 	map.put("mno", mno);
-		System.out.println("=========");
+
 		int checkWish = lectureService.checkWish(map);
-		log.info("checkwish :: " + checkWish);
+
+		//장바구니목록에 있는지 확인
+		int checkCart = lectureService.checkCart(map);
 		
 		
-		//System.out.println("lvo : " + lvo);
+		//구매 목록에 있는지 확인
+		int checkBuy = lectureService.checkBuy(map);
+		
+		
 		// 상세보기
 		if(result>0) {
 			LectureVo lvo = lectureService.classDetail(bno);
@@ -178,6 +183,8 @@ public class LectureController {
 			.addObject("mno", mno)
 			.addObject("loginMember", loginMember)
 			.addObject("checkWish", checkWish)
+			.addObject("checkCart", checkCart)
+			.addObject("checkBuy", checkBuy)
 			//이 체크위시는 1이거나 0이어야 하는데...?
 			
 			  .setViewName("lecture/lec_detail");
@@ -212,7 +219,22 @@ public class LectureController {
 		String mno = loginMember.getMemberNo();
 		
 		List<ReviewVo> reviewList = lectureService.selectReview(bno, pv);
-				
+		
+		//찜 목록에 있는지 확인
+		String bno1 = Integer.toString(bno);
+		
+		HashMap<String, String>map = new HashMap<>(); 
+		map.put("bno1", bno1);
+	 	map.put("mno", mno);
+
+		int checkWish = lectureService.checkWish(map);
+
+		//장바구니목록에 있는지 확인
+		int checkCart = lectureService.checkCart(map);
+		
+		//구매 목록에 있는지 확인
+		int checkBuy = lectureService.checkBuy(map);
+		
 		LectureVo lvo = lectureService.classDetail(bno);
 		
 		model.addAttribute("pv", pv);
@@ -220,6 +242,9 @@ public class LectureController {
 		model.addAttribute("lvo", lvo);
 		model.addAttribute("mno", mno);
 		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("checkWish", checkWish);
+		model.addAttribute("checkCart", checkCart);
+		model.addAttribute("checkBuy", checkBuy);
 
 		return "lecture/lec_review"; 
 		}
@@ -343,7 +368,7 @@ public class LectureController {
 	 */
 
 	// 결제완료
-	@GetMapping("completePay")
+	@GetMapping("complete_payment")
 	public String completePayment() {
 		return "lecture/complete_payment";
 	}
@@ -432,6 +457,7 @@ public class LectureController {
 	public String wish(int bno) {
 		return "redirect:?pno=1";
 	}
+	
 	
 	
 }

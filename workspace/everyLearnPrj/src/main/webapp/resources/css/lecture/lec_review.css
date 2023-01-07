@@ -94,7 +94,7 @@ body{
 }
 
 #pay-zzim{
-    border: 1px solid #5a5a5a;
+    --border: 1px solid #5a5a5a;
     height: 60px;
     display : flex;
     justify-content : center;
@@ -105,16 +105,6 @@ body{
 
 
 
-#pay-zzim>a{
-    height: 50px !important;
-    width: 50px !important;
-}
-
-#pay-zzim a img{
-    height: 50px ;
-    width: 50px ;
-    object-fit: cover;
-}
 
 #pay-zzim>a>img{
     height: 50px ;
@@ -122,13 +112,7 @@ body{
     object-fit: cover;
 }
 
-#whywhy{
-    height: 50px;
-    width: 50px;
-    object-fit: cover;
-    position: fixed;
 
-}
 
 
 

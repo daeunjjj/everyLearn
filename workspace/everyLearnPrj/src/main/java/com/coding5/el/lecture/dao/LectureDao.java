@@ -78,6 +78,12 @@ public interface LectureDao {
 	//찜 목록에 이 강의 있는지 확인하기
 	public int checkWish(HashMap<String, String> map, SqlSessionTemplate sst);
 
+	//장바구니에 이 강의 있는지 확인하기 
+	public int checkCart(HashMap<String, String> map, SqlSessionTemplate sst);
+
+	//구매 내역에 이 강의 있는지 확인하기
+	public int checkBuy(HashMap<String, String> map, SqlSessionTemplate sst);
+
 
 
 }

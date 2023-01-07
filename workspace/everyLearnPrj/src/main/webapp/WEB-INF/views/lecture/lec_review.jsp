@@ -167,13 +167,38 @@
 			
             <div id="lec-payment">
                 <div id="pay-wrap">
-                    <div id="pay-price">${lvo.price } 원</div>
-                    <div id="pay-zzim"><i class="fa-regular fa-heart fa-2x"></i></div>
-                    <!-- 장바구니 -->
+                    <div id="pay-price">${lvo.price} 원</div>
+                    
+                    <c:choose> 
+	                    <c:when test="${checkWish == 0 }"> 
+		                    <form action="/el/cart/addWish" method="post">
+			                    <input type="hidden" name="classNo" value="${lvo.no }">
+			                    <input type="hidden" name="memberNo" value="${loginMember.memberNo }">
+		                    	<div id="pay-zzim"><input type="image" src="/el/resources/img/lecture/heart.png"/></div>
+		                    </form>
+	                  </c:when>
+	                  <c:otherwise>
+	                  	
+	                    	<div id="pay-zzim"><a href="/el/cart/addWish" width="50px" height="50px"><img src="/el/resources/img/lecture/heartred.png" id="whywhy" width="50px" height="50px"/></a></div>
+	                   
+	                  </c:otherwise>
+                    </c:choose>
+                    <!--  <div id="pay-zzim"><a href="/el/cart/wish"><i class="fa-regular fa-heart fa-2x"></i></a></div>-->
                     <form action="/el/cart/addCart" method="post">
 	                    <input type="hidden" name="classNo" value="${lvo.no }">
 	                    <input type="hidden" name="memberNo" value="${loginMember.memberNo }">
-                    	<div id="cartbtn"><input id="pay-cart" type="submit" value="장바구니에 담기"></div>
+	                    
+	                <c:choose>
+	                	<c:when test="${checkBuy != 0 }">
+	                		<div><a href="#"><button type = "button" id="pay-cart">학습하러 가기</button></a></div>
+	                	</c:when>
+	                	<c:when test="${checkCart != 0 }">
+	                		<div><a href="/el/cart/addCart"><button type ="button" id="pay-cart" onclick="checkCart()">장바구니로 이동</button></a></div>
+	                	</c:when>
+	                	<c:otherwise>
+	                    	<div><input id="pay-cart" type="submit" value="장바구니에 담기"></div>
+	                	</c:otherwise>
+	                </c:choose>
                     </form>
                     <div id="pay-real">결제하기</div>
                 </div>

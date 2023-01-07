@@ -29,10 +29,12 @@
 			<div style="margin-top:100px; text-align:center; font-size:22px; font-weight:600;">장바구니에 담긴 강의가 없습니다.</div>
 			</c:when>
 			<c:otherwise>
+			<br><br>
 			<div id="carts-num"> <span id="cnt">0</span>개 강의가 선택되었습니다.</div>
 			
 			
 		</div>
+		
 		<div id="cart-wrap">
 			<!-- 체크박스 전체 여부 -->
 				<div class="all_check_input_div">
@@ -85,7 +87,7 @@
 								<div id="all-price"><span class="productPrice">0</span> 원</div>
 								<div id="using-po">포인트 사용</div>
 								
-								<div id="using-point"><input type="text" name="use-point" id="use-point" onchange="inputValueChange()" width="60%" placeholder="사용할 포인트를 입력해주세요.">
+								<div id="using-point"><input type="text" name="pointUsed" id="use-point" onchange="inputValueChange()" width="60%" placeholder="사용할 포인트를 입력해주세요.">
 								</div>
 								
 								
@@ -95,7 +97,7 @@
 								<div id="checked-pr">결제금액</div>
 								<div id="checked-price"><span class="finalPrice" id="finalPrice">0</span> 원</div>
 								<input type="hidden" name="finalTotalPrice" id="finalTotalPrice" value=""/>
-								<input type="hidden" name="finalTotalPrice" id="finalTotalPrice" value=""/>
+								
 								
 								<div id="pay-btn"><button id="btns" onclick="requestPay();">결제하기</button></div>
 								
@@ -103,6 +105,7 @@
 						</div>
 					</c:otherwise>
 				</c:choose>
+				
 
 		</div>
 		
@@ -115,7 +118,6 @@
 </main>
 
 <script type="text/javascript">
-
 		$(document).ready(function(){
 			
 			/* 종합 정보 섹션 정보 삽입 */
@@ -153,7 +155,6 @@
 		  setTotalInfo();
 		}
 		document.querySelector('#all').addEventListener('change', chooseAll)
-
 		$('#all').click();
 		
 		
@@ -254,7 +255,6 @@
         const email = '${loginMember.email}';
         const phone = '${loginMember.phone}';
           
-
 /////////////////////////////////결제
 		var IMP = window.IMP; // 생략 가능
     	IMP.init("imp06204768"); //가맹점 식별코드
@@ -264,7 +264,8 @@
     	 
     	    // name이 같은 체크박스의 값들을 배열에 담는다.
     	    var checkboxValues = [];
-    	    $("input[name='check']:checked").each(function(i) {
+    	    $('.cart_info_div input[name=check]').each(function(i) {
+    	    //$("input[name='check']:checked").each(function(i) {
     	        checkboxValues.push($(this).val());
     	    });
     	    
@@ -275,7 +276,7 @@
     	 	console.log("올데이터:  " + allData);
     	
     	 function requestPay() {
-      	      // IMP.request_pay(param, callback) 결제창 호출
+      	      
       	      IMP.request_pay({ // param
       	          pg: "INIpayTest",
       	          merchant_uid : 'merchant_'+new Date().getTime(),
@@ -298,14 +299,12 @@
       	    	                merchant_uid: rsp.merchant_uid,
       	    	                amount: finalPrice,
       	    	                usePoint: usedPoint,
-      	    	              	//classData : allData
       	    	                classData : json
-      	    	                //classNum : $('.cart_info_div input[name=check]').val() --> 이러면 하나만 넘어감
+      	    	                
       	    	            }
       	    	            
       	    	        })
       	    	           
-
    						/* .done(function (data) {
       	    	           //가맹점 서버 결제 API 성공시 로직
       	    	        }) */
@@ -313,11 +312,14 @@
       	    	  else {
       	    	        alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
       	    	      }
-
       	    	    })
-    	}
+    	 }
+    	 
+    	 
+    	
   		  
             </script>
+
 
 
 
