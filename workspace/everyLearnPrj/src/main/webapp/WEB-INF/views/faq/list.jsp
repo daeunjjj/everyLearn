@@ -30,7 +30,7 @@
         <div id="banner-text"><span>✨에브리런의 궁금한 점을 검색해 주세요!✨</span></div>
         <div id="banner-input">
             <form action="" method="post">
-                <input id="searchBar" type="text" name="search" placeholder="Search..">
+                <input id="searchBar" type="text" name="search" placeholder="Search.." autocomplete="off" />
                 <button type="submit" class="search-button">
                     <span class="material-symbols-outlined" id="dodbogi">search</span>
                 </button>

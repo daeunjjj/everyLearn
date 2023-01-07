@@ -14,8 +14,8 @@ public class QnaServiceImpl implements QnaService {
 	@Autowired SqlSessionTemplate sst;
 
 	@Override
-	public int write(QnaVo vo) throws Exception {
-		return qnaDao.write(sst, vo);
+	public int memberWrite(QnaVo vo) throws Exception {
+		return qnaDao.insertMemberWrite(sst, vo);
 	}
 
 }

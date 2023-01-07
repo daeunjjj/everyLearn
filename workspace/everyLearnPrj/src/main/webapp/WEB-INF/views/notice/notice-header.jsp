@@ -69,7 +69,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="a1 dropdown-item" href="#">채용</a></li>
-                                <li><a class="a1 dropdown-item" href="#">채용 커뮤니티</a></li>
+                                <li><a class="a1 dropdown-item" href="/el/emp-comm/list">채용 커뮤니티</a></li>
                                 <li>
                                 <hr class="dropdown-divider">
                                 </li>
@@ -108,9 +108,9 @@
                 <a class="navbar-brand" href="#"> <img src="/el/resources/img/logo/logo.svg" alt="Logo" width="60" height="60" class="d-inline-block align-text-top" /></a>
             </div>
             <div id="nav-menu">
-                <a class="nav-menu" href="">고객센터 </a>
-                <a class="nav-menu" href="">공지사항 </a>
-                <a class="nav-menu" href="">자주 묻는 질문 </a>
+                <a class="nav-menu" href="">에브리런 고객센터 </a>
+                <!-- <a class="nav-menu" href="">공지사항 </a>
+                <a class="nav-menu" href="">자주 묻는 질문 </a> -->
             </div>
         </div>
 

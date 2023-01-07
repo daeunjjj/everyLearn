@@ -1,16 +1,30 @@
 /* 본문 */
 #container{
-    width: 70vw;
-    height: 70%;
-    margin: 0 auto;
+    width: 100%;
+    height: 80%;
 }
+
+#comm-banner{
+	width: 100%;
+    height: 100px;
+    background-color: #1187CF;
+    padding: 25px;
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+    display: inline-block; width:100%; 
+}
+
 
 #main{
     display: grid;
-    grid-template-columns: 1fr 2fr 5fr 3fr 3fr 1fr;
-    grid-template-rows: repeat(14, 50px);
+    grid-template-columns: 0.5fr 0.5fr 2fr 0.5fr 0.5fr 0.5fr;
+    grid-template-rows: repeat(14, 60px);
     align-content: center;
     padding: 10px;
+    width: 70%;
+    margin-top: 80px; /* 왜 안 먹힘? */
+    margin: 0 auto;
 }
 
 .th{
@@ -24,8 +38,7 @@
 }
 
 #title:hover{
-    font-size: large;
-    font-weight: 600;
+    border-bottom: 1px solid black;
 }
 
 #main .th,.td, #searchBar{
@@ -51,6 +64,8 @@
     color: white;
     border-radius: 10px;   
     font-size: 13px;
+    height: 35px;
+    margin-top: 20px
     
 }
 
@@ -66,6 +81,7 @@
     display: flex;
     flex-direction : column;
     align-items: center;
+    margin-top: 30px;
 }
 
 #searchBar{
@@ -76,6 +92,8 @@
     display: flex;
     flex-direction : row;
     align-items: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
 
 #search{

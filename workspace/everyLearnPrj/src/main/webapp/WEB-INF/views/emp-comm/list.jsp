@@ -4,15 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>commList</title>
+<title>에브리런</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 
-<link rel="stylesheet" href="/el/resources/css/emp-community/list.css">
-<link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
+<link rel="stylesheet" href="/el/resources/css/emp-comm/list.css">
+<link rel="stylesheet" href="/el/resources/css/emp-comm/common.css">
 
 </head>
 <body>
@@ -22,15 +22,17 @@
 <main>
 
 	  <div id="container">
+	  	
+	  	<div id="comm-banner">Employment COMMUNITY</div>
 
         <div id="main">
 
-            <div class="th">NO</div>
-            <div class="th"></div>
-            <div class="th">TITLE</div>
-            <div class="th">NICK</div>
-            <div class="th"></div>
-            <div class="th"></div>
+            <div class="th">번호</div>
+            <div class="th">카테고리</div>
+            <div class="th">제목</div>
+            <div class="th">닉네임</div>
+            <div class="th">작성일</div>
+            <div class="th">조회수</div>
 
             <div class="td">1</div>
             <div class="td">취업고민</div>
@@ -123,7 +125,7 @@
                     <option value="title">제목</option>
                     <option value="content">내용</option>
                 </select>
-                <input type="text" name="keyword" id="search2" placeholder="Search" >
+                <input type="text" name="keyword" id="search2" placeholder="Search" autocomplete="off" />
                 <button type="submit" class="search-button">
                     <span class="material-symbols-outlined" id="dodbogi">search</span>
                 </button>
