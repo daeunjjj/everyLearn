@@ -73,7 +73,7 @@
                                 <div>${list.quitYn}</div>
                                 <div>
                                     <button type="button" onclick="detailBtn('${list.memberNo}');">상세</button>
-                                    <button>정지</button>
+                                    <button type="button" onclick="sendMail('${list.email}');">메일</button>
                                 </div>
                             </div>
                         </li>
@@ -129,6 +129,10 @@
 
         function detailBtn(no) {
             window.location.href='/el/admin/member/student/detail?no='+no;
+        }
+
+        function sendMail(email){
+            window.location.href="/el/admin/mail/send?address="+email;
         }
 
         function deleteCheck(){

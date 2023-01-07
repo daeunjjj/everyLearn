@@ -476,7 +476,7 @@
 		SELECT
 		    E.NO
 		    ,E.CORP_NO
-		    ,C.TYPE AS CATEGORY
+		    ,J.TYPE AS CATEGORY
 		    ,E.TITLE
 		    ,E.RESPONSIBILITY
 		    ,E.QUALIFICATION
@@ -493,7 +493,7 @@
 		    ,TO_CHAR(MODIFY_DATE, 'YYYY-MM-DD') AS MODIFY_DATE
 		    ,E.DELETE_YN
 		FROM EMPLOYMENT E
-		JOIN EMP_CATE C ON E.CATEGORY = C.NO
+		JOIN JOB_CATE J ON E.CATEGORY = J.NO
 		WHERE CORP_NO = #{no}
 	</select>
 	
@@ -644,4 +644,46 @@
 		ORDER BY LABEL
 	</select>
 	
+	<select id="selectClassChart" resultType="com.coding5.el.chart.vo.ChartVo">
+		SELECT CLASS_NAME AS LABEL
+		     , STUDENT_CNT AS DATA
+		  FROM (
+		        SELECT CLASS_NAME, STUDENT_CNT
+		        FROM CLASS
+		        <if test="cateNo != null and cateNo != ''">
+		        	WHERE CATEGORY = #{cateNo}
+		        </if>
+		        ORDER BY STUDENT_CNT DESC
+		       )
+		<![CDATA[ WHERE ROWNUM <= 6 ]]>
+	</select>
+	<update id="updateTempPwd">
+		UPDATE ADMIN
+		    SET PWD = #{pwd}
+		WHERE ID = #{id}
+	</update>
+	<insert id="insertEmailAndSelectPk">
+		INSERT INTO EMAIL
+		(
+		    NO
+		    ,ADMIN_NO
+		    ,TO_ADDRESS
+		    ,FROM_ADDRESS
+		    ,NAME
+		    ,TITLE
+		    ,CONTENT
+		)
+		VALUES
+		(
+		    SEQ_EMAIL_NO.NEXTVAL
+		    , #{adminNo}
+		    , #{toAddress}
+		    , #{fromAddress}
+		    , #{name}
+		    , #{title}
+		    , #{content}
+		    
+		)
+		
+	</insert>
 </mapper>

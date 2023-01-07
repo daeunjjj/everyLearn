@@ -14,6 +14,7 @@ import com.coding5.el.common.page.Pagination;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
+import com.coding5.el.email.vo.MailVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
@@ -274,16 +275,29 @@ public class AdminDaoImpl implements AdminDao{
 		return sst.delete("requestMapper.questionDelete",no);
 	}
 
-	@Override
-	public int selectReportHandleN(SqlSessionTemplate sst) {
-		// 미처리 신고 게시글 수
-		return sst.selectOne("adminMapper.selectHandleN");
-	}
 
 	@Override
 	public List<ChartVo> selectAgeChart(SqlSessionTemplate sst) {
-		// TODO Auto-generated method stub
+		// 연령대별 회원수
 		return sst.selectList("adminMapper.selectAgeChart");
+	}
+
+	@Override
+	public List<ChartVo> selectClassChart(SqlSessionTemplate sst, String cateNo) {
+		// 카테고리별 인기강의
+		return sst.selectList("adminMapper.selectClassChart",cateNo);
+	}
+
+	@Override
+	public int updateTempPwd(SqlSessionTemplate sst, AdminVo vo) {
+		// 임시 비번 넣어주기
+		return sst.update("adminMapper.updateTempPwd",vo);
+	}
+
+	@Override
+	public int insertEmailAndSelectPk(SqlSessionTemplate sst, MailVo vo) {
+		// 메일 인서트하고 메일 넘버 가져오기
+		return sst.insert("adminMapper.insertEmailAndSelectPk",vo);
 	}
 	
 

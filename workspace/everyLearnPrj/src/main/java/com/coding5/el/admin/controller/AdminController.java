@@ -1,5 +1,6 @@
 package com.coding5.el.admin.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,9 @@ import com.coding5.el.chart.vo.ChartVo;
 import com.coding5.el.common.file.FileUploader;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.page.Pagination;
+import com.coding5.el.common.randomNum.RandomNumber;
+import com.coding5.el.email.service.EmailService;
+import com.coding5.el.email.vo.MailVo;
 import com.coding5.el.request.vo.RequestVo;
 import com.google.gson.Gson;
 
@@ -33,14 +38,19 @@ import lombok.extern.slf4j.Slf4j;
 public class AdminController {
 	
 	@Autowired
-	public AdminController(AdminService adminService) {
+	public AdminController(AdminService adminService, EmailService emailService) {
 		this.adminService = adminService;
+		this.emailService = emailService;
 	}
 	
 	private final AdminService adminService;
 	
-//	@Autowired
-//	private Gson gson;
+	private final EmailService emailService;
+	
+	@Autowired
+	private Gson gson;
+	
+	
 	/**
 	 * 로그인
 	 * @return
@@ -386,21 +396,41 @@ public class AdminController {
 		model.addAttribute("map", map);
 		return "admin/dashboard";
 	}
-	
+	/**
+	 * 대시보드-연령대별
+	 * @return
+	 */
 	@GetMapping("dashboard/age-chart")
 	@ResponseBody
 	public String ageChart() {
 		
-		List<ChartVo> voAge = adminService.selectAgeChart();
+		List<ChartVo> voList = adminService.selectAgeChart();
 		
-		log.info("ageChart 디비 다녀옴 :::"+voAge);
+		log.info("ageChart 디비 다녀옴 :::"+voList);
 		
-		Gson gson = new Gson();
-		
-		return gson.toJson(voAge);
+		return gson.toJson(voList);
 	}
-	
-
+	/**
+	 * 대시보드-카테고리별
+	 * @param cateNo
+	 * @return
+	 */
+	@GetMapping(value = "dashboard/class-chart", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String classChart(String cateNo) {
+		log.info("classChart 화면 > 컨트롤러" + cateNo);
+		
+		if("0".equals(cateNo)) {
+			cateNo = null;
+		}
+		
+		List<ChartVo> voList = adminService.selectClassChart(cateNo);
+		
+		log.info("classChart 디비 다녀옴" + voList);
+		
+		
+		return gson.toJson(voList);
+	}
 	
 	
 	// 아이디 찾기
@@ -414,6 +444,39 @@ public class AdminController {
 	public String findPwd() {
 		return "admin/find/pwd";
 	}
+	
+	@PostMapping("find/pwd")
+	@ResponseBody
+	public String findPwd(String email) {
+		
+	    AdminVo vo = adminService.adminEmailCheck(email);
+		
+	    log.info("비번찾기-이메일가져오기 :: "+vo);
+	    
+	    if(vo == null) return "";
+	    
+		return "check";
+	}
+	
+	@PostMapping("send-email")
+	@ResponseBody 
+	public void sendMail(AdminVo vo) {
+		// 임시 비밀번호 발급
+		String newPwd = RandomNumber.getTempPwd();
+		vo.setPwd(newPwd);
+		// 임시 비번 업댓
+		int result = adminService.updateTempPwd(vo);
+		log.info("비번 업댓 결과 :: "+ result);
+		
+		
+		if(result == 1) {
+			MailVo mailVo = emailService.createMail(vo.getId(), newPwd);
+			emailService.mailSender(mailVo);
+		}
+		
+		log.info("이메일 :: "+vo.getId());
+	}
+	
 	// 아이디 찾기 결과
 	@GetMapping("find/result/id")
 	public String resultId() {
@@ -450,6 +513,44 @@ public class AdminController {
 	@GetMapping("mail/send")
 	public String mailSend() {
 		return "admin/mail/send";
+	}
+	
+	// 개별 메일 전송
+	@PostMapping("mail/send")
+	public String mailSend(MailVo vo, RedirectAttributes redirect, HttpSession session) {
+		log.info("메일 발송 화면>컨트롤러 vo ::: " + vo);
+		
+		// 세션에서 가져오기
+		AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");	
+		
+		vo.setFromAddress(loginAdmin.getId());
+		vo.setAdminNo(loginAdmin.getNo());
+		
+//		// 메일 전송
+//		boolean result = emailService.mailSender(vo);		
+//		
+//		if(!result) {
+//			redirect.addFlashAttribute("resultMsg", "메일 전송 실패");
+//			return "redirect:/admin/mail/send";
+//		}
+		
+		// 파일 서버에 업로드
+		List<String> fileName = new ArrayList<String>();
+		if(vo.getMultipartFile().isEmpty()) {
+			for(int i = 0; i < vo.getMultipartFile().size(); i++) {
+				log.info("파일 있나요?");
+				fileName.add(FileUploader.upload(session, vo.getMultipartFile().get(i)));
+			}
+		}
+		
+		vo.setFileName(fileName);
+		
+		
+		int result = adminService.insertMail(vo);
+		
+		
+		redirect.addFlashAttribute("resultMsg", "메일 전송 완료");
+		return "redirect:/admin/mail/send";
 	}
 	
 	

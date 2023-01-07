@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.coding5.el.RandomNumber;
+import com.coding5.el.common.randomNum.RandomNumber;
 
 import lombok.extern.slf4j.Slf4j;
 

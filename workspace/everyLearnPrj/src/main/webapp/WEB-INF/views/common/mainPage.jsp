@@ -29,16 +29,18 @@
 					  </ol>
 					  <div class="carousel-inner" role="listbox">
 						<div class="item active">
-						  <img src="/el/resources/img/main/banner1.png" style="width:100% ; height:250px; ">
+							<a href="">
+								<img src="/el/resources/img/main/banner01.png" style="width:100% ; height:250px; ">
+							</a>
 						</div>
 						<div class="item">
 						  <a href="">
-						  <img src="/el/resources/img/main/banner2.png" style="width:100%  ; height:250px;  ">
+						  <img src="/el/resources/img/main/banner02.png" style="width:100%  ; height:250px;  ">
 						  </a>
 						</div>
 						<div class="item">
 						<a href="">
-						  <img src="/el/resources/img/main/banner3.png" style="width:100%  ; height:250px;  ">
+						  <img src="/el/resources/img/main/banner03.png" style="width:100%  ; height:250px;  ">
 						</a>  
 						</div>
 					  </div>
