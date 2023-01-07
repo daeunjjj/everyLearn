@@ -33,6 +33,39 @@ public class ClassCommController {
 	@Autowired
 	private Gson gson;
 	
+	//likeup ajax
+	@PostMapping("likeupAjax")
+	@ResponseBody
+	public String likeupAjax(String memberNo, String classCommNo, HashMap<String, String> likeupMap) {
+		 
+		likeupMap.put("memberNo", memberNo);
+		likeupMap.put("classCommNo", classCommNo);
+		
+		
+		// 0 이면 빨간하트 , 1이면 다시 검은 하트로 // 빨간하트 유지 == 디테일 페이지에서? 데이터 다시 가져와서 처리??
+		int likeCheckInt = ccs.likeCheck(likeupMap);
+		log.info("likeCheck결과 :: " + likeCheckInt);
+		String likeCheck = Integer.toString(likeCheckInt);
+		
+		likeupMap.put("likeCheck", likeCheck);
+		
+		
+		//좋아요 카운트 셀렉트
+		String likeCntAjax = ccs.likeCntAjax(classCommNo);
+		likeupMap.put("likeCntAjax", likeCntAjax);
+		
+//		String s = gson.toJson(r);
+		log.info("likeupMap" + likeupMap);
+		
+		return gson.toJson(likeupMap);
+	}
+	
+	//신고 성공페이지
+	@GetMapping("reportSuccess")
+	public String reportSuccess() {
+		return "class_comm/reportSuccess";
+	}
+	
 	//게시글 삭제 (에이젝스)
 	@PostMapping("deleteAjax")
 	public String deleteAjax(String classCommNo) {
@@ -95,18 +128,17 @@ public class ClassCommController {
 		
 		
 		ClassCommVo detailVo = ccs.detailVo(classCommNo);
+		log.info("디테일브이오" + detailVo);
+		
 		model.addAttribute("detailVo", detailVo);
 		
-		log.info("디테일브이오" + detailVo);
+		
 		
 		//댓글 정보 조회
 		List<CommentVo> commentList = ccs.commentList(classCommNo);
 		log.info("댓글리스트" + commentList);
 		model.addAttribute("commentList", commentList);
 		model.addAttribute("classCommNo", classCommNo);
-		
-		
-		
 		
 		return "class_comm/detail";
 	}
@@ -187,19 +219,26 @@ public class ClassCommController {
 	
 	//신고
 	@PostMapping("report")
-	public String report(String blacklistNo, String accusor, String board, String cate_no ) {
+	
+	public String report(String blacklistNo, String accusor, String board, String type, HashMap<String, String> reportMap ) {
+		
+		ClassCommVo reportInfo = ccs.selectReportInfo();
+		
+		reportMap.put("blacklistNo", reportInfo.getBlacklistNo());
+		reportMap.put("accusor", reportInfo.getAccusor());
+		reportMap.put("board", reportInfo.getBoard());
+		reportMap.put("type", type);
+		reportMap.put("cate_no", "1");
+		
+		int reportResult = ccs.insertReport(reportMap);
 		
 
 		
-		log.info("신고 :: "+cate_no);
+		log.info("신고 :: "+type);
+		log.info("reportInfo :: "+reportInfo);
 
 		
-		
-//		log.info("신고"+vo);
-		
-//		int result = ccs.report(vo);
-		
-		return "main";
+		return "class_comm/reportSuccess";
 	}
 	
 

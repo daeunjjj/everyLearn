@@ -33,8 +33,8 @@
                         <div>프로필/수정</div>
                     </a>
                 </li>
-          <a href="javascript:listView('${loginMember.memberNo}')" class="item">
-          		<li>		
+                <li>		
+                      <a href="javascript:listView('${loginMember.memberNo}')" class="item">
                         <input type="hidden" id="memberNo" value="${loginMember.memberNo}"> 
                         <div>작성글</div>
                     </a>

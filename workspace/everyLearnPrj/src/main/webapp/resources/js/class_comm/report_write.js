@@ -2,18 +2,19 @@
 
 function check() {
 
-    var cate_no = $('input[name=cate_no]:checked').val();
+    var cate_no = $('input[name=type]:checked').val();
 
 
     $.ajax({
         url : "/el/class/report",	
         type : "post",
         data : {
-                "cate_no" : cate_no
+                "type" : type
                 }
         ,
         success : function(result){
             if(result != ''){
+                
                 alert("신고 데이터 넘어갔음~")
             }	
         },
