@@ -9,7 +9,7 @@ import com.coding5.el.qna.vo.QnaVo;
 public class QnaDaoImpl implements QnaDao {
 
 	@Override
-	public int write(SqlSessionTemplate sst, QnaVo vo) throws Exception {
+	public int insertMemberWrite(SqlSessionTemplate sst, QnaVo vo) throws Exception {
 		return sst.insert("qnaMapper.insertQna", vo);
 	}
 

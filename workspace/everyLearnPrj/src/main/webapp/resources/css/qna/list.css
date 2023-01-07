@@ -1,8 +1,9 @@
 @charset "UTF-8";
 .container{
-    width: 80%;
+    width: 70%;
     height: 70%;
     --border: 1px solid black;
+    padding: 30px;
 }
 
 .container .td, .th{
@@ -17,6 +18,7 @@
     height: 100px;
     background-color: #1187CF;
     padding: 25px;
+    margin-top: 75px;
 }
 
 .banner > span{
@@ -27,11 +29,13 @@
 
 .list{
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
+    grid-template-columns: 0.5fr 0.5fr 2fr 0.5fr 0.5fr 0.7fr;
     grid-template-rows: repeat(14, 60px);
     align-content: center;
     padding: 10px;
     margin-top: 30px;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .td{
@@ -49,7 +53,7 @@
 }
 
 #main-bot {
-    grid-column: span 5;
+    grid-column: span 6;
     row-gap: 40px;
     display: flex;
     flex-direction: row-reverse;   
@@ -63,6 +67,7 @@
     border-radius: 10px;   
     font-size: 13px;
     height: 35px;
+    margin-top: 20px
 }
 
 #write:hover{
@@ -70,23 +75,24 @@
 }
 
 #page-area{
-    grid-column: span 5;
+    grid-column: span 6;
     text-align: center;
     margin-top: 10px;
     border-bottom: none;
     display: flex;
     flex-direction : column;
     align-items: center;
+    margin-top: 50px;
 }
 
-.btn-outline-secondary{
+#page-btn{
     border-top: 0px;
     border-bottom: 0px;
     border-left: 0px;
     border-right: 0px;
 }
 
-.btn-outline-secondary:hover{
+#page-btn:hover{
     opacity: 20%;
     font-size: large;
     background-color: #1187CF;

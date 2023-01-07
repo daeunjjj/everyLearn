@@ -25,7 +25,7 @@
 
             <div class="main-wrap">
 
-                <form action="" method="post" id="write-fr">
+                <form action="/el/qna/memberWrite" method="post" id="write-fr" enctype="multipart/form-data">
                 	<br>
                     <div id="category">
                         <select name="category" id="category-btn">
@@ -39,7 +39,7 @@
                     </div>
                     <div id="title"><input type="text" name="title" required placeholder="제목"></div>
                     <div id="content"><textarea name="content" required placeholder="내용"></textarea></div>
-                    <div id="file"><input class="form-control form-control-sm" id="formFileSm" type="file" name="f"></div>
+                    <div id="file"><input class="form-control form-control-sm" id="formFileSm" multiple="multiple" type="file" name="f"></div>
                     <div id="write"><button type="submit" class="btn btn-light" id="submit-btn">작성하기</button></div>
                 </form>		
 

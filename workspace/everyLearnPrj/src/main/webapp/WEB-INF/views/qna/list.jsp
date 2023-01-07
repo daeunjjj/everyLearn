@@ -11,7 +11,7 @@
 
 
 <link rel="stylesheet" href="/el/resources/css/qna/list.css">
-<link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
+<link rel="stylesheet" href="/el/resources/css/emp-comm/common.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 
 </head>
@@ -28,6 +28,7 @@
         <div class="list">
 
             <div class="th" id="no">번호</div>
+            <div class="th">카테고리</div>
             <div class="th" id="title">제목</div>
             <div class="th" id="nick">작성자</div>
             <div class="th" id="date">작성일</div>
@@ -35,6 +36,7 @@
 
 
             <div class="td" id="no">11</div>
+            <div class="td">결제</div>
             <div class="td" id="title">제목입니다
               <span class="material-symbols-outlined">lock</span>
             </div>
@@ -43,31 +45,41 @@
             <div class="td" id="status1">답변 중</div>
 
             <div class="td" id="no">10</div>
-            <div class="td" id="title">제목입니다</div>
+            <div class="td">결제</div>
+            <div class="td" id="title">제목입니다
+            <span class="material-symbols-outlined">lock</span></div>
             <div class="td" id="nick">nick01</div>
             <div class="td" id="date">22.12.11</div>
             <div class="td" id="status">답변완료</div>
 
             <div class="td" id="no">9</div>
-            <div class="td" id="title">제목입니다</div>
+            <div class="td">결제</div>
+            <div class="td" id="title">제목입니다
+            <span class="material-symbols-outlined">lock</span></div>
             <div class="td" id="nick">nick01</div>
             <div class="td" id="date">22.12.11</div>
             <div class="td" id="status">답변완료</div>
 
             <div class="td" id="no">8</div>
-            <div class="td" id="title">제목입니다</div>
+            <div class="td">결제</div>
+            <div class="td" id="title">제목입니다
+            <span class="material-symbols-outlined">lock</span></div>
             <div class="td" id="nick">nick01</div>
             <div class="td" id="date">22.12.11</div>
             <div class="td" id="status">답변완료</div>
 
             <div class="td" id="no">7</div>
-            <div class="td" id="title">제목입니다</div>
+            <div class="td">결제</div>
+            <div class="td" id="title">제목입니다
+            <span class="material-symbols-outlined">lock</span></div>
             <div class="td" id="nick">nick01</div>
             <div class="td" id="date">22.12.11</div>
             <div class="td" id="status">답변완료</div>
 
             <div class="td" id="no">6</div>
-            <div class="td" id="title">제목입니다</div>
+            <div class="td">결제</div>
+            <div class="td" id="title">제목입니다
+            <span class="material-symbols-outlined">lock</span></div>
             <div class="td" id="nick">nick01</div>
             <div class="td" id="date">22.12.11</div>
             <div class="td" id="status">답변완료</div>
@@ -78,13 +90,13 @@
 
             <div id="page-area" class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
                 <div id="page-area2" class="btn-group me-2" role="group" aria-label="First group">
-                <a href="/#/board/list?p=1" class="btn btn-outline-secondary"><</a>
-                <a href="/#/board/list?p=1" class="btn btn-outline-secondary">1</a>
-                <a href="/#/board/list?p=2" class="btn btn-outline-secondary">2</a>
-                <a href="/#/board/list?p=3" class="btn btn-outline-secondary">3</a>
-                <a href="/#/board/list?p=4" class="btn btn-outline-secondary">4</a>
-                <a href="/#/board/list?p=5" class="btn btn-outline-secondary">5</a>
-                <a href="/#/board/list?p=1" class="btn btn-outline-secondary">></a>
+                <a href="/#/board/list?p=1" class="btn btn-outline-secondary" id="page-btn"><</a>
+                <a href="/#/board/list?p=1" class="btn btn-outline-secondary" id="page-btn">1</a>
+                <a href="/#/board/list?p=2" class="btn btn-outline-secondary" id="page-btn">2</a>
+                <a href="/#/board/list?p=3" class="btn btn-outline-secondary" id="page-btn">3</a>
+                <a href="/#/board/list?p=4" class="btn btn-outline-secondary" id="page-btn">4</a>
+                <a href="/#/board/list?p=5" class="btn btn-outline-secondary" id="page-btn">5</a>
+                <a href="/#/board/list?p=1" class="btn btn-outline-secondary" id="page-btn">></a>
                 </div>
             </div>
         </div>

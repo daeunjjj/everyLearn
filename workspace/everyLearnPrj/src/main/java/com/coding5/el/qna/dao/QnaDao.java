@@ -6,6 +6,6 @@ import com.coding5.el.qna.vo.QnaVo;
 
 public interface QnaDao {
 
-	int write(SqlSessionTemplate sst, QnaVo vo) throws Exception;
+	int insertMemberWrite(SqlSessionTemplate sst, QnaVo vo) throws Exception;
 
 }
