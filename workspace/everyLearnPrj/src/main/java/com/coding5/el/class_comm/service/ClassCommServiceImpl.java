@@ -1,5 +1,6 @@
 package com.coding5.el.class_comm.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,14 +40,18 @@ public class ClassCommServiceImpl implements ClassCommService{
 	//게시글 디테일
 	@Override
 	public ClassCommVo detailVo(String classCommNo) {
-		return dao.selectDetailVo(sst, classCommNo);
+		ClassCommVo detailVo = dao.selectDetailVo(sst, classCommNo);
+		//좋아요 카운트> 여기선 원래 있던 값 넣어주고, ajax에서 따로 업데이트!
+		String likeCnt = dao.selectLikeCnt(sst,classCommNo);
+		detailVo.setLikeCnt(likeCnt);
+		//좋아요 여부
+		int likeupCheck1 = dao.selectLikeupCheck(sst, classCommNo);
+		String likeupCheck = Integer.toString(likeupCheck1);
+		detailVo.setLikeupCheck(likeupCheck);
+		
+		return detailVo;
 	}
 
-	//신고 인서트
-	@Override
-	public int report(ClassCommVo vo) {
-		return dao.insertReport(sst, vo);
-	}
 
 	//스터디 게시판
 	@Override
@@ -101,4 +106,59 @@ public class ClassCommServiceImpl implements ClassCommService{
 		return dao.insertReportInfo(sst,reportVo);
 	}
 
-}
+	//신고정보가져오기
+	@Override
+	public ClassCommVo selectReportInfo() {
+		return dao.selectRefortInfo(sst);
+	}
+
+	//신고인서트
+	@Override
+	public int insertReport(HashMap<String, String> reportMap) {
+
+			return dao.insertReport(sst, reportMap);
+	}
+
+	//좋아요여부체크
+	@Override
+	public int likeCheck(HashMap<String, String> likeupMap) {
+		
+		int likeCheck = dao.selectLikeupCheck(sst, likeupMap);
+		//돌아온게 0 이면 > 좋아요 아직 == insert 해줘야!
+		int result = 0;
+		if(likeCheck == 0) {
+			result = dao.insertLike(sst, likeupMap);
+			//만약 인서트 성공했다면 > 그대로 1 return 되도록
+			if(result == 1) {
+				return result;
+			}else {
+				log.info("error");
+			}
+		}else {
+			result = dao.deleteLike(sst, likeupMap);
+		}
+			
+			if(result == 1) {
+				//만약 delete 성공했다면 > 0 return 되도록
+				result = 0;
+			}else {
+				log.info("error");
+			}
+			
+			return result;
+		}
+
+	//에이젝스 좋아요 카운트
+	@Override
+	public String likeCntAjax(String classCommNo) {
+		return dao.selectLikeCntAjax(sst, classCommNo);
+	}
+		
+	
+	
+}//서비스레이어
+
+
+
+
+

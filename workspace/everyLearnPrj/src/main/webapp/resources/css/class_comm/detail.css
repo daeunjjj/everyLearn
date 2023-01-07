@@ -154,3 +154,27 @@ textarea:focus{
 #hidden-member{
     display:none 
 }
+
+#like-wrap{
+    /* display: flex; */
+    /* justify-content: center; */
+}
+
+#like-img{
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+#like-img>img{
+    width: 20px;
+    height: 20px;
+}
+
+#like-cnt{
+    display: flex;
+    justify-content: center;
+    font-size: small;
+    margin-bottom: 5px;
+}
+

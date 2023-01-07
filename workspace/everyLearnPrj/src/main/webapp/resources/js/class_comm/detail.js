@@ -223,3 +223,46 @@ function mainDelete() {
 
     return true;
 }
+
+function likeup(params) {
+    let memberNo =  $('#userNo').val();
+    let classCommNo =  $('#board').val();
+    console.log(memberNo);
+    console.log(classCommNo);
+
+    // if(memberNo == null || memberNo == ''){
+    //     alert('로그인 후 이용해주세요.')
+    //    return false;
+    // }
+
+    $.ajax({
+        url : "/el/class/likeupAjax"
+        , type : "post"
+        , data : {
+            "memberNo" : memberNo
+            , "classCommNo" : classCommNo
+        }
+        , success : function name(likeupMap) {
+            let result = JSON.parse(likeupMap);
+            console.log(likeupMap);
+            if(result.likeCheck == "1"){
+                // $("img-like").attr("src")
+                $("#like-cnt").html(result.likeCntAjax);
+                console.log(result.likeCntAjax);
+                $("#img-like").attr("src", "/el/resources/img/class-comm/heart_red.png");
+                console.log("좋아요");
+                
+            }else if(result.likeCheck == "0"){
+                $("#img-like").attr("src", "/el/resources/img/class-comm/heart.png")
+                console.log("좋아요취소");
+                $("#like-cnt").html(result.likeCntAjax);
+                
+            }
+        }
+        , error : function name(params) {
+            alert('likeupAjax 실패');
+        }
+    });
+
+
+}

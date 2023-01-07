@@ -34,8 +34,8 @@
                     <form action="/el/member/modify" method="post" id="modify-form" onsubmit="return modifySubmit();" enctype="multipart/form-data">
 
                         <div id="wrap-img">
-                            <div id='View_area'><img style="height: 150px; width: 150px;" src="/el/resources/upload/${loginMember.profileImgName}" alt=""></div>
-                                <div id="f">
+                            <div id='View_area'><img  src="/el/resources/upload/${loginMember.profileImgName}" alt=""></div>
+                                <div id="f" style="margin-top: 30px;">
                                     <input type="file" class="form-control mt-3" name="profileImg" id="profile_pt"
                                         onchange="previewImage(this,'View_area')" style="margin-left: 0px; height: 23px;">
                                 </div>
@@ -52,9 +52,9 @@
                         <div class="warning" id="pwdch"></div>    
                         <span>
                             <pre>
-    - 영문자(대소문자 구분)/숫자/특수문자 모두 사용
-    - 8자~32자(공백 제외)
-    - 3개이상 동일한 문자/숫자 사용 불가</pre>
+- 영문자(대소문자 구분)/숫자/특수문자 모두 사용
+- 8자~32자(공백 제외)
+- 3개이상 동일한 문자/숫자 사용 불가</pre>
                         </span>
                         <h4><label for="">비밀번호 확인</label></h4>
                         <span class="modify-box">

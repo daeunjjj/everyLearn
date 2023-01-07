@@ -1,5 +1,6 @@
 package com.coding5.el.class_comm.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,8 +19,7 @@ public interface ClassCommService {
 	//게시글 디테일
 	public ClassCommVo detailVo(String classCommNo);
 
-	//신고 인서트
-	public int report(ClassCommVo vo);
+
 
 	//스터디 게시판
 	public List<ClassCommVo> studyList(PageVo pv, Map<String, String> search);
@@ -39,9 +39,21 @@ public interface ClassCommService {
 	//댓글 삭제
 	public int deleteWrite(String classCommNo);
 
-	//게시글 카운트
+	//게시글 카운트(((((((((?????????)))))))))))))))
 	public int selectCnt(Map<String, String> search);
 
 	//신고 인서트 정보
 	public int reportInfo(ClassCommVo reportVo);
+
+	//신고 정보 가져오기
+	public ClassCommVo selectReportInfo();
+
+	//신고인서트
+	public int insertReport(HashMap<String, String> reportMap);
+
+	//좋아요 여부체크
+	public int likeCheck(HashMap<String, String> likeupMap);
+
+	//좋아요 에이젝스 카운트
+	public String likeCntAjax(String classCommNo);
 }

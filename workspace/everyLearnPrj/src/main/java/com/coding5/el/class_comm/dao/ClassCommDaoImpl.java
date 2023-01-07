@@ -1,5 +1,6 @@
 package com.coding5.el.class_comm.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,8 +35,8 @@ public class ClassCommDaoImpl implements ClassCommDao{
 
 	//신고 인서트
 	@Override
-	public int insertReport(SqlSessionTemplate sst, ClassCommVo vo) {
-		return sst.insert("classCommMapper.insertReport", vo);
+	public int insertReport(SqlSessionTemplate sst, HashMap<String, String> reportMap) {
+		return sst.insert("classCommMapper.insertReport", reportMap);
 	}
 
 	//스터디게시판
@@ -98,6 +99,47 @@ public class ClassCommDaoImpl implements ClassCommDao{
 	@Override
 	public int insertReportInfo(SqlSessionTemplate sst, ClassCommVo reportVo) {
 		return sst.insert("classCommMapper.insertReportInfo", reportVo);
+	}
+
+	@Override
+	public ClassCommVo selectRefortInfo(SqlSessionTemplate sst) {
+		return sst.selectOne("classCommMapper.selectReportInfo");
+	}
+
+	//select likeupCheck
+	@Override
+	public int selectLikeupCheck(SqlSessionTemplate sst, HashMap<String, String> likeupMap) {
+		return sst.selectOne("classCommMapper.selectLikeupCheck", likeupMap);
+	}
+
+	//insertLike
+	@Override
+	public int insertLike(SqlSessionTemplate sst, HashMap<String, String> likeupMap) {
+		return sst.insert("classCommMapper.insertLike", likeupMap);
+	}
+
+	//deleteLike
+	@Override
+	public int deleteLike(SqlSessionTemplate sst, HashMap<String, String> likeupMap) {
+		return sst.update("classCommMapper.deleteLike", likeupMap);
+	}
+
+	@Override
+	public String selectLikeCnt(SqlSessionTemplate sst, String classCommNo) {
+		
+		return sst.selectOne("classCommMapper.selectLikeCnt", classCommNo);
+	}
+
+	//에이젝스 likeCnt
+	@Override
+	public String selectLikeCntAjax(SqlSessionTemplate sst, String classCommNo) {
+		return sst.selectOne("classCommMapper.selectLikeCnt", classCommNo);
+	}
+
+	//디테일화면 좋아요 여부
+	@Override
+	public int selectLikeupCheck(SqlSessionTemplate sst, String classCommNo) {
+		return sst.selectOne("classCommMapper.selectLikeupCheck", classCommNo);
 	}
 	
 	

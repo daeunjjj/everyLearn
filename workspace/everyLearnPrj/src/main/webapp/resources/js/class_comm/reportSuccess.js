@@ -1,0 +1,4 @@
+
+function reportClose() {
+    window.close();
+}

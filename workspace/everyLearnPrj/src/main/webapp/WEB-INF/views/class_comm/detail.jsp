@@ -40,6 +40,7 @@
 
                                     <input type="hidden" name="blacklist" id="blacklistNo" value="${detailVo.writerNo}">
                                     <input type="hidden" name="accusor" id="accusor" value="${loginMember.memberNo}">
+                                    <input type="hidden" name="userNo" id="userNo" value="${loginMember.memberNo}">
                                     
                                     <input type="hidden" name="cate_no" id="cate_no" value="1">
                                     <input type="hidden" name="board" id="board" value="${detailVo.classCommNo}">
@@ -48,7 +49,7 @@
                                     <input type="hidden" name="blacklist" id="blacklist" value="${detailVo.writer}">
                                     <input type="hidden" name="refortTitle" id="refortTitle" value="${detailVo.title}">
                                     
-                                    블랙넘버${detailVo.writerNo}
+                                   
                                     
                                     <div class="writer" id="writer">
                                         ${detailVo.writer}
@@ -72,6 +73,19 @@
 
                         <div id="content">
                             <pre>${detailVo.content}</pre>
+                        </div>
+                        detailVo.likeupCheck${detailVo.likeupCheck}
+                        <div id="like-wrap">
+                            <div id="like-img">
+                            <c:if test="${detailVo.likeupCheck eq '0'}">
+                                <img id="img-like" src="/el/resources/img/class-comm/heart.png" alt="" onclick="likeup()">
+                            </c:if>
+                            <c:if test="${detailVo.likeupCheck eq '1'}">
+                                <img id="img-like" src="/el/resources/img/class-comm/heart_red.png" alt="" onclick="likeup()">
+                            </c:if>
+                                <input type="hidden" id="likeupCheck" name="likeupCheck" value="${detailVo.likeupCheck}">
+                            </div>
+                            <div id="like-cnt">${detailVo.likeCnt}</div>
                         </div>
                     </div>
                     <div id="comment-top">댓글(3)</div>
