@@ -26,7 +26,7 @@
 					<div class="emp-header">
 						<p class="hiring">채용중인 공고</p>
 						<div class="hiring-wrapper">
-							<a href="" class="hiring-detail">전체보기</a>
+							<a href="/el/emp/job-post" class="hiring-detail">전체보기</a>
 						</div>
 					</div>
 					<ul class="announcement">

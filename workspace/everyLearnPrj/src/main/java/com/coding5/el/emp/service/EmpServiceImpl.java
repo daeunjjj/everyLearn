@@ -103,6 +103,7 @@ public class EmpServiceImpl implements EmpService{
 			while(evIterator.hasNext()) {
 				evIterator.next().setResumeNo(resumeNo);
 			}
+			log.info(ev.toString());
 			int evResult = dao.updateEducation(sst, ev.getEvList());
 		}
 		
@@ -164,6 +165,58 @@ public class EmpServiceImpl implements EmpService{
 	@Override
 	public int searchListCnt(String keyword) {
 		return dao.selectSearchListCnt(sst, keyword);
+	}
+
+	// sector 리스트
+	@Override
+	public List<JobPostVo> postBySector(String sector, PageVo pv) {
+		
+		switch(sector) {
+		
+		case "it": sector = "1"; 
+			break;
+			
+		case "management": sector = "2"; 
+			break;
+			
+		case "design": sector = "3"; 
+			break;
+			
+		case "marketing": sector = "4"; 
+			break;
+			
+		case "education": sector = "5"; 
+			break;
+		
+		}
+		
+		return dao.selectPostBySector(sst, sector, pv);
+	}
+
+	// sector 페이징
+	@Override
+	public int selectSectorPage(String sector) {
+		
+		switch(sector) {
+		
+		case "it": sector = "1"; 
+			break;
+			
+		case "management": sector = "2"; 
+			break;
+			
+		case "design": sector = "3"; 
+			break;
+			
+		case "marketing": sector = "4"; 
+			break;
+			
+		case "education": sector = "5"; 
+			break;
+		
+		}
+		
+		return dao.selectSectorPage(sst, sector);
 	}
 
 }

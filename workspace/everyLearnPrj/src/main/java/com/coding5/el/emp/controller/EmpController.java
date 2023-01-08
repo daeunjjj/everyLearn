@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,6 +80,26 @@ public class EmpController {
 		model.addAttribute("list", list);
 		
 		return "emp/post-list";
+	}
+	
+	@GetMapping("job-post/{sector}")
+	public String postByIt(Model model, @PathVariable("sector") String sector, @RequestParam(value="pno", defaultValue = "1") String pno) {
+		
+		// 카운트
+		int totalCount = es.selectSectorPage(sector);
+		int currentPage = Integer.parseInt(pno);
+		int pageLimit = 5;
+		int boardLimit = 12;
+		
+		PageVo pv = Pagination.getPageVo(totalCount, currentPage, pageLimit, boardLimit);
+		
+		List<JobPostVo> list = es.postBySector(sector, pv);
+		
+		model.addAttribute("pv", pv);
+		model.addAttribute("list", list);
+		
+		return "emp/post-list";
+		
 	}
 	
 	// 채용 공고 세부조회
@@ -201,8 +222,6 @@ public class EmpController {
 			attach = FileUploader.upload(session, rv.getAttach());
 			rv.setAttachName(attach);
 		}
-		
-		log.info(ev.getEvList().get(0).getEnterSchool());
 		
 		int result = es.insertResume(memberNo, rv, ev, av, cv, cfv, lv);
 

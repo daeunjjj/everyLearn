@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/el/resources/css/emp/resume.css">
 <link rel="stylesheet" href="/el/resources/css/common/font.css">
 <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -23,11 +24,6 @@
 			</div>
 			<form action="/el/emp/resume" method="POST" enctype="multipart/form-data">
 				<input type="hidden" name="no" value="${rv.no}">
-				<input type="hidden" name="avList[0].awardNo" value="${awardList[0].awardNo}">
-				<input type="hidden" name="cvList[0].careerNo" value="${careerList[0].careerNo}">
-				<input type="hidden" name="cfvList[0].certificateNo" value="${certificateList[0].certificateNo}">
-				<input type="hidden" name="evList[0].educationNo" value="${eduList[0].educationNo}">
-				<input type="hidden" name="lvList[0].languageNo" value="${langList[0].languageNo}">
 				<div class="main">
 					<div class="main-wrapper">
 						<section class="section">
@@ -84,6 +80,8 @@
 								</div>
 							</div>
 						</section>
+
+						<!-- 경력 -->
 						<section class="section">
 							<div class="title">
 								<h3>경력</h3>
@@ -91,130 +89,152 @@
 							<div class="content">
 								<div class="content-wrapper">
 									<div class="wrapper">
-										<div class="list-wrapper">
+										<div class="list-wrapper" id="education-list">
 											<div class="list-title">
-												<h4>학력</h4>
-											</div>
-											<div class="grid">
-												<div class="list">
-													<p>학력</p>
-													<div>
-														<input type="text" name="evList[0].education" class="input" value="${eduList[0].education}">
-													</div>
-												</div>
-												<div class="list">
-													<p>학교명</p>
-													<div>
-														<input type="text" name="evList[0].schoolName" class="input" value="${eduList[0].schoolName}">
-													</div>
-												</div>
-												<div class="list">
-													<p>전공</p>
-													<div>
-														<input type="text" name="evList[0].major" class="input"  value="${eduList[0].major}">
-													</div>
-												</div>
-												<!-- 드롭다운 변경 예정 -->
-												<div class="list">
-													<p>졸업 여부</p>
-													<div>
-														<select name="evList[0].status" class="input">
-															<option value="1">졸업</option>
-															<option value="2">재학</option>
-															<option value="3">중퇴</option>
-														</select>
-													</div>
-												</div>
-												<div class="list">
-													<p>입학날짜</p>
-													<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
-														<input type="text" id="edu-start" aria-label="Date-Time" class="input" name="evList[0].enterSchool" value="${eduList[0].enterSchool}"/>
-															<span class="tui-ico-date"></span>
-													</div>
-													<div id="edu-start-container" style="margin-top: -1px;"></div>
-												</div>
-												<div class="list">
-													<p>졸업날짜</p>
-													<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
-														<input type="text" id="edu-graduate" aria-label="Date-Time" class="input" name="evList[0].graduate" value="${eduList[0].graduate}"/>
-															<span class="tui-ico-date"></span>
-													</div>
-													<div id="edu-graduate-container" style="margin-top: -1px;"></div>	
+												<h1>교육</h1>
+												<div class="list-btn">
+													<img src="/el/resources/img/emp/plus.svg" alt="" class="plus" onclick="eduPlusBtn();">
+													<img src="/el/resources/img/emp/delete.svg" alt="" class="plus" onclick="eduDeleteBtn();">
 												</div>
 											</div>
+											<c:forEach items="${eduList}" var="item" varStatus="status">
+												<div class="item">
+													<div class="separator"></div>
+													<input type="hidden" name="evList[${status.index}].educationNo" value="${item.educationNo}">
+													<div class="grid">
+														<div class="list">
+															<p>학교 종류</p>
+															<div>
+																<input type="text" name="evList[${status.index}].education" class="input" value="${item.education}">
+															</div>
+														</div>
+														<div class="list">
+															<p>학교명</p>
+															<div>
+																<input type="text" name="evList[${status.index}].schoolName" class="input" value="${item.schoolName}">
+															</div>
+														</div>
+														<div class="list">
+															<p>전공</p>
+															<div>
+																<input type="text" name="evList[${status.index}].major" class="input"  value="${item.major}">
+															</div>
+														</div>
+														<!-- 드롭다운 변경 예정 -->
+														<div class="list">
+															<p>졸업 여부</p>
+															<div>
+																<select name="evList[${status.index}].status" class="input">
+																	<option value="1">졸업</option>
+																	<option value="2">재학</option>
+																	<option value="3">중퇴</option>
+																</select>
+															</div>
+														</div>
+														<div class="list">
+															<p>입학날짜</p>
+															<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+																<input type="text" id="edu-start-${status.index}" aria-label="Date-Time" class="input" name="evList[${status.index}].enterSchool" value="${item.enterSchool}" placeholder="0000년 00월"/>
+																	<span class="tui-ico-date"></span>
+															</div>
+															<div id="edu-start-container-${status.index}" style="margin-top: -1px;"></div>
+														</div>
+														<div class="list">
+															<p>졸업날짜</p>
+															<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+																<input type="text" id="edu-graduate-${status.index}" aria-label="Date-Time" class="input" name="evList[${status.index}].graduate" value="${item.graduate}" placeholder="0000년 00월"/>
+																	<span class="tui-ico-date"></span>
+															</div>
+															<div id="edu-graduate-container-${status.index}" style="margin-top: -1px;"></div>	
+														</div>
+													</div>
+												</div>
+											</c:forEach>
 										</div>
 									</div>
 									<div class="company-wrapper">
 										<div class="wrapper">
-											<div class="list-wrapper">
+											<div class="list-wrapper" id="career-list">
 												<div class="list-title">
 													<h4>업무 경험</h4>
-												</div>
-												<div class="grid">
-													<div class="list">
-														<p>회사명</p>
-														<div>
-															<input type="text" name="cvList[0].companyName" class="input" value="${careerList[0].companyName}">
-														</div>
-													</div>
-													<div class="list">
-														<p>부서명</p>
-														<div>
-															<input type="text" name="cvList[0].team" class="input" value="${careerList[0].team}">
-														</div>
-													</div>
-													<div class="list">
-														<p>직책</p>
-														<div>
-															<input type="text" name="cvList[0].position" class="input" value="${careerList[0].position}"> 
-														</div>
-													</div>
-													<!-- 드롭 다운 -->
-													<div class="list">
-														<p>근무유형</p>
-														<div>
-															<select name="cvList[0].type" class="input">
-																<option value="1">인턴</option>
-																<option value="2">계약직</option>
-																<option value="3">정규직</option>
-																<option value="4">개인사업</option>
-																<option value="5">프리랜서</option>
-															</select>
-														</div>
-													</div>
-													<div class="list">
-														<p>입사일</p>
-														<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
-															<input type="text" id="cv-enter" aria-label="Date-Time" class="input" name="cvList[0].joinCompany" value="${careerList[0].joinCompany}"/>
-																<span class="tui-ico-date"></span>
-														</div>
-														<div id="cv-enter-container" style="margin-top: -1px;"></div>	
-													</div>
-													<div class="list">
-														<p>퇴사일</p>
-														<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
-															<input type="text" id="cv-leave" aria-label="Date-Time" class="input" name="cvList[0].leave" value="${careerList[0].leave}"/>
-																<span class="tui-ico-date"></span>
-														</div>
-														<div id="cv-leave-container" style="margin-top: -1px;"></div>	
-													</div>
-													<!-- 드롭 다운 -->
-													<div class="list">
-														<p>재직 여부</p>
-														<div>
-															<select name="cvList[0].currentYN" class="input">
-																<option value="Y">재직중</option>
-																<option value="N">퇴사</option>
-															</select>
-														</div>
+													<div class="list-btn">
+														<img src="/el/resources/img/emp/plus.svg" alt="" class="plus" onclick="careerPlusBtn();">
+														<img src="/el/resources/img/emp/delete.svg" alt="" class="plus" onclick="careerDeleteBtn();">
 													</div>
 												</div>
+												<c:forEach items="${careerList}" var="item" varStatus="status">
+													<div class="item">
+														<div class="separator"></div>
+														<input type="hidden" name="cvList[${status.index}].careerNo" value="${item.careerNo}">
+														<div class="grid">
+															<div class="list">
+																<p>회사명</p>
+																<div>
+																	<input type="text" name="cvList[${status.index}].companyName" class="input" value="${item.companyName}">
+																</div>
+															</div>
+															<div class="list">
+																<p>부서명</p>
+																<div>
+																	<input type="text" name="cvList[${status.index}].team" class="input" value="${item.team}">
+																</div>
+															</div>
+															<div class="list">
+																<p>직책</p>
+																<div>
+																	<input type="text" name="cvList[${status.index}].position" class="input" value="${item.position}"> 
+																</div>
+															</div>
+															<!-- 드롭 다운 -->
+															<div class="list">
+																<p>근무유형</p>
+																<div>
+																	<select name="cvList[${status.index}].type" class="input">
+																		<option value="1">인턴</option>
+																		<option value="2">계약직</option>
+																		<option value="3">정규직</option>
+																		<option value="4">개인사업</option>
+																		<option value="5">프리랜서</option>
+																	</select>
+																</div>
+															</div>
+															<div class="list">
+																<p>입사일</p>
+																<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+																	<input type="text" id="cv-enter-${status.index}" aria-label="Date-Time" class="input" name="cvList[${status.index}].joinCompany" value="${item.joinCompany}" placeholder="0000년 00월 00일"/>
+																		<span class="tui-ico-date"></span>
+																</div>
+																<div id="cv-enter-container-${status.index}" style="margin-top: -1px;"></div>	
+															</div>
+															<div class="list">
+																<p>퇴사일</p>
+																<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+																	<input type="text" id="cv-leave-${status.index}" aria-label="Date-Time" class="input" name="cvList[${status.index}].leave" value="${item.leave}" placeholder="0000년 00월 00일"/>
+																		<span class="tui-ico-date"></span>
+																</div>
+																<div id="cv-leave-container-${status.index}" style="margin-top: -1px;"></div>	
+															</div>
+															<!-- 드롭 다운 -->
+															<div class="list">
+																<p>재직 여부</p>
+																<div>
+																	<select name="cvList[${status.index}].currentYN" class="input">
+																		<option value="Y">재직중</option>
+																		<option value="N">퇴사</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+													</div>
+												</c:forEach>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</section>
+
+						<!-- 보유 역량 -->
 						<section class="section">
 							<div class="title">
 								<h3>보유 역량</h3>
@@ -223,99 +243,131 @@
 								<div class="content-wrapper">
 									<div class="award-wrapper">
 										<div class="wrapper">
-											<div class="list-wrapper">
+											<div class="list-wrapper" id="award-list">
 												<div class="list-title">
 													<h4>수상</h4>
-												</div>
-												<div class="grid">
-													<div class="list">
-														<p>수상내역</p>
-														<div>
-															<input type="text" name="avList[0].awardName" class="input" value="${awardList[0].awardName}">
-														</div>
-													</div>
-													<div class="list">
-														<p>수상년도</p>
-														<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
-															<input type="text" id="av-date" aria-label="Date-Time" class="input" name="avList[0].awardDate" value="${awardList[0].awardDate}"/>
-																<span class="tui-ico-date"></span>
-														</div>
-														<div id="av-date-container" style="margin-top: -1px;"></div>	
-													</div>
-													<!-- textarea -->
-													<div class="list">
-														<p>수상기관</p>
-														<div>
-															<input type="text" name="avList[0].awardAgency" class="input" value="${awardList[0].awardAgency}">
-														</div>
+													<div class="list-btn">
+														<img src="/el/resources/img/emp/plus.svg" alt="" class="plus" onclick="awardPlusBtn();">
+														<img src="/el/resources/img/emp/delete.svg" alt="" class="plus" onclick="awardDeleteBtn();">
 													</div>
 												</div>
+												<c:forEach items="${awardList}" var="item" varStatus="status">
+												<div class="item">
+													<div class="separator"></div>
+													<input type="hidden" name="avList[${status.index}].awardNo" value="${item.awardNo}">
+													<div class="grid">
+														<div class="list">
+															<p>수상내역</p>
+															<div>
+																<input type="text" name="avList[${status.index}].awardName" class="input" value="${item.awardName}">
+															</div>
+														</div>
+														<div class="list">
+															<p>수상년도</p>
+															<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+																<input type="text" id="av-date-${status.index}" aria-label="Date-Time" class="input" name="avList[${status.index}].awardDate" value="${item.awardDate}" placeholder="0000년 00월"/>
+																	<span class="tui-ico-date"></span>
+															</div>
+															<div id="av-date-container-${status.index}" style="margin-top: -1px;"></div>	
+														</div>
+														<!-- textarea -->
+														<div class="list">
+															<p>수상기관</p>
+															<div>
+																<input type="text" name="avList[${status.index}].awardAgency" class="input" value="${item.awardAgency}">
+															</div>
+														</div>
+													</div>
+												</div>
+												</c:forEach>
 											</div>
 										</div>
 									</div>
 									<div class="certificate-wrapper">
 										<div class="wrapper">
-											<div class="list-wrapper">
+											<div class="list-wrapper" id="certificate-list">
 												<div class="list-title">
 													<h4>자격증</h4>
-												</div>
-												<div class="grid">
-													<div class="list">
-														<p>자격증명</p>
-														<div>
-															<input type="text" name="cfvList[0].certificateName" class="input" value="${certificateList[0].certificateName}">
-														</div>
-													</div>
-													<!-- textarea -->
-													<div class="list">
-														<p>취득일</p>
-														<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
-															<input type="text" id="cfv-date" aria-label="Date-Time" class="input" name="cfvList[0].certificateDate" value="${certificateList[0].certificateDate}"/>
-																<span class="tui-ico-date"></span>
-														</div>
-														<div id="cfv-date-container" style="margin-top: -1px;"></div>	
-													</div>
-													<div class="detail">
-														<p>발급기관</p>
-														<div>
-															<input type="text" name="cfvList[0].certificateAgency" class="input"  value="${certificateList[0].certificateAgency}">
-														</div>
+													<div class="list-btn">
+														<img src="/el/resources/img/emp/plus.svg" alt="" class="plus" onclick="certificatePlusBtn();">
+														<img src="/el/resources/img/emp/delete.svg" alt="" class="plus" onclick="certificateDeleteBtn();">
 													</div>
 												</div>
+												<c:forEach items="${certificateList}" var="item" varStatus="status">
+												<div class="item">
+													<div class="separator"></div>
+													<input type="hidden" name="cfvList[${status.index}].certificateNo" value="${item.certificateNo}">
+													<div class="grid">
+														<div class="list">
+															<p>자격증명</p>
+															<div>
+																<input type="text" name="cfvList[${status.index}].certificateName" class="input" value="${item.certificateName}">
+															</div>
+														</div>
+														<!-- textarea -->
+														<div class="list">
+															<p>취득일</p>
+															<div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+																<input type="text" id="cfv-date-${status.index}" aria-label="Date-Time" class="input" name="cfvList[${status.index}].certificateDate" value="${item.certificateDate}" placeholder="0000년 00월"/>
+																	<span class="tui-ico-date"></span>
+															</div>
+															<div id="cfv-date-container-${status.index}" style="margin-top: -1px;"></div>	
+														</div>
+														<div class="detail">
+															<p>발급기관</p>
+															<div>
+																<input type="text" name="cfvList[${status.index}].certificateAgency" class="input"  value="${item.certificateAgency}">
+															</div>
+														</div>
+													</div>
+												</div>
+												</c:forEach>
 											</div>
 										</div>
 									</div>
 									<div class="language-wrapper">
 										<div class="wrapper">
-											<div class="list-wrapper">
+											<div class="list-wrapper" id="language-list">
 												<div class="list-title">
 													<h4>언어</h4>
-												</div>
-												<div class="grid">
-													<div class="list">
-														<p>언어명</p>
-														<div>
-															<input type="text" name="lvList[0].language" class="input" value="${langList[0].language}">
-														</div>
-													</div>
-													<!-- 드롭다운 -->
-													<div class="list">
-														<p>수준</p>
-														<div>
-															<select name="lvList[0].languageLevel" class="input">
-																<option value="1">상</option>
-																<option value="2">중</option>
-																<option value="3">하</option>
-															</select>
-														</div>
+													<div class="list-btn">
+														<img src="/el/resources/img/emp/plus.svg" alt="" class="plus" onclick="languagePlusBtn();">
+														<img src="/el/resources/img/emp/delete.svg" alt="" class="plus" onclick="languageDeleteBtn();">
 													</div>
 												</div>
+												<c:forEach items="${langList}" var="item" varStatus="status">
+												<div class="item">
+													<div class="separator"></div>
+													<input type="hidden" name="lvList[${status.index}].languageNo" value="${item.languageNo}">
+													<div class="grid">
+														<div class="list">
+															<p>언어명</p>
+															<div>
+																<input type="text" name="lvList[${status.index}].language" class="input" value="${item.language}">
+															</div>
+														</div>
+														<!-- 드롭다운 -->
+														<div class="list">
+															<p>수준</p>
+															<div>
+																<select name="lvList[${status.index}].languageLevel" class="input">
+																	<option value="1">상</option>
+																	<option value="2">중</option>
+																	<option value="3">하</option>
+																</select>
+															</div>
+														</div>
+													</div>
+												</div>
+												</c:forEach>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</section>
+
+						<!-- 자기소개 -->
 						<section class="section">
 							<div class="title">
 								<h3>자기소개</h3>
@@ -334,6 +386,8 @@
 									</div>
 								</div>
 						</section>
+
+						<!-- 추가 정보 -->
 						<section class="section">
 							<div class="title">
 								<h3>추가정보</h3>
@@ -362,7 +416,7 @@
 					</div>
 					<c:if test="${not empty loginMember }">
 					<div class="button-wrapper">
-						<button type="submit">저장</button>
+						<button type="submit" class="save-btn">저장</button>
 					</div>
 					</c:if>
 			</form>
@@ -370,63 +424,121 @@
 	</main>
 
 	<script>
-	const DatePicker = tui.DatePicker;
+		const DatePicker = tui.DatePicker;
+		<c:if test="${not empty eduList}">
+		let eduIndex = ${eduList.size()};
+		</c:if>
 
-	new DatePicker(document.getElementById('edu-start-container'), {
-		language: 'ko',
-		type: 'month',
-		input: {
-				element: document.getElementById('edu-start'),
-				format: 'yyyy-MM'
-		},
-		date: new Date('${eduList[0].enterSchool}')
+		<c:if test="${empty eduList}">
+		let eduIndex = 0;
+		</c:if>
 		
-	});
+		<c:forEach items="${eduList}" var="item" varStatus="status">
+			new DatePicker(document.getElementById(`edu-start-container-${status.index}`), {
+				language: 'ko',
+				type: 'month',
+				input: {
+						element: document.getElementById(`edu-start-${status.index}`),
+						format: 'yyyy-MM'
+				},
+				date: new Date(`${eduList[status.index].enterSchool}`)
+				
+			});
+	
+			new DatePicker(document.getElementById(`edu-graduate-container-${status.index}`), {
+				language: 'ko',
+				type: 'month',
+				input: {
+						element: document.getElementById(`edu-graduate-${status.index}`),
+						format: 'yyyy-MM'
+				},
+				date: new Date(`${eduList[status.index].graduate}`)
+				
+			});
+		</c:forEach>
 
-	new DatePicker(document.getElementById('edu-graduate-container'), {
-		language: 'ko',
-		type: 'month',
-		input: {
-				element: document.getElementById('edu-graduate'),
-				format: 'yyyy-MM'
-		},
-		date: new Date('${eduList[0].graduate}')
+		<c:if test="${not empty careerList}">
+		let careerIndex = ${careerList.size()};
+		</c:if>
+
+		<c:if test="${empty careerList}">
+		let careerIndex = 0;
+		</c:if>
+
+		<c:forEach items="${careerList}" var="item" varStatus="status">
+		new DatePicker(document.getElementById(`cv-enter-container-${status.index}`), {
+			language: 'ko',
+			type: 'date',
+			input: {
+					element: document.getElementById(`cv-enter-${status.index}`),
+					format: 'yyyy-MM-dd'
+			},
+			date: new Date(`${careerList[status.index].joinCompany}`)
+			
+		});
+
+		new DatePicker(document.getElementById(`cv-leave-container-${status.index}`), {
+			language: 'ko',
+			type: 'date',
+			input: {
+					element: document.getElementById(`cv-leave-${status.index}`),
+					format: 'yyyy-MM-dd'
+			},
+			date: new Date(`${careerList[status.index].leave}`)
+			
+		});
+		</c:forEach>
+
+		<c:if test="${not empty awardList}">
+		let awardIndex = ${awardList.size()};
+		</c:if>
+
+		<c:if test="${empty awardList}">
+		let awardIndex = 0;
+		</c:if>
 		
-	});
+		<c:forEach items="${awardList}" var="item" varStatus="status">
+		new DatePicker(document.getElementById(`av-date-container-${status.index}`), {
+			language: 'ko',
+			type: 'month',
+			input: {
+					element: document.getElementById(`av-date-${status.index}`),
+					format: 'yyyy-MM'
+			},
+			date: new Date(`${awardList[status.index].awardDate}`)
+			
+		});
+		</c:forEach>
 
-	new DatePicker(document.getElementById('cv-enter-container'), {
-		language: 'ko',
-		type: 'date',
-		input: {
-				element: document.getElementById('cv-enter'),
-				format: 'yyyy-MM-dd'
-		},
-		date: new Date('${careerList[0].joinCompany}')
+		<c:if test="${not empty certificateList}">
+		let certificateIndex = ${certificateList.size()};
+		</c:if>
+
+		<c:if test="${empty certificateList}">
+		let certificateIndex = 0;
+		</c:if>
 		
-	});
-
-	new DatePicker(document.getElementById('cv-leave-container'), {
-		language: 'ko',
-		type: 'date',
-		input: {
-				element: document.getElementById('cv-leave'),
-				format: 'yyyy-MM-dd'
-		},
-		date: new Date('${careerList[0].leave}')
 		
-	});
-
-	new DatePicker(document.getElementById('cfv-date-container'), {
-		language: 'ko',
-		type: 'month',
-		input: {
-				element: document.getElementById('cfv-date'),
-				format: 'yyyy-MM'
-		},
-		date: new Date('${certificateList[0].certificateDate}')
+		<c:forEach items="${certificateList}" var="item" varStatus="status">
+		new DatePicker(document.getElementById(`cfv-date-container-${status.index}`), {
+			language: 'ko',
+			type: 'month',
+			input: {
+					element: document.getElementById(`cfv-date-${status.index}`),
+					format: 'yyyy-MM'
+			},
+			date: new Date(`${certificateList[status.index].certificateDate}`)
+			
+		});
+		</c:forEach>
 		
-	});
+		<c:if test="${not empty langList}">
+		let languageIndex = ${langList.size()};
+		</c:if>
 
+		<c:if test="${empty langList}">
+		let languageIndex = 0;
+		</c:if>
 	</script>
 
 

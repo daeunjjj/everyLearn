@@ -52,6 +52,7 @@
 		, QUIT_YN
 	FROM CORPORATE_MEMBER
 	WHERE ID = #{id}
+	AND QUIT_YN = 'N'
   </select>
 
   <!-- 기업 마이페이지(회사정보 화면) -->

@@ -73,4 +73,10 @@ public interface EmpDao {
 	// 채용 공고 검색 페이징
 	int selectSearchListCnt(SqlSessionTemplate sst, String keyword);
 
+	// sector 리스트
+	List<JobPostVo> selectPostBySector(SqlSessionTemplate sst, String sector, PageVo pv);
+
+	// sector 페이징
+	int selectSectorPage(SqlSessionTemplate sst, String sector);
+
 }

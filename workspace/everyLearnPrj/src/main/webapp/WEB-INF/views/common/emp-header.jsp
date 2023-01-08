@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/el/resources/css/common/header.css">
+<link rel="stylesheet" href="/el/resources/css/common/emp-header.css">
 <script>
 	(function() {
     var link = document.createElement('link');
@@ -36,9 +37,37 @@
 				<a href="/el/emp/main"><img src="/el/resources/img/logo/logo.svg" alt="로고" class="el-logo"></a>
 			</div>
 			<div id="nav-container">
+			<c:if test="${loginMember != null }">
 				<div class="nav-list">
-					<a href="/el/emp/job-post">채용공고</a><a href="/el/emp/resume">이력서</a><a href="">커뮤니티</a>
+					<div class="post-dropdown">
+						<a href="/el/emp/job-post"><button class="post-dropbtn">채용공고</button></a>
+						<div class="post-dropdown-content">
+							<a href="/el/emp/job-post/it">IT직군</a>
+							<a href="/el/emp/job-post/management">경영/사무</a>
+							<a href="/el/emp/job-post/design">디자인</a>
+							<a href="/el/emp/job-post/marketing">마케팅</a>
+							<a href="/el/emp/job-post/education">교육</a>
+						</div>
+					</div>
+					<a href="/el/emp/resume">이력서</a>
+					<a href="/el/emp-comm/list">커뮤니티</a>
 				</div>
+			</c:if>
+			<c:if test="${loginMember == null }">
+				<div class="navList">
+					<div class="post-dropdown">
+						<a href="/el/emp/job-post" class="post"><button class="post-dropbtn">채용공고</button></a>
+						<div class="post-dropdown-content">
+							<a href="/el/emp/job-post/it">IT직군</a>
+							<a href="/el/emp/job-post/management">경영/사무</a>
+							<a href="/el/emp/job-post/design">디자인</a>
+							<a href="/el/emp/job-post/marketing">마케팅</a>
+							<a href="/el/emp/job-post/education">교육</a>
+						</div>
+					</div>
+					<a href="/el/emp-comm/list">커뮤니티</a>
+				</div>
+			</c:if>
 				<div class="search-wrapper">
 					<div class="search">
 						<form action="/el/emp/job-post/search" method="GET">

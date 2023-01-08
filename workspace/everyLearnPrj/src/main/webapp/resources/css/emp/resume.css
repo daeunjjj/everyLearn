@@ -77,6 +77,8 @@ main .wrapper{
 }
 
 .list-title{
+  display: flex;
+  justify-content: space-between;
   border-bottom: 1px solid black;
 }
 
@@ -99,6 +101,11 @@ main .wrapper{
   padding: 1.33em 0;
   gap: 0rem;
   border-bottom: 1px solid black;
+}
+
+.plus{
+  padding-right: 10px;
+  cursor: pointer;
 }
 
 .introduce-title>h4{
@@ -124,7 +131,7 @@ main .wrapper{
   margin-top: 30px;
 }
 
-button{
+.save-btn{
   width: 250px;
   height: 2.933rem;
   border-radius: 10px;
@@ -135,4 +142,18 @@ button{
   font-weight: bold;
 }
 
+.separator{
+  margin-top: 30px;
+  height: 0;
+  border-bottom: 1px solid black;
+}
 
+.item:nth-child(2) .separator{
+  margin-top: unset;
+ border: none;
+}
+
+.list-btn{
+  display: flex;
+  align-items: center;
+}

@@ -31,26 +31,31 @@ public class EmpDaoImpl implements EmpDao {
 		return sst.selectOne("resumeMapper.selectResumeOne", memberNo);
 	}
 
+	// 학력 조회
 	@Override
 	public List<EducationVo> selectEducation(SqlSessionTemplate sst, ResumeVo vo) {
 		return sst.selectList("resumeMapper.selectEducation", vo);
 	}
 
+	// 언어 조회
 	@Override
 	public List<LanguageVo> selectLanguage(SqlSessionTemplate sst, ResumeVo vo) {
 		return sst.selectList("resumeMapper.selectLanguage", vo);
 	}
 
+	// 수상내역 조회
 	@Override
 	public List<AwardVo> selectAward(SqlSessionTemplate sst, ResumeVo vo) {
 		return sst.selectList("resumeMapper.selectAward", vo);
 	}
 
+	// 경력 조회
 	@Override
 	public List<CareerVo> selectCareer(SqlSessionTemplate sst, ResumeVo vo) {
 		return sst.selectList("resumeMapper.selectCareer", vo);
 	}
 
+	// 자격증 조회
 	@Override
 	public List<CertificateVo> selectCertificate(SqlSessionTemplate sst, ResumeVo vo) {
 		return sst.selectList("resumeMapper.selectCertificate", vo);
@@ -148,6 +153,23 @@ public class EmpDaoImpl implements EmpDao {
 	@Override
 	public int selectSearchListCnt(SqlSessionTemplate sst, String keyword) {
 		return sst.selectOne("jobPostMapper.selectSearchListCnt", keyword);
+	}
+
+	// secotr 리스트
+	@Override
+	public List<JobPostVo> selectPostBySector(SqlSessionTemplate sst, String sector, PageVo pv) {
+		
+		int offset = (pv.getCurrentPage()-1) * pv.getBoardLimit();
+		int limit = pv.getBoardLimit();
+		RowBounds rb = new RowBounds(offset,limit);
+		
+		return sst.selectList("jobPostMapper.selectPostBySector", sector,  rb);
+	}
+
+	// sector 페이징
+	@Override
+	public int selectSectorPage(SqlSessionTemplate sst, String sector) {
+		return sst.selectOne("jobPostMapper.selectSectorPage", sector);
 	}
 
 

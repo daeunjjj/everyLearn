@@ -54,4 +54,10 @@ public interface EmpService {
 	// 채용공고 페이징
 	int searchListCnt(String keyword);
 
+	// sector 리스트
+	List<JobPostVo> postBySector(String sector, PageVo pv);
+
+	// sector 페이징
+	int selectSectorPage(String sector);
+
 }
