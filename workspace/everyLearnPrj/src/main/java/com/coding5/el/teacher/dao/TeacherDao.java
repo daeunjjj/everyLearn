@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.member.vo.TeacherMemberVo;
 import com.coding5.el.teacher.vo.TeacherVo;
 
 public interface TeacherDao {
@@ -17,5 +18,10 @@ public interface TeacherDao {
 
 	//강사디테일
 	public List<TeacherVo> selectTeacherDetail(SqlSessionTemplate sst, String teacherNick);
+	
+	public TeacherMemberVo selectTeacherInfo(SqlSessionTemplate sst, String memberNo);
+
+	public List<TeacherMemberVo> selectClassList(SqlSessionTemplate sst, String memberNo);
+
 
 }

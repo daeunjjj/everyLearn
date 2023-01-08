@@ -131,9 +131,9 @@ header .click-search{
 
 header .member{
   display: flex;
-  justify-content: space-around;
-  width: 175px;
-
+  justify-content: space-evenly;
+  width: 250px;
+  height: 30px;
 }
 
 header .login{
@@ -192,7 +192,7 @@ header .search-btn{
 
 #memberimg{
   width: 30px;
-  height: 32px;
+  height: 30px;
 }
 
 #cartimg{
@@ -204,12 +204,21 @@ header .search-btn{
   padding-top: 5px;
   font-size: 20px;
   font-weight: 700;
+  width: 130px;
+}
+
+#teaName{
+  padding-top: 3px;
+  font-size: 20px;
+  font-weight: 700;
+  width: 130px;
 }
 
 #mem-wrap{
   display: flex;
   align-items: center;
-  padding-top: 2px;
+  /* padding-top: 2px; */
+  padding-bottom: 2px
 }
 
 
@@ -228,10 +237,12 @@ header .search-btn{
 .drop{
   font-weight: 400;
   color : rgb(37, 37, 37);
-  text-align: left;
+  /* text-align: left; */
   cursor : pointer;
   font-size : 12px;
   background-color: white;
+  display : flex;
+  
 }
 .dropdown-content{
   display : none;

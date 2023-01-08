@@ -1,5 +1,6 @@
 package com.coding5.el.member.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.member.vo.ClassListVo;
 import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.member.vo.TeacherMemberVo;
 
 
 public interface MemberDao {
@@ -26,5 +28,15 @@ public interface MemberDao {
 	public List<ClassCommVo> selectCommWriteList(SqlSessionTemplate sst, String memberNo);
 
 	public List<ClassListVo> selectClassReviewList(SqlSessionTemplate sst, String mNo);
+	
+	public String selectEncPassword(SqlSessionTemplate sst, HashMap<String, String> deleteInfo);
+
+	public int updateDeleteMember(SqlSessionTemplate sst, String memberNo);
+
+	public String selectTeacherCheck(SqlSessionTemplate sst, MemberVo loginMember);
+
+//	public TeacherMemberVo selectTeacherInfo(SqlSessionTemplate sst, String memberNo);
+//
+//	public List<TeacherMemberVo> selectClassList(SqlSessionTemplate sst, String memberNo);
 
 }

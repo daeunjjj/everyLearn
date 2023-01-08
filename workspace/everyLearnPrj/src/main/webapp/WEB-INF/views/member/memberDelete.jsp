@@ -16,6 +16,7 @@
         <script src="sweetalert2.min.js"></script>
         <link rel="stylesheet" href="sweetalert2.min.css">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
 
     <body>
@@ -33,15 +34,17 @@
             <div id="deletement">* 탈퇴를 원하시면 비밀번호 입력 후 탈퇴하기 버튼을 눌러주세요.</div>
             <div class="form-check">
               <div class="check-wrap">
-                <input id="password" type="password">
+                <input id="password" type="password" placeholder="">
+                <input id="memberNo" type="hidden" value="${loginMember.memberNo}" placeholder="">
               </div>
+              <!-- <pre>* 잘못된 비번임요</pre> -->
             </div>
 
             <div id="btn-wrap">
               <button class="report-btn" onclick="maintain()">회원유지하기</button>
             </div>
             <div id="btn-wrap">
-              <button class="report-btn" id="deletebtn" onclick="memberDelete()" >탈퇴하기</button>
+              <button class="report-btn" id="deletebtn" onclick="pwdCheck()" >탈퇴하기</button>
             </div>
             
 

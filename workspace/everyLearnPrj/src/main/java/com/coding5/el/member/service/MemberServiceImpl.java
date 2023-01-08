@@ -1,5 +1,6 @@
 package com.coding5.el.member.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -11,6 +12,7 @@ import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.member.dao.MemberDao;
 import com.coding5.el.member.vo.ClassListVo;
 import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.member.vo.TeacherMemberVo;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -122,6 +124,56 @@ public class MemberServiceImpl implements MemberService{
 	public List<ClassListVo> classReviewList(String mNo) {
 		return memberDao.selectClassReviewList(sst, mNo);
 	}
+
+	//회원삭제 비번확인
+	@Override
+	public String passwordCheck(HashMap<String, String> deleteInfo) {
+		
+		 String encPassword1 = memberDao.selectEncPassword(sst, deleteInfo);
+		
+		String memberPwd =  deleteInfo.get("password");
+		String encMemberPwd = encPassword1;
+		boolean isMatch = enc.matches(memberPwd, encMemberPwd);
+		
+		if(isMatch) {
+			log.info("서비스  오케이 : " + encMemberPwd );
+			return "success";
+		}else {
+			
+			return "error";
+		}
+		
+	}
+
+	//회원 탈퇴
+	@Override
+	public int deleteMember(String memberNo) {
+		return memberDao.updateDeleteMember(sst, memberNo);
+	}
+
+	//강사여부체크
+	@Override
+	public String teacherCheck(MemberVo loginMember) {
+		String teacherCheck = memberDao.selectTeacherCheck(sst, loginMember);
+		
+		if(teacherCheck == null) {
+			teacherCheck = "no";
+		}
+		
+		return teacherCheck;
+	}
+
+	//강사인포
+//	@Override
+//	public TeacherMemberVo teacherInfo(String memberNo) {
+//		return memberDao.selectTeacherInfo(sst, memberNo);
+//	}
+//
+//	//강사 > 강의리스트
+//	@Override
+//	public List<TeacherMemberVo> teacherClassList(String memberNo) {
+//		return memberDao.selectClassList(sst, memberNo);
+//	}
 
 
 	

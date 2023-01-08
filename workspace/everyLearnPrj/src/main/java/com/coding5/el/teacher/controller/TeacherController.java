@@ -11,12 +11,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.member.vo.TeacherMemberVo;
 import com.coding5.el.teacher.file.FileUploader;
 import com.coding5.el.teacher.service.TeacherService;
 import com.coding5.el.teacher.vo.TeacherVo;
+import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,6 +31,8 @@ public class TeacherController {
 	@Autowired
 	private TeacherService ts;
 
+	@Autowired
+	private Gson gson;
 	
 	//강사 등록
 	@GetMapping("write")
@@ -106,7 +111,28 @@ public class TeacherController {
 	
 	@GetMapping("info")
 	public String info() {
+		
 		return "teacher/information";
+	}
+	
+	@PostMapping("info")
+	@ResponseBody
+	public Model info(String memberNo, Model model) {
+		
+		//강사정보
+		TeacherMemberVo teacherInfo = ts.teacherInfo(memberNo);
+		log.info("teacherInfo" + teacherInfo);
+		
+		//강의정보
+		List<TeacherMemberVo> teacherClassList = ts.teacherClassList(memberNo);
+		log.info("teacherClassList" + teacherClassList);
+		
+		model.addAttribute("teacherInfo",teacherInfo);
+		model.addAttribute("teacherClassList",teacherClassList);
+		
+		
+		
+		return model;
 	}
 	
 	@GetMapping("modify")

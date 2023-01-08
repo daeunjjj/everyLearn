@@ -1,5 +1,6 @@
 package com.coding5.el.member.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.member.vo.ClassListVo;
 import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.member.vo.TeacherMemberVo;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -62,4 +64,34 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public List<ClassListVo> selectClassReviewList(SqlSessionTemplate sst, String mNo) {
 		return sst.selectList("memberMapper.selectClassReviewList", mNo);
-	}}
+	}
+
+	//탈퇴 > 암호화 비번조회
+	@Override
+	public String selectEncPassword(SqlSessionTemplate sst, HashMap<String, String> deleteInfo) {
+		return sst.selectOne("memberMapper.selectEncPassword", deleteInfo);
+	}
+
+	@Override
+	public int updateDeleteMember(SqlSessionTemplate sst, String memberNo) {
+		return sst.update("memberMapper.updateDeleteMember",memberNo );
+	}
+
+	//강사체크
+	@Override
+	public String selectTeacherCheck(SqlSessionTemplate sst, MemberVo loginMember) {
+		return sst.selectOne("memberMapper.selectTeacherCheck", loginMember);
+	}
+
+//	//teacher info
+//	@Override
+//	public TeacherMemberVo selectTeacherInfo(SqlSessionTemplate sst, String memberNo) {
+//		return sst.selectOne("memberMapper.selectTeacherInfo", memberNo);
+//	}
+//
+//	@Override
+//	public List<TeacherMemberVo> selectClassList(SqlSessionTemplate sst, String memberNo) {
+//		return sst.selectList("memberMapper.selectClassList", memberNo);
+//	}
+	
+}
