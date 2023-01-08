@@ -19,6 +19,7 @@ import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.email.vo.MailVo;
+import com.coding5.el.emp.comm.vo.AttachVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
@@ -485,22 +486,7 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.updateTempPwd(sst,vo);
 		
 	}
-	/**
-	 * 전송 메일 디비에 넣기
-	 * 1. 메일 내용 성공하면
-	 * 2. 첨부파일
-	 */
-	@Override
-	@Transactional
-	public int insertMail(MailVo vo) {
-		
-		int result = adminDao.insertEmailAndSelectPk(sst,vo);
-		
-		log.info("시퀀스 가져오나"+result);
-		
-		return 0;
-	}
-	
+
 
 	
 	

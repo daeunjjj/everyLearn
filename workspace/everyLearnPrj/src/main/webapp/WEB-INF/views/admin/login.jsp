@@ -78,7 +78,8 @@
             let pwd = $('#pwd').val();
 
             if(!emailReg.test(id) || !pwdReg.test(pwd)){
-                Swal.fire('아이디(이메일) 또는 비밀번호를 확인해주세요.')
+                $('#pwd').text("");
+                Swal.fire('아이디(이메일) 또는 비밀번호를 확인해주세요.');
                 return false;
             } else{
                 return true;

@@ -17,8 +17,8 @@
             <div class="main-wrap">
                 <h2>메일쓰기</h2>
                 <div class="mail-wrap">
-                    <form action="/el/admin/mail/send" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="name" value="홍길동">
+                    <form action="/el/admin/mail/send" method="post" enctype="multipart/form-data" onsubmit="return sendCheck();">
+                        <input type="hidden" name="name" id="name">
                         <div class="input-area" >
                            <label for="toAddress">받는사람</label>
                            <div class="receiver-wrap">
@@ -48,11 +48,11 @@
                         <div class="input-area content">
                             <label>내용</label>
                             <div  class="text-wrap">
-                                <textarea name="content"></textarea>
+                                <textarea id="content" name="content"></textarea>
                             </div>
                         </div>
                         <div class="btn-area">
-                            <button>
+                            <button type="submit">
                                 보내기
                             </button>
                         </div>
@@ -62,6 +62,7 @@
         </main>
     </div>
     <script>
+
         function add(){
             $("#add-next").append('<div class="input-area" > <label for="multipartFile"></label> <div class="attach-wrap"> <input type="file" id="multipartFile" name="multipartFile" > </div> </div>');
         }
@@ -70,11 +71,54 @@
         const urlSearch = new URLSearchParams(location.search);
         const mailAddress = urlSearch.get('address');
 
+        
         // 널이 아니면 input에 값 넣어주기
         if(mailAddress != ''){
             $("#toAddress").val(mailAddress);
         }
+        // 포커스 효과
+        let inputArr = $('input');
+        for(let i = 0; i < inputArr.length; i++){
+            
+            inputArr[i].addEventListener('focus',()=>{
+                inputArr[i].style.border="1px solid #005297";
+            });
+        }
 
+        // 블러효과
+        for(let i = 0; i < inputArr.length; i++){
+
+            inputArr[i].addEventListener('blur',()=>{
+                inputArr[i].style.border="";
+            });
+        }
+
+        // 포커스 효과
+        $('textarea').on("focus", function(){
+            $('textarea').css("border","1px solid #005297");
+        });
+        // 블러
+        $('textarea').on("blur", function(){
+            $('textarea').css("border","");
+        });
+
+        function sendCheck(){
+            let emailReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+            const toAddress = $("#toAddress").val();
+            const title = $("#title").val();
+            const content = $("#content").val();
+            
+            if(!emailReg.test(toAddress)){
+                return false;
+            }
+
+            if(title == '' && content == ''){
+                return false;
+            }
+
+
+            return true;
+        }
     </script>
 </body>
 </html>

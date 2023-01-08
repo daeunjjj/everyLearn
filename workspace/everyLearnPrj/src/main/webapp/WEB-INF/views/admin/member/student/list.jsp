@@ -61,7 +61,7 @@
 						 <li>
                             <div class="list-items">
                                 <div>
-                                    <input type="checkbox" class="check" name="arrNo" value="${list.memberNo}">
+                                    <input type="checkbox" id="check" name="arrNo" value="${list.memberNo }">
                                     <label for="check"></label>
                                 </div>
                                 <div>${list.memberNo}</div>
@@ -127,16 +127,13 @@
     </div>
     <script>
 
-        function detailBtn(no) {
-            window.location.href='/el/admin/member/student/detail?no='+no;
-        }
-
-        function sendMail(email){
-            window.location.href="/el/admin/mail/send?address="+email;
-        }
-
         function deleteCheck(){
             let cnt = 0;
+
+            if(check.checked){
+                cnt++;
+            }
+
             for(let i = 0; i < check.length; i++){
                 if(check[i].checked){
                     cnt++;
@@ -153,6 +150,17 @@
                 }
             }
         }
+
+
+        function detailBtn(no) {
+            window.location.href='/el/admin/member/student/detail?no='+no;
+        }
+
+        function sendMail(email,name){
+            window.location.href="/el/admin/mail/send?address="+email;
+        }
+
+
     </script>
 </body>
 </html>
