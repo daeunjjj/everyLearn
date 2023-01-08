@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
@@ -36,7 +37,8 @@ public class PaymentController {
 
 	//결제 정보 저장 : 주문 -> 결제 테이브 순으로
 	@PostMapping("info")
-	public String payInfo(String classData, String usedPoint, String amount, HttpServletRequest req, HttpSession session) {
+	@ResponseBody
+	public String payInfo(String classData, String usePoint, String amount, HttpServletRequest req, HttpSession session) {
 		System.out.println("=====");
 		System.out.println(classData);
 		System.out.println("=====");
@@ -47,8 +49,8 @@ public class PaymentController {
 		LectureVo lecVo = (LectureVo)session.getAttribute("lecVo");
 		
 		//포인트 사용 안하면 0으로
-		if (usedPoint == null ) {
-			usedPoint = "0";
+		if (usePoint == null ) {
+			usePoint = "0";
 		}
 		//json 문자열 => list
 		String jsonStr = classData;
@@ -67,6 +69,7 @@ public class PaymentController {
 		double savedPoint = num * percent;
 		
 		String savedPointstr = String.format("%.0f", savedPoint);
+		
 		System.out.println("str : " + savedPointstr);
 		
 		List<PaymentVo> payList = new ArrayList<PaymentVo>();
@@ -74,7 +77,7 @@ public class PaymentController {
 			  PaymentVo payVo = new PaymentVo();
 			  payVo.setMemberNo(no); 
 			  payVo.setClassNo((String) list.get(i));
-			  payVo.setUsePoint(usedPoint);
+			  payVo.setUsePoint(usePoint);
 			  payVo.setSavePoint(savedPointstr);
 			  payVo.setSum(amount);
 			  payList.add(payVo);
@@ -84,19 +87,31 @@ public class PaymentController {
 		
 		
 		System.out.println("no : " + no);
-		System.out.println("포인트 : " + usedPoint);
+		System.out.println("포인트 : " + usePoint);
 		
 		//주문 테이블 추가
 		int result = paymentService.addBuy(payList, lecVo);
 		if (result > 0) {
-			//주문정보 테이블 추가
-			//int result2 = paymentService.addBuyList(payList);
+			//결제 테이블 추가
+			//int result2 = paymentService.addPay(payList, lecVo); --> 이건 buy number 2개를 가져와서 동시에 해야하는데... 물어보자
+			
+			//포인트 추가
+			Map<String, String> map = new HashMap<>();
+			map.put("savedPointstr", savedPointstr);
+			map.put("no", no);
+			map.put("usedPoint", usePoint);
+			int result3 = paymentService.addPoint(map);
+			
+			int result4 = paymentService.minusPoint(map);
+			
+			
+			System.out.println("포인트 result 결과 ::: " + result3);
 			System.out.println("====================");
 			System.out.println("드 디 어 완 료");
-			return "lecture/complete_payment";
+			return "ok";
 		}
 				
-		return "lecture/complete_payment";
+		return "ok";
 	}
 
 }

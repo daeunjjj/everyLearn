@@ -60,6 +60,7 @@
   		
   </insert>
   
+  <!-- 결제금액 1% 포인트추가 -->
   <insert id="addPoint">
   	insert into point
   	(
@@ -70,13 +71,62 @@
   	)
   	values
   	(
-  		#{mno}
-  		, 1
-  		, #{amount} * 0.01
-  		, sysdate
+  		#{no}
+  		, 2
+  		, #{savedPointstr}
+  		, SYSDATE
   	)
   	
   	
   </insert>
+  
+  <!-- 사용한만큼 포인트삭제 -->
+    <insert id="minusPoint">
+  	insert into point
+  	(
+  		MEMBER_NO
+		, HISTORY
+		, CHANGE
+		, ENROLL_DATE
+  	)
+  	values
+  	(
+  		#{no}
+  		, 1
+  		, '-'||#{usedPoint}
+  		, SYSDATE
+  	)
+  	
+  	
+  </insert>
+  
+  
+  
+  <!-- 결제 테이블 추가 -->
+  <insert id="addPay">
+  		
+  		INSERT ALL
+  		<foreach collection="list" item="vo" >
+  		INTO BUY
+  		(
+	  		NO
+			, PAYMENT_METHOD
+			, BUY_NO
+			, ENROLL_DATE
+			, AMOUNT
+		)
+		VALUES(
+			GET_SEQ_PAY
+			, 1
+			, buy_no
+			, SYSDATE
+			, #{vo.sum}
+
+		)
+  		</foreach>
+  		select 1 from dual
+  		
+  </insert>
+  
 
 </mapper>

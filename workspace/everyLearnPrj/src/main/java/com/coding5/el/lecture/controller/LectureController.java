@@ -235,6 +235,9 @@ public class LectureController {
 		//구매 목록에 있는지 확인
 		int checkBuy = lectureService.checkBuy(map);
 		
+		//리뷰 작성했는지 확인
+		int checkReview = lectureService.checkReview(map);
+		
 		LectureVo lvo = lectureService.classDetail(bno);
 		
 		model.addAttribute("pv", pv);
@@ -245,6 +248,7 @@ public class LectureController {
 		model.addAttribute("checkWish", checkWish);
 		model.addAttribute("checkCart", checkCart);
 		model.addAttribute("checkBuy", checkBuy);
+		model.addAttribute("checkReview", checkReview);
 
 		return "lecture/lec_review"; 
 		}

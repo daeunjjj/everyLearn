@@ -92,7 +92,7 @@
 	                	</c:otherwise>
 	                </c:choose>
                     </form>
-                    <div id="pay-real">결제하기</div>
+                    
                 </div>
             </div>
         </div>

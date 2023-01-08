@@ -6,6 +6,18 @@ body{
 
 }
 
+form{
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	vertical-align: -webkit-baseline-middle;
+	vertical-align: -moz-middle-with-baseline;
+    margin: 0;
+}
+
 .wrap{
     width: 70vw;
     --height: 1500px;
@@ -29,15 +41,17 @@ body{
 
 #cart-wrap{
     --border: 3px solid firebrick;
+    margin-top: 100px;
 }
 
 #cart-item{
     display: grid;
     grid-template-columns: 1fr 3fr 7fr 3fr 1fr;
     grid-template-rows: 2fr 1fr;
-    height: 100px;
+    height: 170px;
     width: 80%;
     margin: auto;
+
     margin-bottom: 20px;
     padding-bottom: 10px;
     margin-top: 20px;
@@ -73,6 +87,12 @@ a{
     display: block;
     margin-left: auto;    
     margin-right: auto;
+    
+    height: 300px;
+    width: 600px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.2fr;
+    grid-template-rows: 1.2fr 1.3fr 1fr 1.3fr;
 }
 
 #pay-square{
@@ -118,8 +138,8 @@ a{
     line-height: 100px;
 }
 
-#pay-square{
-    --border: 1px solid gold;
+.pay-square{
+    border: 1px solid gold;
     height: 300px;
     width: 600px;
     display: grid;
@@ -127,7 +147,7 @@ a{
     grid-template-rows: 1.2fr 1.3fr 1fr 1.3fr;
 }
 
-#pay-square>div{
+.pay-square>div{
     margin-left: 10px;
     margin-top: 10px;
     font-size: 18px;
@@ -145,7 +165,7 @@ a{
 
 #usable-point{
     --margin-left: 10px;
-    font-size: 10px;
+    font-size: 15px;
     color: #5a5a5a;
     
 }
@@ -176,4 +196,18 @@ a{
 	margin: auto;
 	font-size: 20px;
 	font-weight: 600;
+}
+
+#imgid{
+    object-fit: contain;
+}
+
+
+img{
+    object-fit: contain;
+}
+
+.remove{
+    height: 50px;
+    vertical-align: middle;
 }

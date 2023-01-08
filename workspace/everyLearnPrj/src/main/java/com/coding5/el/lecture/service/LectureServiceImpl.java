@@ -168,6 +168,12 @@ public class LectureServiceImpl implements LectureService {
 		return lectureDao.checkBuy(map, sst);
 	}
 
+	//리뷰 작성했는지 확인
+	@Override
+	public int checkReview(HashMap<String, String> map) {
+		return lectureDao.checkReview(map, sst);
+	}
+
 	
 
 

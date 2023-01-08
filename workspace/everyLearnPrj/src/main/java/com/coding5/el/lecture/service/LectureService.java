@@ -83,6 +83,9 @@ public interface LectureService {
 	//구매 내역에 이 강의 있는지 확인하기
 	public int checkBuy(HashMap<String, String> map);
 
+	//리뷰 작성했는지 확인
+	int checkReview(HashMap<String, String> map);
+
 
 
 

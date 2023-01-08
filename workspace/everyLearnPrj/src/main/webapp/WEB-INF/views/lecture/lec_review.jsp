@@ -63,7 +63,13 @@
 					<div id="stars-top">★&nbsp ${lvo.revAvg } (${lvo.reviewCnt }개)</div>
 					<div>실제 수강생의 리뷰입니다. 생생한 후기를 확인하세요!</div>
 				</div>
+				
 				<div id="write-wrap">
+				<c:choose>
+				<c:when test = "${checkReview > 0 }">
+					<div id="sunglasses">작성된 리뷰가 있습니다. 리뷰를 확인해주세요. 📝</div>
+				</c:when>
+				<c:when test="${checkBuy > 0 }">
 					<form action="/el/lecture/detail/review" method="post">
 						<fieldset name="myform" id="myform">
 							<span class="myratings" style="color: #ccc;"></span>
@@ -81,6 +87,11 @@
 							<br>
 							<input type="submit" id="write-submit" value="작성" style="float: right;">
 					</form>
+					</c:when>
+				<c:otherwise>
+					<div id="sunglasses">강의를 구매한 후에 리뷰를 남길 수 있습니다. 😎</div>
+				</c:otherwise>
+				</c:choose>
 				</div>
 				
 			
@@ -190,7 +201,7 @@
 	                    
 	                <c:choose>
 	                	<c:when test="${checkBuy != 0 }">
-	                		<div><a href="#"><button type = "button" id="pay-cart">학습하러 가기</button></a></div>
+	                		<div id="pay-cart"><a href="#"><button type = "button" id="pay-cart"  >학습하러 가기</button></a></div>
 	                	</c:when>
 	                	<c:when test="${checkCart != 0 }">
 	                		<div><a href="/el/cart/addCart"><button type ="button" id="pay-cart" onclick="checkCart()">장바구니로 이동</button></a></div>
@@ -200,7 +211,7 @@
 	                	</c:otherwise>
 	                </c:choose>
                     </form>
-                    <div id="pay-real">결제하기</div>
+                    
                 </div>
             </div>
         </div>
