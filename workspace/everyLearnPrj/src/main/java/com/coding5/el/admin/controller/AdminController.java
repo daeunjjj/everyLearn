@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +27,7 @@ import com.coding5.el.common.page.Pagination;
 import com.coding5.el.common.randomNum.RandomNumber;
 import com.coding5.el.email.service.EmailService;
 import com.coding5.el.email.vo.MailVo;
+import com.coding5.el.emp.comm.vo.AttachVo;
 import com.coding5.el.request.vo.RequestVo;
 import com.google.gson.Gson;
 
@@ -222,9 +222,9 @@ public class AdminController {
 		int boardLimit = 10;
 		
 		log.info("관리자 조회 - 화면에서 받아오는 데이터  mapSearch :::" + mapSearch);
-		
+		// 페이징
 		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
-		
+		// 리스트 가져오기
 		List<AdminVo> voList = adminService.selectAdminList(pv,mapSearch);
 		
 		if(voList == null) {
@@ -458,6 +458,11 @@ public class AdminController {
 		return "check";
 	}
 	
+	/**
+	 * 임시 비번 발급
+	 * 메일 보내기
+	 * @param vo
+	 */
 	@PostMapping("send-email")
 	@ResponseBody 
 	public void sendMail(AdminVo vo) {
@@ -509,56 +514,7 @@ public class AdminController {
 		return "admin/mail/all-send";
 	}
 	
-	// 개별 메일 전송
-	@GetMapping("mail/send")
-	public String mailSend() {
-		return "admin/mail/send";
-	}
 	
-	// 개별 메일 전송
-	@PostMapping("mail/send")
-	public String mailSend(MailVo vo, RedirectAttributes redirect, HttpSession session) {
-		log.info("메일 발송 화면>컨트롤러 vo ::: " + vo);
-		
-		// 세션에서 가져오기
-		AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");	
-		
-		vo.setFromAddress(loginAdmin.getId());
-		vo.setAdminNo(loginAdmin.getNo());
-		
-//		// 메일 전송
-//		boolean result = emailService.mailSender(vo);		
-//		
-//		if(!result) {
-//			redirect.addFlashAttribute("resultMsg", "메일 전송 실패");
-//			return "redirect:/admin/mail/send";
-//		}
-		
-		// 파일 서버에 업로드
-		List<String> fileName = new ArrayList<String>();
-		if(vo.getMultipartFile().isEmpty()) {
-			for(int i = 0; i < vo.getMultipartFile().size(); i++) {
-				log.info("파일 있나요?");
-				fileName.add(FileUploader.upload(session, vo.getMultipartFile().get(i)));
-			}
-		}
-		
-		vo.setFileName(fileName);
-		
-		
-		int result = adminService.insertMail(vo);
-		
-		
-		redirect.addFlashAttribute("resultMsg", "메일 전송 완료");
-		return "redirect:/admin/mail/send";
-	}
-	
-	
-	// 보낸 메일 내역
-	@GetMapping("mail/list")
-	public String mailList() {
-		return "admin/mail/list";
-	}
 	
 	/**
 	 *  로그아웃

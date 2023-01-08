@@ -40,7 +40,6 @@ public class SmsController {
     final DefaultMessageService messageService;
 
     public SmsController() {
-        // 반드시 계정 내 등록된 유효한 API 키, API Secret Key를 입력해주셔야 합니다!
         this.messageService = NurigoApp.INSTANCE.initialize("NCSTE2MQBOGNBXAV", "2X9IKSTZODVK6HJFSUOJYKLIGJD0HOGD", "https://api.coolsms.co.kr");
     }
 
@@ -57,7 +56,7 @@ public class SmsController {
     	String randomNum = RandomNumber.randomNumber();
     	
 //    	Message message = new Message();
-//        // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
+//        // 하이픈 없이
 //        message.setFrom("01027250769");
 //        message.setTo(sendNumber);
 //        message.setText("에브리런 인증번호를 입력하세요!\n"

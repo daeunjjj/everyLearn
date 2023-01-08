@@ -34,6 +34,7 @@
     padding-top: 5px;
 }
 
+
 #title,#toAddress{
     width: 800px;
     height: 36px;
@@ -47,7 +48,9 @@
     outline: none;
     box-sizing: border-box;
 }
-
+#toAddress{
+    width: 400px;
+}
 
 .add-btn-area{
     padding-left: 10px;

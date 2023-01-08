@@ -15,6 +15,7 @@ import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
 import com.coding5.el.email.vo.MailVo;
+import com.coding5.el.emp.comm.vo.AttachVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
@@ -294,11 +295,7 @@ public class AdminDaoImpl implements AdminDao{
 		return sst.update("adminMapper.updateTempPwd",vo);
 	}
 
-	@Override
-	public int insertEmailAndSelectPk(SqlSessionTemplate sst, MailVo vo) {
-		// 메일 인서트하고 메일 넘버 가져오기
-		return sst.insert("adminMapper.insertEmailAndSelectPk",vo);
-	}
+
 	
 
 

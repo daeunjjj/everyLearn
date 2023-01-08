@@ -10,6 +10,7 @@ import com.coding5.el.chart.vo.ChartVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.email.vo.MailVo;
+import com.coding5.el.emp.comm.vo.AttachVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
 import com.coding5.el.request.vo.RequestVo;
@@ -134,9 +135,6 @@ public interface AdminService {
 	public AdminVo adminEmailCheck(String email);
 	// 임시 비번 디비에 넣어주기
 	public int updateTempPwd(AdminVo vo);
-	
-	// 메일 보낸 내역 디비에 저장
-	public int insertMail(MailVo vo);
 	
 
 	

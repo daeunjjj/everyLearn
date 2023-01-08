@@ -157,7 +157,7 @@
                                     <a href="/el/admin/mail/send">메일발송</a>
                                 </li>
                                 <li class="detail-cate" id="mail-list">
-                                    <a href="/el/admin/mail/list">보낸내역</a>
+                                    <a href="/el/admin/mail/send/list?pno=1">보낸내역</a>
                                 </li>
                             </ul>
                         </div>

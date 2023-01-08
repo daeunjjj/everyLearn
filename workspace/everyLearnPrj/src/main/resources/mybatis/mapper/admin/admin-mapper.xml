@@ -662,16 +662,16 @@
 		    SET PWD = #{pwd}
 		WHERE ID = #{id}
 	</update>
-	<insert id="insertEmailAndSelectPk">
+	<insert id="insertEmailAndSelectPk" useGeneratedKeys="true" keyProperty="no" keyColumn="NO">
 		INSERT INTO EMAIL
 		(
 		    NO
 		    ,ADMIN_NO
 		    ,TO_ADDRESS
 		    ,FROM_ADDRESS
-		    ,NAME
 		    ,TITLE
 		    ,CONTENT
+		    ,FILE_YN
 		)
 		VALUES
 		(
@@ -679,11 +679,64 @@
 		    , #{adminNo}
 		    , #{toAddress}
 		    , #{fromAddress}
-		    , #{name}
 		    , #{title}
 		    , #{content}
-		    
+		    , #{fileYn}
 		)
-		
+
 	</insert>
+	
+	<insert id="insertEmailAttach">
+		INSERT ALL
+		<foreach collection="list" item="vo" >
+		INTO EMAIL_ATTATCH
+		(
+		    NO
+		    ,EMAIL_NO
+		    ,FILE_NAME
+		)
+		VALUES ( GET_EMAIL_ATTATCH_SEQ , #{vo.no}, #{vo.fileName})
+		
+		</foreach>
+		select 1 from dual
+	</insert>
+	
+	<select id="selectMailCount" resultType="int">
+		SELECT COUNT(*)
+		FROM EMAIL
+		<where>
+			<if test="keyword != null and keyword != ''">
+				${category} LIKE '%${keyword}%'
+			</if>
+			<if test="category == 'status'">
+				AND ADMIN_NO = #{adminNo}
+			</if>
+		</where>
+	</select>
+	<select id="selectMailList" resultType="com.coding5.el.email.vo.MailVo">
+		SELECT 
+		    E.NO
+		    ,A.NAME AS ADMIN_NO
+		    ,E.TO_ADDRESS
+		    ,E.FROM_ADDRESS
+		    ,E.TITLE
+		    ,E.CONTENT
+		    ,E.FILE_YN
+		    ,E.ENROLL_DATE
+		    ,E.DELETE_YN
+		FROM EMAIL E
+		JOIN ADMIN A ON E.ADMIN_NO = A.NO
+		<where>
+			E.ADMIN_NO = #{adminNo}
+			<if test="keyword != null and keyword != '' and category == 'title'">
+				AND E.${category} LIKE '%${keyword}%'
+			</if>
+			<if test="keyword != null and keyword != '' and category == 'name'">
+				AND A.${category} LIKE '%${keyword}%'
+			</if>
+			AND E.DELETE_YN = 'N'
+		</where>
+
+		ORDER BY E.NO DESC
+	</select>
 </mapper>

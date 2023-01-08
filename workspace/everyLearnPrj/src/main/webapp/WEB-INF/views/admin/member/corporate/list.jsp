@@ -166,6 +166,11 @@
        
         function deleteCheck(){
             let cnt = 0;
+
+            if(check.checked){
+                cnt++;
+            }
+
             for(let i = 0; i < check.length; i++){
                 if(check[i].checked){
                     cnt++;
