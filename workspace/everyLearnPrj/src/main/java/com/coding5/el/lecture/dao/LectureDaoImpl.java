@@ -29,7 +29,7 @@ public class LectureDaoImpl implements LectureDao{
 	@Override
 	public int insertClassDetail(SqlSessionTemplate sst, List<LectureVo> voList) {
 		System.out.println("DAO =====");
-		System.out.println(voList);
+		///System.out.println(voList);
 		return sst.insert("lectureMapper.insertClassDetail", voList);
 	}
 
@@ -175,6 +175,12 @@ public class LectureDaoImpl implements LectureDao{
 	@Override
 	public int checkBuy(HashMap<String, String> map, SqlSessionTemplate sst) {
 		return sst.selectOne("cartMapper.checkBuy", map);
+	}
+
+	//리뷰 작성했는지 확인
+	@Override
+	public int checkReview(HashMap<String, String> map, SqlSessionTemplate sst) {
+		return sst.selectOne("lectureMapper.checkReview", map);
 	}
 
 

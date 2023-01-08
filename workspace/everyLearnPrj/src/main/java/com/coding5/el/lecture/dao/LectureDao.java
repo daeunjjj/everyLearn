@@ -84,6 +84,9 @@ public interface LectureDao {
 	//구매 내역에 이 강의 있는지 확인하기
 	public int checkBuy(HashMap<String, String> map, SqlSessionTemplate sst);
 
+	//리뷰 작성했는지 확인
+	public int checkReview(HashMap<String, String> map, SqlSessionTemplate sst);
+
 
 
 }

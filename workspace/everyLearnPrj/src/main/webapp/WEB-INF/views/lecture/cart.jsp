@@ -301,7 +301,12 @@
       	    	                usePoint: usedPoint,
       	    	                classData : json
       	    	                
-      	    	            }
+      	    	            },success: function(data){
+      	    	            	if(data == "ok"){
+      	    	            		window.location.href = "/el/lecture/complete_payment";	
+      	    	            	}
+      	    	            	}
+      	    	            
       	    	            
       	    	        })
       	    	           

@@ -478,5 +478,13 @@
 		SELECT SEQ_CLASS_NO.CURRVAL FROM DUAL
 	</select>
 	
+	<!-- 리뷰 작성했는지 확인하기 -->
+	<select id="checkReview" resultType = "int">
+		select count(*) from REVIEW_LEC
+    	where WRITER = #{mno}
+    	and CLASS_NO = #{bno1}
+    	and DELETE_YN = 'N'
+	</select>
+	
   
 </mapper>
