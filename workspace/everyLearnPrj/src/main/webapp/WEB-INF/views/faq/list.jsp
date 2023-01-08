@@ -16,7 +16,7 @@
 
 
 <link rel="stylesheet" href="/el/resources/css/faq/list.css">
-<link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
+<link rel="stylesheet" href="/el/resources/css/emp-commu/common.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 
 <!-- 파비콘 -->

@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
 <link rel="stylesheet" href="/el/resources/css/qna/detail.css">
-<link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
+<link rel="stylesheet" href="/el/resources/css/emp-comm/common.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 
 
@@ -29,18 +29,19 @@
             <span>everyLearn Q&A</span>
         </div>
 
-        <div class="container"> 
+        <div class="main"> 
 
-            <div id="btn">
-                <button class="btn btn-outline-secondary me-md-2" type="button">수정</button>
-                <button class="btn btn-outline-secondary me-md-2" type="button">삭제</button>
+            <div id="btn"> <!-- 관리자만 보이는 버튼 -->
+                <button class="btn btn-outline-secondary me-md-2" type="button" id="btn1">답변</button>
+                <button class="btn btn-outline-secondary me-md-2" type="button" id="btn1">삭제</button>
             </div>
-
+			
+			<div id="category">결제</div>
             <div class="title"><span id="title">구ㅡㅇ금합니다</span><span class="material-symbols-outlined">lock</span></div>
 
             <div class="info-nick"><span id="nick">nick01   |   22.11.29    |   11</span></div>
 
-                <div class="content">
+            <div class="content">
                             어쩌구 저쩌구 내용 쓰는 칸
                     <br>
                             어쩌구 저쩌구 내용 쓰는 칸
@@ -73,14 +74,14 @@
                             어쩌구 저쩌구 내용 쓰는 칸어쩌구 저쩌구 내용 쓰는 칸어쩌구 저쩌구 내용 쓰는 칸어쩌구 저쩌구 내용 쓰는 칸
                             어쩌구 저쩌구 내용 쓰는 칸어쩌구 저쩌구 내용 쓰는 칸어쩌구 저쩌구 내용 쓰는 칸어쩌구 저쩌구 내용 쓰는 칸
                             <br> <br> <br> <br> <br> <br> <br> <br>
-                </div>
+            </div>
             </div>
 
             <div class="answer-area">   
-                <div class="answer" id="answer-title"><span>ㄴ답변</span></div>
+                <div class="answer" id="answer-title"><span>ㄴ RE : 답변 드립니다.</span></div>
                 <div class="answer" id="answer-info"><span>관리자 | 22.12.17 | 답변완료</span></div>
                 
-                <div class="answer-content">
+           		<div class="answer-content">
                     어쩌구 저쩌구 내용 쓰는 칸
                     <br>
                     어쩌구 저쩌구 내용 쓰는 칸

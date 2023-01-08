@@ -3,5 +3,104 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="empCommMapper">
+
+	<!-- 글 작성하기 -->
+	<insert id="insertWrite">
+		INSERT INTO EMP_COMM
+		(
+		     NO
+		    ,NICK
+		    ,CATEGORY
+		    ,TITLE
+		    ,CONTENT 
+		)
+		VALUES
+		(
+		     SEQ_FAQ_NO.NEXTVAL
+		    , #{nick}
+		    , #{category}
+		    , #{title}
+		    , #{content}
+		)
+
+	</insert>
+
+	<!-- 커뮤 글 갯수 -->
+	<select id="getEmpCommCnt" resultType="int">
+		SELECT COUNT(NO)
+		FROM EMP_COMM
+		WHERE DELETE_YN = 'N'
+	</select>
+	
+	<!-- 리스트 페이징 -->
+	<select id="getEmpCommList" resultType="com.coding5.el.emp.comm.vo.EmpCommVo">
+	SELECT * FROM
+ 	(
+	 		SELECT ROWNUM RN, T.*
+	 		FROM
+	 	(
+			SELECT F.NO
+			    ,C.NAME AS CATEGORY
+			    ,A.NICK
+			    ,F.TITLE 
+			    ,F.CONTENT
+			    ,F.ENROLL_DATE
+			    ,F.HIT
+			FROM EMP_COMM F
+			full outer JOIN EMP_COMM_CATE C
+			ON F.CATEGORY = C.NO
+			JOIN MEMBER A
+			ON F.NICK = A.NO
+			WHERE F.DELETE_YN = 'N'
+			ORDER BY F.NO DESC
+		) T
+ 	)
+ 	WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+	
+	
+	<!-- 글 수정하기 -->
+	<update id="editEmpComm">
+		UPDATE EMP_COMM
+        	SET TITLE = #{title},
+        		CONTENT = #{content}, 
+        		CATEGORY = #{category},
+        		MODIFY_DATE = TO_CHAR(SYSDATE,'YY.MM.DD HH24:MI') 
+        WHERE NO = #{no}
+	</update>
+	
+	<!-- 글 삭제하기 -->
+ 	<update id="deleteEmpComm" >
+ 		UPDATE EMP_COMM
+ 		SET
+ 		DELETE_YN = 'Y'
+ 		WHERE NO = #{no}
+ 	</update>
+ 	
+ 	<!-- 조회수 + -->
+	<update id="increaseHit" parameterType="com.coding5.el.emp.comm.vo.EmpCommVo">
+		UPDATE EMP_COMM
+			SET
+				HIT = HIT+1
+		WHERE NO = #{no}
+	</update>
+	
+	<!-- 상세조회 -->
+	<select id="selectDetail" resultType="com.coding5.el.emp.comm.vo.EmpCommVo">
+		SELECT F.NO
+		    ,C.NAME AS CATEGORY
+		    ,A.NICK
+		    ,F.TITLE 
+		    ,F.CONTENT
+		    ,F.ENROLL_DATE
+		    ,F.HIT
+		FROM EMP_COMM F
+		full outer JOIN EMP_COMM_CATE C
+		ON F.CATEGORY = C.NO
+		JOIN MEMBER A
+		ON F.NICK = A.NO
+		WHERE F.NO = #{no}
+	
+	</select>
   
 </mapper>

@@ -11,7 +11,7 @@
 
 
 <link rel="stylesheet" href="/el/resources/css/qna/write.css">
-<link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
+<link rel="stylesheet" href="/el/resources/css/emp-comm/common.css">
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
 
 

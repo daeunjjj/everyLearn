@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,34 +18,45 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     
     
-<link rel="stylesheet" href="/el/resources/css/emp-community/detail.css">
-<link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
+<link rel="stylesheet" href="/el/resources/css/emp-comm/detail.css">
+<link rel="stylesheet" href="/el/resources/css/emp-comm/common.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
+
+
+ 
+
+ <!-- 썸머노트 -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+
+</head>
+
+
 </head>
 
 <body>
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ include file="/WEB-INF/views/common/emp-header.jsp" %>
 
 	
  	<main>
         <div class="container">
             <div class="detailBar">
-                <div id="category">취업 / 이직</div>
+                <div id="category">${ n.category }</div>
                 <div id="btn">
-                    <button class="btn btn-outline-secondary me-md-2" type="button">목록</button>
-                    <button class="btn btn-outline-secondary me-md-2" type="button">수정</button>
-                    <button class="btn btn-outline-secondary me-md-2" type="button">삭제</button>
+                    <a href="/el/emp-comm/list?no=${ n.no }" class="btn btn-outline-secondary me-md-2" type="button" >목록</a>
+                    
+                    <c:if test="${ loginMember != null }">
+	                    <button id="edit" onclick="edit()" class="btn btn-outline-secondary me-md-2" type="button">수정</button>
+	                    <button id="save" onclick="save()" class="btn btn-outline-secondary me-md-2" type="button">수정 완료</button>
+	                    <button id="delete-btn" onclick="location.href = '/el/emp-comm/delete?no=${ n.no }'" class="btn btn-outline-secondary me-md-2" type="button">삭제</button>
+                    </c:if>	
                 </div>
             </div>
-            <div class="title"><span id="title">제목입니다</span></div>
-            <div class="info"><span id="nick">취준생   |   22.11.29    |   11</span></div>
-            <div class="content">
-		                어쩌구 저쩌구 내용 쓰는 칸
-		        <br>
-		                어쩌구 저쩌구 내용 쓰는 칸
-		        <br>
-		                어쩌구 저쩌구 내용 쓰는 칸
-            </div>
+            <div class="title"><span id="title">${ n.title }</span></div>
+            <div class="info"><span id="nick">${ n.nick }	|	${ n.enrollDate }	|	${ n.hit }</span></div>
+            <div class="content" id="summernote">${ n.content }</div>
             <div class="etc">
                 <div>
                     <button type="button" id="more"><span class="material-symbols-outlined" id="favorite">favorite</span></button>
@@ -70,8 +82,10 @@
                         <div id="photo"></div>
                         <div id="info2"><span id="nick">삥뽕</span> <span id="enroll-date">22.11.30 15:30</span></div>
                         <div id="ed">
-                            <a href="" id="edit">수정</a>
-                            <a href="" id="delete">삭제</a>
+                        	<c:if test="${ loginMember != null }">
+                            	<a href="" id="edit1">수정</a>
+                            	<a href="" id="delete1">삭제</a>
+                            </c:if>	
                         </div>
                     </div>
                     <div id="btn1">
@@ -94,8 +108,8 @@
                         <div id="photo"></div>
                         <div id="info2"><span id="nick">삥뽕</span> <span id="enroll-date">22.11.30 15:30</span></div>
                         <div id="ed">
-                            <a href="" id="edit">수정</a>
-                            <a href="" id="delete">삭제</a>
+                            <a href="" id="edit1">수정</a>
+                            <a href="" id="delete1">삭제</a>
                         </div>
                     </div>
                     <div id="btn1">
@@ -118,8 +132,8 @@
                         <div id="photo"></div>
                         <div id="info2"><span id="nick">삥뽕</span> <span id="enroll-date">22.11.30 15:30</span></div>
                         <div id="ed">
-                            <a href="" id="edit">수정</a>
-                            <a href="" id="delete">삭제</a>
+                            <a href="" id="edit1">수정</a>
+                            <a href="" id="delete1">삭제</a>
                         </div>
                     </div>
                     <div id="btn1">
@@ -138,16 +152,29 @@
                 </div>
 
                 <div class="my-comment-area">
-                    <div id="info">
-                        <div id="photo"></div>
-                        <div id="info2"><span id="nick">삥뽕</span></div>
-                    </div>
-                    <div id="my-comment-div">
-                        <form action="" method="post">
-                            <textarea id="my-comment2" placeholder="댓글을 입력해 주세요."></textarea>
-                            <button type="submit" class="btn btn-success" id="submit-btn">등록</button>
-                        </form>
-                    </div>
+	                <c:choose>
+	                	<c:when test="${ empty loginMember }">
+		                    <div id="my-comment-div">
+		                        <form action="" method="post">
+		                            <textarea id="my-comment2" placeholder="로그인 후 작성하실 수 있습니다." disabled></textarea>
+
+		                        </form>
+		                    </div>
+	                    </c:when>
+	                    <c:otherwise>
+	                    
+	                    	<div id="info">
+		                        <div id="photo"></div>
+		                        <div id="info2"><span id="nick">삥뽕</span></div>
+		                    </div>
+		                    <div id="my-comment-div">
+		                        <form action="" method="post">
+		                            <textarea id="my-comment2" placeholder="댓글을 입력해 주세요."></textarea>
+		                            <button type="submit" class="btn btn-success" id="submit-btn">등록</button>
+		                        </form>
+	                    
+	                    </c:otherwise>
+	                </c:choose> 
                 </div>
 
             </div>
@@ -163,6 +190,52 @@
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            console.log($.summernote.options);
+
+            // 실행시 언어 설정을 한글로 설정 
+
+            $.summernote.options.lang = 'ko-KR';
+
+            $.summernote.options.airMode = false;
+
+        });
+
+
+        var a = $('#summernote');
+
+
+        // 수정버튼
+
+        var edit = function () {
+
+            a.summernote({ focus: true });
+
+        };
+
+        // 수정 종료
+
+        var save = function () {
+
+            var markup = a.summernote('code');
+
+            a.summernote('destroy');
+
+        };
+ 
+        
+        const submitBtn = document.querySelector("#delete-btn");
+    	
+        submitBtn.addEventListener('click', function(){
+            confirm('삭제하시겠습니까?');
+        })
+
+    </script>
 
 </body>
 </html>

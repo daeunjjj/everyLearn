@@ -16,6 +16,13 @@
 
 #category{
     margin-bottom: -25px;
+    color: white;
+    font-weight: 600;
+    background-color: #1187CF;
+    width: 98px;
+    height: 32px;
+    text-align: center;
+    padding: 8px;
 }
 
 #btn{
@@ -36,8 +43,6 @@
     font-weight: 600;  
 }
 
-#title{
-}
 
 .info{
     margin-top: -20px;
@@ -110,23 +115,23 @@
     text-decoration: none;
 }
 
-#edit{
+#edit1{
     color: #1187CF;
     padding: 5px;
 }
 
-#delete{
+#delete1{
     color: #1187CF;
     padding: 5px;
 
 }
 
-#edit:hover{
+#edit1:hover{
     background-color: #eee;
     border-radius: 5px;
 }
 
-#delete:hover{
+#delete1:hover{
     background-color: #eee;
     border-radius: 5px;
 }
