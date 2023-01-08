@@ -8,7 +8,7 @@
 <title>에브리런</title>
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
 <link rel="stylesheet" href="/el/resources/css/faq/adminList.css">
-<link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
+<link rel="stylesheet" href="/el/resources/css/emp-comm/common.css">
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

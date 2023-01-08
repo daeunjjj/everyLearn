@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,13 +18,16 @@
 </head>
 <body>
 
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ include file="/WEB-INF/views/common/emp-header.jsp" %>
 
 <main>
+	  	<div class="comm-banner">
+	  		<span id="span1">Employment COMMUNITY</span>
+	  		<span id="span2">채용 커뮤니티</span>
+	  	</div>
 
 	  <div id="container">
 	  	
-	  	<div id="comm-banner">Employment COMMUNITY</div>
 
         <div id="main">
 
@@ -31,105 +35,55 @@
             <div class="th">카테고리</div>
             <div class="th">제목</div>
             <div class="th">닉네임</div>
-            <div class="th">작성일</div>
+            <div class="th">작성일시</div>
             <div class="th">조회수</div>
 
-            <div class="td">1</div>
-            <div class="td">취업고민</div>
-            <div class="td" id="title">안녕하세요ㅜㅜ</div>
-            <div class="td">딩동댕</div>
-            <div class="td">22.10.11</div>
-            <div class="td">111</div>
+		<c:forEach items="${list}" var="c">
+            <div class="td">${ c.no }</div>
+            <div class="td">${ c.category }</div>
+            <div class="td" id="title"><a href="/el/emp-comm/detail?no=${ c.no }" id="title-a">${c.title}</a></div>
+            <div class="td">${ c.nick }</div>
+            <div class="td">${ c.enrollDate }</div>
+            <div class="td">${ c.hit }</div>
+		</c:forEach>
+            
 
-            <div class="td">2</div>
-            <div class="td">취업고민</div>
-            <div class="td">안녕하세요ㅜㅜ</div>
-            <div class="td">딩동댕</div>
-            <div class="td">22.10.11</div>
-            <div class="td">111</div>
-
-            <div class="td">3</div>
-            <div class="td">취업고민</div>
-            <div class="td">안녕하세요ㅜㅜ</div>
-            <div class="td">딩동댕</div>
-            <div class="td">22.10.11</div>
-            <div class="td">111</div>
-
-            <div class="td">4</div>
-            <div class="td">취업고민</div>
-            <div class="td">안녕하세요ㅜㅜ</div>
-            <div class="td">딩동댕</div>
-            <div class="td">22.10.11</div>
-            <div class="td">111</div>
-
-            <div class="td">5</div>
-            <div class="td">취업고민</div>
-            <div class="td">안녕하세요ㅜㅜ</div>
-            <div class="td">딩동댕</div>
-            <div class="td">22.10.11</div>
-            <div class="td">111</div>
-
-            <div class="td">6</div>
-            <div class="td">취업고민</div>
-            <div class="td">안녕하세요ㅜㅜ</div>
-            <div class="td">딩동댕</div>
-            <div class="td">22.10.11</div>
-            <div class="td">111</div>
-
-            <div class="td">7</div>
-            <div class="td">취업고민</div>
-            <div class="td">안녕하세요ㅜㅜ</div>
-            <div class="td">딩동댕</div>
-            <div class="td">22.10.11</div>
-            <div class="td">111</div>
-
-            <div class="td">8</div>
-            <div class="td">취업고민</div>
-            <div class="td">안녕하세요ㅜㅜ</div>
-            <div class="td">딩동댕</div>
-            <div class="td">22.10.11</div>
-            <div class="td">111</div>
-
-            <div class="td">9</div>
-            <div class="td">취업고민</div>
-            <div class="td">안녕하세요ㅜㅜ</div>
-            <div class="td">딩동댕</div>
-            <div class="td">22.10.11</div>
-            <div class="td">111</div>
-
-            <div class="td">10</div>
-            <div class="td">취업고민</div>
-            <div class="td">안녕하세요ㅜㅜ</div>
-            <div class="td">딩동댕</div>
-            <div class="td">22.10.11</div>
-            <div class="td">111</div>
-
+		<c:if test="${ loginMember != null }">
             <div id="main-bot">
-                <a href="/#/board/write" class="btn btn-light" id="write">작성하기</a>
+                <a href="/el/emp-comm/write" class="btn btn-light" id="write">작성하기</a>
             </div>
+		</c:if>	
 
-            <div id="page-area" class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-                <div id="page-area2" class="btn-group me-2" role="group" aria-label="First group">
-                <a href="/#/board/list?p=1" class="btn btn-outline-secondary"><</a>
-                <a href="/#/board/list?p=1" class="btn btn-outline-secondary">1</a>
-                <a href="/#/board/list?p=2" class="btn btn-outline-secondary">2</a>
-                <a href="/#/board/list?p=3" class="btn btn-outline-secondary">3</a>
-                <a href="/#/board/list?p=4" class="btn btn-outline-secondary">4</a>
-                <a href="/#/board/list?p=5" class="btn btn-outline-secondary">5</a>
-                <a href="/#/board/list?p=1" class="btn btn-outline-secondary">></a>
-                </div>
+             <div id="page-area" class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+	 				<div id="page-area2" class="btn-group me-2" role="group" aria-label="First group">
+	                
+		                <c:if test="${page.startPage != 1}">
+							<a href="${page.startPage - 1}" class="btn btn-outline-secondary" id="a1"><</a>
+						</c:if>
+			            <c:forEach var="i" begin="${page.startPage}" end="${page.endPage}">
+							<c:if test="${page.currentPage != i and i <= page.lastPage}">
+								<a href="/el/emp-comm/list/${i}" class="btn btn-outline-secondary" id="a1">${i}</a>
+							</c:if>
+							<c:if test="${page.currentPage == i and i <= page.lastPage}">
+								<a href="/el/emp-comm/list/${i}" class="btn btn-outline-secondary" id="a1">${i}</a>
+							</c:if>
+						</c:forEach>    
+			            <c:if test="${page.endPage < page.lastPage}">
+							<a href="${page.endPage + 1}" class="btn btn-outline-secondary" id="a1">></a>
+						</c:if>    
+					 </div>
+				</div>
             </div>
 
             <div id="searchBar">
-                <select name="searchBar" id="search">
-                    <option value="title">제목</option>
-                    <option value="content">내용</option>
-                </select>
-                <input type="text" name="keyword" id="search2" placeholder="Search" autocomplete="off" />
-                <button type="submit" class="search-button">
-                    <span class="material-symbols-outlined" id="dodbogi">search</span>
-                </button>
-                
+	                <select name="spell" id="search">
+	                    <option value="title">제목</option>
+	                    <option value="content">내용</option>
+	                </select>
+	                <input type="text" name="searchbar" id="search2" placeholder="Search" autocomplete="off" />
+	                <button type="submit" class="search-button">
+	                    <span class="material-symbols-outlined" id="dodbogi">search</span>
+	                </button>
             </div>
 
         </div>

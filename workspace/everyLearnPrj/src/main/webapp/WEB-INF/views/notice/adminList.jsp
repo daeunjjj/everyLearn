@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
 
 <link rel="stylesheet" href="/el/resources/css/notice/adminList.css?히히3">
-<link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
+<link rel="stylesheet" href="/el/resources/css/emp-comm/common.css">
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -42,7 +42,7 @@
 					<div class="td" id="check"><input type="checkbox" class="checkbox-del" value="${n.no}"></div>
 					<div class="td" id="no">${n.no}</div>
 	                <div class="td" id="title"><a href="/el/notice/detail?no=${ n.no }" target="_blank" id="title-a">${n.title}</a></div>
-	                <div class="td" id="adminNick">관리자</div>
+	                <div class="td" id="adminNick">${ n.admin }</div>
 	                <div class="td" id="enrollDate">${n.enrollDate}</div>
 	                <div class="td" id="hit">${n.hit}</div>
 	                <div class="td"><button onclick="location.href = '/el/notice/edit?no=${ n.no }'" id="edit">수정</button></div>

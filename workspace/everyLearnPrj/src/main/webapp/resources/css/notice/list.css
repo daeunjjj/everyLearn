@@ -1,8 +1,8 @@
 @charset "UTF-8";
-.container{
-    width: 80%;
-    height: 70%;
-    --border: 1px solid black;
+
+.list{
+	width: 80%;
+	margin: 0 auto;
 }
 
 .container .td, .th{
@@ -29,8 +29,8 @@
 
 .list{
     display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 0.5fr 0.5fr;
-    grid-template-rows: repeat(14, 50px);
+    grid-template-columns: 0.3fr 2fr 0.3fr 0.7fr 0.3fr;
+    grid-template-rows: repeat(14, 60px);
     align-content: center;
     padding: 10px;
     margin-top: 30px;
@@ -47,6 +47,11 @@
 
 #title-a{
     color: black;
+}
+
+#title-a:hover{
+	color: #1187CF;
+	font-weight: 600;
 }
 
 #main-bot {

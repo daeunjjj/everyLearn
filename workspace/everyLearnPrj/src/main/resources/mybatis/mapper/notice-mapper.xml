@@ -29,7 +29,15 @@
 	 		SELECT ROWNUM RN, T.*
 	 		FROM
 	 		(
-		 		SELECT *
+		 		SELECT 
+			 		N.NO ,
+				    N.TITLE ,
+				    N.CONTENT ,
+				    N.HIT,
+				    N.ENROLL_DATE ,
+				    N.MODIFY_DATE ,
+				    N.DELETE_YN ,
+			    	A.NICK AS ADMIN
 	 			FROM NOTICE N
 	 			JOIN ADMIN A ON (N.ADMIN = A.NO)
 	 			WHERE N.DELETE_YN = 'N'

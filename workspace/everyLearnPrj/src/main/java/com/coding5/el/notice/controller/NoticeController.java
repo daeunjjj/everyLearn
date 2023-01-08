@@ -1,10 +1,11 @@
 package com.coding5.el.notice.controller;
 
+
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -31,11 +33,6 @@ public class NoticeController {
 	@GetMapping("header")
 	public String header() {
 		return "notice/notice-header";
-	}
-	
-	@GetMapping("writeTest")
-	public String writeTest() {
-		return "notice/writeTest";
 	}
 	
 	//공지 상세 조회
@@ -144,22 +141,18 @@ public class NoticeController {
 		int result = noticeService.editNotice(vo);	
 		
 		if(result > 0) { 
-		
-			session.setAttribute("alertMsg", "공지 수정 성공");
-			
+			session.setAttribute("alertMsg", "공지 수정 성공");	
 			return "redirect:/notice/detail?no=" + vo.getNo();
 		}
-		else { // 실패 => 에러페이지 포워딩
-			
-			model.addAttribute("errorMsg", "공지 수정 실패");
-			
+		else { // 실패 => 에러페이지 포워딩	
+			model.addAttribute("errorMsg", "공지 수정 실패");	
 			return "common/error";
 		}
-		
-		
-
 	}
-}
+	
+	
+	
+}//class
 
 	
 	

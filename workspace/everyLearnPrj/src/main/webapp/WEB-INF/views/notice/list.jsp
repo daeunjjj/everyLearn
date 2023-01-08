@@ -13,7 +13,7 @@
 
     
 <link rel="stylesheet" href="/el/resources/css/notice/list.css">
-<link rel="stylesheet" href="/el/resources/css/emp-community/common.css">
+<link rel="stylesheet" href="/el/resources/css/emp-comm/common.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 
 <!-- 파비콘 -->
@@ -41,7 +41,7 @@
             <c:forEach var="n" items="${ list }">
                 <div class="td" id="no">${ n.no }</div>
                 <div class="td" id="title"><a href="/el/notice/detail?no=${ n.no }" id="title-a">${n.title}</a></div>
-                <div class="td" id="nick">관리자</div>
+                <div class="td" id="nick">${ n.admin }</div>
                 <div class="td" id="date">${ n.enrollDate }</div>
                 <div class="td" id="hit">${ n.hit }</div>
 			</c:forEach>
