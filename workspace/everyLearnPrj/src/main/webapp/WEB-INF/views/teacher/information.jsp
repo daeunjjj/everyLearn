@@ -13,7 +13,8 @@
 
     <body>
         <%@ include file="/WEB-INF/views/common/header.jsp" %>
-
+       ?? ${teacherClassList}
+        ???${teacherInfo}
         <main id="container">
         <br><br>
         <div id="contain-detail">
@@ -24,9 +25,11 @@
                             >
                         <div class="card-body">
                             <h4 class="card-title">박강사</h4>
+                            <h6 class="card-title">[요리/베이킹]</h6>
                             <pre class="card-text">
 프로그래밍 실력 향상
 박강사와 함께라면 어려울게 없습니다!!
+${loginMember}
                             </pre>
                         </div>
                     </div>
@@ -53,7 +56,7 @@
 - 네카라쿠배 경력 10년 이상
                 </pre>
                 <div id="lecture">
-                    <label for="">강의</label>
+                    <label for="">내 강의</label>
                 </div>
                 <div id="list-wrap">
                     <div class="lec-list">

@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/el/resources/css/common/header.css">
+<script src="/el/resources/js/common/header.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
 	(function() {
     var link = document.createElement('link');
@@ -57,13 +59,23 @@
 
 				<c:choose>
 
-				<c:when test="${loginMember != null }">
+				<c:when test="${loginMember.teacherCheck eq 'no' ||  loginMember.teacherCheck eq 'N' }">
 
 					<!--**회원 로그인 후 -->
 					<div class="member">
+						<div style="width: 50px;">
+							<img id="cartimg" src="/el/resources/img/member/cartimg.png" alt="">
+						</div>
+						<div style="width: 50px;">
+						<img id="memberimg" src="/el/resources/img/member/memberimg.png" alt="" onclick="location.href='/el/member/alert'">
+						</div>
 						<div class="dropdown">
-								<div class="drop" id="mem-wrap"><img id="member-stu" src="/el/resources/img/member/stu.png" alt=""><a href="#" id="memName">${loginMember.memberNick }님</a></div>
-								<span class="dropbtn_icon"></span>
+								<div class="drop" id="mem-wrap">
+								<img id="member-stu" src="/el/resources/img/member/stu.png" alt=""><a href="#" id="memName">${loginMember.memberNick }님</a>
+							`	</div>
+								<div>
+									<span class="dropbtn_icon"></span>
+								</div>
 								
 							<div class="dropdown-content">
 								<a href="/el/member/alert">알림</a>
@@ -72,34 +84,37 @@
 								<a href="/el/member/logout">로그아웃</a>
 							</div>
 						</div>
-						
-						<img id="cartimg" src="/el/resources/img/member/cartimg.png" alt="">
-						<img id="memberimg" src="/el/resources/img/member/memberimg.png" alt="" onclick="location.href='/el/member/alert'">
 
 					</div>
 				</c:when>
-			<%-- 	 	<c:when test="${loginMember != null && loginMember.teaStatusYnNo == 1 }">
+ 	 				<c:when test="${ loginMember.teacherCheck eq 'Y' }">
 					<!-- 강사로그인 후 -->
 					<div class="member">
+						<div style="width: 50px;">
+							<img id="cartimg" src="/el/resources/img/member/teacher.png" alt="" onclick="memberNo();">
+							<input type="hidden" id="memberNo" name="memberNo" value="${loginMember.memberNo}">
+						</div>
+						<div style="width: 50px;">
+							<img id="memberimg" src="/el/resources/img/member/memberimg.png" alt="" onclick="location.href='/el/member/alert'">
+						</div>
 						<div class="dropdown">
-								<div class="drop" id="mem-wrap"><img id="member-tea" src="/el/resources/img/member/tea.png" alt=""><a href="#" id="memName">에브리님</a></div>
+								<div class="drop" id="mem-wrap">
+								<img id="member-tea" src="/el/resources/img/member/tea.png" alt=""><a href="#" id="teaName">${loginMember.memberNick }님</a></div>
 								<span class="dropbtn_icon"></span>
 								
-							<div class="dropdown-content">
-								<a href="/el/member/alert">알림</a>
-								<a href="">내 강의</a>
-								<a href="/el/member/writeList">작성글</a>
-								<a href="/el/member/logout">로그아웃</a>
-							</div>
+								<div class="dropdown-content">
+									<a href="/el/member/alert">알림</a>
+									<a href="/el/member/memberStudy">내 강의</a>
+									<a href="">장바구니</a>
+									<a href="/el/member/writeList">작성글</a>
+									<a href="/el/member/logout">로그아웃</a>
+								</div>
 						</div>
-						
-						<img id="cartimg" src="/el/resources/img/member/teacher.png" alt="" onclick="/el/teacher/detail">
-						<img id="memberimg" src="/el/resources/img/member/memberimg.png" alt="" onclick="location.href='/el/member/alert'">
 
 
 					</div>
 
-				</c:when>	 --%>
+				</c:when>	 
 
 				</c:choose>
 

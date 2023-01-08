@@ -1,5 +1,6 @@
 package com.coding5.el.member.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.coding5.el.member.service.MemberService;
 import com.coding5.el.member.vo.ClassListVo;
 import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.member.vo.TeacherMemberVo;
 import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.common.file.FileUploader;
@@ -31,6 +33,47 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@GetMapping("delete")
+	public String delete() {
+		return "member/memberDelete";
+	}
+	
+	//비번 확인 에이젝스
+	@PostMapping("deleteAjax")
+	@ResponseBody
+	public String delete(String memberNo, String password, HashMap<String , String> deleteInfo) {
+		
+		log.info(memberNo);
+		
+		deleteInfo.put("memberNo", memberNo);
+		deleteInfo.put("password", password);
+		
+		//비밀번호 확인 
+		String passwordCheck = memberService.passwordCheck(deleteInfo);
+		log.info(passwordCheck);
+		
+		
+		return passwordCheck;
+	}
+	
+	//찐 회원탈퇴
+	@PostMapping("delete")
+	@ResponseBody
+	public String delete(String memberNo) {
+		
+		int deleteResult = memberService.deleteMember(memberNo);
+		
+		if(deleteResult == 1) {
+			
+			return "ok";
+		}else {
+			return "error";
+		}
+		
+		
+	}
+	
 	
 	//작성글조회(수강평)
 	@GetMapping("writeListClass")
@@ -61,9 +104,18 @@ public class MemberController {
 	}
 	
 	
-	
+	//내 강의 페이지
 	@GetMapping("memberStudy")
 	public String memberStudy() {
+		return "member/member_study";
+	}
+	
+	//내 강의 페이지
+	@PostMapping("memberStudy")
+	public String memberStudy(String memberNo, Model model) {
+		
+
+		
 		return "member/member_study";
 	}
 	
@@ -85,7 +137,7 @@ public class MemberController {
 		
 		memberService.join(vo);
 		
-		return "member/login";
+		return "redirect:/member/login";
 	}
 	
 	//아이디 중복확인(ajax)
@@ -149,8 +201,16 @@ public class MemberController {
 
         if(loginMember != null && !loginMember.getMemberId().equals("error")) {
 
+        	//강사 확인
+        	String teacherCheck = memberService.teacherCheck(loginMember);
+        	
+        	if(teacherCheck != null) {
+        		loginMember.setTeacherCheck(teacherCheck);
+        	}
+        	
             session.setAttribute("loginMember", loginMember);
-
+            log.info("세션로그인멤버 :: " + loginMember);
+            
         }
         log.info(type);
         if(type.equals("emp")){
@@ -276,10 +336,7 @@ public class MemberController {
 	
 
 	
-	@GetMapping("delete")
-	public String delete() {
-		return "member/memberDelete";
-	}
+
 	
 	@GetMapping("header")
 	public String header() {

@@ -30,6 +30,7 @@ public class MemberVo {
 	private String reportCnt;
 	private String startDate;
 	private String finishDate;
+	private String teacherCheck;
 
 	//파일 업로드
 	public boolean isEmpty() {

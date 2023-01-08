@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.member.vo.TeacherMemberVo;
 import com.coding5.el.teacher.dao.TeacherDao;
 import com.coding5.el.teacher.vo.TeacherVo;
 
@@ -40,6 +41,17 @@ public class TeacherServiceImpl implements TeacherService{
 	public List<TeacherVo> teacherDetail(String teacherNick) {
 		
 		return teacherDao.selectTeacherDetail(sst, teacherNick);
+	}
+	
+	@Override
+	public TeacherMemberVo teacherInfo(String memberNo) {
+		return teacherDao.selectTeacherInfo(sst, memberNo);
+	}
+
+	//강사 > 강의리스트
+	@Override
+	public List<TeacherMemberVo> teacherClassList(String memberNo) {
+		return teacherDao.selectClassList(sst, memberNo);
 	}
 
 

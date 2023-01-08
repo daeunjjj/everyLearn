@@ -57,7 +57,7 @@ INSERT INTO MEMBER
 		    ,QUIT_YN
 		FROM MEMBER 
 		where ID = #{memberId}
-
+		AND DELETE_YN = 'N'
   	
   </select>
   
@@ -117,5 +117,27 @@ INSERT INTO MEMBER
 		WHERE WRITER = ${mNo}
 		ORDER BY ENROLL_DATE DESC
 	</select>
+	
+	<select id="selectEncPassword" resultType="string">
+		SELECT PWD
+		FROM MEMBER
+		WHERE NO = ${memberNo}
+	</select>
+	
+	<update id="updateDeleteMember">
+		UPDATE MEMBER
+		SET DELETE_YN = 'Y'
+		WHERE NO = ${memberNo}
+	</update>
+	
+	<select id="selectTeacherCheck" resultType="string">
+		SELECT T.STATUS_YN
+		FROM TEACHER T
+		JOIN MEMBER M
+		ON M.NO = T.MEMBER_NO
+		WHERE M.NO = ${memberNo}
+	</select>
+	
+
   
 </mapper>
