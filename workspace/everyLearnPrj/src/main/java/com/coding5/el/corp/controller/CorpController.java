@@ -116,6 +116,8 @@ public class CorpController {
 			return "common/error";
 		}
 		
+		session.invalidate();
+		
 		return "redirect:/corp/login";
 		
 	}

@@ -151,24 +151,12 @@
 	
 	<!-- 학력 인서트 -->
 	<update id="updateEducation" parameterType="java.util.List">
-	<foreach collection="list" item="ev" open="" close="" index="index">
-		MERGE INTO EDUCATION
-			USING DUAL
-			ON 
-				(
-					NO = #{ev.educationNo}
-					AND RESUME_NO = #{ev.resumeNo}
-				)
-			WHEN MATCHED THEN
-				UPDATE SET
-						 STATUS = #{ev.status}
-						, EDUCATION = #{ev.education}
-						, SCHOOL_NAME = #{ev.schoolName}
-						, MAJOR = #{ev.major}
-						, ENTER = #{ev.enterSchool}
-						, GRADUATE = #{ev.graduate}
-			WHEN NOT MATCHED THEN
-				INSERT
+		BEGIN
+			DELETE FROM EDUCATION
+			WHERE RESUME_NO = #{list[0].resumeNo};
+		INSERT ALL
+		<foreach collection="list" item="ev" open="" close="SELECT * FROM DUAL" >
+					INTO EDUCATION
 				(
 					NO 
 					, RESUME_NO
@@ -181,7 +169,7 @@
 				)
 				VALUES
 				(
-					SEQ_EDUCATION_NO.NEXTVAL
+					GET_EDUCATION_SEQ()
 					, #{ev.resumeNo}
 					, #{ev.status}
 					, #{ev.education}
@@ -191,25 +179,18 @@
 					, #{ev.graduate}
 				)
 		</foreach>
+		;
+		END;
 	</update>
-	
+
 	<!-- 수상내역 작성하기 -->
 	<update id="updateAward" parameterType="java.util.List">
-		<foreach collection="list" item="av" open="" close=""  index="index">
-		MERGE INTO AWARD
-			USING DUAL
-			ON 
-				(
-					NO = #{av.awardNo}
-					AND RESUME_NO = #{av.resumeNo}
-				)
-			WHEN MATCHED THEN
-				UPDATE SET
-					 AWARD_NAME = #{av.awardName}
-					, AWARD_DATE = #{av.awardDate}
-					, AGENCY = #{av.awardAgency}
-			WHEN NOT MATCHED THEN
-				INSERT
+		BEGIN
+			DELETE FROM AWARD
+			WHERE RESUME_NO = #{list[0].resumeNo};
+		INSERT ALL	
+		<foreach collection="list" item="av" open="" close="SELECT * FROM DUAL">
+				INTO AWARD
 				(
 					NO
 					, RESUME_NO
@@ -219,36 +200,25 @@
 				)
 				VALUES
 				(
-					SEQ_AWARD_NO.NEXTVAL
+					GET_AWARD_SEQ()
 					, #{av.resumeNo}
 					, #{av.awardName}
 					, #{av.awardDate}
 					, #{av.awardAgency}
 				)
 		</foreach>
+		;
+		END;
 	</update>
 	
 	<!-- 경력 작성하기 -->
 	<update id="updateCareer" parameterType="java.util.List">
-	<foreach collection="list" item="cv" open="" close="" index="index">
-		MERGE INTO CAREER
-			USING DUAL
-			ON 
-				(
-					NO = #{cv.careerNo}
-					AND RESUME_NO = #{cv.resumeNo}
-				)
-			WHEN MATCHED THEN
-				UPDATE SET
-					 TYPE = #{cv.type}
-					, COMPANY_NAME = #{cv.companyName}
-					, TEAM = #{cv.team}
-					, POSITION = #{cv.position}
-					, ENTER = #{cv.joinCompany}
-					, LEAVE = #{cv.leave}
-					, CURRENT_YN = #{cv.currentYN}
-			WHEN NOT MATCHED THEN
-				INSERT
+	BEGIN
+		DELETE FROM CAREER
+		WHERE RESUME_NO = #{list[0].resumeNo};
+	INSERT ALL
+	<foreach collection="list" item="cv" open="" close="SELECT * FROM DUAL">
+				INTO CAREER
 				(
 					NO
 					, RESUME_NO
@@ -262,7 +232,7 @@
 				)
 				VALUES
 				(
-					SEQ_CAREER_NO.NEXTVAL
+					GET_CAREER_SEQ()
 					, #{cv.resumeNo}
 					, #{cv.type}
 					, #{cv.companyName}
@@ -274,25 +244,18 @@
 					
 				)
 		</foreach>
+		;
+		END;
 	</update>
 	
 	<!-- 자격증 내역 작성하기 -->
 	<update id="updateCertificate" parameterType="java.util.List">
-		<foreach collection="list" item="cfv" open="" close="" index="index">
-		MERGE INTO CERTIFICATE
-			USING DUAL
-			ON 
-				(
-					NO = #{cfv.certificateNo}
-					AND RESUME_NO = #{cfv.resumeNo}
-				)
-			WHEN MATCHED THEN
-				UPDATE SET
-					 CERTIFICATE_NAME = #{cfv.certificateName}
-					, CERTIFICATE_DATE = #{cfv.certificateDate}
-					, AGENCY = #{cfv.certificateAgency}
-			WHEN NOT MATCHED THEN
-				INSERT
+		BEGIN
+			DELETE FROM CERTIFICATE
+			WHERE RESUME_NO = #{list[0].resumeNo};
+		INSERT ALL
+		<foreach collection="list" item="cfv" open="" close="SELECT * FROM DUAL">
+			INTO CERTIFICATE
 				(
 					NO
 					, RESUME_NO
@@ -302,31 +265,25 @@
 				)
 				VALUES
 				(
-					SEQ_CERTIFICATE_NO.NEXTVAL
+					GET_CERTIFICATE_SEQ()
 					, #{cfv.resumeNo}
 					, #{cfv.certificateName}
 					, #{cfv.certificateDate}
 					, #{cfv.certificateAgency}
 				)
 		</foreach>
+		;
+		END;
 	</update>
 	
 	<!-- 언어 작성하기 -->
 	<update id="updateLanguage" parameterType="java.util.List">
-	<foreach collection="list" item="lv" open="" close="" index="index">
-		MERGE INTO LANGUAGE
-			USING DUAL
-			ON 
-				(
-					NO = #{lv.languageNo}
-					AND RESUME_NO = #{lv.resumeNo}
-				)
-			WHEN MATCHED THEN
-				UPDATE SET
-					 LANGUAGE = #{lv.language}
-					, LANGUAGE_LEVEL = #{lv.languageLevel}
-			WHEN NOT MATCHED THEN
-				INSERT
+		BEGIN
+			DELETE FROM LANGUAGE
+		WHERE RESUME_NO = #{list[0].resumeNo};
+	INSERT ALL
+	<foreach collection="list" item="lv" open="" close="SELECT * FROM DUAL">
+				INTO LANGUAGE
 				(
 					NO
 					, RESUME_NO
@@ -335,12 +292,14 @@
 				)
 				VALUES
 				(
-					SEQ_LANGUAGE_NO.NEXTVAL
+					GET_LANGUAGE_SEQ()
 					, #{lv.resumeNo}
 					, #{lv.language}
 					, #{lv.languageLevel}
 				)
 		</foreach>
+		;
+		END;
 	</update>
 	
 </mapper>

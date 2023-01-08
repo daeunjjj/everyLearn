@@ -53,27 +53,37 @@ pageEncoding="UTF-8"%>
 		<ul>
 		<c:if test="${pv.currentPage != 1}">
 				<li>
-					<c:if test="${empty keyword }">
+					<c:if test="${empty keyword}">
 						<a id="before" href="/el/emp/job-post?pno=${pv.currentPage-1}">이전</a>
 					</c:if>
-					<c:if test="${!empty keyword }">
+					<c:if test="${!empty keyword}">
 						<a id="before" href="/el/emp/job-post/search?pno=${pv.currentPage-1}&keyword=${keyword}">이전</a>
 					</c:if>
 				</li>
 		</c:if>
 		<c:forEach var="num" begin="${pv.startPage }" end="${pv.endPage }">
 				<li>
+					<c:if test="${empty keyword}">
 						<a class="numBtn" href="/el/emp/job-post?pno=${num}">${num}</a>
+					</c:if>
+					<c:if test="${!empty keyword}">
+						<a class="numBtn" href="/el/emp/job-post?pno=${num}&keyword=${keyword}">${num}</a>
+					</c:if>
 				</li>
 		</c:forEach>
 		<c:if test="${pv.currentPage != pv.maxPage && pv.maxPage != 0}">
 				<li>
+					<c:if test="${empty keyword}">
 						<a id="after" href="/el/emp/job-post?pno=${pv.currentPage+1}">다음</a>                       		
+					</c:if>
+					<c:if test="${!empty keyword}">
+						<a id="after" href="/el/emp/job-post?pno=${pv.currentPage+1}&keyword=${keyword}">다음</a> 
+					</c:if>
 				</li>
 		</c:if>
 		</ul>
 	</nav>
-	</div>
+</div>
 </main>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

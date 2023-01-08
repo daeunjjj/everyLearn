@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 <link rel="stylesheet" href="/el/resources/css/common/font.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -203,7 +204,7 @@
 								</p>
 							</div>
 							<div class="quit">
-								<button type="submit" for="quit" onclick="quitBtn();">회원 탈퇴</button>
+								<button type="button" onclick="quitBtn();">회원 탈퇴</button>
 							</div>
 					</section>
 					<section class="admin-submit">
@@ -229,10 +230,9 @@
 	</div>
 </div>
 
-<!-- <script>
+<script>
 		function quitBtn() {
 			const no = '${cv.no}';
-			console.log(no);
 			Swal.fire({
 						title: '탈퇴 하시겠습니까?',
 						text: "탈퇴하시면 다시 복구시킬 수 없습니다",
@@ -247,12 +247,18 @@
 							Swal.fire(
 								'탈퇴 되었습니다.',
 								).then(() => {
-									location.href = '/el/corp/quit';
+									$.ajax({
+										url: '/el/corp/quit',
+										method: 'POST',
+										success: function(){
+											window.location.href = '/el/emp/main'
+										}
+									})
 							}) 
 							}
 						})
 		}
-	</script> -->
+	</script>
 
 
 	<script src="/el/resources/js/emp/mypage.js"></script>
