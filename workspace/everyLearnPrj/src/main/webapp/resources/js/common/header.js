@@ -4,7 +4,7 @@ function memberNo(params) {
 
     $.ajax({
         url : "/el/teacher/info"
-        , type : "post"
+        , type : "get"
         , data : {
             "memberNo" : memberNo
         }
@@ -12,10 +12,27 @@ function memberNo(params) {
             // location.href
             alert('성공');
             location.href = "/el/teacher/info";
+            console.log(data);
         }
         , error : ()=>{
             alert('에러')
         }
     })
 
+}
+
+function listView(memberNo){
+    let f = document.createElement('form');
+    
+    let obj;
+    obj = document.createElement('input');
+    obj.setAttribute('type', 'hidden');
+    obj.setAttribute('name', 'memberNo');
+    obj.setAttribute('value', memberNo);
+    
+    f.appendChild(obj);
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', 'view.do');
+    document.body.appendChild(f);
+    f.submit();
 }

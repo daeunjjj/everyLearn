@@ -1,6 +1,7 @@
 package com.coding5.el.teacher.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -109,16 +110,16 @@ public class TeacherController {
 		return "teacher/enroll_main";
 	}
 	
+//	@GetMapping("info")
+//	public String info() {
+//		
+//		return "teacher/information";
+//	}
+//	
 	@GetMapping("info")
-	public String info() {
+	public String info(String memberNo, Model model) {
 		
-		return "teacher/information";
-	}
-	
-	@PostMapping("info")
-	@ResponseBody
-	public Model info(String memberNo, Model model) {
-		
+		log.info("memberNo" + memberNo);
 		//강사정보
 		TeacherMemberVo teacherInfo = ts.teacherInfo(memberNo);
 		log.info("teacherInfo" + teacherInfo);
@@ -126,13 +127,14 @@ public class TeacherController {
 		//강의정보
 		List<TeacherMemberVo> teacherClassList = ts.teacherClassList(memberNo);
 		log.info("teacherClassList" + teacherClassList);
+
+
 		
 		model.addAttribute("teacherInfo",teacherInfo);
 		model.addAttribute("teacherClassList",teacherClassList);
 		
 		
-		
-		return model;
+		return "teacher/information";
 	}
 	
 	@GetMapping("modify")

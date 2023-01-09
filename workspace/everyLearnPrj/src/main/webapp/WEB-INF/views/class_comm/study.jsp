@@ -108,7 +108,7 @@
                 <c:if test="${search.keyword != null}">
                     <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${pv.currentPage+1}&keyword=${search.keyword}">다음</a></li>
                 </c:if>
-                <c:if test="${search.keyword != null}">
+                <c:if test="${search.keyword == null}">
                     <li class="page-item"><a class="page-link" href="/el/class/study?orderBy=ENROLL_DATE DESC&pNo=${pv.currentPage+1}">다음</a></li>
                 </c:if>
             </c:if>

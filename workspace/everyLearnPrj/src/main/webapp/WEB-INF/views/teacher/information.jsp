@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!DOCTYPE html>
     <html>
 
@@ -13,24 +14,18 @@
 
     <body>
         <%@ include file="/WEB-INF/views/common/header.jsp" %>
-       ?? ${teacherClassList}
-        ???${teacherInfo}
+
         <main id="container">
         <br><br>
         <div id="contain-detail">
             <div id="intro-wrap">
                 <div class="container mt-3" id="mt-3">
                     <div class="card" style="width:250px; height: 370px;" >
-                        <img class="card-img-top" id="teacher-img" src="/el/resources/img/teacher/person.png" alt="Card image"
+                        <img class="card-img-top" id="teacher-img" src="/el/resources/upload/imgTeacher/${teacherInfo.teaImgchangeName}" alt="Card image"
                             >
                         <div class="card-body">
-                            <h4 class="card-title">박강사</h4>
-                            <h6 class="card-title">[요리/베이킹]</h6>
-                            <pre class="card-text">
-프로그래밍 실력 향상
-박강사와 함께라면 어려울게 없습니다!!
-${loginMember}
-                            </pre>
+                            <h4 class="card-title">${teacherInfo.teacherNick}</h4>
+                            <pre class="card-text">${teacherInfo.shortIntro}</pre>
                         </div>
                     </div>
                     <button id="detail-modify" onclick="careerModify()">자기소개 / 경력 수정</button>
@@ -50,50 +45,21 @@ ${loginMember}
                 <div id="career">
                     <label for="">경력</label> 
                 </div>
-                <pre id="main-career">
-- 코딩짱잘해 자격증 1급
-- KH 프로그래밍 대회 대상 수상
-- 네카라쿠배 경력 10년 이상
-                </pre>
+                <pre id="main-career">${teacherInfo.career}</pre>
                 <div id="lecture">
                     <label for="">내 강의</label>
                 </div>
                 <div id="list-wrap">
+                 	<c:forEach items="${teacherClassList}" var="classs">
                     <div class="lec-list">
-                        <img id="lec-img" src="/el/resources/img/teacher/ex.png" alt="">
-                        <div id="lec-name">프로그래밍 한 방에 이해하기</div>
-                        <div id="teacher-name">박강사</div>
-                        <div id="lec-reomm">추천수(200)</div>
-                        <div id="lec-price">50,000\</div>
+                        <img id="lec-img" src="/el/resources/upload/${classs.clImgChangeName}"  onerror="this.src='/el/resources/img/teacher/ex.png'">
+                        <div id="lec-name">${classs.className}</div>
+                        <div id="teacher-name">${classs.teacherNick}</div>
+                        <div id="lec-reomm">추천수(${classs.recomm})</div>
+                        <div id="lec-price">${classs.price}\</div>
                     </div>
-                    <div class="lec-list">
-                        <img id="lec-img" src="/el/resources/img/teacher/ex.png" alt="">
-                        <div id="lec-name">프로그래밍 한 방에 이해하기</div>
-                        <div id="teacher-name">박강사</div>
-                        <div id="lec-reomm">추천수(200)</div>
-                        <div id="lec-price">50,000\</div>
-                    </div>
-                    <div class="lec-list">
-                        <img id="lec-img" src="/el/resources/img/teacher/ex.png" alt="">
-                        <div id="lec-name">프로그래밍 한 방에 이해하기</div>
-                        <div id="teacher-name">박강사</div>
-                        <div id="lec-reomm">추천수(200)</div>
-                        <div id="lec-price">50,000\</div>
-                    </div>
-                    <div class="lec-list">
-                        <img id="lec-img" src="/el/resources/img/teacher/ex.png" alt="">
-                        <div id="lec-name">프로그래밍 한 방에 이해하기</div>
-                        <div id="teacher-name">박강사</div>
-                        <div id="lec-reomm">추천수(200)</div>
-                        <div id="lec-price">50,000\</div>
-                    </div>
-                    <div class="lec-list">
-                        <img id="lec-img" src="/el/resources/img/teacher/ex.png" alt="">
-                        <div id="lec-name">프로그래밍 한 방에 이해하기</div>
-                        <div id="teacher-name">박강사</div>
-                        <div id="lec-reomm">추천수(200)</div>
-                        <div id="lec-price">50,000\</div>
-                    </div>
+                	</c:forEach>
+   
 
                 </div>
                 

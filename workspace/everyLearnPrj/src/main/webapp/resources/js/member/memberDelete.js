@@ -24,13 +24,13 @@ function pwdCheck(params) {
             console.log(data);
             if(data == "success"){
                 Swal.fire(
-                    '정말 탈퇴하시겠습니까?',
+                    '정말 탈퇴하시겠습니까?'
                   );
                 deleteMember();
             }else{
                 Swal.fire(
                     '올바르지 않은 비밀번호입니다.',
-                    '비밀번호 확인 후 다시 입력해주세요.',
+                    '비밀번호 확인 후 다시 입력해주세요.'
                   );
             }
         }
@@ -56,7 +56,7 @@ function deleteMember(params) {
             console.log(data);
             if(data == "ok"){
                 Swal.fire(
-                    '탈퇴 완료!',
+                    '탈퇴 완료!'
                   ).then(() => {
                       opener.location.href='/el/member/login'; 
                       window.close();
@@ -64,7 +64,7 @@ function deleteMember(params) {
             
             }else{
                 Swal.fire(
-                    '탈퇴오류 발생!',
+                    '탈퇴오류 발생!'
                   );
             }
         }
