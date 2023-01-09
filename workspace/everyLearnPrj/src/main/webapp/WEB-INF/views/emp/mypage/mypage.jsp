@@ -72,7 +72,7 @@
 								<div class="title">
 									<span>회사 소개</span> <span class="essential">*</span>
 								</div>
-								<textarea onblur="validateIntroduce();" name="introduce" id="introduce" class="introduce">${cv.introduce}</textarea>
+								<textarea oninput="validate();" onblur="validateIntroduce();" name="introduce" id="introduce" class="introduce">${cv.introduce}</textarea>
 								<div id="input-introduce" class="x-icon" style="display: none;">
 									<div><img src="/el/resources/img/emp/x-icon.svg" alt=""></div>
 									<span class="essential">필수입력 항목입니다.</span>
@@ -84,7 +84,7 @@
 										<!-- 드롭다운 -->
 										<span>산업군</span> <span class="essential">*</span>
 									</div>
-									<select name="sector" class="category" onselect="validate();" onblur="validateSector();" id="sector">
+									<select name="sector" class="category" onchange="validate();" onblur="validateSector();" id="sector">
 										<option disabled selected>선택</option>
 										<option value="1">IT직군</option>
 										<option value="2">경영/사무</option>
@@ -116,7 +116,7 @@
 										<span>연 매출</span> <span class="essential">*</span>
 									</div>
 									<div class="input-wrapper">
-										<input onblur="validateSales();" type="text" name="sales" id="sales" class="number" placeholder="" value="${cv.sales}"><span>억원</span>
+										<input oninput="validate();" onblur="validateSales();" type="text" name="sales" id="sales" class="number" placeholder="" value="${cv.sales}"><span>억원</span>
 										<div id="input-sales" class="x-icon" style="display: none;">
 											<div><img src="/el/resources/img/emp/x-icon.svg" alt=""></div>
 											<span class="essential">필수입력 항목입니다.</span>
@@ -148,7 +148,7 @@
 									<label>
 										<div>
 											<div class="img-input">
-												<input oninput="validate();" onblur="validateLoge();" onchange="uploadLogo(this);" type="file" accept=".jpg,.jpeg,.png" name="logo" id="logo"><img
+												<input oninput="validate();" onblur="validateLogo();" onchange="uploadLogo(this);" type="file" accept=".jpg,.jpeg,.png" name="logo" id="logo"><img
 													alt="" src="/el/resources/upload/${cv.logo}" id="logo-upload" class="uploaded" onerror="this.style.display='none'">
 												<div class="image-uploader-cover css-1ngnjh4"></div>
 												<div>

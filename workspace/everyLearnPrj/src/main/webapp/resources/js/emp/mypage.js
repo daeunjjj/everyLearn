@@ -21,17 +21,19 @@ const autoHyphen = (target) => {
 }
 
 // 연 매출 세자리 콤마
-const input = document.querySelector('.number');
-input.addEventListener('keyup', function(e) {
+const input = document.querySelectorAll('.number');
+
+input.forEach((item) => {
+	item.addEventListener('keyup', function(e) {
   let value = e.target.value;
   value = Number(value.replaceAll(',', ''));
   if(isNaN(value)) {
-    input.value = 0;
+    item.value = '';
   }else {
     const formatValue = value.toLocaleString('ko-KR');
-    input.value = formatValue;
+    item.value = formatValue;
   }
-})
+})})
 
 
 // 승인 요청 버튼 활성화
@@ -48,14 +50,26 @@ const validate = () => {
 	const logoValue = logo.value;
 	const thumbValue = thumb.value;
 		
-	if(companyNameValue && companyNumValue.length === 12 && addressValue && detailAddressValue && introduceValue && sectorValue && empNumValue && salesValue && homepageValue && logoValue && thumbValue){
+	if(companyNameValue && companyNumValue.length === 12 && addressValue && detailAddressValue && introduceValue && sectorValue !== '선택' && empNumValue && salesValue && homepageValue && logoValue && thumbValue){
 		const btn = document.querySelector('.admin-btn');
 		btn.removeAttribute('disabled');
 	}else{
 		const btn = document.querySelector('.admin-btn');
 		btn.setAttribute('disabled', '');
 	}
+	validateCompanyName(true);
+	validateCompanyNum(true);
+	validateAdderss(true);
+	validateDetailAddress(true);
+	validateIntroduce(true);
+	validateSector(true);
+	validateEmpNum(true);
+	validateSales(true);
+	validateHompage(true);
+	validateLogo(true);
+	validateThumb(true);
 }
+
 
 // 회사 이름 필수 입력
 const validateCompanyName = (isTyping) => {
@@ -168,11 +182,11 @@ const validateHompage = (isTyping) => {
 }
 
 // 회사 로고 필수입력
-const validateLoge = (isTyping) => {
+const validateLogo = (isTyping) => {
 	const logoValue = logo.value;
 	const show = document.getElementById('input-logo');
 
-	if(homepageValue.length){
+	if(logoValue.length){
 		show.style.display = 'none';
 	}else if(!isTyping){
 		show.style.display = 'flex';
@@ -203,6 +217,7 @@ function uploadLogo(input){
 		}
 		reader.readAsDataURL(input.files[0]);
 	}
+	validateLogo();
 }
 
 // 회사 대표 이미지 업로드 시 미리보기
@@ -255,7 +270,7 @@ function searchArr() {
 				} 
 
 				// 우편번호와 주소 정보를 해당 필드에 넣는다.
-				document.getElementById("address").value = addr;
+				document.getElementById("address").value = addr || data.jibunAddress;
 				// 커서를 상세주소 필드로 이동한다.
 				document.getElementById("detailAddress").focus();
 		}

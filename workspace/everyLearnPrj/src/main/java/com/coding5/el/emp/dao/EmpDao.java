@@ -79,4 +79,19 @@ public interface EmpDao {
 	// sector 페이징
 	int selectSectorPage(SqlSessionTemplate sst, String sector);
 
+	// 학력 삭제
+	void deleteEducation(SqlSessionTemplate sst, String resumeNo);
+
+	// 수상내역 삭제
+	void deleteAward(SqlSessionTemplate sst, String resumeNo);
+
+	// 경력 삭제
+	void deleteCareer(SqlSessionTemplate sst, String resumeNo);
+
+	// 자격증 삭제
+	void deleteCertificate(SqlSessionTemplate sst, String resumeNo);
+
+	// 언어 삭제
+	void deleteLanguage(SqlSessionTemplate sst, String resumeNo);
+
 }

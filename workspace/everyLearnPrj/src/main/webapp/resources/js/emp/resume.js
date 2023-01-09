@@ -34,13 +34,12 @@ function searchArr() {
       }
 
       // 우편번호와 주소 정보를 해당 필드에 넣는다.
-      document.getElementById("address").value = addr;
+      document.getElementById("address").value = addr || data.jibunAddress;
       // 커서를 상세주소 필드로 이동한다.
       document.getElementById("detailAddress").focus();
     }
   }).open();
 }
-
 
 const eduPlusBtn = () => {
   if(eduIndex >= 5){
@@ -52,7 +51,7 @@ const eduPlusBtn = () => {
     return;
   }
   const eduList = document.getElementById('education-list');
-  eduList.innerHTML += `
+  eduList.insertAdjacentHTML('beforeend', `
   <div class="item">
     <div class="separator"></div>
     <div class="grid">
@@ -103,7 +102,7 @@ const eduPlusBtn = () => {
       </div>
     </div>
   </div>
-  `
+  `)
   new DatePicker(document.getElementById(`edu-start-container-${eduIndex}`), {
     language: 'ko',
     type: 'month',
@@ -143,8 +142,8 @@ const careerPlusBtn = () => {
     })
     return;
   }
-  const eduList = document.getElementById('career-list');
-  eduList.innerHTML += `
+  const careerList = document.getElementById('career-list');
+  careerList.insertAdjacentHTML('beforeend', `
   <div class="item">
     <div class="separator"></div>
     <div class="grid">
@@ -207,7 +206,7 @@ const careerPlusBtn = () => {
       </div>
     </div>
   </div>
-  `
+  `)
   new DatePicker(document.getElementById(`cv-enter-container-${careerIndex}`), {
     language: 'ko',
     type: 'date',
@@ -248,7 +247,7 @@ const awardPlusBtn = () => {
     return;
   }
   const eduList = document.getElementById('award-list');
-  eduList.innerHTML += `
+  eduList.insertAdjacentHTML('beforeend', `
   <div class="item">
     <div class="separator"></div>
     <div class="grid">
@@ -275,7 +274,7 @@ const awardPlusBtn = () => {
       </div>
       </div>
   </div>
-  `
+  `)
   new DatePicker(document.getElementById(`av-date-container-${awardIndex}`), {
     language: 'ko',
     type: 'month',
@@ -305,7 +304,7 @@ const certificatePlusBtn = () => {
     return;
   }
   const eduList = document.getElementById('certificate-list');
-  eduList.innerHTML += `
+  eduList.insertAdjacentHTML('beforeend', `
   <div class="item">
     <div class="separator"></div>
     <div class="grid">
@@ -332,7 +331,7 @@ const certificatePlusBtn = () => {
       </div>
     </div>
   </div>
-  `
+  `)
   new DatePicker(document.getElementById(`cfv-date-container-${certificateIndex}`), {
     language: 'ko',
     type: 'month',
@@ -362,7 +361,7 @@ const languagePlusBtn = () => {
     return;
   }
   const eduList = document.getElementById('language-list');
-  eduList.innerHTML += `
+  eduList.insertAdjacentHTML('beforeend', `
   <div class="item">
     <div class="separator"></div>
     <div class="grid">
@@ -385,7 +384,7 @@ const languagePlusBtn = () => {
       </div>
     </div>
   </div>
-  `
+  `)
   languageIndex += 1;
 }
 
@@ -394,3 +393,55 @@ const languageDeleteBtn = () => {
   languageIndex -= 1;
 }
 
+const linkPlusBtn = () => {
+  if(link >= 1){
+    Swal.fire({
+      icon: 'error',
+      title: '앗!',
+      text: '최대 1개까지 추가 가능해요..😥',
+    })
+    return;
+  }
+  const item = document.getElementById('link-item');
+  item.insertAdjacentHTML('beforeend', `
+    <div class="additional">
+        <input type="text" name="link" class="input additional">
+    </div>
+  `)
+  link += 1;
+}
+
+const linkDeleteBtn = () => {
+  document.querySelector('#link-item>.additional:last-child').remove();
+  link -= 1;
+}
+
+const attachDeleteBtn = () => {
+  document.getElementById('att').setAttribute('type', 'text');
+  document.getElementById('att').setAttribute('type', 'file');
+}
+
+const attachDelete = () => {
+  document.getElementById('attach').remove();
+}
+
+const saveBtn = (target) => {
+  const input = document.querySelectorAll('input');
+  const textarea = document.querySelector('.textarea');
+  
+  for(let i = 1; i < input.length-1; i++){
+    if(input[i].value === ''){
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: '빈칸을 모두 채워주세요😓',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      return false;
+    } 
+  }
+
+ target.submit();
+ return false;
+}

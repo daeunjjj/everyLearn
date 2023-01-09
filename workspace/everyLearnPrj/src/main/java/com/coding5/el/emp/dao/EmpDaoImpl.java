@@ -172,5 +172,39 @@ public class EmpDaoImpl implements EmpDao {
 		return sst.selectOne("jobPostMapper.selectSectorPage", sector);
 	}
 
+	// 학력 삭제
+	@Override
+	public void deleteEducation(SqlSessionTemplate sst, String resumeNo) {
+		sst.delete("resumeMapper.deleteEducation", resumeNo);
+	}
+
+	// 수상내역 삭제
+	@Override
+	public void deleteAward(SqlSessionTemplate sst, String resumeNo) {
+		sst.delete("resumeMapper.deleteAward", resumeNo);
+
+	}
+
+	// 경력 삭제
+	@Override
+	public void deleteCareer(SqlSessionTemplate sst, String resumeNo) {
+		sst.delete("resumeMapper.deleteCareer", resumeNo);
+
+	}
+
+	// 자격증 삭제
+	@Override
+	public void deleteCertificate(SqlSessionTemplate sst, String resumeNo) {
+		sst.delete("resumeMapper.deleteCertificate", resumeNo);
+
+	}
+
+	// 언어 삭제
+	@Override
+	public void deleteLanguage(SqlSessionTemplate sst, String resumeNo) {
+		sst.delete("resumeMapper.deleteLanguage", resumeNo);
+
+	}
+
 
 }
