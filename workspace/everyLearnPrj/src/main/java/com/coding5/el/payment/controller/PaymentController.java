@@ -38,7 +38,7 @@ public class PaymentController {
 	//결제 정보 저장 : 주문 -> 결제 테이브 순으로
 	@PostMapping("info")
 	@ResponseBody
-	public String payInfo(String classData, String usePoint, String amount, HttpServletRequest req, HttpSession session) {
+	public String payInfo(String classData, String usedPoint, String amount, HttpServletRequest req, HttpSession session) {
 		System.out.println("=====");
 		System.out.println(classData);
 		System.out.println("=====");
@@ -49,8 +49,8 @@ public class PaymentController {
 		LectureVo lecVo = (LectureVo)session.getAttribute("lecVo");
 		
 		//포인트 사용 안하면 0으로
-		if (usePoint == null ) {
-			usePoint = "0";
+		if (usedPoint == null || usedPoint == "") {
+			usedPoint = "0";
 		}
 		//json 문자열 => list
 		String jsonStr = classData;
@@ -72,39 +72,48 @@ public class PaymentController {
 		
 		System.out.println("str : " + savedPointstr);
 		
+		/*
+		 * Map<String, String> buymap = new HashMap<>();
+		 * 
+		 * buymap.put("no", no); //회원번호 buymap.put("no", no);
+		 */
+		
 		List<PaymentVo> payList = new ArrayList<PaymentVo>();
 		  for(int i = 0; i < list.size(); i++) { 
 			  PaymentVo payVo = new PaymentVo();
 			  payVo.setMemberNo(no); 
 			  payVo.setClassNo((String) list.get(i));
-			  payVo.setUsePoint(usePoint);
+			  payVo.setUsePoint(usedPoint);
 			  payVo.setSavePoint(savedPointstr);
 			  payVo.setSum(amount);
 			  payList.add(payVo);
 		  
 		  }
 		 
-		
+
 		
 		System.out.println("no : " + no);
-		System.out.println("포인트 : " + usePoint);
+		System.out.println("포인트 : " + usedPoint);
 		
-		//주문 테이블 추가
+		//주문 테이블 추가 (여긴 맵으로))
 		int result = paymentService.addBuy(payList, lecVo);
 		if (result > 0) {
+			//주문 내역 테이블 추가 (이걸 리스트로)
+			//int result2 = paymentService.addBuyList(payList, lecVo);
 			//결제 테이블 추가
-			//int result2 = paymentService.addPay(payList, lecVo); --> 이건 buy number 2개를 가져와서 동시에 해야하는데... 물어보자
+			//int result2 = paymentService.addPay(payList, lecVo); --> 이건 buy number 여러개를 가져와서 동시에 해야하는데...
+			
 			
 			//포인트 추가
 			Map<String, String> map = new HashMap<>();
 			map.put("savedPointstr", savedPointstr);
 			map.put("no", no);
-			map.put("usedPoint", usePoint);
+			map.put("usedPoint", usedPoint);
 			int result3 = paymentService.addPoint(map);
 			
+			//포인트 감소
 			int result4 = paymentService.minusPoint(map);
-			
-			
+		
 			System.out.println("포인트 result 결과 ::: " + result3);
 			System.out.println("====================");
 			System.out.println("드 디 어 완 료");

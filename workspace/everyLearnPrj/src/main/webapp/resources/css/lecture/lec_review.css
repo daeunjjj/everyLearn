@@ -150,6 +150,16 @@ form{
     align-items : center;
 }
 
+#profile-pic{
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+a{
+	text-decoration : none;
+}
+
+
 #lec-review>div{
     margin: 10px;
 }
@@ -180,8 +190,12 @@ form{
     color: white;
     margin-right: 30px;
     margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
     border: none;
     border-radius: 5px;
+    width: 50px;
+    
 }
 
 #write-star{

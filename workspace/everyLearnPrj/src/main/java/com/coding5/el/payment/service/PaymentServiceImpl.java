@@ -25,7 +25,6 @@ public class PaymentServiceImpl implements PaymentService {
 	//주문 내역 추가
 	@Override
 	public int addBuy(List<PaymentVo> payList, LectureVo lecVo) {
-		
 		return payDao.addBuy(sst, payList, lecVo);
 	}
 

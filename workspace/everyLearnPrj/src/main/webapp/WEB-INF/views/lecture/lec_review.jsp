@@ -102,8 +102,13 @@
 					</c:if>
 					
 					<div id="written-review">
-						<div id="profile-pic"><img src="/el/resources/img/el로고.png"></div>
-	
+						
+							<!--  <div id="profile-pic"><img src="/el/resources/upload/${loginMember.profileImgName}" width="100px" height="100px"></div>-->
+						
+							<div id="profile-pic"><img src="/el/resources/img/lecture/user.png" width="80px" height="80px"></div>
+						
+						
+						
 						<div id="stars">
 							<c:choose>
 
