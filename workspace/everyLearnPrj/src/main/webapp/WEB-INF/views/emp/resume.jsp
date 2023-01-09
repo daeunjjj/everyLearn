@@ -22,7 +22,7 @@
 			<div class="title">
 				<h5>정확하게 입력했는지 다시 한번 확인해주세요!</h5>
 			</div>
-			<form action="/el/emp/resume" method="POST" enctype="multipart/form-data">
+			<form action="/el/emp/resume" method="POST" enctype="multipart/form-data" onsubmit="return saveBtn(this);">
 				<input type="hidden" name="no" value="${rv.no}">
 				<div class="main">
 					<div class="main-wrapper">
@@ -124,7 +124,7 @@
 														<div class="list">
 															<p>졸업 여부</p>
 															<div>
-																<select name="evList[${status.index}].status" class="input">
+																<select name="evList[${status.index}].status" class="input" value="">
 																	<option value="1">졸업</option>
 																	<option value="2">재학</option>
 																	<option value="3">중퇴</option>
@@ -394,21 +394,36 @@
 							</div>
 							<div class="content">
 								<div class="content-wrapper">
-									<div class="list">
-										<p>링크</p>
-										<div>
-											<input type="text" name="link" class="input additional" value="${rv.link}">
+									<div class="list" id="link-item">
+										<div class="list-title">
+											<h4>링크</h4>
+											<div class="list-btn">
+												<img src="/el/resources/img/emp/plus.svg" alt="" class="plus" onclick="linkPlusBtn();">
+												<img src="/el/resources/img/emp/delete.svg" alt="" class="plus" onclick="linkDeleteBtn();">
+											</div>
 										</div>
+										<c:if test="${rv.link != null}">
+											<div class="additional">
+												<input type="text" name="link" class="input additional" value="${rv.link}">
+											</div>
+										</c:if>
 									</div>
 									<div class="list">
-										<p>첨부파일</p>
-										<div>
-											<input type="file" name="attach"
+										<div class="list-title">
+											<h4>첨부파일</h4>
+											<img src="/el/resources/img/emp/delete.svg" alt="" class="plus" onclick="attachDeleteBtn();">
+										</div>
+										<div class="filebox-wrapper">
+											<c:if test="${not empty rv.attachName}">
+												<div id="attach">
+													<input type="hidden" name="attachName" value="${rv.attachName}">
+													<a href="/el/resources/upload/${rv.attachName}" download="${rv.attachName}">${rv.attachName}</a>
+													<img src="/el/resources/img/emp/delete.svg" alt="" class="plus" onclick="attachDelete();">
+												</div>
+											</c:if>
+											<input type="file" id="att" name="attach"
 												class="additional" value="${rv.attach}">
 										</div>
-										<c:if test="${not empty rv.attachName}">
-											<a href="/el/resources/upload/${rv.attachName}" download="${rv.attachName}">${rv.attachName}</a>
-										</c:if>
 									</div>
 								</div>
 							</div>
@@ -424,6 +439,9 @@
 	</main>
 
 	<script>
+
+	document.querySelector('select[name="category"] option[value="${rv.category}"]').setAttribute('selected', '');
+
 		const DatePicker = tui.DatePicker;
 		<c:if test="${not empty eduList}">
 		let eduIndex = ${eduList.size()};
@@ -434,6 +452,8 @@
 		</c:if>
 		
 		<c:forEach items="${eduList}" var="item" varStatus="status">
+			document.querySelector('select[name="evList[${status.index}].status"] option[value="${item.status}"]').setAttribute('selected', '');
+
 			new DatePicker(document.getElementById(`edu-start-container-${status.index}`), {
 				language: 'ko',
 				type: 'month',
@@ -441,7 +461,7 @@
 						element: document.getElementById(`edu-start-${status.index}`),
 						format: 'yyyy-MM'
 				},
-				date: new Date(`${eduList[status.index].enterSchool}`)
+				date: new Date(`${item.enterSchool}`)
 				
 			});
 	
@@ -452,7 +472,7 @@
 						element: document.getElementById(`edu-graduate-${status.index}`),
 						format: 'yyyy-MM'
 				},
-				date: new Date(`${eduList[status.index].graduate}`)
+				date: new Date(`${item.graduate}`)
 				
 			});
 		</c:forEach>
@@ -466,6 +486,8 @@
 		</c:if>
 
 		<c:forEach items="${careerList}" var="item" varStatus="status">
+		document.querySelector('select[name="cvList[${status.index}].type"] option[value="${item.type}"]').setAttribute('selected', '');
+
 		new DatePicker(document.getElementById(`cv-enter-container-${status.index}`), {
 			language: 'ko',
 			type: 'date',
@@ -473,7 +495,7 @@
 					element: document.getElementById(`cv-enter-${status.index}`),
 					format: 'yyyy-MM-dd'
 			},
-			date: new Date(`${careerList[status.index].joinCompany}`)
+			date: new Date(`${item.joinCompany}`)
 			
 		});
 
@@ -484,7 +506,7 @@
 					element: document.getElementById(`cv-leave-${status.index}`),
 					format: 'yyyy-MM-dd'
 			},
-			date: new Date(`${careerList[status.index].leave}`)
+			date: new Date(`${item.leave}`)
 			
 		});
 		</c:forEach>
@@ -505,7 +527,7 @@
 					element: document.getElementById(`av-date-${status.index}`),
 					format: 'yyyy-MM'
 			},
-			date: new Date(`${awardList[status.index].awardDate}`)
+			date: new Date(`${item.awardDate}`)
 			
 		});
 		</c:forEach>
@@ -527,7 +549,7 @@
 					element: document.getElementById(`cfv-date-${status.index}`),
 					format: 'yyyy-MM'
 			},
-			date: new Date(`${certificateList[status.index].certificateDate}`)
+			date: new Date(`${item.certificateDate}`)
 			
 		});
 		</c:forEach>
@@ -539,6 +561,18 @@
 		<c:if test="${empty langList}">
 		let languageIndex = 0;
 		</c:if>
+		<c:forEach items="${langList}" var="item" varStatus="status">
+			document.querySelector('select[name="lvList[${status.index}].languageLevel"] option[value="${item.languageLevel}"]').setAttribute('selected', '');
+		</c:forEach>
+
+		<c:if test="${not empty rv.link}">
+		let link = 1;
+		</c:if>
+		
+		<c:if test="${empty rv.link}">
+		let link = 0;
+		</c:if>
+		
 	</script>
 
 

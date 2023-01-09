@@ -108,6 +108,13 @@ main .wrapper{
   cursor: pointer;
 }
 
+.delete{
+  width: 30px;
+  height: 30px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
 .introduce-title>h4{
   margin: 0;
 }
@@ -119,7 +126,7 @@ main .wrapper{
   font-size: 12px;
 }
 
-.additional{
+.input.additional{
   width: 100%;
 }
 
@@ -150,10 +157,44 @@ main .wrapper{
 
 .item:nth-child(2) .separator{
   margin-top: unset;
- border: none;
+  border: none;
 }
 
 .list-btn{
   display: flex;
   align-items: center;
+}
+
+#link-item>.additional{
+  margin-top: 30px;
+}
+
+.filebox-wrapper{
+  display: flex;
+  flex-direction: column-reverse;
+  margin-top: 20px;
+}
+
+.filebox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(211, 208, 208, 0.233);
+  color: rgb(83, 89, 97);
+  height: 2.933rem;
+  border-radius: 5px;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.filebox>input{
+  width: 0;
+  height: 0;
+}
+
+#attach{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-top: 20px;
 }

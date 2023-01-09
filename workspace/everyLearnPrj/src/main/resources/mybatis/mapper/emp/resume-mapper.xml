@@ -152,8 +152,6 @@
 	<!-- 학력 인서트 -->
 	<update id="updateEducation" parameterType="java.util.List">
 		BEGIN
-			DELETE FROM EDUCATION
-			WHERE RESUME_NO = #{list[0].resumeNo};
 		INSERT ALL
 		<foreach collection="list" item="ev" open="" close="SELECT * FROM DUAL" >
 					INTO EDUCATION
@@ -182,12 +180,16 @@
 		;
 		END;
 	</update>
+	
+	<!-- 학력 삭제하기 -->
+	<delete id="deleteEducation">
+		DELETE FROM EDUCATION
+		WHERE RESUME_NO = #{value}
+	</delete>
 
 	<!-- 수상내역 작성하기 -->
 	<update id="updateAward" parameterType="java.util.List">
 		BEGIN
-			DELETE FROM AWARD
-			WHERE RESUME_NO = #{list[0].resumeNo};
 		INSERT ALL	
 		<foreach collection="list" item="av" open="" close="SELECT * FROM DUAL">
 				INTO AWARD
@@ -211,11 +213,15 @@
 		END;
 	</update>
 	
+	<!-- 수상내역 삭제하기 -->
+	<delete id="deleteAward">
+		DELETE FROM AWARD
+		WHERE RESUME_NO = #{value}
+	</delete>
+	
 	<!-- 경력 작성하기 -->
 	<update id="updateCareer" parameterType="java.util.List">
 	BEGIN
-		DELETE FROM CAREER
-		WHERE RESUME_NO = #{list[0].resumeNo};
 	INSERT ALL
 	<foreach collection="list" item="cv" open="" close="SELECT * FROM DUAL">
 				INTO CAREER
@@ -248,11 +254,15 @@
 		END;
 	</update>
 	
+	<!-- 경력 삭제하기 -->
+	<delete id="deleteCareer">
+		DELETE FROM CAREER
+		WHERE RESUME_NO = #{value}
+	</delete>
+	
 	<!-- 자격증 내역 작성하기 -->
 	<update id="updateCertificate" parameterType="java.util.List">
 		BEGIN
-			DELETE FROM CERTIFICATE
-			WHERE RESUME_NO = #{list[0].resumeNo};
 		INSERT ALL
 		<foreach collection="list" item="cfv" open="" close="SELECT * FROM DUAL">
 			INTO CERTIFICATE
@@ -276,11 +286,15 @@
 		END;
 	</update>
 	
+	<!-- 자격증 삭제하기 -->
+	<delete id="deleteCertificate">
+		DELETE FROM CERTIFICATE
+		WHERE RESUME_NO = #{value}
+	</delete>
+	
 	<!-- 언어 작성하기 -->
 	<update id="updateLanguage" parameterType="java.util.List">
 		BEGIN
-			DELETE FROM LANGUAGE
-		WHERE RESUME_NO = #{list[0].resumeNo};
 	INSERT ALL
 	<foreach collection="list" item="lv" open="" close="SELECT * FROM DUAL">
 				INTO LANGUAGE
@@ -302,4 +316,10 @@
 		END;
 	</update>
 	
+	<!-- 언어 삭제하기 -->
+	<delete id="deleteLanguage">
+		DELETE FROM LANGUAGE
+		WHERE RESUME_NO = #{value}
+	</delete>
 </mapper>
+	
