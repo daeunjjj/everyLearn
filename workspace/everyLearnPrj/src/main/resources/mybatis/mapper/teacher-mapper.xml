@@ -89,19 +89,19 @@
 	
 	</select>
 	
-		<select id="selectTeacherInfo" resultType="com.coding5.el.member.vo.TeacherMemberVo">
-		SELECT M.NICK TEACHER_NICK
-		, T.MEMBER_NO TEACHER_NO
-		, T.SHORT_INTRO
-		, T.CAREER
-		,(
-		    SELECT PTA.CHANGE_NAME
-		    FROM PROFILE_TEACHER_ATTATCH PTA
-		    WHERE T.MEMBER_NO = PTA.TEACHER_NO) AS TEA_IMG_CHANGE_NAME
-		FROM  TEACHER T
-		JOIN MEMBER M
-		ON M.NO = T.MEMBER_NO
-		WHERE M.NO = ${memberNo}
+	<select id="selectTeacherInfo" resultType="com.coding5.el.member.vo.TeacherMemberVo">
+	SELECT M.NICK TEACHER_NICK
+	, T.MEMBER_NO TEACHER_NO
+	, T.SHORT_INTRO
+	, T.CAREER
+	,(
+	    SELECT PTA.CHANGE_NAME
+	    FROM PROFILE_TEACHER_ATTATCH PTA
+	    WHERE T.MEMBER_NO = PTA.TEACHER_NO) AS TEA_IMG_CHANGE_NAME
+	FROM  TEACHER T
+	JOIN MEMBER M
+	ON M.NO = T.MEMBER_NO
+	WHERE M.NO = ${memberNo}
 	</select>
 	
 	<select id="selectClassList" resultType="com.coding5.el.member.vo.TeacherMemberVo">
@@ -113,7 +113,8 @@
 		, (SELECT CA.CHANGE_NAME
 		    FROM CLASS_ATTACH CA
 		    WHERE C.NO = CA.CLASS_NO ) AS CL_IMG_CHANGE_NAME
-		, M.NICK TEACHER_NICK   
+		, M.NICK TEACHER_NICK  
+		, C.PRICE * C.STUDENT_CNT TOTAL_PRICE 
 		FROM CLASS C
 		JOIN MEMBER M
 		ON C.TEACHER_NO = M.NO

@@ -43,6 +43,7 @@
 			<div><a href="/el/lecture/qnalist">질문과답변</a></div>
 		</div>
 		<div class="lec-index-wrap">
+        
         <div class="lec-index-top">
             <div>목차</div>
             <div>강의명</div>
@@ -50,7 +51,9 @@
         </div>
         <div class="lec-index">
             <div>1강</div>
-            <div>프로크리에이트 설치하기</div>
+            <a href="">
+                <div>프로크리에이트 설치하기</div>
+            </a>
             <div>수강완료</div>
         </div>
         <div class="lec-index">

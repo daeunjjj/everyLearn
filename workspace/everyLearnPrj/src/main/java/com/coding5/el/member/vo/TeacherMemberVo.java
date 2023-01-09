@@ -23,6 +23,8 @@ public class TeacherMemberVo {
 	private String price;
 	private String classNo;
 	private String clImgChangeName;
+	private String totalPrice;
+	
 	
 
 	

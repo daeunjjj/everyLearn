@@ -63,9 +63,9 @@ public class MemberServiceImpl implements MemberService{
 			log.info("서비스  오케이 : " + loginMember );
 			return loginMember;
 		}else {
-			loginMember.setMemberId("1");
-			log.info("서비스  null : " + loginMember );
-			return loginMember;
+//			loginMember.setMemberId("1");
+			log.info("서비스  null : " + isMatch );
+			return null;
 		}
 		
 	}
