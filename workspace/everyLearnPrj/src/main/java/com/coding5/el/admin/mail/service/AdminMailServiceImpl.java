@@ -69,5 +69,11 @@ public class AdminMailServiceImpl implements AdminMailService{
 		return adminMailDao.selectMailList(sst,mapSearch,pv);
 	}
 	
+	//메일 보낸내역 삭제
+	@Override
+	public int deleteSendMail(String[] arrNo) {
+		return adminMailDao.deleteSendMail(sst, arrNo);
+	}
+	
 	
 }

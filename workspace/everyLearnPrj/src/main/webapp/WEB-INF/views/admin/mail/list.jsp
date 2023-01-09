@@ -54,7 +54,7 @@
                     <div>날짜</div>
                     <div></div>
                 </div>
-                <form action="/el/admin/mail/send/delete" method="post" onsubmit="return deleteCheck();">
+                <form action="/el/admin/mail/mail/delete" method="POST" onsubmit="return deleteCheck();">
                     <ul>
 						<c:forEach items="${voList }" var="list">
 							<li>

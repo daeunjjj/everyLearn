@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -122,7 +121,12 @@ public class AdminMailController {
 		public String mailList(String pno, Model model, @RequestParam Map<String, String> mapSearch, HttpSession session) {
 			
 			AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");
-			mapSearch.put("adminNo", loginAdmin.getNo());
+			log.info(loginAdmin.getPermission());
+			// 마스터 관리자는 모든 내역 볼 수 있음 체크
+			if(!"마스터".equals(loginAdmin.getPermission())) {
+				mapSearch.put("adminNo", loginAdmin.getNo());				
+			}
+			
 			// 카운트
 			int listCount = adminMailService.selectMailCount(mapSearch);
 			int currentPage = Integer.parseInt(pno);
@@ -147,13 +151,25 @@ public class AdminMailController {
 			
 			return "admin/mail/list";
 		}
-		
+		/**
+		 * 메일 보낸내역 삭제
+		 * @param arrNo
+		 * @return
+		 */
 		@PostMapping("mail/delete")
 		public String sendDelete(String[] arrNo) {
 			
 			log.info("no 잘 받아오나" + arrNo[0]);
 			
+			int result = adminMailService.deleteSendMail(arrNo);
+			
 			return "redirect:/admin/mail/send/list?pno=1";
+		}
+		
+		//보낸내역 상세보기
+		@GetMapping("send/detail")
+		public String mailDetail() {
+			return "admin/mail/detail";
 		}
 		
 }

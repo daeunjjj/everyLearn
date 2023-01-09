@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>에브리런</title>
+<title>에브리런 - 메일 발송</title>
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
 <link rel="stylesheet" href="/el/resources/css/admin/mail/send.css">
 </head>
@@ -77,7 +77,7 @@
             $("#toAddress").val(mailAddress);
         }
         // 포커스 효과
-        let inputArr = $('input');
+        let inputArr = $('input[type="text"]');
         for(let i = 0; i < inputArr.length; i++){
             
             inputArr[i].addEventListener('focus',()=>{

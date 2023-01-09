@@ -22,4 +22,9 @@ public interface AdminMailDao {
 	// 메일 리스트
 	public List<MailVo> selectMailList(SqlSessionTemplate sst, Map<String, String> mapSearch, PageVo pv);
 	
+	// 메일 보낸 내역 삭제
+	public int deleteSendMail(SqlSessionTemplate sst, String[] arrNo);
+
+
+	
 }

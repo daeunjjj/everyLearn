@@ -19,5 +19,8 @@ public interface AdminMailService {
 	
 	// 메일 리스트들 가져오기
 	public List<MailVo> selectMailList(PageVo pv, Map<String, String> mapSearch);
+	
+	// 보낸 메일 내역 삭제
+	public int deleteSendMail(String[] arrNo);
 
 }
