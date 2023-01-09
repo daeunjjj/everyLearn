@@ -298,7 +298,7 @@
       	    	                imp_uid: rsp.imp_uid,
       	    	                merchant_uid: rsp.merchant_uid,
       	    	                amount: finalPrice,
-      	    	                usePoint: usedPoint,
+      	    	                usedPoint: usedPoint,
       	    	                classData : json
       	    	                
       	    	            },success: function(data){
