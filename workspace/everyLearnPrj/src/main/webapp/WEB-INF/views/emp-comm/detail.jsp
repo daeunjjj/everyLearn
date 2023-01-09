@@ -82,10 +82,10 @@
                         <div id="photo"></div>
                         <div id="info2"><span id="nick">삥뽕</span> <span id="enroll-date">22.11.30 15:30</span></div>
                         <div id="ed">
-                        	<c:if test="${ loginMember != null }">
+                        	<!--<c:if test="${ loginMember.getMemberNo() == sessionScope.loginMember}">
                             	<a href="" id="edit1">수정</a>
                             	<a href="" id="delete1">삭제</a>
-                            </c:if>	
+                            </c:if>	-->
                         </div>
                     </div>
                     <div id="btn1">
