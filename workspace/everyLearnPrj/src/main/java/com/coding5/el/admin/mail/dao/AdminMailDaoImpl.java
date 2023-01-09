@@ -41,5 +41,10 @@ public class AdminMailDaoImpl implements AdminMailDao{
 		return sst.selectList("adminMapper.selectMailList",mapSearch,rb);
 	}
 
+	@Override
+	public int deleteSendMail(SqlSessionTemplate sst, String[] arrNo) {
+		return sst.update("adminMapper.deleteSendMail", arrNo);
+	}
+
 
 }

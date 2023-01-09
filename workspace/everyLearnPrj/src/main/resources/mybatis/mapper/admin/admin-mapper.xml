@@ -703,13 +703,18 @@
 	
 	<select id="selectMailCount" resultType="int">
 		SELECT COUNT(*)
-		FROM EMAIL
+		FROM EMAIL E
+        JOIN ADMIN A ON A.NO = E.ADMIN_NO
 		<where>
-			<if test="keyword != null and keyword != ''">
-				${category} LIKE '%${keyword}%'
+			E.DELETE_YN = 'N'
+			<if test="keyword != null and keyword != '' and category == 'title'">
+				AND E.${category} LIKE '%${keyword}%'
 			</if>
-			<if test="category == 'status'">
-				AND ADMIN_NO = #{adminNo}
+			<if test="keyword != null and keyword != '' and category == 'name'">
+				AND A.${category} LIKE '%${keyword}%'
+			</if>
+			<if test="adminNo != null and adminNo != ''">
+				AND E.ADMIN_NO = #{adminNo}
 			</if>
 		</where>
 	</select>
@@ -727,16 +732,27 @@
 		FROM EMAIL E
 		JOIN ADMIN A ON E.ADMIN_NO = A.NO
 		<where>
-			E.ADMIN_NO = #{adminNo}
+			E.DELETE_YN = 'N'
 			<if test="keyword != null and keyword != '' and category == 'title'">
 				AND E.${category} LIKE '%${keyword}%'
 			</if>
 			<if test="keyword != null and keyword != '' and category == 'name'">
 				AND A.${category} LIKE '%${keyword}%'
 			</if>
-			AND E.DELETE_YN = 'N'
+			<if test="adminNo != null and adminNo != ''">
+				AND E.ADMIN_NO = #{adminNo}
+			</if>
 		</where>
 
 		ORDER BY E.NO DESC
 	</select>
+	<update id="deleteSendMail">
+		UPDATE EMAIL
+		SET DELETE_YN = 'Y'
+		WHERE NO IN 
+		<foreach collection="array" item="no" open="(" close=")" separator=",">
+			#{no}
+		</foreach>
+	</update>
+	
 </mapper>
