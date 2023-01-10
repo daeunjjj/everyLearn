@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.coding5.el.emp.comm.service.EmpCommService;
 import com.coding5.el.emp.comm.vo.EmpCommVo;
+import com.coding5.el.emp.comm.vo.LikeVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.notice.vo.PageVo;
 
@@ -93,11 +94,14 @@ public class EmpCommController {
 
 	//채용 커뮤니티 상세조회
 	@GetMapping("detail")
-	public String detail(String no, Model model) throws Exception {
+	public String detail(@RequestParam("no") String no,  Model model) throws Exception {
 		
 		int result = empCommService.increaseHit(no);
 		
-		if(result > 0) {
+		LikeVo heart = new LikeVo();
+		heart = empCommService.findHeart(no, heart.getMemberNo());
+		
+		if(result > 0) {			
 			EmpCommVo n = empCommService.selectDetail(no);
 			model.addAttribute("n", n);
 			return "emp-comm/detail";

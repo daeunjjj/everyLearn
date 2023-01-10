@@ -1,7 +1,9 @@
 package com.coding5.el.emp.comm.service;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.coding5.el.emp.comm.dao.EmpCommDao;
 import com.coding5.el.emp.comm.vo.EmpCommVo;
+import com.coding5.el.emp.comm.vo.LikeVo;
 import com.coding5.el.emp.service.EmpService;
 import com.coding5.el.notice.vo.PageVo;
 
@@ -60,6 +63,15 @@ public class EmpCommServiceImpl implements EmpCommService{
 	@Override	//글 삭제하기
 	public int deleteEmpComm(String no) throws Exception {
 		return empCommDao.deleteEmpComm(sst, no);
+	}
+
+
+	@Override	//해당 글에 해당 멤버가 좋아요를 했는지? Map으로 한번에 합쳐주기
+	public LikeVo findHeart(String no, String memberNo) throws Exception {
+		Map<String, String> number = new HashMap<String, String>();
+		number.put("no", no);
+		number.put("memberNo", memberNo);
+		return empCommDao.findHeart(sst, number);
 	}
 
 

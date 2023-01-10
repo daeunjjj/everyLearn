@@ -35,13 +35,57 @@
             <div class="th" id="hit">상태</div>
 
 
+
+			<div class="td" id="no">15</div>
+            <div class="td">결제</div>
+            <div class="td" id="title">
+            	저.. 수료 가능할까요?
+              <span class="material-symbols-outlined">lock</span>
+            </div>
+            <div class="td" id="nick">nick01</div>
+            <div class="td" id="date">23.01.13</div>
+            <div class="td" id="status1">답변 중</div>
+
+			<div class="td" id="no">14</div>
+            <div class="td">결제</div>
+            <div class="td" id="title">
+            	제목입니다
+              <span class="material-symbols-outlined">lock</span>
+            </div>
+            <div class="td" id="nick">nick03</div>
+            <div class="td" id="date">22.12.11</div>
+            <div class="td" id="status1">답변 중</div>	
+
+
+
+			<div class="td" id="no">13</div>
+            <div class="td">결제</div>
+            <div class="td" id="title">
+            	제목입니다
+              <span class="material-symbols-outlined">lock</span>
+            </div>
+            <div class="td" id="nick">nick02</div>
+            <div class="td" id="date">22.12.11</div>
+            <div class="td" id="status1">답변 중</div>
+
+
+			<div class="td" id="no">12</div>
+            <div class="td">결제</div>
+            <div class="td" id="title">
+            	제목입니다
+              <span class="material-symbols-outlined">lock</span>
+            </div>
+            <div class="td" id="nick">nick11</div>
+            <div class="td" id="date">22.12.11</div>
+            <div class="td" id="status1">답변 중</div>
+
             <div class="td" id="no">11</div>
             <div class="td">결제</div>
             <div class="td" id="title">
             	제목입니다
               <span class="material-symbols-outlined">lock</span>
             </div>
-            <div class="td" id="nick">nick01</div>
+            <div class="td" id="nick">nick9</div>
             <div class="td" id="date">22.12.11</div>
             <div class="td" id="status1">답변 중</div>
 
@@ -87,7 +131,7 @@
             <div class="td" id="status">답변완료</div>
 
             <div id="main-bot">
-                <a href="/#/board/write" class="btn btn-light" id="write">작성하기</a>
+                <a href="/el/qna/memberWrite" class="btn btn-light" id="write">작성하기</a>
             </div>
 
             <div id="page-area" class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
