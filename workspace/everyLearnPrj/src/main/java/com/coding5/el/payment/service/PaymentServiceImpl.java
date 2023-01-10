@@ -22,24 +22,24 @@ public class PaymentServiceImpl implements PaymentService {
 	private PaymentDao payDao;
 	
 
-	//주문 내역 추가
+	//주문 추가
 	@Override
 	public int addBuy(List<PaymentVo> payList, LectureVo lecVo) {
 		return payDao.addBuy(sst, payList, lecVo);
 	}
 
 	
-	//결제 테이블 추가
+	
+	
+	//주문 내역 추가
 	@Override
-	public int addPay(List<PaymentVo> payList, LectureVo lecVo) {
-		return payDao.addPay(sst, payList, lecVo);
-	}
-
-
-	@Override
-	public int addBuyList(List<PaymentVo> payList) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int addBuyList(List<PaymentVo> payList , LectureVo lecVo) {
+		int result = payDao.addBuyList(sst, payList, lecVo);
+		int result2 = 0;
+		if (result > 0) {
+			result2 = payDao.updatePrice(sst, payList);
+		}
+		return result * result2;
 	}
 
 	//포인트 1% 추가
@@ -52,6 +52,27 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public int minusPoint(Map<String, String> map) {
 		return payDao.minusPoint(map, sst);
+	}
+
+	//주문 테이블 추가(맵)
+	@Override
+	public int addBuy(Map<String, String> buymap) {
+		return payDao.addBuy(buymap, sst);
+	}
+
+	//결제 테이블 추가(맵_
+	@Override
+	public int addPay(Map<String, String> buymap) {
+		return payDao.addPay(buymap, sst);
+	}
+
+
+
+
+	@Override
+	public int deleteCart(List<PaymentVo> payList) {
+		// TODO Auto-generated method stub
+		return payDao.deleteCart(payList, sst);
 	}
 
 
