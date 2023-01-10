@@ -25,7 +25,7 @@
 		<div id="complete-wrap">
 			<div id="check-btn"><i class="fa-solid fa-circle-check fa-5x"></i></div>
 			<div id="pay-com">결제가 완료되었습니다.</div>
-			<div id="check-mypage"><a href="#"><button>마이페이지에서 확인하기</button></a></div>
+			<div id="check-mypage"><a href="/el/member/memberStudy"><button>마이페이지에서 확인하기</button></a></div>
 		</div>
 	</div>
 	

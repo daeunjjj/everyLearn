@@ -72,11 +72,12 @@ public class PaymentController {
 		
 		System.out.println("str : " + savedPointstr);
 		
-		/*
-		 * Map<String, String> buymap = new HashMap<>();
-		 * 
-		 * buymap.put("no", no); //회원번호 buymap.put("no", no);
-		 */
+		
+		 Map<String, String> buymap = new HashMap<>();
+		 buymap.put("no", no); //회원번호 buymap.put("no", no);
+		 buymap.put("usePoint", usedPoint);
+		 buymap.put("savePoint", savedPointstr);
+		 buymap.put("sum", amount);
 		
 		List<PaymentVo> payList = new ArrayList<PaymentVo>();
 		  for(int i = 0; i < list.size(); i++) { 
@@ -95,13 +96,14 @@ public class PaymentController {
 		System.out.println("no : " + no);
 		System.out.println("포인트 : " + usedPoint);
 		
-		//주문 테이블 추가 (여긴 맵으로))
-		int result = paymentService.addBuy(payList, lecVo);
+		//주문 테이블 추가 (여긴 맵으로)
+		int result = paymentService.addBuy(buymap);
+		//int result = paymentService.addBuy(payList, lecVo);
 		if (result > 0) {
 			//주문 내역 테이블 추가 (이걸 리스트로)
-			//int result2 = paymentService.addBuyList(payList, lecVo);
+			int result2 = paymentService.addBuyList(payList, lecVo);
 			//결제 테이블 추가
-			//int result2 = paymentService.addPay(payList, lecVo); --> 이건 buy number 여러개를 가져와서 동시에 해야하는데...
+			int result3 = paymentService.addPay(buymap); 
 			
 			
 			//포인트 추가
@@ -109,10 +111,14 @@ public class PaymentController {
 			map.put("savedPointstr", savedPointstr);
 			map.put("no", no);
 			map.put("usedPoint", usedPoint);
-			int result3 = paymentService.addPoint(map);
+			int result4 = paymentService.addPoint(map);
 			
 			//포인트 감소
-			int result4 = paymentService.minusPoint(map);
+			int result5 = paymentService.minusPoint(map);
+			
+			//결제한 강의 장바구니에서 삭제
+			//int result6 = paymentService.deleteCart(payList);
+			
 		
 			System.out.println("포인트 result 결과 ::: " + result3);
 			System.out.println("====================");

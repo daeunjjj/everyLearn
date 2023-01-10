@@ -135,10 +135,9 @@
 	
 	<!-- 구매 목록에 이 강의 있는지 확인하기 -->
 	<select id="checkBuy" resultType = "int">
-		select count(*) from buy
+		select count(*) from buylist
     	where member_no = #{mno}
     	and class_no = #{bno1}
-    	and STATUS_YN = 'Y'
 	</select>
 	
 	

@@ -7,31 +7,25 @@
   <!-- 주문 테이블 추가 -->
   <insert id="addBuy">
   		
-  		INSERT ALL
-  		<foreach collection="list" item="vo" >
-  		INTO BUY
+  		INSERT INTO BUY
   		(
 	  		NO
 			, MEMBER_NO
-			, CLASS_NO
 			, USE_POINT
 			, SAVE_POINT
 			, SUM
 			, ORDER_DATE
 		)
 		VALUES(
-			GET_SEQ_BUY
-			, #{vo.memberNo}
-			, #{vo.classNo}
-			, #{vo.usePoint}
-			, #{vo.savePoint}
-			, #{vo.sum}
+			SEQ_BUY_NO.nextval
+			, #{no}
+			, #{usePoint}
+			, #{savePoint}
+			, #{sum}
 			, SYSDATE
-		
 		)
-  		</foreach>
-  		select 1 from dual
-  		
+
+
   </insert>
   
   <!-- 주문 정보 테이블 추가 -->
@@ -43,16 +37,16 @@
   		(
 	  		NO
 			, BUY_NO
+			, MEMBER_NO
 			, CLASS_NO
-			, ORDER_DATE
-			, PRICE		
+			, ORDER_DATE	
 			)
 		VALUES(
 			GET_SEQ_BUYLIST
+			, SEQ_BUY_NO.CURRVAL
 			, #{vo.memberNo}
 			, #{vo.classNo}
 			, SYSDATE
-			, #{vo.savePoint}
 		
 		)
   		</foreach>
@@ -105,28 +99,47 @@
   <!-- 결제 테이블 추가 -->
   <insert id="addPay">
   		
-  		INSERT ALL
-  		<foreach collection="list" item="vo" >
-  		INTO BUY
-  		(
-	  		NO
-			, PAYMENT_METHOD
-			, BUY_NO
-			, ENROLL_DATE
-			, AMOUNT
-		)
-		VALUES(
-			GET_SEQ_PAY
-			, 1
-			, buy_no
-			, SYSDATE
-			, #{vo.sum}
-
-		)
-  		</foreach>
-  		select 1 from dual
+  insert into payment
+  (
+  	NO
+, PAYMENT_METHOD
+, BUY_NO
+, ENROLL_DATE
+, AMOUNT
+  )
+  values(
+  SEQ_PAYMENT_NO.NEXTVAL
+  , 1
+  , SEQ_BUY_NO.CURRVAL
+  , SYSDATE
+  , #{sum}
+  )
   		
   </insert>
   
+  
+  <!-- 가격 업데이트 -->
+  <update id="updatePrice">
+  
+	 update buylist list
+	  	set(list.price) = (
+	  		select c.price as price
+	  		from class c
+	  		where list.class_no = c.no
+	  	)
+  
+  </update>
+  
+  
+  <!-- 결제한 강의 장바구니에서 삭제 -->
+  <update id="deleteCart" parameterType="java.util.List">
+  	update cart
+  	set ORDER_YN = 'Y'
+  	 <foreach collection="list" item="item"  separator=";" open="DECLARE BEGIN" close="; END;" >
+  	 where MEMBER_NO = #{item.memberNo}
+  	 and CLASS_NO = #{item.classNo}
+  	</foreach>
+  
+  </update>
 
 </mapper>
