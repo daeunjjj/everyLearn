@@ -1,5 +1,6 @@
 package com.coding5.el.member.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.member.vo.ClassListVo;
 import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.member.vo.PointVo;
 import com.coding5.el.member.vo.TeacherMemberVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -81,6 +83,12 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public String selectTeacherCheck(SqlSessionTemplate sst, MemberVo loginMember) {
 		return sst.selectOne("memberMapper.selectTeacherCheck", loginMember);
+	}
+
+	//point list
+	@Override
+	public List<PointVo> selectPointList(SqlSessionTemplate sst, String mpn) {
+		return sst.selectList("memberMapper.selectPointList", mpn);
 	}
 
 //	//teacher info

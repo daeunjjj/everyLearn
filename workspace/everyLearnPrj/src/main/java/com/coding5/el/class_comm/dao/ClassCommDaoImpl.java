@@ -29,8 +29,8 @@ public class ClassCommDaoImpl implements ClassCommDao{
 	}
 
 	//게시글 디테일
-	public ClassCommVo selectDetailVo(SqlSessionTemplate sst, String classCommNo) {
-		return sst.selectOne("classCommMapper.selectDetailVo", classCommNo);
+	public ClassCommVo selectDetailVo(SqlSessionTemplate sst, HashMap<String, String> likeMap) {
+		return sst.selectOne("classCommMapper.selectDetailVo", likeMap);
 	}
 
 	//신고 인서트
@@ -125,9 +125,9 @@ public class ClassCommDaoImpl implements ClassCommDao{
 	}
 
 	@Override
-	public String selectLikeCnt(SqlSessionTemplate sst, String classCommNo) {
+	public String selectLikeCnt(SqlSessionTemplate sst, HashMap<String, String> likeMap) {
 		
-		return sst.selectOne("classCommMapper.selectLikeCnt", classCommNo);
+		return sst.selectOne("classCommMapper.selectLikeCnt", likeMap);
 	}
 
 	//에이젝스 likeCnt
@@ -136,12 +136,7 @@ public class ClassCommDaoImpl implements ClassCommDao{
 		return sst.selectOne("classCommMapper.selectLikeCnt", classCommNo);
 	}
 
-	//디테일화면 좋아요 여부
-	@Override
-	public int selectLikeupCheck(SqlSessionTemplate sst, String classCommNo) {
-		return sst.selectOne("classCommMapper.selectLikeupCheck", classCommNo);
-	}
-	
+
 	
 
 }

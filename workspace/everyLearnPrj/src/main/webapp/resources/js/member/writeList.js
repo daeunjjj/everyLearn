@@ -9,7 +9,7 @@ function classReview(memberNo){
     obj.setAttribute('value', memberNo);
     
     f.appendChild(obj);
-    f.setAttribute('method', 'post');
+    f.setAttribute('method', 'get');
     f.setAttribute('action', '/el/member/writeListClass');
     document.body.appendChild(f);
     f.submit();

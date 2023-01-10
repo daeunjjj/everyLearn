@@ -1,12 +1,14 @@
 package com.coding5.el.member.service;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.member.vo.ClassListVo;
 import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.member.vo.PointVo;
 import com.coding5.el.member.vo.TeacherMemberVo;
 
 public interface MemberService {
@@ -40,6 +42,9 @@ public interface MemberService {
 
 	//강사체크
 	public String teacherCheck(MemberVo loginMember);
+
+	//포인트 리스트
+	public List<PointVo> pointList(String mpn);
 
 //	//강사 정보
 //	public TeacherMemberVo teacherInfo(String memberNo);

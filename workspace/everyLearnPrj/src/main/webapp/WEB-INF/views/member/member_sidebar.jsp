@@ -40,7 +40,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="http://127.0.0.1:8888/el/member/point" class="item">
+                    <a href="http://127.0.0.1:8888/el/member/point?mpn=${loginMember.memberNo}" class="item">
                         <div>포인트</div>
                     </a>
                 </li>

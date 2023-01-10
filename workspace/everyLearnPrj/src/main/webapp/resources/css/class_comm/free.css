@@ -136,12 +136,12 @@ button:hover{
 
 #free-top{
     display: grid;
-    grid-template-columns: 1fr 3.5fr 0.5fr;
+    grid-template-columns: 0.5fr 3.5fr 0.5fr;
 }
 
 #free-main{
     display: grid;
-    grid-template-columns: 1fr 3.5fr 0.5fr;
+    grid-template-columns: 0.5fr 3.5fr 0.5fr;
 }
 
 #free-top{
@@ -224,7 +224,7 @@ button:hover{
     text-overflow: unset;
     white-space : nowrap;
     height: 35px;
-    width: 140px;
+    width: 540px;
     overflow: hidden; 
     margin: auto;
 }

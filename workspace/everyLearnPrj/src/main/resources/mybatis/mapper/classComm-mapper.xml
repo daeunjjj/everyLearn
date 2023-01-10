@@ -265,12 +265,14 @@
 	<select id="selectLikeupCheck" resultType="_int">
 		SELECT COUNT(*)
 		FROM LIKEUP
+	 	<trim prefix="WHERE" prefixOverrides="AND |OR "> 
 		<if test="memberNo != null and memberNo != '' ">
-			WHERE MEMBER_NO = ${memberNo}
+			MEMBER_NO = ${memberNo}
 		</if>
 		<if test="classCommNo != null and classCommNo != '' ">
 		AND COMU_NO = ${classCommNo}
 		</if>
+		</trim>
 	</select>
 	
 	<insert id="insertLike">

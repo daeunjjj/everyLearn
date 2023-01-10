@@ -1,5 +1,6 @@
 package com.coding5.el.member.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.coding5.el.member.service.MemberService;
 import com.coding5.el.member.vo.ClassListVo;
 import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.member.vo.PointVo;
 import com.coding5.el.member.vo.TeacherMemberVo;
 import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.class_comm.vo.ClassCommVo;
@@ -33,6 +35,18 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@GetMapping("point")
+	public String point(String mpn, Model model) {
+		
+	
+		List<PointVo> pointList = memberService.pointList(mpn);
+		log.info("pointList" + pointList);
+		model.addAttribute("pointList",pointList);
+		
+		return "member/point";
+	}
+	
 	
 	@GetMapping("delete")
 	public String delete() {
@@ -329,11 +343,7 @@ public class MemberController {
 		return "member/member_sidebar";
 	}
 	
-	@GetMapping("point")
-	public String point() {
-		return "member/point";
-	}
-	
+
 
 	
 

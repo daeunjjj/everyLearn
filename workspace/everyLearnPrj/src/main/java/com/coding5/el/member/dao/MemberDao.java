@@ -1,5 +1,6 @@
 package com.coding5.el.member.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.member.vo.ClassListVo;
 import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.member.vo.PointVo;
 import com.coding5.el.member.vo.TeacherMemberVo;
 
 
@@ -34,6 +36,8 @@ public interface MemberDao {
 	public int updateDeleteMember(SqlSessionTemplate sst, String memberNo);
 
 	public String selectTeacherCheck(SqlSessionTemplate sst, MemberVo loginMember);
+
+	public List<PointVo> selectPointList(SqlSessionTemplate sst, String mpn);
 
 //	public TeacherMemberVo selectTeacherInfo(SqlSessionTemplate sst, String memberNo);
 //

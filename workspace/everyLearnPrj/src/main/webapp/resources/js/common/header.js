@@ -31,8 +31,10 @@ function listView(memberNo){
     obj.setAttribute('value', memberNo);
     
     f.appendChild(obj);
-    f.setAttribute('method', 'post');
-    f.setAttribute('action', 'view.do');
+    f.setAttribute('method', 'get');
+    f.setAttribute('action', '/el/member/memberStudy');
     document.body.appendChild(f);
     f.submit();
 }
+
+
