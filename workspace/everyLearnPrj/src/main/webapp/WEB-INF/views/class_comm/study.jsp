@@ -53,8 +53,8 @@
             <div id="study-wrap">
                <c:forEach items="${studyList}" var="study">
                 <div id="study-context">
-                    <div id="comm-study" onclick="location.href='/el/class/detail?classCommNo='+ ${study.classCommNo}">
-                        <div class="study-write" id="study-title" onclick="location.href='/el/class/detail?classCommNo='+ ${study.classCommNo}">${study.title}</div>
+                    <div id="comm-study" onclick="location.href='/el/class/detail?classCommNo=${study.classCommNo}&lc=${loginMember.memberNo}'">
+                        <div class="study-write" id="study-title" onclick="location.href='/el/class/detail?classCommNo=}&lc=${loginMember.memberNo}'">${study.title}</div>
                         <div class="study-write" id="study-content">
                         	${study.content}
                         </div>

@@ -43,7 +43,7 @@
             	
                 <!-- 질문 div 시작 -->
 	                <div>
-	                	<a id="atg" href="/el/class/detail?classCommNo=${qna.classCommNo}" >
+	                	<a id="atg" href="/el/class/detail?classCommNo=${qna.classCommNo}&lc=${loginMember.memberNo}" >
 	                    <div id="question">
 	                        <div id="q-title">
 	                        	${qna.title}

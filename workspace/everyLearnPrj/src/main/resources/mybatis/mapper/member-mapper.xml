@@ -138,6 +138,17 @@ INSERT INTO MEMBER
 		WHERE M.NO = ${memberNo}
 	</select>
 	
-
+	<select id="selectPointList" resultType="com.coding5.el.member.vo.PointVo">
+		SELECT 
+		CP.NAME HISTORY
+		,P.MEMBER_NO
+		,P.CHANGE
+		,TO_CHAR(P.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') ENROLL_DATE
+		FROM POINT P
+		JOIN CATE_POINT CP
+		ON P.HISTORY = CP.NO
+		WHERE P.MEMBER_NO = ${mpn}
+		ORDER BY ENROLL_DATE DESC
+	</select>
   
 </mapper>

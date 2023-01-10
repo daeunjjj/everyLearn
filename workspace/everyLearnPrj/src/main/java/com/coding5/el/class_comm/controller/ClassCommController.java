@@ -124,10 +124,14 @@ public class ClassCommController {
 	
 	//게시글 상세(화면)
 	@GetMapping("detail")
-	public String detail(String classCommNo, Model model) {
+	public String detail(String classCommNo, String lc, Model model, HashMap<String, String> likeMap) {
 		
+		log.info("lc ::" + lc);
+		likeMap.put("classCommNo", classCommNo);
+		likeMap.put("memberNo", lc);
+		log.info("likeMap ::" + likeMap);
 		
-		ClassCommVo detailVo = ccs.detailVo(classCommNo);
+		ClassCommVo detailVo = ccs.detailVo(likeMap);
 		log.info("디테일브이오" + detailVo);
 		
 		model.addAttribute("detailVo", detailVo);

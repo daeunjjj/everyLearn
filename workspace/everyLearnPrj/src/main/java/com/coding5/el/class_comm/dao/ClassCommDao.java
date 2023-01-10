@@ -14,7 +14,7 @@ public interface ClassCommDao {
 
 	public int write(SqlSessionTemplate sst, ClassCommVo vo);
 	public List<ClassCommVo> selectQnaInfo(SqlSessionTemplate sst);
-	public ClassCommVo selectDetailVo(SqlSessionTemplate sst, String classCommNo);
+	public ClassCommVo selectDetailVo(SqlSessionTemplate sst, HashMap<String, String> likeMap);
 	//신고 인서트
 	public int insertReport(SqlSessionTemplate sst, HashMap<String,String> reportMap);
 	//스터디게시판
@@ -44,10 +44,10 @@ public interface ClassCommDao {
 	//delete likeup
 	public int deleteLike(SqlSessionTemplate sst, HashMap<String, String> likeupMap);
 	//select likeCnt
-	public String selectLikeCnt(SqlSessionTemplate sst, String classCommNo);
+	public String selectLikeCnt(SqlSessionTemplate sst, HashMap<String, String> likeMap);
 	//select likeCntAjax
 	public String selectLikeCntAjax(SqlSessionTemplate sst, String classCommNo);
 	//디테일 화면 좋아요 여부 체크
-	public int selectLikeupCheck(SqlSessionTemplate sst, String classCommNo);
+//	public int selectLikeupCheck(SqlSessionTemplate sst, HashMap<String, String> likeMap);
 
 }

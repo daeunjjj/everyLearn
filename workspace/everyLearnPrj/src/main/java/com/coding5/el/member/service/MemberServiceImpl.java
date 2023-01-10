@@ -1,5 +1,6 @@
 package com.coding5.el.member.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import com.coding5.el.class_comm.vo.ClassCommVo;
 import com.coding5.el.member.dao.MemberDao;
 import com.coding5.el.member.vo.ClassListVo;
 import com.coding5.el.member.vo.MemberVo;
+import com.coding5.el.member.vo.PointVo;
 import com.coding5.el.member.vo.TeacherMemberVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -161,6 +163,12 @@ public class MemberServiceImpl implements MemberService{
 		}
 		
 		return teacherCheck;
+	}
+
+	//포인트 리스트
+	@Override
+	public List<PointVo> pointList(String mpn) {
+		return memberDao.selectPointList(sst, mpn);
 	}
 
 	//강사인포

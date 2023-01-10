@@ -39,13 +39,15 @@ public class ClassCommServiceImpl implements ClassCommService{
 
 	//게시글 디테일
 	@Override
-	public ClassCommVo detailVo(String classCommNo) {
-		ClassCommVo detailVo = dao.selectDetailVo(sst, classCommNo);
+	public ClassCommVo detailVo(HashMap<String, String> likeMap) {
+		ClassCommVo detailVo = dao.selectDetailVo(sst, likeMap);
+		log.info("서비스 디테일 브이오 체크 :: " + detailVo);
 		//좋아요 카운트> 여기선 원래 있던 값 넣어주고, ajax에서 따로 업데이트!
-		String likeCnt = dao.selectLikeCnt(sst,classCommNo);
+		String likeCnt = dao.selectLikeCnt(sst,likeMap);
 		detailVo.setLikeCnt(likeCnt);
 		//좋아요 여부
-		int likeupCheck1 = dao.selectLikeupCheck(sst, classCommNo);
+		int likeupCheck1 = dao.selectLikeupCheck(sst, likeMap);
+		log.info("서비스 디테일 라이크 체크 :: " + likeupCheck1);
 		String likeupCheck = Integer.toString(likeupCheck1);
 		detailVo.setLikeupCheck(likeupCheck);
 		

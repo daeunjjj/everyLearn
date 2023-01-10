@@ -79,8 +79,8 @@
 								
 							<div class="dropdown-content">
 								<a href="/el/member/alert">알림</a>
-								<a href="/el/member/memberStudy">내 강의</a>
-								<a href="/el/member/writeList">작성글</a>
+								<a href="javascript:listView('${loginMember.memberNo}')">내 강의</a>
+								<a href="javascript:listView('${loginMember.memberNo}')">작성글</a>
 								<a href="/el/member/logout">로그아웃</a>
 							</div>
 						</div>
@@ -104,11 +104,10 @@
 								
 								<div class="dropdown-content">
 									<a href="/el/member/alert">알림</a>
-									<a id="myClassList" href="javascript:listView('${loginMember.memberNo}')">내 강의</a>
-									<!-- <a href="javascript:listView('${list.userid}')">유저아이디</a> -->
-									<!-- <input type="hidden" id="memberNo" value="${loginMember.memberNo}"> -->
+									<a id="myClassList" href="/el/member/memberStudy">내 강의</a>
+
 									<a href="">장바구니</a>
-									<a href="/el/member/writeList">작성글</a>
+									<a href="/el/member/writeList?memberNo=${loginMember.memberNo}">작성글</a>
 									<a href="/el/member/logout">로그아웃</a>
 								</div>
 						</div>

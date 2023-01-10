@@ -68,13 +68,11 @@
                     <!-- <div id="hidden-member">dfff</div> -->
                     <input type="hidden" name="hidden-member" id="hidden-member" value="${loginMember.memberNick}">
                     <input type="hidden" name="hidden-commNo" id="hidden-classCommNo" value="${detailVo.classCommNo}">
-       
-
 
                         <div id="content">
                             <pre>${detailVo.content}</pre>
                         </div>
-                        detailVo.likeupCheck${detailVo.likeupCheck}
+                        
                         <div id="like-wrap">
                             <div id="like-img">
                             <c:if test="${detailVo.likeupCheck eq '0'}">

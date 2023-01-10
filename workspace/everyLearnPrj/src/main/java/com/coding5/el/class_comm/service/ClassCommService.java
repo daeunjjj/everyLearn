@@ -17,7 +17,7 @@ public interface ClassCommService {
 	public List<ClassCommVo> qnaList();
 
 	//게시글 디테일
-	public ClassCommVo detailVo(String classCommNo);
+	public ClassCommVo detailVo(HashMap<String, String> likeMap);
 
 
 
