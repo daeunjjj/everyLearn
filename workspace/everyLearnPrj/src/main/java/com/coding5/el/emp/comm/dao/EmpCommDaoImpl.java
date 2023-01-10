@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.coding5.el.common.page.Pagination;
 import com.coding5.el.emp.comm.vo.EmpCommVo;
+import com.coding5.el.emp.comm.vo.LikeVo;
 import com.coding5.el.notice.vo.PageVo;
 
 @Repository
@@ -54,6 +55,12 @@ public class EmpCommDaoImpl implements EmpCommDao {
 	@Override
 	public int deleteEmpComm(SqlSessionTemplate sst, String no) throws Exception {
 		return sst.update("empCommMapper.deleteEmpComm", no);
+	}
+
+	//해당 글에 해당 멤버가 좋아요를 했는지?
+	@Override
+	public LikeVo findHeart(SqlSessionTemplate sst, Map<String, String> number) throws Exception {
+		return sst.selectOne("empCommMapper.findHeart", number);
 	}
 
 

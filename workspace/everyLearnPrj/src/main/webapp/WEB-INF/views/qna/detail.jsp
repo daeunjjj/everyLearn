@@ -32,7 +32,7 @@
         <div class="main"> 
 
             <div id="btn"> <!-- 관리자만 보이는 버튼 -->
-                <button class="btn btn-outline-secondary me-md-2" type="button" id="btn1">답변</button>
+                <a href="/el/qna/adminWrite" class="btn btn-outline-secondary me-md-2" type="button" id="btn1">답변</a>
                 <button class="btn btn-outline-secondary me-md-2" type="button" id="btn1">삭제</button>
             </div>
 			

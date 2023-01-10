@@ -15,7 +15,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+   	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    
     
     
 <link rel="stylesheet" href="/el/resources/css/emp-comm/detail.css">
@@ -41,13 +42,14 @@
 
 	
  	<main>
+ 	
         <div class="container">
             <div class="detailBar">
                 <div id="category">${ n.category }</div>
                 <div id="btn">
                     <a href="/el/emp-comm/list?no=${ n.no }" class="btn btn-outline-secondary me-md-2" type="button" >목록</a>
                     
-                    <c:if test="${ loginMember != null }">
+                    <c:if test="${ sessionScope.loginMember != n.nick}">
 	                    <button id="edit" onclick="edit()" class="btn btn-outline-secondary me-md-2" type="button">수정</button>
 	                    <button id="save" onclick="save()" class="btn btn-outline-secondary me-md-2" type="button">수정 완료</button>
 	                    <button id="delete-btn" onclick="location.href = '/el/emp-comm/delete?no=${ n.no }'" class="btn btn-outline-secondary me-md-2" type="button">삭제</button>
@@ -55,18 +57,25 @@
                 </div>
             </div>
             <div class="title"><span id="title">${ n.title }</span></div>
-            <div class="info"><span id="nick">${ n.nick }	|	${ n.enrollDate }	|	${ n.hit }</span></div>
+            <div class="info"><span id="nick" name="nick">${ n.nick }	|	${ n.enrollDate }	|	${ n.hit }</span></div>
             <div class="content" id="summernote">${ n.content }</div>
             <div class="etc">
+                <!-- 좋아요 버튼 <span class="material-symbols-outlined" id="favorite">favorite</span> -->
                 <div>
-                    <button type="button" id="more"><span class="material-symbols-outlined" id="favorite">favorite</span></button>
-                    <span id="number">0</span>
+	               <a class="text-dark heart" style="text-decoration-line: none;">
+						<img id="heart" src="/resources/emp-community/icon/heart.svg">
+					</a>
+                    <span id="number1">0</span>
                 </div>
+                <!-- 좋아요 끝 -->
 
                 <div>
                     <button type="button" id="more"><span class="material-symbols-outlined" id="more">more_horiz</span></button>
                 </div>
             </div>
+            
+            
+	<!-- ~~~ 댓글 시작 ~~~ -->            
 
             <div class="comment-area">
                     &nbsp<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
@@ -82,10 +91,10 @@
                         <div id="photo"></div>
                         <div id="info2"><span id="nick">삥뽕</span> <span id="enroll-date">22.11.30 15:30</span></div>
                         <div id="ed">
-                        	<!--<c:if test="${ loginMember.getMemberNo() == sessionScope.loginMember}">
+                        	<c:if test="${ !empty loginMember}">
                             	<a href="" id="edit1">수정</a>
                             	<a href="" id="delete1">삭제</a>
-                            </c:if>	-->
+                            </c:if>
                         </div>
                     </div>
                     <div id="btn1">
@@ -178,7 +187,8 @@
                 </div>
 
             </div>
-
+            
+	<!-- ~~~~ 댓글 끗 ~~~ -->
         </div>
 
         <nav class="navbar sticky-bottom bg-light">
@@ -189,10 +199,14 @@
     </main>
 
 
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
+
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
     <script>
+    
+  
 
         $(document).ready(function () {
 
@@ -203,8 +217,43 @@
             $.summernote.options.lang = 'ko-KR';
 
             $.summernote.options.airMode = false;
+            
+            
+         // 좋아요가 있는지 확인한 값을 heartval에 저장
+          var heartval = ${heart.heart}
+          // heartval이 1이면 좋아요가 이미 되있는것이므로 heart-fill.svg를 출력하는 코드
+          if(heartval>0) {
+              console.log(heartval);
+              $("#heart").prop("src", "/resources/emp-community/icon/heart-fill.svg");
+              $(".heart").prop('name',heartval)
+          }
+          else {
+              console.log(heartval);
+              $("#heart").prop("src", "/resources/emp-community/icon/heart.svg");
+              $(".heart").prop('name',heartval)
+          }
+
 
         });
+        
+    // 좋아요 버튼을 클릭 시 실행되는 코드
+       $(".heart").on("click", function () {
+           var that = $(".heart");
+    	$.ajax({
+    		url :'/emp-comm/heart',
+	        type :'POST',
+	        data : {'no':${n.no}, 'memberNo':${sessionScope.loginMember}},
+	    	success : function(data){
+	    		that.prop('name',data);
+	        	if(data==1) {
+	            	     $('#heart').prop("src","/resources/emp-community/icon/heart-fill.svg");
+	        	} else {
+	                   	     $('#heart').prop("src","/resources/emp-community/icon/heart.svg");
+	        	}
+	            	}
+		    });
+	        });
+    	});
 
 
         var a = $('#summernote');

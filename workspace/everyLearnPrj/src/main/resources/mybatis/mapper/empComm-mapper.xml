@@ -102,5 +102,14 @@
 		WHERE F.NO = #{no}
 	
 	</select>
+	
+	<!-- 좋아요 여부 체크 -->
+	<select id="findHeart"  parameterType="java.util.HashMap" resultType="com.coding5.el.emp.comm.vo.EmpCommVo">
+	
+		SELECT * FROM EMP_COMM_LIKE 
+		WHERE EMP_COMM_NO = #{no}
+		AND MEMBER_NO = #{memberNo}
+	
+	</select>
   
 </mapper>
