@@ -78,7 +78,7 @@ public interface AdminService {
 	public List<AdminVo> selectAdminIdList(String phone);
 	
 	// 관리자 탈퇴처리
-	public int adminQuit(String no);
+	public int adminQuit(String[] arrNo);
 	
 	// 기업회원 수
 	public int selectCorporateCount(SearchVo svo);

@@ -21,9 +21,10 @@ import com.coding5.el.admin.vo.AdminVo;
 import com.coding5.el.common.file.FileUploader;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.page.Pagination;
+import com.coding5.el.common.vo.AttachVo;
 import com.coding5.el.email.service.EmailService;
 import com.coding5.el.email.vo.MailVo;
-import com.coding5.el.emp.comm.vo.AttachVo;
+
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -81,18 +82,26 @@ public class AdminMailController {
 			// db에 어테치 넣기 위해..
 			List<AttachVo> voList = null;
 			
+			// 파일 없으면
 			vo.setFileYn("N");
+			
 			// 파일 서버에 업로드
 			if(!multipartFile.isEmpty()) {
 				// 이미지 있으면
 				vo.setFileYn("Y");
 				voList = new ArrayList<>();
+				
 				for(int i = 0; i < vo.getMultipartFile().size(); i++) {
-					log.info("이프문 통과");
-					attachVo.setFileName(FileUploader.upload(session, vo.getMultipartFile().get(i)));
-					log.info("파일 이름 잘 들어 갔나? :::" + attachVo.getFileName());
 					
-					voList.add(attachVo);
+					attachVo = new AttachVo();
+					
+					log.info("이프문 통과");
+					log.info("파일 잘 들어옴? " +vo.getMultipartFile().get(i));
+					
+					attachVo.setFileName(FileUploader.upload(session, vo.getMultipartFile().get(i)));
+					
+					voList.add(i, attachVo);
+					
 				}
 			}
 			
@@ -168,7 +177,14 @@ public class AdminMailController {
 		
 		//보낸내역 상세보기
 		@GetMapping("send/detail")
-		public String mailDetail() {
+		public String mailDetail(String no, Model model) {
+			
+			log.info("보낸내역 상세보기 - no ::: " + no);
+			
+			Map<String, Object> map = adminMailService.mailDetail(no);
+			
+			
+			model.addAttribute("map", map);
 			return "admin/mail/detail";
 		}
 		

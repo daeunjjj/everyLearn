@@ -3,10 +3,9 @@ package com.coding5.el.admin.mail.service;
 import java.util.List;
 import java.util.Map;
 
-import com.coding5.el.admin.vo.AdminVo;
+import com.coding5.el.common.vo.AttachVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.email.vo.MailVo;
-import com.coding5.el.emp.comm.vo.AttachVo;
 
 public interface AdminMailService {
 
@@ -22,5 +21,8 @@ public interface AdminMailService {
 	
 	// 보낸 메일 내역 삭제
 	public int deleteSendMail(String[] arrNo);
+	
+	// 메일 상세보기
+	public Map<String, Object> mailDetail(String no);
 
 }

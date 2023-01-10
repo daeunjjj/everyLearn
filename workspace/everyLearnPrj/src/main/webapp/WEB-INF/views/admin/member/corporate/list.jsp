@@ -66,7 +66,6 @@
                 </div>
                 <div class="list-title">
                     <div>
-                        <input type="checkbox" id="checkAll">
                     </div>
                     <div>번호</div>
                     <div>기업이름</div>
@@ -106,7 +105,8 @@
 	                                </c:if>
 	                                <div>
                                         <button type="button" onclick="detailBtn('${list.no}');">상세</button>
-	                                </div>
+                                        <button type="button" onclick="sendMail('${list.id }');">메일</button>
+                                    </div>
 	                            </div>
 	                        </li>
                         </c:forEach>
@@ -159,10 +159,15 @@
         </main>
     </div>
     <script>
+        // 상세
         function detailBtn(no){
             window.location.href='/el/admin/member/corporate/detail?no='+no;
         }
 
+        // 메일
+        function sendMail(email,name){
+            window.location.href="/el/admin/mail/send?address="+email;
+        }
        
         function deleteCheck(){
             let cnt = 0;

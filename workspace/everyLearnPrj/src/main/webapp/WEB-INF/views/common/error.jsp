@@ -78,7 +78,7 @@
                 <span id="p2">올바른 URL을 입력하셨는지 확인해 주세요.</span>
             </div>
             <div id="a">
-                <a href="/main" id="a1">메인으로 돌아가기</a>
+                <a href="/el/main" id="a1">메인으로 돌아가기</a>
             </div>
         </div>
     </main>

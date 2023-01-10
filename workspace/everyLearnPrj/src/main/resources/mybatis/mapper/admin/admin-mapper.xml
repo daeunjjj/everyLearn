@@ -388,7 +388,10 @@
 	<update id="updateAdminQuityByNo">
 		UPDATE ADMIN
 		    SET QUIT_YN = 'Y'
-		WHERE NO = #{no}
+		WHERE NO IN 
+		<foreach collection="array" item="no" open="(" close=")" separator=",">
+			#{no}
+		</foreach>
 	</update>
 	
 	<select id="selectCorporateCount" resultType="int">
@@ -544,8 +547,10 @@
 	<select id="selectReportList" resultType="ReportVo">
 		SELECT 
 		    R.NO
-		    ,B.ID AS BLACKLIST
-		    ,A.ID AS ACCUSOR
+		    ,B.ID AS BLACKLIST_ID
+		    ,A.ID AS ACCUSOR_ID
+		   	,BLACKLIST
+		    ,ACCUSOR
 		    ,T.TYPE
 		    ,R.CATE_NO
 		    ,R.BOARD
@@ -695,8 +700,7 @@
 		    ,EMAIL_NO
 		    ,FILE_NAME
 		)
-		VALUES ( GET_EMAIL_ATTATCH_SEQ , #{vo.no}, #{vo.fileName})
-		
+		VALUES ( GET_EMAIL_ATTATCH_SEQ , #{vo.no}, #{vo.fileName} )
 		</foreach>
 		select 1 from dual
 	</insert>
@@ -755,4 +759,30 @@
 		</foreach>
 	</update>
 	
+	<select id="selectOneMail" resultType="com.coding5.el.email.vo.MailVo"> 
+		SELECT
+		    E.NO
+		    ,A.NAME AS ADMIN_NO
+		    ,E.TO_ADDRESS
+		    ,E.FROM_ADDRESS
+		    ,E.TITLE
+		    ,E.CONTENT
+		    ,E.FILE_YN
+		    ,E.ENROLL_DATE
+		    ,E.DELETE_YN
+		FROM EMAIL E
+		JOIN ADMIN A ON E.ADMIN_NO = A.NO
+		WHERE E.NO = #{no}
+	</select>
+	
+	<select id="selectAttachList" resultType="com.coding5.el.common.vo.AttachVo">
+		SELECT
+		    NO
+		    ,EMAIL_NO
+		    ,FILE_NAME
+		    ,ENROLL_DATE
+		    ,STATUS
+		FROM EMAIL_ATTATCH
+		WHERE EMAIL_NO = #{no}
+	</select>
 </mapper>

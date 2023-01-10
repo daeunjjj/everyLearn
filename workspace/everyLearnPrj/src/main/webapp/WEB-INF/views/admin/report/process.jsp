@@ -47,10 +47,12 @@
                         <div>${vo.type }</div>
                         <div>${vo.reportDate}</div>
                         <div>
-                            <a href="">
+						<c:if test="${vo.cateNo eq '1'}">
+							<a href="/el/class/detail?classCommNo=${vo.board }" target="_blank">
                                 게시물
                                 <i class="bi bi-box-arrow-up-right"></i>
                             </a>
+						</c:if>
                         </div>
                         <div>미처리</div>
                    </div>

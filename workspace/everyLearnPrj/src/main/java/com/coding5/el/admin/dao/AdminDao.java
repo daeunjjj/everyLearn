@@ -88,7 +88,7 @@ public interface AdminDao {
 	public List<AdminVo> selectAdminIdListByPhone(SqlSessionTemplate sst, String phone);
 	
 	// 탈퇴처리
-	public int updateAdminQuityByNo(SqlSessionTemplate sst, String no);
+	public int updateAdminQuityByNo(SqlSessionTemplate sst, String[] arrNo);
 	
 	// 기업회원 수
 	public int selectCorporateCount(SqlSessionTemplate sst, SearchVo svo);

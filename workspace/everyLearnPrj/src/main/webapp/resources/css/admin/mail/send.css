@@ -78,7 +78,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    height: 420px;
+    height: 300px;
     width: 800px;
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(221, 221, 221);

@@ -1,5 +1,6 @@
 package com.coding5.el.admin.mail.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,11 +8,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import com.coding5.el.common.vo.AttachVo;
 import com.coding5.el.admin.mail.dao.AdminMailDao;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.email.vo.MailVo;
-import com.coding5.el.emp.comm.vo.AttachVo;
+
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -26,6 +27,8 @@ public class AdminMailServiceImpl implements AdminMailService{
 	
 	@Autowired
 	private SqlSessionTemplate sst;
+	
+	Map<String, Object> map = new HashMap<>();
 
 	/**
 	 * 전송 메일 디비에 넣기
@@ -47,6 +50,7 @@ public class AdminMailServiceImpl implements AdminMailService{
 		if(emailResult == 1 && voList != null) {
 			// 어테치 넣어주려면 이메일 테이블 pk넘버 필요!
 			for(int i = 0; i < voList.size(); i++) {
+				log.info("서비스에서 테스트:::" + voList.get(i).getFileName());
 				voList.get(i).setNo(vo.getNo());
 			}
 	
@@ -73,6 +77,25 @@ public class AdminMailServiceImpl implements AdminMailService{
 	@Override
 	public int deleteSendMail(String[] arrNo) {
 		return adminMailDao.deleteSendMail(sst, arrNo);
+	}
+	@Override
+	public Map<String, Object> mailDetail(String no) {
+		
+		MailVo mailVo = adminMailDao.selectOneMail(sst,no);
+		
+		log.info("메일 상세 조회 서비스 - mailVo ::: "+mailVo);
+		log.info("메일 상세 조회 서비스 - no ::: "+ no);
+		List<AttachVo> attachList = null;
+		//메일 어테치 있으면 가져오기
+		if("Y".equals(mailVo.getFileYn())) {
+			attachList = adminMailDao.selectAttachList(sst,no);
+		}
+		
+		log.info("메일 상세 조회 서비스 - attachList ::: "+attachList);
+		
+		map.put("mailVo", mailVo);
+		map.put("attachList", attachList);
+		return map; 
 	}
 	
 	

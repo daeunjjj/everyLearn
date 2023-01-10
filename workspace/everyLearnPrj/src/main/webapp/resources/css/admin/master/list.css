@@ -102,11 +102,11 @@ label{
 
 
 /* 메일보내기 버튼 */
-.mail-btn-area{
+.quit-btn-area{
     text-align: end;
 }
 
-#mail-btn{
+#quit-btn{
     height: 30px;
     background: #005297;
     color: #fff;
@@ -144,7 +144,7 @@ label{
 }
 
 .list-title>div:nth-child(1), .list-items>div:nth-child(1){
-    flex-basis: 70px;
+    flex-basis: 50px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -153,7 +153,7 @@ label{
 }
 
 .list-title>div:nth-child(2), .list-items>div:nth-child(2){
-    flex-basis: 70px;
+    flex-basis: 50px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -169,7 +169,7 @@ label{
 }
 
 .list-title>div:nth-child(4), .list-items>div:nth-child(4){
-    flex-basis: 180px;
+    flex-basis: 240px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -177,7 +177,7 @@ label{
 }
 
 .list-title>div:nth-child(5), .list-items>div:nth-child(5){
-    flex-basis: 110px;
+    flex-basis: 100px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;
@@ -185,7 +185,7 @@ label{
 }
 
 .list-title>div:nth-child(6), .list-items>div:nth-child(6){
-    flex-basis: 110px;
+    flex-basis: 100px;
     text-align: center;
     line-height: 20px;
     font-weight: 400;

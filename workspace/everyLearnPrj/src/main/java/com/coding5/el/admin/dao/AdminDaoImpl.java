@@ -166,9 +166,9 @@ public class AdminDaoImpl implements AdminDao{
 	}
 
 	@Override
-	public int updateAdminQuityByNo(SqlSessionTemplate sst, String no) {
+	public int updateAdminQuityByNo(SqlSessionTemplate sst, String[] arrNo) {
 		// 탈퇴처리
-		return sst.update("adminMapper.updateAdminQuityByNo",no);
+		return sst.update("adminMapper.updateAdminQuityByNo",arrNo);
 	}
 
 	@Override
