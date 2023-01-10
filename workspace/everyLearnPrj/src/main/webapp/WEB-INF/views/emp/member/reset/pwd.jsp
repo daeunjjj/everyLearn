@@ -31,7 +31,7 @@
             <span class="essential">아이디를 입력해 주세요.</span>
           </div>
         </div>
-        <button class="btn" disabled>재설정</button>
+        <button class="btn" disabled>비밀번호 재설정 메일 보내기</button>
       </form>
       <div class="choose">
         <a href="el/corp/login">로그인</a>

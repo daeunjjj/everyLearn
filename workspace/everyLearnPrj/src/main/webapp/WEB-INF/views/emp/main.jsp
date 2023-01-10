@@ -18,7 +18,7 @@
 
 	<main id="container">
 		<div class="advertisment">
-			<img src="" alt="">
+			<img src="/el/resources/img/main/banner02.png">
 		</div>
 		<div class="emp-container">
 			<div class="emp">
