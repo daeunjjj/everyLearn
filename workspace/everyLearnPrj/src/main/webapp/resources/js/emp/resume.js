@@ -41,6 +41,7 @@ function searchArr() {
   }).open();
 }
 
+// 학력 입력칸 추가
 const eduPlusBtn = () => {
   if(eduIndex >= 5){
     Swal.fire({
@@ -127,12 +128,13 @@ const eduPlusBtn = () => {
   eduIndex += 1;
 }
 
+// 학력 입력칸 삭제
 const eduDeleteBtn = () =>{
   document.querySelector('#education-list>.item:last-child').remove();
   eduIndex -= 1;
 }
 
-
+// 경력 입력칸 추가
 const careerPlusBtn = () => {
   if(careerIndex >= 10){
     Swal.fire({
@@ -232,11 +234,13 @@ const careerPlusBtn = () => {
   careerIndex += 1;
 }
 
+// 경력 입력칸 삭제
 const careerDeleteBtn = () => {
   document.querySelector('#career-list>.item:last-child').remove();
   careerIndex -= 1;
 }
 
+// 수상 입력칸 추가
 const awardPlusBtn = () => {
   if(awardIndex >=10){
     Swal.fire({
@@ -289,11 +293,13 @@ const awardPlusBtn = () => {
   awardIndex += 1;
 }
 
+// 수상 경력칸 삭제
 const awardDeleteBtn = () => {
   document.querySelector('#award-list>.item:last-child').remove();
   awardIndex -= 1;
 }
 
+// 자격증 입력칸 추가
 const certificatePlusBtn = () => {
   if(certificateIndex >=10){
     Swal.fire({
@@ -346,11 +352,13 @@ const certificatePlusBtn = () => {
   certificateIndex += 1;
 }
 
+// 자격증 입력칸 삭제
 const certificateDeleteBtn = () => {
   document.querySelector('#certificate-list>.item:last-child').remove();
   certificateIndex -= 1;
 }
 
+// 언어 입력칸 추가
 const languagePlusBtn = () => {
   if(languageIndex >=10){
     Swal.fire({
@@ -388,11 +396,13 @@ const languagePlusBtn = () => {
   languageIndex += 1;
 }
 
+// 언어 입력칸 삭제
 const languageDeleteBtn = () => {
   document.querySelector('#language-list>.item:last-child').remove();
   languageIndex -= 1;
 }
 
+// 링크 입력칸 추가
 const linkPlusBtn = () => {
   if(link >= 1){
     Swal.fire({
@@ -411,23 +421,26 @@ const linkPlusBtn = () => {
   link += 1;
 }
 
+// 링크 입력칸 삭제
 const linkDeleteBtn = () => {
   document.querySelector('#link-item>.additional:last-child').remove();
   link -= 1;
 }
 
+// 첨부파일 삭제
 const attachDeleteBtn = () => {
   document.getElementById('att').setAttribute('type', 'text');
   document.getElementById('att').setAttribute('type', 'file');
 }
 
+// 올린 첨부파일 삭제
 const attachDelete = () => {
   document.getElementById('attach').remove();
 }
 
+// 저장 버튼 
 const saveBtn = (target) => {
   const input = document.querySelectorAll('input');
-  const textarea = document.querySelector('.textarea');
   
   for(let i = 1; i < input.length-1; i++){
     if(input[i].value === ''){
@@ -445,3 +458,15 @@ const saveBtn = (target) => {
  target.submit();
  return false;
 }
+
+/*********************************************************************/
+
+// 전화번호 정규식(하이픈 자동추가)
+// const autoHyphen = (target) => {
+//   target.value = target.value
+//     .replace(/[^0-9]/g, '')
+//     .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+
+//   activeBtn();
+// }
+

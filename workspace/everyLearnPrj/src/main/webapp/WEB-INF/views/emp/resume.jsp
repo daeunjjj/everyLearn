@@ -23,7 +23,9 @@
 				<h5>정확하게 입력했는지 다시 한번 확인해주세요!</h5>
 			</div>
 			<form action="/el/emp/resume" method="POST" enctype="multipart/form-data" onsubmit="return saveBtn(this);">
-				<input type="hidden" name="no" value="${rv.no}">
+				<c:if test="${not empty rv}">
+					<input type="hidden" name="no" value="${rv.no}">
+				</c:if>
 				<div class="main">
 					<div class="main-wrapper">
 						<section class="section">
@@ -439,16 +441,15 @@
 	</main>
 
 	<script>
-
-	document.querySelector('select[name="category"] option[value="${rv.category}"]').setAttribute('selected', '');
+	document.querySelector('select[name="category"] option[value="${rv.category}"]')?.setAttribute('selected', '');
 
 		const DatePicker = tui.DatePicker;
 		<c:if test="${not empty eduList}">
-		let eduIndex = ${eduList.size()};
+			let eduIndex = ${eduList.size()};
 		</c:if>
 
 		<c:if test="${empty eduList}">
-		let eduIndex = 0;
+			let eduIndex = 0;
 		</c:if>
 		
 		<c:forEach items="${eduList}" var="item" varStatus="status">
@@ -478,99 +479,99 @@
 		</c:forEach>
 
 		<c:if test="${not empty careerList}">
-		let careerIndex = ${careerList.size()};
+			let careerIndex = ${careerList.size()};
 		</c:if>
 
 		<c:if test="${empty careerList}">
-		let careerIndex = 0;
+			let careerIndex = 0;
 		</c:if>
 
 		<c:forEach items="${careerList}" var="item" varStatus="status">
-		document.querySelector('select[name="cvList[${status.index}].type"] option[value="${item.type}"]').setAttribute('selected', '');
+			document.querySelector('select[name="cvList[${status.index}].type"] option[value="${item.type}"]').setAttribute('selected', '');
 
-		new DatePicker(document.getElementById(`cv-enter-container-${status.index}`), {
-			language: 'ko',
-			type: 'date',
-			input: {
-					element: document.getElementById(`cv-enter-${status.index}`),
-					format: 'yyyy-MM-dd'
-			},
-			date: new Date(`${item.joinCompany}`)
-			
-		});
+			new DatePicker(document.getElementById(`cv-enter-container-${status.index}`), {
+				language: 'ko',
+				type: 'date',
+				input: {
+						element: document.getElementById(`cv-enter-${status.index}`),
+						format: 'yyyy-MM-dd'
+				},
+				date: new Date(`${item.joinCompany}`)
+				
+			});
 
-		new DatePicker(document.getElementById(`cv-leave-container-${status.index}`), {
-			language: 'ko',
-			type: 'date',
-			input: {
-					element: document.getElementById(`cv-leave-${status.index}`),
-					format: 'yyyy-MM-dd'
-			},
-			date: new Date(`${item.leave}`)
-			
-		});
+			new DatePicker(document.getElementById(`cv-leave-container-${status.index}`), {
+				language: 'ko',
+				type: 'date',
+				input: {
+						element: document.getElementById(`cv-leave-${status.index}`),
+						format: 'yyyy-MM-dd'
+				},
+				date: new Date(`${item.leave}`)
+				
+			});
 		</c:forEach>
 
 		<c:if test="${not empty awardList}">
-		let awardIndex = ${awardList.size()};
+			let awardIndex = ${awardList.size()};
 		</c:if>
 
 		<c:if test="${empty awardList}">
-		let awardIndex = 0;
+			let awardIndex = 0;
 		</c:if>
 		
 		<c:forEach items="${awardList}" var="item" varStatus="status">
-		new DatePicker(document.getElementById(`av-date-container-${status.index}`), {
-			language: 'ko',
-			type: 'month',
-			input: {
-					element: document.getElementById(`av-date-${status.index}`),
-					format: 'yyyy-MM'
-			},
-			date: new Date(`${item.awardDate}`)
-			
-		});
+			new DatePicker(document.getElementById(`av-date-container-${status.index}`), {
+				language: 'ko',
+				type: 'month',
+				input: {
+						element: document.getElementById(`av-date-${status.index}`),
+						format: 'yyyy-MM'
+				},
+				date: new Date(`${item.awardDate}`)
+				
+			});
 		</c:forEach>
 
 		<c:if test="${not empty certificateList}">
-		let certificateIndex = ${certificateList.size()};
+			let certificateIndex = ${certificateList.size()};
 		</c:if>
 
 		<c:if test="${empty certificateList}">
-		let certificateIndex = 0;
+			let certificateIndex = 0;
 		</c:if>
 		
 		
 		<c:forEach items="${certificateList}" var="item" varStatus="status">
-		new DatePicker(document.getElementById(`cfv-date-container-${status.index}`), {
-			language: 'ko',
-			type: 'month',
-			input: {
-					element: document.getElementById(`cfv-date-${status.index}`),
-					format: 'yyyy-MM'
-			},
-			date: new Date(`${item.certificateDate}`)
-			
-		});
+			new DatePicker(document.getElementById(`cfv-date-container-${status.index}`), {
+				language: 'ko',
+				type: 'month',
+				input: {
+						element: document.getElementById(`cfv-date-${status.index}`),
+						format: 'yyyy-MM'
+				},
+				date: new Date(`${item.certificateDate}`)
+				
+			});
 		</c:forEach>
 		
 		<c:if test="${not empty langList}">
-		let languageIndex = ${langList.size()};
+			let languageIndex = ${langList.size()};
 		</c:if>
 
 		<c:if test="${empty langList}">
-		let languageIndex = 0;
+			let languageIndex = 0;
 		</c:if>
 		<c:forEach items="${langList}" var="item" varStatus="status">
 			document.querySelector('select[name="lvList[${status.index}].languageLevel"] option[value="${item.languageLevel}"]').setAttribute('selected', '');
 		</c:forEach>
 
 		<c:if test="${not empty rv.link}">
-		let link = 1;
+			let link = 1;
 		</c:if>
 		
 		<c:if test="${empty rv.link}">
-		let link = 0;
+			let link = 0;
 		</c:if>
 		
 	</script>

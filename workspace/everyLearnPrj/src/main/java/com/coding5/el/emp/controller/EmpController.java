@@ -138,7 +138,7 @@ public class EmpController {
 		model.addAttribute("careerList", careerList);
 		model.addAttribute("certificateList", certificateList);
 		
-		return "emp/apply";
+		return "emp/resume";
 		
 	}
 	
