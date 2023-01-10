@@ -20,7 +20,6 @@ public class MailVo {
 	private String tempPwd;
 	private String title;
 	private String content;
-	private String name;
 	private String enrollDate;
 	private String fileYn;
 	

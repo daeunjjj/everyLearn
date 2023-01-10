@@ -42,10 +42,7 @@
                     </form>
                 </div>
                 <div class="list-title">
-                    <div>
-                        <input type="checkbox" id="checkAll">
-                        <label for="checkAll"></label>
-                    </div>
+                    <div></div>
                     <div>번호</div>
                     <div>아이디</div>
                     <div>이름</div>
@@ -151,11 +148,11 @@
             }
         }
 
-
+        // 디테일 버튼
         function detailBtn(no) {
             window.location.href='/el/admin/member/student/detail?no='+no;
         }
-
+        // 메일
         function sendMail(email,name){
             window.location.href="/el/admin/mail/send?address="+email;
         }

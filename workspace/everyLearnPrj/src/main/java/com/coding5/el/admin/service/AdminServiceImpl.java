@@ -289,8 +289,8 @@ public class AdminServiceImpl implements AdminService{
 	 * 관리자 탈퇴처리
 	 */
 	@Override
-	public int adminQuit(String no) {
-		return adminDao.updateAdminQuityByNo(sst,no);
+	public int adminQuit(String[] arrNo) {
+		return adminDao.updateAdminQuityByNo(sst,arrNo);
 	}
 	/**
 	 * 기업 회원 수
@@ -486,6 +486,8 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.updateTempPwd(sst,vo);
 		
 	}
+
+
 
 
 	

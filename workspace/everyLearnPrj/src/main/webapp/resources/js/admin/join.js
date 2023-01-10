@@ -76,6 +76,42 @@ $('#id').on("blur", function(){
    
 });
 
+let pwdCheck = false;
+
+// 비밀번호 체크
+$('#pwd').on("keyup", function(){
+    console.log('클릭됨');
+    const pwdReg = /^(?=.*[a-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+    const pwd = $('#pwd').val();
+
+    if(pwd == ""){
+        $('#pwdMsg').addClass('not-available');
+        $('#pwdMsg').text('필수항목입니다.');
+    } else if(!pwdReg.test(pwd)){
+        $('#pwdMsg').addClass('not-available');
+        $('#pwdMsg').text('특수문자 포함 8~16자입니다.');
+    } else {
+        $('#pwdMsg').removeClass('not-available');
+    }
+})
+
+// 비번확인 체크
+$('#pwd2').on("keyup", function(){
+    const pwd = $('#pwd').val();
+    const pwd2 = $('#pwd2').val();
+
+    if(pwd2 == ""){
+        $('#pwd2Msg').addClass('not-available');
+        $('#pwd2Msg').text('필수항목입니다.');
+    } else if(pwd2 != pwd){
+        $('#pwd2Msg').addClass('not-available');
+        $('#pwd2Msg').text('비밀번호가 일치하지 않습니다.');
+    } else {
+        $('#pwd2Msg').removeClass('not-available');
+        pwdCheck = true;
+    }
+});
+
 // 이름 체크
 let nameCheck = false;
 $('#name').on('keyup', function(){
@@ -181,7 +217,14 @@ function joinCheck() {
         })
         return false;
     }
-
+    if(!pwdCheck){
+        Swal.fire({
+            icon: 'error',
+            title: '비밀번호를 확인해주세요.',
+            confirmButtonColor: '#1187CF'
+        })
+        return false;
+    }
     if(!nameCheck){
         Swal.fire({
             icon: 'error',

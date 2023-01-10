@@ -47,9 +47,7 @@
                 </div>
                 <div class="list-box">
                     <div class="list-title">
-                        <div>
-                            <input type="checkbox" id="checkAll">
-                        </div>
+                        <div></div>
                         <div>번호</div>
                         <div>이름</div>
                         <div>아이디</div>
@@ -59,17 +57,16 @@
                         <div>상태</div>
                         <div>관리</div>
                     </div>
-                    <form action="">
+                    <form action="/el/admin/master/quit" method="post" onsubmit="return deleteCheck();">
                         <ul>
                             <c:forEach items="${voList }" var="list">
                                 <c:if test="${empty voList}">
                                     <div>회원이 없습니다.</div>
                                 </c:if>
-                                <form action="">
                                     <li>
                                         <div class="list-items">
                                             <div>
-                                                <input type="checkbox" id="check">
+                                                <input type="checkbox" id="check" name="arrNo" value="${list.no}">
                                                 <label for="check"></label>
                                             </div>
                                             <div>${list.no}</div>
@@ -81,17 +78,16 @@
                                             <div>${list.quitYn}</div>
                                             <div>
                                                 <button class="detailBtn" type="button" onclick="detailBtn('${list.no}');">상세</button>
-                                                <button type="button" onclick="quitBtn('${list.no}');">탈퇴</button>
+                                                <button type="button" onclick="sendMail('${list.id}');">메일</button>
                                                 <input id="checkPwd" value="" hidden>
                                             </div>
                                         </div>
                                     </li>
-                                </form>
                             </c:forEach>
     
                         </ul>
-                        <div class="mail-btn-area">
-                            <button id="mail-btn"><i class="bi bi-envelope"></i></button>
+                        <div class="quit-btn-area">
+                            <button id="quit-btn" type="submit">탈퇴</button>
                         </div>
                     </form>
                 </div>
@@ -139,40 +135,73 @@
         </main>
     </div>
     <script>
+        
+        function deleteCheck(){
+            let cnt = 0;
+
+            if(check.checked){
+                cnt++;
+            }
+
+            for(let i = 0; i < check.length; i++){
+                if(check[i].checked){
+                    cnt++;
+                }
+            }
+
+            if(cnt == 0){
+                return false;
+            } else{
+                if(confirm("탈퇴처리하시겠습니까?")){
+                    return true;
+                } else{
+                    return false;
+                }
+            }
+        }
+        
+        // 디테일
         function detailBtn(no) {
             window.location.href='/el/admin/master/detail?no='+no;
         }
-
-        function quitBtn(no){
-            if(confirm("탈퇴처리하시겠습니까?")){
-                console.log('예');
-                $.ajax({
-                    url : "/el/admin/master/quit",
-                    type : "post",
-                    data : {"no": no},
-                    success : function(result){
-                        if(result == "ok"){
-                            Swal.fire({
-                                confirmButtonColor: '#1187CF',
-                                title: '탈퇴처리되었습니다.'
-                            });
-
-                            window.location.href = "/el/admin/master/list?pno=1";
-                        } else{
-                            Swal.fire({
-                                confirmButtonColor: '#1187CF',
-                                title: '에러'
-                            });
-                        }
-                    },
-                    error : function(){
-                        alert("실패");
-                    },
-                });
-            } else{
-                console.log('아니오');
-            }
+        // 메일
+        function sendMail(email,name){
+            window.location.href="/el/admin/mail/send?address="+email;
         }
+
+
+
+
+        // function quitBtn(no){
+        //     if(confirm("탈퇴처리하시겠습니까?")){
+        //         console.log('예');
+        //         $.ajax({
+        //             url : "/el/admin/master/quit",
+        //             type : "post",
+        //             data : {"no": no},
+        //             success : function(result){
+        //                 if(result == "ok"){
+        //                     Swal.fire({
+        //                         confirmButtonColor: '#1187CF',
+        //                         title: '탈퇴처리되었습니다.'
+        //                     });
+
+        //                     window.location.href = "/el/admin/master/list?pno=1";
+        //                 } else{
+        //                     Swal.fire({
+        //                         confirmButtonColor: '#1187CF',
+        //                         title: '에러'
+        //                     });
+        //                 }
+        //             },
+        //             error : function(){
+        //                 alert("실패");
+        //             },
+        //         });
+        //     } else{
+        //         console.log('아니오');
+        //     }
+        // }
     </script>
 </body>
 </html>

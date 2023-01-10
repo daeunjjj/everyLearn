@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.email.vo.MailVo;
-import com.coding5.el.emp.comm.vo.AttachVo;
+import com.coding5.el.common.vo.AttachVo;
 
 public interface AdminMailDao {
 	// 이메일 테이블에 내용 넣기 (어테치 x)
@@ -24,6 +24,12 @@ public interface AdminMailDao {
 	
 	// 메일 보낸 내역 삭제
 	public int deleteSendMail(SqlSessionTemplate sst, String[] arrNo);
+	
+	// 메일 상세
+	public MailVo selectOneMail(SqlSessionTemplate sst, String no);
+	
+	// 메일 어테치
+	public List<AttachVo> selectAttachList(SqlSessionTemplate sst, String no);
 
 
 	

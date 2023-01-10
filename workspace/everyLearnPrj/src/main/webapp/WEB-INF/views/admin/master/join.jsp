@@ -20,7 +20,7 @@
             <div id="line"></div>
             <div class="main-wrap">
                 <form action="/el/admin/master/join" method="post" onsubmit="return joinCheck();">
-                    <input type="password" id="pwd" name="pwd" value="admin1234!" hidden>
+                   
                     <div class="join-wrap">
                         <div class="join-items">
                             <div class="title-wrap">
@@ -30,6 +30,24 @@
                                 <input class="input" id="id" type="text" name="id" placeholder="example@every.com">
                             </div>
                             <span hidden id="idMsg"></span>
+                        </div>
+                        <div class="join-items">
+                            <div class="title-wrap">
+                                <label for="pwd">비밀번호</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input class="input" id="pwd" type="password" name="pwd" placeholder="비밀번호를 입력해주세요.">
+                            </div>
+                            <span hidden id="pwdMsg"></span>
+                        </div>
+                        <div class="join-items">
+                            <div class="title-wrap">
+                                <label for="pwd2">비밀번호 확인</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input class="input" id="pwd2" type="password" name="pwd2" placeholder="비밀번호를 재입력해주세요.">
+                            </div>
+                            <span hidden id="pwd2Msg"></span>
                         </div>
                         <div class="join-items">
                             <div class="title-wrap">

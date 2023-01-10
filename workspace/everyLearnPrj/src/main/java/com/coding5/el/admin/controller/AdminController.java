@@ -32,6 +32,7 @@ import com.coding5.el.request.vo.RequestVo;
 import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
+import retrofit2.http.GET;
 @RequestMapping("admin")
 @Controller
 @Slf4j
@@ -51,6 +52,13 @@ public class AdminController {
 	private Gson gson;
 	
 	
+	/**
+	 * 권한 에러페이지
+	 */
+	@GetMapping("no-permission")
+	public String noPermission() {
+		return "admin/permission-error";
+	}
 	/**
 	 * 로그인
 	 * @return
@@ -263,7 +271,7 @@ public class AdminController {
 
 		int result = adminService.adminModify(vo);
 		
-		if(result != 1) {
+		if(result > 0) {
 			return "common/error";
 		}
 		
@@ -276,14 +284,15 @@ public class AdminController {
 	 * @return
 	 */
 	@PostMapping("master/quit")
-	@ResponseBody
-	public String adminQuit(String no) {
-		int result = adminService.adminQuit(no);
+	public String adminQuit(String[] arrNo, RedirectAttributes redirect) {
+		int result = adminService.adminQuit(arrNo);
 		
 		if(result != 1) {
-			return "";
+			return "common/error";
 		}
-		return "ok";
+		
+		redirect.addFlashAttribute("resultMsg", "처리되었습니다.");
+		return "redirect:/admin/master/list?pno=1";
 	}
 	
 	

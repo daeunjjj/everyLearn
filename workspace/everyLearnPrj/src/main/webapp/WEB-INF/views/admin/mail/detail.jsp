@@ -19,33 +19,42 @@
                         <div class="input-area" >
                             <label>보낸사람</label>
                             <div class="sender-wrap">
-                                <p>엄격한</p>
-                                <p>everylearn352@gmail.com</p>
+                                <p>${map.mailVo.adminNo }</p>
+                                <p>${map.mailVo.fromAddress }</p>
                              </div>
                          </div>
                         <div class="input-area" >
                            <label for="toAddress">받는사람</label>
                            <div class="receiver-wrap">
-                               <input type="text" id="toAddress" name="toAddress" >
+                               <p>${map.mailVo.toAddress }</p>
                             </div>
                         </div>
                         <div class="input-area">
                             <label for="title">제목</label>
                             <div>
-                                <input type="text" id="title" name="title">
+                                <p>${map.mailVo.title}</p>
                             </div>
                         </div>
                         <div id="add-next"></div>
                         <div class="input-area content">
                             <label>내용</label>
                             <div  class="text-wrap">
-                                <textarea id="content" name="content"></textarea>
+                                <textarea id="content" name="content" readonly>${map.mailVo.content}</textarea>
                             </div>
                         </div>
                         <div class="input-area">
                             <label for="multipartFile">첨부파일</label>
                             <div class="attach-wrap" >
-                                <a href="/el/resources/upload/default-profile.png" download="테스트">테스트</a>
+                                <div id="img-area">
+										<c:forEach items="${map.attachList }" var="list">
+                                            <a href="/el/resources/upload/${list.fileName }" download="${list.fileName}">
+	                                            <div id="img-box">
+	                                                <img src="/el/resources/upload/${list.fileName}" alt="">
+	                                            </div>
+	                                        </a>
+	                                    </c:forEach>
+
+                                </div>
                             </div>
                         </div>
                         <div class="btn-area">

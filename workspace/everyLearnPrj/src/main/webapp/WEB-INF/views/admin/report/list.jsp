@@ -54,8 +54,18 @@
 				<c:forEach items="${map.voList}" var="list">
 					<div class="list-items list">
 						<div>${list.no }</div>
-						<div>${list.accusor }</div>
-						<div>${list.blacklist }</div>
+						<div>
+							<a href="/el/admin/member/student/detail?no=${list.accusor}" target="_blank">
+		                        ${list.accusorId }
+		                        <i class="bi bi-box-arrow-up-right"></i>						
+							</a>
+						</div>
+						<div>
+							<a href="/el/admin/member/student/detail?no=${list.blacklist}" target="_blank">
+		                        ${list.blacklistId }
+		                        <i class="bi bi-box-arrow-up-right"></i>						
+							</a>
+						</div>
                         <div>${list.type }</div>
                         <div>${list.reportDate}</div>
                         <c:if test="${list.handleYn eq 'Y' }">
@@ -67,7 +77,12 @@
                         	<div>미처리</div>
                         </c:if>
                         <div>
-                            <button onclick="processBtn('${list.no}');">처리</button>
+							<c:if test="${list.handleYn eq 'N' }">
+								 <button onclick="processBtn('${list.no}');">처리</button>
+							</c:if>
+							<c:if test="${list.handleYn eq 'Y' }">
+								<button disabled>처리</button>
+							</c:if>
                         </div>
                    </div>
 				</c:forEach>

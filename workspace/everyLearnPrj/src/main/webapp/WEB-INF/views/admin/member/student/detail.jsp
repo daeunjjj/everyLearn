@@ -164,6 +164,7 @@
         </main>
     </div>
     <script>
+        // 신고 상태 확인해보기
         const finish = '${map.studentVo.finishDate}';
         const today = new Date().toISOString().slice(0,10);
         console.log(today < finish);

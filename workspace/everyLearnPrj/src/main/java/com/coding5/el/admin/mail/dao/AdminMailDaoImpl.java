@@ -10,8 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.page.Pagination;
 import com.coding5.el.email.vo.MailVo;
-import com.coding5.el.emp.comm.vo.AttachVo;
-
+import com.coding5.el.common.vo.AttachVo;
 import lombok.extern.slf4j.Slf4j;
 @Repository
 @Slf4j
@@ -43,8 +42,23 @@ public class AdminMailDaoImpl implements AdminMailDao{
 
 	@Override
 	public int deleteSendMail(SqlSessionTemplate sst, String[] arrNo) {
+		// 보낸내역 삭제
 		return sst.update("adminMapper.deleteSendMail", arrNo);
 	}
+
+	@Override
+	public MailVo selectOneMail(SqlSessionTemplate sst, String no) {
+		// 이메일 테이블 조회
+		return sst.selectOne("adminMapper.selectOneMail", no);
+		
+	}
+
+	@Override
+	public List<AttachVo> selectAttachList(SqlSessionTemplate sst, String no) {
+		// 이메일 어테치 조회
+		return sst.selectList("adminMapper.selectAttachList",no);
+	}
+
 
 
 }

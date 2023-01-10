@@ -79,7 +79,7 @@
 	                                    <p>${time }</p>  
 	                                </div>
 	                                <div class="btn">
-                                        <button type="button">상세</button>
+                                        <button type="button" onclick="detailBtn('${list.no}');">상세</button>
                                     </div>
 	                            </div>
 	                        </li>
@@ -179,6 +179,9 @@
             });
         });
 
+        function detailBtn(no){
+            window.location.href = "/el/admin/mail/send/detail?no="+no;
+        }
     </script>
 </body>
 </html>

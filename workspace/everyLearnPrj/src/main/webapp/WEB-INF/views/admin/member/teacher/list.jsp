@@ -70,9 +70,7 @@
 
                 </div>
                 <div class="list-title">
-                    <div>
-                        <input type="checkbox" id="checkAll">
-                    </div>
+                    <div></div>
                     <div>번호</div>
                     <div>이름</div>
                     <div>아이디</div>
@@ -107,8 +105,9 @@
 		                                <div>탈락</div>
 	                                </c:if>
 	                                <div>
-                                        <button type="button" onclick="location.href='/el/admin/member/teacher/detail?no=${list.no}'">상세</button>
-	                                </div>
+                                        <button type="button" onclick="detailBtn('${list.no}')">상세</button>
+                                        <button type="button" onclick="sendMail('${list.email }');">메일</button>
+                                    </div>
 	                            </div>
 	                        </li>
                         </c:forEach>
@@ -184,6 +183,15 @@
                     return false;
                 }
             }
+        }
+        // 상세페이지
+        function detailBtn(no){
+            window.location.href="/el/admin/member/teacher/detail?no="+ no;
+        }
+
+        // 메일
+        function sendMail(email,name){
+            window.location.href="/el/admin/mail/send?address="+email;
         }
     </script>
 </body>
