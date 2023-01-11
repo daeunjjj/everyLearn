@@ -2,6 +2,8 @@ package com.coding5.el.lecture.vo;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -31,4 +33,11 @@ public class LectureVo {
 	private String classNo;
 	private String chapter;
 	private List<LectureVo> dcList;
+	
+	///파일
+	private MultipartFile thumbFile;
+	private MultipartFile logoFile;
+	private String logo;
+	private String thumb;
+	
 }

@@ -1,5 +1,7 @@
 package com.coding5.el.cart.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -25,4 +27,10 @@ public class CartVo {
     
     private String mp; //멤버 개인 포인트
 
+    ///파일
+  	private MultipartFile thumbFile;
+  	private MultipartFile logoFile;
+  	private String logo;
+  	private String thumb;
+  	
 }

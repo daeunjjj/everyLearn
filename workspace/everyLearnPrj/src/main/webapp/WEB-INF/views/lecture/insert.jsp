@@ -50,11 +50,11 @@
 		      	</tr>
 				  <tr>
 			        <td>썸네일</td>
-			        <td><input type="file" id="fileinput" name="classThumb"></td>
+			        <td><input type="file" id="fileinput" name="thumbFile"></td>
 		      	</tr>
 				<tr>
 			        <td>첨부파일</td>
-			        <td><input type="file" id="fileinput" name="classFile"></td>
+			        <td><input type="file" id="fileinput" name="logoFile"></td>
 		      	</tr>
 			</table>
 			<div id="next"><input type="submit" id="nextbtn" value="다음"></div>

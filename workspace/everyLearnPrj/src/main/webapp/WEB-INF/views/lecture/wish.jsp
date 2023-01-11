@@ -44,7 +44,7 @@
 						<input type="hidden" name="price" value="${list.price}">
 						<input type="hidden" name="classNo" value="${list.classNo}">
 						<%-- <input type="hidden" class="individual_totalPrice_input" value="${list.price}"> --%>
-						<div id="leccart-img"><a href='#'><img src="/el/resources/img/lecture/lecpic.png" alt="강의이미지"></a></div>
+						<div id="leccart-img"><a href='#'><a href='#'><img src="/el/resources/upload/${list.thumb}" width="300px" height="140px"alt="강의이미지"></a></div>
 						<a href="/el/lecture/detail?bno=${list.classNo}" class="atag"><div id="leccart-name">${list.className}</div></a>
 						<div id="leccart-price">${list.price} 원</div>
 						<button type="button" class="remove" onclick="deleteOne(${list.classNo})">삭제</button>

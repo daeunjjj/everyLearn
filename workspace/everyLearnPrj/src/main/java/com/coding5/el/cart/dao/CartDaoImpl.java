@@ -56,6 +56,14 @@ public class CartDaoImpl implements CartDao{
 		return sst.selectOne("cartMapper.getPoint", mno);
 	}
 
+	//장바구니에 상품 담겨있는지 체크
+	@Override
+	public int checkCart(SqlSessionTemplate sst, String mno) {
+		return sst.selectOne("cartMapper.checkCartById", mno);
+	}
+	
+	
+
 
 
 }

@@ -18,7 +18,7 @@
 	<div class="wrap">
 		
         <div class= "lec-intro">
-            <div id="lec-pic"><img src="/el/resources/img/lecture/lecpic3.png" ></div>
+            <div id="lec-pic"><img src="/el/resources/upload/${lvo.thumb}" width="500px" height="250px"></a></div>
             <div id="lec-int">
                 <div id="lec-cate">${lvo.category }</div>
                 <div id="lec-name">${lvo.className}</div>
@@ -56,6 +56,10 @@
             <div id="lec-content">
             	
             	${lvo.classContent}
+            	
+            	<br><br><br>
+            	
+            	<img src="/el/resources/upload/${lvo.logo}" width="700px">
             </div>
             <div id="lec-payment">
                 <div id="pay-wrap">

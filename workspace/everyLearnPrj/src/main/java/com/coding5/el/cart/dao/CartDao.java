@@ -32,4 +32,7 @@ public interface CartDao {
 	//포인트 가져오기
 	public int getPoint(SqlSessionTemplate sst, String mno);
 
+	//장바구니에 상품 담겨있는지 체크
+	public int checkCart(SqlSessionTemplate sst, String mno);
+
 }
