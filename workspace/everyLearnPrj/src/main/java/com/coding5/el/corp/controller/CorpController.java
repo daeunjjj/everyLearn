@@ -134,7 +134,7 @@ public class CorpController {
 		int result = cs.updatePwd(num, pwd);
 		
 		if(result != 1) {
-			return "redirect:/common/error";
+			return "redirect:/expired-token";
 		}
 		
 		return "redirect:/corp/login";

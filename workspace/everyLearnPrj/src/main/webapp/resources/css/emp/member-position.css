@@ -53,7 +53,8 @@
   flex-direction: column;
   margin-bottom: 30px;
   word-break: break-all;
-  white-space: pre-line;
+  /* white-space: pre-line; */
+  line-height: 1.65rem;
 }
 
 .items h3{

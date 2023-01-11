@@ -19,7 +19,6 @@ public class EmploymentVo {
 	private String address;
 	private String career;
 	private String deadline;
-	private String wishCnt;
 	private String enrollDate;
 	private String modifyDate;
 	private String deleteYN;

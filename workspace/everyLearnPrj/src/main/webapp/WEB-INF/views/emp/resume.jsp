@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>이력서</title>
 <link rel="stylesheet" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" />
 <link rel="stylesheet" href="/el/resources/css/emp/empMain.css">
 <link rel="stylesheet" href="/el/resources/css/emp/resume.css">
@@ -49,7 +49,7 @@
 									<div class="list">
 										<p>전화번호</p>
 										<div>
-											<input type="text" name="phone" class="input" value="${rv.phone}">
+											<input type="text" name="phone" class="input" value="${rv.phone}"  oninput="autoHyphen(this);" maxlength="13">
 										</div>
 									</div>
 									<div class="list">
@@ -434,7 +434,7 @@
 							</div>
 						</section>
 					</div>
-					<c:if test="${not empty loginMember && apply == null}">
+					<c:if test="${not empty loginMember && apply == null && corpMember == null}">
 					<div class="button-wrapper">
 						<button type="submit" class="save-btn">저장</button>
 					</div>

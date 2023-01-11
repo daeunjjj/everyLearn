@@ -17,4 +17,9 @@ public class ErrorController {
 	public String noPermission() {
 		return "admin/permission-error";
 	}
+	
+	@GetMapping("expired-token")
+	public String mailError() {
+		return "emp/member/reset/corp-error";
+	}
 }

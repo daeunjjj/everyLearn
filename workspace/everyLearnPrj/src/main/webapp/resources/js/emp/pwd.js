@@ -21,6 +21,7 @@ const checkId = () => {
   const isOk = document.getElementById("use-id");
   const warn = document.querySelector(".essential");
   const okId = document.querySelector(".okId");
+  const btn = document.querySelector(".btn");
 
   $.ajax({
     url: "/el/corp/checkId",
@@ -33,10 +34,12 @@ const checkId = () => {
         warn.innerHTML = "가입된 아이디를 입력해주세요.";
         show.style.display = 'none';
         isOk.style.display = 'flex';
+        btn.setAttribute('disabled', '');
       } else {
         okId.innerHTML = "가입된 아이디입니다.";
         isOk.style.display = 'none';
         show.style.display = 'flex';
+        btn.removeAttribute('disabled');
       }
     }
   });

@@ -5,7 +5,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Insert title here</title>
+  <title>채용중 조회</title>
   <link rel="stylesheet" href="/el/resources/css/common/font.css">
   <link rel="stylesheet" href="/el/resources/css/common/reset.css">
   <link rel="stylesheet" href="/el/resources/css/emp/mypage/hiring.css">

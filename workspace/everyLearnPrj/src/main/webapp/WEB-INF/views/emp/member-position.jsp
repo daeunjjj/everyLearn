@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>지원하기</title>
 <link rel="stylesheet" href="/el/resources/css/emp/main.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 <link rel="stylesheet" href="/el/resources/css/common/font.css">

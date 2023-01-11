@@ -462,11 +462,10 @@ const saveBtn = (target) => {
 /*********************************************************************/
 
 // 전화번호 정규식(하이픈 자동추가)
-// const autoHyphen = (target) => {
-//   target.value = target.value
-//     .replace(/[^0-9]/g, '')
-//     .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+const autoHyphen = (target) => {
+  target.value = target.value
+    .replace(/[^0-9]/g, '')
+    .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
 
-//   activeBtn();
-// }
-
+  activeBtn();
+}

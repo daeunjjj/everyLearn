@@ -174,13 +174,17 @@ public class CorpServiceImpl implements CorpService {
 	// 채용 전체보기 리스트
 	@Override
 	public List<EmploymentVo> getTotalList(PageVo pv, String corpNo) {
+		// 기업회원의 채용 공고 전체 조회 하기
 		List<EmploymentVo> list = dao.getTotalList(sst, pv, corpNo);
+
 		// 현재 날짜
 		LocalDate now = LocalDate.now();
 		
+		// 전체 공고를 조회하면서
 		for(int i = 0; i < list.size(); i++) {
 			EmploymentVo item = list.get(i);
 			String deadline = item.getDeadline();
+			// 현재시간이 마감 날짜보다 크면
 			if(now.toString().compareTo(deadline) > 0) {
 				// 채용 마감
 				item.setStatus("채용마감");
@@ -190,9 +194,9 @@ public class CorpServiceImpl implements CorpService {
 			
 			String enrollDate = item.getEnrollDate();
 			String sliced = enrollDate.substring(0, 10);
+			// 시간을 잘라주기(날짜만 보여주기 위해서)
 			item.setEnrollDate(sliced);
 		}
-		
 		return list;
 	}
 
