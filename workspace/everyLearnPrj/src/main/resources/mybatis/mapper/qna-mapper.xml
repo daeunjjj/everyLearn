@@ -32,14 +32,14 @@
 	</update>
 	
 	<!-- 글 갯수 -->
-	<select id="getQnaCommCnt" resultType="com.coding5.qna.vo.QnaVo">
+	<select id="getQnaCommCnt" resultType="com.coding5.el.qna.vo.QnaVo">
 		SELECT COUNT(NO)
 		FROM QNA
 		WHERE DELETE_YN = 'N';
 	</select>
 	
 	<!-- qna 리스트 -->
-	<select id="getQnaList" resultType="com.coding5.qna.vo.QnaVo">
+	<select id="getQnaList" resultType="com.coding5.el.qna.vo.QnaVo">
 		
 		SELECT * FROM
 	 	(
