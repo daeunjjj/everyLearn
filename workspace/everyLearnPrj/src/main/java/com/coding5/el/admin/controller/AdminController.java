@@ -52,13 +52,11 @@ public class AdminController {
 	private Gson gson;
 	
 	
-	/**
-	 * 권한 에러페이지
-	 */
-	@GetMapping("no-permission")
-	public String noPermission() {
+	@GetMapping
+	public String main() {
 		return "admin/permission-error";
 	}
+	
 	/**
 	 * 로그인
 	 * @return
@@ -394,17 +392,26 @@ public class AdminController {
 	 * @return
 	 */
 	@GetMapping("dashboard")
-	public String dashboard(Model model) {
+	public String dashboard(Model model) {	
 		
-		Map<String, Object> map =  adminService.selectDashboardAlert();
 		
-		if(map == null) return "common/error";
 		
-		log.info("cnt :: "+map);
-		
-		model.addAttribute("map", map);
+//		if(map == null) return "common/error";
+//		
+//		log.info("cnt :: "+map);
+//		
+//		model.addAttribute("map", map);
 		return "admin/dashboard";
 	}
+	
+	
+	@GetMapping("dashboard/alert")
+	@ResponseBody
+	public String alert() {
+		Map<String, Object> map =  adminService.selectDashboardAlert();
+		return gson.toJson(map);
+	}
+	
 	/**
 	 * 대시보드-연령대별
 	 * @return
@@ -513,15 +520,6 @@ public class AdminController {
 		return "admin/class/list";
 	}
 	
-
-
-
-	
-	// 전체 메일 전송
-	@GetMapping("mail/all-send")
-	public String mailAllSend() {
-		return "admin/mail/all-send";
-	}
 	
 	
 	

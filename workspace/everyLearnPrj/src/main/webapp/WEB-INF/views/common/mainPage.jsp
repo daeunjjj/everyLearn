@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -150,14 +151,30 @@
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 
         <script>
-           $(function(){
-             $('#carousel-example-generic').carousel({
-               interval: 5000,
-               pause: "hover",
-               wrap: true,
-               keyboard : true
-             });
-           });
-         </script>
+		$(function(){
+			$('#carousel-example-generic').carousel({
+			interval: 5000,
+			pause: "hover",
+			wrap: true,
+			keyboard : true
+			});
+		});
+		
+
+
+		function getAdWindow() {
+			const url = "/el/adWindow";
+            window.open(url, "child","width=450px height=400px top=50% left=50%");
+		}
+
+        </script>
+
+	<c:if test="${cookie.adCheck.value == null}">
+		<script>
+			getAdWindow();
+		</script>
+	</c:if>
+
+
 </body>
 </html>

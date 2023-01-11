@@ -25,7 +25,6 @@ import com.coding5.el.common.vo.AttachVo;
 import com.coding5.el.email.service.EmailService;
 import com.coding5.el.email.vo.MailVo;
 
-
 import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("admin/mail")
@@ -186,6 +185,64 @@ public class AdminMailController {
 			
 			model.addAttribute("map", map);
 			return "admin/mail/detail";
+		}
+		
+		// 전체 메일 전송
+		@GetMapping("all-send")
+		public String mailAllSend() {
+			return "admin/mail/all-send";
+		}
+		
+		// 전체 메일 전송
+		@PostMapping("all-send")
+		public String mailAllSend(MailVo mailVo, HttpSession session, AttachVo attachVo, MultipartFile multipartFile, RedirectAttributes redirect) {
+			//관리자 넘버 & 메일 넣어주기
+			AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");	
+			
+			mailVo.setFromAddress(loginAdmin.getId());
+			mailVo.setAdminNo(loginAdmin.getNo());
+			
+			
+			log.info("전체 메일 값 잘왔나요? mailVo ::: " + mailVo);
+			log.info("전체 메일 값 잘왔나요? attachVo ::: " + attachVo);
+			
+			log.info("isEmpty?"+!multipartFile.isEmpty());
+			
+			// db에 어테치 넣기 위해..
+			List<AttachVo> voList = null;
+			
+			// 파일 없으면
+			mailVo.setFileYn("N");
+			
+			// 파일 서버에 업로드
+			if(!multipartFile.isEmpty()) {
+				// 이미지 있으면
+				mailVo.setFileYn("Y");
+				voList = new ArrayList<>();
+				
+				for(int i = 0; i < mailVo.getMultipartFile().size(); i++) {
+					
+					attachVo = new AttachVo();
+					
+					log.info("이프문 통과");
+					log.info("파일 잘 들어옴? " +mailVo.getMultipartFile().get(i));
+					
+					attachVo.setFileName(FileUploader.upload(session, mailVo.getMultipartFile().get(i)));
+					
+					voList.add(i, attachVo);
+					
+				}
+			}
+			
+			int result = adminMailService.insertAllSendMail(mailVo, voList);
+			
+			if(result == 0) {
+				redirect.addFlashAttribute("resultMsg", "디비 저장 실패");
+				return "redirect:/admin/mail/send";
+			}
+			
+			redirect.addFlashAttribute("resultMsg", "메일 전송 완료");
+			return "redirect:/admin/mail/send/list?pno=1";
 		}
 		
 }

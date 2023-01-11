@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.coding5.el.admin.vo.AdminVo;
+import com.coding5.el.alert.vo.AlertVo;
 import com.coding5.el.chart.vo.ChartVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
@@ -17,6 +18,7 @@ import com.coding5.el.emp.comm.vo.AttachVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
+import com.coding5.el.report.vo.ReportVo;
 import com.coding5.el.request.vo.RequestVo;
 import com.coding5.el.teacher.vo.TeacherVo;
 
@@ -150,6 +152,10 @@ public interface AdminDao {
 	
 	// 암호화 된 비번 디비에 넣어주기
 	public int updateTempPwd(SqlSessionTemplate sst, AdminVo vo);
+	
+	// 정치처리
+	public int stopProcess(SqlSessionTemplate sst, ReportVo vo);
+	
 
 
 	

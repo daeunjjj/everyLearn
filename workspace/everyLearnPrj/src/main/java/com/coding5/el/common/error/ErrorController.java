@@ -9,4 +9,12 @@ public class ErrorController {
 	public String error() {
 		return "common/error";
 	}
+	
+	/**
+	 * 권한 에러페이지
+	 */
+	@GetMapping("signin")
+	public String noPermission() {
+		return "admin/permission-error";
+	}
 }

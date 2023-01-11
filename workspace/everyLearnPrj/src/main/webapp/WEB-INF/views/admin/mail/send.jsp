@@ -7,6 +7,7 @@
 <title>에브리런 - 메일 발송</title>
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
 <link rel="stylesheet" href="/el/resources/css/admin/mail/send.css">
+<script type="text/javascript" defer src="/el/resources/js/admin/send-mail.js"></script>
 </head>
 <body>
 	<div class="wrap">
@@ -62,11 +63,6 @@
         </main>
     </div>
     <script>
-
-        function add(){
-            $("#add-next").append('<div class="input-area" > <label for="multipartFile"></label> <div class="attach-wrap"> <input type="file" id="multipartFile" name="multipartFile" > </div> </div>');
-        }
-
         // 쿼리스트링에 메일 가져오기
         const urlSearch = new URLSearchParams(location.search);
         const mailAddress = urlSearch.get('address');
@@ -76,31 +72,7 @@
         if(mailAddress != ''){
             $("#toAddress").val(mailAddress);
         }
-        // 포커스 효과
-        let inputArr = $('input[type="text"]');
-        for(let i = 0; i < inputArr.length; i++){
-            
-            inputArr[i].addEventListener('focus',()=>{
-                inputArr[i].style.border="1px solid #005297";
-            });
-        }
 
-        // 블러효과
-        for(let i = 0; i < inputArr.length; i++){
-
-            inputArr[i].addEventListener('blur',()=>{
-                inputArr[i].style.border="";
-            });
-        }
-
-        // 포커스 효과
-        $('textarea').on("focus", function(){
-            $('textarea').css("border","1px solid #005297");
-        });
-        // 블러
-        $('textarea').on("blur", function(){
-            $('textarea').css("border","");
-        });
 
         function sendCheck(){
             let emailReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -119,6 +91,7 @@
 
             return true;
         }
+
     </script>
 </body>
 </html>

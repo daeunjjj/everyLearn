@@ -98,5 +98,16 @@ public class AdminMailServiceImpl implements AdminMailService{
 		return map; 
 	}
 	
+	// 전체 메일 발송
+	@Override
+	public int insertAllSendMail(MailVo mailVo, List<AttachVo> voList) {
+		
+		// 전체 메일 어떤 회원들인지 select해서 메일들 받아오기 
+		
+		
+		
+		return 0;
+	}
+	
 	
 }

@@ -104,6 +104,7 @@ label{
 /* 메일보내기 버튼 */
 .quit-btn-area{
     text-align: end;
+    margin: 20px 0 50px 0;
 }
 
 #quit-btn{
@@ -116,7 +117,7 @@ label{
     margin-left: -1rem;
     border: none;
     vertical-align: middle;
-    margin-top: 10px;
+
 }
 
 
