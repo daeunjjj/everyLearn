@@ -30,6 +30,21 @@ public interface AdminMailDao {
 	
 	// 메일 어테치
 	public List<AttachVo> selectAttachList(SqlSessionTemplate sst, String no);
+	
+	// 학생회원 메일 리스트 가져오기
+	public List<MailVo> selectStudentMailList(SqlSessionTemplate sst);
+	
+	// 강사회원 메일 리스트 가져오기
+	public List<MailVo> selectTeacherMailList(SqlSessionTemplate sst);
+	
+	// 기업회원 메일 리스트 가져오기
+	public List<MailVo> selectCorpMailList(SqlSessionTemplate sst);
+	
+	// 메일 리스트들 인서트
+	public int insertMailList(SqlSessionTemplate sst, List<MailVo> mailList);
+	
+	// 메일 pk 가져오기
+	public List<AttachVo> selectMailPk(SqlSessionTemplate sst, MailVo mailVo);
 
 
 	

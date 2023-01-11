@@ -59,6 +59,38 @@ public class AdminMailDaoImpl implements AdminMailDao{
 		return sst.selectList("adminMapper.selectAttachList",no);
 	}
 
+	@Override
+	public List<MailVo> selectStudentMailList(SqlSessionTemplate sst) {
+		// 학생회원메일리스트
+		return sst.selectList("adminMapper.selectStudentMailList");
+	}
+
+	@Override
+	public List<MailVo> selectTeacherMailList(SqlSessionTemplate sst) {
+		// 강사회원메일리스트
+		return sst.selectList("adminMapper.selectTeacherMailList");
+	}
+
+	@Override
+	public List<MailVo> selectCorpMailList(SqlSessionTemplate sst) {
+		// 기업회원메일리스트
+		return sst.selectList("adminMapper.selectCorpMailList");
+	}
+
+	@Override
+	public int insertMailList(SqlSessionTemplate sst, List<MailVo> mailList) {
+		// 메일리스트들 인서트
+		return sst.insert("adminMapper.insertMailList",mailList);
+	}
+
+	@Override
+	public List<AttachVo> selectMailPk(SqlSessionTemplate sst, MailVo mailVo) {
+		// 메일 pk 가져오기
+		return sst.selectList("adminMapper.selectMailPk",mailVo);
+	}
+
+
+
 
 
 }

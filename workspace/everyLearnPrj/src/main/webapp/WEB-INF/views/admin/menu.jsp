@@ -72,7 +72,7 @@
                     </a>
                 </li> -->
                 <li class="nav-items" id="customer">
-                    <a class="nav-items-a" href="">
+                    <a class="nav-items-a" href="/el/notice/adminList">
                         <span>고객센터</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>
@@ -86,7 +86,7 @@
                                     <a href="/el/faq/adminList">자주묻는질문</a>
                                 </li>
                                 <li class="detail-cate" id="qna">
-                                    <a href="">QNA</a>
+                                    <a href="/el/qna/adminWrite ">QNA</a>
                                 </li>
                                 
                             </ul>

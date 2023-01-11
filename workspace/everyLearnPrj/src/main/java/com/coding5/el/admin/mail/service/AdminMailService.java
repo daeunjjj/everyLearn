@@ -26,6 +26,6 @@ public interface AdminMailService {
 	public Map<String, Object> mailDetail(String no);
 	
 	// 전체 메일 발송
-	public int insertAllSendMail(MailVo mailVo, List<AttachVo> voList);
+	public int insertAllSendMail(MailVo mailVo, String fileName);
 
 }

@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>에브리런</title>
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
-<link rel="stylesheet" href="/el/resources/css/admin/mail/send.css">
+<link rel="stylesheet" href="/el/resources/css/admin/mail/send-common.css">
 <link rel="stylesheet" href="/el/resources/css/admin/mail/all-send.css">
 <script type="text/javascript" defer src="/el/resources/js/admin/send-mail.js"></script>
 </head>
@@ -32,9 +32,6 @@
                                 <label>기업회원
                                     <input name="toAddress" type="radio" value="3">
                                 </label>
-                                <label>관리자
-                                    <input name="toAddress" type="radio" value="4">
-                                </label>
                             </div>
                         </div>
 
@@ -49,13 +46,6 @@
                             <div class="attach-wrap" >
                                 <input type="file" id="multipartFile" name="multipartFile" >
                             </div>
-                            <div class="add-btn-area">
-                                <button type="button" class="add-btn" onclick="add();">
-                                    <span>
-                                        <i class="bi bi-plus"></i>
-                                    </span>
-                                </button>
-                            </div> 
                         </div>
                         <div id="add-next"></div>
                         <div class="input-area content">

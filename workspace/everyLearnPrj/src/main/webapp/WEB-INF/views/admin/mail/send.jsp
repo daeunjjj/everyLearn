@@ -7,6 +7,7 @@
 <title>에브리런 - 메일 발송</title>
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
 <link rel="stylesheet" href="/el/resources/css/admin/mail/send.css">
+<link rel="stylesheet" href="/el/resources/css/admin/mail/send-common.css">
 <script type="text/javascript" defer src="/el/resources/js/admin/send-mail.js"></script>
 </head>
 <body>

@@ -24,6 +24,7 @@ public class MailVo {
 	private String fileYn;
 	
 	private List<MultipartFile> multipartFile;
+
 	
 	
 }

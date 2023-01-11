@@ -700,7 +700,7 @@
 		    ,EMAIL_NO
 		    ,FILE_NAME
 		)
-		VALUES ( GET_EMAIL_ATTATCH_SEQ , #{vo.no}, #{vo.fileName} )
+		VALUES ( GET_EMAIL_ATTATCH_SEQ , #{vo.emailNo}, #{vo.fileName} )
 		</foreach>
 		select 1 from dual
 	</insert>
@@ -801,4 +801,63 @@
 			,#{finishDate}
 		)
 	</insert>
+	<select id="selectStudentMailList" resultType="com.coding5.el.email.vo.MailVo">
+		SELECT
+		    EMAIL AS TO_ADDRESS
+		FROM MEMBER
+		WHERE QUIT_YN = 'N'
+	</select>
+	<select id="selectTeacherMailList" resultType="com.coding5.el.email.vo.MailVo">
+		SELECT
+		    M.EMAIL AS TO_ADDRESS
+		FROM TEACHER T
+		JOIN MEMBER M ON T.MEMBER_NO = M.NO
+		WHERE M.QUIT_YN = 'N'
+		AND T.STATUS_YN = 'Y'
+		AND T.DELETE_YN = 'N'
+	</select>
+	<select id="selectCorpMailList" resultType="com.coding5.el.email.vo.MailVo">
+		SELECT
+		    ID AS TO_ADDRESS
+		FROM CORPORATE_MEMBER
+		WHERE QUIT_YN = 'N'
+		AND STATUS_YN = 'Y'
+		AND DELETE_YN = 'N'
+	</select>
+	
+	<insert id="insertMailList">
+		INSERT ALL
+		<foreach collection="list" item="vo" >
+		INTO EMAIL
+		(
+            NO
+            ,ADMIN_NO
+            ,TO_ADDRESS
+            ,FROM_ADDRESS
+            ,TITLE
+            ,CONTENT
+            ,FILE_YN
+		)
+		VALUES 
+		( 	
+			GET_EMAIL_SEQ 
+			, #{vo.adminNo} 
+			, #{vo.toAddress}
+			, #{vo.fromAddress}
+			, #{vo.title}
+			, #{vo.content}
+			, #{vo.fileYn}
+		)
+		</foreach>
+		select 1 from dual
+	</insert>
+	<select id="selectMailPk" resultType="com.coding5.el.common.vo.AttachVo">
+		SELECT
+		    NO AS EMAIL_NO
+		FROM EMAIL
+		WHERE TITLE = #{title}
+		AND CONTENT = #{content}
+		AND FILE_YN = #{fileYn}
+		AND ADMIN_NO = #{adminNo}
+	</select>
 </mapper>
