@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.coding5.el.emp.comm.vo.CommentVo;
 import com.coding5.el.emp.comm.vo.EmpCommVo;
 import com.coding5.el.emp.comm.vo.LikeVo;
 import com.coding5.el.notice.vo.PageVo;
@@ -39,6 +40,11 @@ public interface EmpCommDao {
 	int insertHeart(SqlSessionTemplate sst, LikeVo heart) throws Exception;
 
 	void deleteHeart(SqlSessionTemplate sst, LikeVo heart) throws Exception;
+
+	void insertComment(SqlSessionTemplate sst, CommentVo vo) throws Exception;
+
+	List<CommentVo> selectCommentList(SqlSessionTemplate sst, CommentVo vo) throws Exception;
+
 
 	
 

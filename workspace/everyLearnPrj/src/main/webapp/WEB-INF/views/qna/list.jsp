@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +37,18 @@
             <div class="th" id="hit">상태</div>
 
 
+		<c:forEach items="${list}" var="c">
+			<div class="td">${ c.no }</div>
+            <div class="td">${ c.category }</div>
+            <div class="td" id="title">
+            	<a href="/el/qna/detail?no=${ c.no }" id="title-a">${c.title}</a>
+              	<span class="material-symbols-outlined">lock</span>
+            </div>
+            <div class="td" id="nick">${ c.nick }</div>
+            <div class="td" id="date">${ fn:substring(c.enrollDate,0,8) }</div>
+            <div class="td" id="status1">${ c.answerYn }</div>
+		
+		</c:forEach>
 
 			<div class="td" id="no">15</div>
             <div class="td">결제</div>
@@ -45,6 +59,8 @@
             <div class="td" id="nick">nick01</div>
             <div class="td" id="date">23.01.13</div>
             <div class="td" id="status1">답변 중</div>
+<!--  -->            
+            
 
 			<div class="td" id="no">14</div>
             <div class="td">결제</div>
@@ -55,29 +71,7 @@
             <div class="td" id="nick">nick03</div>
             <div class="td" id="date">22.12.11</div>
             <div class="td" id="status1">답변 중</div>	
-
-
-
-			<div class="td" id="no">13</div>
-            <div class="td">결제</div>
-            <div class="td" id="title">
-            	제목입니다
-              <span class="material-symbols-outlined">lock</span>
-            </div>
-            <div class="td" id="nick">nick02</div>
-            <div class="td" id="date">22.12.11</div>
-            <div class="td" id="status1">답변 중</div>
-
-
-			<div class="td" id="no">12</div>
-            <div class="td">결제</div>
-            <div class="td" id="title">
-            	제목입니다
-              <span class="material-symbols-outlined">lock</span>
-            </div>
-            <div class="td" id="nick">nick11</div>
-            <div class="td" id="date">22.12.11</div>
-            <div class="td" id="status1">답변 중</div>
+<!--  -->
 
             <div class="td" id="no">11</div>
             <div class="td">결제</div>
@@ -88,6 +82,7 @@
             <div class="td" id="nick">nick9</div>
             <div class="td" id="date">22.12.11</div>
             <div class="td" id="status1">답변 중</div>
+  <!--  -->          
 
             <div class="td" id="no">10</div>
             <div class="td">결제</div>
@@ -97,6 +92,8 @@
             <div class="td" id="nick">nick01</div>
             <div class="td" id="date">22.12.11</div>
             <div class="td" id="status">답변완료</div>
+  <!--  -->          
+            
 
             <div class="td" id="no">9</div>
             <div class="td">결제</div>
@@ -106,29 +103,7 @@
             <div class="td" id="date">22.12.11</div>
             <div class="td" id="status">답변완료</div>
 
-            <div class="td" id="no">8</div>
-            <div class="td">결제</div>
-            <div class="td" id="title">제목입니다
-            <span class="material-symbols-outlined">lock</span></div>
-            <div class="td" id="nick">nick01</div>
-            <div class="td" id="date">22.12.11</div>
-            <div class="td" id="status">답변완료</div>
-
-            <div class="td" id="no">7</div>
-            <div class="td">결제</div>
-            <div class="td" id="title">제목입니다
-            <span class="material-symbols-outlined">lock</span></div>
-            <div class="td" id="nick">nick01</div>
-            <div class="td" id="date">22.12.11</div>
-            <div class="td" id="status">답변완료</div>
-
-            <div class="td" id="no">6</div>
-            <div class="td">결제</div>
-            <div class="td" id="title">제목입니다
-            <span class="material-symbols-outlined">lock</span></div>
-            <div class="td" id="nick">nick01</div>
-            <div class="td" id="date">22.12.11</div>
-            <div class="td" id="status">답변완료</div>
+            
 
             <div id="main-bot">
                 <a href="/el/qna/memberWrite" class="btn btn-light" id="write">작성하기</a>

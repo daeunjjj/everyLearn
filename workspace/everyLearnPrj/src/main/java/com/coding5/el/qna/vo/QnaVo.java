@@ -12,6 +12,7 @@ public class QnaVo {
 	private String memberNo;
 	private String adminNo;
 	private String category;
+	private String nick;
 	private String title;
 	private String content;
 	private String answerYn;
