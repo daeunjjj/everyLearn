@@ -75,8 +75,8 @@
   		, EMP_NUM = #{empNum}
   		, SALES = #{sales}
   		, HOMEPAGE = #{homepage}
-  		, LOGO = #{logoName}
-  		, THUMB = #{thumbName}
+  		, LOGO = #{logo}
+  		, THUMB = #{thumb}
   	WHERE NO = #{no}
   </update>
   
@@ -247,9 +247,27 @@
   
   <!-- 공고 조회(기업용) -->
   <select id="selectEmployment" resultType="EmploymentVo">
-  	SELECT *
-  	FROM EMPLOYMENT
-  	WHERE NO = #{no}
+  	SELECT 
+	  	EMP.NO
+		, EMP.CORP_NO
+		, EMP.CATEGORY
+		, EMP.TITLE
+		, EMP.RESPONSIBILITY
+		, EMP.QUALIFICATION
+		, EMP.PREFERENTIAL
+		, EMP.SALARY
+		, EMP.BENEFITS
+		, EMP.INTRODUCE
+		, EMP.SECTOR
+		, EMP.ADDRESS
+		, EMP.CAREER
+		, EMP.DEADLINE
+		, EMP.WISH_CNT
+		, EMP.ENROLL_DATE
+		, EMP.MODIFY_DATE
+		, EMP.DELETE_YN
+  	FROM EMPLOYMENT EMP
+  	WHERE EMP.NO = #{no}
   </select>
   
   <!-- 채용 공고 수정하기 -->
@@ -301,5 +319,25 @@
 	    JOIN RESUME R ON R.MEMBER_NO = A.MEMBER_NO
 	    WHERE EMP_NO = #{empNo}
   </select>
+  
+  <!-- 인증번호 -->
+  <update id="updateCertNum">
+	   UPDATE 
+	     CORPORATE_MEMBER
+     SET 
+     	AUTHENTICATION = #{authentication},
+     	PERIOD = SYSDATE + 5/(24*60)
+     WHERE ID = #{id}
+  </update>
+  
+  <!-- 비밀번호 재설정 -->
+  <update id="updatePwd">
+    UPDATE 
+	     CORPORATE_MEMBER
+     SET 
+     	PWD = #{pwd}
+     WHERE AUTHENTICATION = #{authentication}
+     AND PERIOD > SYSDATE
+  </update>
   
 </mapper>

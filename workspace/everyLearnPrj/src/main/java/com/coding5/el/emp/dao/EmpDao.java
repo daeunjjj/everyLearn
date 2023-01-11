@@ -94,4 +94,7 @@ public interface EmpDao {
 	// 언어 삭제
 	void deleteLanguage(SqlSessionTemplate sst, String resumeNo);
 
+	// 입사지원 유무 확인
+	int selectApplication(SqlSessionTemplate sst, ApplyVo av);
+
 }

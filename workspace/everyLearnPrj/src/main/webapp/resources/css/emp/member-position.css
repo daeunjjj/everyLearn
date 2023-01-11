@@ -113,6 +113,11 @@
   font-weight: bold;
 }
 
+.submit-btn:disabled{
+  cursor: not-allowed;
+  background-color: rgba(17, 134, 207, 0.349);
+}
+
 .aside dl input.close{
   flex-grow: 0;
 }

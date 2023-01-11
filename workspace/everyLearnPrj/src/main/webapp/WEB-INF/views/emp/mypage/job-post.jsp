@@ -4,12 +4,11 @@
   <html>
   <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>채용 공고 등록</title>
     <link rel="stylesheet" href="/el/resources/css/emp/main.css">
     <link rel="stylesheet" href="/el/resources/css/common/reset.css">
     <link rel="stylesheet" href="/el/resources/css/common/font.css">
     <link rel="stylesheet" href="/el/resources/css/emp/mypage/job-post.css">
-    <link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
   </head>
 
   <body>
@@ -80,8 +79,8 @@
                   </dl>
                   <dl>
                       <label>마감일</label>
-                      <input type="date" name="deadline" class="close" value="${ev.deadline}">
-                      <input type="checkbox" name="deadline" value="999999"><label for="deadline">채용 시 마감</label>
+                      <input type="date" id="date" name="deadline" class="close" value="${ev.deadline}">
+                      <input type="checkbox" name="deadline" id="checkbox" value="채용 시 마감" onchange="checkDeadLine();"><label for="deadline">채용 시 마감</label>
                   </dl>
                     <button type="submit" class="submit-btn">제출하기</button>
             </aside>
@@ -90,6 +89,7 @@
       </main>
 
       <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
 
       <script src="/el/resources/js/emp/job-post.js"></script>
   </body>

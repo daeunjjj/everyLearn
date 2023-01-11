@@ -60,4 +60,7 @@ public interface EmpService {
 	// sector 페이징
 	int selectSectorPage(String sector);
 
+	// 입사 지원 유무 확인
+	int selectApplication(ApplyVo av);
+
 }

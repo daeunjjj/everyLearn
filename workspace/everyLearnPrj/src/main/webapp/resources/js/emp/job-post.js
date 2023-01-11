@@ -10,3 +10,15 @@ input.addEventListener('keyup', function(e) {
     input.value = formatValue;
   }
 })
+
+// 채용시 마감 체크박스 활성화 비활성화
+function checkDeadLine(){
+  const checkbox = document.getElementById('checkbox');
+  const date = document.getElementById('date');
+
+  if(checkbox.checked){
+    date.setAttribute('disabled', '');
+  }else{
+    date.removeAttribute('disabled');
+  }
+}

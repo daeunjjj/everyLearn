@@ -5,11 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>기업 로그인</title>
 <link rel="stylesheet" href="/el/resources/css/emp/member/login.css">
 <link rel="stylesheet" href="/el/resources/css/common/font.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 </head>
 <body>
 
@@ -50,7 +51,7 @@
 						<button type="submit" class="btn" id="loginBtn" disabled onclick="loginBtn();">로그인</button>
 					</form>
 					<div class="choose">
-						<a href="">비밀번호 재설정</a>
+						<a href="/el/corp/send-mail">비밀번호 재설정</a>
 						<div class="div"></div>
 						<a href="/el/corp/join">회원가입</a>
 					</div>

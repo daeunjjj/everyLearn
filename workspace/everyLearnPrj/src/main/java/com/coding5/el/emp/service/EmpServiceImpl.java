@@ -225,4 +225,10 @@ public class EmpServiceImpl implements EmpService{
 		return dao.selectSectorPage(sst, sector);
 	}
 
+	// 입사지원 유무 확인
+	@Override
+	public int selectApplication(ApplyVo av) {
+		return dao.selectApplication(sst, av);
+	}
+
 }
