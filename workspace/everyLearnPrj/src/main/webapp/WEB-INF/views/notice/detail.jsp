@@ -40,13 +40,14 @@
                 	<span>${ n.hit }</span>
                 </div>
                 <div class="content" name="content">
+                	<img alt="" src="/el/resources/upload/${ n.thumb }">
                    <textarea id="content">${ n.content }</textarea>
                 </div>
             </div>
           
 
             <div class="back-sticky">
-                <button id="back-btn"><span class="material-symbols-outlined">undo</span></button>
+                <button id="back-btn" onclick = "location.href = '/el/notice/list' "><span class="material-symbols-outlined">undo</span></button>
             </div>
 
             <nav class="navbar sticky-bottom bg-light">

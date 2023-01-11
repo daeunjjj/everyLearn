@@ -10,7 +10,14 @@ public class QnaDaoImpl implements QnaDao {
 
 	@Override
 	public int insertMemberWrite(SqlSessionTemplate sst, QnaVo vo) throws Exception {
-		return sst.insert("qnaMapper.insertQna", vo);
+		System.out.println("dao" + vo);
+		return sst.insert("qnaMapper.insertMemberWrite", vo);
+	}
+
+	@Override
+	public int insertAdminWrite(SqlSessionTemplate sst, QnaVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return sst.insert("qnaMapper.insertAdminWrite", vo);
 	}
 
 }

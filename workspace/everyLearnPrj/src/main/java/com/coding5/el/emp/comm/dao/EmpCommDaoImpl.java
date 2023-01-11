@@ -57,11 +57,31 @@ public class EmpCommDaoImpl implements EmpCommDao {
 		return sst.update("empCommMapper.deleteEmpComm", no);
 	}
 
-	//해당 글에 해당 멤버가 좋아요를 했는지?
 	@Override
 	public LikeVo findHeart(SqlSessionTemplate sst, Map<String, String> number) throws Exception {
+		System.out.println("dao ::: " + number);
 		return sst.selectOne("empCommMapper.findHeart", number);
 	}
+
+	//좋아요가 DB에 있는지 확인
+	@Override
+	public LikeVo findHeart(SqlSessionTemplate sst, LikeVo heart) throws Exception {
+		return sst.selectOne("empCommMapper.findHeart", heart);
+	}
+
+	//좋아요 정보(empCommLike에 게시글 번호, 회원 번호) 저장
+	@Override
+	public int insertHeart(SqlSessionTemplate sst, LikeVo heart) throws Exception {
+		return sst.insert("empCommMapper.insertHeart", heart);
+	}
+
+	//좋아요 삭제
+	@Override
+	public void deleteHeart(SqlSessionTemplate sst, LikeVo heart) throws Exception {
+		sst.delete("empCommMapper.deleteHeart", heart);
+	}
+
+
 
 
 

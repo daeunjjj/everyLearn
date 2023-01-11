@@ -5,7 +5,7 @@
 <mapper namespace="qnaMapper">
 
 	<!-- 글쓰기 -->
-	<insert id="insertQna" parameterType="com.coding5.el.qna.vo.QnaVo">
+	<insert id="insertMemberWrite" parameterType="com.coding5.el.qna.vo.QnaVo">
 		INSERT INTO QNA
 		(
 		     NO
@@ -16,7 +16,7 @@
 		)
 		VALUES
 		(
-		     SEQ_FAQ_NO.NEXTVAL
+		     SEQ_QNA_NO.NEXTVAL
 		    , #{memberNo}
 		    , #{category}
 		    , #{title}
@@ -24,6 +24,25 @@
 		)
 	</insert>
 	
+	<!-- 관리자 답변 쓰기 -->
+	<insert id="insertAdminWrite" parameterType="com.coding5.el.qna.vo.QnaVo">
+		INSERT INTO QNA
+		(
+		     NO
+		    ,ADMIN_NO
+		    ,CATEGORY
+		    ,TITLE
+		    ,CONTENT 
+		)
+		VALUES
+		(
+		     SEQ_QNA_NO.NEXTVAL
+		    , #{adminNo}
+		    , #{category}
+		    , #{title}
+		    , #{content}
+		)
+	</insert>
 	
 	
   

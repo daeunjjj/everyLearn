@@ -30,11 +30,11 @@
 
             <div class="main-wrap">
 
-                <form method="post" id="write-fr">
+                <form method="post" id="write-fr" enctype="multipart/form-data">
                     </div>
                     <div id="title"><input type="text" name="title" required value="${ n.title }"></div>
                     <div id="content"><textarea name="content" required>${ n.content }</textarea></div>
-                    <div id="file"><input class="form-control form-control-sm" id="formFileSm" type="file" name="f"></div>
+                    <div id="file"><input class="form-control form-control-sm" id="formFileSm" type="file" name="thumbFile" value=" ${ n.thumbFile } "></div>
                     <div id="write"><button type="submit" class="btn btn-light" id="submit-btn">수정하기</button></div>
                 </form>		
 

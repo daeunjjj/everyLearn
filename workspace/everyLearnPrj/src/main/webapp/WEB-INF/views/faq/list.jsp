@@ -16,7 +16,7 @@
 
 
 <link rel="stylesheet" href="/el/resources/css/faq/list.css">
-<link rel="stylesheet" href="/el/resources/css/emp-commu/common.css">
+<link rel="stylesheet" href="/el/resources/css/emp-comm/common.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 
 <!-- 파비콘 -->
@@ -84,20 +84,6 @@
             </div>
 
             <button class="accordion">등록된 기업 회사 정보는 어디에 노출되나요?</button>
-            <div class="panel">
-                <br>
-                <p>,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <br>
-            </div>
-
-            <button class="accordion">에브리런 서비스 중 오류가 발생해요.</button>
-            <div class="panel">
-                <br>
-                <p>,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <br>
-            </div>
-
-            <button class="accordion">에브리런 서비스 중 오류가 발생해요.</button>
             <div class="panel">
                 <br>
                 <p>,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>

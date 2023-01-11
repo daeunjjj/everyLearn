@@ -92,7 +92,7 @@
             <div class="td" id="no">10</div>
             <div class="td">결제</div>
             <div class="td" id="title">
-            <a href="/el/qna/detail">구ㅡㅇ금합니다</a>
+            <a href="/el/qna/detail" id="q">구ㅡㅇ금합니다</a>
             <span class="material-symbols-outlined">lock</span></div>
             <div class="td" id="nick">nick01</div>
             <div class="td" id="date">22.12.11</div>

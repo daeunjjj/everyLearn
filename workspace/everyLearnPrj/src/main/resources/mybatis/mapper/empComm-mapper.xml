@@ -94,6 +94,7 @@
 		    ,F.CONTENT
 		    ,F.ENROLL_DATE
 		    ,F.HIT
+		    ,A.NO AS MNO
 		FROM EMP_COMM F
 		full outer JOIN EMP_COMM_CATE C
 		ON F.CATEGORY = C.NO
@@ -103,13 +104,53 @@
 	
 	</select>
 	
-	<!-- 좋아요 여부 체크 -->
-	<select id="findHeart"  parameterType="java.util.HashMap" resultType="com.coding5.el.emp.comm.vo.EmpCommVo">
 	
-		SELECT * FROM EMP_COMM_LIKE 
+	<resultMap type="com.coding5.el.emp.comm.vo.LikeVo" id="likeMap">
+		<result property="no" column="EMP_COMM_NO" />
+	</resultMap>
+	
+	<!-- 좋아요 눌렀는지 안 눌렀는지 -->
+	<select id="findLike" resultType="int">
+		SELECT COUNT(*) FROM EMP_COMM_LIKE 
+		WHERE EMP_COMM_NO = #{ empCommNo } 
+		AND member_no = #{ memberNo }
+	</select>
+	
+	
+	<!-- 좋아요 확인 -->
+	<select id="findHeart" parameterType="java.util.HashMap" 
+			resultType="com.coding5.el.emp.comm.vo.LikeVo" resultMap="likeMap">
+		SELECT * 
+		FROM EMP_COMM_LIKE
 		WHERE EMP_COMM_NO = #{no}
 		AND MEMBER_NO = #{memberNo}
 	
 	</select>
+	
+	<!-- 좋아요 저장 -->
+	<insert id="insertHeart" parameterType="com.coding5.el.emp.comm.vo.EmpCommVo">
+		INSERT INTO EMP_COMM_LIKE
+			(
+			    LIKE_NO,
+			    EMP_COMM_NO,
+			    MEMBER_NO,
+			    LIKE_CHECK
+			)
+			VALUES
+			(
+			    SEQ_LIKE_NO.NEXTVAL,
+			    #{no},
+			    #{memberNo},
+			    1
+			    
+			)
+	</insert>
+	
+	<!-- 좋아요 삭제 -->
+	<delete id="deleteHeart" parameterType="com.coding5.el.emp.comm.vo.EmpCommVo">
+		DELETE FROM EMP_COMM_LIKE
+		WHERE EMP_COMM_NO = #{no}
+		AND MEMBER_NO = #{memberNo};
+	</delete>
   
 </mapper>

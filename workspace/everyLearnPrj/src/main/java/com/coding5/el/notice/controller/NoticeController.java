@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.coding5.el.common.file.FileUploader;
 import com.coding5.el.notice.service.NoticeService;
 import com.coding5.el.notice.vo.NoticeVo;
 import com.coding5.el.notice.vo.PageVo;
@@ -98,6 +99,14 @@ public class NoticeController {
 	//공지사항 작성
 	@PostMapping("write")
 	public String write(NoticeVo vo, HttpSession session, Model model) throws Exception {
+		
+		// 공지 이미지 저장
+		String thumbName = "";
+		if(!vo.getThumbFile().isEmpty()) {
+			thumbName = FileUploader.upload(session, vo.getThumbFile());
+		}
+		
+		vo.setThumb(thumbName);
 		
 		int result = noticeService.write(vo);
 		if(result > 0) {

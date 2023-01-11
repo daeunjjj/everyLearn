@@ -12,6 +12,7 @@
 		    , ADMIN
 		    , TITLE
 		    , CONTENT 
+		    , THUMB
 		)
 		VALUES
 		(
@@ -19,6 +20,7 @@
 			, 1
 			,#{title}
 			,#{content}
+			,#{thumb}
 		)	
 	</insert>
 	
@@ -84,7 +86,9 @@
 		    N.ENROLL_DATE ,
 		    N.MODIFY_DATE ,
 		    N.DELETE_YN ,
-		    A.NICK AS ADMIN
+		    A.NICK AS ADMIN,
+		    N.THUMB
+		    
 		FROM NOTICE N
 		JOIN ADMIN A ON N.ADMIN = A.NO 
 		WHERE N.NO = #{no}

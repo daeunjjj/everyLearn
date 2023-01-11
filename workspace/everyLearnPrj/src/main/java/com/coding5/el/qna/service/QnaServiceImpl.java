@@ -15,7 +15,13 @@ public class QnaServiceImpl implements QnaService {
 
 	@Override
 	public int memberWrite(QnaVo vo) throws Exception {
+		System.out.println("service" + vo);
 		return qnaDao.insertMemberWrite(sst, vo);
+	}
+
+	@Override
+	public int adminWrite(QnaVo vo) throws Exception {
+		return qnaDao.insertAdminWrite(sst, vo);
 	}
 
 }

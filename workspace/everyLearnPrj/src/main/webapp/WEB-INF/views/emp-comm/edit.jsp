@@ -24,7 +24,7 @@
 	<%@ include file="/WEB-INF/views/common/emp-header.jsp" %>
   <main id="main">
     
-    <form action="/el/emp-comm/write" method="post" id="write-fr">
+    <form action="/el/emp-comm/edit" method="post" id="write-fr">
         <br><br> 
                   <div id="category">
                       <select name="category" id="category-btn">
@@ -34,13 +34,13 @@
                           <option value="4">인간관계</option>
                       </select>
                   </div>
-        <button id="edit" onclick="edit()" class="btn btn-outline-secondary me-md-2" type="button">수정</button>
-	    <button id="save" onclick="save()" class="btn btn-outline-secondary me-md-2" type="button">수정 완료</button>
-        <div id="title"><input type="text" name="title" required  value="${ n.title }"></div>
-        <!-- <div id="summernote" name="content"></div> -->
-         <textarea id="summernote" name="content"></textarea>
+        <div id="title"><input type="text" name="title" required  value="${ n.title }" ></div>
+    
+        <textarea id="summernote" name="content" required>${ n.content }</textarea>
+       
+
          
-        <div id="write"><button type="submit" class="btn btn-light" id="submit-btn">수정하기</button></div>
+        <div id="write"><button onclick="editDetail()" type="submit" class="btn btn-light" id="submit-btn" name="no" value="${ n.no }">수정하기</button></div>
     </form>
   </main>
     
@@ -50,44 +50,78 @@
 
     $(document).ready(function () {
 
-        console.log($.summernote.options);
+    	var toolbar = [
+    		// 글꼴 설정
+            ['fontname', ['fontname']],
+            // 글자 크기 설정
+            ['fontsize', ['fontsize']],
+            // 굵기, 밑줄, 취소 선, 서식지우기
+            ['style', ['bold', 'underline','strikethrough', 'clear']],
+             // 글자색
+            ['color', ['forecolor','color']],
+            // 글머리 기호, 번호매기기, 문단정렬
+             ['para', ['paragraph']],
+             // 표만들기
+             ['table', ['table']],
+             // 그림첨부, 링크만들기, 동영상첨부
+             ['insert', ['link', 'picture', 'video']],
+             // 줄간격
+            ['height', ['height']]
+		  ];
 
-        // 실행시 언어 설정을 한글로 설정 
+		var setting = {
+	            height : 550,
+	            minHeight : null,
+	            maxHeight : null,
+	            disableResizeEditor: true,
+	         	// 추가한 글꼴
+	    		fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+	    		 // 추가한 폰트사이즈
+	    		fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+	            focus : true,
+	            lang : 'ko-KR',
+	            toolbar : toolbar,
+	            callbacks: {
+					onImageUpload: function(files, editor, welEditable) {
+			            for (var i = files.length - 1; i >= 0; i--) {
+			            	sendFile(files[i], this);
+			            }
+			        }
+				}
+	         };
 
-        $.summernote.options.lang = 'ko-KR';
+        $('#summernote').summernote(setting);
+        });
 
-        $.summernote.options.airMode = false;
-
-    });
-
-
-    var a = $('#summernote');
-
-
-    // 수정버튼
-
-    var edit = function () {
-
-        a.summernote({ focus: true });
-
-    };
-
-    // 수정 종료
-
-    var save = function () {
-
-        var markup = a.summernote('code');
-
-        a.summernote('destroy');
-
-    };
+		function sendFile(file, el) {
+		    var form_data = new FormData();
+		    form_data.append('file', file);
+		    $.ajax({
+		      data: form_data,
+		      type: "POST",
+		      url: "/uploadSummernoteImageFile",
+		      cache: false,
+		      contentType: false,
+		      enctype: 'multipart/form-data',
+		      processData: false,
+		      success: function(url) {
+		        $(el).summernote('editor.insertImage', url);
+		        $('#imageBoard > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
+		      }
+		    });
+		  }
     
     	
-    const submitBtn = document.querySelector("#submit-btn");
-	
-    submitBtn.addEventListener('click', function(){
-        confirm('수정하시겠습니까?');
-    })
+		 function editDetail() {
+		    	
+		    	var result = confirm("작성 글을 수정하시겠습니까?")
+		    	
+		        if (result == true) {
+		        	location.href = "/el/emp-comm/edit?no=${ n.no }";
+		        } else {      	
+		            alert("수정 취소");
+		        }
+		    }
       
     </script>
 	

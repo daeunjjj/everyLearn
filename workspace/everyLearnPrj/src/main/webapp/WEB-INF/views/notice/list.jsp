@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>에브리런</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -34,7 +36,7 @@
             	<div class="th">번호</div>
                 <div class="th">제목</div>
                 <div class="th"></div>
-                <div class="th">작성일시</div>
+                <div class="th">작성일</div>
                 <div class="th">조회수</div>
             
             <!-- 반복 -->
@@ -42,7 +44,7 @@
                 <div class="td" id="no">${ n.no }</div>
                 <div class="td" id="title"><a href="/el/notice/detail?no=${ n.no }" id="title-a">${n.title}</a></div>
                 <div class="td" id="nick">${ n.admin }</div>
-                <div class="td" id="date">${ n.enrollDate }</div>
+                <div class="td" id="date">${ fn:substring(n.enrollDate,0,8) }</div>
                 <div class="td" id="hit">${ n.hit }</div>
 			</c:forEach>
             <!-- 반복 -->   
@@ -72,6 +74,8 @@
 
 
         </div>
+        
+
         
     </main>
 

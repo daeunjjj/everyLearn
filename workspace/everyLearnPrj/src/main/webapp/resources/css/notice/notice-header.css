@@ -1,8 +1,16 @@
 @charset "UTF-8";
 
+#bell{
+	color: black !important;
+}
+
 .container-fluid{
     float: left;
     width: 4%;
+}
+
+#q:hover{
+	color: #1187CF;
 }
 
 .d-inline-block{	/* 헤더 로고 이미지  */
