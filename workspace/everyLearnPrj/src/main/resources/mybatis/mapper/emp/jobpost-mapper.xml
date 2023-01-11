@@ -94,6 +94,7 @@
 		, EMP.ADDRESS
 		, EMP.CAREER
 		, CORP.COMPANY_NAME
+		, CORP.THUMB
 	FROM EMPLOYMENT EMP
 	JOIN CORPORATE_MEMBER CORP ON EMP.CORP_NO = CORP.NO
 	WHERE EMP.DELETE_YN = 'N'
@@ -114,6 +115,7 @@
   	AND DEADLINE >= TO_CHAR(SYSDATE,'YYYY-MM-DD')
   </select>
   
+	<!-- 직군별 공고 조회하기 -->
   <select id="selectPostBySector" resultType="JobPostVo">
   	SELECT
         EMP.NO
@@ -133,6 +135,7 @@
     ORDER BY EMP.NO DESC
   </select>
   
+	<!-- 직군별 공고 조회하기 -->
   <select id="selectSectorPage" resultType="int">
   	SELECT COUNT(*)
   	FROM EMPLOYMENT
@@ -141,6 +144,7 @@
   	AND DEADLINE >= TO_CHAR(SYSDATE,'YYYY-MM-DD')
   </select>
   
+	<!-- 지원자 조회하기 -->
   <select id="selectApplication" resultType="int">
     SELECT 
         COUNT(*)

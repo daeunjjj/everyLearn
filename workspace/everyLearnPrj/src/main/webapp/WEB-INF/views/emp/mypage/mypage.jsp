@@ -150,7 +150,7 @@
 											<div class="img-input">
 												<input oninput="validate();" onblur="validateLogo();" onchange="uploadLogo(this);" type="file" accept=".jpg,.jpeg,.png" name="logoFile" id="logo"><img
 													alt="" src="/el/resources/upload/${cv.logo}" id="logo-upload" class="uploaded" onerror="this.style.display='none'">
-													<input type="hidden" name="logo" value="${cv.logo}">
+													<input type="hidden" name="logo" id="hiddenLogo" value="${cv.logo}">
 												<div class="image-uploader-cover css-1ngnjh4"></div>
 												<div>
 													<img src="/el/resources/img/emp/img-upload.svg" alt="">
@@ -181,7 +181,7 @@
 											<div class="img-input">
 												<input oninput="validate();" onchange="uploadImg(this);" onblur="validateThumb();" type="file" accept=".jpg,.jpeg,.png" name="thumbFile" id="thumb"><img
 												src="/el/resources/upload/${cv.thumb}" id="img-upload" class="uploaded" onerror="this.style.display='none'">
-												<input type="hidden" name="thumb" value="${cv.thumb}">
+												<input type="hidden" name="thumb" id="hiddenThumb" value="${cv.thumb}">
 												<div class="image-uploader-cover css-1ngnjh4"></div>
 												<div>
 													<img src="/el/resources/img/emp/img-upload.svg" alt="">

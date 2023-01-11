@@ -200,11 +200,14 @@ public class EmpController {
 	@GetMapping("resume")
 	public String resume(HttpSession session, Model model) {
 		
+		// 세션에 담긴 일반 회원 가져오기
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 		
+		// 일반회원이 로그인을 했다면
 		if(loginMember != null) {
 			String memberNo = loginMember.getMemberNo();
 			
+			// 일반회원 번호로 작성된 이력서를 조회(각 분야별 리스트는 이력서 번호로 조회)
 			ResumeVo rv = es.selectResume(memberNo);
 			List<EducationVo> eduList = es.selectEducation(rv);
 			List<LanguageVo> langList = es.selectLanguage(rv);
@@ -212,6 +215,7 @@ public class EmpController {
 			List<CareerVo> careerList = es.selectCareer(rv);
 			List<CertificateVo> certificateList = es.selectCertificate(rv);
 			
+			// model에 담아 view로 보내주기
 			model.addAttribute("rv", rv);
 			model.addAttribute("eduList", eduList);
 			model.addAttribute("langList", langList);
@@ -220,7 +224,6 @@ public class EmpController {
 			model.addAttribute("certificateList", certificateList);
 		}
 		
-		
 		return "emp/resume";
 	}
 	
@@ -228,8 +231,10 @@ public class EmpController {
 	@PostMapping("resume")
 	public String resume(HttpSession session, ResumeVo rv, EducationVo ev, AwardVo av, CareerVo cv, CertificateVo cfv, LanguageVo lv) {
 		
+		// 세션에 담긴 일반 회원 가져오기
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 		
+		// 세션에 로그인 된 회원이 없다면 로그인 페이지로 이동
 		if(loginMember == null) {
 			return "redirect:/member/login";
 		}	
@@ -237,20 +242,24 @@ public class EmpController {
 		// 파일 업로드
 		String memberNo = loginMember.getMemberNo();
 		
+		// attch => 업로드할 파일 이름 담아줄 변수
 		String attach = "";
+
+		// 이력서에 첨부파일이 있다면 첨부파일을 업로드 해줌
 		if(!rv.getAttach().isEmpty()) {
 			attach = FileUploader.upload(session, rv.getAttach());
 			rv.setAttachName(attach);
 		}
 		
+		// 이력서 DB에 넣어주기
 		int result = es.insertResume(memberNo, rv, ev, av, cv, cfv, lv);
 
+		// DB에 입력되지 않으면 에러 페이지로 이동
 		if(result != 1) {
 			return "common/error";
 		}
 		
 		return "redirect:/emp/resume";
-		
 	}
 
 	// 회원 이력서 조회(기업회원)

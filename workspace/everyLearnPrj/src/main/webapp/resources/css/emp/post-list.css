@@ -5,6 +5,7 @@ a{
 .emp-container{
   width: 1200px;
   margin: 0 auto;
+  margin-top: 50px;
 }
 
 .emp{
@@ -78,6 +79,7 @@ a{
   display: inline-block;
   width: 100%;
   height: 150px;
+  border-radius: 5px;
 }
 
 .skill{

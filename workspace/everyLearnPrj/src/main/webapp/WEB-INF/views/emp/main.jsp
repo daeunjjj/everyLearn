@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>에브리런 채용</title>
 <link rel="stylesheet" href="/el/resources/css/emp/main.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 <link rel="stylesheet" href="/el/resources/css/common/font.css">
@@ -73,8 +73,7 @@
 											<a href="/el/emp/position?no=${list.no}" class="position">${list.title}</a>
 										</div>
 										<ul class="skill">
-											<li>Java</li>
-											<li>Spring</li>
+											<li>${list.sector}</li>
 										</ul>
 										<div class="etc">
 											<span>${list.career} | </span> <span>${list.address}</span>

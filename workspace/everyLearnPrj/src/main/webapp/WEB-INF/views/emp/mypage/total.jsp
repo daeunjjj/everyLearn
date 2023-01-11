@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공고 전체조회</title>
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
 <link rel="stylesheet" href="/el/resources/css/emp/mypage/total.css">
 <link rel="stylesheet" href="/el/resources/css/common/font.css">

@@ -121,7 +121,7 @@ input ,.category{
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 0px 32px;
+  padding: 0px 130px;
   width: calc(100% - 250px);
   height: 4.867rem;
   background-color: rgb(255, 255, 255);

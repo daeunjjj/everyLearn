@@ -10,6 +10,8 @@ const homepage = document.getElementById('homepage');
 const logo = document.getElementById('logo');
 const thumb = document.getElementById('thumb');
 const btn = document.querySelector('.admin-btn');
+const hiddenLogo = document.getElementById('hiddenLogo');
+const hiddenThumb = document.getElementById('hiddenThumb');
 
 // 사업자등록번호 정규식(하이픈 자동추가)
 const autoHyphen = (target) => {
@@ -49,8 +51,10 @@ const validate = () => {
 	const homepageValue = homepage.value;
 	const logoValue = logo.value;
 	const thumbValue = thumb.value;
+	const hiddenLogoValue = hiddenLogo.value;
+	const hiddenThumbValue = hiddenThumb.value;
 		
-	if(companyNameValue && companyNumValue.length === 12 && addressValue && detailAddressValue && introduceValue && sectorValue !== '선택' && empNumValue && salesValue && homepageValue && logoValue && thumbValue){
+	if(companyNameValue && companyNumValue.length === 12 && addressValue && detailAddressValue && introduceValue && sectorValue !== '선택' && empNumValue && salesValue && homepageValue && (logoValue || hiddenLogoValue) && (thumbValue || hiddenThumbValue)){
 		const btn = document.querySelector('.admin-btn');
 		btn.removeAttribute('disabled');
 	}else{

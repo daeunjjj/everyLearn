@@ -93,22 +93,31 @@ public class EmpServiceImpl implements EmpService{
 	public int insertResume(String memberNo, ResumeVo rv, EducationVo ev, AwardVo av, CareerVo cv, CertificateVo cfv,
 			LanguageVo lv) {
 		
+		// 이력서에 회원번호를 넣어주기
 		rv.setMemberNo(memberNo);
 		
+		// 이력서 작성하기(없으면 INSERT하고 있으면 UPDATE해줌)
 		int rvResult = dao.updateResume(sst, rv);
+
+		// 이력서의 시퀀스 번호 조회해오기
 		String resumeNo = dao.selectResumeSeqNo(sst, memberNo);
 		
+		// 이력서 번호로 학력을 조회해서 삭제해주기
 		dao.deleteEducation(sst, resumeNo);
 		
+		// 입력된 학력이 있으면
 		if(ev.getEvList() != null && ev.getEvList().size() != 0) {
+			// 학력을 반복하기 위해서 Iterator 가져오기
 			ListIterator<EducationVo> evIterator = ev.getEvList().listIterator();
+			// Iterator를 반복하면서
 			while(evIterator.hasNext()) {
+				// 다음 학력이 있으면 학력에 이력서 번호를 넣어준다.
 				evIterator.next().setResumeNo(resumeNo);
 			}
-			log.info(ev.toString());
+			// 학력을 넣어주기
 			int evResult = dao.updateEducation(sst, ev.getEvList());
 		}
-		
+		// 이하 동문
 		dao.deleteAward(sst, resumeNo);
 		if(av.getAvList() != null && av.getAvList().size() != 0) {
 			ListIterator<AwardVo> avIterator = av.getAvList().listIterator();
