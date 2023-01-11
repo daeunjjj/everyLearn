@@ -106,7 +106,9 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public ClassListVo selectmyClassInfoList(SqlSessionTemplate sst, ClassListVo classListVo) {
-		return sst.selectOne("memberMapper.selectmyClassInfoList", classListVo);
+		ClassListVo s = sst.selectOne("memberMapper.selectmyClassInfoList", classListVo);
+		log.info("classListVo ::: " + classListVo);
+		return s;
 	}
 
 	@Override

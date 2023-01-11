@@ -18,6 +18,7 @@
         <br><br>
         <div id="contain-detail">
             <div id="intro-wrap">
+            <c:if test="${info ne 'n'}">
             <div>
                 <div id="lecture">
                     ${myClassInfoList}
@@ -44,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-
+            </c:if>
                 
             </div>    
             <div>
@@ -52,10 +53,17 @@
                     <label for="">내 강의 목록</label>
                 </div>
                 <div id="list-wrap">
+                
+                <c:if test="${info eq 'n'}">
+					<div style="width: 1000px; height: 500px;">
+                    <img  style="width: 1000px; height: 200px; margin-top: 150px;" src="/el/resources/img/member/noClass.png" alt="">
+                    </div>
+                </c:if>
+                
                 <c:forEach items="${myClassInfoList}" var="myClass">
                     <div class="lec-list">
                         <a href="/el/member/memberProgress?classNo=${myClass.classNo}&mn=${loginMember.memberNo}">
-                            <img id="lec-img" src="/el/resources/upload/${myClass.changeName}" alt="">
+                            <img id="lec-img" src="/el/resources/upload/${myClass.thumb}" alt="">
                             <div id="lec-name">${myClass.className}</div>
                             <div id="teacher-name">${myClass.teacherNick}</div>
                         </a>

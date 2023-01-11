@@ -260,7 +260,7 @@ function likeup(params) {
             }
         }
         , error : function name(params) {
-            alert('likeupAjax 실패');
+            alert('로그인 후 이용해주세요.');
         }
     });
 

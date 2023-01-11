@@ -32,13 +32,19 @@
                 <div id="wrap-modify">
 
                     <form action="/el/member/modify" method="post" id="modify-form" onsubmit="return modifySubmit();" enctype="multipart/form-data">
-
-                        <div id="wrap-img">
-                            <div id='View_area'><img style="width: 150px; height: 150px;" src="/el/resources/upload/${loginMember.profileImgName}" alt=""></div>
-
+                        <div id="img-ment">
+                            <div>등록된 이미지</div>
+                            <div>*변경할 이미지</div>
+                        </div>
+                        <div id="profile-all">
+                            <div>
+                                <img style="width: 150px; height: 150px;" src="/el/resources/upload/${loginMember.profileImgName}" onerror="this.src='/el/resources/img/member/1234.png'">
+                            </div>
+                            <div id='View_area' style="height: 150px; margin: 0px;" ></div>
+                        </div>
                                 <div id="f" style="margin-top: 30px;">
                                     <input type="file" class="form-control mt-3" name="profileImg" id="profile_pt"
-                                        onchange="previewImage(this,'View_area')" style="margin-left: 0px; height: 23px;">
+                                    onchange="previewImage(this,'View_area')" style="margin-left: 0px; height: 23px; width: 350px;">
                                 </div>
                        
                         <h4><label for="">아이디</label></h4>

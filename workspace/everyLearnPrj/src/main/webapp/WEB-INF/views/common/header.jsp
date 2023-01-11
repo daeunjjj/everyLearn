@@ -18,6 +18,7 @@
     document.getElementsByTagName('head')[0].appendChild(link);
 	}());
 </script>
+<script src="/el/resources/js/common/chat.js"></script>
 </head>
 <body>
 
