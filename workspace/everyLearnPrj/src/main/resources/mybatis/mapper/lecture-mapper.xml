@@ -18,6 +18,8 @@
 		    , RECOMM
 		    , STUDENT_CNT
 		    , CLASS_CNT
+		    , THUMB
+		    , LOGO
 		)
 	VALUES
 		(
@@ -31,6 +33,8 @@
 		    , 0
 		    , 0
 		    , 0
+		    , #{thumb}
+		    , #{logo}
 		)
 		
 	
@@ -81,6 +85,8 @@
 			,C.MODIFY_DATE
 			,C.DELETE_YN
 			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
 		
         FROM CLASS C
        
@@ -112,6 +118,8 @@
 			,C.MODIFY_DATE
 			,C.DELETE_YN
 			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
 		
         FROM CLASS C
        
@@ -146,6 +154,8 @@
 			,C.MODIFY_DATE
 			,C.DELETE_YN
 			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
 		
         FROM CLASS C
        
@@ -180,6 +190,8 @@
 			,C.MODIFY_DATE
 			,C.DELETE_YN
 			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
 		
         FROM CLASS C
        
@@ -213,6 +225,8 @@
 			,C.MODIFY_DATE
 			,C.DELETE_YN
 			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
 		
         FROM CLASS C
        
@@ -247,6 +261,8 @@
 			,C.MODIFY_DATE
 			,C.DELETE_YN
 			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
 		
         FROM CLASS C
        
@@ -281,6 +297,8 @@
 			,C.MODIFY_DATE
 			,C.DELETE_YN
 			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
 		
         FROM CLASS C
        
@@ -314,6 +332,8 @@
 			,C.MODIFY_DATE
 			,C.DELETE_YN
 			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
 		
         FROM CLASS C
        
@@ -334,19 +354,28 @@
     <!-- 강의 검색 -->
     <select id="getSearch" resultType="com.coding5.el.lecture.vo.LectureVo">
     	SELECT 	
-    		NO
-			,TEACHER_NO
-			,CATEGORY
-			,CLASS_NAME
-			,CLASS_CONTENT
-			,RECOMM
-			,STUDENT_CNT
-			,PRICE
-			,ENROLL_DATE
-			,MODIFY_DATE
-			,DELETE_YN
-			,CLASS_CNT 
-        FROM CLASS
+    		C.NO
+			,MEM.NICK as TEACHER_NO
+			,C.CATEGORY
+			,C.CLASS_NAME
+			,C.CLASS_CONTENT
+			,C.RECOMM
+			,C.STUDENT_CNT
+			,C.PRICE
+			,C.ENROLL_DATE
+			,C.MODIFY_DATE
+			,C.DELETE_YN
+			,C.CLASS_CNT 
+			,C.LOGO
+			,C.THUMB
+       FROM CLASS C
+        
+        join TEACHER TEA
+        ON C.TEACHER_NO = TEA.NO
+        
+        JOIN MEMBER MEM
+        ON TEA.MEMBER_NO = MEM.NO
+      
         <if test="keyword != null and keyword != ''">
 			WHERE CLASS_NAME LIKE  '%${keyword}%'
 		</if> 
@@ -379,6 +408,8 @@
 			,C.MODIFY_DATE
 			,C.DELETE_YN
 			,C.CLASS_CNT
+			,C.LOGO
+			,C.THUMB
 			, (SELECT count(*) FROM REVIEW_LEC REV WHERE REV.CLASS_NO = C.NO ) as REVIEW_CNT 
 			, (Select TRUNC(avg(rev.score), 2) from review_lec rev where rev.class_no = c.no) as REV_AVG
         FROM CLASS C

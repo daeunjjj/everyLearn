@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.coding5.el.common.file.FileUploader;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.page.Pagination;
 import com.coding5.el.lecture.service.LectureService;
@@ -397,19 +399,37 @@ public class LectureController {
 
 	// 강의 등록 - post
 	@PostMapping("insert")
-	public String insert(LectureVo lvo, MultipartFile upfile, HttpSession session, Model model) {
-		//lvo.setTeacherNo((String) session.getAttribute("memberNo"));
+	public String insert(LectureVo lvo, HttpSession session, Model model, HttpServletRequest req) {
 
+		//boolean isEmpty = lvo.getThumbnailFile().get(0).isEmpty();
+
+		// 파일 저장
+		// 강의 썸네일 저장
+		String thumbName = "";
+		if(!lvo.getThumbFile().isEmpty()) {
+			thumbName = FileUploader.upload(session, lvo.getThumbFile());
+		}
+		
+		lvo.setThumb(thumbName);
+		
+		// 강의 내부  이미지 저장
+		String logoName = "";
+		if(!lvo.getLogoFile().isEmpty()) {
+			logoName = FileUploader.upload(session, lvo.getLogoFile());
+		}
+		
+		lvo.setLogo(logoName);
+		
+		
 		int result = lectureService.insertClassOne(lvo);
 		int bno = lectureService.selectBno();
 
 		if (result == 1) {
 			session.setAttribute("alertMsg", "기본 정보 입력 완료.");
-			//model.addAttribute(lvo);
 			model.addAttribute("bno" , bno);
 			return "redirect:/lecture/insert/detail";
 		} else {
-			model.addAttribute("errorMsg", " 게시글 등록에 실패하였습니다. ");
+			model.addAttribute("errorMsg", " 강의 등록에 실패하였습니다. ");
 			return "common/errorPage";
 		}
 

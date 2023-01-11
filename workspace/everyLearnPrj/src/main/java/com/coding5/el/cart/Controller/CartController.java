@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coding5.el.cart.Service.CartService;
 import com.coding5.el.cart.vo.CartVo;
+import com.coding5.el.lecture.service.LectureService;
 import com.coding5.el.member.vo.MemberVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,8 @@ public class CartController {
 
 	@Autowired
 	private CartService cartService;
+	@Autowired
+	private LectureService lectureService;
 
 	/*
 	 * @GetMapping("addCart") public String addCart() { return
@@ -63,6 +66,8 @@ public class CartController {
 		}
 		String mno = loginMember.getMemberNo();
 		int mp = cartService.getPoint(mno);
+		
+		int checkCart = cartService.checkCart(mno);
 
 		List<CartVo> list = cartService.getCartList(mno);
 		// System.out.println("controller list : " + list);
@@ -70,6 +75,7 @@ public class CartController {
 		model.addAttribute("mno", mno);
 		model.addAttribute("list", list);
 		model.addAttribute("mp", mp);
+		model.addAttribute("checkCart", checkCart);
 		return "lecture/cart";
 
 	}

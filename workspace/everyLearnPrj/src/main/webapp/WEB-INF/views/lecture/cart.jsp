@@ -25,9 +25,13 @@
 		<div id="wrap-top">
 			<div id="cate-name">장바구니</div>
 			<c:choose>
-			<c:when test="${empty list}">
-			<div style="margin-top:100px; text-align:center; font-size:22px; font-weight:600;">장바구니에 담긴 강의가 없습니다.</div>
-			</c:when>
+				<c:when test="${empty list}">
+				<div style="margin-top:100px; text-align:center; font-size:22px; font-weight:600;">장바구니에 담긴 강의가 없습니다.</div>
+				</c:when>
+				<c:when test="${checkCart == 0 }">
+				<div style="margin-top:100px; text-align:center; font-size:22px; font-weight:600;">장바구니에 담긴 강의가 없습니다.</div>
+				</c:when>
+			
 			<c:otherwise>
 			<br><br>
 			<div id="carts-num"> <span id="cnt">0</span>개 강의가 선택되었습니다.</div>
@@ -59,8 +63,8 @@
 						<input type="hidden" name="classNo" value="${list.classNo}">
 						<input type="hidden" name="no" value="${list.no }">
 						<%-- <input type="hidden" class="individual_totalPrice_input" value="${list.price}"> --%>
-						<div id="leccart-img"><a href='#'><img src="/el/resources/img/lecture/lecpic.png" alt="강의이미지"></a></div>
-						<div id="leccart-name">${list.className}</div>
+						<div id="leccart-img"><a href='#'><img src="/el/resources/upload/${list.thumb}" width="300px" height="140px"alt="강의이미지"></a></div>
+						<a href="/el/lecture/detail?bno=${list.classNo}" class="atag"><div id="leccart-name">${list.className}</div></a>
 						<div id="leccart-price">${list.price} 원</div>
 						<button type="button" class="remove" onclick="deleteOne(${list.classNo})">삭제</button>
 						<div id="leccart-teacher">${list.teacherNo}</div>

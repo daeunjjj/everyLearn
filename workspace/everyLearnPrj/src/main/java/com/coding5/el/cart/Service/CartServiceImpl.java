@@ -64,6 +64,12 @@ public class CartServiceImpl implements CartService{
 	public int getPoint(String mno) {
 		return cartDao.getPoint(sst, mno);
 	}
+
+	//장바구니에 상품 담겨있는지 체크
+	@Override
+	public int checkCart(String mno) {
+		return cartDao.checkCart(sst, mno);
+	}
 	
 	//
 	

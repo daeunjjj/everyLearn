@@ -29,4 +29,7 @@ public interface CartService {
 	//포인트 조회
 	public int getPoint(String mno);
 
+	//장바구니에 상품 담겨있는지 체크
+	public int checkCart(String mno);
+
 }
