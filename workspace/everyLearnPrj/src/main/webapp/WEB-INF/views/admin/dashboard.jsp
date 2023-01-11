@@ -164,9 +164,10 @@
                 success : function(data){
                     const list = JSON.parse(data);
                     console.log(list);
-
+                    // 데이터 없으면 알람
                     if(list==null){
                         alert("데이터가 없습니다.");
+                    // 데이터 있으면 js에서 사용하기 편하게 만들어주기
                     } else {
                             for(let i = 0; i < list.length; i++){
                             cntList.push(list[i].data);
@@ -174,11 +175,10 @@
                         }
                     }
 
+                    // console.log(cntList);
+                    // console.log(classList);
 
-                    console.log(cntList);
-                    console.log(classList);
-
-                    //그래프
+                    //그래프 그려주기
                     var barCtx = document.getElementById('barChart').getContext('2d');
                     barChart = new Chart(barCtx, {
                     type: 'bar',
@@ -214,7 +214,6 @@
                 },
                 error : function(){
                     alert("바차트 통신 실패");
-
                 }
             });
         }
@@ -232,9 +231,10 @@
                 success : function(data){
                     const list = JSON.parse(data);
                     console.log(list);
-
+                    // 데이터 없으면 알람
                     if(list==null){
                         alert("데이터가 없습니다.");
+                    // 데이터 js에서 사용하기 편하게 변수에 담아주기
                     } else {
                             for(let i = 0; i < list.length; i++){
                             cntList.push(list[i].data);
@@ -242,8 +242,8 @@
                         }
                     }
                     
-                    console.log("새로운" + cntList);
-                    console.log("새로운" + classList);
+                    // console.log("새로운" + cntList);
+                    // console.log("새로운" + classList);
 
                     // 차트에 새로운 데이터 업데이트 해주기
                     //barChart.data.datasets[0].label = 

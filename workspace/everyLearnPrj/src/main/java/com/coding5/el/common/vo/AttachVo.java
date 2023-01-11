@@ -11,5 +11,4 @@ public class AttachVo {
 	private String fileName;
 	private String enrollDate;
 	private String status;
-	
 }

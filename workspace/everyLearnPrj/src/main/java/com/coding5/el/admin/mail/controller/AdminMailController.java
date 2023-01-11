@@ -195,7 +195,7 @@ public class AdminMailController {
 		
 		// 전체 메일 전송
 		@PostMapping("all-send")
-		public String mailAllSend(MailVo mailVo, HttpSession session, AttachVo attachVo, MultipartFile multipartFile, RedirectAttributes redirect) {
+		public String mailAllSend(MailVo mailVo, HttpSession session, MultipartFile multipartFile, RedirectAttributes redirect) {
 			//관리자 넘버 & 메일 넣어주기
 			AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");	
 			
@@ -204,7 +204,6 @@ public class AdminMailController {
 			
 			
 			log.info("전체 메일 값 잘왔나요? mailVo ::: " + mailVo);
-			log.info("전체 메일 값 잘왔나요? attachVo ::: " + attachVo);
 			
 			log.info("isEmpty?"+!multipartFile.isEmpty());
 			
@@ -213,28 +212,16 @@ public class AdminMailController {
 			
 			// 파일 없으면
 			mailVo.setFileYn("N");
-			
+			String fileName = null;
 			// 파일 서버에 업로드
 			if(!multipartFile.isEmpty()) {
 				// 이미지 있으면
 				mailVo.setFileYn("Y");
-				voList = new ArrayList<>();
+				fileName = FileUploader.upload(session, multipartFile);
 				
-				for(int i = 0; i < mailVo.getMultipartFile().size(); i++) {
-					
-					attachVo = new AttachVo();
-					
-					log.info("이프문 통과");
-					log.info("파일 잘 들어옴? " +mailVo.getMultipartFile().get(i));
-					
-					attachVo.setFileName(FileUploader.upload(session, mailVo.getMultipartFile().get(i)));
-					
-					voList.add(i, attachVo);
-					
-				}
 			}
 			
-			int result = adminMailService.insertAllSendMail(mailVo, voList);
+			int result = adminMailService.insertAllSendMail(mailVo, fileName);
 			
 			if(result == 0) {
 				redirect.addFlashAttribute("resultMsg", "디비 저장 실패");
