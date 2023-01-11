@@ -148,7 +148,7 @@ input:focus {outline:none;}
     width: 150px;
     height: 150px; 
     color: black; 
-    border: 1px dashed #1187CF; 
+    /* border: 1px dashed #1187CF;  */
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 100px;

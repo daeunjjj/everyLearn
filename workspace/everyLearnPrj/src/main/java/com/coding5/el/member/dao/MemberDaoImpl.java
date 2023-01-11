@@ -91,6 +91,41 @@ public class MemberDaoImpl implements MemberDao{
 		return sst.selectList("memberMapper.selectPointList", mpn);
 	}
 
+	//my classList
+	@Override
+	public List<ClassListVo> selectMyClassList(SqlSessionTemplate sst, String memberNo) {
+		return sst.selectList("memberMapper.selectMyClassList", memberNo);
+	}
+
+//	//my classInfoList
+//	@Override
+//	public List<ClassListVo> selectmyClassInfoList(SqlSessionTemplate sst, List<ClassListVo> myClassList) {
+//		log.info("디에이오myClassList :: " , myClassList);
+//		return sst.selectList("memberMapper.selectmyClassInfoList", myClassList);
+//	}
+
+	@Override
+	public ClassListVo selectmyClassInfoList(SqlSessionTemplate sst, ClassListVo classListVo) {
+		return sst.selectOne("memberMapper.selectmyClassInfoList", classListVo);
+	}
+
+	@Override
+	public List<ClassListVo> selectClassDetailList(SqlSessionTemplate sst, String classNo) {
+		return sst.selectList("memberMapper.selectClassDetailList", classNo);
+	}
+
+	//학습률 강의 정보
+	@Override
+	public List<ClassListVo> selectClassDetailInfoList(SqlSessionTemplate sst, String classNo) {
+		return sst.selectList("memberMapper.selectmyClassInfoList", classNo);
+	}
+
+	@Override
+	public int insertMember(SqlSessionTemplate sst, HashMap<String, Object> progressMap) {
+		log.info("progressMap"+progressMap);
+		return sst.insert("memberMapper.insertMemberStudy", progressMap);
+	}
+
 //	//teacher info
 //	@Override
 //	public TeacherMemberVo selectTeacherInfo(SqlSessionTemplate sst, String memberNo) {

@@ -39,6 +39,18 @@ public interface MemberDao {
 
 	public List<PointVo> selectPointList(SqlSessionTemplate sst, String mpn);
 
+	public List<ClassListVo> selectMyClassList(SqlSessionTemplate sst, String memberNo);
+
+//	public List<ClassListVo> selectmyClassInfoList(SqlSessionTemplate sst, List<ClassListVo> myClassList);
+
+	public ClassListVo selectmyClassInfoList(SqlSessionTemplate sst, ClassListVo classListVo);
+
+	public List<ClassListVo> selectClassDetailList(SqlSessionTemplate sst, String classNo);
+
+	public List<ClassListVo> selectClassDetailInfoList(SqlSessionTemplate sst, String classNo);
+
+	public int insertMember(SqlSessionTemplate sst, HashMap<String, Object> progressMap);
+
 //	public TeacherMemberVo selectTeacherInfo(SqlSessionTemplate sst, String memberNo);
 //
 //	public List<TeacherMemberVo> selectClassList(SqlSessionTemplate sst, String memberNo);

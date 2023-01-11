@@ -151,4 +151,56 @@ INSERT INTO MEMBER
 		ORDER BY ENROLL_DATE DESC
 	</select>
   
+  
+  	<select id="selectMyClassList" resultType="com.coding5.el.member.vo.ClassListVo">
+		SELECT CLASS_NO
+		FROM BUYLIST BL
+		JOIN MEMBER M
+		ON M.NO = BL.MEMBER_NO
+		WHERE M.NO = ${memberNo}
+  	</select>
+  	
+  	<select id="selectmyClassInfoList" resultType="com.coding5.el.member.vo.ClassListVo">
+		SELECT 
+		(SELECT M.NICK FROM MEMBER M
+		  WHERE C.TEACHER_NO = M.NO) AS TEACHER_NICK
+		,(SELECT M.NO FROM MEMBER M
+		  WHERE C.TEACHER_NO = M.NO) AS TEACHER_NO  
+		, C.CLASS_NAME
+		, C.RECOMM
+		, C.REV_AVG
+		, CA.CHANGE_NAME
+		, C.NO CLASS_NO
+		FROM CLASS C
+		JOIN CLASS_ATTACH CA
+		ON C.NO = CA.CLASS_NO
+		WHERE C.NO = ${classNo}
+  	</select>
+  	
+  	<select id="selectClassDetailList" resultType="com.coding5.el.member.vo.ClassListVo">
+  		SELECT DC.DETAIL_NO
+		, DC.CHAPTER
+		,C.NO CLASS_NO
+		, DC.NO DETAIL_CLASS_NO
+		FROM DETAIL_CLASS DC
+		JOIN CLASS C
+		ON DC.CLASS_NO = C.NO
+		WHERE C.NO = ${classNo}
+  	</select>
+  	
+  	<insert id="insertMemberStudy">
+  		INSERT INTO MEMBER_STUDY
+		(
+		    NO
+		    ,MEMBER_NO
+		    ,DETAIL_CLASS_NO
+		)
+		VALUES
+		(
+		    SEQ_MEMBER_STUDY_NO.NEXTVAL
+		    , ${mn}
+		    , ${detailClassNo}
+		)
+  	</insert>
+  	
 </mapper>

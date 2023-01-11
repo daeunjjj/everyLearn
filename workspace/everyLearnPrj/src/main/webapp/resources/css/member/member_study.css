@@ -86,8 +86,8 @@ label{
 
 
 #lec-img{
-    width: 208px;
-    height: 150px;
+    width: 300px;
+    height: 140px;
     margin: auto;
     margin-bottom: 3px;
 }
@@ -139,4 +139,12 @@ label{
 #late-title{
     font-size: 1.5rem;
     font-weight: 700;
+}
+
+
+a:link { color: black; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover {color: black; text-decoration: none;}
+a{
+    text-decoration: none;
 }
