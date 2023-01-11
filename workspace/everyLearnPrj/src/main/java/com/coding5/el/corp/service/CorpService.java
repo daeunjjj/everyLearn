@@ -67,6 +67,9 @@ public interface CorpService {
 	// 지원자 현황
 	public List<ApplyVo> applyList(PageVo pv, String empNo);
 
+	// 비밀번호 재설정
+	public int updatePwd(String num, String pwd);
+
 
 
 }

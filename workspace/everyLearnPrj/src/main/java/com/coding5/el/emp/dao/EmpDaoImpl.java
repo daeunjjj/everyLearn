@@ -206,5 +206,11 @@ public class EmpDaoImpl implements EmpDao {
 
 	}
 
+	// 입사지원 유무 확인
+	@Override
+	public int selectApplication(SqlSessionTemplate sst, ApplyVo av) {
+		return sst.selectOne("jobPostMapper.selectApplication", av);
+	}
+
 
 }

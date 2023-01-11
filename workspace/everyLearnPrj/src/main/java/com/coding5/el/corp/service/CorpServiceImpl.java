@@ -252,6 +252,19 @@ public class CorpServiceImpl implements CorpService {
 		return dao.selectApplyList(sst, pv, empNo);
 	}
 
+	// 비밀번호 재설정
+	@Override
+	public int updatePwd(String num, String pwd) {
+
+		CorpVo vo = new CorpVo();
+		
+		vo.setAuthentication(num);
+		String newPwd = enc.encode(pwd);
+		vo.setPwd(newPwd);
+		
+		return dao.updatePwd(sst, vo);
+	}
+
 
 
 

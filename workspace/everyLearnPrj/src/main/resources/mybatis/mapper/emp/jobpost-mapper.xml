@@ -42,6 +42,7 @@
 		, EMP.ADDRESS
 		, EMP.CAREER
 		, CORP.COMPANY_NAME
+		, CORP.THUMB
 	FROM EMPLOYMENT EMP
 	JOIN CORPORATE_MEMBER CORP ON EMP.CORP_NO = CORP.NO
 	WHERE EMP.DELETE_YN = 'N'
@@ -122,6 +123,7 @@
         , EMP.ADDRESS
         , EMP.CAREER
         , CORP.COMPANY_NAME
+        , CORP.THUMB
     FROM EMPLOYMENT EMP 
     JOIN CORPORATE_MEMBER CORP ON CORP.NO = EMP.CORP_NO
     JOIN JOB_CATE JOB ON JOB.NO = EMP.CATEGORY
@@ -137,6 +139,14 @@
   	WHERE DELETE_YN = 'N'
   	AND CATEGORY = #{value}
   	AND DEADLINE >= TO_CHAR(SYSDATE,'YYYY-MM-DD')
+  </select>
+  
+  <select id="selectApplication" resultType="int">
+    SELECT 
+        COUNT(*)
+    FROM APPLY
+    WHERE MEMBER_NO = #{memberNo}
+    AND EMP_NO = #{empNo}
   </select>
   
 </mapper>

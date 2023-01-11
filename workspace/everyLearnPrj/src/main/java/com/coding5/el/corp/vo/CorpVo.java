@@ -11,6 +11,7 @@ public class CorpVo {
 	private String id;
 	private String pwd;
 	private String prePwd;
+	private String authentication;
 	private String companyName;
 	private String companyAddress;
 	private String detailAddress;
@@ -31,4 +32,5 @@ public class CorpVo {
 	private String logo;
 	private String thumb;
 	private String deleteYn;
+	private String period;
 }

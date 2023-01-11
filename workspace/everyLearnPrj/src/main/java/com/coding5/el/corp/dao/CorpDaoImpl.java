@@ -149,6 +149,12 @@ public class CorpDaoImpl implements CorpDao{
 		return sst.selectList("corpMapper.selectApplyList", empNo, rb);
 	}
 
+	// 비밀번호 재설정
+	@Override
+	public int updatePwd(SqlSessionTemplate sst, CorpVo vo) {
+		return sst.update("corpMapper.updatePwd", vo);
+	}
+
 
 
 }

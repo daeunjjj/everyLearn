@@ -148,8 +148,9 @@
 									<label>
 										<div>
 											<div class="img-input">
-												<input oninput="validate();" onblur="validateLogo();" onchange="uploadLogo(this);" type="file" accept=".jpg,.jpeg,.png" name="logo" id="logo"><img
+												<input oninput="validate();" onblur="validateLogo();" onchange="uploadLogo(this);" type="file" accept=".jpg,.jpeg,.png" name="logoFile" id="logo"><img
 													alt="" src="/el/resources/upload/${cv.logo}" id="logo-upload" class="uploaded" onerror="this.style.display='none'">
+													<input type="hidden" name="logo" value="${cv.logo}">
 												<div class="image-uploader-cover css-1ngnjh4"></div>
 												<div>
 													<img src="/el/resources/img/emp/img-upload.svg" alt="">
@@ -178,8 +179,9 @@
 									<label>
 										<div>
 											<div class="img-input">
-												<input oninput="validate();" onchange="uploadImg(this);" onblur="validateThumb();" type="file" accept=".jpg,.jpeg,.png" name="thumb" id="thumb"><img
+												<input oninput="validate();" onchange="uploadImg(this);" onblur="validateThumb();" type="file" accept=".jpg,.jpeg,.png" name="thumbFile" id="thumb"><img
 												src="/el/resources/upload/${cv.thumb}" id="img-upload" class="uploaded" onerror="this.style.display='none'">
+												<input type="hidden" name="thumb" value="${cv.thumb}">
 												<div class="image-uploader-cover css-1ngnjh4"></div>
 												<div>
 													<img src="/el/resources/img/emp/img-upload.svg" alt="">
@@ -209,14 +211,12 @@
 					</section>
 					<section class="admin-submit">
 						<div>
-						<c:choose>
-							<c:when test="${'Y' eq corpMember.statusYn}">
+							<c:if test="${corpMember.statusYn eq 'Y'}">
 								<button type="submit" class="admin-btn">저장 하기</button>
-							</c:when>
-							<c:otherwise>
+							</c:if>
+							<c:if test="${corpMember.statusYn eq 'N'}">
 								<button type="submit" class="admin-btn" disabled>승인 요청</button>
-							</c:otherwise>
-						</c:choose>
+							</c:if>
 						</div>
 					</section>
 				</form>
@@ -258,6 +258,10 @@
 							}
 						})
 		}
+
+
+		document.querySelector('select[name="sector"] option[value="${cv.sector}"]')?.setAttribute('selected', '');
+
 	</script>
 
 

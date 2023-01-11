@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.coding5.el.common.file.FileUploader;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.page.Pagination;
+import com.coding5.el.corp.service.CorpMailService;
 import com.coding5.el.corp.service.CorpService;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
@@ -31,6 +32,9 @@ public class CorpController {
 
 	@Autowired
 	private CorpService cs;
+	
+	@Autowired
+	private CorpMailService cms;
 	
 	// 기업 회원가입(화면)
 	@GetMapping("join")
@@ -84,10 +88,58 @@ public class CorpController {
 	}
 	
 	// 비밀번호 재설정
-	@GetMapping("reset-pwd")
-	public String resetPwd() {
+	@GetMapping("send-mail")
+	public String sendMail() {
 		return "emp/member/reset/pwd";
 	}
+	
+	/*
+	 * 1. 이메일 입력
+	 * 2. 버튼 누르면 인증번호가 담긴 이메일 발송
+	 * 3. 이메일에 있는 인증번호를 입력하면 비밀번호 변경 페이지로 이동
+	 * 4. 변경할 비밀번호를 입력하면 비밀번호 변경 완료 -> 로그인 페이지로 이동.
+	 */
+	
+	// 비밀번호 재설정 링크 보내기
+	@PostMapping("send-mail")
+	public String sendMail(@RequestParam(value="id") String id) {
+		
+		if(id == null || id.equals("")) {
+			return "redirect:/common/error";
+		}
+		
+		CorpVo vo = new CorpVo();
+		vo.setId(id);
+		
+		int mail = cms.mailService(vo);
+		
+		return "redirect:/corp/login";
+	}
+	
+	// 비밀번호 재설정 링크(화면)
+	@GetMapping("authentication")
+	public String resetPwd(@RequestParam(value = "num", defaultValue = "") String num) {
+		
+		if(num == null || num.equals("")) {
+			return "redirect:/common/error";
+		}
+		
+		return "emp/member/reset/authentication";
+	}
+	
+	// 비밀번호 재설정 링크
+	@PostMapping("authentication")
+	public String resetPwd(@RequestParam(value = "num") String num, String pwd) {
+		
+		int result = cs.updatePwd(num, pwd);
+		
+		if(result != 1) {
+			return "redirect:/common/error";
+		}
+		
+		return "redirect:/corp/login";
+	}
+	
 	
 	// 기업 로그아웃
 	@GetMapping("logout")
@@ -149,19 +201,19 @@ public class CorpController {
 		
 		// 회사 로고  이미지 저장
 		String logoName = "";
-		if(!vo.getLogo().isEmpty()) {
+		if(!vo.getLogoFile().isEmpty()) {
 			logoName = FileUploader.upload(session, vo.getLogoFile());
+			vo.setLogo(logoName);
 		}
 		
-		vo.setLogo(logoName);
 		
 		// 회사 이미지 저장
 		String thumbName = "";
-		if(!vo.getThumb().isEmpty()) {
+		if(!vo.getThumbFile().isEmpty()) {
 			thumbName = FileUploader.upload(session, vo.getThumbFile());
+			vo.setThumb(thumbName);
 		}
 		
-		vo.setThumb(thumbName);
 		
 		int result = cs.updateCorpInfo(vo);
 		
@@ -192,6 +244,7 @@ public class CorpController {
 			if(ev == null) {
 				return "redirect:/corp/login";
 			}
+			log.info(ev.getDeadline());
 			
 			model.addAttribute("ev", ev);
 		}
@@ -391,5 +444,6 @@ public class CorpController {
 		
 		return "emp/mypage/applicant";
 	}
+
 	
 }

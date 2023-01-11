@@ -22,7 +22,13 @@
 			<div class="title">
 				<h5>정확하게 입력했는지 다시 한번 확인해주세요!</h5>
 			</div>
-			<form action="/el/emp/resume" method="POST" enctype="multipart/form-data" onsubmit="return saveBtn(this);">
+			<c:if test="${empty apply}">
+				<form action="/el/emp/resume" method="POST" enctype="multipart/form-data" onsubmit="return saveBtn(this);">
+			</c:if>
+			<c:if test="${not empty apply}">
+				<form method="POST" enctype="multipart/form-data" onsubmit="return saveBtn(this);">
+			</c:if>
+
 				<c:if test="${not empty rv}">
 					<input type="hidden" name="no" value="${rv.no}">
 				</c:if>
@@ -122,7 +128,6 @@
 																<input type="text" name="evList[${status.index}].major" class="input"  value="${item.major}">
 															</div>
 														</div>
-														<!-- 드롭다운 변경 예정 -->
 														<div class="list">
 															<p>졸업 여부</p>
 															<div>
@@ -187,7 +192,6 @@
 																	<input type="text" name="cvList[${status.index}].position" class="input" value="${item.position}"> 
 																</div>
 															</div>
-															<!-- 드롭 다운 -->
 															<div class="list">
 																<p>근무유형</p>
 																<div>
@@ -216,7 +220,6 @@
 																</div>
 																<div id="cv-leave-container-${status.index}" style="margin-top: -1px;"></div>	
 															</div>
-															<!-- 드롭 다운 -->
 															<div class="list">
 																<p>재직 여부</p>
 																<div>
@@ -431,10 +434,16 @@
 							</div>
 						</section>
 					</div>
-					<c:if test="${not empty loginMember }">
+					<c:if test="${not empty loginMember && apply == null}">
 					<div class="button-wrapper">
 						<button type="submit" class="save-btn">저장</button>
 					</div>
+					</c:if>
+					
+					<c:if test="${not empty loginMember && apply == 0}">
+						<div class="button-wrapper">
+							<button type="submit" class="save-btn">제출하기</button>
+						</div>
 					</c:if>
 			</form>
 		</article>

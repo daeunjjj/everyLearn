@@ -40,6 +40,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 30px;
 }
 
 .reset-wrapper{
@@ -106,11 +107,6 @@
   color: rgb(83, 89, 97);
 }
 
-.x-icon{
-  display: flex;
-  align-items: center;
-}
-
 .x-icon>div{
   display: flex;
   align-items: center;
@@ -129,7 +125,7 @@
   color: rgb(229, 0, 0);
 }
 
-.okId{
+.okPwd{
   position: relative;
   top: 1px;
   margin-left: 4px;

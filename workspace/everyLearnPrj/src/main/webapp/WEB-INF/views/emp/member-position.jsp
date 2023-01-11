@@ -79,10 +79,15 @@
 						<dd>마감일</dd>
 						<dt>${vo.deadline}</dt>
 					</dl>
-					<c:if test="${not empty loginMember}">
+					<c:if test="${loginMember != null && apply == 0}">
 					<div>
 						<a href="/el/emp/apply?empNo=${vo.no}"><button class="submit-btn">지원하기</button></a>
 					</div>
+					</c:if>
+					<c:if test="${loginMember != null && apply != 0}">
+						<div>
+							<a href="/el/emp/apply?empNo=${vo.no}"><button class="submit-btn" disabled>지원 완료</button></a>
+						</div>
 					</c:if>
 				</aside>
 			</div>

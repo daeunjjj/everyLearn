@@ -69,6 +69,9 @@ public interface CorpDao {
 	// 지원자 현황 페이지
 	public List<ApplyVo> selectApplyList(SqlSessionTemplate sst, PageVo pv, String empNo);
 
+	// 비밀번호 재설정
+	public int updatePwd(SqlSessionTemplate sst, CorpVo vo);
+
 
 
 }

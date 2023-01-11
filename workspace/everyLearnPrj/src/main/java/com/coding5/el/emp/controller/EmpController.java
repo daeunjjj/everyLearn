@@ -104,7 +104,21 @@ public class EmpController {
 	
 	// 채용 공고 세부조회
 	@GetMapping("position")
-	public String jobPostDetail(String no, Model model) {
+	public String jobPostDetail(String no, Model model, HttpSession session) {
+		
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		if(loginMember != null) {
+			
+			String memberNo = loginMember.getMemberNo();
+			
+			ApplyVo av = new ApplyVo();
+			av.setMemberNo(memberNo);
+			av.setEmpNo(no);
+			
+			int apply = es.selectApplication(av);
+			
+			model.addAttribute("apply", apply);
+		}
 		
 		JobPostVo vo = es.jobPostDetail(no);
 		model.addAttribute("vo", vo);
@@ -114,7 +128,7 @@ public class EmpController {
 	
 	// 지원하기(화면)
 	@GetMapping("apply")
-	public String apply(HttpSession session, Model model) {
+	public String apply(HttpSession session, Model model, @RequestParam("empNo") String empNo) {
 		
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 		
@@ -123,6 +137,11 @@ public class EmpController {
 		}
 		
 		String memberNo = loginMember.getMemberNo();
+		
+		ApplyVo av = new ApplyVo();
+		av.setMemberNo(memberNo);
+		av.setEmpNo(empNo);
+		int apply = es.selectApplication(av);
 		
 		ResumeVo rv = es.selectResume(memberNo);
 		List<EducationVo> eduList = es.selectEducation(rv);
@@ -137,6 +156,7 @@ public class EmpController {
 		model.addAttribute("awardList", awardList);
 		model.addAttribute("careerList", careerList);
 		model.addAttribute("certificateList", certificateList);
+		model.addAttribute("apply", apply);
 		
 		return "emp/resume";
 		

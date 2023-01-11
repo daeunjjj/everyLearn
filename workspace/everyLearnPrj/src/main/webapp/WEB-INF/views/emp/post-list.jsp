@@ -28,7 +28,7 @@ pageEncoding="UTF-8"%>
 						<div class="announcement-wrapper">
 							<a href="/el/emp/position?no=${list.no}">
 								<figure class="img-wrapper">
-									<img src="/el/resources/img/logo/logo_white.png" alt="img">
+									<img src="/el/resources/upload/${list.thumb}" alt="img">
 								</figure>
 								<div class="emp-info">
 									<div>
@@ -54,30 +54,30 @@ pageEncoding="UTF-8"%>
 		<c:if test="${pv.currentPage != 1}">
 				<li>
 					<c:if test="${empty keyword}">
-						<a id="before" href="/el/emp/job-post?pno=${pv.currentPage-1}">이전</a>
+						<a id="before" href="${httpServletRequest.getRequestURI()}?pno=${pv.currentPage-1}">이전</a>
 					</c:if>
 					<c:if test="${!empty keyword}">
-						<a id="before" href="/el/emp/job-post/search?pno=${pv.currentPage-1}&keyword=${keyword}">이전</a>
+						<a id="before" href="${httpServletRequest.getRequestURI()}?pno=${pv.currentPage-1}&keyword=${keyword}">이전</a>
 					</c:if>
 				</li>
 		</c:if>
 		<c:forEach var="num" begin="${pv.startPage }" end="${pv.endPage }">
 				<li>
 					<c:if test="${empty keyword}">
-						<a class="numBtn" href="/el/emp/job-post?pno=${num}">${num}</a>
+						<a class="numBtn" href="${httpServletRequest.getRequestURI()}?pno=${num}">${num}</a>
 					</c:if>
 					<c:if test="${!empty keyword}">
-						<a class="numBtn" href="/el/emp/job-post?pno=${num}&keyword=${keyword}">${num}</a>
+						<a class="numBtn" href="${httpServletRequest.getRequestURI()}?pno=${num}&keyword=${keyword}">${num}</a>
 					</c:if>
 				</li>
 		</c:forEach>
 		<c:if test="${pv.currentPage != pv.maxPage && pv.maxPage != 0}">
 				<li>
 					<c:if test="${empty keyword}">
-						<a id="after" href="/el/emp/job-post?pno=${pv.currentPage+1}">다음</a>                       		
+						<a id="after" href="${httpServletRequest.getRequestURI()}?pno=${pv.currentPage+1}">다음</a>                       		
 					</c:if>
 					<c:if test="${!empty keyword}">
-						<a id="after" href="/el/emp/job-post?pno=${pv.currentPage+1}&keyword=${keyword}">다음</a> 
+						<a id="after" href="${httpServletRequest.getRequestURI()}?pno=${pv.currentPage+1}&keyword=${keyword}">다음</a> 
 					</c:if>
 				</li>
 		</c:if>
