@@ -14,7 +14,6 @@ import com.coding5.el.member.dao.MemberDao;
 import com.coding5.el.member.vo.ClassListVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
-import com.coding5.el.member.vo.TeacherMemberVo;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -171,6 +170,75 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectPointList(sst, mpn);
 	}
 
+	//내 강의 조회
+	@Override
+	public List<ClassListVo> myClassList(String memberNo) {
+		return memberDao.selectMyClassList(sst, memberNo);
+	}
+
+	//내 강의 정보 조회
+	@Override
+	public List<ClassListVo> myClassInfoList(List<ClassListVo> myClassList) {
+			
+		log.info("서비스 반복 전 myClassList.get()::" + myClassList.get(0));
+	    List<ClassListVo> myClassInfoList = new ArrayList<ClassListVo>();
+		for(int i = 0; i<myClassList.size(); i++) {
+			ClassListVo vo = new ClassListVo();
+			vo = memberDao.selectmyClassInfoList(sst, myClassList.get(i));
+			
+			myClassInfoList.add(vo);
+		}
+		
+		return myClassInfoList;
+	}
+
+	//강의 세부리스트
+	@Override
+	public List<ClassListVo> classDetailList(String classNo) {
+		return memberDao.selectClassDetailList(sst, classNo);
+	}
+
+	//학습률 강의 정보
+	@Override
+	public List<ClassListVo> classDetailInfoList(String classNo) {
+		return memberDao.selectClassDetailInfoList(sst, classNo);
+	}
+
+	//마이 스터디 인서트
+	@Override
+	public int insertMemberStudy(String mn,List<ClassListVo> classDetailList) {
+		//서비스에서 멤버넘버 처리해야 함!!!!!!!!
+
+		return 1;
+		
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//강사인포
 //	@Override
 //	public TeacherMemberVo teacherInfo(String memberNo) {

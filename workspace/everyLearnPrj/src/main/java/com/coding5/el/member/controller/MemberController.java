@@ -1,10 +1,9 @@
 package com.coding5.el.member.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
+import com.coding5.el.class_comm.vo.ClassCommVo;
+import com.coding5.el.common.file.FileUploader;
 import com.coding5.el.member.service.MemberService;
 import com.coding5.el.member.vo.ClassListVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
-import com.coding5.el.member.vo.TeacherMemberVo;
-import com.coding5.el.admin.vo.AdminVo;
-import com.coding5.el.class_comm.vo.ClassCommVo;
-import com.coding5.el.common.file.FileUploader;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,6 +31,55 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	//학습진도율
+	@GetMapping("memberProgress")
+	public String memberProgress(String classNo, String mn,  Model model) {
+		
+		//강의 세부 목록
+		List<ClassListVo> classDetailList = memberService.classDetailList(classNo);
+		
+		log.info("classDetailList" + classDetailList);
+//		progressMap.put("classDetailList", classDetailList);
+//		progressMap.put("mn", mn);
+//		
+//		//학습진도 강의 인서트
+//		int myClassresult = memberService.insertMemberStudy(classDetailList, mn);
+//		// 멤버넘버 데리고 가서 서비스에서 리스트 사이즈 만큼 반복문 돌림 -> 디에이오에  mn 이랑 디클넘 넘겨주기!
+//		
+		
+		//강의 정보
+		List<ClassListVo> classDetailInfoList = memberService.classDetailInfoList(classNo);
+		
+		
+		model.addAttribute("classDetailList",classDetailList);
+		model.addAttribute("classDetailInfoList",classDetailInfoList);
+		
+		
+		return "lecture/mylist";
+	}
+	
+	
+	
+	//내 강의 페이지
+	@GetMapping("memberStudy")
+	public String memberStudy() {
+		return "member/member_study";
+	}
+	
+	//내 강의 페이지
+	@PostMapping("memberStudy")
+	public String memberStudy(String memberNo, Model model) {
+		
+		//내 강의 조회
+		List<ClassListVo> myClassList = memberService.myClassList(memberNo);
+		myClassList.get(0);
+		//강의 정보 조회
+		List<ClassListVo> myClassInfoList = memberService.myClassInfoList(myClassList);
+		model.addAttribute("myClassInfoList",myClassInfoList);
+		
+		return "member/member_study";
+	}
 	
 	@GetMapping("point")
 	public String point(String mpn, Model model) {
@@ -118,20 +163,7 @@ public class MemberController {
 	}
 	
 	
-	//내 강의 페이지
-	@GetMapping("memberStudy")
-	public String memberStudy() {
-		return "member/member_study";
-	}
-	
-	//내 강의 페이지
-	@PostMapping("memberStudy")
-	public String memberStudy(String memberNo, Model model) {
-		
 
-		
-		return "member/member_study";
-	}
 	
 	@GetMapping("memberStudyDetail")
 	public String memberStudyDetail() {
@@ -268,9 +300,19 @@ public class MemberController {
 		vo.setProfileImgName(changeName);
 		
 		MemberVo updateMember =  memberService.updateMember(vo);
+		
+		//강사체크
+		String teacherCheck = memberService.teacherCheck(updateMember);
+    	
+    	if(teacherCheck != null) {
+    		updateMember.setTeacherCheck(teacherCheck);
+    	}
+    	
+        log.info("세션로그인멤버 :: " + loginMember);
+		
 		log.info("업데이트 : " + updateMember);
-		session.setAttribute("loginMember", updateMember);
 		loginMember.setProfileImgName(updateMember.getProfileImgName());
+		session.setAttribute("loginMember", updateMember);
 		
 		
 		if(updateMember == null) {

@@ -34,7 +34,8 @@
                     <form action="/el/member/modify" method="post" id="modify-form" onsubmit="return modifySubmit();" enctype="multipart/form-data">
 
                         <div id="wrap-img">
-                            <div id='View_area'><img  src="/el/resources/upload/${loginMember.profileImgName}" alt=""></div>
+                            <div id='View_area'><img style="width: 150px; height: 150px;" src="/el/resources/upload/${loginMember.profileImgName}" alt=""></div>
+
                                 <div id="f" style="margin-top: 30px;">
                                     <input type="file" class="form-control mt-3" name="profileImg" id="profile_pt"
                                         onchange="previewImage(this,'View_area')" style="margin-left: 0px; height: 23px;">

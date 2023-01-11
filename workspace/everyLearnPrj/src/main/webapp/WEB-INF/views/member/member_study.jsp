@@ -20,6 +20,7 @@
             <div id="intro-wrap">
             <div>
                 <div id="lecture">
+                    ${myClassInfoList}
                     <label for="">최근 본 강의</label>
                 </div>
                 <div id="lately-wrap">
@@ -51,13 +52,15 @@
                     <label for="">내 강의 목록</label>
                 </div>
                 <div id="list-wrap">
-                <c:forEach items="${teacherDetailList}" var="detail">
+                <c:forEach items="${myClassInfoList}" var="myClass">
                     <div class="lec-list">
-                        <img id="lec-img" src="/el/resources/img/teacher/ex.png" alt="">
-                        <div id="lec-name">강의명</div>
-                        <div id="teacher-name">강사명</div>
-                        <div id="lec-reomm">추천수</div>
-                        <div id="lec-price">1000원</div>
+                        <a href="/el/member/memberProgress?classNo=${myClass.classNo}&mn=${loginMember.memberNo}">
+                            <img id="lec-img" src="/el/resources/upload/${myClass.changeName}" alt="">
+                            <div id="lec-name">${myClass.className}</div>
+                            <div id="teacher-name">${myClass.teacherNick}</div>
+                        </a>
+                        
+
                     </div>
                 </c:forEach>
                 </div>

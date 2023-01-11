@@ -58,13 +58,14 @@
 				</c:if>
 
 				<c:choose>
-
 				<c:when test="${loginMember.teacherCheck eq 'no' ||  loginMember.teacherCheck eq 'N' }">
 
 					<!--**회원 로그인 후 -->
 					<div class="member">
 						<div style="width: 50px;">
-							<img id="cartimg" src="/el/resources/img/member/cartimg.png" alt="">
+							<a href="/el/cart/addCart">
+								<img id="cartimg" src="/el/resources/img/member/cartimg.png"  alt="">
+							</a>
 						</div>
 						<div style="width: 50px;">
 						<img id="memberimg" src="/el/resources/img/member/memberimg.png" alt="" onclick="location.href='/el/member/alert'">
@@ -79,8 +80,8 @@
 								
 							<div class="dropdown-content">
 								<a href="/el/member/alert">알림</a>
-								<a href="javascript:listView('${loginMember.memberNo}')">내 강의</a>
-								<a href="javascript:listView('${loginMember.memberNo}')">작성글</a>
+								<a href="javascript:memberStudy('${loginMember.memberNo}')">내 강의</a>
+								<a href="/el/member/writeList?memberNo=${loginMember.memberNo}">작성글</a>
 								<a href="/el/member/logout">로그아웃</a>
 							</div>
 						</div>
@@ -104,9 +105,10 @@
 								
 								<div class="dropdown-content">
 									<a href="/el/member/alert">알림</a>
-									<a id="myClassList" href="/el/member/memberStudy">내 강의</a>
+									<a id="myClassList" href="javascript:memberStudy('${loginMember.memberNo}')">내 강의</a>
 
-									<a href="">장바구니</a>
+
+									<a href="/el/cart/addCart">장바구니</a>
 									<a href="/el/member/writeList?memberNo=${loginMember.memberNo}">작성글</a>
 									<a href="/el/member/logout">로그아웃</a>
 								</div>

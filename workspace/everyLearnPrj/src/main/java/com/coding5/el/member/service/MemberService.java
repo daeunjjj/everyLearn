@@ -46,6 +46,22 @@ public interface MemberService {
 	//포인트 리스트
 	public List<PointVo> pointList(String mpn);
 
+	//내 강의 조회
+	public List<ClassListVo> myClassList(String memberNo);
+
+	//내 강의 정보 조회
+	public List<ClassListVo> myClassInfoList(List<ClassListVo> myClassList);
+	//강의 세부 리스트 조회
+	public List<ClassListVo> classDetailList(String classNo);
+
+	//학습률 강의 정보
+	public List<ClassListVo> classDetailInfoList(String classNo);
+	//내 스터디 인서트
+	public int insertMemberStudy(String mn,List<ClassListVo> classDetailList);
+	
+	
+	
+
 //	//강사 정보
 //	public TeacherMemberVo teacherInfo(String memberNo);
 //

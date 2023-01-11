@@ -21,7 +21,7 @@ function memberNo(params) {
 
 }
 
-function listView(memberNo){
+function memberStudy(memberNo){
     let f = document.createElement('form');
     
     let obj;
@@ -31,10 +31,12 @@ function listView(memberNo){
     obj.setAttribute('value', memberNo);
     
     f.appendChild(obj);
-    f.setAttribute('method', 'get');
+    f.setAttribute('method', 'post');
     f.setAttribute('action', '/el/member/memberStudy');
     document.body.appendChild(f);
     f.submit();
 }
+
+
 
 
