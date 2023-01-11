@@ -57,5 +57,24 @@
 	<!--gson 객체  -->
 	<beans:bean class="com.google.gson.Gson"/>
 	
+	<!-- 인터셉터 관리자 체크 맵핑 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/admin/**"/>
+			<exclude-mapping path="/admin/login"/>
+			<exclude-mapping path="/admin/logout"/>
+			<exclude-mapping path="/admin/find/*"/>
+			<beans:bean class="com.coding5.el.admin.intercepter.AdminCheckIntercepter"></beans:bean>
+		</interceptor>
+	</interceptors>
+	
+	<!-- 인터셉터 마스터 관리자 체크 맵핑 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/admin/master/**"/>
+			<exclude-mapping path="/admin/master/list"/>
+			<beans:bean class="com.coding5.el.admin.intercepter.AdminMasterCheckIntercepter"></beans:bean>
+		</interceptor>
+	</interceptors>
 
 </beans:beans>

@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.coding5.el.admin.vo.AdminVo;
+import com.coding5.el.alert.vo.AlertVo;
 import com.coding5.el.chart.vo.ChartVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.page.Pagination;
@@ -19,6 +20,7 @@ import com.coding5.el.emp.comm.vo.AttachVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
+import com.coding5.el.report.vo.ReportVo;
 import com.coding5.el.request.vo.RequestVo;
 import com.coding5.el.teacher.vo.TeacherVo;
 
@@ -294,6 +296,14 @@ public class AdminDaoImpl implements AdminDao{
 		// 임시 비번 넣어주기
 		return sst.update("adminMapper.updateTempPwd",vo);
 	}
+
+	@Override
+	public int stopProcess(SqlSessionTemplate sst, ReportVo vo) {
+		// 정지처리
+		return sst.insert("adminMapper.stopProcess",vo);
+	}
+
+
 
 
 	

@@ -8,7 +8,6 @@
 <title>에브리런 - 관리자</title>
 <link rel="stylesheet" href="/el/resources/css/admin/login.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
-<link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>

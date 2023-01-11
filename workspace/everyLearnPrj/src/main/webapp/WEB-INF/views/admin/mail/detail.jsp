@@ -46,14 +46,15 @@
                             <label for="multipartFile">첨부파일</label>
                             <div class="attach-wrap" >
                                 <div id="img-area">
-										<c:forEach items="${map.attachList }" var="list">
-                                            <a href="/el/resources/upload/${list.fileName }" download="${list.fileName}">
+	                                <c:if test="${!empty map.attachList }">
+	                               		<c:forEach items="${map.attachList }" var="list">
+	                                           <a href="/el/resources/upload/${list.fileName }" download="${list.fileName}">
 	                                            <div id="img-box">
 	                                                <img src="/el/resources/upload/${list.fileName}" alt="">
 	                                            </div>
 	                                        </a>
 	                                    </c:forEach>
-
+	                                </c:if>
                                 </div>
                             </div>
                         </div>

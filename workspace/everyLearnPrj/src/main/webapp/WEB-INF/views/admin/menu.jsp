@@ -150,9 +150,9 @@
                     <div class="hidden-box" id="mail-cate">
                         <div class="detail-wrap">
                             <ul>
-                                <!-- <li class="detail-cate" id="mail-allSend">
+                                <li class="detail-cate" id="mail-allSend">
                                     <a href="/el/admin/mail/all-send">전체메일발송</a>
-                                </li> -->
+                                </li>
                                 <li class="detail-cate" id="mail-send">
                                     <a href="/el/admin/mail/send">메일발송</a>
                                 </li>

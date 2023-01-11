@@ -17,12 +17,18 @@
             <div id="line"></div>
             <div class="main-wrap">
                     <div class="info-wrap">
+                        <input id="finishDate" value="${map.studentVo.finishDate}" hidden>
                         <div class="info-items">
                             <div class="title-wrap" id="profile-wrap">
                                 <label for="profile">프로필</label>
                             </div>
                             <div class="input-wrap">
-                                <img src="/el/resources/img/admin/admin.png" alt="관리자사진" width="150px" height="200px">
+                            	<c:if test="${map.studentVo.profileImgName != null}">
+	                                <img src="/el/resources/upload/${map.studentVo.profileImgName}" alt="학생회원프로필" width="150px" height="200px">
+                            	</c:if>
+                            	<c:if test="${map.studentVo.profileImgName == null}">
+	                                <img src="/el/resources/upload/default-profile.png" alt="학생회원프로필" width="150px" height="200px">
+                            	</c:if>
                             </div>
                         <!--
                             <div id="input-file"><input type="file"></div>
@@ -33,7 +39,10 @@
                                 <label for="id">아이디</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" name="id" value="${map.studentVo.memberId}" readonly>
+                                <input type="text" id="id" name="id" value="${map.studentVo.memberId}" readonly>
+                            </div>
+                            <div>
+                                <button type="button" id="alertMsg" onclick="alertMsg();"><i class="bi bi-send"></i></button>
                             </div>
                         </div>
 
@@ -112,13 +121,14 @@
                     </div>
                     <div class="btn-area">
                         <div>
-                            <button id="stop-btn">정지</button>
+                            <button class="active" id="stop-btn" onclick="stopBtn();">정지</button>
                         </div>
                     </div>
                 <h3>포인트</h3>
                 <div class="point-box">
                     <form action="/el/admin/member/student/point-edit" method="post" onsubmit="return pwdCheck();">
-                        <input name="memberNo" value="${map.studentVo.memberNo}" hidden>
+                        <input name="category" value="4" hidden>
+                        <input id="no" name="memberNo" value="${map.studentVo.memberNo}" hidden>
                         <div>포인트 지급/차감</div>
                         <div class="point-top">
                             <div>
@@ -165,14 +175,24 @@
     </div>
     <script>
         // 신고 상태 확인해보기
-        const finish = '${map.studentVo.finishDate}';
-        const today = new Date().toISOString().slice(0,10);
-        console.log(today < finish);
-        window.onload = function () {
+        $(document).ready(function(){
+            getDate();
+        });
+        
+        function getDate() {
+
+            const finish = $("#finishDate").val();
+            const today = new Date().toISOString().slice(0,10);
+            console.log(today < finish);
+
             if(today < finish){
                 $('#reportYn').val('정지');
+                $('#stop-btn').attr("disabled", true);
+                $('#stop-btn').removeClass('active');
+                $('#stop-btn').addClass('stop');
             } else{
                 $('#reportYn').val('활동');
+                $('#stop-btn').attr("disabled", false);
             }
         }
 
@@ -186,6 +206,31 @@
             }    
             return true;
         }
+
+        // 정지
+        function stopBtn(){
+
+            const url = "/el/admin/member/stop-process";
+            window.open(url, "child","width=400px height=320px top=50% left=50%");
+            
+        }
+
+        // 자식창 꺼지고 알람
+        function alert() {
+            Swal.fire({
+                confirmButtonColor: '#1187CF',
+                title: '처리되었습니다.'
+            });
+            // 데이트 업로드
+            getDate();
+        }
+
+        // 알림
+        function alertMsg() {
+            const url = "/el/admin/member/send-alert";
+            window.open(url, "child","width=400px height=450px top=50% left=50%");
+        }
+
     </script>
 </body>
 </html>

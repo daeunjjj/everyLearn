@@ -114,10 +114,12 @@
                         <form method="post">
                             <div class="btn-area">
                                 <input name="no" value="${map.corpMember.no}" hidden>
-                                <button type="submit" formaction="/el/admin/member/corporate/delete" id="refusal-btn" name="result" value="delete">승인취소</button>
+							<c:if test="${map.corpMember.deleteYn eq 'N' }">
+								<button type="submit" formaction="/el/admin/member/corporate/delete" id="refusal-btn" name="result" value="delete">승인취소</button>
                                 <c:if test="${map.corpMember.statusYn eq 'N' }">
                                     <button type="submit" formaction="/el/admin/member/corporate/approval" id="approval-btn" >승인</button>                        
                                 </c:if>
+							</c:if>
                             </div>
                         </form>
                     </div>

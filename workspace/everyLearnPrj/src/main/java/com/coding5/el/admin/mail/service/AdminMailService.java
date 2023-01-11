@@ -24,5 +24,8 @@ public interface AdminMailService {
 	
 	// 메일 상세보기
 	public Map<String, Object> mailDetail(String no);
+	
+	// 전체 메일 발송
+	public int insertAllSendMail(MailVo mailVo, List<AttachVo> voList);
 
 }

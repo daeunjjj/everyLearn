@@ -6,7 +6,9 @@
 <meta charset="UTF-8">
 <title>에브리런</title>
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
+<link rel="stylesheet" href="/el/resources/css/admin/mail/send.css">
 <link rel="stylesheet" href="/el/resources/css/admin/mail/all-send.css">
+<script type="text/javascript" defer src="/el/resources/js/admin/send-mail.js"></script>
 </head>
 <body>
 	<div class="wrap">
@@ -17,28 +19,35 @@
             <div class="main-wrap">
                 <h2>메일쓰기</h2>
                 <div class="mail-wrap">
-                    <form action="">
+                    <form action="/el/admin/mail/all-send" method="POST"  enctype="multipart/form-data" onsubmit="return sendCheck();">
                         <div class="input-area">
                             <label>선택</label>
                             <div class="radio-wrap">
                                 <label>학생회원
-                                    <input name="all-receiver" type="radio" value="student">
+                                    <input name="toAddress" type="radio" value="1">
                                 </label>
                                 <label>강사회원
-                                    <input name="all-receiver" type="radio" value="teacher">
+                                    <input name="toAddress" type="radio" value="2">
                                 </label>
                                 <label>기업회원
-                                    <input name="all-receiver" type="radio" value="corporate">
+                                    <input name="toAddress" type="radio" value="3">
                                 </label>
                                 <label>관리자
-                                    <input name="all-receiver" type="radio" value="admin">
+                                    <input name="toAddress" type="radio" value="4">
                                 </label>
                             </div>
                         </div>
-<!--                    <div class="input-area" id="add-next">
-                           <label for="receiver">받는사람</label>
-                           <div class="receiver-wrap">
-                               <input type="text" id="receiver" name="receiver">
+
+                        <div class="input-area">
+                            <label for="title">제목</label>
+                            <div>
+                                <input type="text" id="title" name="title">
+                            </div>
+                        </div>
+                        <div class="input-area">
+                            <label for="multipartFile">첨부파일</label>
+                            <div class="attach-wrap" >
+                                <input type="file" id="multipartFile" name="multipartFile" >
                             </div>
                             <div class="add-btn-area">
                                 <button type="button" class="add-btn" onclick="add();">
@@ -47,13 +56,8 @@
                                     </span>
                                 </button>
                             </div> 
-                        </div>-->   
-                        <div class="input-area">
-                            <label for="title">제목</label>
-                            <div>
-                                <input type="text" id="title" name="title">
-                            </div>
                         </div>
+                        <div id="add-next"></div>
                         <div class="input-area content">
                             <label>내용</label>
                             <div  class="text-wrap">
@@ -70,6 +74,20 @@
             </div>
         </main>
     </div>
+    <script>
+        function sendCheck(){
 
+            const title = $("#title").val();
+            const content = $("#content").val();
+            
+
+            if(title == '' && content == ''){
+                return false;
+            }
+
+
+            return true;
+        }
+    </script>
 </body>
 </html>

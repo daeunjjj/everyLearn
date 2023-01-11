@@ -86,9 +86,11 @@
                             </c:forEach>
     
                         </ul>
-                        <div class="quit-btn-area">
-                            <button id="quit-btn" type="submit">탈퇴</button>
-                        </div>
+	                        <div class="quit-btn-area">
+		                        <c:if test="${loginAdmin.permission eq '마스터' }">
+	                            	<button id="quit-btn" type="submit">탈퇴</button>
+		                        </c:if>
+	                        </div>
                     </form>
                 </div>
                 <nav class="page-area">

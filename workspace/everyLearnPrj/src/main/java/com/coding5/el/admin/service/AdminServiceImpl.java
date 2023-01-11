@@ -13,16 +13,16 @@ import org.springframework.transaction.annotation.Transactional;
 import com.coding5.el.admin.dao.AdminDao;
 import com.coding5.el.admin.report.dao.AdminReportDao;
 import com.coding5.el.admin.vo.AdminVo;
+import com.coding5.el.alert.vo.AlertVo;
 import com.coding5.el.chart.vo.ChartVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.corp.vo.CorpVo;
 import com.coding5.el.corp.vo.EmploymentVo;
-import com.coding5.el.email.vo.MailVo;
-import com.coding5.el.emp.comm.vo.AttachVo;
 import com.coding5.el.lecture.vo.LectureVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
+import com.coding5.el.report.vo.ReportVo;
 import com.coding5.el.request.vo.RequestVo;
 import com.coding5.el.teacher.vo.TeacherVo;
 
@@ -201,13 +201,18 @@ public class AdminServiceImpl implements AdminService{
 	 */
 	@Override
 	@Transactional
-	public int pointEdit(PointVo vo) {
+	public int pointEdit(PointVo vo, AlertVo alertVo) {
 		
 		int insertResult = adminDao.insertPoint(sst, vo);
 		
 		int updateResult = 0;
 		if(insertResult == 1) {
 			updateResult = adminDao.updateStudent(sst,vo);
+		}
+		
+		int alertResult = 0;
+		if(insertResult * updateResult == 1) {
+			alertResult = adminReportDao.insertAlert(sst,alertVo);
 		}
 		
 		return insertResult * updateResult;
@@ -485,6 +490,16 @@ public class AdminServiceImpl implements AdminService{
 		
 		return adminDao.updateTempPwd(sst,vo);
 		
+	}
+
+	@Override
+	public int stopProcess(ReportVo vo) {
+		return adminDao.stopProcess(sst, vo);
+	}
+
+	@Override
+	public int sendAlert(AlertVo vo) {
+		return adminReportDao.insertAlert(sst,vo);
 	}
 
 

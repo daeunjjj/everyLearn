@@ -183,7 +183,7 @@
 		    ,EMAIL
 		    ,TO_CHAR(ENROLL_DATE, 'YYYY-MM-DD') AS ENROLL_DATE
 		    ,MODIFY_DATE
-		    ,PROFILE_IMG
+		    ,PROFILE_IMG_NAME
 		    ,POINT
 		    ,DECODE(QUIT_YN, 'N','유지', 'Y','탈퇴') AS QUIT_YN
 		FROM MEMBER
@@ -630,7 +630,7 @@
 		(
 		    SEQ_ALERT_NO.NEXTVAL
 		    ,#{memberNo}
-		    ,4
+		    ,#{category}
 		    ,#{title}
 		)
 	</insert>
@@ -785,4 +785,20 @@
 		FROM EMAIL_ATTATCH
 		WHERE EMAIL_NO = #{no}
 	</select>
+	<insert id="stopProcess">
+		INSERT INTO REPORT
+		(
+			NO
+			,BLACKLIST
+			,START_DATE
+			,FINISH_DATE
+		)
+		VALUES
+		(	
+			SEQ_REPORT_NO.NEXTVAL
+			,#{blacklist}
+			,#{startDate}
+			,#{finishDate}
+		)
+	</insert>
 </mapper>

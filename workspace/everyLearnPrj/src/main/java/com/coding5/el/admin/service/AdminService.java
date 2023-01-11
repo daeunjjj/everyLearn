@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.coding5.el.admin.vo.AdminVo;
+import com.coding5.el.alert.vo.AlertVo;
 import com.coding5.el.chart.vo.ChartVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.vo.SearchVo;
@@ -13,6 +14,7 @@ import com.coding5.el.email.vo.MailVo;
 import com.coding5.el.emp.comm.vo.AttachVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
+import com.coding5.el.report.vo.ReportVo;
 import com.coding5.el.request.vo.RequestVo;
 import com.coding5.el.teacher.vo.TeacherVo;
 
@@ -53,7 +55,7 @@ public interface AdminService {
 	
 	
 	// 포인트 수정
-	public int pointEdit(PointVo vo);
+	public int pointEdit(PointVo vo, AlertVo alertVo);
 	
 	// 강사 회원 수 조회
 	public int selectTeacherCount(SearchVo svo);
@@ -135,6 +137,10 @@ public interface AdminService {
 	public AdminVo adminEmailCheck(String email);
 	// 임시 비번 디비에 넣어주기
 	public int updateTempPwd(AdminVo vo);
+	// 정지 처리
+	public int stopProcess(ReportVo vo);
+	
+	public int sendAlert(AlertVo vo);
 	
 
 	

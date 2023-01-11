@@ -123,10 +123,12 @@
                         <div class="btn-area">
                             <input name="arrNo" value="${map.tvo.no}" hidden>
                             <input name="no" value="${map.tvo.no}" hidden>
-                            <button type="submit" formaction="/el/admin/member/teacher/delete" id="refusal-btn" name="result" value="delete">탈락</button>
+						<c:if test="${map.tvo.deleteYn eq 'N' }">
+							<button type="submit" formaction="/el/admin/member/teacher/delete" id="refusal-btn" name="result" value="delete">탈락</button>
                             <c:if test="${map.tvo.statusYn eq 'N' }">
                                 <button type="submit" formaction="/el/admin/member/teacher/approval" id="approval-btn" >승인</button>                        
                             </c:if>
+						</c:if>
                         </div>
                     </form>
                 </div>

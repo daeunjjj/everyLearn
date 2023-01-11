@@ -10,14 +10,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.coding5.el.admin.service.AdminService;
+import com.coding5.el.alert.vo.AlertVo;
 import com.coding5.el.common.page.PageVo;
 import com.coding5.el.common.page.Pagination;
 import com.coding5.el.common.vo.SearchVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.PointVo;
+import com.coding5.el.report.vo.ReportVo;
 
 import lombok.extern.slf4j.Slf4j;
 @RequestMapping("admin/member")
@@ -94,20 +97,23 @@ public class AdminMemberController {
 	 * @return
 	 */
 	@PostMapping("student/point-edit")
-	public String pointEdit(PointVo vo) {
+	public String pointEdit(PointVo vo, AlertVo alertVo) {
 		
 		log.info("화면->컨트롤러 PointVo ::: " + vo);
 		
 		if("3".equals(vo.getHistory())) {
+			alertVo.setTitle("[알림]"+ vo.getChange() +"포인트가 차감되었습니다.");
 			vo.setChange("-"+vo.getChange());
 		} else {
+			alertVo.setTitle("[알림]" + vo.getChange() +"포인트가 증감되었습니다.");
 			vo.setChange("+"+vo.getChange());
 
 		}
 		
-		log.info("vo.getHistory ::: "+ vo.getChange());
+		log.info("vo.getHistory ::: "+ vo.getHistory());
+		log.info("vo.getChange ::: "+ vo.getChange());
 		
-		int result = adminService.pointEdit(vo);
+		int result = adminService.pointEdit(vo,alertVo);
 		
 		if(result != 1) return "common/error";
 		
@@ -375,6 +381,42 @@ public class AdminMemberController {
 		
 		redirect.addFlashAttribute("resultMsg", "승인되었습니다.");
 		return "redirect:/admin/member/corporate/detail?no=" + no;
+	}
+	
+	@GetMapping("stop-process")
+	public String stopProcess() {
+		return "admin/member/stop-process";
+	}
+	
+	@PostMapping("stop-process")
+	@ResponseBody
+	public String stopProcess(ReportVo vo) {
+		
+		log.info("결과는? " + vo);
+		
+		int result = adminService.stopProcess(vo);
+		if(result != 1) {
+			return "";
+		}
+		return "ok";
+	}
+	
+	@GetMapping("send-alert")
+	public String sendAlert() {
+		return "admin/member/send-alert";
+	}
+	
+	@PostMapping("send-alert")
+	@ResponseBody
+	public String sendAlert(AlertVo vo) {
+		
+		int result = adminService.sendAlert(vo);
+		
+		if(result != 1) {
+			return "";
+		}
+		
+		return "ok";
 	}
 	
 }

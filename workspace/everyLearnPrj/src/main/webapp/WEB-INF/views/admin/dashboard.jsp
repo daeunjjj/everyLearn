@@ -20,19 +20,19 @@
                 <div class="todo-area">
                     <a href="/el/admin/member/teacher/list?pno=1&&category=status" class="todo-items">
                         <div>강사신청</div>
-                        <span>${map.teacherRequestCnt}</span>
+                        <span id="teacherCnt"></span>
                     </a>
                     <a href="/el/admin/member/corporate/list?pno=1&category=status_yn&keyword=N" class="todo-items">
                         <div>기업신청</div>
-                        <span>${map.corpRequestCnt}</span>
+                        <span id="corpCnt"></span>
                     </a>
                     <a href="/el/admin/request/list?pno=1&category=check_yn&keyword=N" class="todo-items">
                         <div>요청</div>
-                        <span>${map.requestCnt}</span>
+                        <span id="requestCnt"></span>
                     </a>
                     <a href="/el/admin/report/list?pno=1&category=handle_yn&keyword=N" class="todo-items">
                         <div>신고</div>
-                        <span>${map.reportCnt}</span>
+                        <span id="reportCnt"></span>
                     </a>
 
                 </div>
@@ -72,7 +72,23 @@
         $(document).ready(function(){
             getPieChart();
             getBarChart();
+            getAlert();
         });
+
+        function getAlert(){
+            $.ajax({
+                url : "/el/admin/dashboard/alert",
+                method : "get",
+                success : function(data ){
+                    const alert = JSON.parse(data);
+                    $('#teacherCnt').text(alert.teacherRequestCnt);
+                    $('#corpCnt').text(alert.corpRequestCnt);
+                    $('#requestCnt').text(alert.requestCnt);
+                    $('#reportCnt').text(alert.reportCnt);
+                }
+            });
+        }
+
 
         function getPieChart(){
     

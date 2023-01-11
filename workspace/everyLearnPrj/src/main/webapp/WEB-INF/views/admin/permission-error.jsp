@@ -33,7 +33,7 @@
       margin-top: 90px;
     ">
     <div class="logo-wrap">
-        <img src="/el/resources/img/admin/logo2.png" alt="로고" width="300" height="300">
+        <img src="/el/resources/img/admin/logo2.png" alt="로고" width="320" height="320">
     </div>
       <h1 style="
         margin: 0 0 32px !important;
@@ -47,14 +47,14 @@
         Management Center
        
       </h1>
-      <span style="
+      <!-- <span style="
       color: #FF0000;
       margin-bottom: 20px;
       ">
         접근 권한이 없습니다.
-    </span>
-      <button style="background: #1187CF; color: rgb(255, 255, 255); border-radius: 4px; padding: 10px; font-size: 15px; border: 0px; width: 350px; margin-bottom: 20px; cursor: pointer;" onclick="history.back();" onmouseover="this.style.filter='brightness(0.95)';" onmouseout="this.style.filter='';">
-        뒤로가기
+    </span> -->
+      <button style="background: #1187CF; color: rgb(255, 255, 255); border-radius: 4px; padding: 10px; font-size: 15px; border: 0px; width: 350px; margin-bottom: 20px; cursor: pointer;" onclick="window.location.href='/el/admin/login'" onmouseover="this.style.filter='brightness(0.95)';" onmouseout="this.style.filter='';">
+        로그인
       </button>
       
     </div>

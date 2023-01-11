@@ -70,7 +70,33 @@
     padding-left: 10px;
 }
 
-#stop-btn{
+.active{
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 80px;
+    height: 42px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: #005297;
+    border: 1px solid #005297;
+}
+
+.stop{
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 80px;
+    height: 42px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: gray;
+    border: 1px solid gray;
+}
+
+#alert-btn{
     display: block;
     padding: 0px 10px;
     text-align: center;
@@ -168,4 +194,9 @@ h3{
     text-align: center;
     padding: 50px 0 40px;
     font-size: 18px;
+}
+
+
+#alertMsg{
+    margin-top: 10px;
 }

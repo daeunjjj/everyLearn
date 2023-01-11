@@ -61,6 +61,7 @@
                     <h2>신고작성</h2>
                     <div class="form-wrap">
                         <form action="/el/admin/report/process" method="post">
+                            <input name="category" value="1" hidden>
                             <input name="no" value="${vo.no}" hidden>
                             <input name="blacklist" value="${vo.blacklist}" hidden>
                             <div class="input-wrap">
