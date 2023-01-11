@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.coding5.el.emp.comm.dao.EmpCommDao;
+import com.coding5.el.emp.comm.vo.CommentVo;
 import com.coding5.el.emp.comm.vo.EmpCommVo;
 import com.coding5.el.emp.comm.vo.LikeVo;
 import com.coding5.el.emp.service.EmpService;
@@ -72,8 +73,6 @@ public class EmpCommServiceImpl implements EmpCommService{
 		number.put("no", no);
 		number.put("memberNo", memberNo);
 		
-		System.out.println("service number ::: " + number);
-		
 		return empCommDao.findHeart(sst, number);
 	}
 
@@ -98,6 +97,19 @@ public class EmpCommServiceImpl implements EmpCommService{
 		return result;
 	}
 
+
+	@Override
+	public void insertComment(CommentVo vo) throws Exception {
+		empCommDao.insertComment(sst, vo);
+	}
+
+
+	@Override
+	public List<CommentVo> getCommentList(CommentVo vo) throws Exception {
+		return empCommDao.selectCommentList(sst, vo);
+	}
+
+	
 
 
 

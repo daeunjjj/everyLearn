@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coding5.el.emp.comm.service.EmpCommService;
+import com.coding5.el.emp.comm.vo.CommentVo;
 import com.coding5.el.emp.comm.vo.EmpCommVo;
 import com.coding5.el.emp.comm.vo.LikeVo;
 import com.coding5.el.member.vo.MemberVo;
@@ -61,6 +62,7 @@ public class EmpCommController {
 	
 	@PostMapping("write")
 	public String write(EmpCommVo vo, HttpSession session, Model model ) throws Exception {
+		
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 		vo.setNick(loginMember.getMemberNo());
 		
@@ -101,15 +103,21 @@ public class EmpCommController {
 
 	//채용 커뮤니티 상세조회
 	@GetMapping("detail")
-	public String detail(@RequestParam("no") String no,  Model model, HttpSession session) throws Exception {
+	public String detail(@RequestParam("no") String no,  Model model, HttpSession session, EmpCommVo vo) throws Exception {
 		
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-		//int memberNo = Integer.parseInt(loginMember.getMemberNo());
-		String memberNo = loginMember.getMemberNo();
+		String memberNo = null;
+		
+		
+		  try { memberNo = loginMember.getMemberNo(); } catch (Exception e) {
+		  e.printStackTrace(); }
+		 
 		
 		int result = empCommService.increaseHit(no);
 		
 		LikeVo heart = new LikeVo();
+		heart.setEmpCommNo(no);
+		heart.setMemberNo(memberNo);
 		
 		if(result > 0) {			
 			EmpCommVo n = empCommService.selectDetail(no);
@@ -117,6 +125,7 @@ public class EmpCommController {
 			
 			heart = empCommService.findHeart(no, memberNo);
 			model.addAttribute("heart", heart);
+			
 			
 			return "emp-comm/detail";
 		} else {
@@ -141,9 +150,31 @@ public class EmpCommController {
 		return "redirect:/emp-comm/list";
 	}
 	
-
+	//댓글 쓰기
+	@GetMapping("/comment/write")
+	public String insertComment() {
+		return "emp-comm/detail";
+	}
 	
+	@PostMapping("/comment/write")
+	@ResponseBody
+	public String insertComment(@RequestParam("no") String no, @RequestParam("nick") String nick ) throws Exception {
+		CommentVo vo = new CommentVo();
+		vo.setEmpCommNo(no);
+		vo.setNick(nick);
+		empCommService.insertComment(vo);
+		
+		return "redirect:/emp-comm/detail?no=" + no;				
+	}
 
+	//ajax 요청을 받는 '/getCommentList' 를 controller와 mapping
+	@GetMapping("/getCommentList")
+	@ResponseBody
+	private List<CommentVo> getCommentList(@RequestParam("no") String no) throws Exception {
+		CommentVo vo = new CommentVo();
+		vo.setEmpCommNo(no);
+		return empCommService.getCommentList(vo);
+	}
 	
 	
 }//class

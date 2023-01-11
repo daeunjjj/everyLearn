@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.coding5.el.common.page.Pagination;
+import com.coding5.el.emp.comm.vo.CommentVo;
 import com.coding5.el.emp.comm.vo.EmpCommVo;
 import com.coding5.el.emp.comm.vo.LikeVo;
 import com.coding5.el.notice.vo.PageVo;
@@ -59,7 +60,6 @@ public class EmpCommDaoImpl implements EmpCommDao {
 
 	@Override
 	public LikeVo findHeart(SqlSessionTemplate sst, Map<String, String> number) throws Exception {
-		System.out.println("dao ::: " + number);
 		return sst.selectOne("empCommMapper.findHeart", number);
 	}
 
@@ -79,6 +79,18 @@ public class EmpCommDaoImpl implements EmpCommDao {
 	@Override
 	public void deleteHeart(SqlSessionTemplate sst, LikeVo heart) throws Exception {
 		sst.delete("empCommMapper.deleteHeart", heart);
+	}
+
+	
+	//댓글 쓰기
+	@Override
+	public void insertComment(SqlSessionTemplate sst, CommentVo vo) throws Exception {
+		sst.insert("commentMapper.insertComment", vo);
+	}
+
+	@Override
+	public List<CommentVo> selectCommentList(SqlSessionTemplate sst, CommentVo vo) throws Exception {
+		return sst.selectList("commentMapper.selectCommentList", vo);
 	}
 
 

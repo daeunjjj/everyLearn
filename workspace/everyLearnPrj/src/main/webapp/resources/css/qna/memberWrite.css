@@ -81,4 +81,14 @@
     width: 80px;
 }
 
+#content > textarea{
+	width: 100%;
+	height: 550px;
+	border: 1px solid #eee;
+	margin-bottom: 20px;
+	resize: none;
+	outline: none;
+	padding: 15px;
+}
+
 #submit-btn:hover{background-color: #0d73b2;}

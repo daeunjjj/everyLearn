@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="commentMapper">
+  
+  <!-- 댓글 등록 -->
+  <insert id="insertComment">
+  	INSERT INTO EMP_COMMENT
+	(
+	    NO,
+	    EMP_COMM_NO,
+	    NICK,
+	    CONTENT
+	)
+	VALUES
+	(
+	    SEQ_EMP_COMMENT_NO.NEXTVAL,
+	    #{no},
+	    #{nick},
+	    #{content}
+	);
+  
+  </insert>
+  
+  <select id="selectCommentList" resultType="com.coding5.el.emp.comm.vo.CommentVo">
+  
+  	SELECT F.NO
+	    ,F.NICK
+	    ,F.CONTENT
+	    ,F.ENROLL_DATE
+	FROM EMP_COMMENT F
+	FULL OUTER JOIN MEMBER C
+	ON F.NICK = C.NO
+	WHERE F.EMP_COMM_NO = #{no}
+  
+  </select>
+  
+</mapper>

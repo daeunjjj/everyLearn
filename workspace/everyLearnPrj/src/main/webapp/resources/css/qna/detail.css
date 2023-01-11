@@ -4,6 +4,7 @@
     height: 50%;
     --border: 1px solid black;
     margin: 0 auto;
+    margin-bottom: 30px;
 }
 
 .banner{
@@ -57,8 +58,16 @@
 
 .content{
     font-size: 20px;
-    border-bottom: 2px solid #1187CF;
     margin-top: 30px;
+    height: 10px;
+}
+
+#line{
+	border-bottom: 2px solid #1187CF;
+	width: 70%;
+	margin: 0 auto;
+	margin-top: 150px;
+	margin-bottom: 30px;
 }
 
 
@@ -88,6 +97,7 @@
     font-size: 20px;
     margin-top: 30px;
     margin-bottom: 100px;
+    height: 350px;
 }
 
 .back-sticky{
