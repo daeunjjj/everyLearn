@@ -44,7 +44,7 @@
 		</div>
 
 		<div class="lec-index-wrap">
-        ${classDetailList}
+        
         
         <div class="lec-index-top">
             <div>목차</div>
@@ -58,9 +58,9 @@
                 <div id="chapter" onclick="updateY();" style="text-align: center;">${classDetail.chapter}</div>
                 <input type="hidden" id="detailClassNo" name="detailClassNo" value="${classDetail.detailClassNo}">
                 <div>수강완료</div>
-                <div id="ddd">
+                <!-- <div id="ddd">
                     ${classDetail.detailClassNo}
-                </div>
+                </div> -->
                 
         </div>
         </c:forEach>

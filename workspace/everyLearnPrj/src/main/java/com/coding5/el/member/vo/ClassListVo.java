@@ -28,6 +28,7 @@ public class ClassListVo {
 	private String chapter;
 	private String detailClassNo;
 	private String mn;
+	private String thumb;
 	
 	
 

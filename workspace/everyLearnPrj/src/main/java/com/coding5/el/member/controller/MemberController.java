@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,10 +74,19 @@ public class MemberController {
 		
 		//내 강의 조회
 		List<ClassListVo> myClassList = memberService.myClassList(memberNo);
-		myClassList.get(0);
+		log.info("강의없어?" + myClassList);
+		
+
+//		myClassList.get(0);
 		//강의 정보 조회
 		List<ClassListVo> myClassInfoList = memberService.myClassInfoList(myClassList);
 		model.addAttribute("myClassInfoList",myClassInfoList);
+		log.info("myClassInfoList 왜???:::" + myClassInfoList);
+		
+		if(myClassList.size() == 0 ) {
+			model.addAttribute("info","n");
+			return "member/member_study";
+		}
 		
 		return "member/member_study";
 	}
@@ -119,12 +129,13 @@ public class MemberController {
 	//찐 회원탈퇴
 	@PostMapping("delete")
 	@ResponseBody
-	public String delete(String memberNo) {
+	public String delete(String memberNo, HttpSession session) {
 		
 		int deleteResult = memberService.deleteMember(memberNo);
 		
 		if(deleteResult == 1) {
 			
+			session.invalidate();
 			return "ok";
 		}else {
 			return "error";

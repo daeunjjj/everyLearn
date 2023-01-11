@@ -53,6 +53,9 @@ function previewImage(targetObj, View_area) {
             img.file = file;
             img.style.width = '150px';
             img.style.height = '150px';
+
+
+
             preview.appendChild(img);
             if (window.FileReader) { // FireFox, Chrome, Opera 확인.
                 var reader = new FileReader();

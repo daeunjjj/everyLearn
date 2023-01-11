@@ -45,7 +45,7 @@
                     <li><button class="orderby" onclick="location.href='/el/class/study?orderBy=ENROLL_DATE DESC'">• 최신순</button></li>
                     <li><button class="orderby" onclick="location.href='/el/class/study?orderBy=HIT DESC'">• 조회순</button></li>
                     <li><button class="orderby" onclick="location.href='/el/class/study?orderBy=ENROLL_DATE DESC'">• 좋아요순</button></li>
-                    <li><button class="orderby" style="width: 300px;"></button></li>
+                    <li><button class="orderby" style="width: 400px;"></button></li>
                     
                     <li><button class="orderby" onclick="location.href='/el/class/write'">글쓰기</button></li>
                 </ul>
@@ -57,6 +57,7 @@
                         <div class="study-write" id="study-title" onclick="location.href='/el/class/detail?classCommNo=}&lc=${loginMember.memberNo}'">${study.title}</div>
                         <div class="study-write" id="study-content">
                         	${study.content}
+                            
                         </div>
                     </div>
                     <div class="study-context">
@@ -74,7 +75,6 @@
             </div>
             
         </div>
-        
         <div class="container mt-3" id="page-alert">
             <ul class="pagination" id="pagenation">
             <c:if test="${pv.currentPage != 0}">
@@ -114,6 +114,7 @@
             </c:if>
             </ul>
         </div>
+        
         
     </div>
 </main>

@@ -185,6 +185,7 @@ public class MemberServiceImpl implements MemberService{
 		for(int i = 0; i<myClassList.size(); i++) {
 			ClassListVo vo = new ClassListVo();
 			vo = memberDao.selectmyClassInfoList(sst, myClassList.get(i));
+			log.info("디에이오 반복문 ::" + vo);
 			
 			myClassInfoList.add(vo);
 		}
