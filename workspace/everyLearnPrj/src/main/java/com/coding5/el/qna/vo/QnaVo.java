@@ -10,6 +10,7 @@ public class QnaVo {
 	
 	private String no;
 	private String memberNo;
+	private String adminNo;
 	private String category;
 	private String title;
 	private String content;
@@ -19,17 +20,21 @@ public class QnaVo {
 	private String del;
 	private String adminCheck;
 	private String photoName;
+	private String thumb;	//첨부파일
+
+	private MultipartFile thumbFile;
 	
-	private MultipartFile photoFile;
 
 	
+	//파일 업로드
 	public boolean isEmpty() {
 		
-		if(photoFile.isEmpty()) {return true;}
-		if(photoFile == null) {return true;}
-		if(photoFile.getSize() == 0) {return true;}
+		if (thumbFile.isEmpty()) {return true;}
+		if(thumbFile == null) return true;
+		if(thumbFile.getSize() == 0) return true;
 		
 		return false;
+
 	}
 	
 }

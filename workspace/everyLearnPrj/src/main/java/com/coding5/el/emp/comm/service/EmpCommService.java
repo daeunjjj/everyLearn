@@ -30,8 +30,11 @@ public interface EmpCommService {
 	//글 삭제하기
 	int deleteEmpComm(String no) throws Exception;
 
-	//해당 글에 해당 멤버가 좋아요를 했는지?
 	LikeVo findHeart(String no, String memberNo) throws Exception;
+
+	int insertHeart(LikeVo heart) throws Exception;
+
+	
 
 
 }

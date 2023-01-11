@@ -20,7 +20,7 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
-
+<script src="/el/resources/js/common/chat.js"></script>
 </head>
 <body>
 
@@ -49,7 +49,7 @@
 	                      </select>
 	                  </div>
 	        <div id="title"><input type="text" name="title" required placeholder="제목"></div>
-	        <div id="summernote" name="content"></div>
+	        <textarea id="summernote" name="content"></textarea>
 	        <div id="write"><button type="submit" class="btn btn-light" id="submit-btn">작성하기</button></div>
 	    </form>
 	 </main>
@@ -107,7 +107,25 @@
 
          $('#summernote').summernote(setting);
          });
-   
+ 
+ 
+	 function sendFile(file, el) {
+	     var form_data = new FormData();
+	     form_data.append('file', file);
+	     $.ajax({
+	       data: form_data,
+	       type: "POST",
+	       url: "/uploadSummernoteImageFile",
+	       cache: false,
+	       contentType: false,
+	       enctype: 'multipart/form-data',
+	       processData: false,
+	       success: function(url) {
+	         $(el).summernote('editor.insertImage', url);
+	         $('#imageBoard > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
+	       }
+	     });
+	   }
    
  </script>
 	

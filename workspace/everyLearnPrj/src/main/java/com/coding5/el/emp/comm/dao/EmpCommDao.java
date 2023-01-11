@@ -32,8 +32,15 @@ public interface EmpCommDao {
 	//글 삭제하기
 	int deleteEmpComm(SqlSessionTemplate sst, String no) throws Exception;
 
-	//해당 글에 해당 멤버가 좋아요를 했는지?
 	LikeVo findHeart(SqlSessionTemplate sst, Map<String, String> number) throws Exception;
+
+	LikeVo findHeart(SqlSessionTemplate sst, LikeVo heart) throws Exception;
+
+	int insertHeart(SqlSessionTemplate sst, LikeVo heart) throws Exception;
+
+	void deleteHeart(SqlSessionTemplate sst, LikeVo heart) throws Exception;
+
+	
 
 
 

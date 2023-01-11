@@ -8,4 +8,6 @@ public interface QnaDao {
 
 	int insertMemberWrite(SqlSessionTemplate sst, QnaVo vo) throws Exception;
 
+	int insertAdminWrite(SqlSessionTemplate sst, QnaVo vo) throws Exception;
+
 }

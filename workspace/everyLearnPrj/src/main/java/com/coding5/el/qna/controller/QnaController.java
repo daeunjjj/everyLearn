@@ -21,9 +21,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.coding5.el.admin.vo.AdminVo;
+import com.coding5.el.common.file.FileUploader;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.qna.service.QnaService;
-import com.coding5.el.qna.vo.FileUploader;
 import com.coding5.el.qna.vo.QnaVo;
 
 @Controller
@@ -50,17 +51,17 @@ public class QnaController {
 		
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 		vo.setMemberNo(loginMember.getMemberNo());
-		
+		System.out.println("no :::" +loginMember.getMemberNo());
 		System.out.println(vo);
 		
-		String photoName = "";
-		if(!vo.isEmpty()) {
-			photoName = FileUploader.upload(session, vo);
+		// qna 이미지 저장
+		String thumbName = "";
+		if(!vo.getThumbFile().isEmpty()) {
+			thumbName = FileUploader.upload(session, vo.getThumbFile());
 		}
 		
-		vo.setPhotoName(photoName);
+		vo.setThumb(thumbName);
 		
-		System.out.println(photoName);
 		
 		int result = qnaService.memberWrite(vo);
 		if(result > 0) {
@@ -79,8 +80,30 @@ public class QnaController {
 		return "qna/adminWrite";
 	}
 	
-	//@PostMapping("adminWrite")	//답변
-	
+	@PostMapping("adminWrite")	//답변
+	public String adminWrite(QnaVo vo, HttpSession session, Model model) throws Exception {
+		AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");
+		vo.setAdminNo(loginAdmin.getNo());
+		
+		// 답변 이미지 저장
+		String thumbName = "";
+		if(!vo.getThumbFile().isEmpty()) {
+			thumbName = FileUploader.upload(session, vo.getThumbFile());
+		}
+		
+		vo.setThumb(thumbName);
+		
+		int result = qnaService.adminWrite(vo);
+		if(result > 0) {
+			//답변 등록 된 순간에 답변 상태가 답변 Y로 update 되게 조회수처럼
+			session.setAttribute("alertMsg", "답변이 등록되었습니다.");
+			return "redirect:/qna/list";
+		}else {
+			model.addAttribute("msg", "답변 등록이 실패되었습니다.");
+			return "common/error";
+		}
+		
+	}
 	
 	
 	

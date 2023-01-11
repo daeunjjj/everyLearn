@@ -66,13 +66,40 @@ public class EmpCommServiceImpl implements EmpCommService{
 	}
 
 
-	@Override	//해당 글에 해당 멤버가 좋아요를 했는지? Map으로 한번에 합쳐주기
+	@Override
 	public LikeVo findHeart(String no, String memberNo) throws Exception {
 		Map<String, String> number = new HashMap<String, String>();
 		number.put("no", no);
 		number.put("memberNo", memberNo);
+		
+		System.out.println("service number ::: " + number);
+		
 		return empCommDao.findHeart(sst, number);
 	}
+
+
+	@Override
+	public int insertHeart(LikeVo heart) throws Exception {
+		// 좋아요가 DB에 저장이 되는것이 없으면 0이 그대로 리턴으로 넘어감
+		int result = 0;
+		// 좋아요가 이미 있는지 확인하는 코드
+		LikeVo find = empCommDao.findHeart(sst, heart);
+		
+		// find가 null이면 좋아요가 없는 상태이므로 정보 저장
+		// find가 null이 아니면 좋아요가 있는 상태이므로 정보 삭제
+		if(find == null) {
+			// insert의 리턴값은 DB에 성공적으로 insert된 갯수를 보내므로 result가 1이 됨
+			result = empCommDao.insertHeart(sst, heart);
+		} else {
+			empCommDao.deleteHeart(sst, heart);
+		}
+		
+		// 0 or 1이 담겨져서 @Controller에 보냄.
+		return result;
+	}
+
+
+
 
 
 

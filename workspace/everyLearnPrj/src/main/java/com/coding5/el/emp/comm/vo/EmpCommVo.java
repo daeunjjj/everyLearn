@@ -6,6 +6,7 @@ import lombok.Data;
 public class EmpCommVo {
 	
 	private String no;
+	private String mno;
 	private String nick;
 	private String category;
 	private String title;

@@ -1,5 +1,7 @@
 package com.coding5.el.emp.comm.controller;
 
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coding5.el.emp.comm.service.EmpCommService;
 import com.coding5.el.emp.comm.vo.EmpCommVo;
@@ -20,9 +24,12 @@ import com.coding5.el.emp.comm.vo.LikeVo;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.notice.vo.PageVo;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 @RequestMapping("emp-comm")
 @Controller
+@Slf4j
 public class EmpCommController {
 	
 	@Autowired private EmpCommService empCommService;
@@ -94,20 +101,36 @@ public class EmpCommController {
 
 	//채용 커뮤니티 상세조회
 	@GetMapping("detail")
-	public String detail(@RequestParam("no") String no,  Model model) throws Exception {
+	public String detail(@RequestParam("no") String no,  Model model, HttpSession session) throws Exception {
+		
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		//int memberNo = Integer.parseInt(loginMember.getMemberNo());
+		String memberNo = loginMember.getMemberNo();
 		
 		int result = empCommService.increaseHit(no);
 		
 		LikeVo heart = new LikeVo();
-		heart = empCommService.findHeart(no, heart.getMemberNo());
 		
 		if(result > 0) {			
 			EmpCommVo n = empCommService.selectDetail(no);
 			model.addAttribute("n", n);
+			
+			heart = empCommService.findHeart(no, memberNo);
+			model.addAttribute("heart", heart);
+			
 			return "emp-comm/detail";
 		} else {
 			return "common/error";
 		}
+		
+	}
+	
+	//좋아요 컨트롤러
+	@PostMapping("heart")
+	@ResponseBody
+	public int heart(@ModelAttribute LikeVo heart) throws Exception {
+		int result = empCommService.insertHeart(heart);
+		return result;
 	}
 	
 	

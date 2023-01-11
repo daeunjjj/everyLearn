@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +36,7 @@
             <div class="th">카테고리</div>
             <div class="th">제목</div>
             <div class="th">닉네임</div>
-            <div class="th">작성일시</div>
+            <div class="th">작성일</div>
             <div class="th">조회수</div>
 
 		<c:forEach items="${list}" var="c">
@@ -43,7 +44,7 @@
             <div class="td">${ c.category }</div>
             <div class="td" id="title"><a href="/el/emp-comm/detail?no=${ c.no }" id="title-a">${c.title}</a></div>
             <div class="td">${ c.nick }</div>
-            <div class="td">${ c.enrollDate }</div>
+            <div class="td">${ fn:substring(c.enrollDate,0,8) }</div>
             <div class="td">${ c.hit }</div>
 		</c:forEach>
             

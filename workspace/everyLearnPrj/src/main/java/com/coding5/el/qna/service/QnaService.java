@@ -6,4 +6,6 @@ public interface QnaService {
 
 	int memberWrite(QnaVo vo) throws Exception;
 
+	int adminWrite(QnaVo vo) throws Exception;
+
 }
