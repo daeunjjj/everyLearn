@@ -34,10 +34,7 @@ public class CartController {
 	@Autowired
 	private LectureService lectureService;
 
-	/*
-	 * @GetMapping("addCart") public String addCart() { return
-	 * "redirect:/lecture/cart"; }
-	 */
+	
 	// 장바구니에 담기 (찐)
 	@PostMapping("addCart")
 	public String addCart(HttpServletRequest request, String classNo, String memberNo) {
@@ -48,7 +45,6 @@ public class CartController {
 
 		int result = cartService.addCart(map);
 		if (result == 1) {
-		// return result + "";
 		return "redirect:/cart/addCart";
 		}else {
 			return "common/error";
@@ -70,13 +66,16 @@ public class CartController {
 		int checkCart = cartService.checkCart(mno);
 
 		List<CartVo> list = cartService.getCartList(mno);
-		// System.out.println("controller list : " + list);
-		model.addAttribute("loginMember", loginMember);
-		model.addAttribute("mno", mno);
-		model.addAttribute("list", list);
-		model.addAttribute("mp", mp);
-		model.addAttribute("checkCart", checkCart);
-		return "lecture/cart";
+		if(list.size()!=0) {
+			model.addAttribute("loginMember", loginMember);
+			model.addAttribute("mno", mno);
+			model.addAttribute("list", list);
+			model.addAttribute("mp", mp);
+			model.addAttribute("checkCart", checkCart);
+			return "lecture/cart";
+		}else {
+			return "lecture/cart";
+		}
 
 	}
 

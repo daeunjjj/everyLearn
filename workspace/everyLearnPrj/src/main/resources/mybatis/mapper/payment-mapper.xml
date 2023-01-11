@@ -136,7 +136,7 @@
   	update cart
   	set ORDER_YN = 'Y'
   	 <foreach collection="list" item="item"  separator=";" open="DECLARE BEGIN" close="; END;" >
-  	 where MEMBER_NO = #{item.memberNo}
+  	 where CLASS_NO = #{item.classNo}
   	</foreach>
   
   </update>

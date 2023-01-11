@@ -117,7 +117,7 @@ public class PaymentController {
 			int result5 = paymentService.minusPoint(map);
 			
 			//결제한 강의 장바구니에서 삭제
-			int result6 = paymentService.deleteCart(payList);
+			//int result6 = paymentService.deleteCart(payList);
 			
 		
 			System.out.println("포인트 result 결과 ::: " + result3);
