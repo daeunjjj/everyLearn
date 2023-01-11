@@ -379,7 +379,7 @@ public class LectureController {
 		return "lecture/complete_payment";
 	}
 
-	// 강의 등록 ///일단 멤버로
+	// 강의 등록 
 	@GetMapping("insert")
 	public String insert(HttpSession session, Model model) {
 		
@@ -400,8 +400,6 @@ public class LectureController {
 	// 강의 등록 - post
 	@PostMapping("insert")
 	public String insert(LectureVo lvo, HttpSession session, Model model, HttpServletRequest req) {
-
-		//boolean isEmpty = lvo.getThumbnailFile().get(0).isEmpty();
 
 		// 파일 저장
 		// 강의 썸네일 저장

@@ -51,11 +51,15 @@ body{
 }
 
 #lec-pic{
-    padding: 20px;
-    padding-left: 50px;
+    padding: 70px;
 }
 
+#lec-cate{
+    margin-top: 25px;
+    color: #5a5a5a;
+}
 #lec-int{
+    margin-top: 20px;
     padding: 20px;
     padding-left: 50px;
     padding-right: 50px;
@@ -63,11 +67,12 @@ body{
 
 #lec-int>div{
     margin: 10px;
+    margin-top: 20px;
 }
 
 #lec-name{
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 23px;
+    font-weight: 800;
     margin: 15px 0px 15px 0px;
 }
 

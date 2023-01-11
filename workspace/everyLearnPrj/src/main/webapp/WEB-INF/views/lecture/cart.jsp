@@ -54,7 +54,11 @@
 				
 			</div> -->
 			
-			
+				<c:choose>
+				<c:when test="${empty list}">
+				<div style="margin-top:100px; text-align:center; font-size:22px; font-weight:600;">장바구니에 담긴 강의가 없습니다.</div>
+				</c:when>
+				<c:otherwise>
 				<c:forEach items="${list}" var="list">
 		            <div id="cart-item" class="cart_info_div">
 						<!-- <div id="leccart-check"><input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked"></div> -->
@@ -77,8 +81,11 @@
 	                 <c:set var="total" value="${total + Integer.parseInt(list.price)}" />
 	                 <c:set var="totalCnt" value="${totalCnt + 1}"/>
 	             </c:forEach>
+	             </c:otherwise>
+	             </c:choose>
 		    </c:otherwise>
 		    </c:choose>
+		    
 		     
 			
 				<c:choose>
@@ -126,26 +133,7 @@
 			
 			/* 종합 정보 섹션 정보 삽입 */
 			setTotalInfo();	
-			
-			/* 이미지 삽입 
-			$(".image_wrap").each(function(i, obj){
-			
-				const bobj = $(obj);
-				
-				if(bobj.data("bookid")){
-					const uploadPath = bobj.data("path");
-					const uuid = bobj.data("uuid");
-					const fileName = bobj.data("filename");
 					
-					const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
-					
-					$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
-				} else {
-					$(this).find("img").attr('src', '/resources/img/goodsNoImage.png');
-				}
-				
-			}); */
-			
 			
 		});	
 		// 전체선택
@@ -313,10 +301,7 @@
       	    	            
       	    	            
       	    	        })
-      	    	           
-   						/* .done(function (data) {
-      	    	           //가맹점 서버 결제 API 성공시 로직
-      	    	        }) */
+
       	    	      } 
       	    	  else {
       	    	        alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);

@@ -21,7 +21,7 @@ body{
 }
 
 .sidebar{
-    --width: 15%;
+    width: 180px;
     height: 500px;
     --border: 1px solid red;
     background-color: #F4F4F4;
@@ -47,7 +47,7 @@ li a {
 .sidebar li a:hover
     {
     color:#1187CF;
-    font-weight: bold;
+    font-weight: 700;
     }
 
 .search{
@@ -88,6 +88,7 @@ li a {
     padding: 5px;
     font-size: 18px;
     font-weight: 600;
+    margin-left: 250px;
 
 }
 /* hover 효과 넣고싶은데ㅠㅠㅠ
@@ -131,7 +132,8 @@ li a {
 }
 
 #lec-int a:hover{
-    font-weight: bold;
+    font-weight: 600;
+    color: #1187CF;
 }
 
 #lec-teacher{

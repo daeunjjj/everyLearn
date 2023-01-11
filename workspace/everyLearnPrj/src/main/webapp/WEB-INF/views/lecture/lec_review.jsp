@@ -17,7 +17,7 @@
 	<main id="container">
 	<div class="wrap">
 		<div class= "lec-intro">
-			 <div id="lec-pic"><img src="/el/resources/upload/${lvo.thumb}" width="500px" height="250px"></a></div>
+			 <div id="lec-pic"><img src="/el/resources/upload/${lvo.thumb}" width="600px" height="300px"></a></div>
 			<div id="lec-int">
 				<div id="lec-cate">${lvo.category }</div>
 				<div id="lec-name">${lvo.className }</div>
@@ -48,7 +48,7 @@
 				
 ( ${lvo.revAvg } / 5.0 )</div>
 				<div id="lec-recom">이 강의를 ${lvo.recomm }명이 조회했습니다!</div>
-				<div id="lec-teacher"><i class="fa-regular fa-user"></i>${lvo.teacherNo }</div>
+				<div id="lec-teacher"><a id="teacher-detail" href="/el/teacher/detail?teacherNick=${lvo.teacherNo }"><i class="fa-regular fa-user"></i>${lvo.teacherNo }</a></div>
 				</div>
 		</div>
 	
