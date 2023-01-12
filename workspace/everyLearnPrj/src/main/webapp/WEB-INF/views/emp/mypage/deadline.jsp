@@ -46,7 +46,7 @@
 		                    <c:if test="${not empty vo.cnt}">
 		                   		<td>${vo.cnt}명</td>
 		                    </c:if>
-                            <td><a href="/el/corp/applicant?empNo=${vo.no}"><button>상세보기</button></a></td>
+                            <td><a href="/el/corp/applicant?empNo=${vo.no}"><button class="btn">상세보기</button></a></td>
                         </tr>
                    </c:forEach>
                     </tbody>

@@ -72,6 +72,8 @@ public interface CorpDao {
 	// 비밀번호 재설정
 	public int updatePwd(SqlSessionTemplate sst, CorpVo vo);
 
+	public void deletePost(SqlSessionTemplate sst, CorpVo vo);
+
 
 
 }
