@@ -34,7 +34,7 @@
 
             <div id="btn"> <!-- 관리자만 보이는 버튼 -->
             	<c:if test="${ loginAdmin.getNo() != null }">
-                	<a href="/el/qna/answerAdminWrite" class="btn btn-outline-secondary me-md-2" type="button" id="btn1">답변</a>
+                	<a href="/el/qna/answerAdminWrite?no=${ q.no }" class="btn btn-outline-secondary me-md-2" type="button" id="btn1">답변</a>
                 	<button class="btn btn-outline-secondary me-md-2" type="button" id="btn1">삭제</button>
                	</c:if>
             </div>
@@ -54,13 +54,13 @@
 <!-- 관리자 답변 여부 Y 일 때 노출 -->
 <c:if test="${ q.answerYn eq 'Y' }">
             <div class="answer-area">   
-                <div class="answer" id="answer-title"><span>ㄴ RE : ${ q.title }</span></div>
-                <div class="answer" id="answer-info"><span>관리자 | ${ q.enrollDate } | 답변 완료</span></div>
+                <div class="answer" id="answer-title"><span>ㄴ RE : 답변</span></div>
+                <div class="answer" id="answer-info"><span>관리자 | ${ q.modifyDate } | 답변 완료</span></div>
                 
            		<div class="answer-content">
            			
            			<img alt="" src="/el/resources/upload/${ q.thumb }">
-                   <textarea id="content">${ q.content }</textarea>
+                   <textarea id="content">${ q.answer } </textarea>
            		
            		</div>
             </div>
