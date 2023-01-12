@@ -45,7 +45,7 @@
                     </div>
                     <div id="wrap">
                         <div style="height: 40px;">
-                            <button id="btn-enroll">이력서</button>
+                            <button id="btn-enroll" type="button">이력서</button>
                         </div>
                         <div class="container mt-3">
                             <input type="file" class="form-control mt-3" id="record" name="record">

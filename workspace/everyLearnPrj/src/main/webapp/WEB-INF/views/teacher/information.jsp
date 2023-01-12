@@ -36,7 +36,11 @@
 						</div>
 					</div>
 					<button id="detail-modify" onclick="careerModify()">자기소개 /
-						경력 수정</button>
+						경력 수정
+					</button>
+					<button style="margin-top: 5px;" id="detail-modify" onclick="location.href='/el/lecture/insert'">
+						강의 등록
+					</button>
 				</div>
 			</div>
 

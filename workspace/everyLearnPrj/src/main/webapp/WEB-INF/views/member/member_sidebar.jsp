@@ -22,12 +22,7 @@
             </label>
             <input type="checkbox" id="expand-menu" name="expand-menu">
             <ul>
-                <li>
-                    <a href="http://127.0.0.1:8888/el/member/alert" onclick="test()"  class="item">
-   
-                        <div>알림</div>
-                    </a>
-                </li>
+
                 <li>
                     <a href="http://127.0.0.1:8888/el/member/modify" class="item">
                         <div>프로필/수정</div>
@@ -42,6 +37,12 @@
                 <li>
                     <a href="http://127.0.0.1:8888/el/member/point?mpn=${loginMember.memberNo}" class="item">
                         <div>포인트</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://127.0.0.1:8888/el/member/alert" onclick="test()"  class="item">
+   
+                        <div>알림</div>
                     </a>
                 </li>
             </ul>

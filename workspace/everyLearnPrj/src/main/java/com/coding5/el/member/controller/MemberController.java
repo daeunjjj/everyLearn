@@ -1,5 +1,6 @@
 package com.coding5.el.member.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,17 +77,17 @@ public class MemberController {
 		List<ClassListVo> myClassList = memberService.myClassList(memberNo);
 		log.info("강의없어?" + myClassList);
 		
+		if(myClassList.size() == 0 ) {
+			model.addAttribute("info","n");
+			return "member/member_study";
+		}
 
-//		myClassList.get(0);
+		myClassList.get(0);
 		//강의 정보 조회
 		List<ClassListVo> myClassInfoList = memberService.myClassInfoList(myClassList);
 		model.addAttribute("myClassInfoList",myClassInfoList);
 		log.info("myClassInfoList 왜???:::" + myClassInfoList);
 		
-		if(myClassList.size() == 0 ) {
-			model.addAttribute("info","n");
-			return "member/member_study";
-		}
 		
 		return "member/member_study";
 	}
@@ -96,6 +97,32 @@ public class MemberController {
 		
 	
 		List<PointVo> pointList = memberService.pointList(mpn);
+		
+		
+		PointVo str = null;
+		int point = 0;
+		int sum = 0;
+		for (int i=0; i<pointList.size(); i++) {
+			str = pointList.get(i);
+			PointVo dd = new PointVo();
+			dd.setChange(str.getChange());
+			 
+			point = Integer.parseInt(dd.getChange());
+			sum = 0;
+			sum += point;
+			
+		}
+		
+		if(sum == 0 ) {
+			sum = -1;
+		}
+		
+		System.out.println("sum" + sum);
+	
+		model.addAttribute("sum", sum);
+		
+		
+		
 		log.info("pointList" + pointList);
 		model.addAttribute("pointList",pointList);
 		

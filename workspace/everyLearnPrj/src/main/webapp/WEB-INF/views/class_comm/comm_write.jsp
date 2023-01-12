@@ -5,7 +5,7 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>Insert title here</title>
+        <title>커뮤니티 게시글 등록</title>
         <link rel="stylesheet" href="/el/resources/css/class_comm/comm_write.css">
         <!-- Latest compiled and minified CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
                     <button type="submit" class="btn btn-primary" id="btn-write">등록하기</button>
                </form>
                <input type="hidden" id="memberNo" value="${loginMember.memberNo}">
-               로그인멤버${loginMember.memberNo}
+             
         </div>
 
 				<script type="text/javascript">
