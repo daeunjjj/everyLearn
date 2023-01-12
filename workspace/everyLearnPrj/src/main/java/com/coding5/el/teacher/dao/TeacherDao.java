@@ -23,5 +23,8 @@ public interface TeacherDao {
 
 	public List<TeacherMemberVo> selectClassList(SqlSessionTemplate sst, String memberNo);
 
+	//강사번호 셀렉트
+	public TeacherVo selectNewTeacher(SqlSessionTemplate sst, MemberVo mvo);
+
 
 }

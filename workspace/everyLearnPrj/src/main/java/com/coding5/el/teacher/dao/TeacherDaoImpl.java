@@ -9,6 +9,8 @@ import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.member.vo.TeacherMemberVo;
 import com.coding5.el.teacher.vo.TeacherVo;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Repository
 public class TeacherDaoImpl implements TeacherDao{
 	
@@ -38,6 +40,13 @@ public class TeacherDaoImpl implements TeacherDao{
 	@Override
 	public List<TeacherMemberVo> selectClassList(SqlSessionTemplate sst, String memberNo) {
 		return sst.selectList("teacherMapper.selectClassList", memberNo);
+	}
+
+	@Override
+	public TeacherVo selectNewTeacher(SqlSessionTemplate sst, MemberVo mvo) {
+		TeacherVo result = sst.selectOne("teacherMapper.selectNewTeacher", mvo);
+		log.info("찐강사 번호"+result);
+		return result;
 	}
 
 }

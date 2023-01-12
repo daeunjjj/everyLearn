@@ -50,7 +50,7 @@
 		VALUES
 		(
 		SEQ_TEACHER_ATTATCH_NO.NEXTVAL
-		,#{teacherNo}
+		,${teacherNo}
 		,#{changeName}
 		)
 	</insert>
@@ -117,6 +117,12 @@
 		JOIN MEMBER M
 		ON C.TEACHER_NO = M.NO
 		WHERE TEACHER_NO = ${memberNo}
+	</select>
+	
+	<select id="selectNewTeacher" resultType="com.coding5.el.teacher.vo.TeacherVo">
+		SELECT NO TEACHER_RE
+        FROM TEACHER
+        WHERE MEMBER_NO = ${memberNo}
 	</select>
 
 </mapper>
