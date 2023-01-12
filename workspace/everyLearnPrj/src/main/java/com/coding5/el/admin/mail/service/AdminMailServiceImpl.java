@@ -148,11 +148,6 @@ public class AdminMailServiceImpl implements AdminMailService{
 			attachResult = adminMailDao.insertEmailAttach(sst,attachList);
 			log.info("어테치 넣기 성공? ::" + attachResult);
 		}
-		
-
-		
-		
-		
 		return resultMail + attachResult;
 	}
 	

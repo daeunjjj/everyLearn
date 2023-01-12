@@ -269,7 +269,8 @@ public class AdminController {
 
 		int result = adminService.adminModify(vo);
 		
-		if(result > 0) {
+		log.info("마스터 관리자 정보수정::: "+ result);
+		if(result != 1) {
 			return "common/error";
 		}
 		
@@ -284,7 +285,6 @@ public class AdminController {
 	@PostMapping("master/quit")
 	public String adminQuit(String[] arrNo, RedirectAttributes redirect) {
 		int result = adminService.adminQuit(arrNo);
-		
 		if(result != 1) {
 			return "common/error";
 		}

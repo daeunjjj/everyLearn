@@ -491,7 +491,6 @@
 		    ,E.ADDRESS
 		    ,E.CAREER
 		    ,E.DEADLINE
-		    ,E.WISH_CNT
 		    ,E.ENROLL_DATE
 		    ,TO_CHAR(MODIFY_DATE, 'YYYY-MM-DD') AS MODIFY_DATE
 		    ,E.DELETE_YN
