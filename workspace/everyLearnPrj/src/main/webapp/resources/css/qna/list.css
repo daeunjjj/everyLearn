@@ -47,7 +47,7 @@
     border-bottom: 1px solid black;
 }
 
-#status{
+#answerYes{
     color: #1187CF;
     font-weight: 600;
 }
@@ -85,19 +85,26 @@
     margin-top: 50px;
 }
 
-#page-btn{
+#a1{
     border-top: 0px;
     border-bottom: 0px;
     border-left: 0px;
     border-right: 0px;
 }
 
-#page-btn:hover{
+#a1:hover{
     opacity: 20%;
     font-size: large;
     background-color: #1187CF;
 }
 
+#title-a{
+	color: black;
+}
+
+#title-a:hover{
+	color: #1187CF;
+}
 
 .material-symbols-outlined {
   font-variation-settings:

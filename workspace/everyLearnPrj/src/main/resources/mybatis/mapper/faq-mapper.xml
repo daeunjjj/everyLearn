@@ -55,19 +55,14 @@
  	
  	<!-- 일반 회원 질문 리스트 -->
  	<select id="getMemberFaqList" resultType="faqVo">
- 		SELECT F.NO
-                    ,C.NAME AS CATEGORY
-                    ,F.TITLE 
-                    ,F.CONTENT
-                    ,F.ENROLL_DATE
-                FROM FAQ F
-                FULL OUTER JOIN FAQ_CATE C
-                ON F.CATEGORY = C.NO
-                WHERE F.DELETE_YN = 'N'
-                ORDER BY F.NO DESC
-	    WHERE F.DELETE_YN = 'N'
-	    AND C.NAME = '일반회원'
-	    ORDER BY F.NO DESC
+ 		SELECT 
+		    CATEGORY
+		    , TITLE
+		    , CONTENT
+		FROM FAQ
+		WHERE CATEGORY = 1
+		ORDER BY NO DESC
+	
  	</select>
  	
  	<!-- 기업 회원 질문 리스트 -->

@@ -60,7 +60,7 @@
 	
 	
 	<!-- 글 수정하기 -->
-	<update id="editEmpComm">
+	<update id="editEmpComm" parameterType="com.coding5.el.emp.comm.vo.EmpCommVo">
 		UPDATE EMP_COMM
         	SET TITLE = #{title},
         		CONTENT = #{content}, 

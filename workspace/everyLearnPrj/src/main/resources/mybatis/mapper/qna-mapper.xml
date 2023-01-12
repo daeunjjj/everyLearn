@@ -14,6 +14,7 @@
 		    ,CATEGORY
 		    ,TITLE
 		    ,CONTENT 
+		    , THUMB
 		)
 		VALUES
 		(
@@ -23,6 +24,7 @@
 		    , #{category}
 		    , #{title}
 		    , #{content}
+		    , #{thumb}
 		)
 	</insert>
 	
@@ -32,10 +34,9 @@
 	</update>
 	
 	<!-- 글 갯수 -->
-	<select id="getQnaCommCnt" resultType="com.coding5.el.qna.vo.QnaVo">
-		SELECT COUNT(NO)
+	<select id="getQnaCnt" resultType="int">
+		SELECT COUNT(*)
 		FROM QNA
-		WHERE DELETE_YN = 'N';
 	</select>
 	
 	<!-- qna 리스트 -->
@@ -48,16 +49,20 @@
 		 	(
 				SELECT F.NO
 				    ,C.NAME AS CATEGORY
-				    ,A.NICK
+				    ,M.NICK
 				    ,F.TITLE 
 				    ,F.CONTENT
 				    ,F.ENROLL_DATE
 				    ,F.ANSWER_YN
+				    ,M.NO AS MNO
+                    ,A.NO AS ANO
 				FROM QNA F
 				full outer JOIN QNA_CATE C
 				ON F.CATEGORY = C.NO
-				JOIN MEMBER A
-				ON F.MEMBER_NO = A.NO
+				JOIN MEMBER M
+				ON F.MEMBER_NO = M.NO
+                JOIN ADMIN A
+                ON F.ADMIN_NO = A.NO
 				WHERE F.DELETE_YN = 'N'
 				ORDER BY F.NO DESC
 			) T
@@ -65,5 +70,45 @@
 	 	WHERE RN BETWEEN #{startRow} AND #{endRow}
 		
 	</select>
+  
+  	<select id="selectDetail" resultType="com.coding5.el.qna.vo.QnaVo">
+  		SELECT Q.NO,
+		    C.NAME AS CATEGORY,
+		    M.NICK,
+		    Q.TITLE,
+		    Q.CONTENT,
+            Q.ENROLL_DATE ,
+		    Q.MODIFY_DATE ,
+		    Q.DELETE_YN ,
+		    Q.ANSWER_YN,
+		    Q.THUMB,
+		    M.NO AS MNO,
+            W.CONTENT AS wContent,
+            A.NICK AS aNick
+		FROM QNA Q
+		full outer JOIN QNA_CATE C
+		ON Q.CATEGORY = C.NO
+		JOIN MEMBER M
+		ON Q.MEMBER_NO = M.NO
+        JOIN QNA_ANSWER W
+        ON Q.NO = W.QNA_NO
+        JOIN ADMIN A
+        ON Q.ADMIN_NO = A.NO
+		WHERE Q.NO = #{no}
+  	
+  	</select>
+  	
+  	<!-- 관리자 답변 등록 -->
+  	<update id="updateAdminWrite" parameterType="com.coding5.el.qna.vo.QnaVo">
+  		UPDATE QNA
+        	SET 
+        		TITLE = #{title},
+        		CONTENT = #{content}, 
+        		CATEGORY = #{category},
+        		MODIFY_DATE = TO_CHAR(SYSDATE,'YY.MM.DD HH24:MI'),
+                ANSWER_YN = 'Y'
+        WHERE NO = #{no}
+  	
+  	</update>
   
 </mapper>

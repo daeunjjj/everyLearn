@@ -29,27 +29,48 @@
     <div class="container">
         <div class="list">
 
-            <div class="th" id="no">번호</div>
+            <div class="th">번호</div>
             <div class="th">카테고리</div>
-            <div class="th" id="title">제목</div>
-            <div class="th" id="nick">작성자</div>
-            <div class="th" id="date">작성일</div>
-            <div class="th" id="hit">상태</div>
+            <div class="th">제목</div>
+            <div class="th">작성자</div>
+            <div class="th">작성일</div>
+            <div class="th">상태</div>
 
 
 		<c:forEach items="${list}" var="c">
-			<div class="td">${ c.no }</div>
-            <div class="td">${ c.category }</div>
-            <div class="td" id="title">
+			<div class="td" id="no">${ c.no }</div>
+            <div class="td" id="category">${ c.category }</div>
+            
+            <div class="td">
+           	<c:if test="${ c.mno == loginMember.memberNo }">
             	<a href="/el/qna/detail?no=${ c.no }" id="title-a">${c.title}</a>
+            	<span class="material-symbols-outlined">lock</span>
+            </c:if>
+            
+            <c:if test="${ loginAdmin.getNo() != null }">
+            	<a href="/el/qna/detail?no=${ c.no }" id="title-a">${c.title}</a>
+            </c:if>
+            
+            <c:if test="${ c.mno != loginMember.getMemberNo() && loginAdmin.getNo() == null }">
+            	작성자와 관리자만 볼 수 있는 글입니다.
               	<span class="material-symbols-outlined">lock</span>
+            </c:if>
+         
             </div>
-            <div class="td" id="nick">${ c.nick }</div>
-            <div class="td" id="date">${ fn:substring(c.enrollDate,0,8) }</div>
-            <div class="td" id="status1">${ c.answerYn }</div>
+            
+            <div class="td" id="nick" name="nick">${ c.nick }</div>
+            <div class="td" id="enrollDate" name="enrollDate">${ fn:substring(c.enrollDate,0,8) }</div>
+            <c:if test="${ c.answerYn eq 'N' }">
+            	<div class="td" id="answerNo" name="answerYn">답변 중</div>
+            </c:if>
+            
+            <c:if test="${ c.answerYn eq 'Y' }">
+            	<div class="td" id="answerYes" name="answerYn">답변 완료</div>
+            </c:if>
 		
 		</c:forEach>
 
+<!-- 
 			<div class="td" id="no">15</div>
             <div class="td">결제</div>
             <div class="td" id="title">
@@ -58,9 +79,7 @@
             </div>
             <div class="td" id="nick">nick01</div>
             <div class="td" id="date">23.01.13</div>
-            <div class="td" id="status1">답변 중</div>
-<!--  -->            
-            
+            <div class="td" id="status1">답변 중</div>         
 
 			<div class="td" id="no">14</div>
             <div class="td">결제</div>
@@ -71,7 +90,7 @@
             <div class="td" id="nick">nick03</div>
             <div class="td" id="date">22.12.11</div>
             <div class="td" id="status1">답변 중</div>	
-<!--  -->
+
 
             <div class="td" id="no">11</div>
             <div class="td">결제</div>
@@ -82,7 +101,7 @@
             <div class="td" id="nick">nick9</div>
             <div class="td" id="date">22.12.11</div>
             <div class="td" id="status1">답변 중</div>
-  <!--  -->          
+      
 
             <div class="td" id="no">10</div>
             <div class="td">결제</div>
@@ -92,8 +111,6 @@
             <div class="td" id="nick">nick01</div>
             <div class="td" id="date">22.12.11</div>
             <div class="td" id="status">답변완료</div>
-  <!--  -->          
-            
 
             <div class="td" id="no">9</div>
             <div class="td">결제</div>
@@ -102,25 +119,34 @@
             <div class="td" id="nick">nick01</div>
             <div class="td" id="date">22.12.11</div>
             <div class="td" id="status">답변완료</div>
-
+ -->
             
-
+		<c:if test="${ loginMember != null }">
             <div id="main-bot">
                 <a href="/el/qna/memberWrite" class="btn btn-light" id="write">작성하기</a>
             </div>
+		</c:if>	
 
-            <div id="page-area" class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-                <div id="page-area2" class="btn-group me-2" role="group" aria-label="First group">
-                <a href="/#/board/list?p=1" class="btn btn-outline-secondary" id="page-btn"><</a>
-                <a href="/#/board/list?p=1" class="btn btn-outline-secondary" id="page-btn">1</a>
-                <a href="/#/board/list?p=2" class="btn btn-outline-secondary" id="page-btn">2</a>
-                <a href="/#/board/list?p=3" class="btn btn-outline-secondary" id="page-btn">3</a>
-                <a href="/#/board/list?p=4" class="btn btn-outline-secondary" id="page-btn">4</a>
-                <a href="/#/board/list?p=5" class="btn btn-outline-secondary" id="page-btn">5</a>
-                <a href="/#/board/list?p=1" class="btn btn-outline-secondary" id="page-btn">></a>
-                </div>
+             <div id="page-area" class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+	 				<div id="page-area2" class="btn-group me-2" role="group" aria-label="First group">
+	                
+		                <c:if test="${page.startPage != 1}">
+							<a href="${page.startPage - 1}" class="btn btn-outline-secondary" id="a1"><</a>
+						</c:if>
+			            <c:forEach var="i" begin="${page.startPage}" end="${page.endPage}">
+							<c:if test="${page.currentPage != i and i <= page.lastPage}">
+								<a href="/el/qna/list/${i}" class="btn btn-outline-secondary" id="a1">${i}</a>
+							</c:if>
+							<c:if test="${page.currentPage == i and i <= page.lastPage}">
+								<a href="/el/qna/list/${i}" class="btn btn-outline-secondary" id="a1">${i}</a>
+							</c:if>
+						</c:forEach>    
+			            <c:if test="${page.endPage < page.lastPage}">
+							<a href="${page.endPage + 1}" class="btn btn-outline-secondary" id="a1">></a>
+						</c:if>    
+					 </div>
+				</div>
             </div>
-        </div>
 
         
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,16 +9,13 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
-<link rel="stylesheet" href="/el/resources/css/qna/write.css">
-<link rel="stylesheet" href="/el/resources/css/emp-comm/common.css">
+<link rel="stylesheet" href="/el/resources/css/qna/adminWrite.css">
+<link rel="stylesheet" href="/el/resources/css/emp-commu/common.css">
 <link rel="stylesheet" href="/el/resources/css/admin/menu.css">
-
-
 </head>
 <body>
-
 	<div class="wrap">
         <%@include file="/WEB-INF/views/admin/menu.jsp" %>
         <main>
@@ -27,9 +25,9 @@
 
             <div class="main-wrap">
 
-                <form action="" method="post" id="write-fr">
+                <form method="post" id="write-fr" enctype="multipart/form-data">
                 	<br>
-                    <div id="category">
+                   <div id="category">
                         <select name="category" id="category-btn">
                             <option value="1">강의</option>
                             <option value="2">결제</option>
@@ -38,11 +36,14 @@
                         </select>
                     </div>
                 
-                    </div>
-                    <div id="title"><input type="text" name="title" required placeholder="제목"></div>
-                    <div id="content"><textarea name="content" required placeholder="내용"></textarea></div>
-                    <div id="file"><input class="form-control form-control-sm" id="formFileSm" type="file" name="f"></div>
-                    <div id="write"><button type="submit" class="btn btn-light" id="submit-btn">수정하기</button></div>
+                   
+                    <div id="title"><input type="text" name="title" required value="${ q.title }"></div>
+                    <div id="content">
+		            	<img alt="" src="/el/resources/upload/${ q.thumb }" />
+	                   	<textarea id="content" name="content">${ q.content }</textarea>
+					</div>
+                    <div id="file"><input class="form-control form-control-sm" id="input_file" type="file" name="thumbFile"></div>
+                    <div id="write"><button type="submit" class="btn btn-light" id="submit-btn" value="${ q.no }">작성하기</button></div>
                 </form>		
 
 			</div>
@@ -50,6 +51,8 @@
         </main>
 
     </div>
+
+
 
 </body>
 </html>

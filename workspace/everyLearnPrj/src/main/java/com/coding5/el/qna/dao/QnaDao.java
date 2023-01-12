@@ -13,8 +13,10 @@ public interface QnaDao {
 
 	int answerAdminWrite(SqlSessionTemplate sst, QnaVo vo) throws Exception;
 
-	int getQnaCommCnt(SqlSessionTemplate sst) throws Exception;
+	int getQnaCnt(SqlSessionTemplate sst) throws Exception;
 
 	List<QnaVo> getQnaList(SqlSessionTemplate sst, PageVo pageVo) throws Exception;
+
+	QnaVo selectDetail(SqlSessionTemplate sst, String no) throws Exception;
 
 }

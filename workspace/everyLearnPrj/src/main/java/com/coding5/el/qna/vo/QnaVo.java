@@ -9,12 +9,16 @@ public class QnaVo {
 
 	
 	private String no;
+	private String mno;
 	private String memberNo;
+	private String ano;
 	private String adminNo;
 	private String category;
 	private String nick;
+	private String aNick;
 	private String title;
 	private String content;
+	private String wContent;
 	private String answerYn;
 	private String enrollDate;
 	private String modifyDate;

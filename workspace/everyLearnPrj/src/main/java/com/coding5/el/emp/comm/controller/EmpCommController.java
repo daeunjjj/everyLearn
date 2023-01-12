@@ -106,25 +106,29 @@ public class EmpCommController {
 	public String detail(@RequestParam("no") String no,  Model model, HttpSession session, EmpCommVo vo) throws Exception {
 		
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-		String memberNo = null;
+		//String memberNo = null;
 		
 		
-		  try { memberNo = loginMember.getMemberNo(); } catch (Exception e) {
-		  e.printStackTrace(); }
+		/*
+		 * try { memberNo = loginMember.getMemberNo(); } catch (Exception e) {
+		 * e.printStackTrace(); }
+		 */
 		 
 		
 		int result = empCommService.increaseHit(no);
 		
 		LikeVo heart = new LikeVo();
-		heart.setEmpCommNo(no);
-		heart.setMemberNo(memberNo);
+		//heart.setEmpCommNo(no);
+		//heart.setMemberNo(memberNo);
 		
 		if(result > 0) {			
 			EmpCommVo n = empCommService.selectDetail(no);
 			model.addAttribute("n", n);
 			
-			heart = empCommService.findHeart(no, memberNo);
-			model.addAttribute("heart", heart);
+			/*
+			 * heart = empCommService.findHeart(no, memberNo); model.addAttribute("heart",
+			 * heart);
+			 */
 			
 			
 			return "emp-comm/detail";

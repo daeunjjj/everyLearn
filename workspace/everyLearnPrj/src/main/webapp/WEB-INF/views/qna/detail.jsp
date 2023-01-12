@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,38 +33,38 @@
         <div class="main"> 
 
             <div id="btn"> <!-- 관리자만 보이는 버튼 -->
-                <a href="/el/qna/adminWrite" class="btn btn-outline-secondary me-md-2" type="button" id="btn1">답변</a>
-                <button class="btn btn-outline-secondary me-md-2" type="button" id="btn1">삭제</button>
+            	<c:if test="${ loginAdmin.getNo() != null }">
+                	<a href="/el/qna/answerAdminWrite" class="btn btn-outline-secondary me-md-2" type="button" id="btn1">답변</a>
+                	<button class="btn btn-outline-secondary me-md-2" type="button" id="btn1">삭제</button>
+               	</c:if>
             </div>
 			
-			<div id="category">결제</div>
-            <div class="title"><span id="title">포인트</span><span class="material-symbols-outlined">lock</span></div>
+			<div id="category">${ q.category }</div>
+            <div class="title"><span id="title">${ q.title }</span><span class="material-symbols-outlined">lock</span></div>
 
-            <div class="info-nick"><span id="nick">nick01   |   22.11.29    |   11</span></div>
+            <div class="info-nick"><span id="nick">${ q.nick }   |   ${ q.enrollDate }  </span></div>
 
 	            <div class="content">
-	            	
-	                            어쩌구 저쩌구 내용 쓰는 칸
-	                    <br>
-	                            어쩌구 저쩌구 내용 쓰는 칸
-
+	            	<img alt="" src="/el/resources/upload/${ q.thumb }">
+                   <textarea id="content">${ q.content }</textarea>
 	            </div>
           </div>
           
           	<div id="line"></div>
 <!-- 관리자 답변 여부 Y 일 때 노출 -->
+<c:if test="${ q.answerYn eq 'Y' }">
             <div class="answer-area">   
-                <div class="answer" id="answer-title"><span>ㄴ RE : 답변 드립니다.</span></div>
-                <div class="answer" id="answer-info"><span>관리자 | 22.12.17 | 답변완료</span></div>
+                <div class="answer" id="answer-title"><span>ㄴ RE : ${ q.title }</span></div>
+                <div class="answer" id="answer-info"><span>관리자 | ${ q.enrollDate } | 답변 완료</span></div>
                 
            		<div class="answer-content">
-                    어쩌구 저쩌구 내용 쓰는 칸
-                    <br>
-                    어쩌구 저쩌구 내용 쓰는 칸
-           
-                    감사합니다 :)
-            	</div>
+           			
+           			<img alt="" src="/el/resources/upload/${ q.thumb }">
+                   <textarea id="content">${ q.content }</textarea>
+           		
+           		</div>
             </div>
+</c:if>
 <!-- ------------------ -->
 
            <div class="back-sticky">
