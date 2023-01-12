@@ -79,7 +79,6 @@
 	                            <div>제목</div>
 	                            <div>마감일</div>
 	                            <div>수정날짜</div>
-	                            <div>찜개수</div>
 	                            <div>관리</div>
 	                        </div>
 	                        <div>
@@ -90,7 +89,6 @@
 		                                    <div>${list.title }</div>
 		                                    <div class="deadline">${list.deadline }</div>
 		                                    <div>${list.modifyDate}</div>
-	                                        <div>${list.wishCnt}</div>
  										<div>
 		                                    <form action="/el/admin/member/corporate/emp-board/delete" method="post" onsubmit="return deleteCheck();">
 		                                    	<input name="eno" value="${list.no}" hidden>

@@ -8,7 +8,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/el/resources/css/admin/find/id.css">
 <link rel="stylesheet" href="/el/resources/css/common/reset.css">
+<script>
+    (function() {
+    var link = document.createElement('link');
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon';
+    link.href = '/el/resources/img/logo/favicon-16x16.png';
+    document.getElementsByTagName('head')[0].appendChild(link);
+    }());
+</script>
 </head>
+
 <body>
     <div class="container">
         <div class="main">

@@ -53,7 +53,7 @@ public class RequestController {
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 		
 		if(loginMember == null) {
-			return "member/login";
+			return "redirect:/member/login";
 		}
 		
 		vo.setMemberNo(loginMember.getMemberNo());

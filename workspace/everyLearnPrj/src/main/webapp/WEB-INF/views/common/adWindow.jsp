@@ -42,11 +42,7 @@
                     alert("ajax통신실패");
                 }
             });
-        
-            
         }
-
-
     </script>
 </body>
 </html>

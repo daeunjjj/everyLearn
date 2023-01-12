@@ -63,7 +63,9 @@
 			<mapping path="/admin/**"/>
 			<exclude-mapping path="/admin/login"/>
 			<exclude-mapping path="/admin/logout"/>
-			<exclude-mapping path="/admin/find/*"/>
+			
+			<exclude-mapping path="/admin/find/**"/>
+			<exclude-mapping path="/admin/send"/>
 			<beans:bean class="com.coding5.el.admin.intercepter.AdminCheckIntercepter"></beans:bean>
 		</interceptor>
 	</interceptors>

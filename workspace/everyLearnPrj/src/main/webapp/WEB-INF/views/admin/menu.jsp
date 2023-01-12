@@ -26,7 +26,7 @@
 <aside class="menu-bar" id="menu-height">
     <nav>
         <div class="top">
-            <a href="">
+            <a href="/el/admin/main">
                 <img src="/el/resources/img/admin/white-logo.png" alt="로고" width="170" height="170">
             </a>
             <div class="info-box">
@@ -143,7 +143,7 @@
                     </div>
                 </li>
                 <li class="nav-items" id="mail">
-                    <a class="nav-items-a" href="/el/admin/mail/send">
+                    <a class="nav-items-a" href="/el/admin/mail/all-send">
                         <span>메일</span>
                         <i class="bi bi-chevron-compact-right"></i>
                     </a>

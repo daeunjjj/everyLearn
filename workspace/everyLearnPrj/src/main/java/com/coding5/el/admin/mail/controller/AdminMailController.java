@@ -76,7 +76,6 @@ public class AdminMailController {
 				}
 			}
 			
-			log.info("isEmpty?"+!multipartFile.isEmpty());
 			
 			// db에 어테치 넣기 위해..
 			List<AttachVo> voList = null;
@@ -165,12 +164,14 @@ public class AdminMailController {
 		 * @return
 		 */
 		@PostMapping("mail/delete")
-		public String sendDelete(String[] arrNo) {
+		public String sendDelete(String[] arrNo , RedirectAttributes redirect) {
 			
 			log.info("no 잘 받아오나" + arrNo[0]);
 			
 			int result = adminMailService.deleteSendMail(arrNo);
 			
+			
+			redirect.addFlashAttribute("resultMsg", "삭제되었습니다.");
 			return "redirect:/admin/mail/send/list?pno=1";
 		}
 		
