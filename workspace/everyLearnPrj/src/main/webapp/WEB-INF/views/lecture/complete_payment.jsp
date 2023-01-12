@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>everyLearn</title>
 <link rel="stylesheet" href="/el/resources/css/lecture/complete_payment.css" />
 <link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
 <script src="https://kit.fontawesome.com/0c7f523053.js" crossorigin="anonymous"></script>
@@ -25,7 +25,8 @@
 		<div id="complete-wrap">
 			<div id="check-btn"><i class="fa-solid fa-circle-check fa-5x"></i></div>
 			<div id="pay-com">결제가 완료되었습니다.</div>
-			<div id="check-mypage"><a href="/el/member/memberStudy"><button>마이페이지에서 확인하기</button></a></div>
+			<div id="check-mypage"><a id="myClassList" href="javascript:memberStudy('${loginMember.memberNo}')"><button>마이페이지에서 확인하기</button></a></div>
+			
 		</div>
 	</div>
 	

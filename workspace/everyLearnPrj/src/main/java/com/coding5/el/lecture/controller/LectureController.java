@@ -46,7 +46,7 @@ public class LectureController {
 		int listCount = lectureService.selectLectureCount();
 		int currentPage = Integer.parseInt(pno);
 		int pageLimit = 5;
-		int boardLimit = 10;
+		int boardLimit = 12;
 		
 		PageVo pv = Pagination.getPageVo(listCount, currentPage, pageLimit, boardLimit);
 
@@ -375,7 +375,12 @@ public class LectureController {
 
 	// 결제완료
 	@GetMapping("complete_payment")
-	public String completePayment() {
+	public String completePayment(HttpSession session, Model model) {
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		String memberNo = loginMember.getMemberNo();
+		
+		model.addAttribute("loginMember", loginMember);
+		model.addAttribute("memberNo", memberNo);
 		return "lecture/complete_payment";
 	}
 

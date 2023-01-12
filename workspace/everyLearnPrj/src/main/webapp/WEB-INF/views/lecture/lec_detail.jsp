@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>everyLearn</title>
 <script src="https://kit.fontawesome.com/0c7f523053.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/el/resources/css/lecture/lec_review.css" />
 <link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">
@@ -86,7 +86,7 @@
 	                    
 	                <c:choose>
 	                	<c:when test="${checkBuy != 0 }">
-	                		<div><a href="#"><button type = "button" id="pay-cart">학습하러 가기</button></a></div>
+	                		<div><a id="myClassList" href="javascript:memberStudy('${loginMember.memberNo}')"><button type = "button" id="pay-cart">학습하러 가기</button></a></div>
 	                	</c:when>
 	                	<c:when test="${checkCart != 0 }">
 	                		<div><a href="/el/cart/addCart"><button type ="button" id="pay-cart" onclick="checkCart()">장바구니로 이동</button></a></div>
