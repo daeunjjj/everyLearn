@@ -26,7 +26,7 @@
 <aside class="menu-bar" id="menu-height">
     <nav>
         <div class="top">
-            <a href="/el/admin/main">
+            <a href="/el/main">
                 <img src="/el/resources/img/admin/white-logo.png" alt="로고" width="170" height="170">
             </a>
             <div class="info-box">
@@ -86,7 +86,7 @@
                                     <a href="/el/faq/adminList">자주묻는질문</a>
                                 </li>
                                 <li class="detail-cate" id="qna">
-                                    <a href="/el/qna/adminWrite ">QNA</a>
+                                    <a href="/el/qna/adminList ">QNA</a>
                                 </li>
                                 
                             </ul>
