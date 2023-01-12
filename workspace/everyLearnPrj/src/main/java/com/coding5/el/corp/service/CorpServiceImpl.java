@@ -242,7 +242,7 @@ public class CorpServiceImpl implements CorpService {
 		int result = dao.updateCorpMember(sst, vo);
 		
 		if(result == 1) {
-			dao.deletePost(sst, vo);
+			dao.updatePost(sst, vo);
 		}
 		
 		return result;

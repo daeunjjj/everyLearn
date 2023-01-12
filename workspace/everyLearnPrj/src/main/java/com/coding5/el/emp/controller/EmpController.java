@@ -314,9 +314,5 @@ public class EmpController {
 		return "emp/post-list";
 	}
 	
-	@GetMapping("corp-review")
-	public String review() {
-		return "emp/corp-review";
-	}
-	
+
 }

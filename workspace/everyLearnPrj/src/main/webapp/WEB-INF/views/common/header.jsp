@@ -36,7 +36,7 @@
 		</div>
 		<nav id="navbar">
 			<div class="logoTop">
-				<a href=""><img src="/el/resources/img/logo/logo.svg" alt="로고" class="el-logo"></a>
+				<a href="/el/main"><img src="/el/resources/img/logo/logo.svg" alt="로고" class="el-logo"></a>
 			</div>
 			<div id="nav-container">
 				<div class="nav-list">

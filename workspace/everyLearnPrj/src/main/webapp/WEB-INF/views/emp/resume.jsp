@@ -36,31 +36,31 @@
 					<div class="main-wrapper">
 						<section class="section">
 							<div class="title">
-								<h3>기본정보</h3>
+								<h3>기본정보(필수입력)</h3>
 							</div>
 							<div class="content">
 								<div class="basic-info">
 									<div class="list">
-										<p>이름</p>
+										<p>이름<span class="essential-info">*</span></p>
 										<div>
 											<input type="text" name="name" class="input" value="${rv.name}">
 										</div>
 									</div>
 									<div class="list">
-										<p>전화번호</p>
+										<p>전화번호<span class="essential-info">*</span></p>
 										<div>
 											<input type="text" name="phone" class="input" value="${rv.phone}"  oninput="autoHyphen(this);" maxlength="13">
 										</div>
 									</div>
 									<div class="list">
-										<p>이메일</p>
+										<p>이메일<span class="essential-info">*</span></p>
 										<div>
 											<input type="text" name="email" class="input" value="${rv.email}">
 										</div>
 									</div>
 									<!-- 드롭다운으로 변경 예정 -->
 									<div class="list">
-										<p>관심 직군</p>
+										<p>관심 직군<span class="essential-info">*</span></p>
 										<div class="dropdown">
 											<select name="category" class="input">
 												<option value="1">IT직군</option>
@@ -73,13 +73,13 @@
 									</div>
 									<!-- 주소 api -->
 									<div class="list expand">
-										<p>주소</p>
+										<p>주소<span class="essential-info">*</span></p>
 										<div>
 											<input type="text" name="address" class="input additional" value="${rv.address}" onclick="searchArr();" id="address">
 										</div>
 									</div>
 									<div class="list expand">
-										<p>상세주소</p>
+										<p>상세주소<span class="essential-info">*</span></p>
 										<div>
 											<input type="text" name="detailAddress"
 												class="input additional" value="${rv.detailAddress}" id="detailAddress">
