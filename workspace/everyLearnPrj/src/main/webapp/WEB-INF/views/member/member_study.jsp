@@ -21,7 +21,7 @@
             <c:if test="${info ne 'n'}">
             <div>
                 <div id="lecture">
-                    ${myClassInfoList}
+                    
                     <label for="">최근 본 강의</label>
                 </div>
                 <div id="lately-wrap">
@@ -53,7 +53,6 @@
                     <label for="">내 강의 목록</label>
                 </div>
                 <div id="list-wrap">
-                
                 <c:if test="${info eq 'n'}">
 					<div style="width: 1000px; height: 500px;">
                     <img  style="width: 1000px; height: 200px; margin-top: 150px;" src="/el/resources/img/member/noClass.png" alt="">

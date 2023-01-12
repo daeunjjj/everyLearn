@@ -42,8 +42,20 @@
 					<div>
 						<strong>에브리런님의 현재 포인트 </strong>
 					</div>
-					<div id="point">P</div>
+					<input type="hidden" name="sum" id="sum" value="${sum}">
+					<div id="point">${sum}P</div>
 				</div>
+
+				<script>
+					var sum = $('#sum').val();
+					
+					if(sum == -1){
+						$('#point').html("0P");
+					}else{
+						$('#point').html(sum+"P");
+					}
+				</script>
+
 			</div>
 			<br>
 			<div class="container mt-3">

@@ -69,7 +69,7 @@
 							</a>
 						</div>
 						<div style="width: 50px;">
-						<img id="memberimg" src="/el/resources/img/member/memberimg.png" alt="" onclick="location.href='/el/member/alert'">
+						<img id="memberimg" src="/el/resources/img/member/memberimg.png" alt="" onclick="location.href='/el/member/modify'">
 						</div>
 						<div class="dropdown">
 								<div class="drop" id="mem-wrap">
@@ -97,7 +97,7 @@
 							<input type="hidden" id="memberNo" name="memberNo" value="${loginMember.memberNo}">
 						</div>
 						<div style="width: 50px;">
-							<img id="memberimg" src="/el/resources/img/member/memberimg.png" alt="" onclick="location.href='/el/member/alert'">
+							<img id="memberimg" src="/el/resources/img/member/memberimg.png" alt="" onclick="location.href='/el/member/modify'">
 						</div>
 						<div class="dropdown">
 								<div class="drop" id="mem-wrap">

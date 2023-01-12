@@ -47,3 +47,15 @@
     font-weight: 700;
 
   }
+
+#container{
+  height: 1050px;
+}
+
+#teacher_pro{
+  width: 65%;
+  margin: auto;
+  display: flex;
+  justify-items: center;
+  margin-top: 70px;
+}
