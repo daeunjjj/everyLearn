@@ -26,7 +26,7 @@ public class TeacherMemberVo {
 	private String totalPrice;
 	
 	
-
+	private String teacherRe;
 	
 	
 	//강의관련

@@ -38,6 +38,7 @@ public class TeacherVo {
 	private String classCnt;
 	private String revAvg;
 	private String reviewCnt;
+	private String teacherRe;
 	
 	
 

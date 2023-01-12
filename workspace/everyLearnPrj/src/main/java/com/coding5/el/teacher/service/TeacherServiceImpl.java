@@ -54,5 +54,11 @@ public class TeacherServiceImpl implements TeacherService{
 		return teacherDao.selectClassList(sst, memberNo);
 	}
 
+	//티처넘버 받기
+	@Override
+	public TeacherVo newTeacherSelect(MemberVo mvo) {
+		return teacherDao.selectNewTeacher(sst,mvo);
+	}
+
 
 }

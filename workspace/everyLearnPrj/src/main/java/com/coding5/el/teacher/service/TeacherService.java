@@ -20,6 +20,9 @@ public interface TeacherService {
 
 	public List<TeacherMemberVo> teacherClassList(String memberNo);
 
+	//강사 번호 조회
+	public TeacherVo newTeacherSelect(MemberVo mvo);
+
 
 
 }

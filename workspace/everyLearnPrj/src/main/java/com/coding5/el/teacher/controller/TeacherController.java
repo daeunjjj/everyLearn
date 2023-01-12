@@ -46,30 +46,36 @@ public class TeacherController {
 	public String write(TeacherVo vo, HttpServletRequest req, MemberVo mvo) {
 		
 		
-		String changeName = "";
-		if(!vo.isEmpty()) {
-			changeName = FileUploader.upload(req, vo);
-			System.out.println(changeName);
-		}
 		
-		
+		//이력서 파일
 		String changeName2 = "";
 		if(!vo.isEmpty2()) {
 			changeName2 = FileUploader.upload2(req, vo);
 			System.out.println(changeName2);
 		}
 		
-		vo.setChangeName(changeName);
 		vo.setChangeName2(changeName2);
 		
 		vo.setNo(mvo.getMemberNo());
 		
 		int result = ts.teacherEnroll(vo);
+		log.info("resultresultno" + result);
+		log.info("mvo" + mvo);
 		
+		TeacherVo newTea = ts.newTeacherSelect(mvo);
+		log.info("뉴티처" + newTea);
+		
+		String changeName = "";
+		if(!vo.isEmpty()) {
+			changeName = FileUploader.upload(req, vo);
+			System.out.println(changeName);
+		}
+		vo.setChangeName(changeName);
 		
 		log.info("티쳐no" + vo.getNo());
 		
-		vo.setTeacherNo(vo.getNo());
+		vo.setTeacherNo(newTea.getTeacherRe());
+		log.info("티쳐vo 이미지등록" + vo);
 	
 		int imgOk = ts.teacherImgEnroll(vo);
 		log.info("imgOk" + imgOk);
