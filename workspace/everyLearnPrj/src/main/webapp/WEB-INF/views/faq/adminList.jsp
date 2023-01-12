@@ -51,6 +51,8 @@
 					</div>
 		
 				<!-- 페이징 start -->
+				
+	       	    
 	       	    <div id="page-area" >
 	   				<ul>
 				        	<c:if test="${page.startPage != 1}">

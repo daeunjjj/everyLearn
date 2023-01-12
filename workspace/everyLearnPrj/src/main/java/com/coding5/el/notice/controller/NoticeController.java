@@ -147,6 +147,15 @@ public class NoticeController {
 	@PostMapping("edit")
 	public String edit(NoticeVo vo, HttpSession session, Model model) throws Exception {
 		
+		// 공지 이미지 저장
+		String thumbName = "";
+		if(!vo.getThumbFile().isEmpty()) {
+			thumbName = FileUploader.upload(session, vo.getThumbFile());
+		}
+		
+		vo.setThumb(thumbName);
+		
+		
 		int result = noticeService.editNotice(vo);	
 		
 		if(result > 0) { 

@@ -33,7 +33,7 @@
 						<span>고객센터</span>
 					</div>
 					<div class="menu-content">
-						<a href="#">공지사항</a><a href="#">자주 묻는 질문</a><a href="#">강의 요청</a>
+						<a href="/el/notice/list">공지사항</a><a href="/el/faq/list">자주 묻는 질문</a><a href="#">강의 요청</a>
 					</div>
 				</div>
 			</div>

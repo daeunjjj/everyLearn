@@ -40,7 +40,7 @@
                 	<span>${ n.hit }</span>
                 </div>
                 <div class="content" name="content">
-                	<img alt="" src="/el/resources/upload/${ n.thumb }">
+                	<img id="content-img" alt="" src="/el/resources/upload/${ n.thumb }">
                    <textarea id="content">${ n.content }</textarea>
                 </div>
             </div>
