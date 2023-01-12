@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>everyLearn</title>
 <script src="https://kit.fontawesome.com/0c7f523053.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/el/resources/css/lecture/qnalist.css" />
 <link rel="icon" type="image/png" sizes="16x16" href="/el/resources/img/logo/favicon-16x16.png">

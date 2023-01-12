@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>everyLearn</title>
 
 <script src="https://kit.fontawesome.com/0c7f523053.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/el/resources/css/lecture/main.css" />
@@ -39,11 +39,7 @@
 					</form>
 				</div>
 		        <div class="list-wrap">
-		            <div id="lec-list">
-		                <div id="lec-pic"><a href="#"><img src="/el/resources/img/lecture/lecpic.png"></a></div>
-		                <div id="lec-int"><a href="#">아이패드로 일상 그리기, 프로크리에이트를 이용한 드로잉 클래스</a></div>
-		                <div id="lec-teacher"><i class="fa-regular fa-user">강사이름</i></div>
-		            </div>
+		            
 	            
 	            <c:forEach items="${list}" var="list">
 		            <div id="lec-list">
