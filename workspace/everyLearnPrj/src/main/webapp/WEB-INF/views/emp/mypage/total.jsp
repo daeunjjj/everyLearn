@@ -29,7 +29,7 @@
                             <th width="15%">채용 기한</th>
                             <th width="10%">채용 상태</th>
                             <th width="10%">지원자 수</th>
-                            <th width="10%"></th>
+                            <th width="10%">지원자 조회</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,7 +46,7 @@
                                 <c:if test="${not empty vo.cnt}">
                                 <td>${vo.cnt}명</td>
                                 </c:if>
-                                <td><a href="/el/corp/applicant?empNo=${vo.no}"><button>상세보기</button></a></td>
+                                <td><a href="/el/corp/applicant?empNo=${vo.no}"><button class="btn">상세보기</button></a></td>
                             </tr>
                        </c:forEach>
                     </tbody>

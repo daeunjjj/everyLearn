@@ -23,10 +23,10 @@
                     <thead>
                         <tr>
                             <th width="10%">No</th>
-                            <th width="25%">이름</th>
+                            <th width="25%">지원자 이름</th>
                             <th width="20%">전화번호</th>
                             <th width="20%">이메일</th>
-                            <th width="25%"></th>
+                            <th width="25%">이력서 조회</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,7 +36,7 @@
                                 <td>${vo.name}</td>
                                 <td>${vo.phone}</td>
                                 <td>${vo.email}</td>
-                                <td><a href="/el/emp/applicant?applyNo=${vo.no}"><button>상세보기</button></a></td>
+                                <td><a href="/el/emp/applicant?applyNo=${vo.no}"><button class="btn">상세보기</button></a></td>
                             </tr>
                         </c:forEach>
                     </tbody>

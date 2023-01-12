@@ -78,3 +78,18 @@ table.list tbody tr{
   font-size: 1rem;
   margin: 0 5px;
 }
+
+.btn{
+  border: none;
+  border-radius: 5px;
+  height: 1.933rem;
+  background-color: #1187CF;
+  color: white;
+  font-weight: bold;
+}
+
+.btn:hover{
+  background-color: white;
+  border: 1px solid #1187CF;
+  color: black;
+}

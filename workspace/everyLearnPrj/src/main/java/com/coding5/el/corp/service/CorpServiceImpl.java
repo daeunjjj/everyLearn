@@ -239,9 +239,13 @@ public class CorpServiceImpl implements CorpService {
 	@Override
 	public int quitCorpMember(CorpVo vo) {
 		
-		log.info(vo.toString());
+		int result = dao.updateCorpMember(sst, vo);
 		
-		return dao.updateCorpMember(sst, vo);
+		if(result == 1) {
+			dao.deletePost(sst, vo);
+		}
+		
+		return result;
 	}
 
 	// 지원자 현황 페이징
