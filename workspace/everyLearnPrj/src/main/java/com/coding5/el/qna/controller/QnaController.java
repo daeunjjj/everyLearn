@@ -19,6 +19,7 @@ import com.coding5.el.common.file.FileUploader;
 import com.coding5.el.member.vo.MemberVo;
 import com.coding5.el.notice.vo.PageVo;
 import com.coding5.el.qna.service.QnaService;
+import com.coding5.el.qna.vo.QnaAnswerVo;
 import com.coding5.el.qna.vo.QnaVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -50,6 +51,26 @@ public class QnaController {
 		model.addAttribute("page", pageVo);
 		
 		return "qna/list";
+	}
+	
+	//QNA 관리자 페이지 리스트
+	@GetMapping(value = {"/adminList/{page}", "/adminList"})
+	public String adminList(Model model, @PathVariable(required=false) String page) throws Exception {
+		if(page == null) page = "1";
+		
+		//페이징 객체 필요함
+		int cntPerPage = 10; //한 페이지당 row10개씩 보여주기
+		int pageBtnCnt = 5;	//한번에 보여줄 페이지버튼 개수
+		int totalRow = qnaService.getQnaCnt();
+		PageVo pageVo = new PageVo(page, cntPerPage, pageBtnCnt, totalRow);
+		
+		//리스트 조회
+		List<QnaVo> adminList = qnaService.getQnaList(pageVo);
+		model.addAttribute("adminList", adminList);
+		model.addAttribute("page", pageVo);
+		
+		return "qna/adminList";
+		
 	}
 	
 	//QNA 사용자 글쓰기
@@ -95,7 +116,7 @@ public class QnaController {
 	@PostMapping("answerAdminWrite")	//답변 update로
 	public String answerAdminWrite(QnaVo vo, HttpSession session, Model model) throws Exception {
 		AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");
-		vo.setAdminNo(loginAdmin.getNo());
+
 		
 		// 답변 이미지 저장
 		String thumbName = "";
@@ -121,15 +142,18 @@ public class QnaController {
 	
 	//QNA 상세보기
 	@GetMapping("detail")
-	public String detail(@RequestParam(required=false) String no, Model model, HttpSession session, QnaVo vo)  throws Exception {
+	public String detail(@RequestParam(required=false) String no, Model model, HttpSession session, QnaVo vo, QnaAnswerVo aVo)  throws Exception {
 		AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");
 		
 		QnaVo q = qnaService.selectDetail(no);
+		
 		model.addAttribute("q", q);
 		
 		return "qna/detail";
 	}
-		
+	
+
+	
 	
 	
 }

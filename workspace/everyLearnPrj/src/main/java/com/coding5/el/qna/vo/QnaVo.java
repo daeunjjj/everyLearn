@@ -8,23 +8,22 @@ import lombok.Data;
 public class QnaVo {
 
 	
-	private String no;
+	private String no;			//게시글 번호
 	private String mno;
-	private String memberNo;
-	private String ano;
-	private String adminNo;
-	private String category;
-	private String nick;
-	private String aNick;
-	private String title;
-	private String content;
-	private String wContent;
-	private String answerYn;
+	private String memberNo;	//회원 번호
+	private String ano;			
+	private String adminNo;		//관리자 번호
+	private String category;	//카테고리
+	private String nick;		//회원 닉네임
+	private String aNick;		//관리자 닉네임
+	private String title;		//질문 제목
+	private String content;		//질문 내용
+	private String answer;		//관리자 답변
+	private String answerYn;	//답변 여부
 	private String enrollDate;
 	private String modifyDate;
 	private String del;
 	private String adminCheck;
-	private String photoName;
 	private String thumb;	//첨부파일
 
 	private MultipartFile thumbFile;
