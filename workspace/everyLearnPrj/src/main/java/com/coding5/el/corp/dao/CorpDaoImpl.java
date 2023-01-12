@@ -156,8 +156,8 @@ public class CorpDaoImpl implements CorpDao{
 	}
 
 	@Override
-	public void deletePost(SqlSessionTemplate sst, CorpVo vo) {
-		sst.delete("jobPostMapper.deletePost", vo);
+	public void updatePost(SqlSessionTemplate sst, CorpVo vo) {
+		sst.update("jobPostMapper.updatePost", vo);
 	}
 
 

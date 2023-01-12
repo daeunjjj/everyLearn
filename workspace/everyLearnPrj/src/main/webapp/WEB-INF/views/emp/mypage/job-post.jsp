@@ -41,7 +41,7 @@
               </header>
               <section class="jobDetail">
                 <div class="items">
-                  <label for="introduce">회사소개 *</label>
+                  <label for="introduce">회사소개<span class="essential-info"> *</span></label>
                   <textarea name="introduce" id="introduce" maxlength="4000" onblur="validateIntroduce();" oninput="validate();">${ev.introduce}</textarea>
                   <div id="input-introduce" class="x-icon" style="display: none;">
                     <div><img src="/el/resources/img/emp/x-icon.svg" alt=""></div>
@@ -49,7 +49,7 @@
                   </div>
                 </div>
                 <div class="items">
-                  <label for="responsibility">주요업무</label>
+                  <label for="responsibility">주요업무<span class="essential-info"> *</span></label>
                   <textarea name="responsibility" id="responsibility" maxlength="1000" onblur="validateResponsibility();" oninput="validate();">${ev.responsibility}</textarea>
                   <div id="input-responsibility" class="x-icon" style="display: none;">
                     <div><img src="/el/resources/img/emp/x-icon.svg" alt=""></div>
@@ -57,7 +57,7 @@
                   </div>
                 </div>
                 <div class="items">
-                  <label for="qualification">자격요건</label>
+                  <label for="qualification">자격요건<span class="essential-info"> *</span></label>
                   <textarea name="qualification" id="qualification" maxlength="1000" onblur="validateQualification();" oninput="validate();">${ev.qualification}</textarea>
                   <div id="input-qualification" class="x-icon" style="display: none;">
                     <div><img src="/el/resources/img/emp/x-icon.svg" alt=""></div>
@@ -76,7 +76,7 @@
             </div>
             <aside class="aside">
                   <dl>
-                      <label>경력</label>
+                      <label>경력<span class="essential-info"> *</span></label>
                       <div>
                         <input type="text" name="career" id="career" value="${ev.career}" onblur="validateCareer();" oninput="validate();">
                         <div id="input-career" class="x-icon" style="display: none;">
@@ -86,7 +86,7 @@
                       </div>
                     </dl>
                   <dl>
-                    <label>연봉</label>
+                    <label>연봉<span class="essential-info"> *</span></label>
                     <div>
                       <div class="min-sales">
                         <input type="text" name="salary" id="salary" class="number" value="${ev.salary}" onblur="validateSalary();" oninput="validate();"><span>만원</span>
@@ -98,7 +98,7 @@
                     </div>
                   </dl>
                   <dl>
-                    <label>직군</label>
+                    <label>직군<span class="essential-info"> *</span></label>
                     <div>
                       <input type="text" name="sector" id="sector" value="${ev.sector}" onblur="validateSector();" oninput="validate();">
                       <div id="input-sector" class="x-icon" style="display: none;">
@@ -108,7 +108,7 @@
                     </div>
                   </dl>
                   <dl>
-                    <label>지역</label>
+                    <label>지역<span class="essential-info"> *</span></label>
                     <div>
                       <input type="text" name="address" id="address" value="${ev.address}" onblur="validateAddress();" oninput="validate();">
                       <div id="input-address" class="x-icon" style="display: none;">
@@ -118,7 +118,7 @@
                     </div>
                   </dl>
                   <dl>
-                      <label>마감일</label>
+                      <label>마감일<span class="essential-info"> *</span></label>
                       <div>
                         <input type="date" id="date" name="deadline" class="close" value="${ev.deadline}" onblur="validateDate();" oninput="validate();">
                         <input type="checkbox" name="deadline" id="checkbox" value="채용 시 마감" onchange="checkDeadLine();"oninput="validate();"><label for="deadline">채용 시 마감</label>

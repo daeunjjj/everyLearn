@@ -198,3 +198,7 @@ main .wrapper{
   gap: 5px;
   padding-top: 20px;
 }
+
+.essential-info{
+  color: red;
+}

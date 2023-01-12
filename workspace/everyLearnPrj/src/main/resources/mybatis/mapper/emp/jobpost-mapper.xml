@@ -46,14 +46,16 @@
 	FROM EMPLOYMENT EMP
 	JOIN CORPORATE_MEMBER CORP ON EMP.CORP_NO = CORP.NO
 	WHERE EMP.DELETE_YN = 'N'
+	AND CORP.STATUS_YN = 'Y'
 	AND EMP.DEADLINE >= TO_CHAR(SYSDATE,'YYYY-MM-DD')
   </select>
   
   <!-- 채용공고 리스트 페이징 -->
   <select id="selectPostList" resultType="int">
   	SELECT COUNT(*)
-  	FROM EMPLOYMENT
-  	WHERE DELETE_YN = 'N'
+	FROM EMPLOYMENT EMP
+	JOIN CORPORATE_MEMBER CORP ON EMP.CORP_NO = CORP.NO
+	WHERE EMP.DELETE_YN = 'N'
   	AND DEADLINE >= TO_CHAR(SYSDATE,'YYYY-MM-DD')
   </select>
   
@@ -97,6 +99,7 @@
 	FROM EMPLOYMENT EMP
 	JOIN CORPORATE_MEMBER CORP ON EMP.CORP_NO = CORP.NO
 	WHERE EMP.DELETE_YN = 'N'
+	AND CORP.STATUS_YN = 'Y'
 	<if test="keyword != null and keyword != ''">
 		 AND LOWER(TITLE) LIKE LOWER('%${keyword}%')
 	</if>
@@ -106,8 +109,10 @@
   
   <select id="selectSearchListCnt" resultType="int">
   	SELECT COUNT(*)
-  	FROM EMPLOYMENT
-  	WHERE DELETE_YN = 'N'
+	FROM EMPLOYMENT EMP
+	JOIN CORPORATE_MEMBER CORP ON EMP.CORP_NO = CORP.NO
+	WHERE EMP.DELETE_YN = 'N'
+	AND CORP.STATUS_YN = 'Y'
   	<if test="keyword != null and keyword != ''">
 		AND LOWER(TITLE) LIKE LOWER('%${keyword}%')
 	</if>
@@ -129,6 +134,7 @@
     JOIN CORPORATE_MEMBER CORP ON CORP.NO = EMP.CORP_NO
     JOIN JOB_CATE JOB ON JOB.NO = EMP.CATEGORY
     WHERE EMP.DELETE_YN = 'N'
+    AND CORP.STATUS_YN = 'Y'
     AND EMP.CATEGORY = #{value}
     AND EMP.DEADLINE >= TO_CHAR(SYSDATE,'YYYY-MM-DD')
     ORDER BY EMP.NO DESC
@@ -137,8 +143,10 @@
 	<!-- 직군별 공고 조회하기 -->
   <select id="selectSectorPage" resultType="int">
   	SELECT COUNT(*)
-  	FROM EMPLOYMENT
-  	WHERE DELETE_YN = 'N'
+	FROM EMPLOYMENT EMP
+	JOIN CORPORATE_MEMBER CORP ON EMP.CORP_NO = CORP.NO
+	WHERE EMP.DELETE_YN = 'N'
+	AND CORP.STATUS_YN = 'Y'
   	AND CATEGORY = #{value}
   	AND DEADLINE >= TO_CHAR(SYSDATE,'YYYY-MM-DD')
   </select>
@@ -152,9 +160,11 @@
     AND EMP_NO = #{empNo}
   </select>
   
-  <delete id="deletePost">
-  	DELETE FROM EMPLOYMENT
+  <update id="updatePost">
+  	UPDATE EMPLOYMENT
+  	SET
+  	 DELETE_YN = 'Y'
   	WHERE CORP_NO = #{no}
-  </delete>
+  </update>
   
 </mapper>

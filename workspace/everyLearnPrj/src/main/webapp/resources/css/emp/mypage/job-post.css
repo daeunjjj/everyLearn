@@ -145,3 +145,7 @@
 .essential{
   color: rgb(229, 0, 0);
 }
+
+.essential-info{
+  color: red;
+}
